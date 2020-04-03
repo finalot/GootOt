@@ -116,31 +116,33 @@
 				</h4>
 
 				<ul>
+<c:url var="faq" value="faq.do"/>
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						<a href="${faq }" class="s-text7">
 							Q&A
 						</a>
 					</li>
 					<li class="p-b-9">
-						<a href="/ot/FaQ.jsp" class="s-text7">
+						<a href="${faq }" class="s-text7">
 							FaQ
 						</a>
 					</li>
-
+<c:url var="review" value="review.do"/>
 					<li class="p-b-9">
-						<a href="review.jsp" class="s-text7">
+						<a href=${review }" class="s-text7">
 							REVIEW
 						</a>
 					</li>
-
+<c:url var="notice" value="notice.do"/>
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						<a href="${notice }" class="s-text7">
 							NOTICE
 						</a>
 					</li>
+	<c:url var="dailyCheck" value="dailyCheck.do"/>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						<a href="${dailyCheck }" class="s-text7">
 							출석체크
 						</a>
 					</li>
@@ -155,14 +157,13 @@
 
 				<form>
 					<div class="effect1 w-size9">
-						<input class="s-text7 bg6 w-full p-b-5" type="text" name="email" placeholder="eodbs321@gmail.com">
 						<span class="effect1-line"></span>
 					</div>
 
 					<div class="w-size2 p-t-20">
 						<!-- Button -->
 						<button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4" style="font-size:10px;width:50%;height:auto;border:2px solid darkgray">
-							모델지원 <br>메일 보내기
+							모델 메일지원 <br>바로가기
 						</button>
 					</div>
 
@@ -212,13 +213,13 @@
 						
 						
 						<span class="header-icons-noti">0</span> 
-
+<c:url var="cartbutton" value="cartbutton.do"/>
 						<!-- Header cart noti -->
 						<div class="header-cart header-dropdown" style="border-radius:10px;">
 							<ul class="header-cart-wrapitem">
 								<li class="header-cart-item">
 									<div class="header-cart-item-img">
-										<a href ="cart.jsp"><img src="<c:url value="/resources/images/item-cart-01.jpg"/>" alt="IMG" ></a>
+										<a href ="${cartbutton }"><img src="<c:url value="/resources/images/item-cart-01.jpg"/>" alt="IMG" ></a>
 									</div>
 
 									<div class="header-cart-item-txt">
@@ -272,7 +273,7 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.jsp" class="hov1 s-text1 trans-0-4 yg_btn_141">
+									<a href="${cartbutton }" class="hov1 s-text1 trans-0-4 yg_btn_141">
 										<span id="idMsg3">장바구니</span>
 									</a>
 								</div>
@@ -287,7 +288,6 @@
 						</div>
 					</div>
 		</button>
-		
 	
 				
 		
@@ -313,7 +313,7 @@
 			</a></button>
 		
 		<button class="chatBtn" style="width:88%;height:12%;margin-top:230%;margin-left:-88%;border-radius:10%;">
-			<img  style="border-radius:10%;" src="images/icons/icon-header-05.png" class="header-icon1" alt="ICON"
+			<img  style="border-radius:10%;" src="/ot/resources/images/icons/icon-header-05.png" class="header-icon1" alt="ICON"
 				onmouseover="this.src='/ot/resources/images/icons/icon-header-05-5.png'"
 				onmouseout="this.src='/ot/resources/images/icons/icon-header-05.png'">
 		</button>

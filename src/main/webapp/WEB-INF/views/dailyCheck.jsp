@@ -75,7 +75,7 @@ $(function(){
 $('#dailyCheck').click(function(){
 	if($('#checkmark').text() == ""){
 		
-	$('.cal-table td.today').append('<img src="/ot/resources/images/icons/ot.png" alt="로고" style="position:relative;left: 20%;height: auto;width: 60px;">')
+	$('.cal-table td.today').append('<img id="checkmark" src="/ot/resources/images/icons/ot.png" alt="로고" style="position:relative;left: 20%;height: auto;width: 60px;">')
 	}else{
 		alert('이미출석체크 하였습니다')
 	};
@@ -89,17 +89,6 @@ display: none;
 }
  .cal-body tr td:first-child{color:red}
  
-#checkmark{
-background: black;
-    color: white;
-    font-size: 27px;
-    text-align: center;
-    margin-left: 29%;
-    border-radius: 50%;
-    height: 56%;
-    width: 35%;
-	
-} 
  
 </style>
 </body>

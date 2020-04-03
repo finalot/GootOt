@@ -137,6 +137,31 @@ public class mainController {
 	public String buynow() {
 		return "order";
 	}
+	/**
+	 * @작성일 : 2020. 4. 2.
+	 * @작성자 :이대윤
+	 * @내용 : 노티스로 이동
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("notice.do")
+	public String notice() {
+		return "notice";
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 2.
+	 * @작성자 :이대윤
+	 * @내용 : QnA,FaQ 이동
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("faq.do")
+	public String faq() {
+		return "FaQ";
+	}
+	
+	
 	
 
 }
