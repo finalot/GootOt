@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -543,7 +544,7 @@
 
 					<div class="wrap-pic-w">
 						<img
-							src="images/oT/clothing/t_nasi/basic_crop_color_nasi/basic_crop_color_nasi.webp"
+							src="/ot/resources/images/oT/clothing/t_nasi/basic_crop_color_nasi/basic_crop_color_nasi.webp"
 							alt="IMG-PRODUCT">
 					</div>
 
@@ -836,7 +837,9 @@ function optionDel(){
 	*min-height: 0;
 }
 </style>
-
+<c:url var="buynow" value="buynow.do">
+	<c:param name="productInfo" value="nasi" />  
+</c:url>
 				<div class="wrap-dropdown-content bo7 p-t-15 p-b-14 modalcss">
 
 					<!-- Trigger/Open The Modal -->
@@ -852,13 +855,11 @@ function optionDel(){
 						 onclick="washing_tip();" style="width: 40%; float: left;"><small>sizeInfo & wasingTip</small></button>
 						 
 					<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-						onclick="order();" style="position: relative; left: 10%; width: 40%;">Buy Now</button>
+						onclick="location.href='${buynow}'" style="position: relative; left: 10%; width: 40%;">Buy Now</button>
 
 <script>
 
-function order(){
-	location.href="order.jsp";
-}
+
 function washing_tip(){
 	location.href="#washing_tip";
 }
@@ -891,7 +892,8 @@ function qna(){
     </div>
     					<button class="flex-c-m bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="reviewOn();" 
 						style="position: relative; left: 55%; width: 7%; height: 20px; font-size: 12px; float:left;background:#c3b798; ">리뷰 작성하기</button>
-    					<button class="flex-c-m bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="location.href='review.jsp'"
+							<c:url var="review" value="review.do"/>
+    					<button class="flex-c-m bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="location.href='${review}'"
 						style="position: relative; left: 56%; width: 7%; height: 20px; font-size: 12px; ">리뷰 게시판</button>
     								<hr>
 									<br>
@@ -3000,9 +3002,14 @@ function qna(){
 							</td>
                				<td class="thumb" >
                					<!-- subject 내용 들어갈 곳 -->
-               					
+            		<c:url var="product_detail_qna_detail" value="product_detail_qna_detail.do">
+						<c:param name="product_detail_qna_detail" value="pdqd1"/>
+					</c:url>
+					<c:url var="product_detail_qna_answer" value="product_detail_qna_detail.do">
+						<c:param name="product_detail_qna_answer" value="pdqa1"/>
+					</c:url>
                         <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
-                        <a id="idMsg10" style="color:#555555;"href="product_detail_qna_detail.jsp">
+                        <a id="idMsg10" style="color:#555555;"href="${product_detail_qna_detail}">
                         [배송문의]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
                     </td>
                				
@@ -3026,7 +3033,7 @@ function qna(){
                				<td class="subject left txtBreak">
                         &nbsp;&nbsp;&nbsp;<img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_re.gif" alt="답변" class="ec-common-rwd-image"> 
                         <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
-                        <a id="idMsg10" style="color:#555555;">답변완료:)</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                        <a id="idMsg10" style="color:#555555;" href="${product_detail_qna_answer}">답변완료:)</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
                     </td>
                				
        						</td>
@@ -3044,13 +3051,15 @@ function qna(){
         		
 		
 			</div>
-				
-        <a href="product_detail_qna_write.jsp" class="hov1 s-text1 trans-0-4 yg_btn_145">
+				<c:url var="product_detail_qna_write" value="product_detail_qna_write.do">
+					<c:param name="product_detail_qna_write" value="pdqw1"/>
+				</c:url>
+        <a href="${product_detail_qna_write}" class="hov1 s-text1 trans-0-4 yg_btn_145"style="position: relative;left: 45%;">
         <span style="position: relative;top: -2px;">write</span></a>
     			
 			<div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 "><fieldset class="boardSearch">
 <legend>게시물 검색</legend>
-            <p style="width:120%;"><select id="search_date" name="search_date">
+            <p style="width:120%;position:relative;left:-22%"><select id="search_date" name="search_date">
 				<option value="week">일주일</option>
 				<option value="month">한달</option>
 				<option value="month3">세달</option>
@@ -3095,12 +3104,14 @@ function qna(){
 
 
 	<!-- Relate Product -->
-	<section class="relateproduct bgwhite p-t-45 p-b-138">
+	<section class="relateproduct bgwhite p-t-45 p-b-138" style="position:relative;top:800px;">
 	
 			<div class="sec-title p-b-60">
 				<h3 class="m-text5 t-center">With Item</h3>
 			</div>
-
+<c:url var="product_detail" value="product_detail.do">
+	<c:param name="product_detail" value="p1" />  
+</c:url>
 			<!-- Slide2 -->
 			<div class="wrap-slick2">
 				<div class="slick2">
@@ -3111,7 +3122,7 @@ function qna(){
 							<div
 								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
 								<img
-									src="images/oT/clothing/t_nasi/basic_crop_color_nasi/basic_crop_color_nasi.webp"
+									src="/ot/resources/images/oT/clothing/t_nasi/basic_crop_color_nasi/basic_crop_color_nasi.webp"
 									alt="IMG-PRODUCT">
 
 								<div class="block2-overlay trans-0-4">
@@ -3144,7 +3155,7 @@ function qna(){
 										style="width: 17px; height: 17px; background: #E4F650; margin-left: 3px; float: left; border: 1px solid black;"></div>
 									<div
 										style="width: 17px; height: 17px; background: #4A87B9; margin-left: 3px; float: left; border: 1px solid black;"></div>
-								</span> <br> <a href="productDetail.jsp"
+								</span> <br> <a href="${product_detail}"
 									class="block2-name dis-block s-text3 p-b-5"
 									style="font-size: 12px"> [B-BASIC] 베이직 크롭 컬러나시 </a> <span
 									class="block2-price m-text6 p-r-5"> <small><font
@@ -3160,7 +3171,7 @@ function qna(){
 							<div
 								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
 								<img
-									src="images/oT/clothing/t_nasi/numb_lettering_t/numb_lettering_t.webp"
+									src="/ot/resources/images/oT/clothing/t_nasi/numb_lettering_t/numb_lettering_t.webp"
 									alt="IMG-PRODUCT">
 
 								<div class="block2-overlay trans-0-4">
@@ -3200,7 +3211,7 @@ function qna(){
 						<div class="block2">
 							<div class="block2-img wrap-pic-w of-hidden pos-relative">
 								<img
-									src="images/oT/clothing/t_nasi/standard_round_t/standard_round_t.webp"
+									src="/ot/resources/images/oT/clothing/t_nasi/standard_round_t/standard_round_t.webp"
 									alt="IMG-PRODUCT">
 
 								<div class="block2-overlay trans-0-4">
@@ -3247,7 +3258,7 @@ function qna(){
 						<div class="block2">
 							<div
 								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img src="images/item-07.jpg" alt="IMG-PRODUCT">
+								<img src="/ot/resources/images/item-07.jpg" alt="IMG-PRODUCT">
 
 								<div class="block2-overlay trans-0-4">
 									<a href="#"
@@ -3282,7 +3293,7 @@ function qna(){
 						<div class="block2">
 							<div
 								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								<img src="images/item-02.jpg" alt="IMG-PRODUCT">
+								<img src="/ot/resources/images/item-02.jpg" alt="IMG-PRODUCT">
 
 								<div class="block2-overlay trans-0-4">
 									<a href="#"
@@ -3315,7 +3326,7 @@ function qna(){
 						<!-- Block2 -->
 						<div class="block2">
 							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="images/item-03.jpg" alt="IMG-PRODUCT">
+								<img src="/ot/resources/images/item-03.jpg" alt="IMG-PRODUCT">
 
 								<div class="block2-overlay trans-0-4">
 									<a href="#"
@@ -3347,7 +3358,7 @@ function qna(){
 						<!-- Block2 -->
 						<div class="block2">
 							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="images/item-05.jpg" alt="IMG-PRODUCT">
+								<img src="/ot/resources/images/item-05.jpg" alt="IMG-PRODUCT">
 
 								<div class="block2-overlay trans-0-4">
 									<a href="#"
@@ -3381,7 +3392,7 @@ function qna(){
 						<div class="block2">
 							<div
 								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img src="images/item-07.jpg" alt="IMG-PRODUCT">
+								<img src="/ot/resources/images/item-07.jpg" alt="IMG-PRODUCT">
 
 								<div class="block2-overlay trans-0-4">
 									<a href="#"
@@ -3423,7 +3434,7 @@ function qna(){
 	<div id="dropDownSelect1"></div>
 	<div id="dropDownSelect2"></div>
 
-<div style=" width: 160%; margin-left:-30%;">
+<div style=" width: 160%; margin-left:-30%;position:relative;top:800px;">
 <!-- Footer -->
 <jsp:include page="footer.jsp"/>
 </div>
