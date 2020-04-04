@@ -60,7 +60,7 @@
 
 <insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER
-		VALUES(NULL,#{memId},#{memPwd},#{memName},#{memSsn},#{memAddress},
+		VALUES(MEM_SEQ.NEXTVAL,#{memId},#{memPwd},#{memName},#{memSsn},#{memAddress},
 		#{memEmail},#{memPhone},DEFAULT,#{memOwner},#{bank},#{returnBank})
 		
 	</insert>

@@ -367,7 +367,7 @@ font-size: 9px !important;
 						class="topbar-email"> . </span> &nbsp;&nbsp; <a
 						href="${MyPage}" class="topbar-email"> MyPage </a>
 					&nbsp;&nbsp; <span class="topbar-email"> . </span> &nbsp;&nbsp; <a
-						href="notice.jsp" class="topbar-email"> Notice </a> &nbsp;&nbsp; <span
+						href="notice.do" class="topbar-email"> Notice </a> &nbsp;&nbsp; <span
 						class="topbar-email"> . </span> &nbsp; <a href="#" id="allmenubar1"
 						class="topbar-social-item fa fa-bars"></a> &nbsp; <span
 						class="topbar-email"> . </span>
