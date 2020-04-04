@@ -25,7 +25,6 @@ public class mainController {
 	// @Autowired 타입의 어노테이션을 붙여주면 생성할 필요없이 변수 선언만 해도
 	// 빈 스키냉을 통해 아래의 'mService'의 이름을 가지고 있는 빈을 찾아서
 	// 자동으로 생성 후 주입해준다.
-	// 테스트ㄴ
 
 //	@Autowired
 //	private MemberService mService;

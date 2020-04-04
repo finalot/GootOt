@@ -382,6 +382,59 @@ public class MemberController {
 		}
 
 	}
+	
+	/**
+	 * @작성일  : 2020.04.04
+	 * @작성자  : 우예진
+	 * @내용    : 상품불량 및 오배송접수 글쓰기 페이지 이동
+	 * @return
+	 */
+	@RequestMapping("bad_product_write.do")
+	public String bad_product_write() {
+
+		return "bad_product_write";
+	}
+	
+	
+	/**
+	 * @작성일  : 2020.04.04
+	 * @작성자  : 우예진
+	 * @내용    : 상품불량 및 오배송접수 상품문의 상세페이지 이동
+	 * @return
+	 */
+	@RequestMapping("bad_product_detail.do")
+	public String bad_product_detail() {
+
+		return "bad_product_detail";
+	}
+	
+	
+	/**
+	 * @작성일  : 2020.04.04
+	 * @작성자  : 우예진
+	 * @내용    : 상품불량 및 오배송접수 답변 페이지 이동
+	 * @return
+	 */
+	@RequestMapping("bad_product_reply.do")
+	public String bad_product_reply() {
+
+		return "bad_product_reply";
+	}
+	
+	/**
+	 * @작성일  : 2020.04.04
+	 * @작성자  : 우예진
+	 * @내용    : 상품불량 및 오배송접수 게시판 페이지 이동
+	 * @return
+	 */
+	@RequestMapping("bad_product_board.do")
+	public String bad_product_board() {
+
+		return "bad_product_board";
+	}
+	
+	
+	
 
 
 
