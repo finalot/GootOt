@@ -9,10 +9,10 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>oT.</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
-<link rel="stylesheet" href="./css/mypage_basic.css">
-<link rel="stylesheet" href="./css/mypage_list.css">
-<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<!--    <link rel="stylesheet" href="/ot/resources/css/Login_style.css"> -->
+<link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+<link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
+<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
 
 <style>
 .ec-base-tab.tab_style li a {
@@ -20,9 +20,15 @@
     margin: 0;
 }
 </style>
+	<jsp:include page="header.jsp"/>	
 </head>
 <body>
-	<%@include file="header.jsp" %>	
+
+	<c:url var="mWishlist" value="mWishlist.do"/>
+	<c:url var="mPoint" value="mPoint.do"/>
+	<c:url var="mCoupon" value="mCoupon.do"/>
+	<c:url var="mCompletecoupon" value="mCompletecoupon.do"/>
+	
  	<div id="container">
  		<div id="memberInf1">
 			<div class="xans-myshop-bankbook " style="width: 80%;">
@@ -38,42 +44,36 @@
   					입니다.
 				</p>
 		
-			<ul style="float: right;width: 350px;height: 60px;margin-right: 100px;margin-top: -34px;">
-				<li class="xans-layout-shoppinginfo ">
-					<strong class="title">
-						<a href="/myshop/wish_list.html">WISH</a>
-					</strong>
-  			<br>
-					<strong class="data ">
-						<a href="/myshop/wish_list.html">
-							<span id="xans_myshop_interest_prd_cnt">0개</span>
-						</a>
-					</strong>
-				</li>
+				<ul style="float: right;width: 350px; height: 60px;margin-right: 100px;margin-top: -34px;">
+					<li class="xans-layout-shoppinginfo ">
+						<strong class="title">WISH</strong>
+  						<br>
+						<strong class="data ">
+							<a href="${mWishlist }">
+									<span id="xans_myshop_interest_prd_cnt">0개</span>
+							</a>
+						</strong>
+					</li>
 				
-                <li>
-                    <strong class="title">
-                    	<a href="/myshop/mileage/historyList.html">POINT</a>
-                    </strong>
-                    <br>
-                    <strong class="data">
-                    	<a href="/myshop/mileage/historyList.html">0원</a>
-                    </strong>
-                </li>
+               		<li>
+	                    <strong class="title">POINT</strong>
+	                    <br>
+	                    <strong class="data">
+	                    	<a href="${mPoint }">0원</a>
+	                    </strong>
+	                </li>
                 
-                <li class="etc ">
-                    <strong class="title">
-                    	<a href="/myshop/coupon/coupon.html">COUPON</a>
-                    </strong>
-                    <br>
-                    <strong class="data">
-                    	<a href="/myshop/coupon/coupon.html">0<span>개</span></a>
-                    </strong>
-                    	<a href="/myshop/coupon/coupon.html"></a>
+	                <li class="etc ">
+	                    <strong class="title">COUPON</strong>
+	                    <br>
+	                    <strong class="data">
+	                    	<a href="${mCoupon }">0<span>개</span></a>
+	                    </strong>
 	                </li>
 	            </ul>
 			</div>
 		</div>
+		
         <div id="contents">
 			<div class="mypage_top_outer">
 			 <!-- <div module="myshop_bankbook">        
@@ -96,7 +96,7 @@
 			</div>
 
 			<div class="titleArea">
-    			<h2>POINT</h2>
+    			<h2>COUPON</h2>
 			</div>
 
 			<div class="xans-element- xans-layout xans-layout-logincheck ">
@@ -108,14 +108,12 @@
 			<div class="ec-base-tab tab_style">
         		<ul class="menu">
 					<li>
-						<a href="/ot/mypage_point.jsp">적립내역보기</a>
+						<a href="${mCoupon }">사용가능한 쿠폰 목록</a>
 					</li>
-		            <li>
-		            	<a href="/ot/mypage_unavailpoint.jsp">미가용적립내역보기</a>
-	            	</li>
 		            <li class="selected">	
-		            	<a href="/ot/mypage_unavailcoupon.jsp">미가용쿠폰/회원등급적립내역</a>
+		            	<a href="${mCompletecoupon }">사용완료한 쿠폰 목록</a>
 	            	</li>
+						<p style="text-align: right; margin-right: 5px; padding-top: 15px;">사용가능 쿠폰 : 0장</p>
         		</ul>
 			</div>
 
@@ -126,7 +124,7 @@
 	            $login_page = /member/login.html
 	        	-->
 				<div class="ec-base-table typeList">
-            		<table border="1" summary="">
+            		<table border="1" summary="" style="border-bottom: none;">
 						<caption>적립금 내역</caption>
                 		<colgroup>
 							<col style="width:15%">
@@ -139,7 +137,7 @@
 						<thead>
 							<tr>
 								<th scope="col">주문날짜</th>
-		                        <th scope="col">미가용 적립금</th>
+		                        <th scope="col">미가용 쿠폰</th>
 		                        <th scope="col">관련 주문</th>
 		                        <th scope="col">사용가능 예정일</th>
 		                        <th scope="col">내용</th>
@@ -174,7 +172,7 @@
         		</div>
 			</div>
 
-			<div class="xans-element- xans-myshop xans-myshop-historypaging ec-base-paginate"><a href="/myshop/mileage/historyList.html?page=1" class="first"><img src="/ot/images/btn_page_first.gif" alt="첫 페이지"></a><a href="/myshop/mileage/historyList.html?page=1"><img src="/ot/images/btn_page_prev.gif" alt="이전 페이지"></a><ol><li class="xans-record-"><a href="?page=1" class="this">1</a></li></ol><a href="/myshop/mileage/historyList.html?page=1"><img src="/ot/images/btn_page_next.gif" alt="다음 페이지"></a><a href="/myshop/mileage/historyList.html?page=1" class="last"><img src="/ot/images/btn_page_last.gif" alt="마지막 페이지"></a></div>
+			<div class="xans-element- xans-myshop xans-myshop-historypaging ec-base-paginate"><a href="/myshop/mileage/historyList.html?page=1" class="first"><img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지"></a><a href="/myshop/mileage/historyList.html?page=1"><img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"></a><ol><li class="xans-record-"><a href="?page=1" class="this">1</a></li></ol><a href="/myshop/mileage/historyList.html?page=1"><img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지"></a><a href="/myshop/mileage/historyList.html?page=1" class="last"><img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a></div>
 	
 			<div class="xans-element- xans-myshop xans-myshop-head ec-base-help ">
 				<h3>적립금 안내</h3>

@@ -23,10 +23,10 @@ a {
 </head>
 <body style="font-size :13px;">
 
-	<c:url var="mBoard_view" value="mBoard_view.do">
-		<c:param name="mBoard_view" value="Board"/>
+	<c:url var="mBoard_adminreply" value="mBoard_adminreply.do">
+		<c:param name="mBoard_adminreply" value="Reply"/>
 	</c:url>
-	
+
 	<div id="container">
 		<div id="contents">
 			<div
@@ -231,7 +231,7 @@ a {
 								<a href="#none"
 								onclick="BOARD_WRITE.form_submit('boardWriteForm');"
 								class="yg_btn_30 yg_btn4" alt="수정">MODIFY</a> <a
-								href="${mBoard_view }" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
+								href="${mBoard_adminreply }" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
 							</span>
 						</div>
 					</div>

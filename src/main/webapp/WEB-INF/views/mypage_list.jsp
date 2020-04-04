@@ -9,13 +9,17 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>oT.</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
-   <link rel="stylesheet" href="./css/mypage_basic.css">
-   <link rel="stylesheet" href="./css/mypage_list.css">
-   <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<!--    <link rel="stylesheet" href="/ot/resources/css/Login_style.css"> -->
+   <link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+   <link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
+   <link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
+	<jsp:include page="header.jsp"/>	
 </head>
 <body>
-	<%@include file="header.jsp" %>	
+	<c:url var="mWishlist" value="mWishlist.do"/>
+	<c:url var="mPoint" value="mPoint.do"/>
+	<c:url var="mCoupon" value="mCoupon.do"/>
+
  	<div id="container">
  		<div id="memberInf1">
 			<div class="xans-myshop-bankbook " style="width: 80%;">
@@ -31,42 +35,36 @@
   					입니다.
 				</p>
 		
-			<ul style="float: right;width: 350px;height: 60px;margin-right: 100px;margin-top: -34px;">
-				<li class="xans-layout-shoppinginfo ">
-					<strong class="title">
-						<a href="/myshop/wish_list.html">WISH</a>
-					</strong>
-  			<br>
-					<strong class="data ">
-						<a href="/myshop/wish_list.html">
-							<span id="xans_myshop_interest_prd_cnt">0개</span>
-						</a>
-					</strong>
-				</li>
+				<ul style="float: right;width: 350px; height: 60px;margin-right: 100px;margin-top: -34px;">
+					<li class="xans-layout-shoppinginfo ">
+						<strong class="title">WISH</strong>
+  						<br>
+						<strong class="data ">
+							<a href="${mWishlist }">
+									<span id="xans_myshop_interest_prd_cnt">0개</span>
+							</a>
+						</strong>
+					</li>
 				
-                <li>
-                    <strong class="title">
-                    	<a href="/myshop/mileage/historyList.html">POINT</a>
-                    </strong>
-                    <br>
-                    <strong class="data">
-                    	<a href="/myshop/mileage/historyList.html">0원</a>
-                    </strong>
-                </li>
+               		<li>
+	                    <strong class="title">POINT</strong>
+	                    <br>
+	                    <strong class="data">
+	                    	<a href="${mPoint }">0원</a>
+	                    </strong>
+	                </li>
                 
-                <li class="etc ">
-                    <strong class="title">
-                    	<a href="/myshop/coupon/coupon.html">COUPON</a>
-                    </strong>
-                    <br>
-                    <strong class="data">
-                    	<a href="/myshop/coupon/coupon.html">0<span>개</span></a>
-                    </strong>
-                    	<a href="/myshop/coupon/coupon.html"></a>
+	                <li class="etc ">
+	                    <strong class="title">COUPON</strong>
+	                    <br>
+	                    <strong class="data">
+	                    	<a href="${mCoupon }">0<span>개</span></a>
+	                    </strong>
 	                </li>
 	            </ul>
 			</div>
 		</div>
+		
         <div id="contents">
 			<div class="mypage_top_outer">
 			 <!-- <div module="myshop_bankbook">        
@@ -101,7 +99,7 @@
 			<div class="xans-element- xans-myshop xans-myshop-orderhistorytab ec-base-tab tab_style ">
 				<ul class="menu">
 					<li class="tab_class selected">
-						<a href="/ot/mypage_list.jsp">주문내역조회 (<span id="xans_myshop_total_orders">0</span>)</a>
+						<a href="${mList }">주문내역조회 (<span id="xans_myshop_total_orders">0</span>)</a>
 					</li>
 			        <li class="tab_class_cs">
 			        	<a href="/ot/mypage_list_cancel.jsp">취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">0</span>)</a>
@@ -182,13 +180,17 @@
 			                <th scope="col">ORDER CHANGE</th>
             			</tr>
            			</thead>
-           			
+
+					<c:url var="product_detail" value="product_detail.do">
+						<c:param name="product_detail" value="p1"/>
+					</c:url>           			
+					
 					<tbody class="center ">
 						<tr class="xans-record-">
 							<td class="number ">
                     			2020-03-14                    
                     		<p>
-                    			<a href="detail.html?order_id=20200314-0004984&amp;page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14" class="line">[20200314-0004984]</a>
+                    			<a href="${product_detail }" class="line">[20200314-0004984]</a>
                    			</p>
 		                    <a href="#none" class="displaynone yg_btn_80 yg_btn3" onclick="OrderHistory.orderCancel('20200314-0004984')" alt="주문취소">주문취소</a>
 		                    <a href="cancel.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="취소신청">취소신청</a>
@@ -237,9 +239,9 @@
 
 			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate">
 				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first">
-					<img src="/ot/images/btn_page_first.gif" alt="첫 페이지"></a>
+					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지"></a>
 				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/images/btn_page_prev.gif" alt="이전 페이지"></a>
+					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"></a>
 					
 					<ol>
 						<li class="xans-record-">
@@ -248,14 +250,14 @@
        				</ol>
        				
 				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/images/btn_page_next.gif" alt="다음 페이지"></a>
+					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지"></a>
 				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="last">
-					<img src="/ot/images/btn_page_last.gif" alt="마지막 페이지"></a>
+					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
 			</div>
 		</div>
 		<hr class="layout">
 	</div>
 	
- <%@include file="footer.jsp" %>
+ <jsp:include page="footer.jsp"/>
 </body>
 </html>

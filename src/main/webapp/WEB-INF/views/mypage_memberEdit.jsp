@@ -8,12 +8,12 @@
 <title>oT.</title>
 <!--  <link href="/ot/css/join.css" rel="stylesheet">
  -->
-<link href="./css/mypage_list.css" rel="stylesheet">
+<link href="/ot/resources/css/mypage_list.css" rel="stylesheet">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<link rel="stylesheet" href="./css/mypage_basic.css">
+<link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
 <link rel="icon" type="image/png" href="images/icons/favicon.png" />
-<link rel="stylesheet" href="./css/popup.css">
+<link rel="stylesheet" href="/ot/resources/css/popup.css">
 
 <style>
 .yg_btn1 {
@@ -39,9 +39,13 @@
 
 
 
+	<jsp:include page="header.jsp"/>
 </head>
 <body>
-	<%@include file="header.jsp"%>
+	<c:url var="mWishlist" value="mWishlist.do"/>
+	<c:url var="mPoint" value="mPoint.do"/>
+	<c:url var="mCoupon" value="mCoupon.do"/>
+
 	<div id="container">
  		<div id="memberInf1">
 			<div class="xans-myshop-bankbook " style="width: 80%;">
@@ -57,42 +61,36 @@
   					입니다.
 				</p>
 		
-			<ul style="float: right;width: 350px;height: 60px;margin-right: 100px;margin-top: -34px;">
-				<li class="xans-layout-shoppinginfo ">
-					<strong class="title">
-						<a href="/myshop/wish_list.html">WISH</a>
-					</strong>
-  			<br>
-					<strong class="data ">
-						<a href="/myshop/wish_list.html">
-							<span id="xans_myshop_interest_prd_cnt">0개</span>
-						</a>
-					</strong>
-				</li>
+				<ul style="float: right;width: 350px; height: 60px;margin-right: 100px;margin-top: -34px;">
+					<li class="xans-layout-shoppinginfo ">
+						<strong class="title">WISH</strong>
+  						<br>
+						<strong class="data ">
+							<a href="${mWishlist }">
+									<span id="xans_myshop_interest_prd_cnt">0개</span>
+							</a>
+						</strong>
+					</li>
 				
-                <li>
-                    <strong class="title">
-                    	<a href="/myshop/mileage/historyList.html">POINT</a>
-                    </strong>
-                    <br>
-                    <strong class="data">
-                    	<a href="/myshop/mileage/historyList.html">0원</a>
-                    </strong>
-                </li>
+               		<li>
+	                    <strong class="title">POINT</strong>
+	                    <br>
+	                    <strong class="data">
+	                    	<a href="${mPoint }">0원</a>
+	                    </strong>
+	                </li>
                 
-                <li class="etc ">
-                    <strong class="title">
-                    	<a href="/myshop/coupon/coupon.html">COUPON</a>
-                    </strong>
-                    <br>
-                    <strong class="data">
-                    	<a href="/myshop/coupon/coupon.html">0<span>개</span></a>
-                    </strong>
-                    	<a href="/myshop/coupon/coupon.html"></a>
+	                <li class="etc ">
+	                    <strong class="title">COUPON</strong>
+	                    <br>
+	                    <strong class="data">
+	                    	<a href="${mCoupon }">0<span>개</span></a>
+	                    </strong>
 	                </li>
 	            </ul>
 			</div>
 		</div>
+		
 		<div id="contents">
 			<div class="mypage_top_outer">
 				<!-- <div module="myshop_bankbook">        
@@ -250,7 +248,7 @@
 
 					<h3 class=" ">기본정보</h3>
 					<p class="required " style="font-size: 12px;">
-						<img src="/ot/images/req_check.png" alt="필수">
+						<img src="/ot/resources/images/req_check.png" alt="필수">
 						필수입력사항
 					</p>
 					<div class="ec-base-table typeWrite">
@@ -263,7 +261,7 @@
 							<tbody style="font-size:13px;">
 								<tr>
 									<th scope="row">아이디 <img
-										src="/ot/images/req_check.png" alt="필수"></th>
+										src="/ot/resources/images/req_check.png" alt="필수"></th>
 									<td><input id="member_id" name="member_id"
 										fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity"
 										fw-label="아이디" fw-msg="" class="inputTypeText" placeholder=""
@@ -272,7 +270,7 @@
 								</tr>
 								<tr>
 									<th scope="row">비밀번호 <img
-										src="/ot/images/req_check.png" class=""
+										src="/ot/resources/images/req_check.png" class=""
 										alt="필수"></th>
 									<td><input id="passwd" name="passwd"
 										fw-filter="isFill&amp;isMin[4]&amp;isMax[16]" fw-label="비밀번호"
@@ -282,7 +280,7 @@
 								</tr>
 								<tr class="">
 									<th scope="row">비밀번호 확인 <img
-										src="/ot/images/req_check.png" alt="필수"></th>
+										src="/ot/resources/images/req_check.png" alt="필수"></th>
 									<td><input id="user_passwd_confirm"
 										name="user_passwd_confirm"
 										fw-filter="isFill&amp;isMatch[passwd]" fw-label="비밀번호 확인"
@@ -293,7 +291,7 @@
 								
 								<tr style="display:">
 									<th scope="row" id="">이름 <img
-										src="/ot/images/req_check.png" alt="필수"></th>
+										src="/ot/resources/images/req_check.png" alt="필수"></th>
 									<td><input id="name" name="name"
 										fw-filter="isFill&amp;isMax[30]" fw-label="이름" fw-msg=""
 										class="ec-member-name" placeholder="" maxlength="30"
@@ -302,7 +300,7 @@
 								
 								<tr class="">
 									<th scope="row">주소 <img
-										src="/ot/images/req_check.png" class=""
+										src="/ot/resources/images/req_check.png" class=""
 										alt="필수"></th>
 									<td><input id="postcode1" name="postcode1"
 										fw-filter="isLengthRange[1][14]" fw-label="우편번호1" fw-msg=""
@@ -318,7 +316,7 @@
 								</tr>
 								<tr class="">
 									<th scope="row">일반전화 <img
-										src="/ot/images/req_check.png"
+										src="/ot/resources/images/req_check.png"
 										class="displaynone" alt="필수"></th>
 									<td><select id="phone1" name="phone[]"
 										fw-filter="isNumber&amp;isNumber" fw-label="일반전화" fw-alone="N"
@@ -362,7 +360,7 @@
 								</tr>
 								<tr class="">
 									<th scope="row">휴대전화 <img
-										src="/ot/images/req_check.png" class=""
+										src="/ot/resources/images/req_check.png" class=""
 										alt="필수"></th>
 									<td>
 									<select id="mobile1" name="mobile[]"
@@ -382,7 +380,7 @@
 								</tr>
 								<tr class="">
 									<th scope="row">SMS 수신여부 <img
-										src="/ot/images/req_check.png" alt="필수"></th>
+										src="/ot/resources/images/req_check.png" alt="필수"></th>
 									<td><input id="is_sms0" name="is_sms" fw-filter="isFill"
 										fw-label="is_sms" fw-msg="" value="T" type="radio"><label
 										for="is_sms0">수신함</label> <input id="is_sms1" name="is_sms"
@@ -392,7 +390,7 @@
 								</tr>
 								<tr>
 									<th scope="row">이메일 <img
-										src="/ot/images/req_check.png" alt="필수"></th>
+										src="/ot/resources/images/req_check.png" alt="필수"></th>
 									<td><input id="email1" name="email1"
 										fw-filter="isFill&amp;isEmail" fw-label="이메일" fw-alone="N"
 										fw-msg="" value="abcdfabcdf@naver.com" type="text"> <span id="emailMsg"></span>
@@ -415,7 +413,7 @@
 							<tbody style="font-size:13px;">
 								<tr class="">
 									<th scope="row">성별 <img
-										src="/ot/images/req_check.png" class=""
+										src="/ot/resources/images/req_check.png" class=""
 										alt="필수"></th>
 									<td><input id="is_sex0" name="is_sex" fw-filter="isFill"
 										fw-label="성별" fw-msg="" disabled="1" value="M" type="radio"
@@ -426,7 +424,7 @@
 								</tr>
 								<tr class="">
 									<th scope="row">생년월일 <img
-										src="/ot/images/req_check.png" class=""
+										src="/ot/resources/images/req_check.png" class=""
 										alt="필수"></th>
 									<td><input id="birth_year" name="birth_year"
 										fw-filter="isFill" fw-label="생년월일" fw-msg=""
@@ -449,13 +447,15 @@
 								</tr>
 								
 								<tr class="">
+								<c:url var="mAccount" value="mAccount.do"/>
+								
 									<th scope="row">환불계좌 <img
-										src="/ot/images/req_check.png"
+										src="/ot/resources/images/req_check.png"
 										class="displaynone" alt="필수"></th>
 									<td><span id="id_bank_info">[카카오뱅크] 3333023943107 /
 											예금주: 신경섭</span> <a href="#none"
-										onclick="window.open('/ot/mypage_member_account.jsp','bank_account','width=600,height=460');return false;"><img
-											src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_account_change.gif"
+										onclick="window.open('${mAccount }','bank_account','width=600,height=460');return false;">
+										<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_account_change.gif"
 											alt="환불계좌변경" id="id_has_bank_img" class=""><img
 											src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_account.gif"
 											alt="환불계좌등록" id="id_reg_bank_img" class="displaynone"></a></td>
@@ -465,12 +465,11 @@
 					</div>
 					
 					<div class="ec-base-button justify">
-						<a href="#none" class="yg_btn_140 yg_btn1 yg_btn_border_444"
-							onclick="memberEditAction()" alt="회원정보수정">회원정보수정</a> <a
-							href="/index.html" class="yg_btn_140 yg_btn4" alt="취소">취소</a> <span
-							class="gRight"> <a href="#none" class="yg_btn_140 yg_btn3" id="memberdel"
-							onclick="memberDelAction(2000, 0, -1)" alt="회원탈퇴">회원탈퇴</a>
-						</span>
+						<a href="#none" class="yg_btn_140 yg_btn1 yg_btn_border_444" onclick="memberEditAction()" alt="회원정보수정">회원정보수정</a> 
+						<a href="#" onclick="location.href='index.jsp'" class="yg_btn_140 yg_btn4" alt="취소">취소</a> 
+							<span class="gRight"> 
+								<a href="#none" class="yg_btn_140 yg_btn3" id="memberdel" onclick="memberDelAction(2000, 0, -1)" alt="회원탈퇴">회원탈퇴</a>
+							</span>
 					</div>
 					
 					<div class="layerLeave ec-base-layer" id="eLeaveLayer">
