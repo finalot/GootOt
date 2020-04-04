@@ -45,4 +45,24 @@ public interface MemberService {
 	 */
 	public int updatePwd(String memId, String firstpwd);
 	
+
+	/**
+	 * @작성일  : 2020. 4. 3.
+	 * @작성자  : 우예진
+	 * @내용    : 아이디 중복검사
+	 * @param userId
+	 * @return
+	 */
+	public int idDuplicate(String userId);
+
+	
+	/**
+	 * @작성일  : 2020. 4. 3.
+	 * @작성자  : 우예진
+	 * @내용    : 회원가입
+	 * @param m
+	 * @return
+	 */
+	public int insertMember(Member m);
+	
 }

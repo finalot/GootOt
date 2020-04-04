@@ -14,6 +14,9 @@
 		<result property="memEmail" column="MEM_EMAIL"/>
 		<result property="memPhone" column="MEM_PHONE"/>
 		<result property="memSumMoney" column="MEM_SUMMONEY"/>
+		<result property="memOwner" column="MEM_OWNER"/>
+		<result property="bank" column="BANK"/>
+		<result property="returnBank" column="RETURN_BANK"/>
 	</resultMap>
 	
  	
@@ -47,11 +50,18 @@
 	SET MEM_PWD = #{memPwd}
 	WHERE MEM_ID = #{memId}
 </update>
-<!--  	
+
+<select id="idDuplicate" parameterType="String" resultType="_int">
+	SELECT COUNT(*)
+	FROM MEMBER
+	WHERE MEM_ID=#{userId}	
+</select>
+
+
 <insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER
-		VALUES(#{id},#{pwd},#{name},#{email},#{gender},
-		#{age},#{phone},#{address},SYSDATE,SYSDATE,default)
+		VALUES(NULL,#{memId},#{memPwd},#{memName},#{memSsn},#{memAddress},
+		#{memEmail},#{memPhone},DEFAULT,#{memOwner},#{bank},#{returnBank})
 		
 	</insert>
 
@@ -68,14 +78,14 @@
 		WHERE ID=#{id}
 </update>
 
-<select id="idCheck" parameterType="String" resultType="_int">
+<!-- <select id="idCheck" parameterType="String" resultType="_int">
 	
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE ID=#{id}
 	
-</select>
- -->
+</select> -->
+
 </mapper>
 
 

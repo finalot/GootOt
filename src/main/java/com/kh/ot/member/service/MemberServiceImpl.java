@@ -42,6 +42,18 @@ public class MemberServiceImpl implements MemberService{
 	public int updatePwd(String memId, String firstpwd) {
 		return mDao.updatePwd(memId,firstpwd);
 	}
+
+	@Override
+	public int idDuplicate(String userId) {
+		return mDao.idDuplicate(userId);
+	}
+
+	@Override
+	public int insertMember(Member m) {
+		int result = mDao.insertMember(m);
+		
+		return result;
+	}
 		
 
 }

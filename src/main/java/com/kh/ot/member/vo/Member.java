@@ -9,18 +9,23 @@ public class Member {
 	private String memId;
 	private String memPwd;
 	private String memName;
-	private String memSsn;
+	private String memSsn; // 생년월일
 	private String memAddress;
 	private String memEmail;
 	private String memPhone;
-	private int memSumMoney;
+	private int memSumMoney; // 적립금
+	private String memOwner; // 예금주
+	private String bank; // 은행명
+	private String returnBank; // 환불게좌
+	
+	
 	
 	public Member() {
 		super();
 	}
 
 	public Member(int memNo, String memId, String memPwd, String memName, String memSsn, String memAddress,
-			String memEmail, String memPhone, int memSumMoney) {
+			String memEmail, String memPhone, int memSumMoney,String memOwner, String bank, String returnBank) {
 		super();
 		this.memNo = memNo;
 		this.memId = memId;
@@ -31,6 +36,9 @@ public class Member {
 		this.memEmail = memEmail;
 		this.memPhone = memPhone;
 		this.memSumMoney = memSumMoney;
+		this.memOwner = memOwner;
+		this.bank = bank;
+		this.returnBank = returnBank;
 	}
 
 	public int getMemNo() {
@@ -104,13 +112,40 @@ public class Member {
 	public void setMemSumMoney(int memSumMoney) {
 		this.memSumMoney = memSumMoney;
 	}
+	
+
+	public String getMemOwner() {
+		return memOwner;
+	}
+
+	public void setMemOwner(String memOwner) {
+		this.memOwner = memOwner;
+	}
+
+	public String getBank() {
+		return bank;
+	}
+
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+
+	public String getReturnBank() {
+		return returnBank;
+	}
+
+	public void setReturnBank(String returnBank) {
+		this.returnBank = returnBank;
+	}
 
 	@Override
 	public String toString() {
 		return "Member [memNo=" + memNo + ", memId=" + memId + ", memPwd=" + memPwd + ", memName=" + memName
 				+ ", memSsn=" + memSsn + ", memAddress=" + memAddress + ", memEmail=" + memEmail + ", memPhone="
-				+ memPhone + ", memSumMoney=" + memSumMoney + "]";
+				+ memPhone + ", memSumMoney=" + memSumMoney + ", memOwner=" + memOwner + ", bank=" + bank
+				+ ", returnBank=" + returnBank + "]";
 	}
+
 	
 	
 	

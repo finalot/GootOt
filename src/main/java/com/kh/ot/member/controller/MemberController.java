@@ -19,8 +19,10 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -293,6 +295,92 @@ public class MemberController {
 	 
 	 
 		
+	}
+	
+
+	/**
+	 * @작성일  : 2020. 4. 3.
+	 * @작성자  : 우예진
+	 * @내용    : 아이디 중복검사
+	 * @param response
+	 * @param userId
+	 * @throws IOException
+	 */
+	@RequestMapping(value="idDuplicate.do", method=RequestMethod.POST)
+	public void idDuplicate(HttpServletResponse response ,String userId) throws IOException {
+		PrintWriter out = response.getWriter();
+		
+		int result = mService.idDuplicate(userId);
+		
+		if(result > 0) {
+			 out.print("no");
+		 }else {
+			out.print("ok");
+		 }
+	}
+	
+	
+	
+	/**
+	 * @작성일  : 2020.04.04
+	 * @작성자  : 우예진
+	 * @내용    : 회원가입
+	 * @param m
+	 * @param model
+	 * @param postcode1
+	 * @param address1
+	 * @param address2
+	 * @param mobile1
+	 * @param mobile2
+	 * @param mobile3
+	 * @param birth_year
+	 * @param birth_month
+	 * @param birth_day
+	 * @return
+	 */
+	@RequestMapping(value="yinsert.do", method=RequestMethod.POST)
+	public String insertMember(Member m, Model model, 
+								@RequestParam("postcode1") String postcode1,
+								@RequestParam("address1") String address1,
+								@RequestParam("address2") String address2,
+								@RequestParam("mobile1") String mobile1,
+								@RequestParam("mobile2") String mobile2,
+								@RequestParam("mobile3") String mobile3,
+								@RequestParam("birth_year") String birth_year,
+								@RequestParam("birth_month") String birth_month,
+								@RequestParam("birth_day") String birth_day) {
+		// 회원 가입 전 회원정보를 출력
+		System.out.println(m);
+		System.out.println(postcode1 + ", " + address1 + ", "+ address2);
+		System.out.println(mobile1 + ", " + mobile2 + ", "+ mobile3);
+		System.out.println(birth_year + ", " + birth_month + ", "+ birth_day);
+
+		// System.out.println(bcryptPasswordEncoder.encode(m.getPwd()));
+
+		String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
+
+		m.setMemPwd(encPwd);
+
+		// 주소데이터들 ","를 구분자로 지정
+		if(!postcode1.contentEquals("")) {
+			m.setMemAddress(postcode1+","+address1+","+address2);
+		}
+		if(!mobile1.contentEquals("")) {
+			m.setMemPhone(mobile1+"-"+mobile2+","+mobile3);
+		}
+		if(!birth_year.contentEquals("")) {
+			m.setMemSsn(birth_year+","+birth_month+","+birth_day);
+		}
+
+		int result = mService.insertMember(m);
+
+		if(result >0) {
+			return "redirect:index.jsp";
+		} else {
+			model.addAttribute("msg","회원가입실패!!");
+			return "common/errorPage";
+		}
+
 	}
 
 

@@ -72,6 +72,14 @@ public class MemberDao {
 		m.setMemId(memId);
 		return sqlSession.update("memberMapper.updatePwd",m);
 	}
+
+	public int idDuplicate(String userId) {
+		return sqlSession.selectOne("memberMapper.idDuplicate",userId);
+	}
+
+	public int insertMember(Member m) {
+		return sqlSession.insert("memberMapper.insertMember",m);
+	}
 	
 	
 	
