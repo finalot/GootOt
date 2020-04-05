@@ -9,9 +9,9 @@
 <title>상품문의</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
-<link rel="stylesheet" href="./css/mypage_list.css">
-<link rel="stylesheet" href="./css/mypage_basic.css">
-<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
+<link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
 </head>
 <style>
 .ec-base-table td{
@@ -118,7 +118,7 @@
        							<br>
        							<div class="ppro">
        							<img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
-                       			 <a id="idMsg10" style="color:#555555;" href="product_board_detail.jsp">
+                       			 <a id="idMsg10" style="color:#555555;" href="product_board_detail.do">
                       			  [상품문의]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
        							</div>
        						</td>
@@ -152,7 +152,7 @@
        							<div class="ppro">
        							<img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_re.gif" alt="답변" class="ec-common-rwd-image">
        							<img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image">
-                       			 <a id="idMsg10" style="color:#555555;" href="product_board_reply.jsp">
+                       			 <a id="idMsg10" style="color:#555555;" href="product_board_reply.do">
                       			  답변완료 :)</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
        							</div>
        						</td>
@@ -171,7 +171,7 @@
 		
 			</div>
 				
-        <a href="product_board_write.jsp" class="hov1 s-text1 trans-0-4 yg_btn_145">
+        <a href="product_board_write.do" class="hov1 s-text1 trans-0-4 yg_btn_145">
         <span style="position: relative;top: -2px;">write</span></a>
     			
 			<div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 "><fieldset class="boardSearch">
@@ -198,9 +198,9 @@
 			
 			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate">
 				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first">
-					<img src="/ot/images/btn_page_first.gif" alt="첫 페이지"></a>
+					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지"></a>
 				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/images/btn_page_prev.gif" alt="이전 페이지"></a>
+					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"></a>
 					
 					<ol>
 						<li class="xans-record-">
@@ -209,9 +209,9 @@
        				</ol>
        				
 				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/images/btn_page_next.gif" alt="다음 페이지"></a>
+					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지"></a>
 				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="last">
-					<img src="/ot/images/btn_page_last.gif" alt="마지막 페이지"></a>
+					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
 			</div>
 
         </div>

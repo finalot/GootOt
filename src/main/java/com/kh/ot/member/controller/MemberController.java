@@ -659,9 +659,57 @@ public class MemberController {
 		return "delivery_cancel_write";
 	}
 	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 상품문의 페이지 이동
+	 * @return
+	 */
+	@RequestMapping("product_board.do")
+	public String product_board() {
+
+		return "product_board";
+	}
 	
 
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 상품문의 상세페이지
+	 * @return
+	 */
+	@RequestMapping("product_board_detail.do")
+	public String product_board_detail() {
 
+		return "product_board_detail";
+	}
+
+
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 상품문의 답변페이지
+	 * @return
+	 */
+	@RequestMapping("product_board_reply.do")
+	public String product_board_reply() {
+
+		return "product_board_reply";
+	}
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 상품문의 글쓰기페이지
+	 * @return
+	 */
+	@RequestMapping("product_board_write.do")
+	public String product_board_write() {
+
+		return "product_board_write";
+	}
+	
+	
 
 
 	

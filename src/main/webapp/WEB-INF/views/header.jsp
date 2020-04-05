@@ -734,7 +734,7 @@ font-size: 9px !important;
 						</h4>
 						<ul>
 							<li><a href="FaQ.jsp">자주하는 질문</a></li>
-							<li><a href="product_board.jsp">상품문의</a></li>
+							<li><a href="product_board.do">상품문의</a></li>
 							<li><a href="delivery_board.do">배송문의</a></li>
 							<li><a href="delivery_cancel.do">배송전취소/변경</a></li>
 							<li><a href="product_change.jsp">배송후교환/반품</a></li>
@@ -745,7 +745,7 @@ font-size: 9px !important;
 					</div>
 					<div>
 						<h4 class="helve">
-							<a href="notice.jsp">NOTICE</a>
+							<a href="notice.do">NOTICE</a>
 						</h4>
 						<ul>
 							<li><a href="/board/free/list.html?board_no=1">공지사항</a></li>
