@@ -735,7 +735,7 @@ font-size: 9px !important;
 						<ul>
 							<li><a href="FaQ.jsp">자주하는 질문</a></li>
 							<li><a href="product_board.jsp">상품문의</a></li>
-							<li><a href="delivery_board.jsp">배송문의</a></li>
+							<li><a href="delivery_board.do">배송문의</a></li>
 							<li><a href="delivery_cancel.jsp">배송전취소/변경</a></li>
 							<li><a href="product_change.jsp">배송후교환/반품</a></li>
 							<li><a href="bank_insert_board.do">입금확인/입금자변경</a></li>

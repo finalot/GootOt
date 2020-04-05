@@ -558,6 +558,62 @@ public class MemberController {
 
 		return "bank_insert_board";
 	}
+	
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 배송문의 상세정보
+	 * @return
+	 */
+	@RequestMapping("delivery_board_detail.do")
+	public String delivery_board_detail() {
+
+		return "delivery_board_detail";
+	}
+	
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 배송문의 답변 상세정보
+	 * @return
+	 */
+	@RequestMapping("delivery_board_reply.do")
+	public String delivery_board_reply() {
+
+		return "delivery_board_reply";
+	}
+	
+	
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 배송문의 글쓰기
+	 * @return
+	 */
+	@RequestMapping("delivery_board_write.do")
+	public String delivery_board_write() {
+
+		return "delivery_board_write";
+	}
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 배송문의 페이지 이동
+	 * @return
+	 */
+	@RequestMapping("delivery_board.do")
+	public String delivery_board() {
+
+		return "delivery_board";
+	}
+	
+	
+
+
 
 
 	
