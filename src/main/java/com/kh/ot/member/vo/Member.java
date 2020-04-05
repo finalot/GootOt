@@ -13,7 +13,6 @@ public class Member {
 	private String memAddress;
 	private String memEmail;
 	private String memPhone;
-	private int memSumMoney;
 	private String tdDate; // 출석체크용 날짜데이트
 	private int memSumMoney; // 적립금
 	private String memOwner; // 예금주
@@ -152,7 +151,8 @@ public class Member {
 	public String toString() {
 		return "Member [memNo=" + memNo + ", memId=" + memId + ", memPwd=" + memPwd + ", memName=" + memName
 				+ ", memSsn=" + memSsn + ", memAddress=" + memAddress + ", memEmail=" + memEmail + ", memPhone="
-				+ memPhone + ", memSumMoney=" + memSumMoney + ", tdDate=" + tdDate + "]";
+				+ memPhone + ", tdDate=" + tdDate + ", memSumMoney=" + memSumMoney + ", memOwner=" + memOwner
+				+ ", bank=" + bank + ", returnBank=" + returnBank + "]";
 	}
 
 

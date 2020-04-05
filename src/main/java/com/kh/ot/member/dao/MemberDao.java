@@ -110,10 +110,14 @@ public class MemberDao {
 	 */
 	public int couponInsert(int memNo) {
 		return sqlSession.insert("memberMapper.couponInsert",memNo);
+	}
+	
+	
 	public int idDuplicate(String userId) {
 		return sqlSession.selectOne("memberMapper.idDuplicate",userId);
 	}
 
+	
 	public int insertMember(Member m) {
 		return sqlSession.insert("memberMapper.insertMember",m);
 	}
