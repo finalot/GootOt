@@ -709,6 +709,53 @@ public class MemberController {
 		return "product_board_write";
 	}
 	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 배송후교환/반품 페이지 이동
+	 * @return
+	 */
+	@RequestMapping("product_change.do")
+	public String product_change() {
+
+		return "product_change";
+	}
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 배송후교환/반품 상세페이지
+	 * @return
+	 */
+	@RequestMapping("product_change_detail.do")
+	public String product_change_detail() {
+
+		return "product_change_detail";
+	}
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 배송후교환/반품 답변페이지
+	 * @return
+	 */
+	@RequestMapping("product_change_reply.do")
+	public String product_change_reply() {
+
+		return "product_change_reply";
+	}
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 배송후교환/반품 글쓰기
+	 * @return
+	 */
+	@RequestMapping("product_change_write.do")
+	public String product_change_write() {
+
+		return "product_change_write";
+	}
 	
 
 

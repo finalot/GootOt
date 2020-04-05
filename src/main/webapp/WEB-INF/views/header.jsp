@@ -730,14 +730,14 @@ font-size: 9px !important;
 					<h3 class="helve">Board</h3>
 					<div>
 						<h4 class="helve">
-							<a href="FaQ.jsp">Q&amp;A</a>
+							<a href="FaQ.do">Q&amp;A</a>
 						</h4>
 						<ul>
 							<li><a href="FaQ.jsp">자주하는 질문</a></li>
 							<li><a href="product_board.do">상품문의</a></li>
 							<li><a href="delivery_board.do">배송문의</a></li>
 							<li><a href="delivery_cancel.do">배송전취소/변경</a></li>
-							<li><a href="product_change.jsp">배송후교환/반품</a></li>
+							<li><a href="product_change.do">배송후교환/반품</a></li>
 							<li><a href="bank_insert_board.do">입금확인/입금자변경</a></li>
 							<li><a href="bad_product_board.do">상품불량 및
 									오배송접수</a></li>
