@@ -32,6 +32,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.ot.member.service.MemberService;
 import com.kh.ot.member.vo.Member;
 
+/**
+ * @author yejin
+ *
+ */
 @SessionAttributes("loginMember")
 @Controller
 public class MemberController {
@@ -504,5 +508,59 @@ public class MemberController {
 		}
 
 	}
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 입금확인/입금자변경 상세정보
+	 * @return
+	 */
+	@RequestMapping("bank_insert_detail.do")
+	public String bank_insert_detail() {
+
+		return "bank_insert_detail";
+	}
+	
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 입금확인/입금자변경 답변정보
+	 * @return
+	 */
+	@RequestMapping("bank_insert_reply.do")
+	public String bank_insert_reply() {
+
+		return "bank_insert_reply";
+	}
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 입금확인/입금자변경 글쓰기
+	 * @return
+	 */
+	@RequestMapping("bank_insert_write.do")
+	public String bank_insert_write() {
+
+		return "bank_insert_write";
+	}
+	
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 입금확인/입금자변경 페이지 이동
+	 * @return
+	 */
+	@RequestMapping("bank_insert_board.do")
+	public String bank_insert_board() {
+
+		return "bank_insert_board";
+	}
+
+
+	
+	
 
 }
