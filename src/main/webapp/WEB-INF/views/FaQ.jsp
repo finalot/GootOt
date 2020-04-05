@@ -144,12 +144,12 @@ font-family: 'Nanum Gothic', sans-serif;
               
   <div class="qna_box">
   <ul>
-  	<li><a href="product_board.jsp" style="line-height: 2.2em;">상품문의</a></li>
-  	<li><a href="delivery_board.jsp" style="line-height: 2.2em;">배송문의</a></li>
-  	<li><a href="delivery_cancel.jsp" >배송전 <br>취소/변경</a></li>
-  	<li><a href="product_change.jsp">배송후 <br>교환/반품</a></li>
-  	<li><a href="bank_insert_board.jsp">입금확인<br>/입금자 변경 </a></li>
-  	<li><a href="bad_product_board.jsp" >상품불량 및<br>오배송접수</a></li>
+  	<li><a href="product_board.do" style="line-height: 2.2em;">상품문의</a></li>
+  	<li><a href="delivery_board.do" style="line-height: 2.2em;">배송문의</a></li>
+  	<li><a href="delivery_cancel.do" >배송전 <br>취소/변경</a></li>
+  	<li><a href="product_change.do">배송후 <br>교환/반품</a></li>
+  	<li><a href="bank_insert_board.do">입금확인<br>/입금자 변경 </a></li>
+  	<li><a href="bad_product_board.do" >상품불량 및<br>오배송접수</a></li>
   </ul>  
    </div>
          
