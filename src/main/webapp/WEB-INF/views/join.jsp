@@ -606,9 +606,9 @@
 		  alert("아이디는 영 소문자, 숫자 4~20자리로 입력해주세요.");
 		  return false;
 		}
-      if(!chk(/^[\w]{4,}@[\w]+(\.[w]){1,3}$/,memEmail,"이메일 형식에 어긋납니다.")) {
+      /* if(!chk(/^[\w]{7,}@[\w]+(\.[w]){1,3}$/,memEmail,"이메일 형식에 어긋납니다.")) {
           return false;
-      }
+      } */
 	  else  {
 		$('#joinForm').submit();
 	  }
