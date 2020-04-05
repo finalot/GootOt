@@ -611,6 +611,54 @@ public class MemberController {
 		return "delivery_board";
 	}
 	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 배송전취소/변경 페이지 이동
+	 * @return
+	 */
+	@RequestMapping("delivery_cancel.do")
+	public String delivery_cancel() {
+
+		return "delivery_cancel";
+	}
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 배송전취소/변경 상세페이지
+	 * @return
+	 */
+	@RequestMapping("delivery_cancel_detail.do")
+	public String delivery_cancel_detail() {
+
+		return "delivery_cancel_detail";
+	}
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 배송전취소/변경 답변페이지
+	 * @return
+	 */
+	@RequestMapping("delivery_cancel_reply.do")
+	public String delivery_cancel_reply() {
+
+		return "delivery_cancel_reply";
+	}
+	
+	/**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 배송전취소/변경 글쓰기페이지
+	 * @return
+	 */
+	@RequestMapping("delivery_cancel_write.do")
+	public String delivery_cancel_write() {
+
+		return "delivery_cancel_write";
+	}
+	
 	
 
 
