@@ -414,7 +414,7 @@ public class MemberController extends HttpServlet {
 			m.setMemAddress(postcode1+","+address1+","+address2);
 		}
 		if(!mobile1.contentEquals("")) {
-			m.setMemPhone(mobile1+"-"+mobile2+","+mobile3);
+			m.setMemPhone(mobile1+"-"+mobile2+"-"+mobile3);
 		}
 		if(!birth_year.contentEquals("")) {
 			m.setMemSsn(birth_year+","+birth_month+","+birth_day);
