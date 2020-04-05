@@ -730,25 +730,25 @@ font-size: 9px !important;
 					<h3 class="helve">Board</h3>
 					<div>
 						<h4 class="helve">
-							<a href="FaQ.jsp">Q&amp;A</a>
+							<a href="faq.do">Q&amp;A</a>
 						</h4>
 						<ul>
-							<li><a href="FaQ.jsp">자주하는 질문</a></li>
-							<li><a href="product_board.jsp">상품문의</a></li>
-							<li><a href="delivery_board.jsp">배송문의</a></li>
-							<li><a href="delivery_cancel.jsp">배송전취소/변경</a></li>
-							<li><a href="product_change.jsp">배송후교환/반품</a></li>
-							<li><a href="bank_insert_board.jsp">입금확인/입금자변경</a></li>
+							<li><a href="faq.do">자주하는 질문</a></li>
+							<li><a href="product_board.do">상품문의</a></li>
+							<li><a href="delivery_board.do">배송문의</a></li>
+							<li><a href="delivery_cancel.do">배송전취소/변경</a></li>
+							<li><a href="product_change.do">배송후교환/반품</a></li>
+							<li><a href="bank_insert_board.do">입금확인/입금자변경</a></li>
 							<li><a href="bad_product_board.do">상품불량 및
 									오배송접수</a></li>
 						</ul>
 					</div>
 					<div>
 						<h4 class="helve">
-							<a href="notice.jsp">NOTICE</a>
+							<a href="notice.do">NOTICE</a>
 						</h4>
 						<ul>
-							<li><a href="/board/free/list.html?board_no=1">공지사항</a></li>
+							<li><a href="notice.do">공지사항</a></li>
 							<!--li><a href="/shopinfo/company.html">회사소개</a></li-->
 							<li><a
 								href="/front/php/b/board_list.php?board_no=15&amp;is_pcver=T">모델지원</a></li>
