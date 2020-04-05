@@ -320,10 +320,6 @@
 				<p class="message displaynone">관심상품 내역이 없습니다.</p>
 			</div>
 			
-			
-			<c:url var="cart" value="cart.do">
-			
-			</c:url>
 			<div class="xans-element- xans-myshop xans-myshop-wishlistbutton ec-base-button xans-record-">
 				<span class="gLeft">
       				<strong class="text">선택상품을</strong>
