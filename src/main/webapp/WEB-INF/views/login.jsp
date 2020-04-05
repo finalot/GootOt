@@ -89,6 +89,7 @@
 				 
 			  $.ajax({
 				url : "login.do",
+				type:"post",
 				data : {id : $('#name').val(),  pwd : $('#password').val() },
 				success : function(data){
 					if(data == "ok"){

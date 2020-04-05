@@ -137,14 +137,15 @@ public class MemberController extends HttpServlet {
 	 * @throws IOException
 	 */
 
-	  @RequestMapping("login.do")
+	  @RequestMapping(value="login.do",method=RequestMethod.POST)
 	  public void login(String id, String pwd, HttpServletResponse response,HttpSession session) throws IOException{
 
 	  String msg = "";
 	  PrintWriter out = response.getWriter();
 		  Member m = mService.loginMember(id, pwd);
-
-		if (m != null /* && bcryptPasswordEncoder.matches(m.getMemPwd(), pwd) */ ) {
+		  
+		if (m != null  && bcryptPasswordEncoder.matches(pwd, m.getMemPwd() )) {
+			
 			  msg = "ok";
 			  session.setAttribute("loginMember", m);
 		  }else {
@@ -311,6 +312,8 @@ public class MemberController extends HttpServlet {
 	@RequestMapping(value="updatepwd.do", method=RequestMethod.POST )
 	public String updatePwd(String memId ,String firstpwd) {
 
+		firstpwd = bcryptPasswordEncoder.encode(firstpwd);	
+		
 	 int result = mService.updatePwd(memId,firstpwd);
 
 	 if(result > 0) {

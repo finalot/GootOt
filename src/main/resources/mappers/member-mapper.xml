@@ -26,14 +26,14 @@
 
 
 <select id ="loginMember" parameterType="Member" resultMap="memberResultSet">
+		<!-- SELECT * FROM MEMBER
+		WHERE MEM_ID=#{memId}
+		AND MEM_PWD=#{memPwd} -->
+
+		<!-- 암호화 후 -->
 		SELECT * FROM MEMBER
 		WHERE MEM_ID=#{memId}
-		AND MEM_PWD=#{memPwd}
-
-	<!-- 	암호화 후
-		SELECT * FROM MEMBER
-		WHERE ID = #{id}
-		AND M_STATUS='Y' -->
+		
 
 </select>
 
