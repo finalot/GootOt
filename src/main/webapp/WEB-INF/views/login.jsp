@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-md-12 form-group p_star" style="padding: 0px;">
                                     <input type="password" class="form-control" id="password" name="password" value=""
-                                        placeholder="Password" style="height: 45px;">
+                                        placeholder="Password" style="    padding-left: 4%;height: 45px;">
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <div class="creat_account d-flex align-items-center">

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,6 +64,7 @@ margin-right: 3%;
 	
 
 	<!-- Cart -->
+ <c:if	test="${! empty sessionScope.loginMember }">
 	<section class="cart bgwhite p-t-70 p-b-100">
 			<div class="container">
 				<!-- <h3 style="font-size:12px;font-weight:600;">국내배송상품 주문내역</h3> -->
@@ -323,7 +325,7 @@ margin-right: 3%;
 			    	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_info2.gif" alt="info"></a></label>
 			    	
 			    	<input type="radio" value="payco" name="paymethod" id="pay4" onclick="payshow4();">
-			    	<label for="pay4">페이코(간편결제)<a href="http://www.payco.com/payco/guide.nhn" target="_blank">
+			    	<label for="pay4">휴대폰 결제<a href="http://www.payco.com/payco/guide.nhn" target="_blank">
 			    	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_info2.gif" alt="info"></a></label>
 			    </div>
 			    
@@ -380,12 +382,10 @@ margin-right: 3%;
 			   
 			   <div id="pay-payco" style="padding-left:29px; display:none;">
 			   	<p class="help" style="font-size: 12px;font-weight: 600;color: #000;" >
-			   	페이코 결제 팝업창에서 비밀번호 입력만으로 빠르고 안전하게 결제가 가능한 서비스 입니다.</p>
+			   소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</p>
 			   
 			   <p class="help" style="font-size: 12px;font-weight: 600;color: #000;" >
-			   <a href="//www.payco.com" target="_blank" style="font-size: 12px;font-weight: 600;color: #000;">
-			   www.payco.com</a> 
-			      에 회원가입 후, 최초 1회 카드 및 계좌 정보를 등록하셔야 사용 가능합니다.</p>
+			</p>
 			   </div>
       </form>
 	
@@ -603,7 +603,13 @@ margin-right: 3%;
 	</form>
 	</div>
 	</section>
+	</c:if>
 	
+	<c:if test="${ empty sessionScope.loginMember }">
+		<section class="cart bgwhite p-t-70 p-b-100" style="height: 50%;">
+			<div align="center"><h3 style="font-size: 32px;">로그인후 이용 해 주세요</h3></div>
+			</section>
+	</c:if>
 	<div id="orderdetail" class="totalDetail ec-base-layer" style="top:888px; left: 636.906px; display:none;position:absolute;
 	border:1px solid #000;height:640px; background-color:#fff;">
         <div class="header">
@@ -698,9 +704,11 @@ margin-right: 3%;
 		//IMP.init('imp36292670');  핸드폰 결제용
 		 if($('#pay2').prop('checked') == true){
 			 IMP.init('imp71871253');
-		}else if($('#pay3').prop('checked') == true){
+		}else if($('#pay4').prop('checked') == true){
 			IMP.init('imp36292670');	 
-		 } 
+		 }else if($('#pay3').prop('checked') == true) {
+			IMP.init('imp97532169');	 
+		 }
 			 
 			 
 			 var totalpay = $('.format-money').text();
