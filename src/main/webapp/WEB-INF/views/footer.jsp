@@ -162,9 +162,9 @@
 
 					<div class="w-size2 p-t-20">
 						<!-- Button -->
-						<button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4" style="font-size:10px;width:50%;height:auto;border:2px solid darkgray">
+						<a href="modelmailView.do" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4" style="font-size:10px;width:50%;height:auto;border:2px solid darkgray">
 							모델 메일지원 <br>바로가기
-						</button>
+						</a>
 					</div>
 
 				</form>

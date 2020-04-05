@@ -3,6 +3,7 @@ package com.kh.ot.member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 
@@ -12,6 +13,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,7 +21,6 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.context.HttpRequestResponseHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +39,7 @@ import com.kh.ot.member.vo.Member;
  */
 @SessionAttributes("loginMember")
 @Controller
-public class MemberController {
+public class MemberController extends HttpServlet {
 
 	// @Autowired 타입의 어노테이션을 붙여주면 생성할 필요없이 변수 선언만 해도
 	// 빈 스키냉을 통해 아래의 'mService'의 이름을 가지고 있는 빈을 찾아서
@@ -166,6 +167,24 @@ public class MemberController {
 
 			return "home";
 		}
+	/**
+	 * @작성일  : 2020. 4. 5.
+	 * @작성자  : 문태환
+	 * @내용 	: 모델메일 이동
+	 * @return
+	 */
+	@RequestMapping("modelmailView.do")
+	public String modelmailView() {
+
+		return "modelmail";
+	}
+
+	@RequestMapping("mailsuccess")
+	public String mailsuccess() {
+
+		return "mailsuccess";
+	}
+
 
 	/**
 	 * @작성일  : 2020. 4. 2.
@@ -506,9 +525,8 @@ public class MemberController {
 		}else {
 			out.print("fail");
 		}
-
 	}
-	
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -520,8 +538,8 @@ public class MemberController {
 
 		return "bank_insert_detail";
 	}
-	
-	
+
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -533,7 +551,7 @@ public class MemberController {
 
 		return "bank_insert_reply";
 	}
-	
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -545,8 +563,8 @@ public class MemberController {
 
 		return "bank_insert_write";
 	}
-	
-	
+
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -558,8 +576,8 @@ public class MemberController {
 
 		return "bank_insert_board";
 	}
-	
-	
+
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -571,8 +589,8 @@ public class MemberController {
 
 		return "delivery_board_detail";
 	}
-	
-	
+
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -584,9 +602,9 @@ public class MemberController {
 
 		return "delivery_board_reply";
 	}
-	
-	
-	
+
+
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -598,7 +616,7 @@ public class MemberController {
 
 		return "delivery_board_write";
 	}
-	
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -610,7 +628,7 @@ public class MemberController {
 
 		return "delivery_board";
 	}
-	
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -622,7 +640,7 @@ public class MemberController {
 
 		return "delivery_cancel";
 	}
-	
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -634,7 +652,7 @@ public class MemberController {
 
 		return "delivery_cancel_detail";
 	}
-	
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -646,7 +664,7 @@ public class MemberController {
 
 		return "delivery_cancel_reply";
 	}
-	
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -658,7 +676,7 @@ public class MemberController {
 
 		return "delivery_cancel_write";
 	}
-	
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -670,7 +688,7 @@ public class MemberController {
 
 		return "product_board";
 	}
-	
+
 
 	/**
 	 * @작성일  : 2020.04.05
@@ -696,7 +714,7 @@ public class MemberController {
 
 		return "product_board_reply";
 	}
-	
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -708,7 +726,7 @@ public class MemberController {
 
 		return "product_board_write";
 	}
-	
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -720,7 +738,7 @@ public class MemberController {
 
 		return "product_change";
 	}
-	
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -732,7 +750,7 @@ public class MemberController {
 
 		return "product_change_detail";
 	}
-	
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -744,7 +762,7 @@ public class MemberController {
 
 		return "product_change_reply";
 	}
-	
+
 	/**
 	 * @작성일  : 2020.04.05
 	 * @작성자  : 우예진
@@ -756,10 +774,10 @@ public class MemberController {
 
 		return "product_change_write";
 	}
-	
 
 
-	
-	
+
+
+
 
 }

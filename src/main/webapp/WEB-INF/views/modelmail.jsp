@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<title>OT &#8482;</title>
+<title>oT &#8482;</title>
 
    <link rel="stylesheet" href="./css/Login_style.css">
    
@@ -27,6 +27,7 @@ font-family: 'HelveticaLTPro;
 }
 #subject{
     margin-top: 10%;
+    border: none;
     border-bottom: 1px solid #999990;
 width: 80%;
 }
@@ -58,7 +59,7 @@ font-size: 11px;
    						  압축파일을(대표사진10장이내) 첨부해 주시기 바랍니다<br>
    	   	등록하신 핸드폰번호 또는 이메일로 결과를 보내드립니다.<br>
    	</p>
- <form action="WebSendMail" method="post" id="frm" enctype="multipart/form-data">
+ <form action="modelmail.do" method="post" id="frm" enctype="multipart/form-data">
 	<div align="center">
 	<input type="text" name="subject" id="subject" placeholder="subject"><br>
 	
