@@ -9,13 +9,22 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>oT.</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
-<link rel="stylesheet" href="./css/mypage_list.css">
-<link rel="stylesheet" href="./css/mypage_basic.css">
-<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
+<link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
+	<jsp:include page="header.jsp"/>	
 </head>
+
 <body>
-	<%@include file="header.jsp" %>	
+	<c:url var="mWishlist" value="mWishlist.do"/>
+	<c:url var="product_detail" value="product_detail.do">
+		<c:param name="product_detail" value="p1"/>
+	</c:url>
+	<c:url var="order" value="buynow.do">
+		<c:param name="order" value="p1"/>
+	</c:url>
+	<c:url var="cart" value="cartbutton.do"/>
+
  	<div id="container">
  		<div id="memberInf1">
 			<div class="xans-myshop-bankbook " style="width: 80%;">
@@ -31,64 +40,42 @@
   					입니다.
 				</p>
 		
-			<ul style="float: right;width: 350px;height: 60px;margin-right: 100px;margin-top: -34px;">
-				<li class="xans-layout-shoppinginfo ">
-					<strong class="title">
-						<a href="/myshop/wish_list.html">WISH</a>
-					</strong>
-  			<br>
-					<strong class="data ">
-						<a href="/myshop/wish_list.html">
-							<span id="xans_myshop_interest_prd_cnt">0개</span>
-						</a>
-					</strong>
-				</li>
+				<ul style="float: right;width: 350px; height: 60px;margin-right: 100px;margin-top: -34px;">
+					
+					<c:url var="mWishlist" value="mWishlist.do"/>
+					<c:url var="mPoint" value="mPoint.do"/>
+					<c:url var="mCoupon" value="mCoupon.do"/>
+					
+					<li class="xans-layout-shoppinginfo ">
+						<strong class="title">WISH</strong>
+  						<br>
+						<strong class="data ">
+							<a href="${mWishlist}">
+									<span id="xans_myshop_interest_prd_cnt">0개</span>
+							</a>
+						</strong>
+					</li>
 				
-                <li>
-                    <strong class="title">
-                    	<a href="/myshop/mileage/historyList.html">POINT</a>
-                    </strong>
-                    <br>
-                    <strong class="data">
-                    	<a href="/myshop/mileage/historyList.html">0원</a>
-                    </strong>
-                </li>
+               		<li>
+	                    <strong class="title">POINT</strong>
+	                    <br>
+	                    <strong class="data">
+	                    	<a href="${mPoint }">0원</a>
+	                    </strong>
+	                </li>
                 
-                <li class="etc ">
-                    <strong class="title">
-                    	<a href="/myshop/coupon/coupon.html">COUPON</a>
-                    </strong>
-                    <br>
-                    <strong class="data">
-                    	<a href="/myshop/coupon/coupon.html">0<span>개</span></a>
-                    </strong>
-                    	<a href="/myshop/coupon/coupon.html"></a>
+	                <li class="etc ">
+	                    <strong class="title">COUPON</strong>
+	                    <br>
+	                    <strong class="data">
+	                    	<a href="${mCoupon }">0<span>개</span></a>
+	                    </strong>
 	                </li>
 	            </ul>
 			</div>
 		</div>
 		
         <div id="contents">
-			<div class="mypage_top_outer">
-			 <!-- <div module="myshop_bankbook">        
-			        <ul>
-			            <li module="Layout_shoppingInfo">
-			                <strong class="title"><a href="/myshop/wish_list.html">WISH</a></strong>
-			                <strong class="data {$use_interest_prd|display}"><a href="/myshop/wish_list.html">{$interest_prd_cnt}</a></strong>
-			            </li>
-			            <li>
-			                <strong class="title"><a href="/myshop/mileage/historyList.html">POINT</a></strong>
-			                <strong class="data"><a href="/myshop/mileage/historyList.html">{$avail_mileage}</a></strong>
-			            </li>
-			            <li class="etc {$display_coupon|display}">
-			                <strong class="title"><a href="/myshop/coupon/coupon.html">COUPON</a></strong>
-			                <strong class="data"><a href="/myshop/coupon/coupon.html">{$coupon_cnt}<span>개</span></a></strong>
-			                <a href="/myshop/coupon/coupon.html"></a>
-			            </li>
-			        </ul>
-			    </div> -->
-			</div>
-
 			<div class="titleArea">
     			<h2>WISH LIST</h2>
 			</div>
@@ -139,11 +126,11 @@
 								<input name="wish_idx[]" id="wish_idx_0" enable-order="" reserve-order="N" enable-purchase="1" class="" is-set-product="F" value="658007" type="checkbox">
 							</td>
                				<td class="thumb">
-            					<a href="/product/black-up-호딘-트레이닝-팬츠/10550/category/26/">
+            					<a href="${product_detail }">
                						<img src="//black-up.kr/web/product/medium/201907/6c62d00576fe97a594f09ef169e4be94.webp" alt=""></a>
        						</td>
 							<td class="left"><a
-								href="/product/black-up-호딘-트레이닝-팬츠/10550/category/26/"
+								href="${product_detail }"
 								style="font-size: 13px;">(BLACK UP) 호딘 트레이닝 팬츠</a>
 								<ul
 									class="xans-element- xans-myshop xans-myshop-optionall option">
@@ -221,7 +208,7 @@
 									<br>
 									<span class="displaynone">19000</span>
 								</td>
-                				<td><span class="txtInfo"><img src="/ot/images/point.png" class="icon_img" alt="적립금">100원</span></td>
+                				<td><span class="txtInfo"><img src="/ot/resources/images/point.png" class="icon_img" alt="적립금">100원</span></td>
                 				<td>
 	                				<div class="txtInfo">기본배송
 	                					<div class="">(해외배송가능)
@@ -310,7 +297,7 @@
 									<br>
 									<span class="displaynone">19000</span>
 								</td>
-                				<td><span class="txtInfo"><img src="/ot/images/point.png" class="icon_img" alt="적립금">100원</span></td>
+                				<td><span class="txtInfo"><img src="/ot/resources/images/point.png" class="icon_img" alt="적립금">100원</span></td>
                 				<td>
 	                				<div class="txtInfo">기본배송
 	                					<div class="">(해외배송가능)
@@ -333,6 +320,10 @@
 				<p class="message displaynone">관심상품 내역이 없습니다.</p>
 			</div>
 			
+			
+			<c:url var="cart" value="cart.do">
+			
+			</c:url>
 			<div class="xans-element- xans-myshop xans-myshop-wishlistbutton ec-base-button xans-record-">
 				<span class="gLeft">
       				<strong class="text">선택상품을</strong>
@@ -340,17 +331,17 @@
         			<a href="#none" onclick="NewWishlist.basket();" class="yg_btn_24 yg_btn3" alt="장바구니 담기">장바구니 담기</a>
     			</span>
 				<span class="gRight">
-       				<a href="#none" onclick="NewWishlist.orderAll();" class="yg_btn_140" alt="전체상품주문">전체상품주문</a>
-       	 			<a href="/ot/cart.jsp" onclick="NewWishlist.deleteAll();" class="yg_btn_140 yg_btn4" alt="관심상품 비우기" style="background:#f4f4f4">장바구니 가기</a>
-       	 			<a href="#none" onclick="NewWishlist.deleteAll();" class="yg_btn_140 yg_btn4" alt="관심상품 비우기" style="background:#f4f4f4">관심상품 비우기</a>
+       				<a href="${order }" onclick="NewWishlist.orderAll();" class="yg_btn_140" alt="전체상품주문">전체상품주문</a>
+       	 			<a href="${cart }" onclick="NewWishlist.deleteAll();" class="yg_btn_140 yg_btn4" alt="관심상품 비우기" style="background:#f4f4f4">장바구니 가기</a>
+       	 			<a href="#" onclick="NewWishlist.deleteAll();" class="yg_btn_140 yg_btn4" alt="관심상품 비우기" style="background:#f4f4f4">관심상품 비우기</a>
     			</span>
 			</div>
 			
 			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate">
 				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first">
-					<img src="/ot/images/btn_page_first.gif" alt="첫 페이지"></a>
+					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지"></a>
 				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/images/btn_page_prev.gif" alt="이전 페이지"></a>
+					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"></a>
 					
 					<ol>
 						<li class="xans-record-">
@@ -359,9 +350,9 @@
        				</ol>
        				
 				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/images/btn_page_next.gif" alt="다음 페이지"></a>
+					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지"></a>
 				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="last">
-					<img src="/ot/images/btn_page_last.gif" alt="마지막 페이지"></a>
+					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
 			</div>
 
         </div>
@@ -463,7 +454,7 @@
 								</span></td>
 								<td class="right"><span class="quantity_price">9000</span>
 									<span class="mileage ">(<img
-										src="/ot/images/point.png"> &nbsp;<span
+										src="/ot/resources/images/point.png"> &nbsp;<span
 										class="mileage_price">0</span>)
 								</span></td>
 							</tr>
@@ -484,7 +475,7 @@
 <img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif" id="option_box1_down" class="option_box_down" alt="수량감소"></a></span><a href="#none" class="delete">
 <!-- <img src="//img.echosting.cafe24.com/design/skin/default/product/btn_price_delete.gif" alt="삭제" id="option_box1_del" class="option_box_del"> --></a></td>
 								<td class="right"><span id="option_box1_price"><input type="hidden" class="option_box_price" value="19000" product-no="10550" item_code="P0000PPU000F">
-								<span class="ec-front-product-item-price" code="P0000PPU000F" product-no="10550">19,000 won</span></span><span class="mileage">(<img src="/ot/images/point.png" alt="적립금"> <span id="option_box1_mileage" class="mileage_price" code="P0000PPU000F">100원</span>)</span></td>
+								<span class="ec-front-product-item-price" code="P0000PPU000F" product-no="10550">19,000 won</span></span><span class="mileage">(<img src="/ot/resources/images/point.png" alt="적립금"> <span id="option_box1_mileage" class="mileage_price" code="P0000PPU000F">100원</span>)</span></td>
 							</tr>
 							<tr class="option_product " data-option-index="1"
 								target-key="9017">
@@ -500,7 +491,7 @@
 <img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif" id="option_box1_down" class="option_box_down" alt="수량감소"></a></span><a href="#none" class="delete">
 <!-- <img src="//img.echosting.cafe24.com/design/skin/default/product/btn_price_delete.gif" alt="삭제" id="option_box1_del" class="option_box_del"> --></a></td>
 								<td class="right"><span id="option_box1_price"><input type="hidden" class="option_box_price" value="19000" product-no="10550" item_code="P0000PPU000F">
-								<span class="ec-front-product-item-price" code="P0000PPU000F" product-no="10550">19,000 won</span></span><span class="mileage">(<img src="/ot/images/point.png" alt="적립금"> <span id="option_box1_mileage" class="mileage_price" code="P0000PPU000F">100원</span>)</span></td>
+								<span class="ec-front-product-item-price" code="P0000PPU000F" product-no="10550">19,000 won</span></span><span class="mileage">(<img src="/ot/resources/images/point.png" alt="적립금"> <span id="option_box1_mileage" class="mileage_price" code="P0000PPU000F">100원</span>)</span></td>
 							</tr>
 						</tbody>
 						<!-- //참고 -->
@@ -517,7 +508,7 @@
 		</div>
 		<div
 			class="xans-element- xans-product xans-product-action ec-base-button ">
-			<a href="/ot/order.jsp" class="first  yg_btn_30"
+			<a href="${order }" class="first  yg_btn_30"
 				onclick="product_submit(1, '/exec/front/order/basket/', this)"
 				alt="바로구매하기">바로구매하기</a> <a href="#none" class=" yg_btn_30 yg_btn3"
 				onclick="product_submit(2, '/exec/front/order/basket/', this)"

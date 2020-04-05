@@ -24,9 +24,9 @@
       <img src = "/ot/resources/images/red.png" alt="필수">
       필수입력사항
    </p>
-   
+  
+  <form action="yinsert.do" method="post" id="joinForm">
    <div class="information">
-    <form method="GET" name="inputForm">
         <table class="jointype">
         <tbody>
             <tr>
@@ -36,7 +36,7 @@
                 </th>
                
                 <td style="border-top:1px solid #ddd;">
-                    <input type="text" name="userId" id="userId" size="20px" >
+                    <input type="text" name="memId" id="userId" size="20px" >
                      <span id="idMsg">(영문 소문자/숫자, 4~16자)</span>
                    <a  href="#layer2" class ="check_btn_140" id="idCheck"><span id="idMsg2">중복확인</span></a>
                    <div class="dim-layer">
@@ -64,7 +64,7 @@
                        비밀번호<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                    </th>
                 <td>
-                    <input type="text" name="userPwd" id="userpwd" size="20px"> 
+                    <input type="password" name="memPwd" id="memPwd" size="20px"> 
                      <span id="idMsg">(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8자~16자)</span>
                 </td>
             </tr>
@@ -73,7 +73,7 @@
                                         비밀번호 확인<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td>
-                    <input type="text" name="userPwd1" id="pwdCheck" size="20px">
+                    <input type="password" name="memPwd1" id="memPwd1" size="20px">
                 </td>
             </tr>
             
@@ -82,7 +82,7 @@
                     이름<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td>
-                    <input type="text" name="userName" id="userName" size="20px"> 
+                    <input type="text" name="memName" id="memName" size="20px"> 
                 </td>
             </tr>
             
@@ -107,7 +107,7 @@
                     휴대전화<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td style="border-bottom:1px solid #ddd;">
-                    <select id="mobile1" name="mobile[]" style="font-size:12px;">
+                    <select id="mobile1" name="mobile1" style="font-size:12px;">
                   <option value="010">010</option>
                   <option value="011">011</option>
                   <option value="016">016</option>
@@ -115,8 +115,8 @@
                   <option value="018">018</option>
                   <option value="019">019</option>
                   </select>
-                    -<input id="mobile2"  name="mobile[]" maxlength="4" value="" type="text">
-                    -<input id="mobile3"  name="mobile[]" maxlength="4" value="" type="text">
+                    -<input id="mobile2"  name="mobile2" maxlength="4" value="" type="text">
+                    -<input id="mobile3"  name="mobile3" maxlength="4" value="" type="text">
                 </td>
             </tr>
             
@@ -125,8 +125,7 @@
                     이메일<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td>
-                    <input id="email" name="email" value="" type="text">
-                   
+                    <input id="memEmail" name="memEmail" value="" type="email">
                 </td>
             </tr>
             
@@ -136,7 +135,7 @@
            </tbody>
         </table>
         <br>
-    </form>
+ 
     </div>
     
     <br><br>
@@ -147,7 +146,6 @@
     top: -10px;">추가정보</h3>
     
     <div class="information2">
-        <form method="POST" name="inputForm">
         <table class="jointype">
         <tbody>
           
@@ -172,91 +170,73 @@
                <tr>
                      <th>환불계좌정보</th>
                      <td><span id="idMsg">예금주</span>
-                     <input type="text" id ="inputname" name="inputname"
+                     <input type="text" id ="memOwner" name="memOwner"
                      style="position: relative;left: 40px; width:161px;">
                
                      <br>
                      
                      <span id="idMsg">은행명</span>
-                     <select id="bank_code" name="bank_code"
+                     <select id="bank" name="bank"
                      style="position: relative;left: 40px; margin-top:11px; font-size:12px;">
                   <option value="" selected="selected">- 은행선택 -</option>
-                  <option value="bank_02">산업은행</option>
-                  <option value="bank_03">기업은행</option>
-                  <option value="bank_04">국민은행</option>
-                  <option value="bank_05">외환은행</option>
-                  <option value="bank_07">수협중앙회</option>
-                  <option value="bank_11">농협중앙회</option>
-                  <option value="bank_12">농협개인</option>
-                  <option value="bank_13">농협</option>
-                  <option value="bank_20">우리은행</option>
-                  <option value="bank_209">유안타증권</option>
-                  <option value="bank_218">KB증권</option>
-                  <option value="bank_23">SC제일은행</option>
-                  <option value="bank_230">미래에셋증권</option>
-                  <option value="bank_238">대우증권</option>
-                  <option value="bank_240">삼성증권</option>
-                  <option value="bank_243">한국투자증권</option>
-                  <option value="bank_26">신한은행</option>
-                  <option value="bank_261">교보증권</option>
-                  <option value="bank_262">하이투자증권</option>
-                  <option value="bank_263">현대차증권</option>
-                  <option value="bank_266">SK증권</option>
-                  <option value="bank_267">대신증권</option>
-                  <option value="bank_269">한화증권</option>
-                  <option value="bank_270">하나대투증권</option>
-                  <option value="bank_278">신한금융투자</option>
-                  <option value="bank_279">동부증권</option>
-                  <option value="bank_280">유진투자증권</option>
-                  <option value="bank_287">메리츠증권</option>
-                  <option value="bank_289">NH투자증권</option>
-                  <option value="bank_291">신영증권</option>
-                  <option value="bank_292">케이뱅크</option>
-                  <option value="bank_293">카카오뱅크</option>
-                  <option value="bank_295">OK저축은행</option>
-                  <option value="bank_31">대구은행</option>
-                  <option value="bank_32">부산은행</option>
-                  <option value="bank_34">광주은행</option>
-                  <option value="bank_35">제주은행</option>
-                  <option value="bank_37">전북은행</option>
-                  <option value="bank_39">경남은행</option>
-                  <option value="bank_52">모건스탠리은행</option>
-                  <option value="bank_53">씨티은행</option>
-                  <option value="bank_57">유에프제이은행</option>
-                  <option value="bank_58">미즈호코퍼레이트은행</option>
-                  <option value="bank_59">미쓰비시도쿄은행</option>
-                  <option value="bank_60">뱅크오브아메리카</option>
-                  <option value="bank_71">우체국</option>
-                  <option value="bank_76">신용보증기금</option>
-                  <option value="bank_77">기술신용보증기금</option>
-                  <option value="bank_81">KEB하나은행</option>
-                  <option value="bank_82">농협회원조합</option>
-                  <option value="bank_83">도이치은행</option>
-                  <option value="bank_84">상호저축은행</option>
-                  <option value="bank_85">새마을금고</option>
-                  <option value="bank_86">수출입은행</option>
-                  <option value="bank_87">신용협동조합</option>
-                  <option value="bank_89">홍콩상하이은행(HSBC)</option>
-                  <option value="bank_90">에이비엔암로은행</option>
-                  <option value="bank_91">산림조합</option>
-                  <option value="bank_93">한국주택금융공사</option>
-                  <option value="bank_94">서울보증보험</option>
-                  <option value="bank_95">경찰청</option>
-                  <option value="bank_99">금융결제원</option>
+                  <option value="산업은행">산업은행</option>
+                  <option value="기업은행">기업은행</option>
+                  <option value="국민은행">국민은행</option>
+                  <option value="외한은행">외환은행</option>
+                  <option value="수협중앙회">수협중앙회</option>
+                  <option value="농협중앙회">농협중앙회</option>
+                  <option value="농협개인">농협개인</option>
+                  <option value="농협">농협</option>
+                  <option value="우리은행">우리은행</option>
+                  <option value="유안타증권">유안타증권</option>
+                  <option value="KB증권">KB증권</option>
+                  <option value="SC제일은행">SC제일은행</option>
+                  <option value="미래에셋증권">미래에셋증권</option>
+                  <option value="대우증권">대우증권</option>
+                  <option value="삼성증권">삼성증권</option>
+                  <option value="한국투자증권">한국투자증권</option>
+                  <option value="신한은행">신한은행</option>
+                  <option value="교보증권">교보증권</option>
+                  <option value="하이투자증권">하이투자증권</option>
+                  <option value="현대차증권">현대차증권</option>
+                  <option value="SK증권">SK증권</option>
+                  <option value="대신증권">대신증권</option>
+                  <option value="한화증권">한화증권</option>
+                  <option value="하나대투증권">하나대투증권</option>
+                  <option value="신한금융투자">신한금융투자</option>
+                  <option value="등부증권">동부증권</option>
+                  <option value="유진투자증권">유진투자증권</option>
+                  <option value="메리츠증권">메리츠증권</option>
+                  <option value="NH투자증권">NH투자증권</option>
+                  <option value="신영증권">신영증권</option>
+                  <option value="케이뱅크">케이뱅크</option>
+                  <option value="카카오뱅크">카카오뱅크</option>
+                  <option value="OK저축은행">OK저축은행</option>
+                  <option value="대구은행">대구은행</option>
+                  <option value="부산은행">부산은행</option>
+                  <option value="광주은행">광주은행</option>
+                  <option value="제주은행">제주은행</option>
+                  <option value="전북은행">전북은행</option>
+                  <option value="경남은행">경남은행</option>
+                  <option value="씨티은행">씨티은행</option>
+                  <option value="우체국">우체국</option>
+                  <option value="KEB하나은행">KEB하나은행</option>
+                  <option value="새마을금고">새마을금고</option>
                </select>
                
                      <br>
                      
                      <span id="idMsg">환불계좌</span>
-                     <input type="text" id ="inputbank" name="inputbank"
+                     <input type="text" id ="returnBank" name="returnBank"
                      style="position: relative;left: 28px; margin-top:10px; width:161px;"><span id="idMsg" 
                      style="position: relative;left: 37px;">('-'와 숫자만 입력해주세요.)</span>
                </tr>
                
            </tbody>
           </table>
+    
+   		 </div>
     	</form>
-    </div>
     
     <br><br>
     
@@ -476,7 +456,7 @@
     </div>
     
     <div class="ec-base-button" style="margin-left:25%;">
-        <a href="#none" onclick="memberJoinAction()" class="yg_btn_140">회원가입</a>
+        <a href="#none" onclick=" return memberJoinAction()" class="yg_btn_140">회원가입</a>
     </div>
         
         <br><br><br><br>
@@ -502,7 +482,7 @@
            layer_popup($href);
       
       $.ajax({
-         url : "idDuplicate.me",
+         url : "idDuplicate.do",
          type : "post",
          data : {userId : $('#userId').val()},
          success : function(data){
@@ -595,11 +575,57 @@
           }
       }).open();
   };
-  function validateEmail(email) {
-	  var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-	  return re.test(email);
-	  }
 
+	function memberJoinAction(){
+		
+		var memId = document.getElementById('userId');
+		 var memEmail = document.getElementById('memEmail');
+	  
+	  
+	  if(document.getElementById('userId').value =="") {
+		  alert("아이디를 입력해 주세요");
+		  return false;
+	  }
+	  if(document.getElementById('memPwd').value =="") {
+		  alert("비밀번호를 입력해 주세요");
+		  return false;
+	  }
+	  if(document.getElementById('memName').value =="") {
+		  alert("이름을 입력해 주세요");
+		  return false;
+	  }
+	  if(document.getElementById('memEmail').value =="") {
+		  alert("이메일을 입력해 주세요");
+		  return false;
+	  }
+	  if(document.getElementById('memPwd').value != document.getElementById('memPwd1').value){
+			alert('비밀번호가 일치하지 않습니다.');
+			return false;
+	  }
+	  if (!/^[a-z0-9]{4,20}$/.test($("#userId").val())) {
+		  alert("아이디는 영 소문자, 숫자 4~20자리로 입력해주세요.");
+		  return false;
+		}
+      if(!chk(/^[\w]{4,}@[\w]+(\.[w]){1,3}$/,memEmail,"이메일 형식에 어긋납니다.")) {
+          return false;
+      }
+	  else  {
+		$('#joinForm').submit();
+	  }
+	  
+  }
+	
+	  function chk(re,ele,msg) {
+          if(!re.test(ele.value)) {
+              alert(msg);
+              ele.select();
+
+              return false;
+          }
+
+          return true;
+      }
+	
     </script>
     
 </body>

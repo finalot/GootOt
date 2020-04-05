@@ -367,7 +367,7 @@ font-size: 9px !important;
 						class="topbar-email"> . </span> &nbsp;&nbsp; <a
 						href="${MyPage}" class="topbar-email"> MyPage </a>
 					&nbsp;&nbsp; <span class="topbar-email"> . </span> &nbsp;&nbsp; <a
-						href="notice.jsp" class="topbar-email"> Notice </a> &nbsp;&nbsp; <span
+						href="notice.do" class="topbar-email"> Notice </a> &nbsp;&nbsp; <span
 						class="topbar-email"> . </span> &nbsp; <a href="#" id="allmenubar1"
 						class="topbar-social-item fa fa-bars"></a> &nbsp; <span
 						class="topbar-email"> . </span>
@@ -739,8 +739,7 @@ font-size: 9px !important;
 							<li><a href="delivery_cancel.jsp">배송전취소/변경</a></li>
 							<li><a href="product_change.jsp">배송후교환/반품</a></li>
 							<li><a href="bank_insert_board.jsp">입금확인/입금자변경</a></li>
-							<li><a href="/board/free/list.html?board_no=101">해외배송문의</a></li>
-							<li><a href="bad_product_board.jsp">상품불량 및
+							<li><a href="bad_product_board.do">상품불량 및
 									오배송접수</a></li>
 						</ul>
 					</div>

@@ -14,24 +14,27 @@
 		<result property="memEmail" column="MEM_EMAIL"/>
 		<result property="memPhone" column="MEM_PHONE"/>
 		<result property="memSumMoney" column="MEM_SUMMONEY"/>
+		<result property="memOwner" column="MEM_OWNER"/>
+		<result property="bank" column="BANK"/>
+		<result property="returnBank" column="RETURN_BANK"/>
 	</resultMap>
-	
+
 	<resultMap id="memberdailyCheck" type="Member">
 		<id property="memNo" column="MEM_NO"/>
 		<result property="tdDate" column="TC_DATE"/>
 	</resultMap>
-	
- 	
+
+
 <select id ="loginMember" parameterType="Member" resultMap="memberResultSet">
 		SELECT * FROM MEMBER
 		WHERE MEM_ID=#{memId}
 		AND MEM_PWD=#{memPwd}
-		
+
 	<!-- 	암호화 후
 		SELECT * FROM MEMBER
 		WHERE ID = #{id}
 		AND M_STATUS='Y' -->
-		
+
 </select>
 
 <select id="findId" parameterType="Member" resultMap="memberResultSet">
@@ -70,12 +73,19 @@
 	VALUES(1,#{memNo},1,DEFAULT,NULL,SYSDATE)
 
 </insert>
-<!--  	
+<!--
+<select id="idDuplicate" parameterType="String" resultType="_int">
+	SELECT COUNT(*)
+	FROM MEMBER
+	WHERE MEM_ID=#{userId}
+</select>
+
+
 <insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER
-		VALUES(#{id},#{pwd},#{name},#{email},#{gender},
-		#{age},#{phone},#{address},SYSDATE,SYSDATE,default)
-		
+		VALUES(MEM_SEQ.NEXTVAL,#{memId},#{memPwd},#{memName},#{memSsn},#{memAddress},
+		#{memEmail},#{memPhone},DEFAULT,#{memOwner},#{bank},#{returnBank})
+
 	</insert>
 
 <update id="updateMember" parameterType="Member">
@@ -83,7 +93,7 @@
 		SET EMAIL=#{email},AGE=#{age},PHONE=#{phone},ADDRESS=#{address}
 		,UPDATE_DATE=SYSDATE
 		WHERE ID=#{id}
-</update>	
+</update>
 
 <update id="deleteMember"  parameterType="Member">
 		UPDATE MEMBER
@@ -91,15 +101,12 @@
 		WHERE ID=#{id}
 </update>
 
-<select id="idCheck" parameterType="String" resultType="_int">
-	
+<!-- <select id="idCheck" parameterType="String" resultType="_int">
+
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE ID=#{id}
-	
-</select>
- -->
+
+</select> -->
+
 </mapper>
-
-
-

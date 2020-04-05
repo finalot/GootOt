@@ -8,12 +8,12 @@
 <title>oT.</title>
 <!--  <link href="/ot/css/join.css" rel="stylesheet">
  -->
-<link href="./css/mypage_list.css" rel="stylesheet">
+<link href="/ot/resources/css/mypage_list.css" rel="stylesheet">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<link rel="stylesheet" href="./css/mypage_basic.css">
-<link rel="icon" type="image/png" href="images/icons/favicon.png" />
-<link rel="stylesheet" href="./css/popup.css">
+<link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png" />
+<link rel="stylesheet" href="/ot/resources/css/popup.css">
 
 <style>
 .yg_btn1 {
@@ -154,16 +154,22 @@
 					</table>
 				</div>
 				<div class="ec-base-button">
-					<a href="#none" class="displaynone yg_btn yg_btn1"
+					<a href="#none" class="displaynone yg_btn yg_btn1" style="text-decoration: none;"
 						onclick="RefundAccount.register(); return false;" alt="등록">등록</a>
-					<a href="#none" class=" yg_btn yg_btn1"
+					<a href="" class=" yg_btn yg_btn1" style="text-decoration: none;"
 						onclick="RefundAccount.modify(); return false;" alt="변경">변경</a> <a
-						href="#none" class="yg_btn yg_btn3"
-						onclick="RefundAccount.cancel(); return false;" alt="취소">취소</a>
+						href="#none" class="yg_btn yg_btn3" style="text-decoration: none;"
+						onclick="window.close();" alt="취소">취소</a>
 				</div>
 			</div>
 		</div>
 	</form>
+	
+	<script>
+		function RefundAccount.cancel() {
+			window.close();
+		}
+	</script>
 	<script type="text/javascript">
 		var sAuthSSLDomain = "https://login2.cafe24ssl.com";
 	</script>

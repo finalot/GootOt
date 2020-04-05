@@ -14,7 +14,7 @@ public class MemberDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	/**
 	 * @작성일  : 2020. 4. 2.
 	 * @작성자  : 문태환
@@ -103,16 +103,22 @@ public class MemberDao {
 
 	/**
 	 * @작성일  : 2020. 4. 5.
-	 * @작성자  : 문태환 
+	 * @작성자  : 문태환
 	 * @내용 	: 출석체크 쿠폰발급 Dao
-	 * @param memNo
+	 * @param memNos
 	 * @return
 	 */
 	public int couponInsert(int memNo) {
 		return sqlSession.insert("memberMapper.couponInsert",memNo);
+	public int idDuplicate(String userId) {
+		return sqlSession.selectOne("memberMapper.idDuplicate",userId);
 	}
-	
-	
-	
-	
+
+	public int insertMember(Member m) {
+		return sqlSession.insert("memberMapper.insertMember",m);
+	}
+
+
+
+
 }

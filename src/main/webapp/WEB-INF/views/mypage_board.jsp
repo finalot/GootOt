@@ -9,19 +9,24 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>oT.</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
-<link rel="stylesheet" href="./css/mypage_list.css">
-<link rel="stylesheet" href="./css/mypage_basic.css">
-<link rel="icon" type="image/png" href="images/icons/favicon.png" />
+<!--    <link rel="stylesheet" href="/ot/resources/css/Login_style.css"> -->
+<link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
+<link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png" />
 
 <style>
 a{
 	font-size : 13px !important;
 }
 </style>
+	<jsp:include page="header.jsp"/>
 </head>
 <body>
-	<%@include file="header.jsp"%>
+
+	<c:url var="mWishlist" value="mWishlist.do"/>
+	<c:url var="mPoint" value="mPoint.do"/>
+	<c:url var="mCoupon" value="mCoupon.do"/>
+	
 	<div id="container">
  		<div id="memberInf1">
 			<div class="xans-myshop-bankbook " style="width: 80%;">
@@ -37,42 +42,36 @@ a{
   					입니다.
 				</p>
 		
-			<ul style="float: right;width: 350px;height: 60px;margin-right: 100px;margin-top: -34px;">
-				<li class="xans-layout-shoppinginfo ">
-					<strong class="title">
-						<a href="/myshop/wish_list.html">WISH</a>
-					</strong>
-  			<br>
-					<strong class="data ">
-						<a href="/myshop/wish_list.html">
-							<span id="xans_myshop_interest_prd_cnt">0개</span>
-						</a>
-					</strong>
-				</li>
+				<ul style="float: right;width: 350px; height: 60px;margin-right: 100px;margin-top: -34px;">
+					<li class="xans-layout-shoppinginfo ">
+						<strong class="title">WISH</strong>
+  						<br>
+						<strong class="data ">
+							<a href="${mWishlist }">
+									<span id="xans_myshop_interest_prd_cnt">0개</span>
+							</a>
+						</strong>
+					</li>
 				
-                <li>
-                    <strong class="title">
-                    	<a href="/myshop/mileage/historyList.html">POINT</a>
-                    </strong>
-                    <br>
-                    <strong class="data">
-                    	<a href="/myshop/mileage/historyList.html">0원</a>
-                    </strong>
-                </li>
+               		<li>
+	                    <strong class="title">POINT</strong>
+	                    <br>
+	                    <strong class="data">
+	                    	<a href="${mPoint }">0원</a>
+	                    </strong>
+	                </li>
                 
-                <li class="etc ">
-                    <strong class="title">
-                    	<a href="/myshop/coupon/coupon.html">COUPON</a>
-                    </strong>
-                    <br>
-                    <strong class="data">
-                    	<a href="/myshop/coupon/coupon.html">0<span>개</span></a>
-                    </strong>
-                    	<a href="/myshop/coupon/coupon.html"></a>
+	                <li class="etc ">
+	                    <strong class="title">COUPON</strong>
+	                    <br>
+	                    <strong class="data">
+	                    	<a href="${mCoupon }">0<span>개</span></a>
+	                    </strong>
 	                </li>
 	            </ul>
 			</div>
 		</div>
+
 		<div id="contents">
 			<div class="mypage_top_outer">
 				<!-- <div module="myshop_bankbook">        
@@ -148,15 +147,23 @@ a{
 							</tr>
 						</tbody>
 						<tbody class=" center">
+								<c:url var="mBoard_view" value="mBoard_view.do">
+									<c:param name="mBoard_view" value="Board"/>
+								</c:url>
+								
+								<c:url var="mBoard_adminreply" value="mBoard_adminreply.do">
+									<c:param name="mBoard_adminreply" value="mReply"/>
+								</c:url>
+								
 							<tr class="xans-record-">
 								<td>2</td>
-								<td><a href="/board/상품문의/6/">상품문의</a></td>
+								<td><a href="${mBoard_adminreply }">상품문의</a></td>
 								<td class="left subject">&nbsp;&nbsp;&nbsp;<img
 									src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_re.gif"
 									alt="답변" class="ec-common-rwd-image"> <img
 									src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif"
 									alt="비밀글" class="ec-common-rwd-image"> <a
-									href="/board/product/read.html?no=818720&amp;board_no=6">답변완료:)</a>
+									href="${mBoard_adminreply }">답변완료:)</a>
 									<img
 									src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif"
 									alt="NEW" class="ec-common-rwd-image"></td>
@@ -166,11 +173,11 @@ a{
 							</tr>
 							<tr class="xans-record-">
 								<td>1</td>
-								<td><a href="/board/상품문의/6/">상품문의</a></td>
+								<td><a href="${mBoard_view }">상품문의</a></td>
 								<td class="left subject"><img
 									src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif"
 									alt="비밀글" class="ec-common-rwd-image"> <a
-									href="/ot/mypage_board_view.jsp">[상품문의]</a>
+									href="${mBoard_view }">[상품문의]</a>
 									<img
 									src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif"
 									alt="NEW" class="ec-common-rwd-image"></td>
@@ -187,13 +194,13 @@ a{
 				method="get" target="" enctype="multipart/form-data">
 				<input id="board_no" name="board_no" value="" type="hidden">
 				<input id="page" name="page" value="1" type="hidden"> <input
-					id="board_sort" name="board_sort" value="" type="hidden">
+					id="board_sort" name="board_sort" value="" type="hidden" style="width:100px;">
 				<div class="xans-element- xans-myshop xans-myshop-boardlistsearch ">
 					<fieldset class="boardSearch">
 						<legend>게시물 검색</legend>
 						<p style="font-size:12px;">
 							<select id="search_key" name="search_key" fw-filter=""
-								fw-label="" fw-msg="">
+								fw-label="" fw-msg="" style="width:80px;">
 								<option value="subject">제목</option>
 								<option value="content">내용</option>
 								<option value="writer_name">글쓴이</option>
@@ -213,12 +220,12 @@ a{
 				<!--
         $relation_post = yes
     -->
-				<a href="?page=1"><img src="/ot/images/btn_page_prev.gif"
+				<a href="?page=1"><img src="/ot/resources/images//btn_page_prev.gif"
 					alt="이전 페이지"></a>
 				<ol>
 					<li class="xans-record-"><a href="?page=1" class="this">1</a></li>
 				</ol>
-				<a href="?page=1"><img src="/ot/images/btn_page_next.gif"
+				<a href="?page=1"><img src="/ot/resources/images//btn_page_next.gif"
 					alt="다음 페이지"></a>
 			</div>
 
@@ -234,6 +241,6 @@ a{
 		<hr class="layout">
 	</div>
 
-	<%@include file="footer.jsp"%>
+	<jsp:include page="footer.jsp"/>
 </body>
 </html>

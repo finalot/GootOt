@@ -23,8 +23,8 @@ a{
 </head>
 <body style="font-size:13px;">
 	<c:url var="mBoard" value="mBoard.do"/>
-	<c:url var="mBoard_modify" value="mBoard_modify.do">
-		<c:param name="mBoard_modify" value="mBoard"/>
+	<c:url var="mBoard_adminmodify" value="mBoard_adminmodify.do">
+		<c:param name="mBoard_adminmodify" value="mReply"/>
 	</c:url>
 
 <div id="container">
@@ -57,11 +57,11 @@ a{
 <tbody>
 <tr>
 <th scope="row">SUBJECT</th>
-                    <td>[상품문의]</td>
+                    <td>답변완료:)</td>
                 </tr>
 <tr>
 <th scope="row">WRITER</th>
-                    <td> 홍길동 <span class="displaynone">(ip:)</span> </td>
+                    <td> ADMIN <span class="displaynone">(ip:)</span> </td>
                 </tr>
 <tr>
 <td colspan="2">
@@ -79,7 +79,25 @@ a{
                                 <span>VIEWED</span> <span class="txtNum">7</span>
                             </li>
                         </ul>
-<div class="detail">▶ 상품 기본 설명은 상품 페이지 하단에 기재되어있습니다. <br>
+<div class="detail">
+<!-- 답변받을 내용이 들어갈곳 관리자 -->
+안녕하세요 고객님 ot 입니다.
+<br>문의주신 상품 현재 여유재고 있는 상품이라<br>
+월~목 3시, 금요일 오후2시 이전으로 결제완료시 빠른 발송 가능합니다.
+<br>무통장입금의 입금확인은 소요시간이 최대 2시간 가량 소요될 수 있으며,<br>
+ot 외 타사이트 구매시 연동되는 시간이 소요되니<br>
+이 점 참고 하셔서 여유있게 구매 부탁 드립니다!<br>
+출고시 수령까지 1~3일 정도 소요되나 택배사 물량에 따라 배송지연이 있을 수 있어
+<br>수령일까지 확답은 어려우니 여유있게 주문 부탁드리며,
+<br>주문건 넘어오는대로 순차발송 해드리고 있어 여유재고 소진시<br>
+상품 준비기간이 소요될 수 있으니 이 점 참고 후 구매 부탁드리겠습니다.
+<br>오늘도 즐거운 하루 되시길 바라며 저는 CS팀 홍길동이였습니다. 감사합니다.
+<br>
+<br>
+<br>
+<br>
+[ Original Message ] <br>
+▶ 상품 기본 설명은 상품 페이지 하단에 기재되어있습니다. <br>
 사이즈는 잘 맞는 상품의 상세사이즈와 저희가 올려드린 상세사이즈를 비교 해주시는게 좋습니다.<br>
 <br>
 야외촬영or스태프촬영의경우 야외촬영이나 조명에 따라 약간씩 컬러가 다를 수 있어서 디테일컷으로 보시는게 가장 정확 합니다. (해상도에 따라 약간씩 차이 날 수 있습니다.)<br>
@@ -88,7 +106,8 @@ a{
 <br>
 비회원으로 문의주실 경우엔 동명이인으로 인해 주문정보와 함께 남겨주셔야 바로 처리 가능합니다.<br>
 <br>
-----------------------------------------------------------------------<br>			<div><br></div><div>dfsdfdsf</div></div>
+----------------------------------------------------------------------<br>			
+<div><br></div><div>dfsdfdsf</div></div>
                     </td>
                 </tr>
 <tr class="attach displaynone">
@@ -115,7 +134,7 @@ a{
             </span>
             <span class="gRight">
                 <a href="#none" onclick="BOARD_READ.article_delete('BoardDelForm','6');" class="yg_btn_30 yg_btn4 " alt="삭제">DELETE</a>
-                <a href="${mBoard_modify }" class="yg_btn_30 yg_btn4 " alt="수정">MODIFY</a>
+                <a href="${mBoard_adminmodify }" class="yg_btn_30 yg_btn4 " alt="수정">MODIFY</a>
                 <a href="/board/product/reply.html?board_act=reply&amp;no=818716&amp;board_no=6" class="yg_btn_30 yg_btn4 displaynone" alt="답변">REPLY</a>
             </span>
         </div>
@@ -153,12 +172,13 @@ a{
 <!-- 댓글의 댓글 쓰기 -->
 </div>
 
-<div class="xans-element- xans-board xans-board-movement-4 xans-board-movement xans-board-4 "><ul>
+<div class="xans-element- xans-board xans-board-movement-4 xans-board-movement xans-board-4 ">
+<ul>
 <li class="prev ">
-<strong>PREV</strong><a href="/article/상품문의/6/818737/">답변완료:)</a>
+<strong>PREV</strong><a href="/article/상품문의/6/818737/">[상품문의]</a>
 </li>
         <li class="next ">
-<strong>NEXT</strong><a href="/article/상품문의/6/818720/">답변완료:)</a>
+<strong>NEXT</strong><a href="/article/상품문의/6/818720/">[상품문의]</a>
 </li>
     </ul>
 </div>

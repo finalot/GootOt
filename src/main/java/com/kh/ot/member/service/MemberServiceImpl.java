@@ -20,10 +20,10 @@ public class MemberServiceImpl implements MemberService{
 
 	@Autowired
 	SqlSessionTemplate sqlSession;
-	
+
 	@Autowired
 	private MemberDao mDao; //MemberDao에 mDao 이름의 어노테이션을 부여
-	
+
 	@Override
 	public Member loginMember(String id,String pwd) {
 		return mDao.loginMember(id,pwd);
@@ -58,6 +58,17 @@ public class MemberServiceImpl implements MemberService{
 	public int couponInsert(int memNo) {
 		return mDao.couponInsert(memNo);
 	}
-		
+	@Override
+	public int idDuplicate(String userId) {
+		return mDao.idDuplicate(userId);
+	}
+
+	@Override
+	public int insertMember(Member m) {
+		int result = mDao.insertMember(m);
+		return result;
+
+	}
+
 
 }

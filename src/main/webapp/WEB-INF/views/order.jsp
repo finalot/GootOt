@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,9 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body class="animsition">
-
+	<c:url var="product_detail" value="product_detail.do">
+		<c:param name="product_detail" value="p1"/>
+	</c:url>
 
 	<!-- Header -->
 	<%@include file="header.jsp" %>
@@ -80,26 +83,27 @@
 									<img src="//black-up.kr/web/product/medium/201910/7e87ddc2879aa1c854575447f27b6026.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
 								</div>
 							</td>
-							<td class="column-2">Men Tshirt
+							<td class="column-2">
+								<a href="${product_detail }"> Men Tshirt</a>
 							<br><span id="idMsg7">[옵션 : 블루/S/1개]</span>
 							</td>
 							<td class="column-3"><font class="format-money">29000</font> won</td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
-									<button class="num-product-down1 color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
+									<button class="num-product-down1 color1 flex-c-m size7 bg8 eff2" style="display:none; ">
+										<i class="fs-12 fa fa-minus" aria-hidden="true" ></i>
 									</button>
 
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
+									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1" style="top: 0px; left: 31px;">
 
-									<button class="num-product-up1 color1 flex-c-m size7 bg8 eff2">
+									<button class="num-product-up1 color1 flex-c-m size7 bg8 eff2" style=" display:none;">
 										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
 									</button>
 									
 							
 								</div>
 							</td>
-							<td class="column-6"><img src="/ot/images/icons/icon-point.png" width="15px;height:15px;" 
+							<td class="column-6"><img src="/ot/resources/images/icons/icon-point.png" width="15px;height:15px;" 
 							style="position: relative;left: -5px;
 								top: -1px;">900원</td>
 							<td class="column-7" style="padding-left: 40px;">기본배송</td>
@@ -114,23 +118,24 @@
 									<img src="//black-up.kr/web/product/medium/201910/7e87ddc2879aa1c854575447f27b6026.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
 								</div>
 							</td>
-							<td class="column-2">Mug Adventure
+							<td class="column-2">
+							<a href="${product_detail }">Mug Adventure</a>
 							<br><span id="idMsg7">[옵션 : 베이지/S/1개]</span></td>
 							<td class="column-3"><font class="format-money">29000</font> won</td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
-									<button class="num-product-down1 color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
+									<button class="num-product-down1 color1 flex-c-m size7 bg8 eff2" style="display:none; ">
+										<i class="fs-12 fa fa-minus" aria-hidden="true" ></i>
 									</button>
 
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1">
+									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1" style="top: 0px; left: 31px;">
 
-									<button class="num-product-up1 color1 flex-c-m size7 bg8 eff2">
+									<button class="num-product-up1 color1 flex-c-m size7 bg8 eff2" style=" display:none;">
 										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
 									</button>
 								</div>
 						</td>
-							<td class="column-6"><img src="/ot/images/icons/icon-point.png" width="15px;height:15px;" 
+							<td class="column-6"><img src="/ot/resources/images/icons/icon-point.png" width="15px;height:15px;" 
 							style="position: relative;left: -5px;
 								top: -1px;">900원</td>
 							<td class="column-7" style="padding-left: 40px;">기본배송</td>
@@ -277,7 +282,7 @@
 			<h3 class=" " style="position: relative;font-size: 12px;
    font-weight: 600; top:89px;left:-48px;">결제 수단</h3><br>
     <p class = "required3" style="color:#000;">
-      <img src = "/ot/images/red.png" alt="필수">
+      <img src = "/ot/resources/images/red.png" alt="필수">
       필수입력사항
    </p>
 			<div style="display:flex;margin-top: 5%;">
@@ -424,7 +429,7 @@
     font-size: 12px;
     font-weight: 600; top:63px;left:-48px;">주문 정보</h3><br>
     <p class = "required2" style="color:#000;">
-      <img src = "/ot/images/red.png" alt="필수">
+      <img src = "/ot/resources/images/red.png" alt="필수">
       필수입력사항
    </p>
 		<form method="POST" name="inputForm" style="width: 100%;margin-right: 3%; margin-left: -4%;margin-top: 5%;height: 300px;">
@@ -432,7 +437,7 @@
         <tbody>
             <tr>
                 <th style="border-top:1px solid #ddd;">
-                   	 주문하시는 분<img src="/ot/images/red.png" style="position:relative;left:8px;">
+                   	 주문하시는 분<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                   <td style="border-top:1px solid #ddd;">
                 	<input type="text" name="userName" id="userName" size="20px"> 
@@ -441,7 +446,7 @@
            
             <tr>
                 <th>
-                      주소<img src="/ot/images/red.png" style="position:relative;left:8px;">
+                      주소<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td>
                    <input id="zipCode" style=" width:50px;" name="postcode1"  class="inputTypeText" placeholder="" readonly="readonly" maxlength="14" value="" type="text" style="width:50px;">
@@ -458,7 +463,7 @@
             
             <tr>
                 <th style="border-bottom:1px solid #ddd;">
-                    휴대전화<img src="/ot/images/red.png" style="position:relative;left:8px;">
+                    휴대전화<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td style="border-bottom:1px solid #ddd;">
                     <select id="mobile1" name="mobile[]" style="font-size:12px;">
@@ -476,7 +481,7 @@
             
             <tr>
                 <th>
-                    이메일<img src="/ot/images/red.png" style="position:relative;left:8px;">
+                    이메일<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td>
                     <input id="email" name="email" value="" type="text">
@@ -492,7 +497,7 @@
     font-size: 12px;
    font-weight: 600; top:63px;left:-48px;">배송 정보</h3><br>
     <p class = "required4" style="color:#000;">
-      <img src = "/ot/images/red.png" alt="필수">
+      <img src = "/ot/resources/images/red.png" alt="필수">
       필수입력사항
    </p>
 	<div style="display:flex;margin-top: 3%;">
@@ -502,7 +507,7 @@
         <tbody>
            <tr>
                 <th style="border-top:1px solid #ddd;">
-                   	 주문하시는 분<img src="/ot/images/red.png" style="position:relative;left:8px;">
+                   	 주문하시는 분<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td style="border-top:1px solid #ddd;">
                 	<input id="delivery" name="delivery" type="radio">
@@ -515,7 +520,7 @@
                 
                  <tr>
                 <th>
-                      받으시는 분<img src="/ot/images/red.png" style="position:relative;left:8px;">
+                      받으시는 분<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                    </th>
                 <td>
                     <input type="text" name="userName" id="userName" size="20px"> 
@@ -526,7 +531,7 @@
             
             <tr>
                 <th>
-                      주소<img src="/ot/images/red.png" style="position:relative;left:8px;">
+                      주소<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td>
                    <input id="zipCode" style=" width:50px;" name="postcode1" class="inputTypeText" placeholder="" readonly="readonly" maxlength="14" value="" type="text" style="width:50px;">
@@ -543,7 +548,7 @@
             
             <tr>
                 <th style="border-bottom:1px solid #ddd;">
-                    휴대전화<img src="/ot/images/red.png" style="position:relative;left:8px;">
+                    휴대전화<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td style="border-bottom:1px solid #ddd;">
                     <select id="mobile1" name="mobile[]"  style="font-size:12px;">
