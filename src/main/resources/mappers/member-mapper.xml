@@ -16,6 +16,11 @@
 		<result property="memSumMoney" column="MEM_SUMMONEY"/>
 	</resultMap>
 	
+	<resultMap id="memberdailyCheck" type="Member">
+		<id property="memNo" column="MEM_NO"/>
+		<result property="tdDate" column="TC_DATE"/>
+	</resultMap>
+	
  	
 <select id ="loginMember" parameterType="Member" resultMap="memberResultSet">
 		SELECT * FROM MEMBER
@@ -47,6 +52,24 @@
 	SET MEM_PWD = #{memPwd}
 	WHERE MEM_ID = #{memId}
 </update>
+
+<insert id="dailyCheck"  parameterType="Member"  >
+	INSERT INTO TODAYCHECK
+	VALUES(#{memNo},#{tdDate})
+
+</insert>
+
+<select id="dailyCheckList" parameterType="Member"  resultMap="memberdailyCheck" >
+		SELECT * FROM
+		TODAYCHECK
+		WHERE MEM_NO = #{memNo}
+</select>
+
+<insert id="couponInsert" parameterType="_int"  >
+	INSERT INTO COUPON_MEM
+	VALUES(1,#{memNo},1,DEFAULT,NULL,SYSDATE)
+
+</insert>
 <!--  	
 <insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER

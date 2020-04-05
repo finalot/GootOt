@@ -36,18 +36,6 @@ public class mainController {
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
-	 * @내용 : 프로덕트2 페이지 이동
-	 * @param @return
-	 * @return String
-	 */
-	@RequestMapping("dailyCheck.do")
-	public String dailyCheck() {
-		return "dailyCheck";
-	}
-	
-	/**
-	 * @작성일 : 2020. 4. 2.
-	 * @작성자 :이대윤
 	 * @내용 : 프로덕트1 페이지 이동
 	 * @param @return
 	 * @return String

@@ -1,5 +1,6 @@
 package com.kh.ot.member.service;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -41,6 +42,21 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int updatePwd(String memId, String firstpwd) {
 		return mDao.updatePwd(memId,firstpwd);
+	}
+
+	@Override
+	public int dailyCheck(int memNo, String tdDate) {
+		return mDao.dailyCheck(memNo,tdDate);
+	}
+
+	@Override
+	public ArrayList<Member> dailyCheckList(Member m) {
+		return mDao.dailyCheckList(m);
+	}
+
+	@Override
+	public int couponInsert(int memNo) {
+		return mDao.couponInsert(memNo);
 	}
 		
 

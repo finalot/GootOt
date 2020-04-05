@@ -2,6 +2,7 @@ package com.kh.ot.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
 
@@ -18,11 +19,13 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.context.HttpRequestResponseHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ot.member.service.MemberService;
 import com.kh.ot.member.vo.Member;
@@ -290,12 +293,75 @@ public class MemberController {
 	 }else {
 		 return "changepassword"; 
 	 }
-	 
-	 
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 2.
+	 * @작성자 :이대윤
+	 * @내용 : 프로덕트2 페이지 이동
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("dailyCheck.do")
+	public ModelAndView dailyCheck(Member m ,HttpSession session, ModelAndView mv) {
+		
+		 m =  (Member)session.getAttribute("loginMember");
+		
+		ArrayList<Member> list = mService.dailyCheckList(m);
+		
+		System.out.println(list.toString());
+		
+		mv.addObject("list",list);
+		mv.setViewName("dailyCheck");
+		
+		return mv;
+	}
+	
+
+	/**
+	 * @작성일  : 2020. 4. 3.
+	 * @작성자  : 문태환
+	 * @내용 	: 출석체크 이벤트
+	 * @param memNo
+	 * @param tdDate
+	 * @return
+	 */
+	@RequestMapping("insertdailyCheck.do")
+	public String dailyCheck(int memNo,String tdDate) {
+		
+		
+		int result = mService.dailyCheck(memNo,tdDate);
+		
+		if(result > 0) {
+			
+			return "redirect:dailyCheck.do";
+		}else {
+			System.out.println("에러");
+			return null;
+		}
+	}
+	/**
+	 * @작성일  : 2020. 4. 5.
+	 * @작성자  : 문태환
+	 * @내용 	: 출석체크 쿠폰발급
+	 * @param memNo
+	 * @param response
+	 * @throws IOException 
+	 */
+	@RequestMapping("couponInsert.do")
+	public void couponInsert(int memNo , HttpServletResponse response) throws IOException {
+		
+		
+		int result = mService.couponInsert(memNo);
+		
+		  PrintWriter out = response.getWriter();
+		
+		if(result > 0) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
 		
 	}
-
-
-
 
 }

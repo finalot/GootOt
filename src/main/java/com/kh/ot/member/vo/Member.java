@@ -14,6 +14,7 @@ public class Member {
 	private String memEmail;
 	private String memPhone;
 	private int memSumMoney;
+	private String tdDate; // 출석체크용 날짜데이트
 	
 	public Member() {
 		super();
@@ -105,12 +106,22 @@ public class Member {
 		this.memSumMoney = memSumMoney;
 	}
 
+	public String getTdDate() {
+		return tdDate;
+	}
+
+	public void setTdDate(String tdDate) {
+		this.tdDate = tdDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [memNo=" + memNo + ", memId=" + memId + ", memPwd=" + memPwd + ", memName=" + memName
 				+ ", memSsn=" + memSsn + ", memAddress=" + memAddress + ", memEmail=" + memEmail + ", memPhone="
-				+ memPhone + ", memSumMoney=" + memSumMoney + "]";
+				+ memPhone + ", memSumMoney=" + memSumMoney + ", tdDate=" + tdDate + "]";
 	}
+
+
 	
 	
 	
