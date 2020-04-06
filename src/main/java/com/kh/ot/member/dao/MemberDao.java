@@ -1,5 +1,7 @@
 package com.kh.ot.member.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,7 +14,7 @@ public class MemberDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	/**
 	 * @작성일  : 2020. 4. 2.
 	 * @작성자  : 문태환
@@ -72,8 +74,55 @@ public class MemberDao {
 		m.setMemId(memId);
 		return sqlSession.update("memberMapper.updatePwd",m);
 	}
+
+	/**
+	 * @작성일  : 2020. 4. 3.
+	 * @작성자  : 문태환
+	 * @내용 	: 출석체크용 Dao
+	 * @param memNo
+	 * @param tdDate
+	 * @return
+	 */
+	public int dailyCheck(int memNo, String tdDate) {
+		Member m = new Member();
+		m.setMemNo(memNo);
+		m.setTdDate(tdDate);
+		return sqlSession.insert("memberMapper.dailyCheck",m);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 4.
+	 * @작성자  :  문태환
+	 * @내용 	:출석체크 리스트 Dao
+	 * @param m
+	 * @return
+	 */
+	public ArrayList<Member> dailyCheckList(Member m) {
+		return (ArrayList)sqlSession.selectList("memberMapper.dailyCheckList",m);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 5.
+	 * @작성자  : 문태환
+	 * @내용 	: 출석체크 쿠폰발급 Dao
+	 * @param memNos
+	 * @return
+	 */
+	public int couponInsert(int memNo) {
+		return sqlSession.insert("memberMapper.couponInsert",memNo);
+	}
 	
 	
+	public int idDuplicate(String userId) {
+		return sqlSession.selectOne("memberMapper.idDuplicate",userId);
+	}
+
 	
-	
+	public int insertMember(Member m) {
+		return sqlSession.insert("memberMapper.insertMember",m);
+	}
+
+
+
+
 }

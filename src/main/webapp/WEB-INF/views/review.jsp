@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en" style="overflow-x:hidden;">
 <head>
@@ -2895,7 +2896,31 @@
 	cursor: pointer;
 }
 </style>
-	
+					<c:url var="bi1" value="product_detail.do">
+						<c:param name="bi" value="bi1"/>
+					</c:url>
+					<c:url var="bi2" value="product_detail.do">
+						<c:param name="bi" value="bi2"/>
+					</c:url>
+					<!-- <c:url var="bi3" value="productDetail.do">
+						<c:param name="bi" value="bi3"/>
+					</c:url>
+					<c:url var="bi4" value="productDetail.do">
+						<c:param name="bi" value="bi4"/>
+					</c:url>
+					<c:url var="bi5" value="productDetail.do">
+						<c:param name="bi" value="bi5"/>
+					</c:url>
+					<c:url var="bi6" value="productDetail.do">
+						<c:param name="bi" value="bi6"/>
+					</c:url>
+					<c:url var="bi7" value="productDetail.do">
+						<c:param name="bi" value="bi7"/>
+					</c:url>
+					<c:url var="bi8" value="productDetail.do">
+						<c:param name="bi" value="bi8"/>
+					</c:url> -->
+									
 	<!-- Relate Product -->
 	<section class="relateproduct bgwhite p-t-45 p-b-138">
 		<div class="container">
@@ -2946,7 +2971,7 @@
 										style="width: 17px; height: 17px; background: #E4F650; margin-left: 3px; float: left; border: 1px solid black;"></div>
 									<div
 										style="width: 17px; height: 17px; background: #4A87B9; margin-left: 3px; float: left; border: 1px solid black;"></div>
-								</span> <br> <a href="productDetail.jsp"
+								</span> <br> <a href="${bi1 }"
 									class="block2-name dis-block s-text3 p-b-5"
 									style="font-size: 12px"> [B-BASIC] 베이직 크롭 컬러나시 </a> <span
 									class="block2-price m-text6 p-r-5"> <small><font
@@ -2987,7 +3012,7 @@
 								<span class="block2-price m-text6 p-r-5">
 									<div
 										style="width: 17px; height: 17px; background: white; float: left; border: 1px solid black;"></div>
-								</span> <br> <a href="productDetail.jsp"
+								</span> <br> <a href="${bi2 }"
 									class="block2-name dis-block s-text3 p-b-5"
 									style="font-size: 12px"> [B-BASIC] 넘브 레터링 티셔츠 </a> <span
 									class="block2-price m-text6 p-r-5"> <small><font

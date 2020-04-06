@@ -9,19 +9,24 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>oT.</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
-<link rel="stylesheet" href="./css/mypage_list.css">
-<link rel="stylesheet" href="./css/mypage_basic.css">
-<link rel="icon" type="image/png" href="images/icons/favicon.png" />
+<!--    <link rel="stylesheet" href="/ot/resources/css/Login_style.css"> -->
+<link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
+<link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png" />
 
 <style>
 a{
 	font-size : 13px !important;
 }
 </style>
+<jsp:include page="header.jsp"/>
 </head>
 <body style="font-size:13px;">
-<%@include file="header.jsp"%>
+	<c:url var="mBoard" value="mBoard.do"/>
+	<c:url var="mBoard_modify" value="mBoard_modify.do">
+		<c:param name="mBoard_modify" value="mBoard"/>
+	</c:url>
+
 <div id="container">
         <div id="contents">
             
@@ -106,11 +111,11 @@ a{
                     <a href="#none" onclick="" class="yg_btn_30 yg_btn4" alt="스팸신고">스팸신고</a>
                     <a href="#none" onclick="" class="yg_btn_30 yg_btn4" alt="스팸해제">스팸해제</a>
                 </span>
-                <a href="/board/상품문의/6/" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
+                <a href="mBoard.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
                 <a href="#none" onclick="BOARD_READ.article_delete('BoardDelForm','6');" class="yg_btn_30 yg_btn4 " alt="삭제">DELETE</a>
-                <a href="/ot/mypage_board_modify.jsp" class="yg_btn_30 yg_btn4 " alt="수정">MODIFY</a>
+                <a href="${mBoard_modify }" class="yg_btn_30 yg_btn4 " alt="수정">MODIFY</a>
                 <a href="/board/product/reply.html?board_act=reply&amp;no=818716&amp;board_no=6" class="yg_btn_30 yg_btn4 displaynone" alt="답변">REPLY</a>
             </span>
         </div>
@@ -163,6 +168,6 @@ a{
 <!-- //관리자 전용 메뉴 -->
 
         </div><hr class="layout"></div>
-        	<%@include file="footer.jsp"%>
+        	<jsp:include page="footer.jsp"/>
 </body>
 </html>

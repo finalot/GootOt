@@ -1,5 +1,7 @@
 package com.kh.ot.member.service;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.kh.ot.member.vo.Member;
@@ -44,5 +46,53 @@ public interface MemberService {
 	 * @return
 	 */
 	public int updatePwd(String memId, String firstpwd);
+
+	/**
+	 * @작성일  : 2020. 4. 3.
+	 * @작성자  : 문태환
+	 * @내용 	: 출석체크 이벤트
+	 * @param memNo
+	 * @param tdDate
+	 * @return
+	 */
+	public int dailyCheck(int memNo, String tdDate);
+
+	/**
+	 * @작성일  : 2020. 4. 4.
+	 * @작성자  : 문태환
+	 * @내용 	: 출석체크 리스트
+	 * @param m
+	 * @return
+	 */
+	public ArrayList<Member> dailyCheckList(Member m);
+
+	/**
+	 * @작성일  : 2020. 4. 5.
+	 * @작성자  : 문태환
+	 * @내용 	: 출석체크 쿠폰발급
+	 * @param memNo
+	 * @return
+	 */
+	public int couponInsert(int memNo);
+	
+
+	/**
+	 * @작성일  : 2020. 4. 3.
+	 * @작성자  : 우예진
+	 * @내용    : 아이디 중복검사
+	 * @param userId
+	 * @return
+	 */
+	public int idDuplicate(String userId);
+
+	
+	/**
+	 * @작성일  : 2020. 4. 3.
+	 * @작성자  : 우예진
+	 * @내용    : 회원가입
+	 * @param m
+	 * @return
+	 */
+	public int insertMember(Member m);
 	
 }

@@ -36,18 +36,6 @@ public class mainController {
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
-	 * @내용 : 프로덕트2 페이지 이동
-	 * @param @return
-	 * @return String
-	 */
-	@RequestMapping("dailyCheck.do")
-	public String dailyCheck() {
-		return "dailyCheck";
-	}
-	
-	/**
-	 * @작성일 : 2020. 4. 2.
-	 * @작성자 :이대윤
 	 * @내용 : 프로덕트1 페이지 이동
 	 * @param @return
 	 * @return String
@@ -96,6 +84,79 @@ public class mainController {
 	public String todaymain() {
 		return "admin/todaymain";
 	}
+	/**
+	 * @작성일 : 2020. 4. 2.
+	 * @작성자 :이대윤
+	 * @내용 : 상품 디테일 페이지 이동
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("product_detail.do")
+	public String product_detail() {
+		return "productDetail";
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 2.
+	 * @작성자 :이대윤
+	 * @내용 : 문의글 쓰기페이지 이동
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("product_detail_qna_write.do")
+	public String product_detail_qna_write() {
+		return "product_detail_qna_write";
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 2.
+	 * @작성자 :이대윤
+	 * @내용 : 문의글 디테일 페이지 이동
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("product_detail_qna_detail.do")
+	public String product_detail_qna_detail() {
+		return "product_detail_qna_detail";
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 2.
+	 * @작성자 :이대윤
+	 * @내용 : 상품디테일에서 바로결제 옮겨지는 창
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("buynow.do")
+	public String buynow() {
+		return "order";
+	}
+	/**
+	 * @작성일 : 2020. 4. 2.
+	 * @작성자 :이대윤
+	 * @내용 : 노티스로 이동
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("notice.do")
+	public String notice() {
+		return "notice";
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 2.
+	 * @작성자 :이대윤
+	 * @내용 : QnA,FaQ 이동
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("faq.do")
+	public String faq() {
+		return "FaQ";
+	}
+	
+	
+	
 
 	
 	

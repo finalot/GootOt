@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,7 +77,7 @@
 							</li>
 
 							<li class="p-t-4">
-								<a href="<c:" class="s-text13">
+								<a href="#" class="s-text13">
 									<small>후디</small>
 								</a>
 							</li>
@@ -140,39 +141,12 @@
 							</div>
 
 							<ul class="flex-w">
-									<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter1" type="checkbox" name="color-filter4">
-									<label class="color-filter color-filter4" for="color-filter4"style="background:black;"></label>
-								</li>
-
-
-									<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter2" type="checkbox" name="color-filter4">
-									<label class="color-filter color-filter4" for="color-filter4"style="background:gray;"></label>
-								</li>
-
-
-									<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter3" type="checkbox" name="color-filter4">
-									<label class="color-filter color-filter4" for="color-filter4"style="background:navy;"></label>
-								</li>
-
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter4" type="checkbox" name="color-filter4">
-									<label class="color-filter color-filter4" for="color-filter4"style="background:#4A87B9;"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter5" type="checkbox" name="color-filter5">
-									<label class="color-filter color-filter5" for="color-filter5"style="background:#E4F650;"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter6" type="checkbox" name="color-filter6">
-									<label class="color-filter color-filter6" for="color-filter6"style="background:green;"></label>
-								</li>
-
+									
+								<li style="width:17px;height:17px;background:black;float:left;border:1px solid black;"></li>
+										<li style="width:17px;height:17px;background:gray;margin-left:3px;float:left;border:1px solid black;"></li>
+										<li style="width:17px;height:17px;background:#39761F;margin-left:3px;float:left;border:1px solid black;"></li>
+										<li style="width:17px;height:17px;background:#E4F650;margin-left:3px;float:left;border:1px solid black;"></li>
+										<li style="width:17px;height:17px;background:#4A87B9;margin-left:3px;float:left;border:1px solid black;"></li>
 							</ul>
 						</div>
 
@@ -214,7 +188,9 @@
 							-티셔츠/나시-
 						</span>
 					</div>
-
+<c:url var="product_detail" value="product_detail.do">
+	<c:param name="product_detail" value="p1" />  
+</c:url>
 					<!-- Product -->
 					<div class="row">
 							<!-- 뉴프로덕트블록 샘플 -->
@@ -249,7 +225,7 @@
 									</span>
 										
 									<br>
-									<a href="productDetail.jsp" class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
+									<a href="${product_detail }" class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
 										[B-BASIC] 베이직 크롭 컬러나시
 
 									</a>
@@ -262,7 +238,7 @@
 							</div>
 						</div>
 							<!-- 세일프로덕트블록 샘플 -->
-					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+					<!-- <div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 							<div class="block2">
 								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
 									<img src="/ot/resources/images/oT/clothing/t_nasi/numb_lettering_t/numb_lettering_t.webp" alt="IMG-PRODUCT">
@@ -274,7 +250,7 @@
 										</a>
 
 										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
+											Button
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
 											style="width:60%;margin-left:20%">
 												<small>장바구니 담기</small>
@@ -299,9 +275,9 @@
 									</span>
 								</div>
 							</div>
-						</div>
+						</div> -->
 							<!-- 기본프로덕트블록 샘플 -->
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+						<!-- <div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 							<div class="block2">
 								<div class="block2-img wrap-pic-w of-hidden pos-relative">
 									<img src="/ot/resources/images/oT/clothing/t_nasi/standard_round_t/standard_round_t.webp" alt="IMG-PRODUCT">
@@ -313,7 +289,7 @@
 										</a>
 
 										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
+											Button
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
 											style="width:60%;margin-left:20%">
 												<small>장바구니 담기</small>
@@ -341,177 +317,8 @@
 									</span>
 								</div>
 							</div>
-						</div>
+						</div> -->
 
-<!-- 기본프로덕트블록 샘플 -->
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative">
-									<img src="/ot/resources/images/oT/clothing/t_nasi/standard_round_t/standard_round_t.webp" alt="IMG-PRODUCT">
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width:60%;margin-left:20%">
-												<small>장바구니 담기</small>
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-								<span class="block2-price m-text6 p-r-5" >
-										<div style="width:17px;height:17px;background:black;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:white;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:gray;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:navy;margin-left:3px;float:left;border:1px solid black;"></div>
-									</span>
-									<br>
-									<a href="productDetail.jsp" class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
-										[B-BASIC] 베이직 라운드 반팔티
-
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										<small>12,000 won</small>&nbsp;&nbsp;
-										<font style="font-size:9px;color:gray">리뷰 : 100</font>
-									</span>
-								</div>
-							</div>
-						</div>
-
-						<!-- 뉴프로덕트블록 샘플 -->
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-									<img src="/ot/resources/images/oT/clothing/t_nasi/basic_crop_color_nasi/basic_crop_color_nasi.webp" alt="IMG-PRODUCT">
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width:60%;margin-left:20%">
-												<small>장바구니 담기</small>
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-									<span class="block2-price m-text6 p-r-5" >
-										<div style="width:17px;height:17px;background:black;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:gray;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:#39761F;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:#E4F650;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:#4A87B9;margin-left:3px;float:left;border:1px solid black;"></div>
-									</span>
-										
-									<br>
-									<a href="productDetail.jsp" class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
-										[B-BASIC] 베이직 크롭 컬러나시
-
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										<small>7,000 won</small>&nbsp;&nbsp;
-										<font style="font-size:9px;color:gray">리뷰 : 100</font>
-									</span>
-								</div>
-							</div>
-						</div>
-							<!-- 세일프로덕트블록 샘플 -->
-					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-									<img src="/ot/resources/images/oT/clothing/t_nasi/numb_lettering_t/numb_lettering_t.webp" alt="IMG-PRODUCT">
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width:60%;margin-left:20%">
-												<small>장바구니 담기</small>
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-								<span class="block2-price m-text6 p-r-5" >
-										<div style="width:17px;height:17px;background:white;float:left;border:1px solid black;"></div>
-									</span>
-									<br>
-									<a href="productDetail.jsp" class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
-										[B-BASIC] 넘브 레터링 티셔츠
-
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										<small>20,000 won</small>&nbsp;&nbsp;
-										<font style="font-size:9px;color:gray">리뷰 : 100</font>
-									</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- 기본프로덕트블록 샘플 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative">
-									<img src="/ot/resources/images/oT/clothing/t_nasi/standard_round_t/standard_round_t.webp" alt="IMG-PRODUCT">
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width:60%;margin-left:20%">
-												<small>장바구니 담기</small>
-												
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-								<span class="block2-price m-text6 p-r-5" >
-										<div style="width:17px;height:17px;background:black;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:white;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:gray;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:navy;margin-left:3px;float:left;border:1px solid black;"></div>
-									</span>
-									<br>
-									<a href="productDetail.jsp" class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
-										[B-BASIC] 베이직 라운드 반팔티
-
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										<small>12,000 won</small>&nbsp;&nbsp;
-										<font style="font-size:9px;color:gray">리뷰 : 100</font>
-									</span>
-								</div>
-							</div>
-						</div>
 				</div>
 					<!-- Pagination -->
 					<div class="pagination flex-m flex-w p-t-26">

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,6 +64,7 @@ margin-right: 3%;
 	
 
 	<!-- Cart -->
+ <c:if	test="${! empty sessionScope.loginMember }">
 	<section class="cart bgwhite p-t-70 p-b-100">
 			<div class="container">
 				<!-- <h3 style="font-size:12px;font-weight:600;">국내배송상품 주문내역</h3> -->
@@ -92,7 +94,7 @@ margin-right: 3%;
 							<td class="column-2">Men Tshirt
 							<br><span id="idMsg7">[옵션 : 블루/S/1개]</span>
 							</td>
-							<td class="column-3"><font class="format-money">29000</font> won</td>
+							<td class="column-3"><font id="pro-price" class="format-money">29000</font> won</td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
 									<!-- <button class="num-product-down1 color1 flex-c-m size7 bg8 eff2"> -->
@@ -257,7 +259,7 @@ margin-right: 3%;
     					background-color: #fafafa;">
 						<strong>쿠폰</strong></th>
 						<td style="border-top: 1px solid #ddd;">
-						<input type="text" name="point" id="point" size="20px;" style="margin-left: 8px; margin-top:2px;">
+					<input name="coupon-point" id="coupon-point" class="format-money" size="20px;" style="border:1px solid #ddd;;margin-left: 8px; margin-top:2px;" readonly>
 						<a id="infodetail" 
 						class="more yg_btn_24 yg_btn3" style="top:-1px; cursor: pointer;">쿠폰사용</a>
 						<br>
@@ -323,7 +325,7 @@ margin-right: 3%;
 			    	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_info2.gif" alt="info"></a></label>
 			    	
 			    	<input type="radio" value="payco" name="paymethod" id="pay4" onclick="payshow4();">
-			    	<label for="pay4">페이코(간편결제)<a href="http://www.payco.com/payco/guide.nhn" target="_blank">
+			    	<label for="pay4">휴대폰 결제<a href="http://www.payco.com/payco/guide.nhn" target="_blank">
 			    	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_info2.gif" alt="info"></a></label>
 			    </div>
 			    
@@ -380,12 +382,10 @@ margin-right: 3%;
 			   
 			   <div id="pay-payco" style="padding-left:29px; display:none;">
 			   	<p class="help" style="font-size: 12px;font-weight: 600;color: #000;" >
-			   	페이코 결제 팝업창에서 비밀번호 입력만으로 빠르고 안전하게 결제가 가능한 서비스 입니다.</p>
+			   소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</p>
 			   
 			   <p class="help" style="font-size: 12px;font-weight: 600;color: #000;" >
-			   <a href="//www.payco.com" target="_blank" style="font-size: 12px;font-weight: 600;color: #000;">
-			   www.payco.com</a> 
-			      에 회원가입 후, 최초 1회 카드 및 계좌 정보를 등록하셔야 사용 가능합니다.</p>
+			</p>
 			   </div>
       </form>
 	
@@ -462,7 +462,7 @@ margin-right: 3%;
                    	 주문하시는 분<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                   <td style="border-top:1px solid #ddd;">
-                	<input type="text" name="userName" id="userName" size="20px"> 
+                	<input type="text" name="userName" id="userName" size="20px" value="${sessionScope.loginMember.memName}"> 
                 </td>
                 </tr>
            
@@ -479,7 +479,6 @@ margin-right: 3%;
                    <br>
                    <input id="address2" name="address2"  class="inputTypeText" placeholder="" value="" type="text"><span id="idMsg" style="left: 7px;
                position: relative;">나머지주소</span>
-                   
                 </td>
             </tr>
             
@@ -488,7 +487,7 @@ margin-right: 3%;
                     휴대전화<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td style="border-bottom:1px solid #ddd;">
-                    <select id="mobile1" name="mobile[]" style="font-size:12px;">
+                    <select id="mobile1" name="mobile1" style="font-size:12px;">
                   <option value="010">010</option>
                   <option value="011">011</option>
                   <option value="016">016</option>
@@ -506,7 +505,7 @@ margin-right: 3%;
                     이메일<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td>
-                    <input id="email" name="email" value="" type="text">
+                    <input id="email" name="email" value="${sessionScope.loginMember.memEmail} " type="text">
                    
                 </td>
             </tr>
@@ -545,7 +544,7 @@ margin-right: 3%;
                       받으시는 분<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                    </th>
                 <td>
-                    <input type="text" name="userName" id="userName" size="20px"> 
+                    <input type="text" name="userName" id="userName-1" size="20px"> 
                 </td>
             </tr>
             
@@ -556,13 +555,13 @@ margin-right: 3%;
                       주소<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td>
-                   <input id="zipCode" style=" width:50px;" name="postcode1" class="inputTypeText" placeholder="" readonly="readonly" maxlength="14" value="" type="text" style="width:50px;">
+                   <input id="zipCode-1" style=" width:50px;" name="postcode1" class="inputTypeText" placeholder="" readonly="readonly" maxlength="14" value="" type="text" style="width:50px;">
                    <a href="#none" onclick="addrSearch();" id="postBtn" class="yg_btn_24 yg_btn3" >우편번호</a>
                    <br>
-                   <input id="address1"  name="address1"  class="inputTypeText" placeholder="" readonly="readonly" value="" type="text"><span id="idMsg" style="left: 7px;
+                   <input id="address1-1"  name="address1"  class="inputTypeText" placeholder="" readonly="readonly" value="" type="text"><span id="idMsg" style="left: 7px;
                   position: relative;">기본주소</span>
                    <br>
-                   <input id="address2" name="address2"class="inputTypeText" placeholder="" value="" type="text"><span id="idMsg" style="left: 7px;
+                   <input id="address2-1" name="address2"class="inputTypeText" placeholder="" value="" type="text"><span id="idMsg" style="left: 7px;
                position: relative;">나머지주소</span>
                    
                 </td>
@@ -573,7 +572,7 @@ margin-right: 3%;
                     휴대전화<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td style="border-bottom:1px solid #ddd;">
-                    <select id="mobile1" name="mobile[]"  style="font-size:12px;">
+                    <select id="mobile1-1" name="mobile1-1"  style="font-size:12px;">
                   <option value="010">010</option>
                   <option value="011">011</option>
                   <option value="016">016</option>
@@ -581,8 +580,8 @@ margin-right: 3%;
                   <option value="018">018</option>
                   <option value="019">019</option>
                   </select>
-                    -<input id="mobile2"  name="mobile[]" maxlength="4" value="" type="text">
-                    -<input id="mobile3"  name="mobile[]" maxlength="4" value="" type="text">
+                    -<input id="mobile2-1"  name="mobile[]" maxlength="4" value="" type="text">
+                    -<input id="mobile3-1"  name="mobile[]" maxlength="4" value="" type="text">
                 </td>
             </tr>
             
@@ -603,7 +602,13 @@ margin-right: 3%;
 	</form>
 	</div>
 	</section>
+	</c:if>
 	
+	<c:if test="${ empty sessionScope.loginMember }">
+		<section class="cart bgwhite p-t-70 p-b-100" style="height: 50%;">
+			<div align="center"><h3 style="font-size: 32px;">로그인후 이용 해 주세요</h3></div>
+			</section>
+	</c:if>
 	<div id="orderdetail" class="totalDetail ec-base-layer" style="top:888px; left: 636.906px; display:none;position:absolute;
 	border:1px solid #000;height:640px; background-color:#fff;">
         <div class="header">
@@ -661,16 +666,70 @@ margin-right: 3%;
 
 
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/animsition/js/animsition.min.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/bootstrap/js/popper.js"></script>
-	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/bootstrap/js/popper.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/select2/select2.min.js"></script>
 	
 	<script>
+	console.log($('#pro-price').text())
+	
+	var address =new Array();
+	var phone = new Array();
+	var count=0
+	var count1=0
+	$(function(){
+	//주소 잘라서 정보 뿌리기
+	  "<c:forTokens items='${sessionScope.loginMember.memAddress}'  delims=','  var='address'>"
+	  	address[count] = "${address}"
+	  	count++;
+	  " </c:forTokens>"
+	  $('#zipCode').val(address[0])
+	  $('#address1').val(address[1])
+	  $('#address2').val(address[2])
+	  //폰번호 잘라서 정보 뿌리기
+	  "<c:forTokens items='${sessionScope.loginMember.memPhone}'  delims='-'  var='phone'>"
+	  phone[count1] = "${phone}"	
+	  count1++
+	  " </c:forTokens>"
+
+	   $('#mobile2').val(phone[1])
+	  $('#mobile3').val(phone[2])
+	  
+	  
+	 var firstnum = document.getElementById('mobile1');
+		
+  		for(var i=0;  i < 10;i++){
+	 		if(firstnum.children[i].value == phone[0]){		
+	       		firstnum.children[i].selected = true;
+    		} 
+	 	}  
+	});
+	
+$('#delivery').click(function(){
+	if($('#delivery').prop('checked') == true){
+		$('#userName-1').val("${sessionScope.loginMember.memName}")
+		  $('#zipCode-1').val(address[0])
+		  $('#address1-1').val(address[1])
+		  $('#address2-1').val(address[2])
+		  
+	 $('#mobile2-1').val(phone[1])
+	  $('#mobile3-1').val(phone[2])
+	  
+	  var firstnum = document.getElementById('mobile1-1');
+			
+	  		for(var i=0;  i < 10;i++){
+		 		if(firstnum.children[i].value == phone[0]){		
+		       		firstnum.children[i].selected = true;
+	    		} 
+		 	}  
+		}
+});	
+	
 	$('.mycoupon').click(function(){
 		var price = $(this).val();
 		
@@ -679,7 +738,7 @@ margin-right: 3%;
 	})
 	$('.yg_btn_146').click(function(){
 		var price = $('#coupon-price').text();
-		$('#point').val(price);
+		$('#coupon-point').val(price);
 		$('#orderdetail').css('display','none');
 
 	});
@@ -695,12 +754,14 @@ margin-right: 3%;
 	$('#idMsg3').click(function(){
 		
 		
-		//IMP.init('imp36292670');  핸드폰 결제용
+		
 		 if($('#pay2').prop('checked') == true){
 			 IMP.init('imp71871253');
-		}else if($('#pay3').prop('checked') == true){
+		}else if($('#pay4').prop('checked') == true){
 			IMP.init('imp36292670');	 
-		 } 
+		 }else if($('#pay3').prop('checked') == true) {
+			IMP.init('imp97532169');	 
+		 }
 			 
 			 
 			 var totalpay = $('.format-money').text();
@@ -710,10 +771,10 @@ margin-right: 3%;
 				    merchant_uid : 'merchant_' + new Date().getTime(),
 				    name : '주문명:결제테스트',
 				    amount : 60500,
-				    buyer_email : 'iamport@siot.do',
-				    buyer_name : '구매자이름',
-				    buyer_tel : '010-1234-5678',
-				    buyer_addr : '서울특별시 강남구 삼성동',
+				    buyer_email : "${sessionScope.loginMember.memName}",
+				    buyer_name : "${sessionScope.loginMember.memName}",
+				    buyer_tel : "${sessionScope.loginMember.memPhone}",
+				    buyer_addr : "${sessionScope.loginMember.memAddress}",
 				    buyer_postcode : '123-456'
 				}, function(rsp) {
 				    if ( rsp.success ) {

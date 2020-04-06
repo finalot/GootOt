@@ -9,22 +9,26 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>oT.</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
-<link rel="stylesheet" href="./css/mypage_list.css">
-<link rel="stylesheet" href="./css/mypage_basic.css">
-<link rel="icon" type="image/png" href="images/icons/favicon.png" />
+<!--    <link rel="stylesheet" href="/ot/resources/css/Login_style.css"> -->
+<link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
+<link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png" />
 
 <style>
 a {
 	font-size: 13px !important;
 }
 </style>
+<jsp:include page="header.jsp"/>
 </head>
 <body style="font-size :13px;">
-<%@include file="header.jsp"%>
+
+	<c:url var="mBoard_view" value="mBoard_view.do">
+		<c:param name="mBoard_view" value="Board"/>
+	</c:url>
+	
 	<div id="container">
 		<div id="contents">
-
 			<div
 				class="xans-element- xans-board xans-board-modifypackage-4 xans-board-modifypackage xans-board-4 ">
 				<div
@@ -222,12 +226,12 @@ a {
 							</table>
 						</div>
 						<div class="ec-base-button ">
-							<span class="gLeft"><a href="/board/상품문의/6/"
+							<span class="gLeft"><a href="mBoard.do"
 								class="yg_btn_30 yg_btn4" alt="목록">LIST</a></span> <span class="gRight">
 								<a href="#none"
 								onclick="BOARD_WRITE.form_submit('boardWriteForm');"
 								class="yg_btn_30 yg_btn4" alt="수정">MODIFY</a> <a
-								href="/board/상품문의/6/" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
+								href="${mBoard_view }" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
 							</span>
 						</div>
 					</div>
@@ -236,7 +240,7 @@ a {
 
 		</div>
 		<hr class="layout">
-		<%@include file="footer.jsp"%>
+		<jsp:include page="footer.jsp"/>
 	</div>
 </body>
 </html>

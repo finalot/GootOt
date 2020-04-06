@@ -9,9 +9,9 @@
 <title>상품불량 및 오배송접수</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
-<link rel="stylesheet" href="./css/mypage_list.css">
-<link rel="stylesheet" href="./css/mypage_basic.css">
-<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
+<link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
 </head>
 <style>
 .ec-base-table td{
@@ -63,7 +63,7 @@
 }
 </style>
 <body>
-	<%@include file="header.jsp" %>	
+	<jsp:include page="header.jsp"/>	
  	
 	
     <div id="container">
@@ -86,7 +86,7 @@
       
         </div>
 </div>
-<form id="boardWriteForm" name="" action="/exec/front/Board/write/3001" method="post" target="_self" enctype="multipart/form-data">
+<form id="boardWriteForm" name="" action="/exec/front/Board/write/3001" method="post" target="_self">
 		<input id="board_no" name="board_no" value="3001" type="hidden">
 		<input id="product_no" name="product_no" value="0" type="hidden">
 		<input id="move_write_after" name="move_write_after" type="hidden">
@@ -105,7 +105,8 @@
 		<br />
 		비회원으로 문의주실 경우엔 동명이인으로 인해 주문정보와 함께 남겨주셔야 바로 처리 가능합니다.<br />
 		<br />
-----------------------------------------------------------------------" type="hidden">
+----------------------------------------------------------------------" 
+type="hidden">
 	<input id="fix_add_content" name="fix_add_content" value="" type="hidden">
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
@@ -185,11 +186,11 @@
 		<div class="ec-base-button ">
             <span class="gLeft">
                 <span class="displaynone"><a href="#none" onclick="" class="yg_btn_30 yg_btn4" alt="관리자답변보기">관리자답변보기</a></span>
-                <a href="product_board.jsp" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
+                <a href="bad_product_board.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
-                <a href="product_board.jsp" onclick="BOARD_WRITE.form_submit('boardWriteForm');" class="yg_btn_30 yg_btn4" alt="등록">UPDATE</a>
-                <a href="product_board.jsp" class="yg_btn_30 yg_btn4" alt="취소">DELETE</a>
+                <a href="bad_product_board.do" onclick="BOARD_WRITE.form_submit('boardWriteForm');" class="yg_btn_30 yg_btn4" alt="등록">UPDATE</a>
+                <a href="bad_product_board.do" class="yg_btn_30 yg_btn4" alt="취소">DELETE</a>
             </span>
         </div>
 	</div>
@@ -198,6 +199,6 @@
 
 	</div>
 	
- <%@include file="footer.jsp" %>
+ <jsp:include page="footer.jsp"/>
 </body>
 </html>

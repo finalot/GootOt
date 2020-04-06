@@ -15,11 +15,44 @@
    <link rel="stylesheet" type="text/css" href="/ot/resources/css/mypage.css"/>
    
    <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<jsp:include page="header.jsp"/>
 </head>
 <body>
-	<jsp:include page="header.jsp"/>
-	
- 	<div id="container">
+			<!-- 마이페이지 상세 목록 경로지정 -->
+			<!-- 주문내역(배송관련) 경로지정 -->
+			<c:url var="mList" value="mList.do">
+				<c:param name="mList" value="all"/>
+			</c:url>
+			<c:url var="delivery_prev" value="mList.do">
+				<c:param name="mList" value="prev"/>
+			</c:url>
+			<c:url var="delivery_ready" value="mList.do">
+				<c:param name="mList" value="ready"/>
+			</c:url>
+			<c:url var="delivery_ing" value="mList.do">
+				<c:param name="mList" value="ing"/>
+			</c:url>
+			<c:url var="delivery_complete" value="mList.do">
+				<c:param name="mList" value="complete"/>
+			</c:url>
+			<c:url var="delivery_cancel" value="mList.do">
+				<c:param name="mList" value="cancel"/>
+			</c:url>
+			<c:url var="delivery_change" value="mList.do">
+				<c:param name="mList" value="change"/>
+			</c:url>
+			<c:url var="delivery_return" value="mList.do">
+				<c:param name="mList" value="return"/>
+			</c:url>
+			
+			<c:url var="mWishlist" value="mWishlist.do"/>
+			<c:url var="mPoint" value="mPoint.do"/>
+			<c:url var="mCoupon" value="mCoupon.do"/>
+			<c:url var="mBoard" value="mBoard.do"/>
+			<c:url var="mAddress" value="mAddress.do"/>
+			<c:url var="mEdit" value="mEdit.do"/>
+			
+	<div id="container">
  		<div id="memberInf1">
 			<div class="xans-myshop-bankbook " style="width: 80%;">
     			<p class="xans-element- xans-myshop xans-myshop-asyncbenefit mypage_top ">
@@ -34,38 +67,31 @@
   					입니다.
 				</p>
 		
-			<ul style="float: right;width: 350px;height: 60px;margin-right: 100px;margin-top: -34px;">
-				<li class="xans-layout-shoppinginfo ">
-					<strong class="title">
-						<a href="/myshop/wish_list.html">WISH</a>
-					</strong>
-  			<br>
-					<strong class="data ">
-						<a href="/myshop/wish_list.html">
-							<span id="xans_myshop_interest_prd_cnt">0개</span>
-						</a>
-					</strong>
-				</li>
+				<ul style="float: right;width: 350px; height: 60px;margin-right: 100px;margin-top: -34px;">
+					<li class="xans-layout-shoppinginfo ">
+						<strong class="title">WISH</strong>
+  						<br>
+						<strong class="data ">
+							<a href="${mWishlist }">
+									<span id="xans_myshop_interest_prd_cnt">0개</span>
+							</a>
+						</strong>
+					</li>
 				
-                <li>
-                    <strong class="title">
-                    	<a href="/myshop/mileage/historyList.html">POINT</a>
-                    </strong>
-                    <br>
-                    <strong class="data">
-                    	<a href="/myshop/mileage/historyList.html">0원</a>
-                    </strong>
-                </li>
+               		<li>
+	                    <strong class="title">POINT</strong>
+	                    <br>
+	                    <strong class="data">
+	                    	<a href="${mPoint }">0원</a>
+	                    </strong>
+	                </li>
                 
-                <li class="etc ">
-                    <strong class="title">
-                    	<a href="/myshop/coupon/coupon.html">COUPON</a>
-                    </strong>
-                    <br>
-                    <strong class="data">
-                    	<a href="/myshop/coupon/coupon.html">0<span>개</span></a>
-                    </strong>
-                    	<a href="/myshop/coupon/coupon.html"></a>
+	                <li class="etc ">
+	                    <strong class="title">COUPON</strong>
+	                    <br>
+	                    <strong class="data">
+	                    	<a href="${mCoupon }">0<span>개</span></a>
+	                    </strong>
 	                </li>
 	            </ul>
 			</div>
@@ -103,53 +129,28 @@
 			</div>
 		
 			<div id="myshopMain" class="xans-element- xans-myshop xans-myshop-main">
-		   <!-- <div class="shopMain order">
-			        <a href="/myshop/order/list.html">ORDER LIST</a>
-			    </div>
-			    <div class="shopMain wishlist">
-			        <a href="/myshop/wish_list.html">WISH LIST</a>
-			    </div>
-			    <div class="shopMain mileage">
-			        <a href="/myshop/mileage/historyList.html">POINT</a>
-			    </div>
-			    <div class="shopMain coupon ">
-			        <a href="/myshop/coupon/coupon.html">COUPON</a>
-			    </div>
-			    <div class="shopMain view">
-			        <a href="/product/recent_view_product.html">RECENTLY VIEWED</a>
-			    </div>       
-			    <div class="shopMain deposits ">
-			        <a href="/myshop/deposits/historyList.html">DEPOSITS</a>
-			    </div>
-			    <div class="shopMain board">
-			        <a href="/myshop/board_list.html">BOARD LIST</a>
-			    </div>
-			    <div class="shopMain address">
-			        <a href="/myshop/addr/list.html">ADDRESS</a>
-			    </div>
-			    <div class="shopMain profile">
-			        <a href="/member/modify.html">EDIT PROFILE</a>
-			    </div-->
+			
+			
 				<div class="shopMain order">
-			        <a href="/ot/mypage_list.jsp">주문내역</a>
+			        <a href="${mList }">주문내역</a>
 			    </div>
 				<div class="shopMain wishlist">
-			        <a href="/ot/mypage_wishList.jsp">관심상품</a>
+			        <a href="${mWishlist }">관심상품</a>
 			    </div>
 				<div class="shopMain mileage">
-			        <a href="/ot/mypage_point.jsp">적립금</a>
+			        <a href="${mPoint }">적립금</a>
 			    </div>
 				<div class="shopMain coupon  ">
-			        <a href="/ot/mypage_coupon.jsp">쿠폰</a>
+			        <a href="${mCoupon }">쿠폰</a>
 			    </div>
 				<div class="shopMain board">
-			        <a href="/ot/mypage_board.jsp">내가 쓴 게시글</a>
+			        <a href="${mBoard }">내가 쓴 게시글</a>
 			    </div>
 				<div class="shopMain address">
-			        <a href="/ot/mypage_address.jsp">배송 주소록 관리</a>
+			        <a href="${mAddress }">배송 주소록 관리</a>
 			    </div>
 				<div class="shopMain profile">
-			        <a href="/ot/mypage_memberEdit.jsp">회원 정보 수정</a>
+			        <a href="${mEdit }">회원 정보 수정</a>
 			    </div>
 			    
 		<!--    <div class="shopMain consult displaynone">
@@ -172,19 +173,19 @@
 			        <ul class="order">
 						<li>
 			                <strong>입금전</strong>
-			                <a href="/ot/mypage_list.jsp" class="count"><span id="xans_myshop_orderstate_shppied_before_count">0</span></a>
+			                <a href="${delivery_prev }" class="count"><span id="xans_myshop_orderstate_shppied_before_count">0</span></a>
 			            </li>
 			            <li>
 			                <strong>배송준비중</strong>
-			                <a href="/ot/mypage_list.jsp" class="count"><span id="xans_myshop_orderstate_shppied_standby_count">0</span></a>
+			                <a href="${delivery_ready }" class="count"><span id="xans_myshop_orderstate_shppied_standby_count">0</span></a>
 			            </li>
 			            <li>
 			                <strong>배송중</strong>
-			                <a href="/ot/mypage_list.jsp" class="count"><span id="xans_myshop_orderstate_shppied_begin_count">0</span></a>
+			                <a href="${delivery_ing }" class="count"><span id="xans_myshop_orderstate_shppied_begin_count">0</span></a>
 			            </li>
 			            <li>
 			                <strong>배송완료</strong>
-			                <a href="/ot/mypage_list.jsp" class="count"><span id="xans_myshop_orderstate_shppied_complate_count">0</span></a>
+			                <a href="${delivery_complete }" class="count"><span id="xans_myshop_orderstate_shppied_complate_count">0</span></a>
 			            </li>
 			        </ul>
 			        
@@ -192,17 +193,17 @@
 						<li>
 			                <span class="icoDot"></span>
 			                <strong>취소 : </strong>
-			                <a href="/ot/mypage_list.jsp" class="count"><span id="xans_myshop_orderstate_order_cancel_count">0</span></a>
+			                <a href="${delivery_cancel }" class="count"><span id="xans_myshop_orderstate_order_cancel_count">0</span></a>
 			            </li>
 			            <li>
 			                <span class="icoDot"></span>
 			                <strong>교환 : </strong>
-			                <a href="/ot/mypage_list.jsp" class="count"><span id="xans_myshop_orderstate_order_exchange_count">0</span></a>
+			                <a href="${delivery_change }" class="count"><span id="xans_myshop_orderstate_order_exchange_count">0</span></a>
 			            </li>
 			            <li>
 			                <span class="icoDot"></span>
 			                <strong>반품 : </strong>
-			                <a href="/ot/mypage_list.jsp" class="count"><span id="xans_myshop_orderstate_order_return_count">0</span></a>
+			                <a href="${delivery_return }" class="count"><span id="xans_myshop_orderstate_order_return_count">0</span></a>
 			            </li>
 			        </ul>
 				</div>

@@ -9,18 +9,22 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>oT.</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<link rel="stylesheet" href="./css/mypage_list.css">
-<link rel="stylesheet" href="./css/mypage_basic.css">
-<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
+<link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
 <style>
 th, td {
     border: 0;
 }
    </style>   
    
+<jsp:include page="header.jsp"/>	
 </head>
 <body>
-<%@include file="header.jsp" %>	
+	<c:url var="mWishlist" value="mWishlist.do"/>
+	<c:url var="mPoint" value="mPoint.do"/>
+	<c:url var="mCoupon" value="mCoupon.do"/>
+	
  	<div id="container">
  		<div id="memberInf1">
 			<div class="xans-myshop-bankbook " style="width: 80%;">
@@ -36,42 +40,36 @@ th, td {
   					입니다.
 				</p>
 		
-			<ul style="float: right;width: 350px;height: 60px;margin-right: 100px;margin-top: -34px;">
-				<li class="xans-layout-shoppinginfo ">
-					<strong class="title">
-						<a href="/myshop/wish_list.html">WISH</a>
-					</strong>
-  			<br>
-					<strong class="data ">
-						<a href="/myshop/wish_list.html">
-							<span id="xans_myshop_interest_prd_cnt">0개</span>
-						</a>
-					</strong>
-				</li>
+				<ul style="float: right;width: 350px; height: 60px;margin-right: 100px;margin-top: -34px;">
+					<li class="xans-layout-shoppinginfo ">
+						<strong class="title">WISH</strong>
+  						<br>
+						<strong class="data ">
+							<a href="${mWishlist }">
+									<span id="xans_myshop_interest_prd_cnt">0개</span>
+							</a>
+						</strong>
+					</li>
 				
-                <li>
-                    <strong class="title">
-                    	<a href="/myshop/mileage/historyList.html">POINT</a>
-                    </strong>
-                    <br>
-                    <strong class="data">
-                    	<a href="/myshop/mileage/historyList.html">0원</a>
-                    </strong>
-                </li>
+               		<li>
+	                    <strong class="title">POINT</strong>
+	                    <br>
+	                    <strong class="data">
+	                    	<a href="${mPoint }">0원</a>
+	                    </strong>
+	                </li>
                 
-                <li class="etc ">
-                    <strong class="title">
-                    	<a href="/myshop/coupon/coupon.html">COUPON</a>
-                    </strong>
-                    <br>
-                    <strong class="data">
-                    	<a href="/myshop/coupon/coupon.html">0<span>개</span></a>
-                    </strong>
-                    	<a href="/myshop/coupon/coupon.html"></a>
+	                <li class="etc ">
+	                    <strong class="title">COUPON</strong>
+	                    <br>
+	                    <strong class="data">
+	                    	<a href="${mCoupon }">0<span>개</span></a>
+	                    </strong>
 	                </li>
 	            </ul>
 			</div>
 		</div>
+		
         <div id="contents">
 			<div class="mypage_top_outer">
 			 <!-- <div module="myshop_bankbook">        
@@ -151,6 +149,11 @@ th, td {
                				</thead>
                				
 							<tbody class=" center">
+							
+								<c:url var="mAddress_modify" value="mAddress_modify.do">
+									<c:param name="mAddress" value="mAdd1"/>
+								</c:url>
+								
 								<tr class="xans-record-">
 									<td>
 										<input name="ma_idx[]" value="843124" type="checkbox">
@@ -175,7 +178,7 @@ th, td {
 				                    	<span>KH정보교육원 H클래스</span>
 				                    </td>
 				                    <td>	
-				                    	<a href="/ot/mypage_address_modify.jsp" class=" yg_btn_24 yg_btn3" alt="수정">수정</a>
+				                    	<a href="${mAddress_modify }" class=" yg_btn_24 yg_btn3" alt="수정">수정</a>
 			                    	</td>
                 				</tr>
 							</tbody>
@@ -193,7 +196,7 @@ th, td {
         				</span>
         				
 				        <span class="gRight">
-				            <a href="/ot/mypage_address_register.jsp" class="yg_btn yg_btn1 yg_btn_border_444" alt="배송지 등록">배송지등록</a>
+				            <a href="mAddress_register.do" class="yg_btn yg_btn1 yg_btn_border_444" alt="배송지 등록">배송지등록</a>
 				        </span>
     				</div>
 				</div>
@@ -212,6 +215,6 @@ th, td {
 		</div>
 	</div>
 	
- <%@include file="footer.jsp" %>
+ <jsp:include page="footer.jsp"/>
 </body>
 </html>
