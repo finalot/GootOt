@@ -110,6 +110,11 @@
 		   </td>
     </tr>
     
+    <tr>
+		<th scope="row">TITLE</th>
+           <td>문의합니다.</td>
+    </tr>
+    
 	<tr>
 		<th scope="row">WRITER</th>
            <td>홍길동</td>

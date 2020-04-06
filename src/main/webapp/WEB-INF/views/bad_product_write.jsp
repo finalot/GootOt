@@ -169,21 +169,7 @@
 				   <label for="secure1">비밀글</label></td>
             </tr>
             
-			<tr class="captcha displaynone">
-				<th scope="row">자동등록방지<br>보안문자</th>
-                    <td>
-                     	<p class="gBlank5">
-                     	<span class="ec-base-help txtInfo">영문, 숫자 조합을 공백없이 입력하세요(대소문자구분)</span></p>
-                    </td>
-                </tr>
-                
-			<tr class="agree displaynone">
-				<th scope="row">개인정보 수집 및 <br>이용 동의</th>
-                    <td>
-                        <br>
-                        개인정보 수집 및 이용에 동의하십니까?</td>
-            </tr>
-            
+	
 		</tbody>
 	</table>
 </div>

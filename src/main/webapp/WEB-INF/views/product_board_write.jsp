@@ -89,8 +89,8 @@
 		
 	<tr>
 		<th scope="row">SUBJECT</th>
-           <td><select id="subject" name="subject">
-			<option value="[배송문의]">[상품문의]</option>
+           <td><select id="subject" name="b_cate_no">
+			<option value="1">[상품문의]</option>
 			</select>  	
 		   </td>
     </tr>
@@ -144,6 +144,8 @@
                 }
 
                 $Editor.push(oNN_content, "content");
+                
+                
             </script>	
             	
 		
@@ -152,7 +154,7 @@
 		<tbody class="">
 			<tr>
 				<th scope="row">FILE 01</th>
-                    <td><input name="attach_file[]" type="file"></td>
+                    <td><input name="uploadFile" type="file"></td>
             </tr>
             
 			
@@ -160,31 +162,17 @@
 	<tbody>
 			<tr class="">
 				<th scope="row">PASSWORD</th>
-                    <td><input id="password" name="password" value="" type="password"></td>
+                    <td><input id="qna_password" name="qna_password" value="" type="password"></td>
             </tr>
             
 			<tr class="">
 			<th scope="row">SECRET</th>
-                   <td><input id="secure0" name="secure"  value="F" type="radio">
+                   <td><input id="secure0" name="qna_secure"  value="F" type="radio">
                    <label for="secure0">공개글</label>
-				   <input id="secure1" name="secure"  value="T" type="radio" checked="checked">
+				   <input id="secure1" name="qna_secure"  value="T" type="radio" checked="checked">
 				   <label for="secure1">비밀글</label></td>
             </tr>
             
-			<tr class="captcha displaynone">
-				<th scope="row">자동등록방지<br>보안문자</th>
-                    <td>
-                     	<p class="gBlank5">
-                     	<span class="ec-base-help txtInfo">영문, 숫자 조합을 공백없이 입력하세요(대소문자구분)</span></p>
-                    </td>
-                </tr>
-                
-			<tr class="agree displaynone">
-				<th scope="row">개인정보 수집 및 <br>이용 동의</th>
-                    <td>
-                        <br>
-                        개인정보 수집 및 이용에 동의하십니까?</td>
-            </tr>
             
 		</tbody>
 	</table>
@@ -195,7 +183,7 @@
                 <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
-                <a href="product_board.do" id="insert_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</a>
+                <a href="#" id="insert_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</a>
                 <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
             </span>
         </div>

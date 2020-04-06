@@ -24,4 +24,17 @@ public interface BoardService{
 
 	ArrayList<Board> selectList(PageInfo pi);
 
+	
+
+	/**
+	 * 2. 게시판 작성
+	 * @param b
+	 * @return
+	 */
+
+	int insertBoard(Board b);
+	
+	
+	
+
 }

@@ -1,8 +1,11 @@
 package com.kh.ot.board.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ot.board.service.BoardService;
@@ -235,25 +239,101 @@ public class BoardController extends HttpServlet {
 	 * @return
 	 */
 	@RequestMapping("product_board.do")
-	public ModelAndView product_board(ModelAndView mv, 
-			@RequestParam(value="currentPage",required=false,defaultValue="1")
-			int currentPage) { 
+	public String product_board() { 
 		
-		System.out.println(currentPage);
+//		System.out.println(currentPage);
+//		
+//		int listCount = bService.getListCount();
+//		
+//		System.out.println("listCount : " + listCount);
+//		
+//		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+//		
+//		ArrayList<Board> list = bService.selectList(pi);
+//		
+//		mv.addObject("list",list);
+//		mv.addObject("pi",pi);
+//		mv.setViewName("product_board");
 		
-		int listCount = bService.getListCount();
+		return "product_board";	
+	}
+	
+	/**
+	 * @작성일  : 2020.04.06
+	 * @작성자  : 우예진
+	 * @내용    : 상품문의 글쓰기 insert
+	 * @return
+	 */
+	@RequestMapping(value="product_board_insert.do", method=RequestMethod.POST )
+	public String product_board_insert(Board b,String content,HttpServletRequest request,
+			@RequestParam(name="uploadFile",required=false) MultipartFile file) {
 		
-		System.out.println("listCount : " + listCount);
+		System.out.println(b.toString());
+		System.out.println(content);
+//		if(!file.getOriginalFilename().equals("")) {
+//			// 서버에 업로드
+//			// saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명으 반환해주는 메소드
+//			
+//			String renameFileName = saveFile(file,request);
+//			
+//			if(renameFileName != null) {
+//				b.setOriginalFileName(file.getOriginalFilename());// DB에는 파일명 저장
+//				b.setRenameFileName(renameFileName);
+//			}
+//			
+//		}
+//		
+
+	
+//		
+//		int result = bService.insertBoard(b);
+//	
+//
+//		if(result >0) {
+//			return "redirect:product_board_detail.do";
+//		} else {
+//			return "common/errorPage";
+//		}
+		return null;
+	}
+	
+	
+	/**
+	 * @작성일  : 2020.04.06
+	 * @작성자  : 우예진
+	 * @내용    : 파일저장경로
+	 * @param file
+	 * @param request
+	 * @return
+	 */
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
+		// 저장할 경로 설정et
+		// 웹 서버 contextPath를 불러와서 폴더의 경로 찾음(webapp 하위의 resources)
+		String root = request.getSession().getServletContext().getRealPath("resources");
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		String savePath = root + "\\buploadFiles";
 		
-		ArrayList<Board> list = bService.selectList(pi);
+		File folder = new File(savePath);
 		
-		mv.addObject("list",list);
-		mv.addObject("pi",pi);
-		mv.setViewName("product_board");
+		if(!folder.exists()) {
+			folder.mkdir(); // 폴더가 없다면 생성해주세요
+		}
 		
-		return mv;	
+		String originFileName = file.getOriginalFilename();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+					+ originFileName.substring(originFileName.lastIndexOf(".")+1);
+		
+		String renamePath = folder + "\\" + renameFileName;
+		
+		try {
+			file.transferTo(new File(renamePath));
+		} catch (Exception e) {
+			
+			System.out.println("파일 전송 에러: " + e.getMessage());
+		} 
+		return renameFileName;
 	}
 
 
@@ -264,7 +344,9 @@ public class BoardController extends HttpServlet {
 	 * @return
 	 */
 	@RequestMapping("product_board_detail.do")
-	public String product_board_detail() {
+	public String product_board_detail(ModelAndView mv, int qna_no, 
+			@RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage) {
+		
 
 		return "product_board_detail";
 	}
@@ -342,14 +424,5 @@ public class BoardController extends HttpServlet {
 		return "product_change_write";
 	}
 
-	@RequestMapping(value="product_board_insert.do", method=RequestMethod.POST )
-	public String product_board_insert() {
-		System.out.println("인설트 이곳");
-		
-		
-		
-		
-		
-		return null;
-	}
+	
 }
