@@ -90,5 +90,13 @@ public class mainController {
 	public String cartbutton() {
 		return "cart";
 	}
+	
 
+	@RequestMapping("todaymain.ad")
+	public String todaymain() {
+		return "admin/todaymain";
+	}
+
+	
+	
 }

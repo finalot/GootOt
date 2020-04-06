@@ -160,6 +160,9 @@ font-size: 9px !important;
 						<c:param name="product2" value="SALE"/>
 					</c:url>
 					
+					<c:url var="todaymain" value="todaymain.ad"/> 
+					
+					
 					<!-- 프로덕트 2 부분 경로설정 끝 -->
 					<!-- 기타 버튼 경로설정 -->
 					<c:url var="review" value="review.do"/>
@@ -355,7 +358,12 @@ font-size: 9px !important;
 					<c:url var="joinView" value="joinView.do"/>				
 					<c:url var="MyPage" value="MyPage.do"/>
 					<c:url var="logout" value="logout.do"/>
-									
+					<%-- <c:url var="todaymain" value="todaymain.ad"/> --%>
+					
+					
+					<!-- id가 admin이면 들어갈 수 있도록 c:if 문 추가 -->
+					<a href="${todaymain }" class="topbar-email">ADMIN</a>		
+							
 					  <c:if test="${ empty sessionScope.loginMember }">													
 					&nbsp;&nbsp; <a href='${loginView}'  class="topbar-email"> Login </a>
 					</c:if>

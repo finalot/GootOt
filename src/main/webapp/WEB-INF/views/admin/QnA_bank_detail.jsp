@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +10,9 @@
 <title>입금관련 문의</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
-<link rel="stylesheet" href="../css/mypage_list.css">
-<link rel="stylesheet" href="../css/mypage_basic.css">
-<link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+<link rel="stylesheet" href="/ot/resources/acss/mypage_list.css">
+<link rel="stylesheet" href="/ot/resources/acss/mypage_basic.css">
+<link rel="icon" type="image/png" href="/ot/resources/aimages/icons/favicon.png"/>
 </head>
 <style>
 .ec-base-table td{
@@ -70,107 +71,139 @@ th{
 </style>
 <body style="background: rgb(243, 243, 243)">
  	
-	<%@ include file="a_header.jsp" %>
+<jsp:include page="a_header.jsp"/>
 
 <div style="padding-left:300px;">
 <!-- MENU SIDEBAR-->
+ 	
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="todaymain.jsp">
-                    <img src="images/icon/ot.png" alt="OT" style="max-height: 35px;"/>
+                <a href="todayMain.ad">
+                    <img src="/ot/resources/aimages/icon/ot.png" alt="OT" style="max-height: 35px;"/>
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub"> 
-                            <!-- active has-sub 파란색 -->
+                            <%-- <!-- active has-sub 파란색 --> --%>
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-bar-chart-o"></i>통계</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="todaymain.jsp">당일현황</a>
+                                    <a href="todayMain.ad">당일현황</a>
                                 </li>
                                 <li>
-                                    <a href="todaychart.jsp">매출그래프</a>
+                                    <a href="todayChart.ad">매출그래프</a>
                                 </li>
                                 <li>
-                                    <a href="best.jsp">상품판매순위</a>
+                                    <a href="best.ad">상품판매순위</a>
                                 </li>
                             </ul>
                         </li>
                         
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fa fa-truck"></i>회원 &nbsp;/&nbsp;주문</a>
+                                <i class="fa fa-users"></i>회원 </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="customer.jsp">회원 관리</a>
-                                </li>
-                                <li>
-                                    <a href="order.jsp">주문 관리</a>
+                                    <a href="customer.ad">회원 관리</a>
                                 </li>
                             </ul>
                         </li>
                         
+                         <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fa fa-truck"></i>주문 </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="order.ad">주문확인 관리</a>
+                                </li>
+                                <li>
+                                	<a href="order_2.ad">배송대기 관리</a>
+                                </li>
+                                 <li>
+                                	<a href="order_3.ad">배송중 관리</a>
+                                </li>
+                                 <li>
+                                	<a href="order_4.ad">배송완료 관리</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
                         
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-shopping-cart"></i>상품관리</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                             	<li>
-                                    <a href="category.jsp">카테고리관리</a>
+                                    <a href="category.ad">카테고리관리</a>
                                 </li>
                                 <li>
-                                    <a href="productAdd.jsp">상품등록</a>
+                                    <a href="productAdd.ad">상품등록</a>
                                 </li>
                                 <li>
-                                    <a href="productList.jsp">상품관리</a>
+                                    <a href="productList.ad">상품관리</a>
                                 </li>
                             </ul>
                         </li>
                         
-                        <li class="active has-sub">
+                        <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-bullhorn"></i>이벤트&nbsp;/&nbsp;쿠폰</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="eventAdd.jsp">이벤트/쿠폰 등록</a>
+                                    <a href="eventAdd.ad">이벤트/쿠폰 등록</a>
                                 </li>
                                 <li>
-                                    <a href="eventList.jsp">이벤트/쿠폰 관리</a>
+                                    <a href="eventList.ad">이벤트/쿠폰 관리</a>
                                 </li>
                             </ul>
                         </li>
                         
                         
-                                <li>
-                                    <a class="js-arrow" href="productReturnList.jsp">
-                                <i class="fa fa-credit-card"></i>교환 &nbsp;/&nbsp;반품</a>
-                                </li>
+                        <li>
+                            <a class="js-arrow" href="productReturn_list.ad">
+                        <i class="fa fa-credit-card"></i>교환 &nbsp;/&nbsp;반품</a>
+                        </li>
                  		<li>
-                           <a href="DesignEdit.jsp">
+                           <a href="DesignEdit.ad">
                                <i class="fa fa-desktop"></i>디자인</a>
                        </li>
                          <li class="active has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fa fa-shopping-cart"></i>Q & A</a>
+                                <i class="fa fa-question"></i>Q & A</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                             	<li>
-                                    <a href="">상품문의</a>
+                                    <a href="QnA_Product.ad">상품문의</a>
                                 </li>
                                 <li>
-                                    <a href="productAdd.jsp">배송전 문의</a>
+                                    <a href="QnA_delivery_cancel.ad">배송전 문의</a>
+                                </li>
+                                <li>
+                                    <a href="productReturn.ad">배송후 문의</a>
                                 </li>
                                  <li>
-                                    <a href="productList.jsp">입금확인/입급자 변경 문의</a>
+                                    <a href="QnA_bank_insert.ad">입금확인/입급자 변경 문의</a>
                                 </li>
                                  <li>
-                                    <a href="productList.jsp">상품불량 및 오배송 문의</a>
+                                    <a href="QnA_bad_product.ad">상품불량 및 오배송 문의</a>
                                 </li>
                             </ul>
-                        </li>
-                        
+	                       </li>
+	                    <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fa fa-pencil-square-o"></i>리뷰</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            	<li>
+                                    <a href="review_list.ad">리뷰관리</a>
+                                </li>
+                                <li>
+                                    <a href="review_report_list.ad">신고된 리뷰관리</a>
+                                </li>
+                                
+                            </ul>
+	                  	</li>
                     </ul>
                 </nav>
             </div>
@@ -264,18 +297,18 @@ th{
     <tr>
     
 	<td colspan="2" class="clear">           
-                     <script type="text/javascript" src="//editor.cafe24.com/js/nneditor.js?c=ko"></script>
-            <style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";		</style>		<script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
-              <script src="./assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-    <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="./assets/vendor/slimscroll/jquery.slimscroll.js"></script>
-    <script src="./assets/vendor/multi-select/js/jquery.multi-select.js"></script>
-    <script src="./assets/libs/js/main-js.js"></script>
+    <script type="text/javascript" src="//editor.cafe24.com/js/nneditor.js?c=ko"></script>
+ 	<!-- <script type="text/css" @import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";		</style>		<script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script> -->
+    <script src="/ot/resources/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/ot/resources/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/ot/resources/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="/ot/resources/assets/vendor/multi-select/js/jquery.multi-select.js"></script>
+    <script src="/ot/resources/assets/libs/js/main-js.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="./assets/vendor/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/ot/resources/assets/vendor/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-    <script src="./assets/vendor/datatables/js/buttons.bootstrap4.min.js"></script>
-    <script src="./assets/vendor/datatables/js/data-table.js"></script>
+    <script src="/ot/resources/assets/vendor/datatables/js/buttons.bootstrap4.min.js"></script>
+    <script src="/ot/resources/assets/vendor/datatables/js/data-table.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
@@ -286,24 +319,27 @@ th{
     <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
     <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
   
-  <!--   <!-- Bootstrap JS-->
-   <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    Vendor JS      
-    <script src="vendor/slick/slick.min.js">
-    </script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js"></script> -->
-      <script src="js/main.js"></script>
+  <!-- Bootstrap JS-->
+     <script src="/ot/resources/avendor/bootstrap-4.1/popper.min.js"></script>
+     <script src="/ot/resources/avendor/bootstrap-4.1/bootstrap.min.js"></script>
+     <!-- Vendor JS       -->
+     <script src="/ot/resources/avendor/slick/slick.min.js">
+     </script>
+     <script src="/ot/resources/avendor/wow/wow.min.js"></script>
+     <script src="/ot/resources/avendor/animsition/animsition.min.js"></script>
+     <script src="/ot/resources/avendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+     </script>
+     <script src="/ot/resources/avendor/counter-up/jquery.waypoints.min.js"></script>
+     <script src="/ot/resources/avendor/counter-up/jquery.counterup.min.js">
+     </script>
+     <script src="/ot/resources/avendor/circle-progress/circle-progress.min.js"></script>
+     <script src="/ot/resources/avendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+     <script src="/ot/resources/avendor/chartjs/Chart.bundle.min.js"></script>
+     <script src="/ot/resources/avendor/select2/select2.min.js">
+     </script>
+ 
+     <!-- Main JS-->
+     <script src="/ot/resources/ajs/main.js"></script>
             <script type="text/javascript">
             NN.Config.instanceID = "content";
             NN.Config.value = "▶ 교환/반품/불량건교환 상품명을 기재해주셔야 더 정확한 안내 해드릴 수 있습니다.<br />\n<br />\n 배송 후 교환 / 반품 글 남겨주시면 기사님 방문 회수신청 자동으로 처리됩니다.<br />\n(기사님 방문시 경비실이나 전화 연락후 방문 해달라는 메모 등 배송메세지 같이 기재해주시면 메모해서 처리 해드립니다.)<br />\n 타 택배사 이용하실경우 미리 말씀해주셔야 방문 회수신청처리 안해드립니다.<br />\n<br />\n* 배송전 교환/취소시 [배송전 부분취소/변경] 제목선택을 안해주시면 상품교환/주문취소는 당일 처리되지 않습니다 *<br />\n<br />\n비회원으로 문의주실 경우엔 동명이인으로 인해 주문정보와 함께 남겨주셔야 바로 처리 가능합니다.<br />\n<br />\n----------------------------------------------------------------------<br>";

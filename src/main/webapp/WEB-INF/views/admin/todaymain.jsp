@@ -45,8 +45,8 @@
  	
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="todaymain.jsp">
-                    <img src="images/icon/ot.png" alt="OT" style="max-height: 35px;"/>
+                <a href="todayMain.ad">
+                    <img src="/ot/resources/aimages/icon/ot.png" alt="OT" style="max-height: 35px;"/>
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -58,23 +58,23 @@
                                 <i class="fa fa-bar-chart-o"></i>통계</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="todaymain.do">당일현황</a>
+                                    <a href="todayMain.ad">당일현황</a>
                                 </li>
                                 <li>
-                                    <a href="todaychart.do">매출그래프</a>
+                                    <a href="todayChart.ad">매출그래프</a>
                                 </li>
                                 <li>
-                                    <a href="best.do">상품판매순위</a>
+                                    <a href="best.ad">상품판매순위</a>
                                 </li>
                             </ul>
                         </li>
                         
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fa fa-truck"></i>회원 </a>
+                                <i class="fa fa-users"></i>회원 </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="customer.do">회원 관리</a>
+                                    <a href="customer.ad">회원 관리</a>
                                 </li>
                             </ul>
                         </li>
@@ -84,8 +84,18 @@
                                 <i class="fa fa-truck"></i>주문 </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="order.do">주문 관리</a>
+                                    <a href="order.ad">주문확인 관리</a>
                                 </li>
+                                <li>
+                                	<a href="order_2.ad">배송대기 관리</a>
+                                </li>
+                                 <li>
+                                	<a href="order_3.ad">배송중 관리</a>
+                                </li>
+                                 <li>
+                                	<a href="order_4.ad">배송완료 관리</a>
+                                </li>
+                                
                             </ul>
                         </li>
                         
@@ -94,13 +104,13 @@
                                 <i class="fa fa-shopping-cart"></i>상품관리</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                             	<li>
-                                    <a href="category.do">카테고리관리</a>
+                                    <a href="category.ad">카테고리관리</a>
                                 </li>
                                 <li>
-                                    <a href="productAdd.do">상품등록</a>
+                                    <a href="productAdd.ad">상품등록</a>
                                 </li>
                                 <li>
-                                    <a href="productList.do">상품관리</a>
+                                    <a href="productList.ad">상품관리</a>
                                 </li>
                             </ul>
                         </li>
@@ -110,45 +120,57 @@
                                 <i class="fa fa-bullhorn"></i>이벤트&nbsp;/&nbsp;쿠폰</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="eventAdd.do">이벤트/쿠폰 등록</a>
+                                    <a href="eventAdd.ad">이벤트/쿠폰 등록</a>
                                 </li>
                                 <li>
-                                    <a href="eventList.do">이벤트/쿠폰 관리</a>
+                                    <a href="eventList.ad">이벤트/쿠폰 관리</a>
                                 </li>
                             </ul>
                         </li>
                         
                         
-                                <li>
-                                    <a class="js-arrow" href="productReturnList.jsp">
-                                <i class="fa fa-credit-card"></i>교환 &nbsp;/&nbsp;반품</a>
-                                </li>
+                        <li>
+                            <a class="js-arrow" href="productReturn_list.ad">
+                        <i class="fa fa-credit-card"></i>교환 &nbsp;/&nbsp;반품</a>
+                        </li>
                  		<li>
-                           <a href="DesignEdit.jsp">
+                           <a href="DesignEdit.ad">
                                <i class="fa fa-desktop"></i>디자인</a>
                        </li>
                          <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fa fa-shopping-cart"></i>Q & A</a>
+                                <i class="fa fa-question"></i>Q & A</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                             	<li>
-                                    <a href="QnA_Product.do">상품문의</a>
+                                    <a href="QnA_Product.ad">상품문의</a>
                                 </li>
                                 <li>
-                                    <a href="QnA_delivery_cancel.do">배송전 문의</a>
+                                    <a href="QnA_delivery_cancel.ad">배송전 문의</a>
                                 </li>
                                 <li>
-                                    <a href="productReturn.do">배송후 문의</a>
+                                    <a href="productReturn.ad">배송후 문의</a>
                                 </li>
                                  <li>
-                                    <a href="QnA_bank_insert.do">입금확인/입급자 변경 문의</a>
+                                    <a href="QnA_bank_insert.ad">입금확인/입급자 변경 문의</a>
                                 </li>
                                  <li>
-                                    <a href="QnA_bad_product.do">상품불량 및 오배송 문의</a>
+                                    <a href="QnA_bad_product.ad">상품불량 및 오배송 문의</a>
                                 </li>
                             </ul>
-                        </li>
-                        
+	                       </li>
+	                    <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fa fa-pencil-square-o"></i>리뷰</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            	<li>
+                                    <a href="review_list.ad">리뷰관리</a>
+                                </li>
+                                <li>
+                                    <a href="review_report_list.ad">신고된 리뷰관리</a>
+                                </li>
+                                
+                            </ul>
+	                  	</li>
                     </ul>
                 </nav>
             </div>
@@ -174,7 +196,7 @@
        <!-- END WELCOME-->
 
         <!-- STATISTIC-->
-        <section class="statistic statistic2" onclick="location.href='status.do'">
+        <section class="statistic statistic2" onclick="location.href='status.ad'">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-lg-3">
@@ -230,7 +252,7 @@
                     <div class="col-md-6 col-lg-4" style="margin-left: 15%">
                         <!-- CHART-->
                         <div class="statistic-chart-1" 
-                        	style="margin-left:-35%; width:140%; height:auto;" onclick="location.href='todaychart.do'">
+                        	style="margin-left:-35%; width:140%; height:auto;" onclick="location.href='todayChart.ad'">
                             <h3 class="title-3 m-b-30">일별 판매량</h3>
                             <div class="chart-wrap">
                                 <canvas id="widgetChart5"></canvas>
@@ -244,7 +266,7 @@
                     </div>
                     <div class="col-md-6 col-lg-4" style="margin-left: 1%;">
                         <!-- TOP CAMPAIGN-->
-                        <div class="top-campaign" style="width:140%; height:auto;" onclick="location.href='best.do'">
+                        <div class="top-campaign" style="width:140%; height:auto;" onclick="location.href='best.ad'">
                             <h3 class="title-3 m-b-30">인기 상품</h3>
                             <div class="table-responsive">
                                 <table class="table table-top-campaign">

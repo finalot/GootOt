@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 <!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
 <link rel="stylesheet" href="../css/mypage_list.css">
 <link rel="stylesheet" href="../css/mypage_basic.css">
-<link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+<link rel="icon" type="image/png" href="/ot/resources/aimages/icons/favicon.png"/>
 </head>
 <style>
 .ec-base-table td{
@@ -70,107 +71,139 @@ th{
 </style>
 <body style="background: rgb(243, 243, 243)">
  	
-	<%@ include file="a_header.jsp" %>
+<jsp:include page="a_header.jsp"/>
 
 <div style="padding-left:300px;">
 <!-- MENU SIDEBAR-->
+ 	
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="todaymain.jsp">
-                    <img src="images/icon/ot.png" alt="OT" style="max-height: 35px;"/>
+                <a href="todayMain.ad">
+                    <img src="/ot/resources/aimages/icon/ot.png" alt="OT" style="max-height: 35px;"/>
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub"> 
-                            <!-- active has-sub 파란색 -->
+                            <%-- <!-- active has-sub 파란색 --> --%>
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-bar-chart-o"></i>통계</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="todaymain.jsp">당일현황</a>
+                                    <a href="todayMain.ad">당일현황</a>
                                 </li>
                                 <li>
-                                    <a href="todaychart.jsp">매출그래프</a>
+                                    <a href="todayChart.ad">매출그래프</a>
                                 </li>
                                 <li>
-                                    <a href="best.jsp">상품판매순위</a>
+                                    <a href="best.ad">상품판매순위</a>
                                 </li>
                             </ul>
                         </li>
                         
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fa fa-truck"></i>회원 &nbsp;/&nbsp;주문</a>
+                                <i class="fa fa-users"></i>회원 </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="customer.jsp">회원 관리</a>
-                                </li>
-                                <li>
-                                    <a href="order.jsp">주문 관리</a>
+                                    <a href="customer.ad">회원 관리</a>
                                 </li>
                             </ul>
                         </li>
                         
+                         <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fa fa-truck"></i>주문 </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="order.ad">주문확인 관리</a>
+                                </li>
+                                <li>
+                                	<a href="order_2.ad">배송대기 관리</a>
+                                </li>
+                                 <li>
+                                	<a href="order_3.ad">배송중 관리</a>
+                                </li>
+                                 <li>
+                                	<a href="order_4.ad">배송완료 관리</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
                         
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-shopping-cart"></i>상품관리</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                             	<li>
-                                    <a href="category.jsp">카테고리관리</a>
+                                    <a href="category.ad">카테고리관리</a>
                                 </li>
                                 <li>
-                                    <a href="productAdd.jsp">상품등록</a>
+                                    <a href="productAdd.ad">상품등록</a>
                                 </li>
                                 <li>
-                                    <a href="productList.jsp">상품관리</a>
+                                    <a href="productList.ad">상품관리</a>
                                 </li>
                             </ul>
                         </li>
                         
-                        <li class="active has-sub">
+                        <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-bullhorn"></i>이벤트&nbsp;/&nbsp;쿠폰</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="eventAdd.jsp">이벤트/쿠폰 등록</a>
+                                    <a href="eventAdd.ad">이벤트/쿠폰 등록</a>
                                 </li>
                                 <li>
-                                    <a href="eventList.jsp">이벤트/쿠폰 관리</a>
+                                    <a href="eventList.ad">이벤트/쿠폰 관리</a>
                                 </li>
                             </ul>
                         </li>
                         
                         
-                                <li>
-                                    <a class="js-arrow" href="productReturnList.jsp">
-                                <i class="fa fa-credit-card"></i>교환 &nbsp;/&nbsp;반품</a>
-                                </li>
+                        <li>
+                            <a class="js-arrow" href="productReturn_list.ad">
+                        <i class="fa fa-credit-card"></i>교환 &nbsp;/&nbsp;반품</a>
+                        </li>
                  		<li>
-                           <a href="DesignEdit.jsp">
+                           <a href="DesignEdit.ad">
                                <i class="fa fa-desktop"></i>디자인</a>
                        </li>
                          <li class="active has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fa fa-shopping-cart"></i>Q & A</a>
+                                <i class="fa fa-question"></i>Q & A</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                             	<li>
-                                    <a href="">상품문의</a>
+                                    <a href="QnA_Product.ad">상품문의</a>
                                 </li>
                                 <li>
-                                    <a href="productAdd.jsp">배송전 문의</a>
+                                    <a href="QnA_delivery_cancel.ad">배송전 문의</a>
+                                </li>
+                                <li>
+                                    <a href="productReturn.ad">배송후 문의</a>
                                 </li>
                                  <li>
-                                    <a href="productList.jsp">입금확인/입급자 변경 문의</a>
+                                    <a href="QnA_bank_insert.ad">입금확인/입급자 변경 문의</a>
                                 </li>
                                  <li>
-                                    <a href="productList.jsp">상품불량 및 오배송 문의</a>
+                                    <a href="QnA_bad_product.ad">상품불량 및 오배송 문의</a>
                                 </li>
                             </ul>
-                        </li>
-                        
+	                       </li>
+	                    <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fa fa-pencil-square-o"></i>리뷰</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            	<li>
+                                    <a href="review_list.ad">리뷰관리</a>
+                                </li>
+                                <li>
+                                    <a href="review_report_list.ad">신고된 리뷰관리</a>
+                                </li>
+                                
+                            </ul>
+	                  	</li>
                     </ul>
                 </nav>
             </div>
