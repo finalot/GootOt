@@ -608,7 +608,7 @@
 		}
       if(!chk(  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,memEmail,"이메일 형식에 어긋납니다.")) {
           return false;
-      } */
+      } 
 	  else  {
 		$('#joinForm').submit();
 	  }

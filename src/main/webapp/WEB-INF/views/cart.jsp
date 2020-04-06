@@ -646,7 +646,6 @@ margin-right: 3%;
 					</button>
 		</div>
     </div>
-
 	<!-- Footer -->
 	<%@include file="footer.jsp" %>
 
@@ -693,7 +692,7 @@ margin-right: 3%;
 	  $('#address2').val(address[2])
 	  //폰번호 잘라서 정보 뿌리기
 	  "<c:forTokens items='${sessionScope.loginMember.memPhone}'  delims='-'  var='phone'>"
-	  phone[count1] = "${phone}"	
+	  phone[count1] = "${phone}"
 	  count1++
 	  " </c:forTokens>"
 
@@ -763,18 +762,16 @@ $('#delivery').click(function(){
 			IMP.init('imp97532169');	 
 		 }
 			 
-			 
-			 var totalpay = $('.format-money').text();
 				IMP.request_pay({
 				    pg : 'inicis',
 				    pay_method : 'card',
 				    merchant_uid : 'merchant_' + new Date().getTime(),
 				    name : '주문명:결제테스트',
 				    amount : 60500,
-				    buyer_email : "${sessionScope.loginMember.memName}",
-				    buyer_name : "${sessionScope.loginMember.memName}",
-				    buyer_tel : "${sessionScope.loginMember.memPhone}",
-				    buyer_addr : "${sessionScope.loginMember.memAddress}",
+				    buyer_email : '${sessionScope.loginMember.memEmail}',
+				    buyer_name : '${sessionScope.loginMember.memName}',
+				    buyer_tel : '${sessionScope.loginMember.memPhone}',
+				    buyer_addr : '${sessionScope.loginMember.memAddress}',
 				    buyer_postcode : '123-456'
 				}, function(rsp) {
 				    if ( rsp.success ) {
