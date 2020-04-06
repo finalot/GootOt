@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 
-public interface BoardService {
+public interface BoardService{
 
 	
 	// 1. 게시판 전체 리스트 조회

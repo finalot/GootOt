@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<!-- <mapper namespace="boardMapper">
-		reusltMap
+<mapper namespace="boardMapper">
+		<!-- reusltMap -->
 		<resultMap type="Board" id="BoardResultSet">
 			<id property = "bId" column="BID"/>
 			
@@ -21,7 +21,7 @@
 		
 		</resultMap>
 		
-		<resultMap type="Reply" id="ReplyResultSet">
+		<!-- <resultMap type="Reply" id="ReplyResultSet">
 			<id property="rId" column="RID"/>
 					<result property="rContent" column="RCONTENT"/>
 					<result property="refBid" column="REF_BID"/>
@@ -107,7 +107,7 @@
 		INSERT INTO REPLY VALUES
 		(SEQ_RID.NEXTVAL,#{rContent},#{refBid},#{rWriter},SYSDATE,SYSDATE,DEFAULT)
 	
-	</insert>
+	</insert> -->
 		
-</mapper> -->
+</mapper>
 

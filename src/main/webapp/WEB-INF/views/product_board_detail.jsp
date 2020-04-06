@@ -88,27 +88,8 @@
       
         </div>
 </div>
-<form id="boardWriteForm" name="" action="/exec/front/Board/write/3001" method="post" target="_self" enctype="multipart/form-data">
-		<input id="board_no" name="board_no" value="3001" type="hidden">
-		<input id="product_no" name="product_no" value="0" type="hidden">
-		<input id="move_write_after" name="move_write_after" type="hidden">
-		<input id="cate_no" name="cate_no" value="" type="hidden">
-		<input id="bUsePassword" name="bUsePassword" value="" type="hidden">
-		<input id="order_id" name="order_id" value="" type="hidden">
-		<input id="is_post_checked" name="is_post_checked" value="" type="hidden">
-		<input id="22a52e1f2ba700edbc6c" name="22a52e1f2ba700edbc6c" value="be72b6700c2bb10ea29aac31702af80d" type="hidden">
-		<input id="fix_title_form_0" name="fix_title_form_0" value="[문의]" type="hidden">
-		<input id="bulletin_type" name="bulletin_type" value="title" type="hidden">
-		<input id="fix_content_0" name="fix_content_0" value="▶ 오전에는 입고 작업중으로 오후 2시정도에 문의주시는게 더 정확합니다.<br/>
-		<br />
-		당일 주문건은 재고가 있을 시 당일 배송처리 되고 보통 다음날부터 입고가 되기 때문에 바로 안내가 어렵습니다.<br />
-		<br />
-		* 배송전 교환/취소시 [배송전 부분취소/변경] 제목선택을 안해주시면 상품교환/주문취소는 당일 처리되지 않습니다 *<br />
-		<br />
-		비회원으로 문의주실 경우엔 동명이인으로 인해 주문정보와 함께 남겨주셔야 바로 처리 가능합니다.<br />
-		<br />
-----------------------------------------------------------------------" type="hidden">
-	<input id="fix_add_content" name="fix_add_content" value="" type="hidden">
+<form id="boardWriteForm" name="" action="/exec/front/Board/write/3001" method="post" enctype="multipart/form-data">
+		
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
             $login_page_url = /member/login.html
@@ -143,12 +124,7 @@
                             <li class="" style="text-align: right;position: relative;top: -49px;font-weight:600;">
                                 <span>DATE</span> <span class="txtNum">2020-03-26</span>
                             </li>
-                            <li class="displaynone">
-                                <span>RECOMMEND</span> <span class="txtNum"><a href="#none" onclick="BOARD_READ.article_vote('/exec/front/Board/vote/6?no=821687&amp;board_no=6&amp;page=&amp;return_url=%2Farticle%2F%EC%83%81%ED%92%88%EB%AC%B8%EC%9D%98%2F6%2F821687%2F');"> <img src="//img.echosting.cafe24.com/skin/base_ko_KR/board/btn_recommend.gif" alt="추천하기"></a></span>
-                            </li>
-                            <li class="displaynone">
-                                <span>VIEWED</span> <span class="txtNum">1</span>
-                            </li>
+                            
                         </ul>
 <div class="detail">
 <div style="font-weight:600;">

@@ -2,9 +2,14 @@ package com.kh.ot.board.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServlet;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ot.board.service.BoardService;
@@ -14,8 +19,9 @@ import com.kh.ot.common.Pagination;
 
 
 
-
-public class BoardController {
+@SessionAttributes("loginMember")
+@Controller
+public class BoardController extends HttpServlet {
 
 	@Autowired
 	private BoardService bService;
@@ -336,4 +342,14 @@ public class BoardController {
 		return "product_change_write";
 	}
 
+	@RequestMapping(value="product_board_insert.do", method=RequestMethod.POST )
+	public String product_board_insert() {
+		System.out.println("인설트 이곳");
+		
+		
+		
+		
+		
+		return null;
+	}
 }
