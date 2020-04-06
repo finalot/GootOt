@@ -1,8 +1,19 @@
 package com.kh.ot.admin.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.kh.ot.admin.vo.UpCategory;
+import com.kh.ot.member.vo.Member;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -165,4 +176,20 @@ public class menuController {
 	public String review_report_list() {
 		return "admin/review_report_list";
 	}
+	
+	
+	
+//	기능 시작 
+	
+
+	/*
+	 * @RequestMapping(value="category.ad",method=RequestMethod.POST) public String
+	 * insertUpCategory(UpCategory uc,Model model,
+	 * 
+	 * @RequestParam(""))
+	 * 
+	 */
+	
+	
+	
 }

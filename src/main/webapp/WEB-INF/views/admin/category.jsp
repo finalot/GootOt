@@ -375,9 +375,9 @@
             });
         });
  
-        $(window).load(function(e){
+    /*     $(window).load(function(e){
  
-        });
+        }); */
  
 
     </script>
