@@ -33,6 +33,15 @@ public interface BoardService{
 	 */
 
 	int insertBoard(Board b);
+
+
+	
+	/**
+	 * 3. 게시판 상세조회
+	 * @param qna_no
+	 * @return
+	 */
+	Board selectBoard(int qna_no);
 	
 	
 	

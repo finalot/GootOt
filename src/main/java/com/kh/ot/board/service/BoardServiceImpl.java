@@ -30,4 +30,10 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.insertBoard(b);
 	}
 
+	@Override
+	public Board selectBoard(int qna_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

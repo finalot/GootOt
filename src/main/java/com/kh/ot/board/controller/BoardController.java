@@ -268,30 +268,33 @@ public class BoardController extends HttpServlet {
 	 */
 	@RequestMapping("product_board_insert.do")
 	public String product_board_insert(Board b,HttpServletRequest request,HttpSession session,
-			@RequestParam(name="uploadFile",required=false) MultipartFile file) {
+			@RequestParam(name="uploadFile",required=false) MultipartFile uploadFile) {
+	
 		
 		Member m = (Member)session.getAttribute("loginMember");		
 		
 		b.setMem_no(m.getMemNo());
 		b.setQna_writer(m.getMemId());
+		System.out.println(uploadFile.getOriginalFilename());
 		
-		
-		if(!file.getOriginalFilename().equals("")) {
+		if(!uploadFile.getOriginalFilename().equals("")) {
 			// 서버에 업로드
-			// saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명으 반환해주는 메소드
+			// saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명을 반환해주는 메소드
 			
-			String renameFileName = saveFile(file,request);
+			String renameFileName = saveFile(uploadFile,request);
 			
 			if(renameFileName != null) {
-				b.setOriginalFileName(file.getOriginalFilename());// DB에는 파일명 저장
+				b.setOriginalFileName(uploadFile.getOriginalFilename());// DB에는 파일명 저장
 				b.setRenameFileName(renameFileName);
 			}
 			
 		}		
 		int result = bService.insertBoard(b);
-
+        
+		System.out.println(b);
+		
 		if(result >0) {
-			return "redirect:product_board_detail.do";
+			return "product_board_detail.do";
 		} else {
 			return null;
 		}
@@ -345,11 +348,22 @@ public class BoardController extends HttpServlet {
 	 * @return
 	 */
 	@RequestMapping("product_board_detail.do")
-	public String product_board_detail(ModelAndView mv, int qna_no, 
+	public ModelAndView product_board_detail(ModelAndView mv, int qna_no, 
 			@RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage) {
 		
+		Board b = bService.selectBoard(qna_no);
+		
+		if(b!=null) {
+			mv.addObject("b",b)
+			.addObject("currentPage",currentPage)
+			.setViewName("board/product_board_detail");
+		} else {
+			mv.addObject("msg","게시글 상세조회 실패")
+			.setViewName("common/errorPage");
+		}
+		
 
-		return "product_board_detail";
+		return mv;
 	}
 
 

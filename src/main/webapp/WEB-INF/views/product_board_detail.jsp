@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,12 +113,12 @@
     
     <tr>
 		<th scope="row">TITLE</th>
-           <td>문의합니다.</td>
+           <td>${b.qna_title }</td>
     </tr>
     
 	<tr>
 		<th scope="row">WRITER</th>
-           <td>홍길동</td>
+           <td>${b.qna_writer }</td>
     </tr>
     
     <tr>
@@ -127,7 +128,7 @@
                                 <span>POINT</span> <img src="/web/upload/yangji_pc_crumb/ico_point0.gif" alt="0점">
                             &nbsp;</li>
                             <li class="" style="text-align: right;position: relative;top: -49px;font-weight:600;">
-                                <span>DATE</span> <span class="txtNum">2020-03-26</span>
+                                <span>DATE</span> <span class="txtNum">${b.qna_date }</span>
                             </li>
                             
                         </ul>
@@ -146,7 +147,7 @@
 ----------------------------------------------------------------------<br>			
 
 <div class="detail_text">
-배송이 바로 가능한가요?
+${b.content }
 </div>
 </div>
                     </td>

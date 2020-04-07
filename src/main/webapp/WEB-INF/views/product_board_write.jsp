@@ -165,7 +165,7 @@
 				<th scope="row">PASSWORD</th>
                     <td><input id="qna_password" name="qna_password" value="" type="password"></td>
             </tr>
-            
+           
 			<tr class="">
 			<th scope="row">SECRET</th>
                    <td><input id="secure0" name="qna_secure"  value="F" type="radio">
@@ -184,7 +184,7 @@
                 <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
-                <a href="" id="insert_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</a>
+                <button  id="insert_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
                 <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
             </span>
         </div>
