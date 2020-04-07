@@ -1,10 +1,18 @@
 package com.kh.ot.admin.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.kh.ot.admin.servie.adminService;
+import com.kh.ot.admin.vo.Coupon;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -14,8 +22,8 @@ public class menuController {
 		// 빈 스키냉을 통해 아래의 'mService'의 이름을 가지고 있는 빈을 찾아서
 		// 자동으로 생성 후 주입해준다.
 
-//		@Autowired
-//		private MemberService mService;
+		@Autowired
+		private adminService adService;
 	
 	
 	/**
@@ -173,13 +181,31 @@ public class menuController {
 	 * @작성자  : 문태환
 	 * @내용 	: 쿠폰등록 
 	 * @param response
+	 * @throws IOException 
 	 */
 	@RequestMapping("couponInput.do")
-	public void couponInput(HttpServletResponse response) {
+	public void couponInput(HttpServletResponse response,String[] cpName,int[] cpDiscount) throws IOException {
 		
+		Coupon co  = new Coupon();
 		
+		ArrayList<Coupon> clist = new ArrayList<Coupon>();
 		
+		for(int i=0; i<cpName.length;i++) {
+			co.setCpName(cpName[i]);
+			co.setCpDiscount(cpDiscount[i]);
+			clist.add(co);
+		}
 		
+		int result = adService.couponInput(clist);
+		
+		PrintWriter out = response.getWriter();
+		System.out.println("clist" + clist);
+		
+		if(result > 0) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
 	}
 	
 	

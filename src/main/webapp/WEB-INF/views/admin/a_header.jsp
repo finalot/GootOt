@@ -37,10 +37,10 @@
     <link href="<c:url value="/resources/avendor/perfect-scrollbar/perfect-scrollbar.css"/>" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href="css/theme.css" rel="stylesheet" media="all">
+    <link href="<c:url value="/resources/acss/theme.css"/>" rel="stylesheet" media="all">
       <!-- chat -->
-    <link rel="stylesheet" href="<c:url value="/resources/acss/bootstrap.css"/>">
-<link rel="stylesheet" href="<c:url value="/resources/acss/custom.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/custom.css"/>">
 <script src="<c:url value="/resources/js/bootstrap.js"/>"></script> 
     <!-- chat -->
  <style>
@@ -101,7 +101,7 @@ a:cursor{
                     <div class="header-mobile-inner">
                         <a class="logo" href="
                         adminmain.html">
-                            <img src="images/icon/ot.png" alt="OT" />
+                            <img src="/ot/resources/images/icon/ot.png" alt="OT" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -201,7 +201,7 @@ a:cursor{
                             <div class="header-button">
                                 <div class="noti-wrap">
                                 <div>
-                            <button id="chat-icon"><img style="width: 10%;margin-left: 7%;" src="../images/icons/chat_icon.png"></button>
+                            <button id="chat-icon"><img style="width: 10%;margin-left: 7%;" src="ot/resources/images/icons/chat_icon.png"></button>
                                 </div>
                                 <div id="chat-list" class="container bootstrap snippet" style=" display: none">
       <div class=row >
@@ -249,7 +249,7 @@ a:cursor{
                   <div class="portlet-title" style="background: #333330; border-radius:60%;margin-bottom:-5px;height: 50px;">
                      <h4 style="padding-left: 2%; float:left; color: white;padding-top: 10px;font-size: 15px;"><img  style="width: 13px;height: 11px;
                      margin-bottom: 6px;margin-right: 10px;" 
-                     src="../images/icons/favicon.png"></img>실시간 문의</h4><button id="chat-close" class="chatBtn" style="color:white; margin-left:68%; margin-top:4.2%">X</button>
+                     src="/ot/resources/images/icons/favicon.png"></img>실시간 문의</h4><button id="chat-close" class="chatBtn" style="color:white; margin-left:68%; margin-top:4.2%">X</button>
                   </div>
   
                </div>
@@ -374,7 +374,7 @@ a:cursor{
 		   
  		 var user = '<li style="padding: 2%;">'+
 				   '<div style="display:flex">'+
-				  '<img src="../images/icons/user.png" alt="회원사진" class="user-icon">'+
+				  '<img src="/ot/resources/images/icons/user.png" alt="회원사진" class="user-icon">'+
 				  '<div style="width: 70%;">'+                
 			  	  '<button  onclick="chatBtn(this)" style="margin-left: 4%; font-weight: bold;">'+data[i].userId+'</button>'+
 			  	  '<p class="user-text"  style="margin-left: 5%;">'+data[i].message+'</p>'+

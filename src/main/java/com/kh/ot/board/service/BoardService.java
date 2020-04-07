@@ -2,6 +2,7 @@ package com.kh.ot.board.service;
 
 import java.util.ArrayList;
 
+import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 
@@ -43,7 +44,7 @@ public interface BoardService{
 	 */
 	Board selectBoard(int qna_no);
 	
-	
+
 	
 
 }
