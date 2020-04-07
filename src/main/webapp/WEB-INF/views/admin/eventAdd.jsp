@@ -367,11 +367,13 @@ margin-top: 1%;
 						</tr>
 				</thead>
 				<tbody class="cpBody">
+				<c:forEach var="c" items="${clist}">
 						<tr>
-							<td><input class="cpName" type="text"></td>
-							<td><input class="cpDiscount" type="text"></td>
-							<td><button onclick="cpClose(this)">X</button></td>
+							<td><input class="cpName" type="text" value="${c.cpName }"></td>
+							<td><input class="cpDiscount" type="text" value="${c.cpDiscount }"></td>
+							<td><button onclick="cpClose(this)">삭제</button></td>
 						</tr>
+				</c:forEach>
 					</tbody>
 				</table>
 				</div> 

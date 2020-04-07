@@ -13,11 +13,14 @@
 			<result property="cpDate" column="CP_DATE"/>
 		</resultMap>
 
-<insert id="couponInput" parameterType="Coupon">
+<insert id="couponInput" parameterType="java.util.List">
 	INSERT INTO COUPON
 	VALUES(COU_SEQ.NEXTVAL,#{cpName},#{cpDiscount},SYSDATE)
 </insert>		
-	
+
+<select id="selectListCoupon" resultMap="CouponResultSet">
+	SELECT * FROM COUPON
+</select>	
 		
 		
 </mapper>

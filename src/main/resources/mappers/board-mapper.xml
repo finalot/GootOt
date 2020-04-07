@@ -29,7 +29,7 @@
 				#{qna_password},#{qna_secure})
 		</insert>
 		
-		<select id="selectBoard" resultMap="boardResultSet">
+		<select id="selectBoard" resultMap="BoardResultSet">
 		SELECT *
 		FROM QNA Q
 		WHERE QNA_NO=#{qna_no}

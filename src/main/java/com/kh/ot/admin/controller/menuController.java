@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ot.admin.servie.adminService;
 import com.kh.ot.admin.vo.Coupon;
@@ -87,8 +88,20 @@ public class menuController {
 	}
 	
 	@RequestMapping("eventAdd.ad")
-	public String eventAdd() {
-		return "admin/eventAdd";
+	public ModelAndView eventAdd(ModelAndView mv) {
+		
+		ArrayList<Coupon> clist = adService.selectListCoupon();
+ 		
+		if(!clist.isEmpty()) {
+			mv.addObject("clist",clist);
+			mv.setViewName("admin/eventAdd");
+		}else {
+			mv.setViewName("admin/eventAdd");
+			System.out.println("리스트 비었다 확인");
+		}
+		
+		
+		return mv;
 	}
 	
 	@RequestMapping("eventList.ad")
@@ -195,11 +208,12 @@ public class menuController {
 			co.setCpDiscount(cpDiscount[i]);
 			clist.add(co);
 		}
+		System.out.println("clist" + clist);
 		
 		int result = adService.couponInput(clist);
 		
 		PrintWriter out = response.getWriter();
-		System.out.println("clist" + clist);
+	
 		
 		if(result > 0) {
 			out.print("ok");

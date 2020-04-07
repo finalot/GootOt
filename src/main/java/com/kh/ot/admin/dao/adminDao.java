@@ -28,5 +28,16 @@ public class adminDao {
 	public int couponInput(ArrayList<Coupon> clist) {
 		return sqlSession.insert("adminMapper.couponInput",clist);
 	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 7.
+	 * @작성자  : 문태환
+	 * @내용 	: 쿠폰 리스트
+	 * @return
+	 */
+	public ArrayList<Coupon> selectListCoupon() {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectListCoupon");
+	}
 	
 }
