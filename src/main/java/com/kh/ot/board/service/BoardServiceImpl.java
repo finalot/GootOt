@@ -17,8 +17,8 @@ public class BoardServiceImpl implements BoardService{
 	private BoardDao bDao;
 
 	@Override
-	public int getListCount() {
-		return bDao.getListCount();
+	public int getListCount(int b_cate_no) {
+		return bDao.getListCount(b_cate_no);
 	}
 
 	@Override
@@ -33,8 +33,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public Board selectBoard(int qna_no) {
-		// TODO Auto-generated method stub
-		return null;
+		return bDao.selectBoard(qna_no);
 	}
 
 }

@@ -89,7 +89,7 @@
       
         </div>
 </div>
-<form id="boardWriteForm" name="" action="/exec/front/Board/write/3001" method="post" enctype="multipart/form-data">
+<form id="boardWriteForm" name="" method="post" enctype="multipart/form-data">
 		
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
@@ -163,7 +163,11 @@ ${b.content }
 	<tbody>
 			<tr>
 				<th scope="row">FILE 01</th>
-                 <td><input type="file" name="uploadFile"></td>
+                 <td>
+                 <c:if test="${!empty b.originalFileName }">
+               <a href="${ contextPath }/resources/buploadFiles/${ b.renameFileName }" download="${ b.originalFileName }">${ b.originalFileName }</a>
+                 </c:if>
+                 </td>
             </tr>
             
 		</tbody>

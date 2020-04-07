@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,6 +37,15 @@
     padding-right: 0;
     text-align: left !important;
 }
+.ec-base-paginate a {
+    display: inline-block;
+    float: none;
+}
+
+.ec-base-paginate img {
+   vertical-align: none !important;
+}
+
 </style>
 <body>
 	<%@include file="header.jsp" %>	
@@ -197,21 +207,63 @@
 	</div>
 			
 			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate">
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first">
-					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지"></a>
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"></a>
+				<!-- <a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first"> -->
 					
-					<ol>
+					<c:if test="${pi.currentPage eq 1 }">
+					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지"> 
+					</c:if>
+	
+					<!-- </a> -->
+					
+					
+				<!-- <a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019"> -->
+					
+					<c:if test ="${pi.currentPage eq 1 }">
+						<c:url var="before" value="product_board.do">
+						<c:param name="currentPage" value="${pi.currentPage -1 }"/>
+						</c:url>
+						<a href="${before}">
+						<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+						</a> &nbsp;
+					</c:if>
+					<!-- </a> -->
+					
+					<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+              		 <c:if test="${ p eq pi.currentPage }">
+                  		<font color="red" size="2"><b>[${ p }]</b> &nbsp;</font>
+              		 </c:if>
+               
+               		<c:if test="${ p ne pi.currentPage }">
+                		  <c:url var="pagination" value="product_board.do">
+                   		  <c:param name="currentPage" value="${ p }"/>
+                 	 </c:url>
+                 	 <a href="${ pagination }" style="font-weight: 900;font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+                 	 ${ p }</a> &nbsp;
+              	 </c:if>
+            	</c:forEach>
+					
+					<!-- <ol>
 						<li class="xans-record-">
 							<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="this">1</a>
 						</li>
-       				</ol>
+       				</ol> -->
        				
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지"></a>
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="last">
-					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
+				<!-- <a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019"> -->
+					<c:if test="${pi.currentPage eq pi.maxPage }">
+					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+					</c:if>
+					
+					<!-- </a> -->
+				<!-- <a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="last"> -->
+					<c:if test="${pi.currentPage ne pi.maxPage }">
+						<c:url var="after" value="product_board.do">
+							<c:param name="currentPage" value="${pi.currentPage +1 }"/>
+						</c:url>
+						<a href="${after}">
+					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+					</a>
+					</c:if>
+					<!-- </a> -->
 			</div>
 
         </div>

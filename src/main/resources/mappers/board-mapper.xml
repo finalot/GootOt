@@ -6,7 +6,7 @@
 
 <mapper namespace="boardMapper">
 		<!-- reusltMap -->
-		<resultMap type="Board" id="BoardResultSet">
+		<resultMap type="Board" id="boardResultSet">
 			<id property = "qna_no" column="QNA_NO"/>
 			<result property="b_cate_no" column="B_CATE_NO"/>
 			<result property="mem_no" column="MEM_NO"/>
@@ -19,23 +19,28 @@
 			<result property="renameFileName" column="RENAME_FILENAME"/>
 			<result property="qna_modify_date" column="QNA_MODIFY_DATE"/>
 			<result property="qna_password" column="QNA_PASSWORD"/>
-			<result property="qna_secure" column="QNA_SECURE"/> 
+			<result property="qna_secure" column="QNA_SECURE"/>
 		</resultMap>
-		
+
 		<insert id="insertBoard" parameterType="Board">
 		INSERT INTO QNA
 		VALUES(QNA_SEQ.NEXTVAL, #{b_cate_no},#{mem_no}, #{content}, #{qna_chk}, SYSDATE,
 				#{qna_writer},#{qna_title},#{originalFileName},#{renameFileName},SYSDATE,
 				#{qna_password},#{qna_secure})
 		</insert>
-		
-		<select id="selectBoard" resultMap="BoardResultSet">
+
+		<select id="selectBoard" parameterType="Board" resultMap="boardResultSet">
 		SELECT *
-		FROM QNA Q
+		FROM QNA
 		WHERE QNA_NO=#{qna_no}
 		</select>
-		
-		
-		
-</mapper>
 
+		<select id="getListCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*)
+		FROM QNA
+		WHERE B_CATE_NO=#{b_cate_no}
+	</select>
+
+
+
+</mapper>

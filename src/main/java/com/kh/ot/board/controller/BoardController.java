@@ -242,23 +242,27 @@ public class BoardController extends HttpServlet {
     * @return
     */
    @RequestMapping("product_board.do")
-   public String product_board() { 
+   public ModelAndView product_board(ModelAndView mv,
+							   @RequestParam(value="currentPage", 
+							   required=false,defaultValue="1") int currentPage) { 
       
-//      System.out.println(currentPage);
-//      
-//      int listCount = bService.getListCount();
-//      
-//      System.out.println("listCount : " + listCount);
-//      
-//      PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-//      
+      System.out.println(currentPage);
+	   
+	   int b_cate_no = 1;
+      
+      int listCount = bService.getListCount(b_cate_no);
+      
+      System.out.println("listCount : " + listCount);
+      
+      PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+      
 //      ArrayList<Board> list = bService.selectList(pi);
 //      
 //      mv.addObject("list",list);
-//      mv.addObject("pi",pi);
-//      mv.setViewName("product_board");
+        mv.addObject("pi",pi);
+        mv.setViewName("product_board");
       
-      return "product_board";   
+      return mv; 
    }
    
    /**
@@ -295,7 +299,7 @@ public class BoardController extends HttpServlet {
       System.out.println(b);
       
       if(result >0) {
-         return "product_board_detail.do";
+         return "redirect:product_board.do";
       } else {
          return null;
       }
@@ -343,18 +347,42 @@ public class BoardController extends HttpServlet {
 
 
    /**
-    * @작성일  : 2020.04.05
-    * @작성자  : 우예진
-    * @내용    : 상품문의 상세페이지
-    * @return
-    */
-   @RequestMapping("product_board_detail.do")
-   public String product_board_detail(ModelAndView mv, int qna_no, 
-         @RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage) {
-      
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 상품문의 상세페이지
+	 * @return
+	 */
+	@RequestMapping("product_board_detail.do")
+	public ModelAndView product_board_detail(ModelAndView mv, int qna_no, 
+			@RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage) {
+		
+		Board b = bService.selectBoard(qna_no);
+		
+		if(b!=null) {
+			mv.addObject("b",b)
+			.addObject("currentPage",currentPage)
+			.setViewName("product_board_detail");
+		} else {
+			mv.addObject("msg","게시글 상세조회 실패")
+			.setViewName("common/errorPage");
+		}
+		
 
-      return "product_board_detail";
-   }
+		return mv;
+	}
+	
+	
+//	/**
+//	 * @작성일  : 2020.04.07
+//	 * @작성자  : 우예진
+//	 * @내용    : 상세정보 뷰 이동
+//	 * @return
+//	 */
+//	@RequestMapping("product_board_detailView.do") 
+//	public String product_board_detailView() {
+//		return "product_board_detail";
+//		
+//	}
 
 
    /**

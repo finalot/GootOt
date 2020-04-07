@@ -14,7 +14,7 @@ public interface BoardService{
 	 * 1_1. 게시판 총 갯수 조회
 	 * @return
 	 */
-	int getListCount();
+	int getListCount(int b_cate_no);
 	
 	
 	/**
