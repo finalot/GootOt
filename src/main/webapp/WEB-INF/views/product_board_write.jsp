@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,7 +73,7 @@
       
         </div>
 </div>
-<form id="boardWriteForm" action="product_board_insert.do" method="post" enctype="multipart/form-data">
+<form id="boardWriteForm" action="product_board_insert.do" enctype="multipart/form-data">
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
             $login_page_url = /member/login.html
@@ -100,7 +101,7 @@
            <td><input type="text" name="qna_title" style="width: 390px;height: 26px;">
 		   </td>
     </tr>
-    
+
     
 	<td colspan="2" class="clear">           
             <script type="text/javascript" src="//editor.cafe24.com/js/nneditor.js?c=ko"></script>
@@ -183,11 +184,12 @@
                 <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
-                <a href="#" id="insert_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</a>
+                <a href="" id="insert_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</a>
                 <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
             </span>
         </div>
 	</div>
+	    <input type="hidden" value="가라" name="go">
 </form>
 </div>
 
@@ -199,7 +201,7 @@
 
 $('#insert_ok').click(function(){
 	$('#boardWriteForm').submit();
-})
+});
 
 </script>
 

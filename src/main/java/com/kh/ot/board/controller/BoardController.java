@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import com.kh.ot.board.service.BoardService;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.common.Pagination;
+import com.kh.ot.member.vo.Member;
 
 
 
@@ -264,37 +266,36 @@ public class BoardController extends HttpServlet {
 	 * @내용    : 상품문의 글쓰기 insert
 	 * @return
 	 */
-	@RequestMapping(value="product_board_insert.do", method=RequestMethod.POST )
-	public String product_board_insert(Board b,String content,HttpServletRequest request,
+	@RequestMapping("product_board_insert.do")
+	public String product_board_insert(Board b,HttpServletRequest request,HttpSession session,
 			@RequestParam(name="uploadFile",required=false) MultipartFile file) {
 		
-		System.out.println(b.toString());
-		System.out.println(content);
-//		if(!file.getOriginalFilename().equals("")) {
-//			// 서버에 업로드
-//			// saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명으 반환해주는 메소드
-//			
-//			String renameFileName = saveFile(file,request);
-//			
-//			if(renameFileName != null) {
-//				b.setOriginalFileName(file.getOriginalFilename());// DB에는 파일명 저장
-//				b.setRenameFileName(renameFileName);
-//			}
-//			
-//		}
-//		
+		Member m = (Member)session.getAttribute("loginMember");		
+		
+		b.setMem_no(m.getMemNo());
+		b.setQna_writer(m.getMemId());
+		
+		
+		if(!file.getOriginalFilename().equals("")) {
+			// 서버에 업로드
+			// saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명으 반환해주는 메소드
+			
+			String renameFileName = saveFile(file,request);
+			
+			if(renameFileName != null) {
+				b.setOriginalFileName(file.getOriginalFilename());// DB에는 파일명 저장
+				b.setRenameFileName(renameFileName);
+			}
+			
+		}		
+		int result = bService.insertBoard(b);
 
-	
-//		
-//		int result = bService.insertBoard(b);
-//	
-//
-//		if(result >0) {
-//			return "redirect:product_board_detail.do";
-//		} else {
-//			return "common/errorPage";
-//		}
-		return null;
+		if(result >0) {
+			return "redirect:product_board_detail.do";
+		} else {
+			return null;
+		}
+		
 	}
 	
 	
