@@ -110,7 +110,13 @@ margin-top: 1%;
     margin-left: 3%;
     font-size: 50px;
 }
+.cpName{
+	border: 1px solid #ddd;
+}
+.cpDiscount{
+	border: 1px solid #ddd;
 
+}
 </style>
 
 </head>
@@ -281,77 +287,7 @@ margin-top: 1%;
         <tr>
             <td class="first"><span style="color: red">*</span> 이벤트 명</td>
             <td class="second"><input type="text" name="subject" id="subject"><button id="coupon_open" style="margin-left: 41%;background: black;color: white;height: 40px; width: 90px;border-radius: 10px;">쿠폰등록</button>
-                <div id="coupon_div">
-                 
-                    <div align="right" style="background: black;"><button id="coupon_close" style="color: white;margin-right: 1%;">X</button></div>
-                  <div style="border-bottom: 1px solid; display: flex; margin-left: 2%;margin-right: 2%;">
-                	<p style="margin-left: 4%;margin-top: 4%;font-size: 25px;font-weight: bold;">쿠폰</p><button id="coupon-plus"> + </button>   
-                </div>
-                <div align="center" style="height: 70%;width: 96%;overflow: auto;">
-				<table  id="coupon-table" style="margin-top: 3%;font-size: 20px;overflow: scroll;">
-					<thead>
-						<tr style="background: black;color: white;">
-							<th style="padding-left: 100px;border-right: 1px solid;">쿠폰명</th>
-							<th style="padding-left: 105px;">쿠폰가격</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><input class="coupon_name" type="text"></td>
-							<td><input class="coupon_price" type="text"></td>
-							<td><button>X</button></td>
-						</tr>
-						<tr>
-							<td><input class="coupon_name" type="text"></td>
-							<td><input class="coupon_price" type="text"></td>
-							<td><button>X</button></td>
-						</tr>
-						<tr>
-							<td><input class="coupon_name" type="text"></td>
-							<td><input class="coupon_price" type="text"></td>
-							<td><button>X</button></td>
-						</tr>
-						<tr>
-							<td><input class="coupon_name" type="text"></td>
-							<td><input class="coupon_price" type="text"></td>
-							<td><button>X</button></td>
-						</tr>
-						<tr>
-							<td><input class="coupon_name" type="text"></td>
-							<td><input class="coupon_price" type="text"></td>
-							<td><button>X</button></td>
-						</tr>
-						<tr>
-							<td><input class="coupon_name" type="text"></td>
-							<td><input class="coupon_price" type="text"></td>
-							<td><button>X</button></td>
-						</tr>
-						<tr>
-							<td><input class="coupon_name" type="text"></td>
-							<td><input class="coupon_price" type="text"></td>
-							<td><button>X</button></td>
-						</tr>
-						<tr>
-							<td><input class="coupon_name" type="text"></td>
-							<td><input class="coupon_price" type="text"></td>
-							<td><button>X</button></td>
-						</tr>
-						<tr>
-							<td><input class="coupon_name" type="text"></td>
-							<td><input class="coupon_price" type="text"></td>
-							<td><button>X</button></td>
-						</tr>
-					</tbody>
-				</table>
-				
-				</div> 
-				
-				 <div align="center"><button id="coupon_input">쿠폰등록</button></div>
-               </div>
                      <br>
-                   
-                </div>
             </td>
         
         </tr>
@@ -415,31 +351,108 @@ margin-top: 1%;
     </div></div>
      <div class="page-wrapper">
     </div>
-
+           <div id="coupon_div">
+                 
+                    <div align="right" style="background: black;"><button id="coupon_close" style="color: white;margin-right: 1%;">X</button></div>
+                  <div style="border-bottom: 1px solid; display: flex; margin-left: 2%;margin-right: 2%;">
+                	<p style="margin-left: 4%;margin-top: 4%;font-size: 25px;font-weight: bold;">쿠폰</p><button id="coupon-plus"> + </button>   
+                </div>
+                <div align="center" style="height: 70%;width: 96%;overflow: auto;">
+		<table  id="coupon-table" style="margin-top: 3%;font-size: 20px;overflow: scroll;">
+			<thead>
+						<tr style="background: black;color: white;">
+							<th style="padding-left: 100px;border-right: 1px solid;">쿠폰명</th>
+							<th style="padding-left: 105px;">쿠폰가격</th>
+							<th></th>
+						</tr>
+				</thead>
+				<tbody class="cpBody">
+						<tr>
+							<td><input class="cpName" type="text"></td>
+							<td><input class="cpDiscount" type="text"></td>
+							<td><button onclick="cpClose(this)">X</button></td>
+						</tr>
+					</tbody>
+				</table>
+				</div> 
+				 <div align="center"><button id="coupon_input">쿠폰등록</button></div>
+               </div>
+	
     <script>
+    	
         $('#coupon_open').click(function(){
                $('#coupon_div').css('display','block'); 
         });
         $('#coupon_close').click(function(){
             $('#coupon_div').css('display','none');
         });
-        $('#coupon_input').click(function(){
-            if($('.coupon_name').val() && $('#coupon_price').val() != ""){
-                var coupon_name = $('.coupon_name').val();
+     /*    $('#coupon_input').click(function(){
+            if($('.cpName').val() && $('#cpDiscount').val() != ""){
+                var coupon_name = $('.cpName').val();
 
-                $('#d_coupon').append("<option value="+coupon_name+">"+coupon_name
+                $('#d_coupon').append("<option value="+cpName+">"+cpName
                                         +"</option>");
                 alert('쿠폰등록 완료');
                 $('#coupon_div').css('display','none');
-                    document.getElementById('.coupon_name').value = "";
-                    document.getElementById('.coupon_price').value = "";
+                    document.getElementById('.cpName').value = "";
+                    document.getElementById('.cpDiscount').value = "";
             }else{
                 
                 alert('쿠폰명 또는 쿠폰가격을 입력해 주세요')
             }
+		
+        }); */
+        
+    	$('#coupon-plus').click(function(){
+    		$('.cpBody').append('<tr>'+
+					'<td><input name="cpName" class="cpName" type="text"></td>'+
+					'<td><input name="cpDiscount" class="cpDiscount" type="text"></td>'+
+					'<td><button onclick="cpClose(this)">X</button></td>'+
+					'</tr>');
+    	});
+    	
+    	function cpClose(en){
+    		$(en).parents('tr').remove('tr');
+    	};
 
 
+        
+        var cpNameArr = Array();
+        var cpDisArr = Array();
+ 		var cpName = document.getElementsByName('cpName');
+ 		var cpDiscount = document.getElementsByName('cpDiscount');
+        	
+ 	 
+        
+    
+        $('#coupon_input').click(function(){
+        	
+           for(var i=0; i<cpName.length;i++){
+            	cpNameArr[i] = cpName[i].value;
+            	cpDisArr[i] = cpDiscount[i].value;
+            } 
+            
+       console.log(cpDiscount);
+            
+            $.ajax({
+        		url : "couponInput.do",
+        		traditional : true,
+        		data : {cpName : cpNameArr ,cpDiscount: cpDisArr },
+        		success : function(data){
+        			if(data == "ok"){
+        				alert("정상이다");
+        			}else{
+        				alert("실패다");
+        			}
+        		},error : function(){
+        			alert('에러다');
+        		}
+        	});
+        
+        
         });
+        
+        
     </script>
 
 
@@ -495,6 +508,7 @@ margin-top: 1%;
     </script>
 
     <script type="text/javascript">
+    
         function readURL(input) {
         if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -505,20 +519,8 @@ margin-top: 1%;
         }
         }
         </script>
-        <script>
+      
         
-        $('#coupon_input').click(function(){
-        	$.ajax({
-        		url : "couponInput.do",
-        		
-        		
-        	})
-        	
-        	
-        });
-        </script>
-        
-    
 
 
     </script>

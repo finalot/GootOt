@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.board.dao.BoardDao;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;

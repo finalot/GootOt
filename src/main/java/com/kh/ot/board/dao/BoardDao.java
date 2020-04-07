@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 
@@ -33,5 +34,5 @@ public class BoardDao {
 	public int getListCount() {
 		return sqlSession.selectOne("boardMapper.getListCount");
 	}
-	
+
 }
