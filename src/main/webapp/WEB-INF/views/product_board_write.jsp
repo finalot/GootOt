@@ -73,7 +73,7 @@
       
         </div>
 </div>
-<form id="boardWriteForm" action="product_board_insert.do" enctype="multipart/form-data">
+<form id="boardWriteForm" action="product_board_insert.do"  method="POST" enctype="multipart/form-data">
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
             $login_page_url = /member/login.html
@@ -155,7 +155,7 @@
 		<tbody class="">
 			<tr>
 				<th scope="row">FILE 01</th>
-                    <td><input name="uploadFile" type="file"></td>
+                 <td><input type="file" name="uploadFile"></td>
             </tr>
             
 			
@@ -184,13 +184,12 @@
                 <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
-                <a href="" id="insert_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</a>
+                <input type="submit" class="yg_btn_30 yg_btn4"  value="OK">
                 <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
             </span>
         </div>
 	</div>
-	    <input type="hidden" value="가라" name="go">
-</form>
+	</form>
 </div>
 
 	</div>

@@ -505,7 +505,18 @@ margin-top: 1%;
         }
         }
         </script>
+        <script>
         
+        $('#coupon_input').click(function(){
+        	$.ajax({
+        		url : "couponInput.do",
+        		
+        		
+        	})
+        	
+        	
+        });
+        </script>
         
     
 

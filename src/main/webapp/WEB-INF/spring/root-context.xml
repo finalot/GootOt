@@ -34,13 +34,15 @@
        <constructor-arg ref="sqlSession"/>
     </bean> 
     
+    	
+    
     <!-- 파일 업로드 시 파일크기 지정 
 			multopartResoiver    
-    ㅡ-->
-<!--     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+-->
+  <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
     				<property name="maxUploadSize" value="10000000"/>
     				<property name="maxInMemorySize" value="10000000"/>
     				
-    </bean> -->
+    </bean> 
     
 </beans>
