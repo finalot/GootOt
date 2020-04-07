@@ -7,17 +7,34 @@
 <mapper namespace="boardMapper">
 		<!-- reusltMap -->
 		<resultMap type="Board" id="BoardResultSet">
-			<id property = "bId" column="BID"/>
-			<result property="bTitle" column="BTITLE"/>
-			<result property="bWriter" column="BWRITER"/>
-			<result property="bContent" column="BCONTENT"/>
+			<id property = "qna_no" column="QNA_NO"/>
+			<result property="b_cate_no" column="B_CATE_NO"/>
+			<result property="mem_no" column="MEM_NO"/>
+			<result property="content" column="QNA_INFO"/>
+			<result property="qna_chk" column="QNA_CHK"/>
+			<result property="qna_date" column="QNA_DATE"/>
+			<result property="qna_writer" column="QNA_WRITER"/>
+			<result property="qna_title" column="QNA_TITLE"/>
 			<result property="originalFileName" column="ORIGINAL_FILENAME"/>
 			<result property="renameFileName" column="RENAME_FILENAME"/>
-			<result property="bCount" column="BCOUNT"/>
-			<result property="bCreateDate" column="B_CREATE_DATE"/>
-			<result property="bModifyDate" column="B_MODIFY_DATE"/>
-			<result property="bStatus" column="B_STATUS"/>
+			<result property="qna_modify_date" column="QNA_MODIFY_DATE"/>
+			<result property="qna_password" column="QNA_PASSWORD"/>
+			<result property="qna_secure" column="QNA_SECURE"/>
 		</resultMap>
+		
+		<insert id="insertBoard" parameterType="Board">
+		INSERT INTO QNA
+		VALUES(QNA_SEQ.NEXTVAL, #{b_cate_no},#{mem_no}, #{content}, #{qna_chk}, SYSDATE,
+				#{qna_writer},#{qna_title},#{originalFileName},#{renameFileName},SYSDATE,
+				#{qna_password},#{qna_secure})
+		</insert>
+		
+		<select id="selectBoard" resultMap="boardResultSet">
+		SELECT *
+		FROM QNA Q
+		WHERE QNA_NO=#{qna_no}
+		</select>
+		
 		
 		
 </mapper>

@@ -158,7 +158,10 @@
 			
 	</tbody>
 	<tbody>
-			
+			<tr>
+				<th scope="row">FILE 01</th>
+                 <td><input type="file" name="uploadFile"></td>
+            </tr>
             
 		</tbody>
 	</table>

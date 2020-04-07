@@ -8,7 +8,6 @@ public class Board {
 	private int b_cate_no; // 보드테이블번호
 	private int mem_no; // 회원번호
 	private String content; // 내용
-	private String qna_comment; // 답변내용
 	private String qna_chk; // 답변여부
 	private Date qna_date; // 등록일
 	private String qna_writer; // 작성자
@@ -21,7 +20,7 @@ public class Board {
 	
 	public Board() {}
 
-	public Board(int qna_no, int b_cate_no, int mem_no, String content, String qna_comment, String qna_chk,
+	public Board(int qna_no, int b_cate_no, int mem_no, String content, String qna_chk,
 			Date qna_date, String qna_writer, String qna_title, String originalFileName, String renameFileName,
 			Date qna_modify_date, String qna_password, String qna_secure) {
 		super();
@@ -29,7 +28,6 @@ public class Board {
 		this.b_cate_no = b_cate_no;
 		this.mem_no = mem_no;
 		this.content = content;
-		this.qna_comment = qna_comment;
 		this.qna_chk = qna_chk;
 		this.qna_date = qna_date;
 		this.qna_writer = qna_writer;
@@ -72,14 +70,6 @@ public class Board {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public String getQna_comment() {
-		return qna_comment;
-	}
-
-	public void setQna_comment(String qna_comment) {
-		this.qna_comment = qna_comment;
 	}
 
 	public String getQna_chk() {
@@ -157,7 +147,7 @@ public class Board {
 	@Override
 	public String toString() {
 		return "Board [qna_no=" + qna_no + ", b_cate_no=" + b_cate_no + ", mem_no=" + mem_no + ", content=" + content
-				+ ", qna_comment=" + qna_comment + ", qna_chk=" + qna_chk + ", qna_date=" + qna_date + ", qna_writer="
+				+ ", qna_chk=" + qna_chk + ", qna_date=" + qna_date + ", qna_writer="
 				+ qna_writer + ", qna_title=" + qna_title + ", originalFileName=" + originalFileName
 				+ ", renameFileName=" + renameFileName + ", qna_modify_date=" + qna_modify_date + ", qna_password="
 				+ qna_password + ", qna_secure=" + qna_secure + "]";
