@@ -6,7 +6,7 @@
 
 <mapper namespace="boardMapper">
 		<!-- reusltMap -->
-		<resultMap type="Board" id="BoardResultSet">
+		<resultMap type="Board" id="boardResultSet">
 			<id property = "qna_no" column="QNA_NO"/>
 			<result property="b_cate_no" column="B_CATE_NO"/>
 			<result property="mem_no" column="MEM_NO"/>
@@ -29,11 +29,17 @@
 				#{qna_password},#{qna_secure})
 		</insert>
 		
-		<select id="selectBoard" resultMap="boardResultSet">
+		<select id="selectBoard" parameterType="Board" resultMap="boardResultSet">
 		SELECT *
-		FROM QNA Q
+		FROM QNA
 		WHERE QNA_NO=#{qna_no}
 		</select>
+		
+		<select id="getListCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*)
+		FROM QNA
+		WHERE B_CATE_NO=#{b_cate_no}
+	</select>
 		
 		
 		

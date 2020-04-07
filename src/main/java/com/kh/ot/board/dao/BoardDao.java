@@ -30,8 +30,15 @@ public class BoardDao {
 	}
 
 
-	public int getListCount() {
-		return sqlSession.selectOne("boardMapper.getListCount");
+	public int getListCount(int b_cate_no) {
+		return sqlSession.selectOne("boardMapper.getListCount",b_cate_no);
+	}
+
+
+	public Board selectBoard(int qna_no) {
+		Board b = new Board();
+		b.setQna_no(qna_no);
+		return sqlSession.selectOne("boardMapper.selectBoard",b);
 	}
 	
 }
