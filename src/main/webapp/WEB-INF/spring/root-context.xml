@@ -34,6 +34,8 @@
        <constructor-arg ref="sqlSession"/>
     </bean> 
     
+    	
+    
     <!-- 파일 업로드 시 파일크기 지정 
 			multopartResoiver    
     ㅡ-->

@@ -3,6 +3,7 @@ package com.kh.ot.board.vo;
 import java.sql.Date;
 
 public class Board {
+	
 	private int qna_no; // qna번호
 	private int b_cate_no; // 보드테이블번호
 	private int mem_no; // 회원번호

@@ -1,5 +1,7 @@
 package com.kh.ot.admin.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -165,4 +167,20 @@ public class menuController {
 	public String review_report_list() {
 		return "admin/review_report_list";
 	}
+	
+	/**
+	 * @작성일  : 2020. 4. 7.
+	 * @작성자  : 문태환
+	 * @내용 	: 쿠폰등록 
+	 * @param response
+	 */
+	@RequestMapping("couponInput.do")
+	public void couponInput(HttpServletResponse response) {
+		
+		
+		
+		
+	}
+	
+	
 }
