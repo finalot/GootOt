@@ -157,7 +157,6 @@
 				<option value="subject">제목</option>
 				<option value="content">내용</option>
 				<option value="writer_name">글쓴이</option>
-				<option value="member_id">아이디</option>
 				</select> 
 		<input id="search" name="search" class="inputTypeText" placeholder="" value="" type="text">
 		<a href="#none" onclick="BOARD.form_submit('boardSearchForm');" class="yg_btn_28 yg_btn318">

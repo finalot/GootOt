@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.board.vo.SearchCondition;
 
 @Repository("bDao")
 public class BoardDao {
@@ -38,6 +39,20 @@ public class BoardDao {
 
 	public Board selectBoard(int qna_no) {
 		return sqlSession.selectOne("boardMapper.selectBoard",qna_no);
+	}
+
+
+	public int SearchListCount(SearchCondition sc) {
+		return sqlSession.selectOne("boardMapper.SearchListCount",sc);
+	}
+
+
+	public ArrayList<Board> selectSearchList(PageInfo pi, SearchCondition sc) {
+		
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("boardMapper.selectSearchList",sc,rowBounds);
 	}
 
 }

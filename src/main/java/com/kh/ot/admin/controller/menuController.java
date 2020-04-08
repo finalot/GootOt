@@ -21,8 +21,7 @@ import com.kh.ot.admin.vo.Coupon;
 @Controller
 public class menuController {
 	
-	@Autowired
-	private AdminService aService;
+
 
 		@Autowired
 		private adminService adService;
@@ -194,25 +193,6 @@ public class menuController {
 	
 //	기능 시작 
 	
-
-	
-	/**
-	 * @작성일 : 2020. 4. 7.
-	 * @작성자 : 이서현
-	 * @내용 : 카테고리 전체 출력  
-	 */
-	@RequestMapping(value = "category.ad", method = RequestMethod.GET)
-	public void insertUpCategory(Model model) throws Exception {
-	 //logger.info("get goods register");
-	 
-	 List<UpCategory> upcate = null;
-	 upcate = AdminService.insertUpCategory();
-	 model.addAttribute("upcate", JSONArray.fromObject(upcate));
-	}
-	
-	
-	
-	
 	/**
 	 * @작성일  : 2020. 4. 7.
 	 * @작성자  : 문태환
@@ -222,10 +202,6 @@ public class menuController {
 	 */
 	@RequestMapping("couponInput.do")
 	public void couponInput(HttpServletResponse response,String[] cpName,int[] cpDiscount) throws IOException {
-		
-		
-		
-	
 		
 		ArrayList<Coupon> clist = new ArrayList<Coupon>();
 		

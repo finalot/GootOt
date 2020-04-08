@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.board.vo.SearchCondition;
 
 public interface BoardService{
 
@@ -43,6 +44,28 @@ public interface BoardService{
 	 * @return
 	 */
 	Board selectBoard(int qna_no);
+
+
+	
+	/**
+	 * @작성일  : 2020. 4. 8.
+	 * @작성자  : 우예진
+	 * @내용    : 4.검색리스트카운트
+	 * @param sc
+	 * @return
+	 */
+	int SearchListCount(SearchCondition sc);
+
+
+	/**
+	 * @작성일  : 2020. 4. 8.
+	 * @작성자  : 우예진
+	 * @내용    : 5. 검색 리스트 뿌리기
+	 * @param pi
+	 * @param sc
+	 * @return
+	 */
+	ArrayList<Board> selectSearchList(PageInfo pi, SearchCondition sc);
 	
 
 	
