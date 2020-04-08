@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품문의 패스워드</title>
+<title>배송문의 패스워드</title>
    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
@@ -119,7 +119,7 @@ input[type=password] {
    				 padding: 35px 20px;
    				 font-weight: 400;
     			letter-spacing: 2px;
-    			margin-left: 46.8%;">상품 문의</h2>
+    			margin-left: 46.8%;">배송 문의</h2>
          </div>
          
          <form id="boardSecureForm" name="" action="/exec/front/Board/secure/6" method="post" target="_self" enctype="multipart/form-data">
