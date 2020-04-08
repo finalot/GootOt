@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ot.common.MainPagination;
-import com.kh.ot.common.Pagination;
 import com.kh.ot.main.service.MainService;
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
+import com.kh.ot.main.vo.Product_opt;
 
 //@SessionAttributes("loginMember")
 @Controller
@@ -40,9 +41,15 @@ public class mainController {
 		
 		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage,listCount);
 
-ArrayList<Product> plist = mainService.selectList1(mainPi,product1);
+		ArrayList<Product> plist = mainService.selectList1(mainPi,product1);
+		
+		ArrayList<Product_opt> polist = mainService.selectOptionList1(product1);
+		
+		ArrayList<Product_color> pclist = mainService.selectColorList1(product1);
 		
 		mv.addObject("plist",plist);
+		mv.addObject("polist",polist);
+		mv.addObject("pclist",pclist);
 		mv.addObject("mainPi",mainPi);
 		mv.setViewName("product");
 		
@@ -66,7 +73,13 @@ ArrayList<Product> plist = mainService.selectList1(mainPi,product1);
 
 ArrayList<Product> plist = mainService.selectList2(mainPi,product2);
 		
+ArrayList<Product_opt> polist = mainService.selectOptionList2(product2);
+
+ArrayList<Product_color> pclist = mainService.selectColorList2(product2);
+
 		mv.addObject("plist",plist);
+		mv.addObject("polist",polist);
+		mv.addObject("pclist",pclist);
 		mv.addObject("mainPi",mainPi);
 		mv.setViewName("product");
 		

@@ -12,17 +12,45 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
+import com.kh.ot.main.vo.Product_opt;
 
 @Repository("mainDao")
 public class MainDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	
+	
+	/**
+	 * 이대윤
+	 * 상품 컬러,옵션 불러오기
+	 * @param product1
+	 * @return
+	 */
+	public ArrayList<Product_opt> selectOptionList1(int product1){
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductOption1",product1);
+	}
+	
+	public ArrayList<Product_color> selectColorList1(int product1){
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductColor1",product1);
+	}
+	
+	public ArrayList<Product_opt> selectOptionList2(int product2){
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductOption2",product2);
+	}
+	
+	public ArrayList<Product_color> selectColorList2(int product2){
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductColor2",product2);
+	}
+	
+	
 	/**
 	 * @param prdtNo 
 	 * @작성일 : 2020. 4. 8.
-	 * @작성자 :
-	 * @내용 :
+	 * @작성자 :이대윤
+	 * @내용 :상품 갯수 파악
 	 * @param @return
 	 * @return int
 	 */

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
+import com.kh.ot.main.vo.Product_opt;
 
 public interface MainService {
 	
@@ -33,6 +35,23 @@ public interface MainService {
 	 * @return product
 	 */
 	ArrayList<Product> selectList1(MainPageInfo mainPi, int product1);
-	
+
+	/**
+	 * 이대윤
+	 * 상품옵션 불러오기
+	 * @param product1
+	 * @return
+	 */
+	ArrayList<Product_opt> selectOptionList1(int product1);
+	ArrayList<Product_opt> selectOptionList2(int product2);
+
+	/**
+	 * 이대윤
+	 * 상품 컬러 불러오기
+	 * @param product1
+	 * @return
+	 */
+	ArrayList<Product_color> selectColorList1(int product1);
+	ArrayList<Product_color> selectColorList2(int product2);
 	
 }

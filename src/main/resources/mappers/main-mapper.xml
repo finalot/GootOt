@@ -22,6 +22,22 @@
 			<result property="prdtDetailImage" column="PRDT_DETAIL_IMAGE"/>
 			<result property="prdtDetailImagePath" column="PRDT_DETAIL_IMAGE_PATH"/>
 		</resultMap>
+		
+		<resultMap type="Product_opt" id="product_optResultSet">
+			<id property = "optNo" column="OPT_NO"/>
+			<result property="PrdtNo" column="PRDT_NO"/>
+			<result property="optColor" column="OPT_COLOR"/>
+			<result property="size" column="OPT_SIZE"/>
+			<result property="stock" column="OPT_STOCK"/>
+			<result property="optDate" column="OPT_DATE"/>
+			<result property="optModifyDate" column="MODIFY_DATE"/>
+			<result property="prdtCode" column="PRDT_CODE"/>
+		</resultMap>
+		
+		<resultMap type="Product_color" id="product_colorResultSet">
+			<id property = "pcName" column="PC_NAME"/>
+			<result property="pcRgb" column="PC_RGB"/>
+		</resultMap>
 
 	
 		<select id="getListCount1" parameterType="_int" resultType="_int">
@@ -48,6 +64,30 @@
 		FROM PRDT
 		WHERE PRDT_NO LIKE #{product2}||'%'
 		ORDER BY PRDT_NO DESC
+		</select>
+		
+		<select id="selectProductOption1" parameterType="_int" resultMap="product_optResultSet">
+		SELECT *
+		FROM PRDT_OPT
+		WHERE PRDT_NO LIKE #{product1}||'%'
+		</select>
+		
+		<select id="selectProductOption2" parameterType="_int" resultMap="product_optResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NO LIKE #{product2}||'%'
+		</select>
+		
+		<select id="selectColorList1" parameterType="_int" resultMap="product_colorResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NO LIKE #{product1}||'%'
+		</select>
+		
+		<select id="selectColorList1" parameterType="_int" resultMap="product_colorResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NO LIKE #{product2}||'%'
 		</select>
 
 		

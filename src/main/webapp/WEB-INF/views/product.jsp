@@ -141,12 +141,10 @@
 							</div>
 
 							<ul class="flex-w">
-									
-								<li style="width:17px;height:17px;background:black;float:left;border:1px solid black;"></li>
-										<li style="width:17px;height:17px;background:gray;margin-left:3px;float:left;border:1px solid black;"></li>
-										<li style="width:17px;height:17px;background:#39761F;margin-left:3px;float:left;border:1px solid black;"></li>
-										<li style="width:17px;height:17px;background:#E4F650;margin-left:3px;float:left;border:1px solid black;"></li>
-										<li style="width:17px;height:17px;background:#4A87B9;margin-left:3px;float:left;border:1px solid black;"></li>
+									<c:forEach var="pc" items="${ pclist }">
+								<li class="color-choice"style="width:17px;height:17px;background:${pc.pcRgb};display:inline-block;border:1px solid black;margin-right:2px;"></li>
+								</c:forEach>
+										
 							</ul>
 						</div>
 
@@ -222,11 +220,15 @@
 
 								<div class="block2-txt p-t-20">
 									<span class="block2-price m-text6 p-r-5" >
-										<div style="width:17px;height:17px;background:black;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:gray;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:#39761F;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:#E4F650;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:#4A87B9;margin-left:3px;float:left;border:1px solid black;"></div>
+									<c:forEach var="po" items="${ polist }">
+										<c:forEach var="pc" items="${ pclist }">
+										
+										<c:if test="${ po.optColor == pc.pcName }">
+										<div style="width:17px;height:17px;background:${pc.pcRgb};display:inline-block;border:1px solid black;margin-left:1px;"></div>
+										</c:if>
+										
+										</c:forEach>
+									</c:forEach>
 									</span>
 										
 									<br>
