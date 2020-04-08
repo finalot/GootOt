@@ -33,7 +33,7 @@
 		<select id="getListCount2" parameterType="_int" resultType="_int">
 	  	SELECT COUNT(*)
 	  	FROM PRDT
-	  	WHERE PRDT_NO LIKE #{product2}%
+	  	WHERE PRDT_NO LIKE '%'||#{product2}||'%'
 		</select>
   
 		<select id="selectProduct1" parameterType="_int" resultMap="productResultSet">
@@ -46,7 +46,7 @@
 		<select id="selectProduct2" parameterType="_int" resultMap="productResultSet">
 		SELECT *
 		FROM PRDT
-		WHERE PRDT_NO LIKE #{product2}%
+		WHERE PRDT_NO LIKE '%'||#{product2}||'%'
 		ORDER BY PRDT_NO DESC
 		</select>
 
