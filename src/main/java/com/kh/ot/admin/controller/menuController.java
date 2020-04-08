@@ -2,16 +2,9 @@ package com.kh.ot.admin.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-<<<<<<< HEAD
-import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-=======
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletResponse;
->>>>>>> 52ee419cb9e10c009596eb97bf4f1b64f1b29f28
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,16 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-<<<<<<< HEAD
-import com.kh.ot.admin.service.AdminService;
-import com.kh.ot.admin.vo.UpCategory;
-import com.kh.ot.member.vo.Member;
-
-import net.sf.json.JSONArray;
-=======
 import com.kh.ot.admin.servie.adminService;
 import com.kh.ot.admin.vo.Coupon;
->>>>>>> 52ee419cb9e10c009596eb97bf4f1b64f1b29f28
 
 @SessionAttributes("loginMember")
 @Controller
@@ -38,12 +23,9 @@ public class menuController {
 	@Autowired
 	private AdminService aService;
 
-<<<<<<< HEAD
-=======
 		@Autowired
 		private adminService adService;
 	
->>>>>>> 52ee419cb9e10c009596eb97bf4f1b64f1b29f28
 	
 	/**
 	 * @작성일 : 2020. 4. 4.
@@ -195,7 +177,6 @@ public class menuController {
 		return "admin/review_report_list";
 	}
 	
-<<<<<<< HEAD
 	
 	
 //	기능 시작 
@@ -219,7 +200,6 @@ public class menuController {
 	
 	
 	
-=======
 	/**
 	 * @작성일  : 2020. 4. 7.
 	 * @작성자  : 문태환
@@ -253,5 +233,4 @@ public class menuController {
 	}
 	
 	
->>>>>>> 52ee419cb9e10c009596eb97bf4f1b64f1b29f28
 }
