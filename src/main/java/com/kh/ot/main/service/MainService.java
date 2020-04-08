@@ -51,7 +51,7 @@ public interface MainService {
 	 * @param product1
 	 * @return
 	 */
-	ArrayList<Product_color> selectColorList1(int product1);
-	ArrayList<Product_color> selectColorList2(int product2);
+	ArrayList<Product_color> selectColorList1();
+	ArrayList<Product_color> selectColorList2();
 	
 }

@@ -1,3 +1,5 @@
+<%@page import="com.kh.ot.main.vo.Product_color"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -141,10 +143,23 @@
 							</div>
 
 							<ul class="flex-w">
-									<c:forEach var="pc" items="${ pclist }">
-								<li class="color-choice"style="width:17px;height:17px;background:${pc.pcRgb};display:inline-block;border:1px solid black;margin-right:2px;"></li>
-								</c:forEach>
+							<c:forEach var="pp" items="${ plist }">
+								<c:forEach var="poo" items="${ polist }">
+								
+									<c:if test="${ pp.prdtNo eq poo.prdtNo }">
+									
 										
+										
+										<c:forEach var="pcc" items="${ pclist }">
+											<c:if test="${ poo.optColor eq pcc.pcName }">
+								<li class="color-choice" id="${pcc.pcRgb}" style="width:17px;height:17px;display:inline-block;
+								border:1px solid black;margin-right:2px;margin-bottom:2px;background:${pcc.pcRgb};"></li>
+								
+											</c:if>		
+										</c:forEach>
+									</c:if>
+								</c:forEach>
+							</c:forEach>
 							</ul>
 						</div>
 
@@ -220,19 +235,25 @@
 
 								<div class="block2-txt p-t-20">
 									<span class="block2-price m-text6 p-r-5" >
-									<c:forEach var="po" items="${ polist }">
+								<c:forEach var="po" items="${ polist }">
+								
+									<c:if test="${ p.prdtNo eq po.prdtNo }">
+									
 										<c:forEach var="pc" items="${ pclist }">
 										
-										<c:if test="${ po.optColor == pc.pcName }">
+										<c:if test="${ po.optColor eq pc.pcName }">
 										<div style="width:17px;height:17px;background:${pc.pcRgb};display:inline-block;border:1px solid black;margin-left:1px;"></div>
 										</c:if>
 										
 										</c:forEach>
-									</c:forEach>
+										
+									</c:if>
+									
+								</c:forEach>
 									</span>
 										
 									<br>
-									<a href="${product_detail }" class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
+									<a href="${product_detail }" id="${p.prdtNo }"class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
 										${p.prdtName }
 
 									</a>

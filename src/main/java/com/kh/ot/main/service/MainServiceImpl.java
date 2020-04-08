@@ -49,16 +49,16 @@ public class MainServiceImpl implements MainService {
 		return mainDao.selectOptionList1(product1);
 	}
 	@Override
-	public ArrayList<Product_color> selectColorList1(int product1) {
-		return mainDao.selectColorList1(product1);
+	public ArrayList<Product_color> selectColorList1() {
+		return mainDao.selectColorList1();
 	}
 	@Override
 	public ArrayList<Product_opt> selectOptionList2(int product2) {
 		return mainDao.selectOptionList2(product2);
 	}
 	@Override
-	public ArrayList<Product_color> selectColorList2(int product2) {
-		return mainDao.selectColorList2(product2);
+	public ArrayList<Product_color> selectColorList2() {
+		return mainDao.selectColorList2();
 	}
 	
 

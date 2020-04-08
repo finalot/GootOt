@@ -45,7 +45,7 @@ public class mainController {
 		
 		ArrayList<Product_opt> polist = mainService.selectOptionList1(product1);
 		
-		ArrayList<Product_color> pclist = mainService.selectColorList1(product1);
+		ArrayList<Product_color> pclist = mainService.selectColorList1();
 		
 		mv.addObject("plist",plist);
 		mv.addObject("polist",polist);
@@ -75,7 +75,7 @@ ArrayList<Product> plist = mainService.selectList2(mainPi,product2);
 		
 ArrayList<Product_opt> polist = mainService.selectOptionList2(product2);
 
-ArrayList<Product_color> pclist = mainService.selectColorList2(product2);
+ArrayList<Product_color> pclist = mainService.selectColorList2();
 
 		mv.addObject("plist",plist);
 		mv.addObject("polist",polist);

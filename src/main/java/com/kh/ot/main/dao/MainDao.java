@@ -33,16 +33,16 @@ public class MainDao {
 		return (ArrayList)sqlSession.selectList("productMapper.selectProductOption1",product1);
 	}
 	
-	public ArrayList<Product_color> selectColorList1(int product1){
-		return (ArrayList)sqlSession.selectList("productMapper.selectProductColor1",product1);
+	public ArrayList<Product_color> selectColorList1(){
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductColor1");
 	}
 	
 	public ArrayList<Product_opt> selectOptionList2(int product2){
 		return (ArrayList)sqlSession.selectList("productMapper.selectProductOption2",product2);
 	}
 	
-	public ArrayList<Product_color> selectColorList2(int product2){
-		return (ArrayList)sqlSession.selectList("productMapper.selectProductColor2",product2);
+	public ArrayList<Product_color> selectColorList2(){
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductColor2");
 	}
 	
 	
