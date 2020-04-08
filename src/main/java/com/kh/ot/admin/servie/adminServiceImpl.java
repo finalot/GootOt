@@ -23,4 +23,16 @@ public class adminServiceImpl implements adminService{
 		return adDao.couponInput(clist);
 	}
 
+
+	@Override
+	public ArrayList<Coupon> selectListCoupon() {
+		return adDao.selectListCoupon();
+	}
+
+
+	@Override
+	public int couponDelete(String cpName) {
+		return adDao.couponDelete(cpName);
+	}
+
 }

@@ -19,9 +19,9 @@
 			<result property="renameFileName" column="RENAME_FILENAME"/>
 			<result property="qna_modify_date" column="QNA_MODIFY_DATE"/>
 			<result property="qna_password" column="QNA_PASSWORD"/>
-			<result property="qna_secure" column="QNA_SECURE"/> 
+			<result property="qna_secure" column="QNA_SECURE"/>
 		</resultMap>
-		
+
 		<insert id="insertBoard" parameterType="Board">
 		INSERT INTO QNA
 		VALUES(QNA_SEQ.NEXTVAL, #{b_cate_no},#{mem_no}, #{content}, #{qna_chk}, SYSDATE,
@@ -34,7 +34,7 @@
 		FROM QNA
 		WHERE QNA_NO=#{qna_no}
 		</select>
-		
+
 		<select id="getListCount" parameterType="_int" resultType="_int">
 		SELECT COUNT(*)
 		FROM QNA
@@ -51,3 +51,6 @@
 		
 </mapper>
 
+
+
+</mapper>

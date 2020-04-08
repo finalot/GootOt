@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ot.admin.servie.adminService;
 import com.kh.ot.admin.vo.Coupon;
@@ -18,9 +21,8 @@ import com.kh.ot.admin.vo.Coupon;
 @Controller
 public class menuController {
 	
-	// @Autowired 타입의 어노테이션을 붙여주면 생성할 필요없이 변수 선언만 해도
-		// 빈 스키냉을 통해 아래의 'mService'의 이름을 가지고 있는 빈을 찾아서
-		// 자동으로 생성 후 주입해준다.
+	@Autowired
+	private AdminService aService;
 
 		@Autowired
 		private adminService adService;
@@ -87,8 +89,20 @@ public class menuController {
 	}
 	
 	@RequestMapping("eventAdd.ad")
-	public String eventAdd() {
-		return "admin/eventAdd";
+	public ModelAndView eventAdd(ModelAndView mv) {
+		
+		ArrayList<Coupon> clist = adService.selectListCoupon();
+ 		
+		if(!clist.isEmpty()) {
+			mv.addObject("clist",clist);
+			mv.setViewName("admin/eventAdd");
+		}else {
+			mv.setViewName("admin/eventAdd");
+			System.out.println("리스트 비었다 확인");
+		}
+		
+		
+		return mv;
 	}
 	
 	@RequestMapping("eventList.ad")
@@ -176,6 +190,29 @@ public class menuController {
 		return "admin/review_report_list";
 	}
 	
+	
+	
+//	기능 시작 
+	
+
+	
+	/**
+	 * @작성일 : 2020. 4. 7.
+	 * @작성자 : 이서현
+	 * @내용 : 카테고리 전체 출력  
+	 */
+	@RequestMapping(value = "category.ad", method = RequestMethod.GET)
+	public void insertUpCategory(Model model) throws Exception {
+	 //logger.info("get goods register");
+	 
+	 List<UpCategory> upcate = null;
+	 upcate = AdminService.insertUpCategory();
+	 model.addAttribute("upcate", JSONArray.fromObject(upcate));
+	}
+	
+	
+	
+	
 	/**
 	 * @작성일  : 2020. 4. 7.
 	 * @작성자  : 문태환
@@ -186,27 +223,43 @@ public class menuController {
 	@RequestMapping("couponInput.do")
 	public void couponInput(HttpServletResponse response,String[] cpName,int[] cpDiscount) throws IOException {
 		
-		Coupon co  = new Coupon();
+		
+		
+	
 		
 		ArrayList<Coupon> clist = new ArrayList<Coupon>();
 		
 		for(int i=0; i<cpName.length;i++) {
+			Coupon co  = new Coupon();
+			System.out.println("cpName : " + cpName[i]);
+			System.out.println(cpDiscount[i]);
 			co.setCpName(cpName[i]);
 			co.setCpDiscount(cpDiscount[i]);
 			clist.add(co);
 		}
+		System.out.println("clist" + clist);
 		
 		int result = adService.couponInput(clist);
 		
 		PrintWriter out = response.getWriter();
-		System.out.println("clist" + clist);
-		
 		if(result > 0) {
 			out.print("ok");
 		}else {
 			out.print("fail");
 		}
 	}
-	
-	
+		
+	@RequestMapping("couponDelete.ad")
+	public void couponDelete(HttpServletResponse response,String cpName) throws IOException {
+		
+		int result = adService.couponDelete(cpName);
+		
+		PrintWriter out = response.getWriter();
+
+		if(result > 0) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+	}
 }

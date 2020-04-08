@@ -101,7 +101,7 @@ a:cursor{
                     <div class="header-mobile-inner">
                         <a class="logo" href="
                         adminmain.html">
-                            <img src="/ot/resources/images/icon/ot.png" alt="OT" />
+                            <img src="/ot/resources/aimages/icon/ot.png" alt="OT" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -201,7 +201,7 @@ a:cursor{
                             <div class="header-button">
                                 <div class="noti-wrap">
                                 <div>
-                            <button id="chat-icon"><img style="width: 10%;margin-left: 7%;" src="ot/resources/images/icons/chat_icon.png"></button>
+                            <button id="chat-icon"><img style="width: 10%;margin-left: 7%;" src="/ot/resources/aimages/icons/chat_icon.png"></button>
                                 </div>
                                 <div id="chat-list" class="container bootstrap snippet" style=" display: none">
       <div class=row >
@@ -218,7 +218,7 @@ a:cursor{
                   <ul id="chat-user">
                  	 <li style="padding: 2%;">
                  	   <div style="display:flex">
-						  <img src="../images/icons/user.png" alt="회원사진" class="user-icon">
+						  <img src="/ot/resources/aimages/icons/user.png" alt="회원사진" class="user-icon">
 						  <div style="width: 70%;">                
 					  	  <h4 style="margin-left: 4%; font-weight: bold;">고객명</h4>
 					  	  <p class="user-text"  style="margin-left: 5%;">안녕하세요~~!! 문의드립니다</p>

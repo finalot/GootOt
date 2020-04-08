@@ -22,11 +22,11 @@
     padding-left: 3px;
     text-align: left !important;
  }
- 
+
 .thumb img {
     width: 85%;
 }
- 
+
 .thumb{
  text-align: left !important;
    padding-left: 1% !important;
@@ -54,13 +54,13 @@
 
 </style>
 <body>
-   <%@include file="header.jsp" %>   
-    
-   
+   <%@include file="header.jsp" %>
+
+
     <div id="container">
         <div id="contents" style="margin-top:11.5%;">
          <div class="mypage_top_outer">
-          
+
          </div>
 
          <div class="titleArea">
@@ -72,7 +72,7 @@
              $url = /member/login.html
          -->
          </div>
-         
+
          <div class="xans-element- xans-myshop xans-myshop-wishlist ec-base-table typeList xans-record-">
          <!--
               $login_page = /member/login.html
@@ -101,7 +101,7 @@
                    </thead>
 
                <tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center"><!--
-                
+
                 --><tr style="background-color:#F9F9F9; color:#555555;" class="xans-record-">
             <td style="font-weight:600;"></td>
                     <td class="displaynone"></td>
@@ -113,7 +113,7 @@
                     <td class=""><span class="txtNum">2017-11-09</span></td>
                     <td class="displaynone"><img src="//img.echosting.cafe24.com/skin/base/board/ico_point0.gif" alt="0점"></td>
                 </tr>
-      </tbody>   
+      </tbody>
 
             <tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
              <c:forEach var="b" items="${ list }">
@@ -124,11 +124,11 @@
                      </td>
                            <td class="thumb" >
                               <!-- subject 내용 들어갈 곳 -->
-                              
+
                              <img src="//black-up.kr/web/product/medium/201910/7e87ddc2879aa1c854575447f27b6026.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
-                           
+
                          </td>
-                         
+
                          <!-- 상품명 이름 들어갈 곳 -->
                          <td class="cen">
                             <span id="prd_name">러트 세미 부츠컷 슬랙스</span>
@@ -144,12 +144,12 @@
                         <span id="idMsg11">${b.qna_writer }</span>
                             <td class="price center"><span id="idMsg4">${b.qna_date }</span></td>
                             <td class="button">
-                              
+
                             </td>
                           </tr>
                           </c:forEach>
                </tbody>
-               
+
                <tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
                       <tr class="xans-record-">
                      <td>
@@ -158,11 +158,11 @@
                      </td>
                            <td class="thumb" >
                               <!-- subject 내용 들어갈 곳 -->
-                              
+
                              <img src="//black-up.kr/web/product/medium/201910/7e87ddc2879aa1c854575447f27b6026.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
-                           
+
                          </td>
-                         
+
                          <!-- 상품명 이름 들어갈 곳 -->
                          <td class="cen">
                             <span id="prd_name">러트 세미 부츠컷 슬랙스</span>
@@ -179,19 +179,19 @@
                         <span id="idMsg11">홍길동</span>
                             <td class="price center"><span id="idMsg4">${b.qna_date }</span></td>
                             <td class="button">
-                              
+
                             </td>
                           </tr>
                </tbody>
-               
+
               </table>
-              
-      
+
+
          </div>
-            
+
         <a href="product_board_write.do" class="hov1 s-text1 trans-0-4 yg_btn_145">
         <span style="position: relative;top: -2px;">write</span></a>
-             
+
          <div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 "><fieldset class="boardSearch">
 <legend>게시물 검색</legend>
             <p><select id="search_date" name="search_date">
@@ -199,7 +199,7 @@
             <option value="month">한달</option>
             <option value="month3">세달</option>
             <option value="all">전체</option>
-            </select> 
+            </select>
             <select id="search_key" name="search_key">
             <option value="subject">제목</option>
             <option value="content">내용</option>
@@ -211,27 +211,27 @@
       <span id="idMsg9">SEARCH</span></a></p>
            </fieldset>
    </div>
-         
+
          <div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate1">
             <!-- <a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first"> -->
-               
-               <img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지"> 
-   
-             
-               
+
+               <img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+
+
+
                   <c:url var="before" value="product_board.do">
                   <c:param name="currentPage" value="${pi.currentPage -1 }"/>
                   </c:url>
                   <a href="${before}">
                   <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
                   </a> &nbsp;
-               
+
                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
                      <c:if test="${ p eq pi.currentPage }">
                         <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
                         <b>${ p }</b> &nbsp;&nbsp;</font>
                      </c:if>
-               
+
                      <c:if test="${ p ne pi.currentPage }">
                         <c:url var="pagination" value="product_board.do">
                            <c:param name="currentPage" value="${ p }"/>
@@ -240,18 +240,18 @@
                      ${ p }</a> &nbsp;
                   </c:if>
                </c:forEach>
-               
-              
+
+
                <c:url var="after" value="product_board.do">
                      <c:param name="currentPage" value="${pi.currentPage +1 }"/>
                   </c:url>
                   <a href="${after}">
                <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
                </a>
-               
-            
+
+
                <img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
-            
+
          </div>
 
         </div>
