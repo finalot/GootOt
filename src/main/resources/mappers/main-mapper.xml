@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="productMapper">
+		<!-- reusltMap --> 
+		<resultMap type="Product" id="productResultSet">
+			<id property = "prdtNo" column="PRDT_NO"/>
+			<result property="upNo" column="UP_NO"/>
+			<result property="prdtName" column="PRDT_NAME"/>
+			<result property="prdtComment" column="PRDT_COMMENT"/>
+			<result property="prdtPrice" column="PRDT_PRICE"/>
+			<result property="prdtMake" column="PRDT_MAKE"/>
+			<result property="prdtImage" column="PRDT_IMAGE"/>
+			<result property="prdtDate" column="PRDT_DATE"/>
+			<result property="prdtModifyDate" column="PRDT_MODIFY_DATE"/>
+			<result property="downNo" column="DOWN_CATE"/>
+			<result property="prdtCode" column="PRDT_CODE"/>
+			<result property="prdtImagePath" column="PRDT_IMAGE_PATH"/>
+			<result property="prdtDetailImage" column="PRDT_DETAIL_IMAGE"/>
+			<result property="prdtDetailImagePath" column="PRDT_DETAIL_IMAGE_PATH"/>
+		</resultMap>
+
+	
+		<select id="getListCount1" parameterType="_int" resultType="_int">
+	  	SELECT COUNT(*)
+	  	FROM PRDT
+	  	WHERE UP_NO = #{product1}
+		</select>
+		
+		<select id="getListCount2" parameterType="_int" resultType="_int">
+	  	SELECT COUNT(*)
+	  	FROM PRDT
+	  	WHERE PRDT_NO LIKE #{product2}||'%'
+		</select>
+  
+		<select id="selectProduct1" parameterType="_int" resultMap="productResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE UP_NO = #{product1}
+		ORDER BY PRDT_NO DESC
+		</select>
+		
+		<select id="selectProduct2" parameterType="_int" resultMap="productResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NO LIKE #{product2}||'%'
+		ORDER BY PRDT_NO DESC
+		</select>
+
+		
+
+
+
+</mapper>

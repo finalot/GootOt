@@ -22,7 +22,6 @@ import com.kh.ot.admin.vo.Coupon;
 public class menuController {
 	
 
-
 		@Autowired
 		private adminService adService;
 	
