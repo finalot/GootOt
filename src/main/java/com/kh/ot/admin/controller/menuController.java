@@ -199,11 +199,16 @@ public class menuController {
 	@RequestMapping("couponInput.do")
 	public void couponInput(HttpServletResponse response,String[] cpName,int[] cpDiscount) throws IOException {
 		
-		Coupon co  = new Coupon();
+		
+		
+	
 		
 		ArrayList<Coupon> clist = new ArrayList<Coupon>();
 		
 		for(int i=0; i<cpName.length;i++) {
+			Coupon co  = new Coupon();
+			System.out.println("cpName : " + cpName[i]);
+			System.out.println(cpDiscount[i]);
 			co.setCpName(cpName[i]);
 			co.setCpDiscount(cpDiscount[i]);
 			clist.add(co);
@@ -213,14 +218,24 @@ public class menuController {
 		int result = adService.couponInput(clist);
 		
 		PrintWriter out = response.getWriter();
-	
-		
 		if(result > 0) {
 			out.print("ok");
 		}else {
 			out.print("fail");
 		}
 	}
-	
-	
+		
+	@RequestMapping("couponDelete.ad")
+	public void couponDelete(HttpServletResponse response,String cpName) throws IOException {
+		
+		int result = adService.couponDelete(cpName);
+		
+		PrintWriter out = response.getWriter();
+
+		if(result > 0) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+	}
 }

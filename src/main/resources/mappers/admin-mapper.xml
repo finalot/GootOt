@@ -13,14 +13,25 @@
 			<result property="cpDate" column="CP_DATE"/>
 		</resultMap>
 
-<insert id="couponInput" parameterType="java.util.List">
-	INSERT INTO COUPON
-	VALUES(COU_SEQ.NEXTVAL,#{cpName},#{cpDiscount},SYSDATE)
+<insert id="couponInput" parameterType="java.util.Map">
+	INSERT INTO COUPON (CP_NO,CP_NAME,CP_DISCOUNT,CP_DATE)
+	SELECT COU_SEQ.NEXTVAL, A.*FROM(
+<foreach collection="clist" item="c"  separator="UNION ALL" >
+	SELECT #{c.cpName} as CP_NAME,
+				 #{c.cpDiscount} as 	CP_DISCOUNT,
+				 SYSDATE as CP_DATE
+	FROM DUAL
+	</foreach>) A
 </insert>		
 
 <select id="selectListCoupon" resultMap="CouponResultSet">
 	SELECT * FROM COUPON
 </select>	
+
+<delete id="couponDelete" parameterType="String" >
+	DELETE FROM COUPON
+	WHERE CP_NAME = #{cpName}
+</delete>
 		
 		
 </mapper>

@@ -117,6 +117,9 @@ margin-top: 1%;
 	border: 1px solid #ddd;
 
 }
+.cpDelete{
+	font-weight: bold;
+}
 </style>
 
 </head>
@@ -371,7 +374,7 @@ margin-top: 1%;
 						<tr>
 							<td><input class="cpName" type="text" value="${c.cpName }"></td>
 							<td><input class="cpDiscount" type="text" value="${c.cpDiscount }"></td>
-							<td><button onclick="cpClose(this)">삭제</button></td>
+							<td><button class="cpDelete" onclick="cpClose(this)">삭제</button></td>
 						</tr>
 				</c:forEach>
 					</tbody>
@@ -409,12 +412,28 @@ margin-top: 1%;
     		$('.cpBody').append('<tr>'+
 					'<td><input name="cpName" class="cpName" type="text"></td>'+
 					'<td><input name="cpDiscount" class="cpDiscount" type="text"></td>'+
-					'<td><button onclick="cpClose(this)">X</button></td>'+
+					'<td><button style="font-weight:blod" class="cpDelete" onclick="cpClose(this)">삭제</button></td>'+
 					'</tr>');
     	});
     	
     	function cpClose(en){
-    		$(en).parents('tr').remove('tr');
+    		
+    		if(confirm("삭제하시겠습니까?") ==true){
+    		 var cpName = $(en).parents('tr').children('td').eq(0).children().val();
+    			$.ajax({
+    				url:"couponDelete.ad",
+    				data :{cpName : cpName},
+    				success:function(data){
+    					if(data =="ok"){
+    						$(en).parents('tr').remove('tr');
+    					}else{
+    						alert('없다');
+    					}
+    				},error:function(){
+    					alert('에러다');
+    				}
+    			});
+    		}
     	};
 
 
@@ -430,24 +449,26 @@ margin-top: 1%;
         $('#coupon_input').click(function(){
         	
            for(var i=0; i<cpName.length;i++){
+        	   console.log(cpName[i].value);
             	cpNameArr[i] = cpName[i].value;
             	cpDisArr[i] = cpDiscount[i].value;
             } 
             
-       console.log(cpDiscount);
+           console.log(cpNameArr);
+           console.log(cpDisArr);
             
             $.ajax({
         		url : "couponInput.do",
         		traditional : true,
-        		data : {cpName : cpNameArr ,cpDiscount: cpDisArr },
+        		data : {'cpName' : cpNameArr ,'cpDiscount': cpDisArr },
         		success : function(data){
         			if(data == "ok"){
-        				alert("정상이다");
+        				alert("쿠폰이 등록되었습니다");
         			}else{
-        				alert("실패다");
+        				alert("쿠폰등록에 실패하였습니다");
         			}
         		},error : function(){
-        			alert('에러다');
+        			alert('쿠폰등록에 실패하였습니다');
         		}
         	});
         

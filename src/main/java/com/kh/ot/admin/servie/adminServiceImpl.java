@@ -29,4 +29,10 @@ public class adminServiceImpl implements adminService{
 		return adDao.selectListCoupon();
 	}
 
+
+	@Override
+	public int couponDelete(String cpName) {
+		return adDao.couponDelete(cpName);
+	}
+
 }
