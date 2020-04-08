@@ -555,13 +555,13 @@ margin-right: 3%;
                       주소<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td>
-                   <input id="zipCode-1" style=" width:50px;" name="postcode1" class="inputTypeText" placeholder="" readonly="readonly" maxlength="14" value="" type="text" style="width:50px;">
-                   <a href="#none" onclick="addrSearch();" id="postBtn" class="yg_btn_24 yg_btn3" >우편번호</a>
+                   <input id="zipCode" style=" width:50px;" name="postcode1"  class="inputTypeText" placeholder="" readonly="readonly" maxlength="14" value="" type="text" style="width:50px;">
+                   <a href="#none" onclick="addrSearch();" id="postBtn" class="yg_btn_24 yg_btn3">우편번호</a>
                    <br>
-                   <input id="address1-1"  name="address1"  class="inputTypeText" placeholder="" readonly="readonly" value="" type="text"><span id="idMsg" style="left: 7px;
+                   <input id="address1"  name="address1" class="inputTypeText" placeholder="" readonly="readonly" value="" type="text"><span id="idMsg" style="left: 7px;
                   position: relative;">기본주소</span>
                    <br>
-                   <input id="address2-1" name="address2"class="inputTypeText" placeholder="" value="" type="text"><span id="idMsg" style="left: 7px;
+                   <input id="address2" name="address2"  class="inputTypeText" placeholder="" value="" type="text"><span id="idMsg" style="left: 7px;
                position: relative;">나머지주소</span>
                    
                 </td>
@@ -572,7 +572,7 @@ margin-right: 3%;
                     휴대전화<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td style="border-bottom:1px solid #ddd;">
-                    <select id="mobile1-1" name="mobile1-1"  style="font-size:12px;">
+                    <select id="mobile1" name="mobile1" style="font-size:12px;">
                   <option value="010">010</option>
                   <option value="011">011</option>
                   <option value="016">016</option>
@@ -580,8 +580,8 @@ margin-right: 3%;
                   <option value="018">018</option>
                   <option value="019">019</option>
                   </select>
-                    -<input id="mobile2-1"  name="mobile[]" maxlength="4" value="" type="text">
-                    -<input id="mobile3-1"  name="mobile[]" maxlength="4" value="" type="text">
+                    -<input id="mobile2"  name="mobile[]" maxlength="4" value="" type="text">
+                    -<input id="mobile3"  name="mobile[]" maxlength="4" value="" type="text">
                 </td>
             </tr>
             
@@ -646,7 +646,6 @@ margin-right: 3%;
 					</button>
 		</div>
     </div>
-
 	<!-- Footer -->
 	<%@include file="footer.jsp" %>
 
@@ -693,7 +692,7 @@ margin-right: 3%;
 	  $('#address2').val(address[2])
 	  //폰번호 잘라서 정보 뿌리기
 	  "<c:forTokens items='${sessionScope.loginMember.memPhone}'  delims='-'  var='phone'>"
-	  phone[count1] = "${phone}"	
+	  phone[count1] = "${phone}"
 	  count1++
 	  " </c:forTokens>"
 
@@ -763,18 +762,16 @@ $('#delivery').click(function(){
 			IMP.init('imp97532169');	 
 		 }
 			 
-			 
-			 var totalpay = $('.format-money').text();
 				IMP.request_pay({
 				    pg : 'inicis',
 				    pay_method : 'card',
 				    merchant_uid : 'merchant_' + new Date().getTime(),
 				    name : '주문명:결제테스트',
 				    amount : 60500,
-				    buyer_email : "${sessionScope.loginMember.memName}",
-				    buyer_name : "${sessionScope.loginMember.memName}",
-				    buyer_tel : "${sessionScope.loginMember.memPhone}",
-				    buyer_addr : "${sessionScope.loginMember.memAddress}",
+				    buyer_email : '${sessionScope.loginMember.memEmail}',
+				    buyer_name : '${sessionScope.loginMember.memName}',
+				    buyer_tel : '${sessionScope.loginMember.memPhone}',
+				    buyer_addr : '${sessionScope.loginMember.memAddress}',
 				    buyer_postcode : '123-456'
 				}, function(rsp) {
 				    if ( rsp.success ) {

@@ -108,6 +108,11 @@
 		   </td>
     </tr>
     
+    <tr>
+		<th scope="row">TITLE</th>
+           <td>문의합니다.</td>
+    </tr>
+    
 	<tr>
 		<th scope="row">WRITER</th>
            <td>홍길동</td>
@@ -153,7 +158,10 @@
 			
 	</tbody>
 	<tbody>
-			
+			<tr>
+				<th scope="row">FILE 01</th>
+                 <td><input type="file" name="uploadFile"></td>
+            </tr>
             
 		</tbody>
 	</table>

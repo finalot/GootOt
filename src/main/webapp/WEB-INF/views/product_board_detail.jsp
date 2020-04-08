@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,7 +89,7 @@
       
         </div>
 </div>
-<form id="boardWriteForm" name="" action="/exec/front/Board/write/3001" method="post" enctype="multipart/form-data">
+<form id="boardWriteForm" name="" method="post" enctype="multipart/form-data">
 		
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
@@ -110,9 +111,14 @@
 		   </td>
     </tr>
     
+    <tr>
+		<th scope="row">TITLE</th>
+           <td>${b.qna_title }</td>
+    </tr>
+    
 	<tr>
 		<th scope="row">WRITER</th>
-           <td>홍길동</td>
+           <td>${b.qna_writer }</td>
     </tr>
     
     <tr>
@@ -122,7 +128,7 @@
                                 <span>POINT</span> <img src="/web/upload/yangji_pc_crumb/ico_point0.gif" alt="0점">
                             &nbsp;</li>
                             <li class="" style="text-align: right;position: relative;top: -49px;font-weight:600;">
-                                <span>DATE</span> <span class="txtNum">2020-03-26</span>
+                                <span>DATE</span> <span class="txtNum">${b.qna_date }</span>
                             </li>
                             
                         </ul>
@@ -141,7 +147,7 @@
 ----------------------------------------------------------------------<br>			
 
 <div class="detail_text">
-배송이 바로 가능한가요?
+${b.content }
 </div>
 </div>
                     </td>
@@ -155,7 +161,14 @@
 			
 	</tbody>
 	<tbody>
-			
+			<tr>
+				<th scope="row">FILE 01</th>
+                 <td>
+                 <c:if test="${!empty b.originalFileName }">
+               <a href="${ contextPath }/resources/buploadFiles/${ b.renameFileName }" download="${ b.originalFileName }">${ b.originalFileName }</a>
+                 </c:if>
+                 </td>
+            </tr>
             
 		</tbody>
 	</table>

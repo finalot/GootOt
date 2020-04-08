@@ -2,30 +2,48 @@ package com.kh.ot.admin.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+<<<<<<< HEAD
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+=======
+import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
+>>>>>>> 52ee419cb9e10c009596eb97bf4f1b64f1b29f28
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+<<<<<<< HEAD
+import com.kh.ot.admin.service.AdminService;
 import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.member.vo.Member;
+
+import net.sf.json.JSONArray;
+=======
+import com.kh.ot.admin.servie.adminService;
+import com.kh.ot.admin.vo.Coupon;
+>>>>>>> 52ee419cb9e10c009596eb97bf4f1b64f1b29f28
 
 @SessionAttributes("loginMember")
 @Controller
 public class menuController {
 	
-	// @Autowired 타입의 어노테이션을 붙여주면 생성할 필요없이 변수 선언만 해도
-		// 빈 스키냉을 통해 아래의 'mService'의 이름을 가지고 있는 빈을 찾아서
-		// 자동으로 생성 후 주입해준다.
+	@Autowired
+	private AdminService aService;
 
-//		@Autowired
-//		private MemberService mService;
+<<<<<<< HEAD
+=======
+		@Autowired
+		private adminService adService;
 	
+>>>>>>> 52ee419cb9e10c009596eb97bf4f1b64f1b29f28
 	
 	/**
 	 * @작성일 : 2020. 4. 4.
@@ -177,19 +195,63 @@ public class menuController {
 		return "admin/review_report_list";
 	}
 	
+<<<<<<< HEAD
 	
 	
 //	기능 시작 
 	
 
-	/*
-	 * @RequestMapping(value="category.ad",method=RequestMethod.POST) public String
-	 * insertUpCategory(UpCategory uc,Model model,
-	 * 
-	 * @RequestParam(""))
-	 * 
+	
+	/**
+	 * @작성일 : 2020. 4. 7.
+	 * @작성자 : 이서현
+	 * @내용 : 카테고리 전체 출력  
 	 */
+	@RequestMapping(value = "category.ad", method = RequestMethod.GET)
+	public void insertUpCategory(Model model) throws Exception {
+	 //logger.info("get goods register");
+	 
+	 List<UpCategory> upcate = null;
+	 upcate = AdminService.insertUpCategory();
+	 model.addAttribute("upcate", JSONArray.fromObject(upcate));
+	}
 	
 	
 	
+	
+=======
+	/**
+	 * @작성일  : 2020. 4. 7.
+	 * @작성자  : 문태환
+	 * @내용 	: 쿠폰등록 
+	 * @param response
+	 * @throws IOException 
+	 */
+	@RequestMapping("couponInput.do")
+	public void couponInput(HttpServletResponse response,String[] cpName,int[] cpDiscount) throws IOException {
+		
+		Coupon co  = new Coupon();
+		
+		ArrayList<Coupon> clist = new ArrayList<Coupon>();
+		
+		for(int i=0; i<cpName.length;i++) {
+			co.setCpName(cpName[i]);
+			co.setCpDiscount(cpDiscount[i]);
+			clist.add(co);
+		}
+		
+		int result = adService.couponInput(clist);
+		
+		PrintWriter out = response.getWriter();
+		System.out.println("clist" + clist);
+		
+		if(result > 0) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+	}
+	
+	
+>>>>>>> 52ee419cb9e10c009596eb97bf4f1b64f1b29f28
 }

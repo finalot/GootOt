@@ -200,6 +200,7 @@
        <!-- 카테고리관리 내용 -->
        <br><br>
        
+  <form role="form" method="post" autocomplete="off">
        <div style="align:center;">
        <table style="width:90%;">
         <tr>
@@ -210,33 +211,11 @@
                 <br>
                 
                 <select id="sel" name="sel" style="WIDTH: 50%; HEIGHT: auto; margin-left:30%; margin-top:3%;" 
-                			size=20 multiple>
-                    <option value="#" >#</option>
-                    <option value="PROJECT" >PROJECT</option>
-                    <option value="NTNY" >NTNY</option>
-                    <option value="MADE" >MADE</option>
-                    <option value="TOP" >TOP</option>
-                    <option value="OUTER" >OUTER</option>
-                    <option value="PANTS" >PANTS</option>
-                    <option value="SKIRT" >SKIRT</option>
-                    <option value="JEWELRY" >JEWELRY</option>
-                    <option value="BAGSHOES" >BAGSHOES</option>
-                    <option value="ACC" >ACC</option>
-                    <option value="ETC" >ETC.</option>
-                    <option value="ETC" >ETC.</option>
-                    <option value="ETC" >ETC.</option>
-                    <option value="ETC" >ETC.</option>
-                    <option value="ETC" >ETC.</option>
-                    <option value="ETC" >ETC.</option>
-                    <option value="ETC" >ETC.</option>
-                    <option value="ETC" >ETC.</option>
-                    <option value="ETC" >ETC.</option>
-                    <option value="ETC" >ETC.</option>
-                    <option value="ETC" >ETC.</option>
+                			size=20 multiple class="UpCategory">
+                   <option value="">전체</option>
                 </select>
               
               	<br>
-              	
                     
             	<input type="text" id="addOption"  style="margin-left:30%; width:50%;"/>
                 <input class="btn btn-primary" type="button" value="추가" id="btnAdd"/>
@@ -250,25 +229,8 @@
                 <br>
                 
                 <select id="sel2" name="sel2" style="WIDTH: 50%; HEIGHT: auto; margin-left:20%; margin-top:3%;" 
-                	size="20" multiple>
-                	<option value="1" >긴팔</option>
-                	<option value="2" >니트</option>
-                	<option value="3" >슬리브리스/반팔</option>
-                	<option value="4" >크롭</option>
-                	<option value="5" >오프숄더</option>
-                	<option value="6" >자켓</option>
-                	<option value="7" >코트/점퍼</option>
-                	<option value="8" >가디건</option>
-                	<option value="9" >베스트</option>
-                	<option value="10" >슬렉스</option>
-                	<option value="11" >데님</option>
-                	<option value="12" >부츠컷</option>
-                	<option value="13" >와이드</option>
-                	<option value="14" >면바지/기타</option>
-                	<option value="15" >트레이닝</option>
-                	<option value="16" >조거팬츠</option>
-                	<option value="17" >숏/반바지</option>
-                	<option value="18" >등등</option>
+                	size="20" multiple class="DownCategory">
+                	<option value="">전체</option>
                 </select>
                  
                  <br>       
@@ -279,7 +241,7 @@
         </tr>
     </table>
 	</div>
-	
+	</form>
        
        
        
@@ -375,12 +337,39 @@
             });
         });
  
-    /*     $(window).load(function(e){
+	  $(window).load(function(e){
  
-        }); */
- 
-
+        }); 
     </script>
+    <script>
+    
+	// 컨트롤러에서 데이터 받기
+	var jsonData = JSON.parse('${UpCategory}');
+	console.log(jsonData);
+	
+	var UpCateArr = new Array();
+	var UpCateObj = new Object();
+	
+	// 1차 분류 셀렉트 박스에 삽입할 데이터 준비
+	for(var i = 0; i < jsonData.length; i++) {
+	 
+	 if(jsonData[i].level == "1") {
+	  UpCateObj = new Object();  //초기화
+	  UpCateObj.cateCode = jsonData[i].cateCode;
+	  UpCateObj.cateName = jsonData[i].cateName;
+	  UpCateArr.push(UpCateObj);
+	 }
+	}
+	
+	// 1차 분류 셀렉트 박스에 데이터 삽입
+	var UpCateSelect = $("select.UpCategory")
+	
+	for(var i = 0; i < UpCateArr.length; i++) {
+		UpCateSelect.append("<option value='" + UpCateArr[i].cateCode + "'>"
+	      + UpCateArr[i].cateName + "</option>"); 
+	}
+	
+	</script>
        <!-- Jquery JS-->
     <script src="/ot/resources/avendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
