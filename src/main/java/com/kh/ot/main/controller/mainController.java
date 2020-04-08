@@ -1,24 +1,20 @@
 package com.kh.ot.main.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.ot.member.service.MemberService;
-import com.kh.ot.member.vo.Member;
+import com.kh.ot.common.MainPagination;
+import com.kh.ot.common.Pagination;
+import com.kh.ot.main.service.MainService;
+import com.kh.ot.main.vo.MainPageInfo;
+import com.kh.ot.main.vo.Product;
 
-@SessionAttributes("loginMember")
+//@SessionAttributes("loginMember")
 @Controller
 public class mainController {
 
@@ -26,13 +22,9 @@ public class mainController {
 	// 빈 스키냉을 통해 아래의 'mService'의 이름을 가지고 있는 빈을 찾아서
 	// 자동으로 생성 후 주입해준다.
 
-//	@Autowired
-//	private MemberService mService;
+	@Autowired
+	private MainService mainService;
 	
-//	암호화용 	
-//	@Autowired
-//	private BCryptPasswordEncoder bcryptPasswordEncoder;
-
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
@@ -41,10 +33,22 @@ public class mainController {
 	 * @return String
 	 */
 	@RequestMapping("product1.do")
-	public String product1() {
-		return "product";
-	}
+	public ModelAndView product1(ModelAndView mv,int product1,
+			@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
+		
+		int listCount = mainService.getListCount1(product1);
+		
+		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage,listCount);
 
+ArrayList<Product> plist = mainService.selectList1(mainPi,product1);
+		
+		mv.addObject("plist",plist);
+		mv.addObject("mainPi",mainPi);
+		mv.setViewName("product");
+		
+		return mv;
+	}
+	
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
@@ -53,9 +57,23 @@ public class mainController {
 	 * @return String
 	 */
 	@RequestMapping("product2.do")
-	public String product2() {
-		return "product";
+	public ModelAndView product2(ModelAndView mv,int product2,
+			@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
+		
+		int listCount = mainService.getListCount2(product2);
+		
+		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage,listCount);
+
+ArrayList<Product> plist = mainService.selectList2(mainPi,product2);
+		
+		mv.addObject("plist",plist);
+		mv.addObject("mainPi",mainPi);
+		mv.setViewName("product");
+		
+		return mv;
 	}
+
+	
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
