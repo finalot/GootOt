@@ -18,11 +18,11 @@ public class BoardDao {
 	private SqlSessionTemplate sqlSession;
 
 
-	public ArrayList<Board> selectList(PageInfo pi) {
+	public ArrayList<Board> selectList(PageInfo pi, int b_cate_no) {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 				
-		return (ArrayList)sqlSession.selectList("boardMapper.selectList",null,rowBounds);
+		return (ArrayList)sqlSession.selectList("boardMapper.selectList",b_cate_no,rowBounds);
 	}
 
 
@@ -37,9 +37,7 @@ public class BoardDao {
 
 
 	public Board selectBoard(int qna_no) {
-		Board b = new Board();
-		b.setQna_no(qna_no);
-		return sqlSession.selectOne("boardMapper.selectBoard",b);
+		return sqlSession.selectOne("boardMapper.selectBoard",qna_no);
 	}
 
 }

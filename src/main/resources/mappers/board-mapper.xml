@@ -29,7 +29,7 @@
 				#{qna_password},#{qna_secure})
 		</insert>
 		
-		<select id="selectBoard" parameterType="Board" resultMap="boardResultSet">
+		<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
 		SELECT *
 		FROM QNA
 		WHERE QNA_NO=#{qna_no}
@@ -41,6 +41,12 @@
 		WHERE B_CATE_NO=#{b_cate_no}
 	</select>
 		
+		<select id="selectList" resultMap="boardResultSet">
+		SELECT *
+		FROM QNA
+		WHERE B_CATE_NO=#{b_cate_no}
+		ORDER BY QNA_NO DESC
+		</select>
 		
 		
 </mapper>

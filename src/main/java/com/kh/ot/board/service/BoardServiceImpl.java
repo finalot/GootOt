@@ -22,8 +22,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public ArrayList<Board> selectList(PageInfo pi) {
-		return bDao.selectList(pi);
+	public ArrayList<Board> selectList(PageInfo pi,int b_cate_no) {
+		return bDao.selectList(pi,b_cate_no);
 	}
 
 	@Override

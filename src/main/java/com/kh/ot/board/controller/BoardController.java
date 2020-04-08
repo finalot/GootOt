@@ -256,9 +256,11 @@ public class BoardController extends HttpServlet {
       
       PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
       
-//      ArrayList<Board> list = bService.selectList(pi);
-//      
-//      mv.addObject("list",list);
+      ArrayList<Board> list = bService.selectList(pi,b_cate_no);
+      
+      System.out.println("list:"+list);
+      
+        mv.addObject("list",list);
         mv.addObject("pi",pi);
         mv.setViewName("product_board");
       
@@ -353,21 +355,19 @@ public class BoardController extends HttpServlet {
 	 * @return
 	 */
 	@RequestMapping("product_board_detail.do")
-	public ModelAndView product_board_detail(ModelAndView mv, int qna_no, 
-			@RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage) {
+	public ModelAndView product_board_detail(ModelAndView mv, int qna_no 
+			/*@RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage*/) {
 		
 		Board b = bService.selectBoard(qna_no);
 		
 		if(b!=null) {
 			mv.addObject("b",b)
-			.addObject("currentPage",currentPage)
+					/* .addObject("currentPage",currentPage) */
 			.setViewName("product_board_detail");
 		} else {
 			mv.addObject("msg","게시글 상세조회 실패")
 			.setViewName("common/errorPage");
 		}
-		
-
 		return mv;
 	}
 	

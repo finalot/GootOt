@@ -23,7 +23,7 @@ public interface BoardService{
 	 * @return
 	 */
 
-	ArrayList<Board> selectList(PageInfo pi);
+	ArrayList<Board> selectList(PageInfo pi,int b_cate_no);
 
 	
 
