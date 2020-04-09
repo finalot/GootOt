@@ -34,6 +34,7 @@
 		<!-- 암호화 후 -->
 		SELECT * FROM MEMBER
 		WHERE MEM_ID=#{memId}
+		AND MEM_STATUS='N'
 		
 
 </select>

@@ -18,7 +18,7 @@ public class Member {
 	private String memOwner; // 예금주
 	private String bank; // 은행명
 	private String returnBank; // 환불게좌
-	private String mem_status; // 상태값
+	private String mem_status; // 회원탈퇴여부
 
 
 
