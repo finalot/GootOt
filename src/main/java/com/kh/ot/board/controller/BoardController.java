@@ -400,6 +400,19 @@ public class BoardController extends HttpServlet {
    }
    
    /**
+ * @작성일  : 2020. 4. 8.
+ * @작성자  : 우예진
+ * @내용    : 상품문의 업데이트
+ * @return
+ */
+@RequestMapping("product_board_update.do")
+   public String product_board_update() {
+
+      return "product_board_update";
+   }
+   
+   
+   /**
     * @작성일  : 2020.04.08
     * @작성자  : 우예진
     * @내용    : 상품문의 검색 기능

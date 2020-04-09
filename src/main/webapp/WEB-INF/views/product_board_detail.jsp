@@ -179,7 +179,7 @@ ${b.content }
                 <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
-                <a href="product_board.do" onclick="BOARD_WRITE.form_submit('boardWriteForm');" class="yg_btn_30 yg_btn4" alt="등록">UPDATE</a>
+                <a href="product_board_update.do" onclick="BOARD_WRITE.form_submit('boardWriteForm');" class="yg_btn_30 yg_btn4" alt="등록">UPDATE</a>
                 <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="취소">DELETE</a>
             </span>
         </div>
