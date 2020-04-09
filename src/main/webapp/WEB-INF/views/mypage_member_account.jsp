@@ -174,8 +174,7 @@
 							<tr>
 								<th scope="row">비밀번호 확인</th>
 								<td>
-								<input id="check_password" name="check_password"
-									value="" type="password">
+								<input id="check_password" name="check_password" type="password">
 									<p class="txtInfo gBlank10">등록된 비밀번호를 확인합니다.</p></td>
 							</tr>
 						</tbody>
@@ -195,32 +194,8 @@
 	<script>
 	function accountchange() {
 		$('#accountForm').submit();
-		
-		
-		
-		
-		
-		
-		 //test();
-	}
-	
-	function test(){
-		
-		setTimeout(function(){
-			window.close();
-				
-			},3000);
-		//test2();
-	}
-	function test2(){
-	
 	}
 	</script>
-	<!-- <script>
-	function test2(){
-		href.location="mEdit.do";
-	};
-	</script> -->
 
 </body>
 </html>

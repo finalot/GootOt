@@ -130,4 +130,8 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.updateAccount",m);
 	}
 
+	public int deleteMember(Member m) {
+		return sqlSession.update("memberMapper.deleteMember",m);
+	}
+
 }

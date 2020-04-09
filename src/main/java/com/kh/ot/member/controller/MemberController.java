@@ -542,26 +542,57 @@ public class MemberController extends HttpServlet {
 	 * @param return_bank
 	 * @return
 	 * String
+	 * @throws IOException 
 	 */
 	@RequestMapping(value="mUpdateAccount.do", method=RequestMethod.POST)
-	public String updateAccount(HttpSession session, Model model,
+	public String updateAccount(HttpSession session, HttpServletResponse response, Model model,
+								String check_password,
 			   					@RequestParam("acc_depositor") String owner,
 			   					@RequestParam("acc_bank") String bank,
-			   					@RequestParam("acc_no") String return_bank) {
+			   					@RequestParam("acc_no") String return_bank) throws IOException {
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
 		Member m = (Member)session.getAttribute("loginMember");
+		
+		
 		m.setMemOwner(owner);
 		m.setBank(bank);
 		m.setReturnBank(return_bank);
 		
-		int result = mService.updateAccount(m);
+//		System.out.println(check_password);
+//		System.out.println(m.getMemPwd());
 		
-		System.out.println(m); 
-		System.out.println(result);
+		if (m != null  && bcryptPasswordEncoder.matches(check_password, m.getMemPwd() )) {
+			
+			int result = mService.updateAccount(m);
+			
+			if(result > 0) {
+				model.addAttribute("loginMember",m);
+				return "close";
+			} else {
+				return "close2";
+			}
+		} else {
+		out.println("<script>alert('비번틀림'); location.href='mAccount.do'</script>");
+		out.flush();
+		return "mypage_member_account"; 
+		}
+	}
+
+	@RequestMapping("mDelete.do")
+	public String memberDelete(HttpSession session, String mId, Model model) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		System.out.println(m.getMemId());
+		System.out.println(m.getMemNo());
+		
+		int result = mService.deleteMember(m);
 		
 		if(result > 0) {
-			model.addAttribute("loginMember",m);
-			return "close";
+			return "redirect:logout.do";
 		} else {
 			return "";
 		}
