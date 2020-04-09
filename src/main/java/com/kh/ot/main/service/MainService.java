@@ -9,6 +9,7 @@ import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.downCategory;
 
 public interface MainService {
 	
@@ -53,5 +54,15 @@ public interface MainService {
 	 */
 	ArrayList<Product_color> selectColorList1();
 	ArrayList<Product_color> selectColorList2();
+
+	/**
+	 * @작성일 : 2020. 4. 9.
+	 * @작성자 :
+	 * @내용 :
+	 * @param @param product1
+	 * @param @return
+	 * @return ArrayList<downCategory>
+	 */
+	ArrayList<downCategory> selectCategoryList1(int product1);
 	
 }

@@ -15,6 +15,7 @@ import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.downCategory;
 
 @Service("mainService")
 public class MainServiceImpl implements MainService {
@@ -59,6 +60,10 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public ArrayList<Product_color> selectColorList2() {
 		return mainDao.selectColorList2();
+	}
+	@Override
+	public ArrayList<downCategory> selectCategoryList1(int product1) {
+		return mainDao.selectCategoryList1(product1);
 	}
 	
 

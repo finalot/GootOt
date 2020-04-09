@@ -1,3 +1,5 @@
+<%@page import="com.kh.ot.main.vo.Product_opt"%>
+<%@page import="com.kh.ot.main.vo.Product"%>
 <%@page import="com.kh.ot.main.vo.Product_color"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -53,6 +55,86 @@
 		</p>
 	</section>
 
+<!-- 프로덕트 1부분 경로 설정 -->
+					<c:url var="best" value="product1.do">
+						<c:param name="product1" value="5"/>
+					</c:url>
+					<c:url var="clothing" value="product1.do">
+						<c:param name="product1" value="1"/>
+					</c:url>
+					<c:url var="outer" value="product1.do">
+						<c:param name="product1" value="2"/>
+					</c:url>
+					<c:url var="shoes" value="product1.do">
+						<c:param name="product1" value="3"/>
+					</c:url>
+					<c:url var="acc" value="product1.do">
+						<c:param name="product1" value="4"/>
+					</c:url>
+					<c:url var="event" value="product1.do">
+						<c:param name="product1" value="6"/>
+					</c:url>
+					<!-- 프로덕트 1 부분 경로설정 끝 -->
+<!-- 프로덕트 2 부분 경로설정  -->
+					<c:url var="tnasi" value="product2.do">
+						<c:param name="product2" value="11"/>
+					</c:url>
+					<c:url var="mantoman" value="product2.do">
+						<c:param name="product2" value="12"/>
+					</c:url>
+					<c:url var="hoody" value="product2.do">
+						<c:param name="product2" value="13"/>
+					</c:url>
+					<c:url var="pants" value="product2.do">
+						<c:param name="product2" value="14"/>
+					</c:url>
+					<c:url var="neat" value="product2.do">
+						<c:param name="product2" value="15"/>
+					</c:url>
+					<c:url var="onepieceskirt" value="product2.do">
+						<c:param name="product2" value="16"/>
+					</c:url>
+					<c:url var="shirtblouse" value="product2.do">
+						<c:param name="product2" value="17"/>
+					</c:url>
+					<c:url var="jacket" value="product2.do">
+						<c:param name="product2" value="21"/>
+					</c:url>
+					<c:url var="coatjumper" value="product2.do">
+						<c:param name="product2" value="22"/>
+					</c:url>
+					<c:url var="cardigan" value="product2.do">
+						<c:param name="product2" value="23"/>
+					</c:url>
+					<c:url var="belt" value="product2.do">
+						<c:param name="product2" value="41"/>
+					</c:url>
+					<c:url var="glasses" value="product2.do">
+						<c:param name="product2" value="42"/>
+					</c:url>
+					<c:url var="hat" value="product2.do">
+						<c:param name="product2" value="43"/>
+					</c:url>
+					<c:url var="socks" value="product2.do">
+						<c:param name="product2" value="44"/>
+					</c:url>
+					<c:url var="accessories" value="product2.do">
+						<c:param name="product2" value="45"/>
+					</c:url>
+					<c:url var="etc" value="product2.do">
+						<c:param name="product2" value="46"/>
+					</c:url>
+					<c:url var="new5" value="product2.do">
+						<c:param name="product2" value="61"/>
+					</c:url>
+					<c:url var="sale" value="product2.do">
+						<c:param name="product2" value="62"/>
+					</c:url>
+					
+					<c:url var="todaymain" value="todaymain.ad"/> 
+					
+					
+					<!-- 프로덕트 2 부분 경로설정 끝 -->
 
 	<!-- Content page -->
 	<section class="bgwhite p-t-55 p-b-65">
@@ -64,51 +146,155 @@
 						<h4 class="m-text14 p-b-7">
 							Categories
 						</h4>
-
 						<ul class="p-b-54">
+					 <c:forEach var="dc" items="${ dclist }"> 
+						
+						
+<c:if test="${ dc.downNo eq 1 && dc.upNo eq 1 }"> 
 							<li class="p-t-4">
-								<a href="#" class="s-text13 active1">
+								<a href="${tnasi }" class="s-text13 active1">
 									<small>티셔츠/나시</small>
 								</a>
 							</li>
-
+</c:if>
+<c:if test="${ dc.downNo eq 2 && dc.upNo eq 1 }"> 
 							<li class="p-t-4">
-								<a href="#" class="s-text13">
+								<a href="${mantoman }" class="s-text13">
 									<small>맨투맨</small>
 								</a>
 							</li>
-
+</c:if>
+<c:if test="${ dc.downNo eq 3 && dc.upNo eq 1 }"> 
 							<li class="p-t-4">
-								<a href="#" class="s-text13">
+								<a href="${hoody }" class="s-text13">
 									<small>후디</small>
 								</a>
 							</li>
-
+</c:if>
+<c:if test="${ dc.downNo eq 4 && dc.upNo eq 1 }"> 
 							<li class="p-t-4">
-								<a href="#" class="s-text13">
+								<a href="${pants }" class="s-text13">
 									<small>바지</small>
 								</a>
 							</li>
-
+</c:if>
+<c:if test="${ dc.downNo eq 5 && dc.upNo eq 1 }"> 
 							<li class="p-t-4">
-								<a href="#" class="s-text13">
+								<a href="${neat }" class="s-text13">
 									<small>니트</small>
 								</a>
 							</li>
-							
+							</c:if>
+<c:if test="${ dc.downNo eq 6 && dc.upNo eq 1 }"> 
 							<li class="p-t-4">
-								<a href="#" class="s-text13">
+								<a href="${onepieceskirt }" class="s-text13">
 									<small>원피스/스커트</small>
 								</a>
 							</li>
-							
+							</c:if>
+<c:if test="${ dc.downNo eq 7 && dc.upNo eq 1 }"> 
 							<li class="p-t-4">
-								<a href="#" class="s-text13">
+								<a href="${shirtblouse }" class="s-text13">
 									<small>셔츠/블라우스</small>
 								</a>
 							</li>
+							</c:if>							
+							
+							
+<c:if test="${ dc.downNo eq 1 && dc.upNo eq 2 }"> 
+							<li class="p-t-4">
+								<a href="${jacket }" class="s-text13">
+									<small>자켓</small>
+								</a>
+							</li>
+							</c:if>
+<c:if test="${ dc.downNo eq 2 && dc.upNo eq 2 }"> 
+							<li class="p-t-4">
+								<a href="${coatjumper }" class="s-text13">
+									<small>코트/점퍼</small>
+								</a>
+							</li>
+							</c:if>
+<c:if test="${ dc.downNo eq 3 && dc.upNo eq 2 }"> 
+							<li class="p-t-4">
+								<a href="${cardigan }" class="s-text13">
+									<small>가디건</small>
+								</a>
+							</li>
+							</c:if>							
+<c:if test="${ dc.downNo eq 1 && dc.upNo eq 3 }"> 
+							<li class="p-t-4">
+								<a href="${shoes }" class="s-text13">
+									<small>신발</small>
+								</a>
+							</li>
+							</c:if>
+<c:if test="${ dc.downNo eq 1 && dc.upNo eq 4 }"> 
+							<li class="p-t-4">
+								<a href="${belt }" class="s-text13">
+									<small>벨트</small>
+								</a>
+							</li>
+							</c:if>
+<c:if test="${ dc.downNo eq 2 && dc.upNo eq 4 }"> 
+							<li class="p-t-4">
+								<a href="${glasses }" class="s-text13">
+									<small>안경</small>
+								</a>
+							</li>
+							</c:if>
+<c:if test="${ dc.downNo eq 3 && dc.upNo eq 4 }"> 
+							<li class="p-t-4">
+								<a href="${hat }" class="s-text13">
+									<small>모자</small>
+								</a>
+							</li>
+							</c:if>
+<c:if test="${ dc.downNo eq 4 && dc.upNo eq 4 }"> 
+							<li class="p-t-4">
+								<a href="${socks }" class="s-text13">
+									<small>양말</small>
+								</a>
+							</li>
+							</c:if>
+<c:if test="${ dc.downNo eq 5 && dc.upNo eq 4 }"> 
+							<li class="p-t-4">
+								<a href="${accessories }" class="s-text13">
+									<small>악세사리</small>
+								</a>
+							</li>
+							</c:if>
+<c:if test="${ dc.downNo eq 6 && dc.upNo eq 4 }"> 
+							<li class="p-t-4">
+								<a href="${etc }" class="s-text13">
+									<small>기타</small>
+								</a>
+							</li>
+							</c:if>
+<c:if test="${ dc.downNo eq 1 && dc.upNo eq 5 }"> 
+							<li class="p-t-4">
+								<a href="${best }" class="s-text13">
+									<small>best20</small>
+								</a>
+							</li>
+							</c:if>
+<c:if test="${ dc.downNo eq 1 && dc.upNo eq 6 }"> 
+							<li class="p-t-4">
+								<a href="${new5 }" class="s-text13">
+									<small>new5%</small>
+								</a>
+							</li>
+							</c:if>
+<c:if test="${ dc.downNo eq 2 && dc.upNo eq 6 }"> 
+							<li class="p-t-4">
+								<a href="${sale }" class="s-text13">
+									<small>sale</small>
+								</a>
+							</li>
+							</c:if>
+							
+	</c:forEach> 
 						</ul>
-
 						<!--  -->
 						<h4 class="m-text14 p-b-32">
 							Filters
@@ -142,24 +328,41 @@
 								Color
 							</div>
 
-							<ul class="flex-w">
-							<c:forEach var="pp" items="${ plist }">
+							<ul class="flex-w" id="color">
+							  <c:forEach var="pp" items="${ plist }"> 
 								<c:forEach var="poo" items="${ polist }">
 								
-									<c:if test="${ pp.prdtNo eq poo.prdtNo }">
+									 <c:if test="${ pp.prdtNo eq poo.prdtNo }"> 
 									
 										
 										
 										<c:forEach var="pcc" items="${ pclist }">
 											<c:if test="${ poo.optColor eq pcc.pcName }">
+								<script>
+											var test = ${ pclist};
+											console.log(test);
+											var mySet = new Set();
+											
+											
 								<li class="color-choice" id="${pcc.pcRgb}" style="width:17px;height:17px;display:inline-block;
 								border:1px solid black;margin-right:2px;margin-bottom:2px;background:${pcc.pcRgb};"></li>
-								
+								</script>
 											</c:if>		
 										</c:forEach>
-									</c:if>
+									 </c:if> 
 								</c:forEach>
-							</c:forEach>
+							 </c:forEach> 
+							 <%-- <% ArrayList<Product> pplist = new ArrayList<Product>(); %>
+							 <% ArrayList<Product_color> pclist = new ArrayList<Product_color>(); %>
+							 <% ArrayList<Product_opt> polist = new ArrayList<Product_opt>(); %>
+							 
+							 
+							 
+							 <li class="color-choice" id="${pcc.pcRgb}" style="width:17px;height:17px;display:inline-block;
+								border:1px solid black;margin-right:2px;margin-bottom:2px;background:${pcc.pcRgb};"></li>
+							  --%>
+							 
+							 
 							</ul>
 						</div>
 
@@ -242,7 +445,7 @@
 										<c:forEach var="pc" items="${ pclist }">
 										
 										<c:if test="${ po.optColor eq pc.pcName }">
-										<div style="width:17px;height:17px;background:${pc.pcRgb};display:inline-block;border:1px solid black;margin-left:1px;"></div>
+										<div style="width:17px;height:17px;background:${pc.pcRgb};display:inline-block;border:1px solid black;margin-left:0.5px;"></div>
 										</c:if>
 										
 										</c:forEach>

@@ -14,6 +14,7 @@ import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.downCategory;
 
 @Repository("mainDao")
 public class MainDao {
@@ -90,6 +91,18 @@ public class MainDao {
 		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("productMapper.selectProduct2",product2,rowBounds);
+	}
+
+	/**
+	 * @param product1 
+	 * @작성일 : 2020. 4. 9.
+	 * @작성자 :이대윤	
+	 * @내용 :카테고리 리스트 불러오기1
+	 * @param @return
+	 * @return ArrayList<downCategory>
+	 */
+	public ArrayList<downCategory> selectCategoryList1(int product1) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectCategory1",product1);
 	}
 
 	

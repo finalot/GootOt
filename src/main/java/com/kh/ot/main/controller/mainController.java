@@ -14,6 +14,7 @@ import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.downCategory;
 
 //@SessionAttributes("loginMember")
 @Controller
@@ -43,11 +44,15 @@ public class mainController {
 
 		ArrayList<Product> plist = mainService.selectList1(mainPi,product1);
 		
+		ArrayList<downCategory> dclist = mainService.selectCategoryList1(product1);
+		
 		ArrayList<Product_opt> polist = mainService.selectOptionList1(product1);
 		
 		ArrayList<Product_color> pclist = mainService.selectColorList1();
 		
+		
 		mv.addObject("plist",plist);
+		mv.addObject("dclist",dclist);
 		mv.addObject("polist",polist);
 		mv.addObject("pclist",pclist);
 		mv.addObject("mainPi",mainPi);
