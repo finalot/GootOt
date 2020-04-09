@@ -77,6 +77,21 @@
 			ORDER BY QNA_NO DESC
 		</select>
 		
+		<update id="UpdatePrBoard" parameterType="Board">
+			UPDATE QNA
+			SET QNA_TITLE=#{qna_title},QNA_INFO=#{content},
+			QNA_MODIFY_DATE=SYSDATE
+			WHERE QNA_NO=#{qna_no}
+		
+		</update>
+		
+		<select id="selectUpdateBoard" parameterType="_int" resultMap="boardResultSet">
+			SELECT *
+			FROM QNA
+			WHERE QNA_NO=#{qna_no}
+		
+		</select>
+		
 </mapper>
 
 

@@ -250,7 +250,7 @@ public class BoardController extends HttpServlet {
       
       System.out.println(currentPage);
 	   
-	   int b_cate_no = 1;
+	  int b_cate_no = 1;
       
       int listCount = bService.getListCount(b_cate_no);
       
@@ -311,43 +311,7 @@ public class BoardController extends HttpServlet {
    
    
    
-   /**
-    * @작성일  : 2020.04.06
-    * @작성자  : 우예진
-    * @내용    : 파일저장경로
-    * @param file
-    * @param request
-    * @return
-    */
-   public String saveFile(MultipartFile file, HttpServletRequest request) {
-      // 저장할 경로 설정et
-      // 웹 서버 contextPath를 불러와서 폴더의 경로 찾음(webapp 하위의 resources)
-      String root = request.getSession().getServletContext().getRealPath("resources");
-      
-      String savePath = root + "\\buploadFiles";
-      
-      File folder = new File(savePath);
-      
-      if(!folder.exists()) {
-         folder.mkdir(); // 폴더가 없다면 생성해주세요
-      }
-      
-      String originFileName = file.getOriginalFilename();
-      
-      SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-      String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
-               + originFileName.substring(originFileName.lastIndexOf(".")+1);
-      
-      String renamePath = folder + "\\" + renameFileName;
-      
-      try {
-         file.transferTo(new File(renamePath));
-      } catch (Exception e) {
-         
-         System.out.println("파일 전송 에러: " + e.getMessage());
-      } 
-      return renameFileName;
-   }
+  
 
 
    /**
@@ -402,14 +366,69 @@ public class BoardController extends HttpServlet {
    /**
  * @작성일  : 2020. 4. 8.
  * @작성자  : 우예진
- * @내용    : 상품문의 업데이트
+ * @내용    : 상품문의 게시글 업데이트 화면 이동
  * @return
  */
 @RequestMapping("product_board_update.do")
-   public String product_board_update() {
+   public ModelAndView product_board_update(ModelAndView mv, int qna_no) {
 
-      return "product_board_update";
-   }
+	
+	Board b = bService.selectBoard(qna_no);
+	
+	if(b!=null) {
+		mv.addObject("b",b)
+				/* .addObject("currentPage",currentPage) */
+		.setViewName("product_board_update");
+	} else {
+		mv.addObject("msg","게시글 상세조회 실패")
+		.setViewName("common/errorPage");
+	}
+      return mv;
+  }
+
+
+
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 우예진 
+	 * @내용    : 상품문의 게시글 업데이트 
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("product_board_updateView.do")
+	public String product_board_updateView(Board b,HttpServletRequest request) {
+
+			int result = bService.UpdatePrBoard(b);
+		
+		if(result > 0) {
+			return "redirect:product_board.do";
+		}else {
+			return "에러다";
+		}
+			
+	}
+
+	
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 우예진
+	 * @내용    : 파일 삭제
+	 * @param fileName
+	 * @param request
+	 */
+	public void deleteFile(String fileName, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\buploadFiles";
+	
+		File f = new File(savePath + "\\" + fileName);
+		// webapp / resource / buploadFiles / 202003261111.png
+	
+		if(f.exists()) {
+			f.delete();
+	}
+	
+}
    
    
    /**
@@ -496,6 +515,44 @@ public class BoardController extends HttpServlet {
 
       return "product_change_write";
    }
-
+   
+   
+   /**
+    * @작성일  : 2020.04.06
+    * @작성자  : 우예진
+    * @내용    : 파일저장경로
+    * @param file
+    * @param request
+    * @return
+    */
+   public String saveFile(MultipartFile file, HttpServletRequest request) {
+      // 저장할 경로 설정et
+      // 웹 서버 contextPath를 불러와서 폴더의 경로 찾음(webapp 하위의 resources)
+      String root = request.getSession().getServletContext().getRealPath("resources");
+      
+      String savePath = root + "\\buploadFiles";
+      
+      File folder = new File(savePath);
+      
+      if(!folder.exists()) {
+         folder.mkdir(); // 폴더가 없다면 생성해주세요
+      }
+      
+      String originFileName = file.getOriginalFilename();
+      
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+      String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+               + originFileName.substring(originFileName.lastIndexOf(".")+1);
+      
+      String renamePath = folder + "\\" + renameFileName;
+      
+      try {
+         file.transferTo(new File(renamePath));
+      } catch (Exception e) {
+         
+         System.out.println("파일 전송 에러: " + e.getMessage());
+      } 
+      return renameFileName;
+   }
    
 }

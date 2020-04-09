@@ -66,6 +66,33 @@ public interface BoardService{
 	 * @return
 	 */
 	ArrayList<Board> selectSearchList(PageInfo pi, SearchCondition sc);
+
+
+	/**
+	 * @param qna_no 
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 우예진
+	 * @내용    : 5. 게시물 수정 업데이트
+	 * @param sc
+	 * @return
+	 */
+	
+	
+	int UpdatePrBoard(Board b);
+
+
+	
+	
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 우예진
+	 * @내용    : 6. 업데이트 뷰 뿌려주기
+	 * @param qna_no
+	 * @return
+	 */
+	Board selectUpdateBoard(int qna_no);
+
+
 	
 
 	

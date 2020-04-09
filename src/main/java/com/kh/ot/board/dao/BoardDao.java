@@ -55,4 +55,14 @@ public class BoardDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectSearchList",sc,rowBounds);
 	}
 
+
+	public int UpdatePrBoard(Board b) {
+		return sqlSession.update("boardMapper.UpdatePrBoard",b);
+	}
+
+
+	public Board selectUpdateBoard(int qna_no) {
+		return sqlSession.selectOne("boardMapper.selectUpdateBoard",qna_no);
+	}
+
 }

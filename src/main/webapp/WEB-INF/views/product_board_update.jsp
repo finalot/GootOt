@@ -73,7 +73,8 @@
       
         </div>
 </div>
-<form id="boardWriteForm" action="product_board_insert.do"  method="POST" enctype="multipart/form-data">
+<form id="boardUpdateForm" action="product_board_updateView.do">
+	<input type="hidden" name="qna_no" value="${b.qna_no}">
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
             $login_page_url = /member/login.html
@@ -108,7 +109,7 @@
             <style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";		</style>		<script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
             <script type="text/javascript">
             NN.Config.instanceID = "content";
-            NN.Config.value = "";
+            NN.Config.value = "${b.content}";
             NN.Config.toolbarType = "simple";
                 
                 
@@ -155,7 +156,7 @@
 		<tbody class="">
 			<tr>
 				<th scope="row">FILE 01</th>
-                 <td><input type="file" name="uploadFile">
+                 <td><input type="file" name="reloadFile">
                  <c:if test="${ !empty b.originalFileName }">
 						<br>현재 업로드한 파일 : 
 						<a href="${ contextPath }/resources/buploadFiles/${ b.renameFileName }" download="${ b.originalFileName }">${ b.originalFileName }</a>
@@ -189,7 +190,7 @@
                 <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
-                <button  id="insert_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
+                <button id="update_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
                 
                 <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
             </span>
@@ -204,8 +205,8 @@
 </body>
 <script>
 
-$('#insert_ok').click(function(){
-	$('#boardWriteForm').submit();
+$('#update_ok').click(function(){
+	$('#boardUpdateForm').submit();
 });
 
 </script>
