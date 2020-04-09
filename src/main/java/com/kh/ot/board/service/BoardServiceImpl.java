@@ -62,6 +62,11 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.deletePrBoard(qna_no);
 	}
 
+	@Override
+	public Board passwordCheck(Board b) {
+		return bDao.passwordCheck(b);
+	}
+
 	
 	
 }

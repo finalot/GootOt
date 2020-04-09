@@ -103,6 +103,16 @@ public interface BoardService{
 	int deletePrBoard(int qna_no);
 
 
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 우예진
+	 * @내용    : 비밀글 비밀번호 찾기
+	 * @param b
+	 * @return
+	 */
+	Board passwordCheck(Board b);
+
+
 	
 
 	

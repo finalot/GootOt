@@ -98,6 +98,14 @@
 			FROM QNA
 			WHERE QNA_NO=#{qna_no}
 		</delete>
+		
+		<select id="passwordCheck" parameterType="Board" resultMap="boardResultSet">
+			SELECT * FROM QNA
+			WHERE QNA_NO=#{qna_no}
+			AND QNA_PASSWORD = #{qna_password}
+		
+		</select>
+		
 </mapper>
 
 

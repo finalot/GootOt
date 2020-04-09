@@ -1,11 +1,14 @@
 package com.kh.ot.board.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -525,6 +528,45 @@ public class BoardController extends HttpServlet {
    public String product_change_write() {
 
       return "product_change_write";
+   }
+   
+   @RequestMapping("product_board_detailView")
+   public ModelAndView product_board_detailView(ModelAndView mv,int qna_no) {
+	   
+	   mv.addObject("qna_no", qna_no);
+	   mv.setViewName("product_board_password");
+
+	   
+	   return mv; 
+   }
+   /**
+ * @작성일  : 2020. 4. 9.
+ * @작성자  : 우예진
+ * @내용    : 비밀글 비밀번호 체크
+ * @param response
+ * @param qna_no
+ * @param password
+ * @throws IOException
+ */
+@RequestMapping("passwordCheck.do")
+   public void passwordCheck(HttpServletResponse response,int qna_no, String password) throws IOException {
+	   
+	   PrintWriter out = response.getWriter();
+	   
+	   Board b = new Board();
+	   
+	   b.setQna_no(qna_no);
+	   b.setQna_password(password);
+	   
+	   b = bService.passwordCheck(b);
+	   if(b != null) {
+		   out.print("ok");
+	   }else {
+		   out.print("fail");
+	   }
+	   
+	   
+	   
    }
    
    

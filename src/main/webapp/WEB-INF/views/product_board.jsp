@@ -270,7 +270,7 @@ a{
 	
 	var q_no = $(en).parents('tr').children('td').eq(0).children('span').text();	 
 
-	 location.href='product_board_detail.do?qna_no='+q_no; 
+	 location.href='product_board_detailView.do?qna_no='+q_no; 
 	
  }
  

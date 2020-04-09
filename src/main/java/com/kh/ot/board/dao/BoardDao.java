@@ -70,4 +70,16 @@ public class BoardDao {
 		return sqlSession.delete("boardMapper.deletePrBoard",qna_no);
 	}
 
+
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 우예진
+	 * @내용    : 비밀글 비밀번호 검사 Dao
+	 * @param b
+	 * @return
+	 */
+	public Board passwordCheck(Board b) {
+		return sqlSession.selectOne("boardMapper.passwordCheck",b);
+	}
+
 }
