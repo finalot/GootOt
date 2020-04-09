@@ -94,5 +94,34 @@ public interface MemberService {
 	 * @return
 	 */
 	public int insertMember(Member m);
+
+
+	/**
+	 * @작성일 : 2020. 4. 9.
+	 * @작성자 : 신경섭
+	 * @내용 : 회원정보 수정
+	 * @param m
+	 * @return int
+	 */
+	public int updateMember(Member m);
+
+
+	/**
+	 * @작성일 : 2020. 4. 9.
+	 * @작성자 : 신경섭
+	 * @내용 : 환불계좌 수정
+	 * @param m
+	 * @return int
+	 */
+	public int updateAccount(Member m);
+
+	/**
+	 * @작성일 : 2020. 4. 9.
+	 * @작성자 : 신경섭
+	 * @내용 : 회원 탈퇴
+	 * @param m
+	 * @return int
+	 */
+	public int deleteMember(Member m);
 	
 }

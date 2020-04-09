@@ -4512,7 +4512,9 @@ input[type=text] {
 }
 
 .yg_btn_145 {
-     height: 34px;
+      height: 34px;
+    margin-left: 86%;
+    margin-top: 2%;
     width: 107px;
     line-height: 38px;
     display: inline-block;
@@ -4525,9 +4527,6 @@ input[type=text] {
     color: #fff;
     border-radius: 0px;
     font-family: Nanum Gothic;
-    position: relative;
-    top: 12px;
-    left: 92%;
 }
 
 .check_btn_140 {

@@ -38,7 +38,21 @@
 			<id property = "pcName" column="PC_NAME"/>
 			<result property="pcRgb" column="PC_RGB"/>
 		</resultMap> 
+		
+	 <resultMap type="downCategory" id="downCategoryResultSet">
+			<id property = "downNo" column="DOWN_NO"/>
+			<result property="upNo" column="UP_NO"/>
+			<result property="downName" column="DOWN_NAME"/>
+			<result property="downUsing" column="DOWN_USING"/>
+		</resultMap>
+		
+		<resultMap type="upCategory" id="upCategoryResultSet">
+			<id property = "upNo" column="UP_NO"/>
+			<result property="upName" column="UP_NAME"/>
+			<result property="upUsing" column="UP_USING"/>
+		</resultMap>
 
+ 
 	
 		<select id="getListCount1" parameterType="_int" resultType="_int">
 	  	SELECT COUNT(*)
@@ -89,7 +103,46 @@
 		FROM P_COLOR
 		
 		</select>
- 
+		
+	
+  <select id="selectCategory1" parameterType="_int" resultMap="downCategoryResultSet">
+		SELECT *
+		FROM DOWN_CATE
+		WHERE UP_NO = #{product1}
+		AND DOWN_USING = 'Y'
+		ORDER BY DOWN_NO ASC
+		</select> 
+		
+		 <select id="selectUpCategory1" parameterType="_int" resultMap="upCategoryResultSet">
+		SELECT *
+		FROM UP_CATE
+		</select> 
+		
+		<select id="selectCategory2" parameterType="_int" resultMap="downCategoryResultSet">
+		SELECT *
+		FROM DOWN_CATE
+		WHERE UP_NO = #{product2}
+		AND DOWN_USING = 'Y'
+		ORDER BY DOWN_NO ASC
+		</select> 
+		
+		 <select id="selectUpCategory2" parameterType="_int" resultMap="upCategoryResultSet">
+		SELECT *
+		FROM UP_CATE
+		WHERE UP_USING = 'Y'
+		</select> 
+		
+		<select id="selectCategory3" parameterType="_int" resultMap="downCategoryResultSet">
+		SELECT *
+		FROM DOWN_CATE
+		WHERE DOWN_USING = 'Y'
+		</select> 
+		
+		 <select id="selectUpCategory3" parameterType="_int" resultMap="upCategoryResultSet">
+		SELECT *
+		FROM UP_CATE
+		WHERE UP_USING = 'Y'
+		</select> 
 		
 
 

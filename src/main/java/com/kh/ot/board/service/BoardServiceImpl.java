@@ -47,4 +47,26 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.selectSearchList(pi,sc);
 	}
 
+	@Override
+	public int UpdatePrBoard(Board b) {
+		return bDao.UpdatePrBoard(b);
+	}
+
+	@Override
+	public Board selectUpdateBoard(int qna_no) {
+		return bDao.selectUpdateBoard(qna_no);
+	}
+
+	@Override
+	public int deletePrBoard(int qna_no) {
+		return bDao.deletePrBoard(qna_no);
+	}
+
+	@Override
+	public Board passwordCheck(Board b) {
+		return bDao.passwordCheck(b);
+	}
+
+	
+	
 }

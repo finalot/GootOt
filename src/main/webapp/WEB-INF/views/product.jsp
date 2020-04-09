@@ -1,3 +1,5 @@
+<%@page import="com.kh.ot.main.vo.Product_opt"%>
+<%@page import="com.kh.ot.main.vo.Product"%>
 <%@page import="com.kh.ot.main.vo.Product_color"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -53,7 +55,6 @@
 		</p>
 	</section>
 
-
 	<!-- Content page -->
 	<section class="bgwhite p-t-55 p-b-65">
 		<div class="container">
@@ -64,51 +65,15 @@
 						<h4 class="m-text14 p-b-7">
 							Categories
 						</h4>
-
 						<ul class="p-b-54">
+					 <c:forEach var="dc" items="${ dclist }">
 							<li class="p-t-4">
-								<a href="#" class="s-text13 active1">
-									<small>티셔츠/나시</small>
+								<a href="http://localhost:8888/ot/product2.do?product2=${dc.upNo }${dc.downNo }" class="s-text13 active1">
+									<small>${dc.downName}</small>
 								</a>
 							</li>
-
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									<small>맨투맨</small>
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									<small>후디</small>
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									<small>바지</small>
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									<small>니트</small>
-								</a>
-							</li>
-							
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									<small>원피스/스커트</small>
-								</a>
-							</li>
-							
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									<small>셔츠/블라우스</small>
-								</a>
-							</li>
+	</c:forEach>
 						</ul>
-
 						<!--  -->
 						<h4 class="m-text14 p-b-32">
 							Filters
@@ -142,19 +107,37 @@
 								Color
 							</div>
 
-							<ul class="flex-w">
-							<c:forEach var="pp" items="${ plist }">
+							<ul class="flex-w" id="color">
+							  <c:forEach var="pp" items="${ plist }">
 								<c:forEach var="poo" items="${ polist }">
 									<c:if test="${ pp.prdtNo eq poo.prdtNo }">
 										<c:forEach var="pcc" items="${ pclist }">
 											<c:if test="${ poo.optColor eq pcc.pcName }">
+								<script>
+											var test = ${ pclist};
+											console.log(test);
+											var mySet = new Set();
+
+
 								<li class="color-choice" id="${pcc.pcRgb}" style="width:17px;height:17px;display:inline-block;
 								border:1px solid black;margin-right:2px;margin-bottom:2px;background:${pcc.pcRgb};"></li>
-											</c:if>		
+								</script>
+											</c:if>
 										</c:forEach>
-									</c:if>
+									 </c:if>
 								</c:forEach>
-							</c:forEach>
+							 </c:forEach> 
+							 <%-- <% ArrayList<Product> pplist = new ArrayList<Product>(); %>
+							 <% ArrayList<Product_color> pclist = new ArrayList<Product_color>(); %>
+							 <% ArrayList<Product_opt> polist = new ArrayList<Product_opt>(); %>
+
+
+
+							 <li class="color-choice" id="${pcc.pcRgb}" style="width:17px;height:17px;display:inline-block;
+								border:1px solid black;margin-right:2px;margin-bottom:2px;background:${pcc.pcRgb};"></li>
+							  --%>
+
+
 							</ul>
 						</div>
 
@@ -197,14 +180,14 @@
 						</span>
 					</div>
 <c:url var="product_detail" value="product_detail.do">
-	<c:param name="product_detail" value="p1" />  
+	<c:param name="product_detail" value="p1" />
 </c:url>
 
 
 
 					<!-- Product -->
 					<div class="row">
-					
+
 					<c:forEach var="p" items="${ plist }">
 							<!-- 뉴프로덕트블록 샘플 -->
 						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
@@ -231,22 +214,22 @@
 								<div class="block2-txt p-t-20">
 									<span class="block2-price m-text6 p-r-5" >
 								<c:forEach var="po" items="${ polist }">
-								
+
 									<c:if test="${ p.prdtNo eq po.prdtNo }">
-									
+
 										<c:forEach var="pc" items="${ pclist }">
-										
+
 										<c:if test="${ po.optColor eq pc.pcName }">
-										<div style="width:17px;height:17px;background:${pc.pcRgb};display:inline-block;border:1px solid black;margin-left:1px;"></div>
+										<div style="width:17px;height:17px;background:${pc.pcRgb};display:inline-block;border:1px solid black;margin-left:0.5px;"></div>
 										</c:if>
-										
+
 										</c:forEach>
-										
+
 									</c:if>
-									
+
 								</c:forEach>
 									</span>
-										
+
 									<br>
 									<a href="${product_detail }" id="${p.prdtNo }"class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
 										${p.prdtName }
@@ -260,7 +243,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						</c:forEach>
 							<!-- 세일프로덕트블록 샘플 -->
 					<!-- <div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
