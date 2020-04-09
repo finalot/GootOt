@@ -37,6 +37,10 @@ import com.kh.ot.member.vo.Member;
  * @author yejin
  *
  */
+/**
+ * @author Owner
+ *
+ */
 @SessionAttributes("loginMember")
 @Controller
 public class MemberController extends HttpServlet {
@@ -479,11 +483,87 @@ public class MemberController extends HttpServlet {
 			out.print("fail");
 		}
 	}
-
 	
 
-
-
-
-
+	/**
+	 * @작성일 : 2020. 4. 8.
+	 * @작성자 : 신경섭
+	 * @내용 : 회원정보 수정
+	 * @param m
+	 * @param model
+	 * @param post
+	 * @param addr1
+	 * @param addr2
+	 * @return
+	 * String
+	 */
+	@RequestMapping(value="mupdate.do", method=RequestMethod.POST)
+	public String memberUpdate(Member m, Model model,
+							   @RequestParam("post") String post,
+							   @RequestParam("address1") String addr1,
+							   @RequestParam("address2") String addr2,
+							   @RequestParam("mobile1") String mobile1,
+							   @RequestParam("mobile2") String mobile2,
+							   @RequestParam("mobile3") String mobile3) { 
+	// 주소데이터들 ','를 구분자로 저장
+		if(!post.contentEquals("")) {
+			m.setMemAddress(post + "," + addr1 + "," + addr2);
+		}
+		
+		if(!mobile1.contentEquals("")) {
+			m.setMemPhone(mobile1 + "-" + mobile2 + "-" + mobile3);
+		}
+	
+		String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
+		m.setMemPwd(encPwd);
+		
+		System.out.println("주소 : " + post + "," + addr1 + "," + addr2);
+		System.out.println("핸드폰번호 : " + mobile1 + "-" + mobile2 + "-" + mobile3);
+		
+		int result = mService.updateMember(m);
+		
+		if(result > 0) {
+			model.addAttribute("loginMember", m);
+			return "redirect:index.jsp";
+		} else {
+			model.addAttribute("msg", "회원 정보 수정 실패!");
+			return "common/errorPage";
+		}
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 9.
+	 * @작성자 : 신경섭
+	 * @내용 : 환불계좌정보 수정
+	 * @param session
+	 * @param model
+	 * @param owner
+	 * @param bank
+	 * @param return_bank
+	 * @return
+	 * String
+	 */
+	@RequestMapping(value="mUpdateAccount.do", method=RequestMethod.POST)
+	public String updateAccount(HttpSession session, Model model,
+			   					@RequestParam("acc_depositor") String owner,
+			   					@RequestParam("acc_bank") String bank,
+			   					@RequestParam("acc_no") String return_bank) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		m.setMemOwner(owner);
+		m.setBank(bank);
+		m.setReturnBank(return_bank);
+		
+		int result = mService.updateAccount(m);
+		
+		System.out.println(m); 
+		System.out.println(result);
+		
+		if(result > 0) {
+			model.addAttribute("loginMember",m);
+			return "close";
+		} else {
+			return "";
+		}
+	}
 }

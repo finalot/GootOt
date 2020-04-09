@@ -70,5 +70,15 @@ public class MemberServiceImpl implements MemberService{
 
 	}
 
+	@Override
+	public int updateMember(Member m) {
+		return mDao.updateMember(m);
+	}
+
+	@Override
+	public int updateAccount(Member m) {
+		return mDao.updateAccount(m);
+	}
+
 
 }

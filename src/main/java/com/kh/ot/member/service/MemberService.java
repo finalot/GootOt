@@ -94,5 +94,17 @@ public interface MemberService {
 	 * @return
 	 */
 	public int insertMember(Member m);
+
+	/**
+	 * @작성일 : 2020. 4. 8.
+	 * @작성자 : 신경섭
+	 * @내용 : 회원정보 수정
+	 * @param m
+	 * @return
+	 * int
+	 */
+	public int updateMember(Member m);
+
+	public int updateAccount(Member m);
 	
 }

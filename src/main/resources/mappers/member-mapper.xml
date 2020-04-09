@@ -87,14 +87,21 @@
 		#{memEmail},#{memPhone},DEFAULT,#{memOwner},#{bank},#{returnBank})
 
 	</insert>
-<!-- 
+	
+	
 <update id="updateMember" parameterType="Member">
 		UPDATE MEMBER
-		SET EMAIL=#{email},AGE=#{age},PHONE=#{phone},ADDRESS=#{address}
-		,UPDATE_DATE=SYSDATE
-		WHERE ID=#{id}
+		SET MEM_EMAIL=#{memEmail},MEM_PHONE=#{memPhone},MEM_ADDRESS=#{memAddress}
+		WHERE MEM_ID=#{memId}
 </update>
 
+<update id="updateAccount" parameterType="Member" >
+	UPDATE MEMBER
+	SET MEM_OWNER=#{memOwner}, BANK=#{bank}, RETURN_BANK=#{returnBank}
+	WHERE MEM_ID=#{memId}
+</update>
+
+<!-- 
 <update id="deleteMember"  parameterType="Member">
 		UPDATE MEMBER
 		SET M_STATUS = 'N'
