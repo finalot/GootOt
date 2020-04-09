@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.ot.board.service.BoardService;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.common.Pagination;
 import com.kh.ot.member.vo.Member;
 
@@ -256,9 +258,11 @@ public class BoardController extends HttpServlet {
       
       PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
       
-//      ArrayList<Board> list = bService.selectList(pi);
-//      
-//      mv.addObject("list",list);
+      ArrayList<Board> list = bService.selectList(pi,b_cate_no);
+      
+      System.out.println("list:"+list);
+      
+        mv.addObject("list",list);
         mv.addObject("pi",pi);
         mv.setViewName("product_board");
       
@@ -353,36 +357,22 @@ public class BoardController extends HttpServlet {
 	 * @return
 	 */
 	@RequestMapping("product_board_detail.do")
-	public ModelAndView product_board_detail(ModelAndView mv, int qna_no, 
-			@RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage) {
+	public ModelAndView product_board_detail(ModelAndView mv, int qna_no 
+			/*@RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage*/) {
 		
 		Board b = bService.selectBoard(qna_no);
 		
 		if(b!=null) {
 			mv.addObject("b",b)
-			.addObject("currentPage",currentPage)
+					/* .addObject("currentPage",currentPage) */
 			.setViewName("product_board_detail");
 		} else {
 			mv.addObject("msg","게시글 상세조회 실패")
 			.setViewName("common/errorPage");
 		}
-		
-
 		return mv;
 	}
 	
-	
-//	/**
-//	 * @작성일  : 2020.04.07
-//	 * @작성자  : 우예진
-//	 * @내용    : 상세정보 뷰 이동
-//	 * @return
-//	 */
-//	@RequestMapping("product_board_detailView.do") 
-//	public String product_board_detailView() {
-//		return "product_board_detail";
-//		
-//	}
 
 
    /**
@@ -408,6 +398,55 @@ public class BoardController extends HttpServlet {
 
       return "product_board_write";
    }
+   
+   /**
+ * @작성일  : 2020. 4. 8.
+ * @작성자  : 우예진
+ * @내용    : 상품문의 업데이트
+ * @return
+ */
+@RequestMapping("product_board_update.do")
+   public String product_board_update() {
+
+      return "product_board_update";
+   }
+   
+   
+   /**
+    * @작성일  : 2020.04.08
+    * @작성자  : 우예진
+    * @내용    : 상품문의 검색 기능
+    * @return
+    */
+@RequestMapping("pb_search.do")
+   public ModelAndView pb_search(ModelAndView mv, 
+		   						@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
+		   						,String search_key,String search) {
+	int b_cate_no = 1;
+	
+	SearchCondition sc = new SearchCondition();
+	
+	if(search_key.equals("writer")) {
+		sc.setWriter(search);
+	} else if(search_key.equals("title")) {
+		sc.setTitle(search);
+	}
+	sc.setB_cate_no(b_cate_no);
+	
+	int listCount = bService.SearchListCount(sc);
+	
+	PageInfo pi = sc.getPageInfo(currentPage, listCount);
+	
+	ArrayList<Board> list = bService.selectSearchList(pi,sc);
+    
+    System.out.println("list:"+list);
+	
+	  mv.addObject("list",list);
+      mv.addObject("pi",pi);
+      mv.setViewName("product_board");
+	
+	return mv;
+   }
 
    /**
     * @작성일  : 2020.04.05
@@ -420,6 +459,7 @@ public class BoardController extends HttpServlet {
 
       return "product_change";
    }
+  
 
    /**
     * @작성일  : 2020.04.05

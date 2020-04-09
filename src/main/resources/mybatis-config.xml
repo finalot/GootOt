@@ -14,6 +14,9 @@
 <typeAliases>
 <typeAlias type="com.kh.ot.member.vo.Member" alias="Member"/>
 <typeAlias type="com.kh.ot.board.vo.Board" alias="Board"/>
+<typeAlias type="com.kh.ot.main.vo.Product" alias="Product"/>
+<typeAlias type="com.kh.ot.main.vo.Product_opt" alias="Product_opt"/>
+<typeAlias type="com.kh.ot.main.vo.Product_color" alias="Product_color"/>
 <typeAlias type="com.kh.ot.admin.vo.Coupon" alias="Coupon"/>
 <typeAlias type="com.kh.ot.admin.vo.Coupon" alias="Design"/>
 </typeAliases>
@@ -24,6 +27,7 @@
 <mappers>
 <mapper resource="mappers/member-mapper.xml"/>
 <mapper resource="mappers/board-mapper.xml"/>
+<mapper resource="mappers/main-mapper.xml"/>
 <mapper resource="mappers/admin-mapper.xml"/>
 </mappers>
 

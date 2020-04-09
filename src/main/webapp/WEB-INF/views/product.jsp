@@ -1,3 +1,5 @@
+<%@page import="com.kh.ot.main.vo.Product_color"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -141,12 +143,23 @@
 							</div>
 
 							<ul class="flex-w">
+							<c:forEach var="pp" items="${ plist }">
+								<c:forEach var="poo" items="${ polist }">
+								
+									<c:if test="${ pp.prdtNo eq poo.prdtNo }">
 									
-								<li style="width:17px;height:17px;background:black;float:left;border:1px solid black;"></li>
-										<li style="width:17px;height:17px;background:gray;margin-left:3px;float:left;border:1px solid black;"></li>
-										<li style="width:17px;height:17px;background:#39761F;margin-left:3px;float:left;border:1px solid black;"></li>
-										<li style="width:17px;height:17px;background:#E4F650;margin-left:3px;float:left;border:1px solid black;"></li>
-										<li style="width:17px;height:17px;background:#4A87B9;margin-left:3px;float:left;border:1px solid black;"></li>
+										
+										
+										<c:forEach var="pcc" items="${ pclist }">
+											<c:if test="${ poo.optColor eq pcc.pcName }">
+								<li class="color-choice" id="${pcc.pcRgb}" style="width:17px;height:17px;display:inline-block;
+								border:1px solid black;margin-right:2px;margin-bottom:2px;background:${pcc.pcRgb};"></li>
+								
+											</c:if>		
+										</c:forEach>
+									</c:if>
+								</c:forEach>
+							</c:forEach>
 							</ul>
 						</div>
 
@@ -191,13 +204,18 @@
 <c:url var="product_detail" value="product_detail.do">
 	<c:param name="product_detail" value="p1" />  
 </c:url>
+
+
+
 					<!-- Product -->
 					<div class="row">
+					
+					<c:forEach var="p" items="${ plist }">
 							<!-- 뉴프로덕트블록 샘플 -->
 						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 							<div class="block2">
 								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-									<img src="/ot/resources/images/oT/clothing/t_nasi/basic_crop_color_nasi/basic_crop_color_nasi.webp" alt="IMG-PRODUCT">
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
 									<div class="block2-overlay trans-0-4">
 										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
@@ -217,26 +235,38 @@
 
 								<div class="block2-txt p-t-20">
 									<span class="block2-price m-text6 p-r-5" >
-										<div style="width:17px;height:17px;background:black;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:gray;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:#39761F;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:#E4F650;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:#4A87B9;margin-left:3px;float:left;border:1px solid black;"></div>
+								<c:forEach var="po" items="${ polist }">
+								
+									<c:if test="${ p.prdtNo eq po.prdtNo }">
+									
+										<c:forEach var="pc" items="${ pclist }">
+										
+										<c:if test="${ po.optColor eq pc.pcName }">
+										<div style="width:17px;height:17px;background:${pc.pcRgb};display:inline-block;border:1px solid black;margin-left:1px;"></div>
+										</c:if>
+										
+										</c:forEach>
+										
+									</c:if>
+									
+								</c:forEach>
 									</span>
 										
 									<br>
-									<a href="${product_detail }" class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
-										[B-BASIC] 베이직 크롭 컬러나시
+									<a href="${product_detail }" id="${p.prdtNo }"class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
+										${p.prdtName }
 
 									</a>
 
 									<span class="block2-price m-text6 p-r-5">
-										<small><font class="format-money">7000</font> won</small>&nbsp;&nbsp;
+										<small><font class="format-money">${ p.prdtPrice}</font> won</small>&nbsp;&nbsp;
 										<font style="font-size:9px;color:gray">리뷰 : 100</font>
 									</span>
 								</div>
 							</div>
 						</div>
+						
+						</c:forEach>
 							<!-- 세일프로덕트블록 샘플 -->
 					<!-- <div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 							<div class="block2">

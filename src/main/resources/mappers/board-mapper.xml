@@ -28,8 +28,8 @@
 				#{qna_writer},#{qna_title},#{originalFileName},#{renameFileName},SYSDATE,
 				#{qna_password},#{qna_secure})
 		</insert>
-
-		<select id="selectBoard" parameterType="Board" resultMap="boardResultSet">
+		
+		<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
 		SELECT *
 		FROM QNA
 		WHERE QNA_NO=#{qna_no}
@@ -40,7 +40,44 @@
 		FROM QNA
 		WHERE B_CATE_NO=#{b_cate_no}
 	</select>
-
-
-
+		
+		<select id="selectList" resultMap="boardResultSet">
+		SELECT *
+		FROM QNA
+		WHERE B_CATE_NO=#{b_cate_no}
+		ORDER BY QNA_NO DESC
+		</select>
+		
+		
+		<select id="SearchListCount" resultType="_int">
+			SELECT COUNT(*)
+			FROM QNA Q
+			JOIN MEMBER M ON(Q.MEM_NO = M.MEM_NO)
+		    WHERE B_CATE_NO=#{b_cate_no}
+		<if test="writer != null">
+			AND MEM_ID LIKE '%' || #{writer} || '%'
+		</if>
+		<if test="title != null">
+			AND QNA_TITLE LIKE '%' || #{title} || '%'
+		</if>
+		
+		</select>
+		
+		<select id="selectSearchList" resultMap="boardResultSet" >
+			SELECT *
+			FROM QNA Q
+			JOIN MEMBER M ON(Q.MEM_NO = M.MEM_NO)
+		    WHERE B_CATE_NO=#{b_cate_no}
+			<if test="writer != null">
+			AND MEM_ID LIKE '%' || #{writer} || '%'
+			</if>
+			<if test="title != null">
+			AND QNA_TITLE LIKE '%' || #{title} || '%'
+			</if>
+			ORDER BY QNA_NO DESC
+		</select>
+		
 </mapper>
+
+
+
