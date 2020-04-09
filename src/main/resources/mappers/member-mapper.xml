@@ -101,13 +101,13 @@
 	WHERE MEM_ID=#{memId}
 </update>
 
-<!-- 
 <update id="deleteMember"  parameterType="Member">
 		UPDATE MEMBER
-		SET M_STATUS = 'N'
-		WHERE ID=#{id}
+		SET MEM_STATUS = 'Y'
+		WHERE MEM_ID=#{memId}
 </update>
 
+<!-- 
  <select id="idCheck" parameterType="String" resultType="_int">
 
 		SELECT COUNT(*)

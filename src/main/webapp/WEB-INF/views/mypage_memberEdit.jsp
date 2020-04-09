@@ -288,6 +288,8 @@
 							</span>
 					</div>
 					
+						</form>
+						<form action="mDelete.do" method="post" name="memdelete" id="memdelete">
 					<div class="layerLeave ec-base-layer" id="eLeaveLayer">
 						<div class="header" style="height:35px; padding: 7px 35px 7px 19px;">
 							<h3 style="margin : 0;">회원탈퇴</h3>
@@ -350,9 +352,8 @@
 								</table>
 							</div>
 						</div>
-						
 						<div class="ec-base-button">
-							<a href="#none" id="eLeaveLayerBtn" class="yg_btn_30" alt="탈퇴">탈퇴</a>
+							<a href="#none" onclick="document.getElementById('memdelete').submit();" id="eLeaveLayerBtn" class="yg_btn_30" alt="탈퇴">탈퇴</a>
 							<a href="#none" onclick="$('#eLeaveLayer').hide();"
 								class="yg_btn_30 yg_btn3" alt="취소">취소</a>
 						</div>
