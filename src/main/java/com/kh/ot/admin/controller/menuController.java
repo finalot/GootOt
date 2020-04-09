@@ -123,14 +123,17 @@ public class menuController {
 	 */
 	@RequestMapping("DesignEdit.ad")
 	public ModelAndView DesignEdit(ModelAndView mv) {
-
+		
 		ArrayList<Design> mainList = adService.selectMainList();
-						Design video = adService.selectVideo();
+		Design video = adService.selectVideo();
 		ArrayList<Design> instaList = adService.selectInstaList();
-
-
-
-
+		
+		
+		mv.addObject("mainList",mainList);
+		mv.addObject("video",video);
+		mv.addObject("instaList",instaList);
+		mv.setViewName("admin/DesignEdit");
+		
 		return mv;
 	}
 

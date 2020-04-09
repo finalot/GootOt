@@ -145,16 +145,11 @@
 							<ul class="flex-w">
 							<c:forEach var="pp" items="${ plist }">
 								<c:forEach var="poo" items="${ polist }">
-								
 									<c:if test="${ pp.prdtNo eq poo.prdtNo }">
-									
-										
-										
 										<c:forEach var="pcc" items="${ pclist }">
 											<c:if test="${ poo.optColor eq pcc.pcName }">
 								<li class="color-choice" id="${pcc.pcRgb}" style="width:17px;height:17px;display:inline-block;
 								border:1px solid black;margin-right:2px;margin-bottom:2px;background:${pcc.pcRgb};"></li>
-								
 											</c:if>		
 										</c:forEach>
 									</c:if>

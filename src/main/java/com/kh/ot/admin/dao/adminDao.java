@@ -100,20 +100,18 @@ public class adminDao {
 
 
 	public ArrayList<Design> selectMainList() {
-		// TODO Auto-generated method stub
-		return null;
+		return (ArrayList)sqlSession.selectList("adminMapper.selectMainList");
 	}
 
-
 	public Design selectVideo() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Design)sqlSession.selectOne("adminMapper.selectVideo");
 	}
 
 
 	public ArrayList<Design> selectInstaList() {
-		// TODO Auto-generated method stub
-		return null;
+		return (ArrayList)sqlSession.selectList("adminMapper.selectInstaList");
 	}
+	
+	
 	
 }

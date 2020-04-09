@@ -12,6 +12,24 @@
 			<result property="cpDiscount" column="CP_DISCOUNT"/>
 			<result property="cpDate" column="CP_DATE"/>
 		</resultMap>
+		
+		<resultMap type="Design" id="MainResultSet">
+			<id property = "no" column="D_NO"/>
+			<result property="mainComment" column="D_COMMENT"/>
+			<result property="reFile" column="D_REFILE"/>
+			<result property="mainLink" column="D_LINK"/>
+		</resultMap>
+
+		<resultMap type="Design" id="VideoResultSet">
+			<id property = "no" column="V_NO"/>
+			<result property="reFile" column="VIDEOFILE"/>
+		</resultMap>
+		
+		<resultMap type="Design" id="InstaResultSet">
+			<id property = "no" column="IN_NO"/>
+			<result property="reFile" column="IN_REFILE"/>
+			<result property="mainLink" column="IN_LINK"/>
+		</resultMap>
 
 <insert id="couponInput" parameterType="java.util.Map">
 	INSERT INTO COUPON (CP_NO,CP_NAME,CP_DISCOUNT,CP_DATE)
@@ -48,6 +66,7 @@
 <update id="DesignEdVideo" parameterType="Design">
 	UPDATE MAINVIDEO
 	SET VIDEOFILE=#{reFile}	
+	WHERE V_NO=1
 </update>
 
 <update id="DesignInsta"  parameterType="java.util.Map">
@@ -61,6 +80,21 @@
 	WHERE IN_NO = #{d.no}
 </foreach>
 </update>
+<select id="selectMainList" resultMap="MainResultSet" >
+	SELECT * FROM 
+	MAINDESIGN
+</select>
+
+<select id="selectVideo" resultMap="VideoResultSet">
+	SELECT * FROM
+	MAINVIDEO
+</select>
+
+<select id="selectInstaList" resultMap="InstaResultSet">
+	SELECT * FROM
+	INSTADESIGN	
+</select>
+
 
 </mapper>
 
