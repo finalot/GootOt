@@ -32,7 +32,35 @@
 	DELETE FROM COUPON
 	WHERE CP_NAME = #{cpName}
 </delete>
-		
-		
+<update id="DesignEd" parameterType="java.util.Map">
+	<foreach  item="d" collection="dlist"  index="index" 
+      separator=";" open="DECLARE BEGIN" close="; END;" >
+	UPDATE MAINDESIGN 
+	SET 
+	D_ORIFILE=#{d.oriFIle},
+	D_REFILE=#{d.reFile},
+	D_COMMENT=#{d.mainComment},
+	D_LINK=#{d.mainLink}
+	WHERE D_NO = #{d.no}
+</foreach>
+</update>
+
+<update id="DesignEdVideo" parameterType="Design">
+	UPDATE MAINVIDEO
+	SET VIDEOFILE=#{reFile}	
+</update>
+
+<update id="DesignInsta"  parameterType="java.util.Map">
+<foreach  item="d" collection="dlist"  index="index" 
+     separator=";" open="DECLARE BEGIN" close="; END;" >
+	UPDATE INSTADESIGN 
+	SET
+	IN_ORIFILE = #{d.oriFIle},
+	IN_REFILE = #{d.reFile},
+	IN_LINK = #{d.mainLink}
+	WHERE IN_NO = #{d.no}
+</foreach>
+</update>
+
 </mapper>
 

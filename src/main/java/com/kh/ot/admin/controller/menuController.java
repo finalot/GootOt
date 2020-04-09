@@ -1,29 +1,33 @@
 package com.kh.ot.admin.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ot.admin.servie.adminService;
 import com.kh.ot.admin.vo.Coupon;
+import com.kh.ot.admin.vo.Design;
 
 @SessionAttributes("loginMember")
 @Controller
 public class menuController {
 	
-	@Autowired
-	private AdminService aService;
-
 		@Autowired
 		private adminService adService;
 	
@@ -110,9 +114,23 @@ public class menuController {
 		return "admin/eventList";
 	}
 	
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 문태환 
+	 * @내용 	: 디자인 리스트 
+	 * @return
+	 */
 	@RequestMapping("DesignEdit.ad")
-	public String DesignEdit() {
-		return "admin/DesignEdit";
+	public ModelAndView DesignEdit(ModelAndView mv) {
+		
+		ArrayList<Design> mainList = adService.selectMainList();
+						Design video = adService.selectVideo();
+		ArrayList<Design> instaList = adService.selectInstaList();
+		
+		
+		
+		
+		return mv;
 	}
 	
 	@RequestMapping("QnA_Product.ad")
@@ -192,25 +210,7 @@ public class menuController {
 	
 	
 	
-//	기능 시작 
-	
-
-	
-	/**
-	 * @작성일 : 2020. 4. 7.
-	 * @작성자 : 이서현
-	 * @내용 : 카테고리 전체 출력  
-	 */
-	@RequestMapping(value = "category.ad", method = RequestMethod.GET)
-	public void insertUpCategory(Model model) throws Exception {
-	 //logger.info("get goods register");
-	 
-	 List<UpCategory> upcate = null;
-	 upcate = AdminService.insertUpCategory();
-	 model.addAttribute("upcate", JSONArray.fromObject(upcate));
-	}
-	
-	
+//	기능 시작 	
 	
 	
 	/**
@@ -222,10 +222,6 @@ public class menuController {
 	 */
 	@RequestMapping("couponInput.do")
 	public void couponInput(HttpServletResponse response,String[] cpName,int[] cpDiscount) throws IOException {
-		
-		
-		
-	
 		
 		ArrayList<Coupon> clist = new ArrayList<Coupon>();
 		
@@ -249,6 +245,14 @@ public class menuController {
 		}
 	}
 		
+	/**
+	 * @작성일  : 2020. 4. 8.
+	 * @작성자  : 문태환
+	 * @내용 	:쿠폰삭제
+	 * @param response
+	 * @param cpName
+	 * @throws IOException
+	 */
 	@RequestMapping("couponDelete.ad")
 	public void couponDelete(HttpServletResponse response,String cpName) throws IOException {
 		
@@ -262,4 +266,140 @@ public class menuController {
 			out.print("fail");
 		}
 	}
+	
+	/**
+	 * @작성일  : 2020. 4. 8.
+	 * @작성자  : 문태환
+	 * @내용 	: 디자인 업데이트
+	 * @param d
+	 * @param request
+	 * @param session
+	 * @param uploadFile
+	 * @return
+	 */
+	@RequestMapping(value="DesignEd.do", method=RequestMethod.POST)
+	public String DesignEd(int[] no, String[] mainComment,String[] mainLink, HttpServletRequest request,HttpSession session,
+	         @RequestParam(name="mainImg",required=false) MultipartFile[] uploadFile) {
+
+		
+		ArrayList<Design> dlist = new ArrayList<Design>();
+		for(int i = 0;i<no.length-1;i++) {
+		Design d = new Design();
+		
+	
+		
+		if(!uploadFile[i].getOriginalFilename().equals("")) {
+	         // 서버에 업로드
+	         // saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명을 반환해주는 메소드
+	         
+	         String renameFileName = saveFile(uploadFile[i],request);
+	         
+	         if(renameFileName != null) {
+	       d.setNo(no[i]);
+	       d.setMainComment(mainComment[i]);
+	       d.setMainLink(mainLink[i]); 	 
+	       d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
+	       d.setReFile(renameFileName);
+	       dlist.add(d);
+	         		}
+				}      
+		}
+				int result = adService.DesignEd(dlist);
+		
+				if(result > -1 ) {
+					return "home";	
+				}else {
+					return "에러야";
+				}
+	}
+	
+		@RequestMapping(value="DesignEdVideo.do" , method=RequestMethod.POST)
+		public String DesignEdVideo(HttpServletRequest request, 
+				@RequestParam(name="mainvideo",required=false) MultipartFile uploadFile) {
+			Design d = new Design();
+			
+			if(!uploadFile.getOriginalFilename().equals("")) {
+		         // 서버에 업로드
+		         // saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명을 반환해주는 메소드
+		         String renameFileName = saveFile(uploadFile,request);
+		         if(renameFileName != null) {
+		        	 d.setReFile(renameFileName);
+		         }
+			}
+			int result = adService.DesignEdVideo(d);
+			
+			if(result > -1) {
+				return "home";	
+			}else {
+				return "에러야";
+			}
+		}
+	
+	@RequestMapping(value="DesignInsta.do",method=RequestMethod.POST)
+	public String DesignInsta(int[] inno,String[] instalink, HttpServletRequest request,HttpSession session,
+	         @RequestParam(name="instaimg",required=false) MultipartFile[] uploadFile)  {
+		
+		ArrayList<Design> dlist = new ArrayList<Design>();
+		for(int i = 0;i<inno.length-1;i++) {
+		Design d = new Design();
+		
+		if(!uploadFile[i].getOriginalFilename().equals("")) {
+	         // 서버에 업로드
+	         // saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명을 반환해주는 메소드
+	         
+	         String renameFileName = saveFile(uploadFile[i],request);
+	         
+	         if(renameFileName != null) {
+	       d.setNo(inno[i]);
+	       d.setMainLink(instalink[i]); 	 
+	       d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
+	       d.setReFile(renameFileName);
+	       dlist.add(d);
+	         		}
+				}
+		}
+		int result = adService.DesignInsta(dlist);
+	
+			return "home";	
+	
+	}
+	/**
+	 * @작성일  : 2020. 4. 8.
+	 * @작성자  : 문태환 
+	 * @내용 	: 파일이름 변경
+	 * @param file
+	 * @param request
+	 * @return
+	 */
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
+	      // 저장할 경로 설정et
+	      // 웹 서버 contextPath를 불러와서 폴더의 경로 찾음(webapp 하위의 resources)
+	      String root = request.getSession().getServletContext().getRealPath("resources");
+	      
+	      String savePath = root + "\\buploadFiles";
+	      
+	      File folder = new File(savePath);
+	      
+	      if(!folder.exists()) {
+	         folder.mkdir(); // 폴더가 없다면 생성해주세요
+	      }
+	      
+	      String originFileName = file.getOriginalFilename();
+	      
+	      SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+	      String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+	               + originFileName.substring(originFileName.lastIndexOf(".")+1);
+	      
+	      String renamePath = folder + "\\" + renameFileName;
+	      
+	      try {
+	         file.transferTo(new File(renamePath));
+	      } catch (Exception e) {
+	         
+	         System.out.println("파일 전송 에러: " + e.getMessage());
+	      } 
+	      return renameFileName;
+	   }
+	
+	
 }

@@ -214,8 +214,6 @@ margin-top: 1%;
                                 </li>
                             </ul>
                         </li>
-                        
-                        
                         <li>
                             <a class="js-arrow" href="productReturnList.ad">
                         <i class="fa fa-credit-card"></i>교환 &nbsp;/&nbsp;반품</a>
@@ -255,7 +253,6 @@ margin-top: 1%;
                                 <li>
                                     <a href="review_report_list.ad">신고된 리뷰관리</a>
                                 </li>
-                                
                             </ul>
 	                  	</li>
                     </ul>
@@ -263,7 +260,6 @@ margin-top: 1%;
             </div>
         </aside>
         <!-- END MENU SIDEBAR-->
-     
      
      <!-- 이벤트 내용 -->
      
@@ -282,7 +278,7 @@ margin-top: 1%;
         </div>
     </section>
     <!-- END WELCOME-->
-    
+    <form action="eventInsert.ad" id="eventInsert">
     <table id="addlist" style="border: 1px dotted; background: white;">
         <tr>
         <td colspan="2" style="background:#dfe3e6;; margin-bottom: 2%;padding-bottom: 2%;"><h3 style="color: black;;margin-left: 5%;"> 이벤트 상세내용</h3></td>
@@ -321,9 +317,9 @@ margin-top: 1%;
                <label >적립금</label> : <input style="margin-right: 5%;  background: rgba(190, 181, 181, 0.24);" type="number"  id="d_money" min="1000" step="1000" readonly>
                <label >쿠폰</label> : <select name="coupon" style=" background: rgba(190, 181, 181, 0.24);" disabled id="d_coupon">            
                                         <option value=''>---------</option>
-                                        <option value="daily">daily</option>
-                                        <option value="joinmember">joinmember</option>
-                                        <option value="buy50000">buy50000</option>
+                                    	<c:forEach var ="c" items="${clist}">
+                                    	<option value="${c.cpDiscount }">${c.cpName }</option>
+                                    	</c:forEach>
                                       </select> <span id="coupon-price" style="padding-left: 10px; color: darkred;"></span>
                                       
             </td>
@@ -341,9 +337,8 @@ margin-top: 1%;
 
     <div style="height: 130px;">
             <div align="center">
-                <button style="background: black;
+                <button id="eventInsertBtn" style="background: black;
                 color: white;
-              
                 font-size: 20px;
                 padding: 10px;
                 height: 65px;
@@ -351,7 +346,9 @@ margin-top: 1%;
                 border-radius: 10px;
                 ">등록</button>
             </div>
-    </div></div>
+    </div>
+    </form>
+    </div>
      <div class="page-wrapper">
     </div>
            <div id="coupon_div">
@@ -382,31 +379,20 @@ margin-top: 1%;
 				</div> 
 				 <div align="center"><button id="coupon_input">쿠폰등록</button></div>
                </div>
-	
     <script>
-    	
+    
+    $('#eventInsertBtn').click(function(){
+    	$('#eventInsert').submit();
+    })
+    
+    
+    
         $('#coupon_open').click(function(){
                $('#coupon_div').css('display','block'); 
         });
         $('#coupon_close').click(function(){
             $('#coupon_div').css('display','none');
         });
-     /*    $('#coupon_input').click(function(){
-            if($('.cpName').val() && $('#cpDiscount').val() != ""){
-                var coupon_name = $('.cpName').val();
-
-                $('#d_coupon').append("<option value="+cpName+">"+cpName
-                                        +"</option>");
-                alert('쿠폰등록 완료');
-                $('#coupon_div').css('display','none');
-                    document.getElementById('.cpName').value = "";
-                    document.getElementById('.cpDiscount').value = "";
-            }else{
-                
-                alert('쿠폰명 또는 쿠폰가격을 입력해 주세요')
-            }
-		
-        }); */
         
     	$('#coupon-plus').click(function(){
     		$('.cpBody').append('<tr>'+
@@ -415,7 +401,6 @@ margin-top: 1%;
 					'<td><button style="font-weight:blod" class="cpDelete" onclick="cpClose(this)">삭제</button></td>'+
 					'</tr>');
     	});
-    	
     	function cpClose(en){
     		
     		if(confirm("삭제하시겠습니까?") ==true){
@@ -435,16 +420,11 @@ margin-top: 1%;
     			});
     		}
     	};
-
-
         
         var cpNameArr = Array();
         var cpDisArr = Array();
  		var cpName = document.getElementsByName('cpName');
  		var cpDiscount = document.getElementsByName('cpDiscount');
-        	
- 	 
-        
     
         $('#coupon_input').click(function(){
         	
@@ -453,7 +433,6 @@ margin-top: 1%;
             	cpNameArr[i] = cpName[i].value;
             	cpDisArr[i] = cpDiscount[i].value;
             } 
-            
            console.log(cpNameArr);
            console.log(cpDisArr);
             
@@ -464,6 +443,7 @@ margin-top: 1%;
         		success : function(data){
         			if(data == "ok"){
         				alert("쿠폰이 등록되었습니다");
+        				location.href="eventAdd.ad";
         			}else{
         				alert("쿠폰등록에 실패하였습니다");
         			}
@@ -472,15 +452,9 @@ margin-top: 1%;
         		}
         	});
         
-        
         });
-        
-        
     </script>
-
-
     <script>
-       
         $('.category').click(function(){
 
         var product = document.getElementById('product');
@@ -525,11 +499,9 @@ margin-top: 1%;
     	}else{
     		 $('#coupon-price').html('');
     	}
-	
         });
 
     </script>
-
     <script type="text/javascript">
     
         function readURL(input) {
@@ -542,11 +514,6 @@ margin-top: 1%;
         }
         }
         </script>
-      
-        
-
-
-    </script>
      <!-- Jquery JS-->
      <script src="/ot/resources/avendor/jquery-3.2.1.min.js"></script>
      <!-- Bootstrap JS-->
@@ -567,7 +534,6 @@ margin-top: 1%;
      <script src="/ot/resources/avendor/chartjs/Chart.bundle.min.js"></script>
      <script src="/ot/resources/avendor/select2/select2.min.js">
      </script>
- 
      <!-- Main JS-->
      <script src="/ot/resources/ajs/main.js"></script>
 </body>
