@@ -15,6 +15,7 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.main.vo.downCategory;
+import com.kh.ot.main.vo.upCategory;
 
 @Repository("mainDao")
 public class MainDao {
@@ -103,6 +104,26 @@ public class MainDao {
 	 */
 	public ArrayList<downCategory> selectCategoryList1(int product1) {
 		return (ArrayList)sqlSession.selectList("productMapper.selectCategory1",product1);
+	}
+
+	public ArrayList<upCategory> selectUpCategoryList1() {
+		return (ArrayList)sqlSession.selectList("productMapper.selectUpCategory1");
+	}
+
+	public ArrayList<downCategory> selectCategoryList2(int product2) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectCategory2",product2);
+	}
+
+	public ArrayList<upCategory> selectUpCategoryList2() {
+		return (ArrayList)sqlSession.selectList("productMapper.selectUpCategory2");
+	}
+
+	public ArrayList<downCategory> selectCategoryList3() {
+		return (ArrayList)sqlSession.selectList("productMapper.selectCategory3");
+	}
+	
+	public ArrayList<upCategory> selectUpCategoryList3() {
+		return (ArrayList)sqlSession.selectList("productMapper.selectUpCategory3");
 	}
 
 	
