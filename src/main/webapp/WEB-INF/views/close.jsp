@@ -9,7 +9,7 @@
 <body>
 
 <script>
-alert("계좌 변경이 완료되었습니다. !!!")
+alert("계좌 변경이 완료되었습니다 !")
 window.close();
 window.opener.location.reload();
 </script>
