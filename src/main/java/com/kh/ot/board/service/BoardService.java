@@ -93,6 +93,16 @@ public interface BoardService{
 	Board selectUpdateBoard(int qna_no);
 
 
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 우예진
+	 * @내용    : 7. 상품문의 게시판 삭제
+	 * @param qna_no
+	 * @return
+	 */
+	int deletePrBoard(int qna_no);
+
+
 	
 
 	

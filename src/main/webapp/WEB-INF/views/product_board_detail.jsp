@@ -182,7 +182,7 @@ ${b.content }
             </span>
             <span class="gRight">
                 <a onclick="updateQnA()" class="yg_btn_30 yg_btn4" alt="등록">UPDATE</a>
-                <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="취소">DELETE</a>
+                <a onclick="deleteQnA()" class="yg_btn_30 yg_btn4" alt="취소">DELETE</a>
             </span>
         </div>
 	</div>
@@ -196,6 +196,12 @@ function updateQnA(){
 	var qna_no = $('#qq_no').val()
 	location.href="product_board_update.do?qna_no="+qna_no;
 };
+
+function deleteQnA(){
+	var qna_no = $('#qq_no').val()
+	location.href="product_board_delete.do?qna_no="+qna_no;
+};
+
 
 </script>
 	

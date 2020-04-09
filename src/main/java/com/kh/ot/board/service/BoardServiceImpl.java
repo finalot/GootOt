@@ -57,6 +57,11 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.selectUpdateBoard(qna_no);
 	}
 
+	@Override
+	public int deletePrBoard(int qna_no) {
+		return bDao.deletePrBoard(qna_no);
+	}
+
 	
 	
 }
