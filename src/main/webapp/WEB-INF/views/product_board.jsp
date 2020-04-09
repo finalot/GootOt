@@ -190,10 +190,11 @@ a{
 
 
          </div>
-
+<%-- 		<c:if test="${! empty sessionScope.loginMember }"> --%>
         <a href="product_board_write.do" class="hov1 s-text1 trans-0-4 yg_btn_145">
         <span style="position: relative;top: -2px;">write</span></a>
-
+     <%--    </c:if> --%>
+			
          <div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 "><fieldset class="boardSearch">
 		<legend>게시물 검색</legend>
 		<form action="pb_search.do">

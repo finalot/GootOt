@@ -92,6 +92,12 @@
 		
 		</select>
 		
+		
+		<delete id="deletePrBoard" parameterType="_int">
+			DELETE
+			FROM QNA
+			WHERE QNA_NO=#{qna_no}
+		</delete>
 </mapper>
 
 

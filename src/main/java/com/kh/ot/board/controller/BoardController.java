@@ -408,6 +408,17 @@ public class BoardController extends HttpServlet {
 		}
 			
 	}
+	
+	@RequestMapping("product_board_delete.do")
+	public String product_board_delete(int qna_no, HttpServletRequest request) {
+		int result = bService.deletePrBoard(qna_no);
+		
+		if(result >0) {
+			return "redirect:product_board.do";
+		} else {
+			return "에러다";
+		}
+	}
 
 	
 	/**

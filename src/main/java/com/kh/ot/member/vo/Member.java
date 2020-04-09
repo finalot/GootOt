@@ -18,6 +18,7 @@ public class Member {
 	private String memOwner; // 예금주
 	private String bank; // 은행명
 	private String returnBank; // 환불게좌
+	private String mem_status; // 상태값
 
 
 
@@ -26,7 +27,7 @@ public class Member {
 	}
 
 	public Member(int memNo, String memId, String memPwd, String memName, String memSsn, String memAddress,
-			String memEmail, String memPhone, int memSumMoney,String memOwner, String bank, String returnBank) {
+			String memEmail, String memPhone, int memSumMoney,String memOwner, String bank, String returnBank,String mem_status) {
 		super();
 		this.memNo = memNo;
 		this.memId = memId;
@@ -40,6 +41,7 @@ public class Member {
 		this.memOwner = memOwner;
 		this.bank = bank;
 		this.returnBank = returnBank;
+		this.mem_status = mem_status;
 	}
 
 	public int getMemNo() {
@@ -146,18 +148,26 @@ public class Member {
 	public void setTdDate(String tdDate) {
 		this.tdDate = tdDate;
 	}
+	
+	
+
+	public String getMem_status() {
+		return mem_status;
+	}
+
+	public void setMem_status(String mem_status) {
+		this.mem_status = mem_status;
+	}
 
 	@Override
 	public String toString() {
 		return "Member [memNo=" + memNo + ", memId=" + memId + ", memPwd=" + memPwd + ", memName=" + memName
 				+ ", memSsn=" + memSsn + ", memAddress=" + memAddress + ", memEmail=" + memEmail + ", memPhone="
 				+ memPhone + ", tdDate=" + tdDate + ", memSumMoney=" + memSumMoney + ", memOwner=" + memOwner
-				+ ", bank=" + bank + ", returnBank=" + returnBank + "]";
+				+ ", bank=" + bank + ", returnBank=" + returnBank + ", mem_status=" + mem_status + "]";
 	}
 
-
-
-
+	
 
 
 }

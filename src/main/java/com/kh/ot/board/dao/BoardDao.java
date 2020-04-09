@@ -65,4 +65,9 @@ public class BoardDao {
 		return sqlSession.selectOne("boardMapper.selectUpdateBoard",qna_no);
 	}
 
+
+	public int deletePrBoard(int qna_no) {
+		return sqlSession.delete("boardMapper.deletePrBoard",qna_no);
+	}
+
 }
