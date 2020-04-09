@@ -14,8 +14,11 @@
 <typeAliases>
 <typeAlias type="com.kh.ot.member.vo.Member" alias="Member"/>
 <typeAlias type="com.kh.ot.board.vo.Board" alias="Board"/>
+<typeAlias type="com.kh.ot.main.vo.Product" alias="Product"/>
+<typeAlias type="com.kh.ot.main.vo.Product_opt" alias="Product_opt"/>
+<typeAlias type="com.kh.ot.main.vo.Product_color" alias="Product_color"/>
 <typeAlias type="com.kh.ot.admin.vo.Coupon" alias="Coupon"/>
-
+<typeAlias type="com.kh.ot.admin.vo.Coupon" alias="Design"/>
 </typeAliases>
 
 <!-- DB정보를 썼던 부분 environments 엘리먼트로 dataSource 등등의 정보를 썼는데스프링에서는 그 정보를 이 파일에서 안쓴다! 기존에 DB연결 설정에 대한 정보를 mybatis-config.xml에서 작성-> -->
@@ -24,6 +27,7 @@
 <mappers>
 <mapper resource="mappers/member-mapper.xml"/>
 <mapper resource="mappers/board-mapper.xml"/>
+<mapper resource="mappers/main-mapper.xml"/>
 <mapper resource="mappers/admin-mapper.xml"/>
 </mappers>
 

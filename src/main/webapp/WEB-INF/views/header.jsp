@@ -86,78 +86,78 @@ font-size: 9px !important;
 					<span class="linedivide1"></span>
 					<!-- 프로덕트 1부분 경로 설정 -->
 					<c:url var="best" value="product1.do">
-						<c:param name="product1" value="BEST"/>
+						<c:param name="product1" value="5"/>
 					</c:url>
 					<c:url var="clothing" value="product1.do">
-						<c:param name="product1" value="CLOTHING"/>
+						<c:param name="product1" value="1"/>
 					</c:url>
 					<c:url var="outer" value="product1.do">
-						<c:param name="product1" value="OUTER"/>
+						<c:param name="product1" value="2"/>
 					</c:url>
 					<c:url var="shoes" value="product1.do">
-						<c:param name="product1" value="SHOES"/>
+						<c:param name="product1" value="3"/>
 					</c:url>
 					<c:url var="acc" value="product1.do">
-						<c:param name="product1" value="ACC"/>
+						<c:param name="product1" value="4"/>
 					</c:url>
 					<c:url var="event" value="product1.do">
-						<c:param name="product1" value="EVENT"/>
+						<c:param name="product1" value="6"/>
 					</c:url>
 					<!-- 프로덕트 1 부분 경로설정 끝 -->
 					<!-- 프로덕트 2 부분 경로설정  -->
 					<c:url var="tnasi" value="product2.do">
-						<c:param name="product2" value="TNASI"/>
+						<c:param name="product2" value="11"/>
 					</c:url>
 					<c:url var="mantoman" value="product2.do">
-						<c:param name="product2" value="MANTOMAN"/>
+						<c:param name="product2" value="12"/>
 					</c:url>
 					<c:url var="hoody" value="product2.do">
-						<c:param name="product2" value="HOODY"/>
+						<c:param name="product2" value="13"/>
 					</c:url>
 					<c:url var="pants" value="product2.do">
-						<c:param name="product2" value="PANTS"/>
+						<c:param name="product2" value="14"/>
 					</c:url>
 					<c:url var="neat" value="product2.do">
-						<c:param name="product2" value="NEAT"/>
+						<c:param name="product2" value="15"/>
 					</c:url>
 					<c:url var="onepieceskirt" value="product2.do">
-						<c:param name="product2" value="ONEPIECESKIRT"/>
+						<c:param name="product2" value="16"/>
 					</c:url>
 					<c:url var="shirtblouse" value="product2.do">
-						<c:param name="product2" value="SHIRTBLOUSE"/>
+						<c:param name="product2" value="17"/>
 					</c:url>
 					<c:url var="jacket" value="product2.do">
-						<c:param name="product2" value="JACKET"/>
+						<c:param name="product2" value="21"/>
 					</c:url>
 					<c:url var="coatjumper" value="product2.do">
-						<c:param name="product2" value="COATJUMPER"/>
+						<c:param name="product2" value="22"/>
 					</c:url>
 					<c:url var="cardigan" value="product2.do">
-						<c:param name="product2" value="CARDIGAN"/>
+						<c:param name="product2" value="23"/>
 					</c:url>
 					<c:url var="belt" value="product2.do">
-						<c:param name="product2" value="BELT"/>
+						<c:param name="product2" value="41"/>
 					</c:url>
 					<c:url var="glasses" value="product2.do">
-						<c:param name="product2" value="GLASSES"/>
+						<c:param name="product2" value="42"/>
 					</c:url>
 					<c:url var="hat" value="product2.do">
-						<c:param name="product2" value="HAT"/>
+						<c:param name="product2" value="43"/>
 					</c:url>
 					<c:url var="socks" value="product2.do">
-						<c:param name="product2" value="SOCKS"/>
+						<c:param name="product2" value="44"/>
 					</c:url>
 					<c:url var="accessories" value="product2.do">
-						<c:param name="product2" value="ACCESSORIES"/>
+						<c:param name="product2" value="45"/>
 					</c:url>
 					<c:url var="etc" value="product2.do">
-						<c:param name="product2" value="ETC"/>
+						<c:param name="product2" value="46"/>
 					</c:url>
 					<c:url var="new5" value="product2.do">
-						<c:param name="product2" value="NEW5"/>
+						<c:param name="product2" value="61"/>
 					</c:url>
 					<c:url var="sale" value="product2.do">
-						<c:param name="product2" value="SALE"/>
+						<c:param name="product2" value="62"/>
 					</c:url>
 					
 					<c:url var="todaymain" value="todaymain.ad"/> 

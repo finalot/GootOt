@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.ot.board.service.BoardService;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.common.Pagination;
 import com.kh.ot.member.vo.Member;
 
@@ -248,7 +250,7 @@ public class BoardController extends HttpServlet {
       
       System.out.println(currentPage);
 	   
-	   int b_cate_no = 1;
+	  int b_cate_no = 1;
       
       int listCount = bService.getListCount(b_cate_no);
       
@@ -256,9 +258,11 @@ public class BoardController extends HttpServlet {
       
       PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
       
-//      ArrayList<Board> list = bService.selectList(pi);
-//      
-//      mv.addObject("list",list);
+      ArrayList<Board> list = bService.selectList(pi,b_cate_no);
+      
+      System.out.println("list:"+list);
+      
+        mv.addObject("list",list);
         mv.addObject("pi",pi);
         mv.setViewName("product_board");
       
@@ -307,6 +311,212 @@ public class BoardController extends HttpServlet {
    
    
    
+  
+
+
+   /**
+	 * @작성일  : 2020.04.05
+	 * @작성자  : 우예진
+	 * @내용    : 상품문의 상세페이지
+	 * @return
+	 */
+	@RequestMapping("product_board_detail.do")
+	public ModelAndView product_board_detail(ModelAndView mv, int qna_no 
+			/*@RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage*/) {
+		
+		Board b = bService.selectBoard(qna_no);
+		
+		if(b!=null) {
+			mv.addObject("b",b)
+					/* .addObject("currentPage",currentPage) */
+			.setViewName("product_board_detail");
+		} else {
+			mv.addObject("msg","게시글 상세조회 실패")
+			.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+
+
+   /**
+    * @작성일  : 2020.04.05
+    * @작성자  : 우예진
+    * @내용    : 상품문의 답변페이지
+    * @return
+    */
+   @RequestMapping("product_board_reply.do")
+   public String product_board_reply() {
+
+      return "product_board_reply";
+   }
+
+   /**
+    * @작성일  : 2020.04.05
+    * @작성자  : 우예진
+    * @내용    : 상품문의 글쓰기페이지
+    * @return
+    */
+   @RequestMapping("product_board_write.do")
+   public String product_board_write() {
+
+      return "product_board_write";
+   }
+   
+   /**
+ * @작성일  : 2020. 4. 8.
+ * @작성자  : 우예진
+ * @내용    : 상품문의 게시글 업데이트 화면 이동
+ * @return
+ */
+@RequestMapping("product_board_update.do")
+   public ModelAndView product_board_update(ModelAndView mv, int qna_no) {
+
+	
+	Board b = bService.selectBoard(qna_no);
+	
+	if(b!=null) {
+		mv.addObject("b",b)
+				/* .addObject("currentPage",currentPage) */
+		.setViewName("product_board_update");
+	} else {
+		mv.addObject("msg","게시글 상세조회 실패")
+		.setViewName("common/errorPage");
+	}
+      return mv;
+  }
+
+
+
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 우예진 
+	 * @내용    : 상품문의 게시글 업데이트 
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("product_board_updateView.do")
+	public String product_board_updateView(Board b,HttpServletRequest request) {
+
+			int result = bService.UpdatePrBoard(b);
+		
+		if(result > 0) {
+			return "redirect:product_board.do";
+		}else {
+			return "에러다";
+		}
+			
+	}
+
+	
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 우예진
+	 * @내용    : 파일 삭제
+	 * @param fileName
+	 * @param request
+	 */
+	public void deleteFile(String fileName, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\buploadFiles";
+	
+		File f = new File(savePath + "\\" + fileName);
+		// webapp / resource / buploadFiles / 202003261111.png
+	
+		if(f.exists()) {
+			f.delete();
+	}
+	
+}
+   
+   
+   /**
+    * @작성일  : 2020.04.08
+    * @작성자  : 우예진
+    * @내용    : 상품문의 검색 기능
+    * @return
+    */
+@RequestMapping("pb_search.do")
+   public ModelAndView pb_search(ModelAndView mv, 
+		   						@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
+		   						,String search_key,String search) {
+	int b_cate_no = 1;
+	
+	SearchCondition sc = new SearchCondition();
+	
+	if(search_key.equals("writer")) {
+		sc.setWriter(search);
+	} else if(search_key.equals("title")) {
+		sc.setTitle(search);
+	}
+	sc.setB_cate_no(b_cate_no);
+	
+	int listCount = bService.SearchListCount(sc);
+	
+	PageInfo pi = sc.getPageInfo(currentPage, listCount);
+	
+	ArrayList<Board> list = bService.selectSearchList(pi,sc);
+    
+    System.out.println("list:"+list);
+	
+	  mv.addObject("list",list);
+      mv.addObject("pi",pi);
+      mv.setViewName("product_board");
+	
+	return mv;
+   }
+
+   /**
+    * @작성일  : 2020.04.05
+    * @작성자  : 우예진
+    * @내용    : 배송후교환/반품 페이지 이동
+    * @return
+    */
+   @RequestMapping("product_change.do")
+   public String product_change() {
+
+      return "product_change";
+   }
+  
+
+   /**
+    * @작성일  : 2020.04.05
+    * @작성자  : 우예진
+    * @내용    : 배송후교환/반품 상세페이지
+    * @return
+    */
+   @RequestMapping("product_change_detail.do")
+   public String product_change_detail() {
+
+      return "product_change_detail";
+   }
+
+   /**
+    * @작성일  : 2020.04.05
+    * @작성자  : 우예진
+    * @내용    : 배송후교환/반품 답변페이지
+    * @return
+    */
+   @RequestMapping("product_change_reply.do")
+   public String product_change_reply() {
+
+      return "product_change_reply";
+   }
+
+   /**
+    * @작성일  : 2020.04.05
+    * @작성자  : 우예진
+    * @내용    : 배송후교환/반품 글쓰기
+    * @return
+    */
+   @RequestMapping("product_change_write.do")
+   public String product_change_write() {
+
+      return "product_change_write";
+   }
+   
+   
    /**
     * @작성일  : 2020.04.06
     * @작성자  : 우예진
@@ -344,118 +554,5 @@ public class BoardController extends HttpServlet {
       } 
       return renameFileName;
    }
-
-
-   /**
-	 * @작성일  : 2020.04.05
-	 * @작성자  : 우예진
-	 * @내용    : 상품문의 상세페이지
-	 * @return
-	 */
-	@RequestMapping("product_board_detail.do")
-	public ModelAndView product_board_detail(ModelAndView mv, int qna_no, 
-			@RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage) {
-		
-		Board b = bService.selectBoard(qna_no);
-		
-		if(b!=null) {
-			mv.addObject("b",b)
-			.addObject("currentPage",currentPage)
-			.setViewName("product_board_detail");
-		} else {
-			mv.addObject("msg","게시글 상세조회 실패")
-			.setViewName("common/errorPage");
-		}
-		
-
-		return mv;
-	}
-	
-	
-//	/**
-//	 * @작성일  : 2020.04.07
-//	 * @작성자  : 우예진
-//	 * @내용    : 상세정보 뷰 이동
-//	 * @return
-//	 */
-//	@RequestMapping("product_board_detailView.do") 
-//	public String product_board_detailView() {
-//		return "product_board_detail";
-//		
-//	}
-
-
-   /**
-    * @작성일  : 2020.04.05
-    * @작성자  : 우예진
-    * @내용    : 상품문의 답변페이지
-    * @return
-    */
-   @RequestMapping("product_board_reply.do")
-   public String product_board_reply() {
-
-      return "product_board_reply";
-   }
-
-   /**
-    * @작성일  : 2020.04.05
-    * @작성자  : 우예진
-    * @내용    : 상품문의 글쓰기페이지
-    * @return
-    */
-   @RequestMapping("product_board_write.do")
-   public String product_board_write() {
-
-      return "product_board_write";
-   }
-
-   /**
-    * @작성일  : 2020.04.05
-    * @작성자  : 우예진
-    * @내용    : 배송후교환/반품 페이지 이동
-    * @return
-    */
-   @RequestMapping("product_change.do")
-   public String product_change() {
-
-      return "product_change";
-   }
-
-   /**
-    * @작성일  : 2020.04.05
-    * @작성자  : 우예진
-    * @내용    : 배송후교환/반품 상세페이지
-    * @return
-    */
-   @RequestMapping("product_change_detail.do")
-   public String product_change_detail() {
-
-      return "product_change_detail";
-   }
-
-   /**
-    * @작성일  : 2020.04.05
-    * @작성자  : 우예진
-    * @내용    : 배송후교환/반품 답변페이지
-    * @return
-    */
-   @RequestMapping("product_change_reply.do")
-   public String product_change_reply() {
-
-      return "product_change_reply";
-   }
-
-   /**
-    * @작성일  : 2020.04.05
-    * @작성자  : 우예진
-    * @내용    : 배송후교환/반품 글쓰기
-    * @return
-    */
-   @RequestMapping("product_change_write.do")
-   public String product_change_write() {
-
-      return "product_change_write";
-   }
-
    
 }

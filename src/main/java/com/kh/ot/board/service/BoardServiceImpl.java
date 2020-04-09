@@ -9,6 +9,7 @@ import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.board.dao.BoardDao;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.board.vo.SearchCondition;
 
 @Service("bService")
 public class BoardServiceImpl implements BoardService{
@@ -22,8 +23,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public ArrayList<Board> selectList(PageInfo pi) {
-		return bDao.selectList(pi);
+	public ArrayList<Board> selectList(PageInfo pi,int b_cate_no) {
+		return bDao.selectList(pi,b_cate_no);
 	}
 
 	@Override
@@ -36,4 +37,26 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.selectBoard(qna_no);
 	}
 
+	@Override
+	public int SearchListCount(SearchCondition sc) {
+		return bDao.SearchListCount(sc);
+	}
+
+	@Override
+	public ArrayList<Board> selectSearchList(PageInfo pi, SearchCondition sc) {
+		return bDao.selectSearchList(pi,sc);
+	}
+
+	@Override
+	public int UpdatePrBoard(Board b) {
+		return bDao.UpdatePrBoard(b);
+	}
+
+	@Override
+	public Board selectUpdateBoard(int qna_no) {
+		return bDao.selectUpdateBoard(qna_no);
+	}
+
+	
+	
 }

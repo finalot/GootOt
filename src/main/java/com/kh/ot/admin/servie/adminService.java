@@ -3,6 +3,7 @@ package com.kh.ot.admin.servie;
 import java.util.ArrayList;
 
 import com.kh.ot.admin.vo.Coupon;
+import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 
@@ -33,6 +34,57 @@ public interface adminService{
 	 * @return
 	 */
 	public int couponDelete(String cpName);
+
+	/**
+	 * @작성일  : 2020. 4. 8.
+	 * @작성자  : 문태환
+	 * @내용 	: 디자인 업데이트
+	 * @param d
+	 * @return
+	 */
+	public int DesignEd(ArrayList<Design> dlist);
+
+	/**
+	 * @param d 
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 문태환 
+	 * @내용 	: 메인 비디오 업데이트
+	 * @return
+	 */
+	public int DesignEdVideo(Design d);
+
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 문태환
+	 * @내용 	: 메인 인스타 업데이트
+	 * @param dlist
+	 * @return
+	 */
+	public int DesignInsta(ArrayList<Design> dlist);
+
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  :  문태환
+	 * @내용 	:  메인 배너 리스트
+	 * @return
+	 */
+	public ArrayList<Design> selectMainList();
+
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 문태환
+	 * @내용 	: 비디오 객체
+	 * @return
+	 */
+	public Design selectVideo();
+
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  :  문태환
+	 * @내용 	:  인스타 배너 리스트
+	 * @return
+	 */
+	public ArrayList<Design> selectInstaList();
 	
 
 }

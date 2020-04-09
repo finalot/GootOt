@@ -245,6 +245,7 @@ th{
             </div>
         </div>
     </section>
+    <form id="mainForm" action="DesignEd.do" method="POST" enctype="multipart/form-data">
     <table id="design-table">
     	<tr>
         	<td colspan="2" style="background:#dfe3e6; margin-bottom: 3%;padding-bottom: 2%;">
@@ -253,183 +254,146 @@ th{
         <tr >
         	<th ><span style="color: red">*</span> 메인배너</th>
         	<td class="main-design">
-        		<div style="display: flex;margin-top: 3%"><span>FILE 1</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+				<input type="hidden" value="1" name="no">							
+        		<div style="display: flex;margin-top: 3%"><span>FILE 1</span><input name="mainImg" class="mainbaner" type="file">
+        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
+        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>
-				
-				<div style="display: flex;"><span>FILE 2</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+					
+				<input type="hidden" value="2" name="no">							
+				<div style="display: flex;"><span>FILE 2</span><input name="mainImg" class="mainbaner" type="file">
+        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
+        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>    		   
         		
-				<div style="display: flex;"><span>FILE 3</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+        		  <input type="hidden" value="3" name="no">							
+				<div style="display: flex;"><span>FILE 3</span><input name="mainImg" class="mainbaner" type="file">
+        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
+        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>    		    		    
-				<div style="display: flex;"><span>FILE 4</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+        		
+        		<input type="hidden" value="4" name="no">
+				<div style="display: flex;"><span>FILE 4</span><input name="mainImg" class="mainbaner" type="file">
+        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
+        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>    		        		
         		
-				<div style="display: flex;"><span>FILE 5</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+        		<input type="hidden" value="5" name="no">
+				<div style="display: flex;"><span>FILE 5</span><input name="mainImg" class="mainbaner" type="file">
+        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
+        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>    						
 				
-				<div style="display: flex;"><span>FILE 6</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+				<input type="hidden" value="6" name="no">
+				<div style="display: flex;"><span>FILE 6</span><input name="mainImg" class="mainbaner" type="file">
+        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
+        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>    		        	   
         		
-        		
-				<div style="display: flex;"><span>FILE 7</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+        		<input type="hidden" value="7" name="no">
+				<div style="display: flex;"><span>FILE 7</span><input name="mainImg" class="mainbaner" type="file">
+        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
+        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>    		        		
+        		
+        		<input type="hidden" value="8" name="no">
 				<div style="display: flex;"><span>FILE 8</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
+        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>    		    		    
         		
-        		
-				<div style="display: flex;"><span>FILE 9</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+        		<input type="hidden" value="9" name="no">
+				<div style="display: flex;"><span>FILE 9</span><input name="mainImg" class="mainbaner" type="file">
+        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
+        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>    						
 				
-				<div style="display: flex;"><span>FILE 10</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+				<input type="hidden" value="10" name="no">
+				<div style="display: flex;"><span>FILE 10</span><input name="mainImg" class="mainbaner" type="file">
+        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
+        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>    		        	
         		</td>
         	</tr>
-        	<tr>
-        		<th><span style="color: red">*</span>
-        		메인 영상</th>
-        	
+    </table>
+    </form>
+     <div align="center">
+    <button id="mainBtn" style="width: 90px; height: 30px;border-radius: 10px; background: black;color: white;margin-bottom: 30px"> 메인배너등록 </button>
+    </div>   
+    <form id="VideoForm" action="DesignEdVideo.do" method="POST" enctype="multipart/form-data">
+    <table id="design-table">
+     	<tr>
+        		<th><span style="color: red">*</span>메인 영상</th>
         		<td>
-        			<div style="display: flex"> FILE <input style="margin-left:2%;" type="file" class="main-video" ></div>
+        			<div style="display: flex"> FILE <input style="margin-left:2%;" type="file" name="mainvideo" class="main-video" ></div>
         			</td>
-        		
         	</tr>
-        	<tr>
+    </table>
+    </form>
+       <div align="center">
+    <button id="videoBtn" style="width: 90px; height: 30px;border-radius: 10px; background: black;color: white;margin-bottom: 30px"> 동영상등록 </button>
+    </div>   
+    <form id="instaForm" action="DesignInsta.do" method="POST" enctype="multipart/form-data">
+   <table id="design-table">
+   		<tr>
         		<th><span style="color: red">*</span>인스타 정보</th>
         		<td class="main-design">
         			<div style="display: flex;margin-top: 3%">
-        			FILE 1<input style="margin-left:2%;margin-right: 3%" type="file" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;" type="text" class="insta-link">	   	
+        		    <input type="hidden" value="1" name="inno">							
+        			FILE 1<input style="margin-left:2%;margin-right: 3%" type="file" name="instaimg" class="insta-img">
+        			링크 <input style="margin-left:2%; border: 1px solid #333330;" name="instalink" type="text" class="insta-link">	   	
         			</div>
         			<div style="display: flex">
-        			FILE 2<input style="margin-left:2%;margin-right: 3%" type="file" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;" type="text" class="insta-link">	   	
+        			 
+        		   <input type="hidden" value="2" name="inno">	
+        			FILE 2<input style="margin-left:2%;margin-right: 3%" type="file" name="instaimg" class="insta-img">
+        			링크 <input style="margin-left:2%; border: 1px solid #333330;" name="instalink" type="text" class="insta-link">	   	
         			</div>
         			<div style="display: flex">
-        			FILE 3<input style="margin-left:2%;margin-right: 3%" type="file" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;" type="text" class="insta-link">	   	
+        			 
+        			<input type="hidden" value="3" name="inno">	
+        			FILE 3<input style="margin-left:2%;margin-right: 3%" type="file" name="instaimg" class="insta-img">
+        			링크 <input style="margin-left:2%; border: 1px solid #333330;" name="instalink" type="text" class="insta-link">	   	
         			</div>
         			<div style="display: flex">
-        			FILE 4<input style="margin-left:2%;margin-right: 3%" type="file" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;" type="text" class="insta-link">	   	
+        			 
+        			 <input type="hidden" value="4" name="inno">	
+        			FILE 4<input style="margin-left:2%;margin-right: 3%" type="file" name="instaimg" class="insta-img">
+        			링크 <input style="margin-left:2%; border: 1px solid #333330;"  name="instalink" type="text" class="insta-link">	   	
         			</div>
         			<div style="display: flex">
-        			FILE 5<input style="margin-left:2%;margin-right: 3%" type="file" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;" type="text" class="insta-link">	   	
+        			 
+        			 <input type="hidden" value="5" name="inno">	
+        			FILE 5<input style="margin-left:2%;margin-right: 3%" type="file" name="insta-img" class="insta-img">
+        			링크 <input style="margin-left:2%; border: 1px solid #333330;" type="text" name="instalink" class="insta-link">	   	
         			</div>
+        			
         		</td>
-        	
         	</tr>
-    </table>
-    <div align="center">
-    <button style="width: 90px; height: 30px;border-radius: 10px; background: black;color: white;margin-bottom: 30px"> 배너등록 </button>
+   </table>
+       </form>
+     <div align="center">
+    <button id="InstaBtn" style="width: 90px; height: 30px;border-radius: 10px; background: black;color: white;margin-bottom: 30px"> 배너등록 </button>
     </div>   
-   		
-    
-    	
-    
-    
-    
-    
+   
+   
+   
     </div>
      <div class="page-wrapper">
     </div>
 
     <script>
-        $('#coupon_open').click(function(){
-               $('#coupon_div').css('display','block'); 
-        });
-        $('#coupon_close').click(function(){
-            $('#coupon_div').css('display','none');
-        });
-        $('#coupon_input').click(function(){
-            if($('#coupon_name').val() && $('#coupon_price').val() != ""){
-                var coupon_name = $('#coupon_name').val();
-
-                $('#d_coupon').append("<option value="+coupon_name+">"+coupon_name
-                                        +"</option>");
-                alert('쿠폰등록 완료');
-                $('#coupon_div').css('display','none');
-                    document.getElementById('#coupon_name').value = "";
-                    document.getElementById('#coupon_price').value = "";
-            }else{
-                
-                alert('쿠폰명 또는 쿠폰가격을 입력해 주세요')
-            }
-
-
-        });
-    </script>
-
-
-    <script>
-       
-        $('.category').click(function(){
-
-        var product = document.getElementById('product');
-        var money = document.getElementById('money');
-        var coupon = document.getElementById('coupon');
-          
-        if(product.checked == true){
-            $('#d_product').removeAttr('readonly').css('background','white').focus();
-        }else if(product.checked == false){
-            $('#d_product').css('background','rgba(190, 181, 181, 0.24)').attr("readonly",true).val('');
-        }
-        if(money.checked == true){
-            $('#d_money').removeAttr('readonly').css('background','white').focus();
-        }else if(money.checked == false){
-            $('#d_money').css('background','rgba(190, 181, 181, 0.24)').attr("readonly",true).val('');
-        }
-        if(coupon.checked ==true){
-            $('#d_coupon').removeAttr('disabled').css('background','white').focus();
-        }else{
-            $('#d_coupon').css('background','rgba(190, 181, 181, 0.24)').attr("disabled",true).val('');
-
-        }
-    });
-    </script>
-    <script>
-        $('.d-day').click(function(){
-            var day = parseInt($('input[name="d-day"]:checked').val());
-
-            var startday = document.getElementById('startday').value;
-                 startday = startday.split("-");
-           var end = new Date((startday[0]),(startday[1]-1),(parseInt(startday[2])+day));
-           
-           var endday = end.toISOString().substr(0,10);
-           
-         $('#endday').val(endday);   
-            
-        });
-        $('#d_coupon').click(function(){
-        	
-	     if($('#d_coupon').val()=='daily'){
-    		 $('#coupon-price').html('쿠폰가 : 3,000원');
-    	}else{
-    		 $('#coupon-price').html('');
-    	}
-	
-        });
-
+    
+    	$('#mainBtn').click(function(){
+    		$('#mainForm').submit();
+    	});
+    	$('#videoBtn').click(function(){
+    		$('#VideoForm').submit();
+    	})
+    	$('#InstaBtn').click(function(){
+    		$('#instaForm').submit();
+    	})
+    	
     </script>
 
     <script type="text/javascript">

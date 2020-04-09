@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.ot.admin.vo.Coupon;
+import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 
@@ -55,6 +56,64 @@ public class adminDao {
 	 */
 	public int couponDelete(String cpName) {
 		return sqlSession.delete("adminMapper.couponDelete",cpName);
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 8.
+	 * @작성자  : 문태환
+	 * @내용 	:메인배너등록
+	 * @param d
+	 * @return
+	 */
+	public int DesignEd(ArrayList<Design>  dlist) {
+		   Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("dlist", dlist);
+		return sqlSession.update("adminMapper.DesignEd",map);
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 문태환 
+	 * @내용 	 : 메인동영상 등록
+	 * @param d
+	 * @return
+	 */
+	public int DesignEdVideo(Design d) {
+		return sqlSession.update("adminMapper.DesignEdVideo",d);
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 문태환
+	 * @내용 	: 메인 인스타 등록
+	 * @param dlist
+	 * @return
+	 */
+	public int DesignInsta(ArrayList<Design> dlist) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("dlist", dlist);
+		return sqlSession.insert("adminMapper.DesignInsta",map);
+	}
+
+
+	public ArrayList<Design> selectMainList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public Design selectVideo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ArrayList<Design> selectInstaList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
