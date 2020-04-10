@@ -134,4 +134,5 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.deleteMember",m);
 	}
 
+
 }

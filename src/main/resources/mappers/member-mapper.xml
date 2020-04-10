@@ -93,7 +93,7 @@
 	
 <update id="updateMember" parameterType="Member">
 		UPDATE MEMBER
-		SET MEM_EMAIL=#{memEmail},MEM_PHONE=#{memPhone},MEM_ADDRESS=#{memAddress}
+		SET MEM_PWD=#{memPwd}, MEM_EMAIL=#{memEmail},MEM_PHONE=#{memPhone},MEM_ADDRESS=#{memAddress}
 		WHERE MEM_ID=#{memId}
 </update>
 

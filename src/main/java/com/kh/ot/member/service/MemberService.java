@@ -123,5 +123,6 @@ public interface MemberService {
 	 * @return int
 	 */
 	public int deleteMember(Member m);
+
 	
 }
