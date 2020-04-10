@@ -328,11 +328,49 @@
 						</div> -->
 
 				</div>
+				<%String upPage = request.getParameter("product1"); %>
+				
 					<!-- Pagination -->
-					<div class="pagination flex-m flex-w p-t-26">
-						<a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>
-						<a href="#" class="item-pagination flex-c-m trans-0-4">2</a>
+					
+					<div class="pagination flex-m flex-w p-t-26" style="position:relative;left:47%;">
+					
+<c:if test="${ mainPi.currentPage ne 1 }">
+                  <c:url var="before" value="product1.do">
+                  <c:param name="product1" value="<%=upPage %>"/>
+                  <c:param name="currentPage" value="${mainPi.currentPage -1 }"/>
+                  </c:url>
+                  <a href="http://localhost:8888/ot/${before}">
+                  <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+                  </a> &nbsp;
+					</c:if>
+					
+					    <c:forEach var="p" begin="${ mainPi.startPage }" end="${ mainPi.endPage }">
+                     <c:if test="${ p eq mainPi.currentPage }">
+                        <a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">${ p }</a>
+                     </c:if>
+
+                     <c:if test="${ p ne mainPi.currentPage }">
+                        <c:url var="pagination" value="product1.do">
+                           <c:param name="currentPage" value="${ p }"/>
+                     </c:url>
+                     <a href="http://localhost:8888/ot/product1.do?product1=<%=upPage %>&currentPage=${p }" class="item-pagination flex-c-m trans-0-4">
+                     ${ p }</a>
+                  </c:if>
+               </c:forEach>
+               
+               <c:if test="${ mainPi.currentPage ne mainPi.maxPage }">
+               <c:url var="after" value="product1.do">
+               		 <c:param name="product1" value="<%=upPage %>"/>
+                     <c:param name="currentPage" value="${mainPi.currentPage +1 }"/>
+                  </c:url>
+                  <a href="http://localhost:8888/ot/${after}">
+               <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+               </a>
+                  </c:if>
+               
+               
 					</div>
+					
 			</div>
 		</div>
 	</section>

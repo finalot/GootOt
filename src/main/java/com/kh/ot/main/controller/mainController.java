@@ -100,7 +100,7 @@ public class mainController {
 		mv.addObject("polist", polist);
 		mv.addObject("pclist", pclist);
 		mv.addObject("mainPi", mainPi);
-		mv.setViewName("product");
+		mv.setViewName("product2");
 
 		return mv;
 	}
