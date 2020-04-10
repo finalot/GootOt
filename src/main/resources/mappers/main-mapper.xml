@@ -21,6 +21,7 @@
 			<result property="prdtImagePath" column="PRDT_IMAGE_PATH"/>
 			<result property="prdtDetailImage" column="PRDT_DETAIL_IMAGE"/>
 			<result property="prdtDetailImagePath" column="PRDT_DETAIL_IMAGE_PATH"/>
+			<result property="prdtSale" column="PRDT_SALE"/>
 		</resultMap>
 		
 		<resultMap type="Product_opt" id="product_optResultSet">

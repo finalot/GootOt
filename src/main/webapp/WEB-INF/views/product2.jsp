@@ -186,9 +186,9 @@
 					<div class="row">
 
 					<c:forEach var="p" items="${ plist }">
-							<!-- 뉴프로덕트블록 샘플 -->
 						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 							<div class="block2">
+								<c:if test="${61999 gt p.prdtNo and p.prdtNo gt 60000}">
 								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
 									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
@@ -207,6 +207,53 @@
 										</div>
 									</div>
 								</div>
+								</c:if>
+								
+									<c:if test="${p.prdtNo gt 62000}">
+									<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
+										<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
+
+									<div class="block2-overlay trans-0-4">
+										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+										</a>
+
+										<div class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
+									</div>
+								</div>
+									</c:if>
+								
+								
+								<c:if test="${p.prdtNo lt 60000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative">
+								
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
+
+									<div class="block2-overlay trans-0-4">
+										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+										</a>
+
+										<div class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
+									</div>
+								</div>
+								</c:if>
+								
+								
 
 								<div class="block2-txt p-t-20">
 									<span class="block2-price m-text6 p-r-5" >
@@ -217,7 +264,7 @@
 										<c:forEach var="pc" items="${ pclist }">
 
 										<c:if test="${ po.optColor eq pc.pcName }">
-										<div style="width:17px;height:17px;background:${pc.pcRgb};display:inline-block;border:1px solid black;margin-left:0.5px;"></div>
+										<div style="width:14px;height:14px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
 										</c:if>
 
 										</c:forEach>
@@ -234,7 +281,12 @@
 									</a>
 
 									<span class="block2-price m-text6 p-r-5">
+									<c:if test="${p.prdtSale ne 0 }">
+	<small><font class="format-money" style="text-decoration:line-through">${ p.prdtPrice}</font>-><font class="format-money">${ p.prdtPrice-((p.prdtPrice/100)*p.prdtSale)}</font> won</small>&nbsp;&nbsp;
+										</c:if>
+										<c:if test="${p.prdtSale eq 0 }">
 										<small><font class="format-money">${ p.prdtPrice}</font> won</small>&nbsp;&nbsp;
+										</c:if>
 										<font style="font-size:9px;color:gray">리뷰 : 100</font>
 									</span>
 								</div>
@@ -421,7 +473,7 @@
 	<script type="text/javascript" src="/ot/resources/js/slick-custom.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="/ot/resources/vendor/sweetalert/sweetalert.min.js"></script>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 			$(this).on('click', function(){
@@ -435,7 +487,7 @@
 				swal(nameProduct, "is added to wishlist !", "success");
 			});
 		});
-	</script>
+	</script> -->
 
 <!--===============================================================================================-->
 	<script type="text/javascript" src="/ot/resources/vendor/noui/nouislider.min.js"></script>
