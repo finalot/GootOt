@@ -14,8 +14,8 @@
 <typeAliases>
 <typeAlias type="com.kh.ot.member.vo.Member" alias="Member"/>
 <typeAlias type="com.kh.ot.board.vo.Board" alias="Board"/>
-<typeAlias type="com.kh.ot.main.vo.downCategory" alias="downCategory"/>
-<typeAlias type="com.kh.ot.main.vo.upCategory" alias="upCategory"/>
+ <typeAlias type="com.kh.ot.main.vo.downCategory" alias="downCategory"/> 
+ <typeAlias type="com.kh.ot.main.vo.upCategory" alias="upCategory"/> 
 <typeAlias type="com.kh.ot.main.vo.Product" alias="Product"/>
 <typeAlias type="com.kh.ot.main.vo.Product_opt" alias="Product_opt"/>
 <typeAlias type="com.kh.ot.main.vo.Product_color" alias="Product_color"/>

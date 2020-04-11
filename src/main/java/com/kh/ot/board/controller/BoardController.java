@@ -454,7 +454,7 @@ public class BoardController extends HttpServlet {
 @RequestMapping("pb_search.do")
    public ModelAndView pb_search(ModelAndView mv, 
 		   						@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
-		   						,String search_key,String search) {
+		   						,String search_key,String search,String search_date) {
 	int b_cate_no = 1;
 	
 	SearchCondition sc = new SearchCondition();
@@ -464,6 +464,17 @@ public class BoardController extends HttpServlet {
 	} else if(search_key.equals("title")) {
 		sc.setTitle(search);
 	}
+	
+	if(search_date.equals("week")) {
+		sc.setSearchDate(7);
+	}else if(search_date.equals("month")) {
+		sc.setSearchDate(30);
+	}else if(search_date.equals("month3")) {
+		sc.setSearchDate(90);
+	}else if(search_date.equals("all")) {
+		sc.setSearchDate(0);
+	}
+	
 	sc.setB_cate_no(b_cate_no);
 	
 	int listCount = bService.SearchListCount(sc);
