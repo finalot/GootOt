@@ -203,7 +203,7 @@ a{
             <select id="search_key" name="search_key">
             <option value="title">제목</option>
             <option value="writer">글쓴이</option>
-            <option value="date">날짜</option>
+            <option value="date">기간별</option>
             </select> 
          
       <input id="search" name="search" class="inputTypeText" type="text">

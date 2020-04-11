@@ -54,6 +54,7 @@
 			FROM QNA Q
 			JOIN MEMBER M ON(Q.MEM_NO = M.MEM_NO)
 		    WHERE B_CATE_NO=#{b_cate_no}
+		    AND QNA_DATE BETWEEN SYSDATE-#{searchDate} AND SYSDATE
 		<if test="writer != null">
 			AND MEM_ID LIKE '%' || #{writer} || '%'
 		</if>
@@ -68,6 +69,7 @@
 			FROM QNA Q
 			JOIN MEMBER M ON(Q.MEM_NO = M.MEM_NO)
 		    WHERE B_CATE_NO=#{b_cate_no}
+		     AND QNA_DATE BETWEEN SYSDATE-#{searchDate} AND SYSDATE
 			<if test="writer != null">
 			AND MEM_ID LIKE '%' || #{writer} || '%'
 			</if>

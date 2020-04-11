@@ -1,6 +1,6 @@
 <%@page import="com.kh.ot.main.service.MainServiceImpl"%>
-<%@page import="com.kh.ot.main.vo.upCategory"%>
-<%@page import="com.kh.ot.main.vo.downCategory"%>
+<%-- <%@page import="com.kh.ot.main.vo.upCategory"%>
+<%@page import="com.kh.ot.main.vo.downCategory"%> --%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

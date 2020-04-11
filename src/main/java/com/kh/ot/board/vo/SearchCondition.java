@@ -8,18 +8,32 @@ public class SearchCondition extends Pagination {
 	private String title;
 	private String content;
 	private String writer;
+	private int searchDate;
 	private int b_cate_no;
 	private Date date;
 	
 	public SearchCondition() {}
 
-	public SearchCondition(String title, String content, String writer, int b_cate_no, Date date) {
+	
+
+	public SearchCondition(String title, String content, String writer, int searchDate, int b_cate_no) {
 		super();
 		this.title = title;
 		this.content = content;
 		this.writer = writer;
+		this.searchDate = searchDate;
 		this.b_cate_no = b_cate_no;
 		this.date = date;
+	}
+
+
+
+	public int getSearchDate() {
+		return searchDate;
+	}
+
+	public void setSearchDate(int searchDate) {
+		this.searchDate = searchDate;
 	}
 
 	public String getTitle() {
@@ -66,14 +80,8 @@ public class SearchCondition extends Pagination {
 
 	@Override
 	public String toString() {
-		return "SearchCondition [title=" + title + ", content=" + content + ", writer=" + writer + ", b_cate_no="
-				+ b_cate_no + ", date=" + date + "]";
+		return "SearchCondition [title=" + title + ", content=" + content + ", writer=" + writer + ", searchDate="
+				+ searchDate + ", b_cate_no=" + b_cate_no + "]";
 	}
 
-	
-	
-
-	
-	
-	
 }
