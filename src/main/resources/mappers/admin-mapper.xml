@@ -29,6 +29,8 @@
 			<id property = "deNo" column="IN_NO"/>
 			<result property="reFile" column="IN_REFILE"/>
 			<result property="mainLink" column="IN_LINK"/>
+			<result property="mainComment" column="IN_COMMENT"/>
+			
 		</resultMap>
 
 <insert id="couponInput" parameterType="java.util.Map">
@@ -76,7 +78,8 @@
 	SET
 	IN_ORIFILE = #{d.oriFIle},
 	IN_REFILE = #{d.reFile},
-	IN_LINK = #{d.mainLink}
+	IN_LINK = #{d.mainLink},
+	IN_COMMENT = #{d.mainComment}
 	WHERE IN_NO = #{d.deNo}
 </foreach>
 </update>

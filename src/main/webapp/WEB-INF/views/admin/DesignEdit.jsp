@@ -260,67 +260,14 @@ th{
         		<span>바로가기 링크</span><input name="mainLink" value="${d.mainLink }" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>
         		<c:if test="${!empty  d.reFile   }">
-				<div style="    margin-left: 7%;"><a href="/ot/resources/bupladFiles/${d.reFile}">${d.reFile}</a></div>
+				<div style="    margin-left: 7%;"><a style="color: blue"  href="nfdown.ad?path=${d.reFile}" id="fildown">${d.reFile}</a></div>
 				</c:if>
 				<c:if test="${empty  d.reFile   }">
 				<div style="    margin-left: 7%;"><span >등록된 파일이 없습니다.</span></div>
 				</c:if>
 	</c:forEach>		
 						
-		<!-- 		<input type="hidden" value="2" name="no">							
-				<div style="display: flex;"><span>FILE 2</span><input name="mainImg" class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    		   
-        		
-        		  <input type="hidden" value="3" name="no">							
-				<div style="display: flex;"><span>FILE 3</span><input name="mainImg" class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    		    		    
-        		
-        		<input type="hidden" value="4" name="no">
-				<div style="display: flex;"><span>FILE 4</span><input name="mainImg" class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    		        		
-        		
-        		<input type="hidden" value="5" name="no">
-				<div style="display: flex;"><span>FILE 5</span><input name="mainImg" class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    						
-				
-				<input type="hidden" value="6" name="no">
-				<div style="display: flex;"><span>FILE 6</span><input name="mainImg" class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    		        	   
-        		
-        		<input type="hidden" value="7" name="no">
-				<div style="display: flex;"><span>FILE 7</span><input name="mainImg" class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    		        		
-        		
-        		<input type="hidden" value="8" name="no">
-				<div style="display: flex;"><span>FILE 8</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    		    		    
-        		
-        		<input type="hidden" value="9" name="no">
-				<div style="display: flex;"><span>FILE 9</span><input name="mainImg" class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    						
-				
-				<input type="hidden" value="10" name="no">
-				<div style="display: flex;"><span>FILE 10</span><input name="mainImg" class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    		        	
-        		</td> -->
+	
         	</tr>
     </table>
     </form>
@@ -333,6 +280,12 @@ th{
         		<th><span style="color: red">*</span>메인 영상</th>
         		<td>
         			<div style="display: flex"> FILE <input style="margin-left:2%;" type="file" name="mainvideo" class="main-video" ></div>
+        			<c:if test="${!empty  video.reFile   }">
+					<div style="    margin-left: 7%;"><a href="/ot/resources/bupladFiles/${video.reFile}">${video.reFile}</a></div>
+					</c:if>
+					<c:if test="${empty  video.reFile    }">
+					<div style="    margin-left: 7%;"><span >등록된 파일이 없습니다.</span></div>
+				</c:if>
         			</td>
         	</tr>
     </table>
@@ -345,35 +298,20 @@ th{
    		<tr>
         		<th><span style="color: red">*</span>인스타 정보</th>
         		<td class="main-design">
+        	<c:forEach var="in" items="${instaList}">	
         			<div style="display: flex;margin-top: 3%">
-        		    <input type="hidden" value="1" name="inno">							
-        			FILE 1<input style="margin-left:2%;margin-right: 3%" type="file" name="instaimg" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;" name="instalink" type="text" class="insta-link">	   	
+        		    <input type="hidden" value="${in.deNo }" name="inno">							
+        			FILE ${in.deNo }<input style="margin-left:2%;margin-right: 3%" type="file" name="instaimg" class="insta-img">
+        			인스타 문구 <input style="margin-left:2%; margin-right: 3%; border: 1px solid #333330;" value="${in.mainComment }" name="instacomment" type="text" class="insta-link">	   	
+        			링크 <input style="margin-left:2%; border: 1px solid #333330;" value="${in.mainLink }" name="instalink" type="text" class="insta-link">	   	
         			</div>
-        			<div style="display: flex">
-        			 
-        		   <input type="hidden" value="2" name="inno">	
-        			FILE 2<input style="margin-left:2%;margin-right: 3%" type="file" name="instaimg" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;" name="instalink" type="text" class="insta-link">	   	
-        			</div>
-        			<div style="display: flex">
-        			 
-        			<input type="hidden" value="3" name="inno">	
-        			FILE 3<input style="margin-left:2%;margin-right: 3%" type="file" name="instaimg" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;" name="instalink" type="text" class="insta-link">	   	
-        			</div>
-        			<div style="display: flex">
-        			 
-        			 <input type="hidden" value="4" name="inno">	
-        			FILE 4<input style="margin-left:2%;margin-right: 3%" type="file" name="instaimg" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;"  name="instalink" type="text" class="insta-link">	   	
-        			</div>
-        			<div style="display: flex">
-        			 
-        			 <input type="hidden" value="5" name="inno">	
-        			FILE 5<input style="margin-left:2%;margin-right: 3%" type="file" name="insta-img" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;" type="text" name="instalink" class="insta-link">	   	
-        			</div>
+					<c:if test="${!empty  in.reFile   }">
+					<div style="    margin-left: 7%;"><a href='nfdown.ad?path="${in.reFile}"'>${in.reFile}</a></div>
+					</c:if>
+					<c:if test="${empty  in.reFile   }">
+					<div style="    margin-left: 7%;"><span >등록된 파일이 없습니다.</span></div>
+					</c:if>        			
+			</c:forEach>
         			
         		</td>
         	</tr>
@@ -389,8 +327,24 @@ th{
      <div class="page-wrapper">
     </div>
 
+<script>
+$('#fildown').click({
+	function(en){
+		var path = $(this).text();		
+	$.ajax({
+			url:"nfdown.ad",
+			data:{path : path},
+			success:function(){
+					alert("성공")		
+			},error:function(){
+				alert("실패")
+			}
+		});	
+	}
+});
+</script>
     <script>
-    
+
     	$('#mainBtn').click(function(){
     		$('#mainForm').submit();
     	});

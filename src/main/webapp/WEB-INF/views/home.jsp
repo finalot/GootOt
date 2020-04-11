@@ -2,6 +2,8 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,10 +54,13 @@
 	<section class="slide1" style="margin-top:-40px;z-index:2;">
 		<div class="wrap-slick1">
 			<div class="slick1">
+			
+			<%-- <c:forEach var="d" items="${mainList }">
+			<c:if test="${! empty d.mainComment }"> --%>
 				<div class="item-slick1 item1-slick1" style="background-image: url(<c:url value="/resources/images/main_top.jpg"/>);size:100%;height:700px;">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<h2 class="caption1-slide1 xl-text2 t-center bo14 p-b-6 animated visible-false m-b-22" data-appear="fadeInUp">
-							ot.purple
+						ot Pupple <%--  ${d.mainComment}  --%>
 						</h2>
 
 						<span class="caption2-slide1 m-text1 t-center animated visible-false m-b-33" data-appear="fadeInDown">
@@ -65,11 +70,14 @@
 						<div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="zoomIn">
 							<!-- Button -->
 							<a href="product.jsp" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
+							<%-- ${d.mainLink}--%>
 								바로가기
 							</a>
 						</div>
 					</div>
 				</div>
+			<%-- 	</c:if>
+				</c:forEach> --%>
 
 				<div class="item-slick1 item2-slick1" style="background-image: url(<c:url value="/resources/images/main_top1.jpg"/>);height:700px;">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
@@ -88,9 +96,9 @@
 							</a>
 						</div>
 					</div>
-				</div>
+				</div> 
 
-				<div class="item-slick1 item3-slick1" style="background-image: url(<c:url value="/resources/images/main_top2.jpg"/>);height:700px;">
+		 	<div class="item-slick1 item3-slick1" style="background-image: url(<c:url value="/resources/images/main_top2.jpg"/>);height:700px;">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<h2 class="caption1-slide1 xl-text2 t-center bo14 p-b-6 animated visible-false m-b-22" data-appear="rotateInDownLeft">
 							ot.blue
@@ -107,7 +115,7 @@
 							</a>
 						</div>
 					</div>
-				</div>
+				</div> 
 
 			</div>
 		</div>
@@ -1157,6 +1165,7 @@
 				</h3>
 			<video controls autoplay loop style="width:55%;height:30%;border:none">
    <source src="<c:url value="/resources/images/video.mp4"/>" type="video/mp4"> 
+   <%--video.reFile --%>
 			</video>
 
 			</div>
@@ -1258,6 +1267,33 @@
 
 		<div class="flex-w">
 			<!-- Block4 -->
+<%-- 	<c:forEach var="in" items="${instaList }">  --%>
+		<div class="block4 wrap-pic-w">
+				<img src="<c:url value="/resources/images/gallery-03.jpg"/>" alt="IMG-INSTAGRAM">
+														<%--${in.reFile} --%>
+				<a href="" class="block4-overlay sizefull ab-t-l trans-0-4">
+				<%--${in.mainLink} --%>
+					<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
+						<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>
+						<span class="p-t-2">39</span>
+					</span>
+
+					<div class="block4-overlay-txt trans-0-4 p-l-40 p-r-25 p-b-30">
+						<p class="s-text10 m-b-15 h-size1 of-hidden">
+				<%-- 		${in.mainComment}  --%> 	 Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit amet enim orci. Nam eget metus elit. 
+						</p>
+
+						<span class="s-text9">
+							Photo by @nancyward
+						</span>
+					</div>
+				</a>
+			</div>
+			<%-- </c:forEach>  --%>
+
+
+
+		 	<!-- Block4 -->
 			<div class="block4 wrap-pic-w">
 				<img src="<c:url value="/resources/images/gallery-03.jpg"/>" alt="IMG-INSTAGRAM">
 
@@ -1344,30 +1380,11 @@
 					</div>
 				</a>
 			</div>
-
-			<!-- Block4 -->
-			<div class="block4 wrap-pic-w">
-				<img src="<c:url value="/resources/images/gallery-03.jpg"/>" alt="IMG-INSTAGRAM">
-
-				<a href="#" class="block4-overlay sizefull ab-t-l trans-0-4">
-					<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
-						<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>
-						<span class="p-t-2">39</span>
-					</span>
-
-					<div class="block4-overlay-txt trans-0-4 p-l-40 p-r-25 p-b-30">
-						<p class="s-text10 m-b-15 h-size1 of-hidden">
-							Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit amet enim orci. Nam eget metus elit.
-						</p>
-
-						<span class="s-text9">
-							Photo by @nancyward
-						</span>
-					</div>
-				</a>
-			</div>
+			
+			
+			
 		</div>
-	</section>
+	</section> 
 
 	<!-- Shipping -->
 	<section class="shipping bgwhite p-t-62 p-b-46" style="height:4%;">

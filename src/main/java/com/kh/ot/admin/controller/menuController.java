@@ -1,11 +1,16 @@
 package com.kh.ot.admin.controller;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -339,8 +344,19 @@ public class menuController {
 			}
 		}
 
+	/**
+	 * @작성일  : 2020. 4. 11.
+	 * @작성자  : 문태환
+	 * @내용 	:인스타 업데이트
+	 * @param inno
+	 * @param instalink
+	 * @param request
+	 * @param session
+	 * @param uploadFile
+	 * @return
+	 */
 	@RequestMapping(value="DesignInsta.do",method=RequestMethod.POST)
-	public String DesignInsta(int[] inno,String[] instalink, HttpServletRequest request,HttpSession session,
+	public String DesignInsta(int[] inno,String[] instalink, String[] instacomment, HttpServletRequest request,HttpSession session,
 	         @RequestParam(name="instaimg",required=false) MultipartFile[] uploadFile)  {
 
 		ArrayList<Design> dlist = new ArrayList<Design>();
@@ -356,6 +372,7 @@ public class menuController {
 	         if(renameFileName != null) {
 	       d.setDeNo(inno[i]);
 	       d.setMainLink(instalink[i]);
+	       d.setMainComment(instacomment[i]);
 	       d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
 	       d.setReFile(renameFileName);
 	       dlist.add(d);
@@ -404,6 +421,78 @@ public class menuController {
 	      }
 	      return renameFileName;
 	   }
-
-
+		
+	/**
+	 * @작성일  : 2020. 4. 11.
+	 * @작성자  : 문태환
+	 * @내용 	: 파일다운로드 
+	 * @param path
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping("nfdown.ad")
+	public String fileDownload( HttpServletResponse response, HttpServletRequest request, String path) {
+	 System.out.println("path"+path);
+	    String folder =request.getSession().getServletContext().getRealPath("/resources/boardUploadFiles");
+	    String fileName = path;
+	 
+	    File file = new File(folder);
+	 
+	    FileInputStream fileInputStream = null;
+	    ServletOutputStream servletOutputStream = null;
+	 
+	    try{
+	        String downName = null;
+	        String browser = request.getHeader("User-Agent");
+	        //파일 인코딩
+	        if(browser.contains("MSIE") || browser.contains("Trident") || browser.contains("Chrome")){//브라우저 확인 파일명 encode  
+	            
+	            downName = URLEncoder.encode(fileName,"UTF-8").replaceAll("\\+", "%20");
+	            
+	        }else{
+	            
+	            downName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+	            
+	        }
+	        
+	        response.setHeader("Content-Disposition","attachment;filename=\"" + downName+"\"");             
+	        response.setContentType("application/octer-stream");
+	        response.setHeader("Content-Transfer-Encoding", "binary;");
+	 
+	        fileInputStream = new FileInputStream(file);
+	        servletOutputStream = response.getOutputStream();
+	 
+	        byte b [] = new byte[1024];
+	        int data = 0;
+	 
+	        while((data=(fileInputStream.read(b, 0, b.length))) != -1){
+	            
+	            servletOutputStream.write(b, 0, data);
+	            
+	        }
+	 
+	        servletOutputStream.flush();//출력
+	        
+	    }catch (Exception e) {
+	        e.printStackTrace();
+	    }finally{
+	        if(servletOutputStream!=null){
+	            try{
+	                servletOutputStream.close();
+	            }catch (IOException e){
+	                e.printStackTrace();
+	            }
+	        }
+	        if(fileInputStream!=null){
+	            try{
+	                fileInputStream.close();
+	            }catch (IOException e){
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	    return "redirect:DesignEdit.ad";
+	}
+	
 }
