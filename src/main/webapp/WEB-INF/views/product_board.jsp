@@ -198,19 +198,16 @@ a{
          <div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 "><fieldset class="boardSearch">
 		<legend>게시물 검색</legend>
 		<form action="pb_search.do">
-            <p><select id="search_date" name="search_date">
-            <option value="week">일주일</option>
-            <option value="month">한달</option>
-            <option value="month3">세달</option>
-            <option value="all">전체</option>
-            </select>
+            <p>
             
             <select id="search_key" name="search_key">
             <option value="title">제목</option>
             <option value="writer">글쓴이</option>
+            <option value="date">날짜</option>
             </select> 
          
       <input id="search" name="search" class="inputTypeText" type="text">
+<!--       <input id="searchDate" name="searchDate" type="date"> -->
       <a href="#none" onclick="pbSearch();" class="yg_btn_28 yg_btn318">
       <span id="idMsg9">SEARCH</span></a></p>
          </form>

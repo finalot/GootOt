@@ -3,7 +3,9 @@ package com.kh.ot.board.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
@@ -451,7 +453,7 @@ public class BoardController extends HttpServlet {
     * @내용    : 상품문의 검색 기능
     * @return
     */
-@RequestMapping("pb_search.do")
+	@RequestMapping("pb_search.do")
    public ModelAndView pb_search(ModelAndView mv, 
 		   						@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
 		   						,String search_key,String search) {
@@ -463,6 +465,8 @@ public class BoardController extends HttpServlet {
 		sc.setWriter(search);
 	} else if(search_key.equals("title")) {
 		sc.setTitle(search);
+	} else if(search_key.equals("date")) {
+		sc.setDate(search);
 	}
 	sc.setB_cate_no(b_cate_no);
 	
@@ -480,7 +484,8 @@ public class BoardController extends HttpServlet {
 	
 	return mv;
    }
-
+	
+	
    /**
     * @작성일  : 2020.04.05
     * @작성자  : 우예진
