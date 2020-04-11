@@ -497,14 +497,21 @@ public class MemberController extends HttpServlet {
 	 * @return
 	 * String
 	 */
-	@RequestMapping(value="mupdate.do", method=RequestMethod.POST)
+	@RequestMapping(value="mUpdate.do", method=RequestMethod.POST)
 	public String memberUpdate(Member m, Model model,
-							   @RequestParam("post") String post,
+							   @RequestParam("memPwd1") String pwd,
+							   @RequestParam("postcode1") String post,
 							   @RequestParam("address1") String addr1,
 							   @RequestParam("address2") String addr2,
 							   @RequestParam("mobile1") String mobile1,
 							   @RequestParam("mobile2") String mobile2,
-							   @RequestParam("mobile3") String mobile3) { 
+							   @RequestParam("mobile3") String mobile3) {
+		
+		
+		m.setMemPwd(pwd);
+//		System.out.println(pwd);
+//		System.out.println("dsadsad :" +  m.getMemPwd());
+		
 	// 주소데이터들 ','를 구분자로 저장
 		if(!post.contentEquals("")) {
 			m.setMemAddress(post + "," + addr1 + "," + addr2);
@@ -516,6 +523,7 @@ public class MemberController extends HttpServlet {
 	
 		String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
 		m.setMemPwd(encPwd);
+		System.out.println("암호화된 비밀번호 : " + m.getMemPwd());
 		
 		System.out.println("주소 : " + post + "," + addr1 + "," + addr2);
 		System.out.println("핸드폰번호 : " + mobile1 + "-" + mobile2 + "-" + mobile3);
