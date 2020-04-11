@@ -139,14 +139,14 @@ a{
                             <br>
                             <div class="ppro">
                             <c:choose>
-                            	<c:when test="{b.qna_secure=='T'}">
+                            	<c:when test="${b.qna_secure=='T'}">
                             <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
                                  <a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
                                  [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
                                  </c:when>
                                  <c:otherwise>
                                  <!-- <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image">  -->
-                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail2(this)">
                                  [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
                                  </c:otherwise>
                                  </c:choose>
@@ -284,6 +284,14 @@ a{
 	 location.href='product_board_detailView.do?qna_no='+q_no; 
 	
  }
+ 
+ function prdtDetail2(en){
+		
+		var q_no = $(en).parents('tr').children('td').eq(0).children('span').text();	 
+
+		 location.href='product_board_detail.do?qna_no='+q_no; 
+		
+	 }
  
  function pbSearch() {
 	 var search_key = $('#search_key').val();
