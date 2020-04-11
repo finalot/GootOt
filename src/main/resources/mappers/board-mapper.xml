@@ -53,7 +53,9 @@
 			SELECT COUNT(*)
 			FROM QNA
 		    WHERE B_CATE_NO=#{b_cate_no}
+		   <if test="searchDate != 0"> 
 		    AND QNA_DATE BETWEEN SYSDATE-#{searchDate} AND SYSDATE
+		    </if>
 		<if test="writer != null">
 			AND QNA_WRITER LIKE '%' || #{writer} || '%'
 		</if>
@@ -67,7 +69,9 @@
 			SELECT *
 			FROM QNA
 		    WHERE B_CATE_NO=#{b_cate_no}
-		     AND QNA_DATE BETWEEN SYSDATE-#{searchDate} AND SYSDATE
+		  <if test="searchDate != 0"> 
+		    AND QNA_DATE BETWEEN SYSDATE-#{searchDate} AND SYSDATE
+		    </if>
 			<if test="writer != null">
 			AND QNA_WRITER LIKE '%' || #{writer} || '%'
 			</if>
