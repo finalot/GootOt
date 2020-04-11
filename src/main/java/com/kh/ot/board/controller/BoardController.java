@@ -465,8 +465,6 @@ public class BoardController extends HttpServlet {
 		sc.setWriter(search);
 	} else if(search_key.equals("title")) {
 		sc.setTitle(search);
-	} else if(search_key.equals("date")) {
-		sc.setDate(search);
 	}
 	
 	if(search_date.equals("week")) {
