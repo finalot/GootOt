@@ -102,23 +102,25 @@ a{
                      </tr>
                    </thead>
 
-               <tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center"><!--
+               <tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
 
-                --><tr style="background-color:#F9F9F9; color:#555555;" class="xans-record-">
+                <tr style="background-color:#F9F9F9; color:#555555;" class="xans-record-">
             <td style="font-weight:600;"></td>
                     <td class="displaynone"></td>
                     <td></td>
                     <td class="subject left txtBreak">
                         <strong> <a href="/article/배송문의/3001/279655/" style="color:#555555; font-size:12px;">▶ 일시품절/품절 관련 안내입니다.</a></span></strong>
                     </td>
-                    <td>홍길동</td>
+                    <td>관리자</td>
                     <td class=""><span class="txtNum">2017-11-09</span></td>
                     <td class="displaynone"><img src="//img.echosting.cafe24.com/skin/base/board/ico_point0.gif" alt="0점"></td>
                 </tr>
       </tbody>
-
+	
+	
             <tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
              <c:forEach var="b" items="${ list }">
+             
                       <tr class="xans-record-">
                      <td>
                         <!-- no 공지번호 들어갈 곳 -->
@@ -136,9 +138,18 @@ a{
                             <span id="prd_name">러트 세미 부츠컷 슬랙스</span>
                             <br>
                             <div class="ppro">
+                            <c:choose>
+                            	<c:when test="{b.qna_secure=='T'}">
                             <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
                                  <a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
                                  [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                                 </c:when>
+                                 <c:otherwise>
+                                 <!-- <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image">  -->
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
+                                 [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                                 </c:otherwise>
+                                 </c:choose>
                             </div>
                          </td>
                            <td class="left">
@@ -148,7 +159,8 @@ a{
                             <td class="button">
 
                             </td>
-                          </tr>
+                          
+                          
                           </c:forEach>
                </tbody>
 
@@ -178,7 +190,7 @@ a{
                          </td>
                            <td class="left">
                                <!-- writer 내용들어갈곳 -->
-                        <span id="idMsg11">홍길동</span>
+                        <span id="idMsg11">관리자</span>
                             <td class="price center"><span id="idMsg4">${b.qna_date }</span></td>
                             <td class="button">
 
@@ -200,11 +212,10 @@ a{
 		<form action="pb_search.do">
             <p><select id="search_date" name="search_date">
             <option value="week">일주일</option>
-            <option value="month">한달</option>
-            <option value="month3">세달</option>
-            <option value="all">전체</option>
-            </select>
-            
+			<option value="month">한달</option>
+			<option value="month3">세달</option>
+			<option value="all">전체</option>
+			</select>
             <select id="search_key" name="search_key">
             <option value="title">제목</option>
             <option value="writer">글쓴이</option>
