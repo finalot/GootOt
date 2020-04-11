@@ -51,12 +51,13 @@
 		
 		<select id="SearchListCount" resultType="_int">
 			SELECT COUNT(*)
-			FROM QNA Q
-			JOIN MEMBER M ON(Q.MEM_NO = M.MEM_NO)
+			FROM QNA
 		    WHERE B_CATE_NO=#{b_cate_no}
+		   <if test="searchDate != 0"> 
 		    AND QNA_DATE BETWEEN SYSDATE-#{searchDate} AND SYSDATE
+		    </if>
 		<if test="writer != null">
-			AND MEM_ID LIKE '%' || #{writer} || '%'
+			AND QNA_WRITER LIKE '%' || #{writer} || '%'
 		</if>
 		<if test="title != null">
 			AND QNA_TITLE LIKE '%' || #{title} || '%'
@@ -66,12 +67,13 @@
 		
 		<select id="selectSearchList" resultMap="boardResultSet" >
 			SELECT *
-			FROM QNA Q
-			JOIN MEMBER M ON(Q.MEM_NO = M.MEM_NO)
+			FROM QNA
 		    WHERE B_CATE_NO=#{b_cate_no}
-		     AND QNA_DATE BETWEEN SYSDATE-#{searchDate} AND SYSDATE
+		  <if test="searchDate != 0"> 
+		    AND QNA_DATE BETWEEN SYSDATE-#{searchDate} AND SYSDATE
+		    </if>
 			<if test="writer != null">
-			AND MEM_ID LIKE '%' || #{writer} || '%'
+			AND QNA_WRITER LIKE '%' || #{writer} || '%'
 			</if>
 			<if test="title != null">
 			AND QNA_TITLE LIKE '%' || #{title} || '%'

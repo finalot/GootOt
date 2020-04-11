@@ -207,11 +207,9 @@ a{
             <select id="search_key" name="search_key">
             <option value="title">제목</option>
             <option value="writer">글쓴이</option>
-            <option value="date">기간별</option>
             </select> 
          
       <input id="search" name="search" class="inputTypeText" type="text">
-<!--       <input id="searchDate" name="searchDate" type="date"> -->
       <a href="#none" onclick="pbSearch();" class="yg_btn_28 yg_btn318">
       <span id="idMsg9">SEARCH</span></a></p>
          </form>
@@ -280,7 +278,7 @@ a{
 	 var search_date = $('#search_date').val();
 	 var search = $('#search').val();
 	 
-	 location.href="pb_search.do?search_key="+search_key+"&search="+search;
+	 location.href="pb_search.do?search_key="+search_key+"&search="+search+"&search_date="+search_date;
  }
  
  

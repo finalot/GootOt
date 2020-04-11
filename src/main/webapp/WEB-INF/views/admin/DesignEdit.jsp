@@ -79,10 +79,8 @@ th{
  margin-left: 3%;
 }  
 .main-design div{
-	margin-bottom: 6%;
-	padding-bottom: 2%;
-	border-bottom: 1px solid #f3f3f3;
-}
+	margin-bottom: 1%;
+	
 .main-text{
 	margin-right: 5%;
 }  
@@ -255,16 +253,21 @@ th{
         	<th ><span style="color: red">*</span> 메인배너</th>
         	<td class="main-design">
         		
-        		
-				<input type="hidden" value="${mainList[0].no }" name="no">
-        		
+	<c:forEach var="d" items="${mainList}">        		
+				<input type="hidden" value="${d.deNo}" name="no"> 
         		<div style="display: flex;margin-top: 3%"><span>FILE 1</span><input name="mainImg" class="mainbaner" src="/ot/resources/bupladFiles/${mainList[0].reFile}" value="${mainList[0].reFile}" type="file">
-        		<span>메인배너 문구</span><input name="mainComment" value="${mainList[0].mainComment }" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input name="mainLink" value="${mainList[0].mainLink }" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+        		<span>메인배너 문구</span><input name="mainComment" value="${d.mainComment }" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
+        		<span>바로가기 링크</span><input name="mainLink" value="${d.mainLink }" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>
-				<div><a href="/ot/resources/bupladFiles/${mainList[0].reFile}">${mainList[0].reFile}</a></div>
+        		<c:if test="${!empty  d.reFile   }">
+				<div style="    margin-left: 7%;"><a href="/ot/resources/bupladFiles/${d.reFile}">${d.reFile}</a></div>
+				</c:if>
+				<c:if test="${empty  d.reFile   }">
+				<div style="    margin-left: 7%;"><span >등록된 파일이 없습니다.</span></div>
+				</c:if>
+	</c:forEach>		
 						
-				<input type="hidden" value="2" name="no">							
+		<!-- 		<input type="hidden" value="2" name="no">							
 				<div style="display: flex;"><span>FILE 2</span><input name="mainImg" class="mainbaner" type="file">
         		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
         		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
@@ -317,7 +320,7 @@ th{
         		<span>메인배너 문구</span><input name="mainComment" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
         		<span>바로가기 링크</span><input name="mainLink" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>    		        	
-        		</td>
+        		</td> -->
         	</tr>
     </table>
     </form>

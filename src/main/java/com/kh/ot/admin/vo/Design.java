@@ -2,7 +2,7 @@ package com.kh.ot.admin.vo;
 
 public class Design {
 
-	private int no;
+	private int deNo;
 	private String mainComment;
 	private String oriFIle;
 	private String reFile;
@@ -10,20 +10,28 @@ public class Design {
 	public Design() {
 		super();
 	}
-	public Design(int no, String mainComment, String oriFIle, String reFile, String mainLink) {
+	
+
+	public Design(int deNo, String mainComment, String oriFIle, String reFile, String mainLink) {
 		super();
-		this.no = no;
+		this.deNo = deNo;
 		this.mainComment = mainComment;
 		this.oriFIle = oriFIle;
 		this.reFile = reFile;
 		this.mainLink = mainLink;
 	}
-	public int getNo() {
-		return no;
+
+
+	public int getDeNo() {
+		return deNo;
 	}
-	public void setNo(int no) {
-		this.no = no;
+
+
+	public void setDeNo(int deNo) {
+		this.deNo = deNo;
 	}
+
+
 	public String getMainComment() {
 		return mainComment;
 	}
@@ -48,11 +56,12 @@ public class Design {
 	public void setMainLink(String mainLink) {
 		this.mainLink = mainLink;
 	}
+
+
 	@Override
 	public String toString() {
-		return "Design [no=" + no + ", mainComment=" + mainComment + ", oriFIle=" + oriFIle + ", reFile=" + reFile
+		return "Design [deNo=" + deNo + ", mainComment=" + mainComment + ", oriFIle=" + oriFIle + ", reFile=" + reFile
 				+ ", mainLink=" + mainLink + "]";
 	}
-	
 	
 }
