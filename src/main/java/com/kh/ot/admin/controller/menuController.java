@@ -128,6 +128,7 @@ public class menuController {
 		Design video = adService.selectVideo();
 		ArrayList<Design> instaList = adService.selectInstaList();
 		
+		System.out.println(mainList);
 		
 		mv.addObject("mainList",mainList);
 		mv.addObject("video",video);
@@ -298,7 +299,7 @@ public class menuController {
 	         String renameFileName = saveFile(uploadFile[i],request);
 
 	         if(renameFileName != null) {
-	       d.setNo(no[i]);
+	       d.setDeNo(no[i]);
 	       d.setMainComment(mainComment[i]);
 	       d.setMainLink(mainLink[i]);
 	       d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
@@ -353,7 +354,7 @@ public class menuController {
 	         String renameFileName = saveFile(uploadFile[i],request);
 
 	         if(renameFileName != null) {
-	       d.setNo(inno[i]);
+	       d.setDeNo(inno[i]);
 	       d.setMainLink(instalink[i]);
 	       d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
 	       d.setReFile(renameFileName);

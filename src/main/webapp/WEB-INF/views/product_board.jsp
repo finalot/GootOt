@@ -277,9 +277,10 @@ a{
  
  function pbSearch() {
 	 var search_key = $('#search_key').val();
+	 var search_date = $('#search_date').val();
 	 var search = $('#search').val();
 	 
-	 location.href="pb_search.do?search_key="+search_key+"&search="+search;
+	 location.href="pb_search.do?search_key="+search_key+"&search="+search+"&search_date="+search_date;
  }
  
  
