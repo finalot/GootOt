@@ -1,5 +1,7 @@
 package com.kh.ot.board.vo;
 
+import java.sql.Date;
+
 import com.kh.ot.common.Pagination;
 
 public class SearchCondition extends Pagination {
@@ -8,6 +10,7 @@ public class SearchCondition extends Pagination {
 	private String writer;
 	private int searchDate;
 	private int b_cate_no;
+	private Date date;
 	
 	public SearchCondition() {}
 
@@ -20,6 +23,7 @@ public class SearchCondition extends Pagination {
 		this.writer = writer;
 		this.searchDate = searchDate;
 		this.b_cate_no = b_cate_no;
+		this.date = date;
 	}
 
 
@@ -55,7 +59,6 @@ public class SearchCondition extends Pagination {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	
 
 	public int getB_cate_no() {
 		return b_cate_no;
@@ -63,6 +66,16 @@ public class SearchCondition extends Pagination {
 
 	public void setB_cate_no(int b_cate_no) {
 		this.b_cate_no = b_cate_no;
+	}
+	
+	
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	@Override
