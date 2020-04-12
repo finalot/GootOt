@@ -120,13 +120,11 @@
 						<table border="1" summary="">
 							<caption>마이 쿠폰 목록</caption>
 							<colgroup>
-								<col style="width: 45px">
-								<col style="width: auto">
-								<col style="width: 130px">
-								<col style="width: 130px">
-								<col style="width: 250px">
-								<col style="width: 130px">
-								<col style="width: 170px">
+								<col style="width: 60px">
+								<col style="width: 200px">
+								<col style="width: 150px">
+								<col style="width: 160px">
+								<col style="width: 150px">
 							</colgroup>
 							<thead>
 								<tr>
@@ -134,8 +132,6 @@
 									<th scope="col">COUPON NAME</th>
 									<th scope="col">PRODUCT</th>
 									<th scope="col">TOTAL PRICE</th>
-									<th scope="col">PAYMETHOD</th>
-									<th scope="col">BENEFIT</th>
 									<th scope="col">DATE</th>
 								</tr>
 							</thead>

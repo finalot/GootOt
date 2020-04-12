@@ -111,7 +111,7 @@
 						<a href="${mCoupon }">사용가능한 쿠폰 목록</a>
 					</li>
 		            <li class="selected">	
-		            	<a href="${mCompletecoupon }">사용완료한 쿠폰 목록</a>
+		            	<a href="${mCompletecoupon }">사용한 쿠폰 목록</a>
 	            	</li>
 						<p style="text-align: right; margin-right: 5px; padding-top: 15px;">사용가능 쿠폰 : 0장</p>
         		</ul>
@@ -126,23 +126,22 @@
 				<div class="ec-base-table typeList">
             		<table border="1" summary="" style="border-bottom: none;">
 						<caption>적립금 내역</caption>
-                		<colgroup>
-							<col style="width:15%">
-							<col style="width:15%">
-							<col style="width:15%">
-							<col style="width:20%">
-							<col style="width:auto">
+               			<colgroup>
+							<col style="width: 60px">
+							<col style="width: 200px">
+							<col style="width: 150px">
+							<col style="width: 160px">
+							<col style="width: 150px">
 						</colgroup>
-					
 						<thead>
 							<tr>
-								<th scope="col">주문날짜</th>
-		                        <th scope="col">미가용 쿠폰</th>
-		                        <th scope="col">관련 주문</th>
-		                        <th scope="col">사용가능 예정일</th>
-		                        <th scope="col">내용</th>
-	                    	</tr>
-	                   	</thead>
+								<th scope="col">NO</th>
+								<th scope="col">COUPON NAME</th>
+								<th scope="col">PRODUCT</th>
+								<th scope="col">TOTAL PRICE</th>
+								<th scope="col">DATE</th>
+							</tr>
+						</thead>
                    	
 						<tbody class="displaynone center">
 							<tr class="">
