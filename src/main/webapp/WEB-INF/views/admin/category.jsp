@@ -198,56 +198,208 @@
        
        
        <!-- 카테고리관리 내용 -->
-       <br><br>
        
   <form role="form" method="post" autocomplete="off">
        <div style="align:center;">
        <table style="width:90%;">
         <tr>
             <td style="width:50%;">
-            	<input class="btn btn-danger" type="button" value="삭제" id="btnRemoveLeft" style="margin-left:35%;"/>
-                <input class="btn btn-success" type="button" value="모두 선택" id="getValue"/>
-             	<input class="btn btn-success" type="button" value="선택값" id="getSelectedValue"/>
+                <H2 align="center"> &nbsp;&nbsp;대분류</H2>
                 <br>
                 
-                <select id="sel" name="sel" style="WIDTH: 50%; HEIGHT: auto; margin-left:30%; margin-top:3%;" 
-                			size=20 multiple class="UpCategory">
-                   <option value="">전체</option>
+                <select id="sel" name="sel" style="WIDTH: 50%; HEIGHT: auto; margin-left:30%; margin-top:-5%; font-size:20px;" 
+                			size=13 multiple class="UpCategory">
+                   <option value="">선택</option>
                 </select>
               
               	<br>
-                    
+                
             	<input type="text" id="addOption"  style="margin-left:30%; width:50%;"/>
-                <input class="btn btn-primary" type="button" value="추가" id="btnAdd"/>
-
+            	<br><br>
+                <input class="btn btn-primary" type="button" value="추가" id="btnAdd" style="margin-left:40%;"/>
+                <input class="btn btn-danger" type="button" value="삭제" id="btnRemoveLeft" />
+				
             </td>
             <td>
-            
-            	<input class="btn btn-danger" type="button" value="삭제" id="btnRemoveRight" style="margin-left:24%;"/>
-                <input class="btn btn-success" type="button" value="모두선택" id="getValue2"/>
-                <input class="btn btn-success" type="button" value="선택값" id="getSelectedValue2"/>
-                <br>
+            	<H2 align="center">중분류</H2>
+               <br>
+               
+               <select id="sel2" name="sel2" style="WIDTH: 50%; HEIGHT: auto; margin-left:25%; margin-top:-5%; font-size:20px;" 
+               	size="13" multiple class="DownCategory">
+               </select>
                 
-                <select id="sel2" name="sel2" style="WIDTH: 50%; HEIGHT: auto; margin-left:20%; margin-top:3%;" 
-                	size="20" multiple class="DownCategory">
-                	<option value="">전체</option>
-                </select>
-                 
-                 <br>       
- 
-                <input type="text" id="addOption2"  style="margin-left:20%; width:50%;"/>
-                <input class="btn btn-primary" type="button" value="추가" id="btnAdd2"/>
+                <br>       
+
+               <input type="text" id="addOption2"  style="margin-left:25%; width:50%;"/>
+               <br><br>
+               
+               <input class="btn btn-primary" type="button" value="추가" id="btnAdd2" style="margin-left:40%;"/>
+               <input class="btn btn-danger" type="button" value="삭제" id="btnRemoveRight"/>
             </td>
         </tr>
     </table>
 	</div>
 	</form>
+	
+	<input type=hidden id="hid">
+     </div></div>
+     
+     <!-- 카테고리 CRUD  -->
+     <script>
+     function test(val){
+    	 document.getElementById('hid').value=val.value;
+     }
+    
+     
+     var sendnum = new Array();
+     $(function(){
+         UpCategorySelect();
+      });
+      
+      setInterval(function(){
+    	  
+    	  UpCategorySelect();
+      },4000);
+      function UpCategorySelect(){
+    	  
+    	  var upl = document.getElementsByName('uplength').length+1;    	  
+         $.ajax({
+            url:"UpCategorySelect.ad",
+            success:function(data){
+            		var darr = new Array();
+            		$('#sel').find('option').remove();
+            		for(var i=0;i<data.length;i++){
+            		$('#sel').append('<option name="uplength" onclick="test(this);" value="'+data[i].up_no+'">'+data[i].up_name+'</option>');
+            		
+            		darr.push(data[i].up_no);
+            		sendnum = darr;
+          
+            		}
+            	},error:function(){
+            		console.log("에러발생");
+            	}
+            });
+            }
+      
+      
+      $(function(){
+          DownCategorySelect();
+       });
+       
+       setInterval(function(){
+     	  DownCategorySelect();
+       },4000);
+       function DownCategorySelect(){
+          $.ajax({
+             url:"DownCategorySelect.ad",
+             success:function(data){
+            	 var earr = new Array();
+            	 
+             		$('#sel2').find('option').remove();
+             		for(var i=0;i<data.length;i++){
+             			console.log(data[i].up_no);
+             			if(data[i].up_no==document.getElementById('hid').value){
+             				
+             				$('#sel2').append('<option value="'+data[i].down_no+'">'+data[i].down_name+'</option>')
+             			}
+             		}
+            		
+             },error:function(){
+             	console.log("에러발생");
+             }
+          });
+      }
        
        
+      /* 카테고리 추가 버튼  */
+       $('#btnAdd').click(function(){
+    	   
+    	   var addOption  = $('#addOption').val();
+    	   
+    	   $.ajax({
+    		   url:"UpCategoryInsert.ad",
+    		   data : {addOption:addOption},
+    		   success : function(data){
+    			   if(data == "ok"){
+    				   alert('대분류가 등록되었습니다.');
+    			   }else{
+    				   alert('다시해')
+    			   }
+    		   },error:function(){
+    			   alert("다시 입력해주세요.");
+    		   }
+    	   })
+       })
+       
+        $('#btnAdd2').click(function(){
+        	var up_no  = $('#hid').val();
+    	   var addOption2  = $('#addOption2').val();
+    	   console.log(addOption2);
+    	   $.ajax({
+    		   url:"DownCategoryInsert.ad",
+    		   data : {addOption2:addOption2,up_no:up_no},
+    		   success : function(data){
+    			   if(data == "ok"){
+    				/*  console.log("hid : " +document.getElementById('hid').value); */
+    				 up_no =  document.getElementById('hid').value;
+    				 /* console.log("up_no : " + up_no); */
+    				 alert('중분류가 등록되었습니다. ');
+    				 
+    			   }else{
+    				   alert('다시해')
+    			   }
+    		   },error:function(){
+    			   alert("에러다");
+    		   }
+    	   })
+       })
+       
+	/*카테고리 삭제 버튼*/
+		$('#btnRemoveLeft').click(function(){
+			var up_no  = $('#hid').val();
+	    	 console.log($('#hid').val());
+	    	 
+	    	   $.ajax({
+	    		   url:"UpCategoryDelete.ad",
+	    		   data : {up_no:up_no},
+	    		   success : function(data){
+	    			   if(data == "ok"){
+	    				   alert('대분류 삭제되었습니다.');
+	    			   }else{
+	    				   alert('대분류 삭제되었습니다.')
+	    			   }
+	    		   },error:function(){
+	    			   alert("대분류가 삭제되었습니다.");
+	    		   }
+	    	   });
+	       });
+      
+      
+        $('#btnRemoveRight').click(function(){
+			var up_no  = $('#hid').val();
+	    	console.log($('#hid').val());
+	    	 
+	    	var down_no = $('#sel2 option:selected').val();
+	    	console.log($('#sel2 option:selected').val());
+	    	
+	    	   $.ajax({
+	    		   url:"DownCategoryDelete.ad",
+	    		   data : {up_no:up_no, down_no:down_no},
+	    		   success : function(data){
+	    			   if(data == "ok"){
+	    				   alert('중분류 삭제되었습니다.');
+	    			   }else{
+	    				   alert('중분류 삭제되었습니다.')
+	    			   }
+	    		   },error:function(){
+	    			   alert("에러발생");
+	    		   }
+	    	   });
+	       });
        
        
-       </div></div>
-    <script type="text/javascript">
+     </script>
+   <!--  <script type="text/javascript">
 
         $(function(){
             $("#btnRemoveLeft").on("click",function(){
@@ -282,7 +434,7 @@
                 alert(values);
             });
  
-            $("#getValue2").on("click",function(){
+            $("#getValue2").on("c	lick",function(){
                 var values = "";
                 $('#sel2 option').each( function() {
                     values= values + "/" + $(this).val();
@@ -326,7 +478,7 @@
                     alert("존재하는 카테고리입니다. 다시입력해주세요");
                 }
             });
- 
+ '
             $("#btnAdd2").on("click",function(){
                 if($('#sel2').find("[value='"+$('#addOption2').val().replace('"','\'')+"']").length == 0)
                 {
@@ -340,36 +492,8 @@
 	  $(window).load(function(e){
  
         }); 
-    </script>
-    <script>
-    
-	// 컨트롤러에서 데이터 받기
-	var jsonData = JSON.parse('${UpCategory}');
-	console.log(jsonData);
-	
-	var UpCateArr = new Array();
-	var UpCateObj = new Object();
-	
-	// 1차 분류 셀렉트 박스에 삽입할 데이터 준비
-	for(var i = 0; i < jsonData.length; i++) {
-	 
-	 if(jsonData[i].level == "1") {
-	  UpCateObj = new Object();  //초기화
-	  UpCateObj.cateCode = jsonData[i].cateCode;
-	  UpCateObj.cateName = jsonData[i].cateName;
-	  UpCateArr.push(UpCateObj);
-	 }
-	}
-	
-	// 1차 분류 셀렉트 박스에 데이터 삽입
-	var UpCateSelect = $("select.UpCategory")
-	
-	for(var i = 0; i < UpCateArr.length; i++) {
-		UpCateSelect.append("<option value='" + UpCateArr[i].cateCode + "'>"
-	      + UpCateArr[i].cateName + "</option>"); 
-	}
-	
-	</script>
+    </script> -->
+ 
        <!-- Jquery JS-->
     <script src="/ot/resources/avendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->

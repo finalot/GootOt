@@ -16,6 +16,9 @@
 <typeAlias type="com.kh.ot.board.vo.Board" alias="Board"/>
 <typeAlias type="com.kh.ot.main.vo.Product" alias="Product"/>
 <typeAlias type="com.kh.ot.admin.vo.Coupon" alias="Coupon"/>
+<typeAlias type="com.kh.ot.admin.vo.UpCategory" alias="UpCategory"/>
+<typeAlias type="com.kh.ot.admin.vo.DownCategory" alias="DownCategory"/>
+<!-- <typeAlias type="com.kh.ot.admin.vo.ProductOption" alias="ProductOption"/> -->
 
 </typeAliases>
 

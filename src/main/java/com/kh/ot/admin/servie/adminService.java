@@ -3,6 +3,10 @@ package com.kh.ot.admin.servie;
 import java.util.ArrayList;
 
 import com.kh.ot.admin.vo.Coupon;
+import com.kh.ot.admin.vo.DownCategory;
+import com.kh.ot.admin.vo.Product;
+import com.kh.ot.admin.vo.ProductOption;
+import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 
@@ -34,5 +38,40 @@ public interface adminService{
 	 */
 	public int couponDelete(String cpName);
 	
+	/*s*/
+	/**
+	 * @작성일 : 2020. 4. 8.
+	 * @작성자 : 이서현
+	 * @내용 : 대분류,중분류 리스트 
+	 */
+	ArrayList<UpCategory> UpCategorySelect();
 
+	ArrayList<DownCategory> DownCategorySelect();
+
+	/**
+	 * @작성일 : 2020. 4. 9.
+	 * @작성자 : 이서현
+	 * @내용 : 카테고리 추가 버튼 
+	 */
+	public int UpCategoryInsert(String addOption);
+
+	public int DownCategoryInsert(DownCategory downCategory);
+
+	/**
+	 * @작성일 : 2020. 4. 9.
+	 * @작성자 : 이서현
+	 * @내용 : 카테고리 삭제 버튼
+	 */
+	public int UpCategoryDelete(int up_no);
+
+	public int DownCategoryDelete(DownCategory downCategory);
+
+	/**s
+	 * @작성일 : 2020. 4. 9.
+	 * @작성자 : 이서현
+	 * @내용 : 상품 등록 
+	 */
+	/*
+	 * public int ProductInsert(Product p, ProductOption po);
+	 */
 }

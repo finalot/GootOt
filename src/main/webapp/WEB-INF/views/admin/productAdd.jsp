@@ -314,15 +314,16 @@ th{
         	<th><span style="color:red">*</span> 분류</th>
         	<td>
 	       		대(大) : &nbsp;&nbsp;
-                   <select id="select-category" onchange="categoryChange(this)">
-                       <option value="select">선택1(대분류)</option>
-                       <option value="a">탑</option>
-                       <option value="b">아우터</option>
-                       <option value="c">하의</option>
-                       <option value="d"">스커트</option>
-                       <option value="e"">악세사리</option>
-                       <option value="f">가방/신발</option>
-                       <option value="g">ACC</option>
+	       		
+<%-- 	       		<select>
+				  <c:forEach var="i" items="${options}" />
+				    <option value="${i.value}">${i.text}</options>
+				  </c:forEach>
+				</select>--%>
+                    <select id="select-category">
+                      <%--  <c:forEach var="i" items="${options}" />
+				    		<option value="${i.value}">${i.text}</option>
+				  		</c:forEach> --%>
                    </select>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
@@ -350,25 +351,7 @@ th{
         		<input type="number" id="product_price" min="5,000" step="500" style="width:20%;">
         	</td>
         </tr>
-       <!--  <tr>
-        	<th><span style="color:red">*</span> 색상</th>
-        	<td>
-        		 <div id="color-area" style="display: block;">
-                    <div id="color-div" class="col-sm-12 col-md-6">
-                        <div class="form-group">
-                            <div class="input-group" >
-                                <input type="text" style=" padding-right: 0%;;padding-left: 36%;"  id="input-group" class="form-control demo" value="#ff0000" />
-                            </div>
-                        </div>
-                    </div>
-                     <div id="line"></div>
-                	<span class="input-group-btn">
-                    <button id="color_add" class="btn btn-default" type="button"">ADD</button>
-                </span> 
-                
-                </div>
-        	</td>
-        </tr> -->
+      
         <tr>
         	<th><span style="color:red">*</span> 할인가</th>
         	<td>
@@ -379,6 +362,7 @@ th{
         	<th><span style="color:red">*</span> 대표이미지</th>
         	<td>
         		<div id="titleImgArea">
+        		<!-- input file에 accept에 저장할 경로 미리 설정할 수 있다.  -->
 			<img id="titleImg" width="177px" height="200">
 			</div>
 			<div class="fileArea" id="fileArea">
@@ -460,7 +444,7 @@ th{
     
 
     <div style="height: 130px;">
-        <div align="center">
+        <<!-- div align="center">
             <button style="background: black;
             color: white;
             font-size: 20px;
@@ -468,12 +452,13 @@ th{
             height: 65px;
             width: 135px;
             border-radius: 10px;">
-            <b>등록</b></button>
+            <b>등록</b></button> -->
+            <a style="background: black; color: white; font-size: 20px; padding: 10px; height: 65px; width: 135px; border-radius: 10px; align:center;"
+            	onclick="productOptionAdd();"></a>
         </div>
     </div>
    
     
-	</div>
 <div class="page-wrapper">
 </div>
 
@@ -585,7 +570,39 @@ th{
   			if(bottomselect == null){
   				bottomselect = "";
   			}
-  			
+  		/*  주완님 코딩  
+  			var count = 0;
+  	       function productOptionAdd(){
+  	           var option1 = $('#Option1').val();
+  	           var option2 = $('#Option2').val();
+  	           var stock = $('#stock').val();
+  	           
+  	           
+  	          $('#product-add-Option').append('<tr>'+
+  	                  '<th scope="row">'+count+'</th>'+
+  	                  '<td id="Option_1_'+count+'" ><input name="Product_OptionVOList['+count+'].option_1" type="text" class="form-control" value="'+option1+'"/></td>'+
+  	                  '<td id="Option_2" ><input name="Product_OptionVOList['+count+'].option_2" type="text" class="form-control" value="'+option2+'"/></td>'+
+  	                  '<td id="op_Stock" ><input id="checkStock" name="Product_OptionVOList['+count+'].op_Stock" type="number" class="form-control" value="'+stock+'" /></td>'+
+  	                  '<td></td>'+
+  	                  '</tr>');
+  	          
+  	          count++;   
+  	          
+  	        <th>상품코드</th>
+    		<th>상품명</th>
+    		<th>이미지</th>
+    		<th>사이즈</th>
+    		<th>색상</th>
+    		<th>수량</th>
+    		<th>삭제</th>
+  	       } */
+  	       
+	  	     var count = 0;
+  	       function productOptionAdd(){
+  	    	 var option1 = $('#Option1').val();
+	         var option2 = $('#Option2').val();
+	         var stock = $('#stock').val();
+  	       }
   			$('#product-add-count').append('<tr>'+
   		    		'<td style="width: 16.3%;">12312312</td>'+
   		    		'<td>이뿐옷</td>'+

@@ -2,6 +2,7 @@ package com.kh.ot.admin.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
@@ -11,6 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.ot.admin.vo.Coupon;
+import com.kh.ot.admin.vo.DownCategory;
+import com.kh.ot.admin.vo.Product;
+import com.kh.ot.admin.vo.ProductOption;
+import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 
@@ -56,5 +61,61 @@ public class adminDao {
 	public int couponDelete(String cpName) {
 		return sqlSession.delete("adminMapper.couponDelete",cpName);
 	}
+
+
+	/**
+	 * @작성일 : 2020. 4. 8.
+	 * @작성자 : 이서현
+	 * @내용 : 카테고리 관린
+	 */
+	public ArrayList<UpCategory> upCategorySelect() {
+		return (ArrayList)sqlSession.selectList("adminMapper.UpCategorySelect");
+	}
+
+
+	public ArrayList<DownCategory> DownCategorySelect() {
+		return (ArrayList)sqlSession.selectList("adminMapper.DownCategorySelect");
+	}
+
+
+	public int UpCategoryInsert(String addOption) {
+		return sqlSession.insert("adminMapper.UpCategoryInsert",addOption);
+	}
+
+
+	public int DownCategoryInsert(DownCategory downCategory) {
+		return sqlSession.insert("adminMapper.DownCategoryInsert",downCategory);
+	}
+
+
+	public int UpCategoryDelete(int up_no) {
+		return sqlSession.update("adminMapper.UpCategoryDelete",up_no);
+	}
+
 	
+	public int DownCategoryDelete(DownCategory downCategory) {
+		return sqlSession.update("adminMapper.DownCategoryDelete",downCategory);
+	}
+	
+	
+	public int ProductInsert(Product p) {
+		return sqlSession.insert("adminMapper.ProductInsert",p);
+	}
+
+
+	
+
+
+	
+
+
+	/*
+	 * public int ProductOptionInsert(ProductOption po,int prdtNo) {
+	 * 
+	 * int result =0; List<ProductOption> polist = po.getProduct_OptionVOList();
+	 * 
+	 * for(ProductOption Option : polist) { Option.setPrdt_no(prdtNo); result =
+	 * sqlSession.insert("adminMapper.ProductOptionInsert",Option); } return result;
+	 * }
+	 */
 }

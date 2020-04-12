@@ -6,7 +6,6 @@ public class UpCategory {
 	private String up_name;		//대분류 카테고리명
 	private String up_using;	//사용여부
 	private String up_date;		//등록일자
-
 	public UpCategory() {}
 
 	public UpCategory(int up_no, String up_name, String up_using, String up_date) {
