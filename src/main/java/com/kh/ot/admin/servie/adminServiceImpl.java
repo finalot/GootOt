@@ -64,6 +64,10 @@ public class adminServiceImpl implements adminService{
 		return adDao.selectInstaList();
 	}
 	
+	@Override
+	public int DesignEdVideo(Design d) {
+		return adDao.DesignEdVideo(d);
+	}
 	
 //	/////여기부터 서현쓰
 	
@@ -72,11 +76,18 @@ public class adminServiceImpl implements adminService{
 	public ArrayList<UpCategory> UpCategorySelect() {
 		return adDao.upCategorySelect();
 	}
+	
+	@Override
+	public int DesignEd(ArrayList<Design>  dlist) {
+		return adDao.DesignEd(dlist);
+	}
 
 	@Override
 	public ArrayList<DownCategory> DownCategorySelect() {
 		return adDao.DownCategorySelect();
 	}
+	
+	
 
 	@Override
 	public int UpCategoryInsert(String addOption) {

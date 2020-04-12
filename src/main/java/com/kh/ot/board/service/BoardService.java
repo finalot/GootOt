@@ -113,6 +113,8 @@ public interface BoardService{
 	Board passwordCheck(Board b);
 
 
+
+
 	
 
 	
