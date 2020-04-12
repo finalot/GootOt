@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
+import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.downCategory;
+import com.kh.ot.main.vo.upCategory;
 
 public interface MainService {
 	
@@ -33,6 +37,43 @@ public interface MainService {
 	 * @return product
 	 */
 	ArrayList<Product> selectList1(MainPageInfo mainPi, int product1);
+
+	/**
+	 * 이대윤
+	 * 상품옵션 불러오기
+	 * @param product1
+	 * @return
+	 */
+	ArrayList<Product_opt> selectOptionList1(int product1);
+	ArrayList<Product_opt> selectOptionList2(int product2);
+
+	/**
+	 * 이대윤
+	 * 상품 컬러 불러오기
+	 * @param product1
+	 * @return
+	 */
+	ArrayList<Product_color> selectColorList1();
+	ArrayList<Product_color> selectColorList2();
+
+	/**
+	 * @작성일 : 2020. 4. 9.
+	 * @작성자 :
+	 * @내용 :카테고리 리스트 불러오기
+	 * @param @param product1
+	 * @param @return
+	 * @return ArrayList<downCategory>
+	 */
+	ArrayList<downCategory> selectCategoryList1(int product1);
+
+	ArrayList<upCategory> selectUpCategoryList1();
+
+	ArrayList<downCategory> selectCategoryList2(int product2);
+
+	ArrayList<upCategory> selectUpCategoryList2();
+
+	ArrayList<downCategory> selectCategoryList3();
 	
+	ArrayList<upCategory> selectUpCategoryList3();
 	
 }

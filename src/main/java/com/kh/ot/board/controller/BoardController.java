@@ -1,11 +1,16 @@
 package com.kh.ot.board.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -250,7 +255,7 @@ public class BoardController extends HttpServlet {
       
       System.out.println(currentPage);
 	   
-	   int b_cate_no = 1;
+	  int b_cate_no = 1;
       
       int listCount = bService.getListCount(b_cate_no);
       
@@ -311,43 +316,7 @@ public class BoardController extends HttpServlet {
    
    
    
-   /**
-    * @작성일  : 2020.04.06
-    * @작성자  : 우예진
-    * @내용    : 파일저장경로
-    * @param file
-    * @param request
-    * @return
-    */
-   public String saveFile(MultipartFile file, HttpServletRequest request) {
-      // 저장할 경로 설정et
-      // 웹 서버 contextPath를 불러와서 폴더의 경로 찾음(webapp 하위의 resources)
-      String root = request.getSession().getServletContext().getRealPath("resources");
-      
-      String savePath = root + "\\buploadFiles";
-      
-      File folder = new File(savePath);
-      
-      if(!folder.exists()) {
-         folder.mkdir(); // 폴더가 없다면 생성해주세요
-      }
-      
-      String originFileName = file.getOriginalFilename();
-      
-      SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-      String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
-               + originFileName.substring(originFileName.lastIndexOf(".")+1);
-      
-      String renamePath = folder + "\\" + renameFileName;
-      
-      try {
-         file.transferTo(new File(renamePath));
-      } catch (Exception e) {
-         
-         System.out.println("파일 전송 에러: " + e.getMessage());
-      } 
-      return renameFileName;
-   }
+  
 
 
    /**
@@ -400,15 +369,94 @@ public class BoardController extends HttpServlet {
    }
    
    /**
+ * @작성일  : 2020. 4. 8.
+ * @작성자  : 우예진
+ * @내용    : 상품문의 게시글 업데이트 화면 이동
+ * @return
+ */
+@RequestMapping("product_board_update.do")
+   public ModelAndView product_board_update(ModelAndView mv, int qna_no) {
+
+	
+	Board b = bService.selectBoard(qna_no);
+	
+	if(b!=null) {
+		mv.addObject("b",b)
+				/* .addObject("currentPage",currentPage) */
+		.setViewName("product_board_update");
+	} else {
+		mv.addObject("msg","게시글 상세조회 실패")
+		.setViewName("common/errorPage");
+	}
+      return mv;
+  }
+
+
+
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 우예진 
+	 * @내용    : 상품문의 게시글 업데이트 
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("product_board_updateView.do")
+	public String product_board_updateView(Board b,HttpServletRequest request) {
+
+			int result = bService.UpdatePrBoard(b);
+		
+		if(result > 0) {
+			return "redirect:product_board.do";
+		}else {
+			return "에러다";
+		}
+			
+	}
+	
+	@RequestMapping("product_board_delete.do")
+	public String product_board_delete(int qna_no, HttpServletRequest request) {
+		int result = bService.deletePrBoard(qna_no);
+		
+		if(result >0) {
+			return "redirect:product_board.do";
+		} else {
+			return "에러다";
+		}
+	}
+
+	
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 우예진
+	 * @내용    : 파일 삭제
+	 * @param fileName
+	 * @param request
+	 */
+	public void deleteFile(String fileName, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\buploadFiles";
+	
+		File f = new File(savePath + "\\" + fileName);
+		// webapp / resource / buploadFiles / 202003261111.png
+	
+		if(f.exists()) {
+			f.delete();
+	}
+	
+}
+   
+   
+   /**
     * @작성일  : 2020.04.08
     * @작성자  : 우예진
     * @내용    : 상품문의 검색 기능
     * @return
     */
-@RequestMapping("pb_search.do")
+	@RequestMapping("pb_search.do")
    public ModelAndView pb_search(ModelAndView mv, 
 		   						@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
-		   						,String search_key,String search) {
+		   						,String search_key,String search,String search_date) {
 	int b_cate_no = 1;
 	
 	SearchCondition sc = new SearchCondition();
@@ -418,6 +466,17 @@ public class BoardController extends HttpServlet {
 	} else if(search_key.equals("title")) {
 		sc.setTitle(search);
 	}
+	
+	if(search_date.equals("week")) {
+		sc.setSearchDate(7);
+	}else if(search_date.equals("month")) {
+		sc.setSearchDate(30);
+	}else if(search_date.equals("month3")) {
+		sc.setSearchDate(90);
+	}else if(search_date.equals("all")) {
+		sc.setSearchDate(0);
+	}
+	
 	sc.setB_cate_no(b_cate_no);
 	
 	int listCount = bService.SearchListCount(sc);
@@ -434,7 +493,8 @@ public class BoardController extends HttpServlet {
 	
 	return mv;
    }
-
+	
+	
    /**
     * @작성일  : 2020.04.05
     * @작성자  : 우예진
@@ -483,6 +543,83 @@ public class BoardController extends HttpServlet {
 
       return "product_change_write";
    }
+   
+   @RequestMapping("product_board_detailView")
+   public ModelAndView product_board_detailView(ModelAndView mv,int qna_no) {
+	   
+	   mv.addObject("qna_no", qna_no);
+	   mv.setViewName("product_board_password");
 
+	   
+	   return mv; 
+   }
+   /**
+ * @작성일  : 2020. 4. 9.
+ * @작성자  : 우예진
+ * @내용    : 비밀글 비밀번호 체크
+ * @param response
+ * @param qna_no
+ * @param password
+ * @throws IOException
+ */
+@RequestMapping("passwordCheck.do")
+   public void passwordCheck(HttpServletResponse response,int qna_no, String password) throws IOException {
+	   
+	   PrintWriter out = response.getWriter();
+	   
+	   Board b = new Board();
+	   
+	   b.setQna_no(qna_no);
+	   b.setQna_password(password);
+	   
+	   b = bService.passwordCheck(b);
+	   if(b != null) {
+		   out.print("ok");
+	   }else {
+		   out.print("fail");
+	   }
+	   
+	   
+	   
+   }
+   
+   
+   /**
+    * @작성일  : 2020.04.06
+    * @작성자  : 우예진
+    * @내용    : 파일저장경로
+    * @param file
+    * @param request
+    * @return
+    */
+   public String saveFile(MultipartFile file, HttpServletRequest request) {
+      // 저장할 경로 설정et
+      // 웹 서버 contextPath를 불러와서 폴더의 경로 찾음(webapp 하위의 resources)
+      String root = request.getSession().getServletContext().getRealPath("resources");
+      
+      String savePath = root + "\\buploadFiles";
+      
+      File folder = new File(savePath);
+      
+      if(!folder.exists()) {
+         folder.mkdir(); // 폴더가 없다면 생성해주세요
+      }
+      
+      String originFileName = file.getOriginalFilename();
+      
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+      String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+               + originFileName.substring(originFileName.lastIndexOf(".")+1);
+      
+      String renamePath = folder + "\\" + renameFileName;
+      
+      try {
+         file.transferTo(new File(renamePath));
+      } catch (Exception e) {
+         
+         System.out.println("파일 전송 에러: " + e.getMessage());
+      } 
+      return renameFileName;
+   }
    
 }

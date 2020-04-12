@@ -13,6 +13,10 @@ import org.springframework.stereotype.Service;
 import com.kh.ot.main.dao.MainDao;
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
+import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.downCategory;
+import com.kh.ot.main.vo.upCategory;
 
 @Service("mainService")
 public class MainServiceImpl implements MainService {
@@ -41,6 +45,49 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public ArrayList<Product> selectList2(MainPageInfo mainPi,int product2) {
 		return mainDao.selectList2(mainPi,product2);
+	}
+	@Override
+	public ArrayList<Product_opt> selectOptionList1(int product1) {
+		return mainDao.selectOptionList1(product1);
+	}
+	@Override
+	public ArrayList<Product_color> selectColorList1() {
+		return mainDao.selectColorList1();
+	}
+	@Override
+	public ArrayList<Product_opt> selectOptionList2(int product2) {
+		return mainDao.selectOptionList2(product2);
+	}
+	@Override
+	public ArrayList<Product_color> selectColorList2() {
+		return mainDao.selectColorList2();
+	}
+	@Override
+	public ArrayList<downCategory> selectCategoryList1(int product1) {
+		return mainDao.selectCategoryList1(product1);
+	}
+	@Override
+	public ArrayList<upCategory> selectUpCategoryList1() {
+		return mainDao.selectUpCategoryList1();
+	}
+	@Override
+	public ArrayList<downCategory> selectCategoryList2(int product2) {
+		int product22 = product2/10;
+		System.out.println(product22);
+		return mainDao.selectCategoryList2(product22);
+	}
+	@Override
+	public ArrayList<upCategory> selectUpCategoryList2() {
+		return mainDao.selectUpCategoryList2();
+	}
+	@Override
+	public ArrayList<downCategory> selectCategoryList3() {
+		
+		return mainDao.selectCategoryList3();
+	}
+	@Override
+	public ArrayList<upCategory> selectUpCategoryList3() {
+		return mainDao.selectUpCategoryList3();
 	}
 	
 

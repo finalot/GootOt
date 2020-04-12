@@ -11,6 +11,7 @@ import com.kh.ot.admin.vo.DownCategory;
 import com.kh.ot.admin.vo.Product;
 import com.kh.ot.admin.vo.ProductOption;
 import com.kh.ot.admin.vo.UpCategory;
+import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.dao.BoardDao;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
@@ -43,30 +44,40 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public ArrayList<UpCategory> UpCategorySelect() {
 		return adDao.upCategorySelect();
+	public int DesignEd(ArrayList<Design>  dlist) {
+		return adDao.DesignEd(dlist);
 	}
 
 
 	@Override
 	public ArrayList<DownCategory> DownCategorySelect() {
 		return adDao.DownCategorySelect();
+	public int DesignEdVideo(Design d) {
+		return adDao.DesignEdVideo(d);
 	}
 
 
 	@Override
 	public int UpCategoryInsert(String addOption) {
 		return adDao.UpCategoryInsert(addOption);
+	public int DesignInsta(ArrayList<Design> dlist) {
+		return adDao.DesignInsta(dlist);
 	}
 
 
 	@Override
 	public int DownCategoryInsert(DownCategory downCategory) {
 		return adDao.DownCategoryInsert(downCategory);
+	public ArrayList<Design> selectMainList() {
+		return adDao.selectMainList();
 	}
 
 
 	@Override
 	public int UpCategoryDelete(int up_no) {
 		return adDao.UpCategoryDelete(up_no);
+	public Design selectVideo() {
+		return adDao.selectVideo();
 	}
 
 
@@ -119,5 +130,9 @@ public class adminServiceImpl implements adminService{
 	
 
 
+
+	public ArrayList<Design> selectInstaList() {
+		return adDao.selectInstaList();
+	}
 
 }

@@ -18,31 +18,20 @@ public class Product {
 	private String prdtImagePath;
 	private String prdtDetailImage;
 	private String prdtDetailImagePath;
+	private int prdtSale;
 	
 	
+
+
 	public Product() {
 	}
 
 
-	/**
-	 * @param prdtNo
-	 * @param upNo
-	 * @param prdtName
-	 * @param prdtComment
-	 * @param prdtPrice
-	 * @param prdtMake
-	 * @param prdtImage
-	 * @param prdtDate
-	 * @param prdtModifyDate
-	 * @param downNo
-	 * @param prdtCode
-	 * @param prdtImagePath
-	 * @param prdtDetailImage
-	 * @param prdtDetailImagePath
-	 */
+	
+	
 	public Product(int prdtNo, int upNo, String prdtName, String prdtComment, int prdtPrice, String prdtMake,
 			String prdtImage, Date prdtDate, Date prdtModifyDate, int downNo, String prdtCode, String prdtImagePath,
-			String prdtDetailImage, String prdtDetailImagePath) {
+			String prdtDetailImage, String prdtDetailImagePath, int prdtSale) {
 		super();
 		this.prdtNo = prdtNo;
 		this.upNo = upNo;
@@ -58,7 +47,24 @@ public class Product {
 		this.prdtImagePath = prdtImagePath;
 		this.prdtDetailImage = prdtDetailImage;
 		this.prdtDetailImagePath = prdtDetailImagePath;
+		this.prdtSale = prdtSale;
 	}
+
+
+
+
+	public int getPrdtSale() {
+		return prdtSale;
+	}
+
+
+
+
+	public void setPrdtSale(int prdtSale) {
+		this.prdtSale = prdtSale;
+	}
+
+
 
 
 	/**

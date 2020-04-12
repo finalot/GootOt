@@ -1,3 +1,7 @@
+<%@page import="com.kh.ot.main.service.MainServiceImpl"%>
+<%-- <%@page import="com.kh.ot.main.vo.upCategory"%>
+<%@page import="com.kh.ot.main.vo.downCategory"%> --%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -81,10 +85,10 @@ font-size: 9px !important;
 		<!-- Menu -->
 		<div class="wrap_menu" style="margin-top: -0.5%;">
 			<nav class="menu">
-				<ul class="main_menu">
+				<ul class="main_menu" id="category_menu">
 
 					<span class="linedivide1"></span>
-					<!-- 프로덕트 1부분 경로 설정 -->
+					<%-- <!-- 프로덕트 1부분 경로 설정 -->
 					<c:url var="best" value="product1.do">
 						<c:param name="product1" value="5"/>
 					</c:url>
@@ -159,72 +163,20 @@ font-size: 9px !important;
 					<c:url var="sale" value="product2.do">
 						<c:param name="product2" value="62"/>
 					</c:url>
+					<!-- 프로덕트 2 부분 경로설정 끝 --> --%>
 					
 					<c:url var="todaymain" value="todaymain.ad"/> 
 					
-					
-					<!-- 프로덕트 2 부분 경로설정 끝 -->
 					<!-- 기타 버튼 경로설정 -->
 					<c:url var="review" value="review.do"/>
 					<c:url var="cartbutton" value="cartbutton.do"/>
 					
-					<li><a href="${best }">Best20</a>
-						<ul class="sub_menu"
-							style="border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 135%;">
-							<li><a href="${best }">랭킹20</a></li>
-						</ul></li>
-					<span class="linedivide1"></span>
 					
-					<li><a href="${clothing }">CLOTHING</a>
-						<ul class="sub_menu"
-							style="border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 135%;">
-							<li><a href="${tnasi }">티셔츠/나시</a></li>
-							<li><a href="${mantoman }">맨투맨</a></li>
-							<li><a href="${hoody }">후디</a></li>
-							<li><a href="${pants }">바지</a></li>
-							<li><a href="${neat }">니트</a></li>
-							<li><a href="${onepieceskirt }">원피스/스커트</a></li>
-							<li><a href="${shirtblouse }">셔츠/블라우스</a></li>
-						</ul></li>
-					<span class="linedivide1"></span>
-
-					<li><a href="${outer }">OUTER</a>
-						<ul class="sub_menu"
-							style="border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 135%;">
-							<li><a href="${jacket }">자켓</a></li>
-							<li><a href="${coatjumper }">코트/점퍼</a></li>
-							<li><a href="${cardigan }">가디건</a></li>
-						</ul></li>
-					<span class="linedivide1"></span>
-
-					<li><a href="${shoes }">SHOES</a>
-						<ul class="sub_menu"
-							style="border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 135%;">
-							<li><a href="${shoes }">신발</a></li>
-						</ul></li>
-					<span class="linedivide1"></span>
-
-					<li><a href="${acc }">ACC</a>
-						<ul class="sub_menu"
-							style="border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 150%;">
-							<li><a href="${belt }">벨트</a></li>
-							<li><a href="${glasses }">안경</a></li>
-							<li><a href="${hat }">모자</a></li>
-							<li><a href="${socks }">양말</a></li>
-							<li><a href="${accessories }">악세사리</a></li>
-							<li><a href="${etc }">기타</a></li>
-						</ul></li>
-					<span class="linedivide1"></span>
-
-					<li class="sale-noti"><a href="${event }">EVENT</a>
-						<ul class="sub_menu"
-							style="border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 135%;">
-							<li><a href="${new5 }">NEW 5%</a></li>
-							<li><a href="${sale }">SALE</a></li>
-
-						</ul></li>
-					<span class="linedivide1"></span>
-
+					
+					
+					
+					
+					
 				</ul>
 
 			</nav>
@@ -392,67 +344,12 @@ font-size: 9px !important;
 			<!-- Menu -->
 			<div class="wrap_menu" style="margin-top: -1.7%;">
 				<nav class="menu">
-					<ul class="main_menu">
+					<ul class="main_menu" id="category_menu2">
 
 						<span class="linedivide1"></span>
 
-						<li><a href="${best }">Best20</a>
-							<ul class="sub_menu"
-								style="border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 135%;">
-								<li><a href="${best }">랭킹20</a></li>
-							</ul></li>
-						<span class="linedivide1"></span>
+						
 
-						<li><a href="${clothing }">CLOTHING</a>
-							<ul class="sub_menu"
-								style="border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 135%;">
-								<li><a href="${tnasi }">티셔츠/나시</a></li>
-							<li><a href="${mantoman }">맨투맨</a></li>
-							<li><a href="${hoody }">후디</a></li>
-							<li><a href="${pants }">바지</a></li>
-							<li><a href="${neat }">니트</a></li>
-							<li><a href="${onepieceskirt }">원피스/스커트</a></li>
-							<li><a href="${shirtblouse }">셔츠/블라우스</a></li>
-							</ul></li>
-						<span class="linedivide1"></span>
-
-						<li><a href="${outer }">OUTER</a>
-							<ul class="sub_menu"
-								style="border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 135%;">
-								<li><a href="${jacket }">자켓</a></li>
-							<li><a href="${coatjumper }">코트/점퍼</a></li>
-							<li><a href="${cardigan }">가디건</a></li>
-							</ul></li>
-						<span class="linedivide1"></span>
-
-						<li><a href="${shoes }">SHOES</a>
-							<ul class="sub_menu"
-								style="border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 135%;">
-								<li><a href="${shoes }">신발</a></li>
-							</ul></li>
-						<span class="linedivide1"></span>
-
-						<li><a href="${acc }">ACC</a>
-							<ul class="sub_menu"
-								style="border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 150%;">
-								<li><a href="${belt }">벨트</a></li>
-							<li><a href="${glasses }">안경</a></li>
-							<li><a href="${hat }">모자</a></li>
-							<li><a href="${socks }">양말</a></li>
-							<li><a href="${accessories }">악세사리</a></li>
-							<li><a href="${etc }">기타</a></li>
-							</ul></li>
-						<span class="linedivide1"></span>
-
-						<li class="sale-noti"><a href="${event }">EVENT</a>
-							<ul class="sub_menu"
-								style="border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 135%;">
-								<li><a href="${new5 }">NEW 5%</a></li>
-							<li><a href="${sale }">SALE</a></li>
-
-							</ul></li>
-
-						<span class="linedivide1"></span>
 
 
 						<!-- 검색창 인풋 부분 -->
@@ -465,7 +362,8 @@ font-size: 9px !important;
 								<i class="fa fa-search"></i>
 							</button>
 						</form>
-
+						
+							<span class="linedivide1"></span>
 					</ul>
 					<hr style="margin-top: -1%;">
 				</nav>
@@ -585,7 +483,110 @@ font-size: 9px !important;
 			</div>
 		</div>
 
-
+<script>
+					$(function(){
+						$.ajax({
+							url:"header.do",
+							dataType:"json",
+							async: false,
+							success:function(data){
+								console.log(data);
+								
+								for(var i in data){
+									
+									if(data[i].upNo == 6){
+										var str = "<li class='sale-noti'><a href='http://localhost:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
+										"<ul class='sub_menu' id='a"+data[i].upNo+"a'"+
+											"style='border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 160%;'>"+
+										"</ul></li>"+
+									"<span class='linedivide1'></span>"
+									
+									}else if (data[i].upNo ==4){
+									
+									var str = "<li><a href='http://localhost:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
+									"<ul class='sub_menu' id='a"+data[i].upNo+"a'"+
+										"style='border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 168%;'>"+
+									"</ul></li>"+
+								"<span class='linedivide1'></span>"
+								
+									}else{
+										
+									var str = "<li><a href='http://localhost:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
+									"<ul class='sub_menu' id='a"+data[i].upNo+"a'"+
+										"style='border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 140%;'>"+
+									"</ul></li>"+
+								"<span class='linedivide1'></span>"
+										
+								
+								
+									}
+									
+									$('#category_menu').append(str); }
+									
+									for(var i in data){
+										
+										if(data[i].upNo == 6){
+											var str2 = "<li class='sale-noti'><a href='http://localhost:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
+											"<ul class='sub_menu' id='b"+data[i].upNo+"b'"+
+												"style='border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 160%;'>"+
+											"</ul></li>"+
+										"<span class='linedivide1'></span>"
+										
+										}else if (data[i].upNo ==4){
+										
+										var str2 = "<li><a href='http://localhost:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
+										"<ul class='sub_menu' id='b"+data[i].upNo+"b'"+
+											"style='border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 168%;'>"+
+										"</ul></li>"+
+									"<span class='linedivide1'></span>"
+									
+										}else{
+											
+										var str2 = "<li><a href='http://localhost:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
+										"<ul class='sub_menu' id='b"+data[i].upNo+"b'"+
+											"style='border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 140%;'>"+
+										"</ul></li>"+
+									"<span class='linedivide1'></span>"
+											
+									
+									
+										}
+								
+								$('#category_menu2').append(str2);
+								}
+								
+								
+								 secondAjax(); 
+								
+								},error:function(){
+								alert("안된다");
+							}
+						});
+					});
+					
+					function secondAjax(){
+						$.ajax({
+							url:"header2.do",
+							dataType:"json",
+							async: false,
+							success:function(data){
+								
+								for(var i in data){
+									
+								
+								
+									var str = "<li><a href='http://localhost:8888/ot/product2.do?product2="+data[i].upNo+data[i].downNo+"'>"+data[i].downName+"</a></li>"
+								
+								$('#a'+data[i].upNo+'a').append(str);
+								$('#b'+data[i].upNo+'b').append(str);
+								}
+								},error:function(){
+								alert("안된다2");
+							}
+						});
+					};
+					
+					</script>
 		<!-- Menu Mobile -->
 		<div class="wrap-side-menu">
 			<nav class="side-menu">

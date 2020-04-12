@@ -63,7 +63,9 @@
 	padding-left: 1% !important;
 	
 }
-
+.detail_text p{
+	font-size:12px;
+}
 </style>
 <body>
 	<%@include file="header.jsp" %>	
@@ -144,9 +146,9 @@
 비회원으로 문의주실 경우엔 동명이인으로 인해 주문정보와 함께 남겨주셔야 바로 처리 가능합니다.<br>
 <br> -->
 </div>
-		
+<!-- ---------------------------------------------------------------------<br> -->
 
-<div class="detail_text">
+<div style="font-weight:600;" class="detail_text">
 ${b.content }
 </div>
 </div>
@@ -179,8 +181,8 @@ ${b.content }
                 <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
-                <a href="product_board.do" onclick="BOARD_WRITE.form_submit('boardWriteForm');" class="yg_btn_30 yg_btn4" alt="등록">UPDATE</a>
-                <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="취소">DELETE</a>
+                <a onclick="updateQnA()" class="yg_btn_30 yg_btn4" alt="등록">UPDATE</a>
+                <a onclick="deleteQnA()" class="yg_btn_30 yg_btn4" alt="취소">DELETE</a>
             </span>
         </div>
 	</div>
@@ -188,6 +190,20 @@ ${b.content }
 </div>
 
 	</div>
+	<input type="hidden" id="qq_no" value="${b.qna_no}">  
+<script>
+function updateQnA(){
+	var qna_no = $('#qq_no').val()
+	location.href="product_board_update.do?qna_no="+qna_no;
+};
+
+function deleteQnA(){
+	var qna_no = $('#qq_no').val()
+	location.href="product_board_delete.do?qna_no="+qna_no;
+};
+
+
+</script>
 	
  <%@include file="footer.jsp" %>
 </body>

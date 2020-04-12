@@ -37,6 +37,10 @@ import com.kh.ot.member.vo.Member;
  * @author yejin
  *
  */
+/**
+ * @author Owner
+ *
+ */
 @SessionAttributes("loginMember")
 @Controller
 public class MemberController extends HttpServlet {
@@ -479,11 +483,126 @@ public class MemberController extends HttpServlet {
 			out.print("fail");
 		}
 	}
-
 	
 
+	/**
+	 * @작성일 : 2020. 4. 8.
+	 * @작성자 : 신경섭
+	 * @내용 : 회원정보 수정
+	 * @param m
+	 * @param model
+	 * @param post
+	 * @param addr1
+	 * @param addr2
+	 * @return
+	 * String
+	 */
+	@RequestMapping(value="mUpdate.do", method=RequestMethod.POST)
+	public String memberUpdate(Member m, Model model,
+							   @RequestParam("memPwd1") String pwd,
+							   @RequestParam("postcode1") String post,
+							   @RequestParam("address1") String addr1,
+							   @RequestParam("address2") String addr2,
+							   @RequestParam("mobile1") String mobile1,
+							   @RequestParam("mobile2") String mobile2,
+							   @RequestParam("mobile3") String mobile3) {
+		
+		
+		m.setMemPwd(pwd);
+//		System.out.println(pwd);
+//		System.out.println("dsadsad :" +  m.getMemPwd());
+		
+	// 주소데이터들 ','를 구분자로 저장
+		if(!post.contentEquals("")) {
+			m.setMemAddress(post + "," + addr1 + "," + addr2);
+		}
+		
+		if(!mobile1.contentEquals("")) {
+			m.setMemPhone(mobile1 + "-" + mobile2 + "-" + mobile3);
+		}
+	
+		String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());
+		m.setMemPwd(encPwd);
+		System.out.println("암호화된 비밀번호 : " + m.getMemPwd());
+		
+		System.out.println("주소 : " + post + "," + addr1 + "," + addr2);
+		System.out.println("핸드폰번호 : " + mobile1 + "-" + mobile2 + "-" + mobile3);
+		
+		int result = mService.updateMember(m);
+		
+		if(result > 0) {
+			model.addAttribute("loginMember", m);
+			return "redirect:index.jsp";
+		} else {
+			model.addAttribute("msg", "회원 정보 수정 실패!");
+			return "common/errorPage";
+		}
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 9.
+	 * @작성자 : 신경섭
+	 * @내용 : 환불계좌정보 수정
+	 * @param session
+	 * @param model
+	 * @param owner
+	 * @param bank
+	 * @param return_bank
+	 * @return
+	 * String
+	 * @throws IOException 
+	 */
+	@RequestMapping(value="mUpdateAccount.do", method=RequestMethod.POST)
+	public String updateAccount(HttpSession session, HttpServletResponse response, Model model,
+								String check_password,
+			   					@RequestParam("acc_depositor") String owner,
+			   					@RequestParam("acc_bank") String bank,
+			   					@RequestParam("acc_no") String return_bank) throws IOException {
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		
+		m.setMemOwner(owner);
+		m.setBank(bank);
+		m.setReturnBank(return_bank);
+		
+//		System.out.println(check_password);
+//		System.out.println(m.getMemPwd());
+		
+		if (m != null  && bcryptPasswordEncoder.matches(check_password, m.getMemPwd() )) {
+			
+			int result = mService.updateAccount(m);
+			
+			if(result > 0) {
+				model.addAttribute("loginMember",m);
+				return "close";
+			} else {
+				return "close2";
+			}
+		} else {
+		out.println("<script>alert('비번틀림'); location.href='mAccount.do'</script>");
+		out.flush();
+		return "mypage_member_account"; 
+		}
+	}
 
-
-
-
+	@RequestMapping("mDelete.do")
+	public String memberDelete(HttpSession session, String mId, Model model) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		System.out.println(m.getMemId());
+		System.out.println(m.getMemNo());
+		
+		int result = mService.deleteMember(m);
+		
+		if(result > 0) {
+			return "redirect:logout.do";
+		} else {
+			return "";
+		}
+	}
 }

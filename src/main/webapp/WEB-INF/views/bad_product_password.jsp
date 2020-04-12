@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품문의 패스워드</title>
+<title>상품불량 및 오배송접수 패스워드</title>
    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
@@ -116,17 +116,16 @@ input[type=password] {
          <div class="titleArea">
              <h2 style="display: inline-block;
    				 font-size: 20px;
-   				 padding: 35px 18px;
+   				 padding: 35px 20px;
    				 font-weight: 400;
     			letter-spacing: 2px;
-    			margin-left: 46.8%;">상품 문의</h2>
+    			margin-left: 46.8%;">상품불량 및 오배송접수</h2>
          </div>
          
-        <!-- <form id="boardSecureForm" name="" action="/exec/front/Board/secure/6" method="post" target="_self" enctype="multipart/form-data"> -->
+         <form id="boardSecureForm" name="" action="/exec/front/Board/secure/6" method="post" target="_self" enctype="multipart/form-data">
 <div class="xans-element- xans-board xans-board-secure-4 xans-board-secure xans-board-4 ">
 <div class="secret">            
             <fieldset>
-				<input type="hidden" name="pna_no" id="qna_no" value="${qna_no}">
 				
                 <span id="idMsg14">이 글은 비밀글입니다.</span>
                 <span id="idMsg15">비밀번호를 입력하여 주세요.</span><br>
@@ -138,12 +137,12 @@ input[type=password] {
                 </p>
                 <div class="ec-base-button gBlank30">
                     <a href="product_board.do" class="yg_btn_140 yg_btn3" alt="목록">LIST</a>
-                    <button  onclick="passwordCheck()" class="yg_btn_140 yg_btn5" alt="확인">OK</button>
+                    <a href="#none" onclick="BOARD.form_submit('boardSecureForm');" class="yg_btn_140 yg_btn5" alt="확인">OK</a>
                 </div>
             </fieldset>
 </div>
 </div>
-<!-- </form> -->
+</form>
 </div>
 </div>
 
@@ -151,29 +150,6 @@ input[type=password] {
          
  <%@include file="footer.jsp" %>
 
-<script>
-	function passwordCheck(){
-			
-		var qna_no = $('#qna_no').val();
-		var password = $("#qna_password").val();
-		
-		$.ajax({
-			url:"passwordCheck.do",
-			data : {qna_no : qna_no , password : password},
-			success : function(data){
-				if(data =="ok"){
-					location.href="product_board_detail.do?qna_no="+qna_no;
-				}else{
-					alert("비밀번호를 확인해 주세요");
-				}
-			},
-			error:function(){
-				alert("에러다");	
-			}
-		})
-	}
-
-</script>
 </body>
 
 </html>

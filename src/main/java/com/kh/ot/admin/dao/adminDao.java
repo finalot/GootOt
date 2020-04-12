@@ -16,6 +16,7 @@ import com.kh.ot.admin.vo.DownCategory;
 import com.kh.ot.admin.vo.Product;
 import com.kh.ot.admin.vo.ProductOption;
 import com.kh.ot.admin.vo.UpCategory;
+import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 
@@ -96,6 +97,59 @@ public class adminDao {
 	public int DownCategoryDelete(DownCategory downCategory) {
 		return sqlSession.update("adminMapper.DownCategoryDelete",downCategory);
 	}
+	 * @작성일  : 2020. 4. 8.
+	 * @작성자  : 문태환
+	 * @내용 	:메인배너등록
+	 * @param d
+	 * @return
+	 */
+	public int DesignEd(ArrayList<Design>  dlist) {
+		   Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("dlist", dlist);
+		return sqlSession.update("adminMapper.DesignEd",map);
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 문태환 
+	 * @내용 	 : 메인동영상 등록
+	 * @param d
+	 * @return
+	 */
+	public int DesignEdVideo(Design d) {
+		return sqlSession.update("adminMapper.DesignEdVideo",d);
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 문태환
+	 * @내용 	: 메인 인스타 등록
+	 * @param dlist
+	 * @return
+	 */
+	public int DesignInsta(ArrayList<Design> dlist) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("dlist", dlist);
+		return sqlSession.insert("adminMapper.DesignInsta",map);
+	}
+
+
+	public ArrayList<Design> selectMainList() {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectMainList");
+	}
+
+	public Design selectVideo() {
+		return (Design)sqlSession.selectOne("adminMapper.selectVideo");
+	}
+
+
+	public ArrayList<Design> selectInstaList() {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectInstaList");
+	}
+	
+	
 	
 	
 	public int ProductInsert(Product p) {

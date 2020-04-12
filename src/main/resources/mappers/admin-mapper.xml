@@ -59,6 +59,25 @@
 			<result property="prdt_no" column="PRDT_CODE"/>
 		</resultMap> -->
 		
+		<resultMap type="Design" id="MainResultSet">
+			<id property = "deNo" column="D_NO"/>
+			<result property="mainComment" column="D_COMMENT"/>
+			<result property="reFile" column="D_REFILE"/>
+			<result property="mainLink" column="D_LINK"/>
+		</resultMap>
+
+		<resultMap type="Design" id="VideoResultSet">
+			<id property = "deNo" column="V_NO"/>
+			<result property="reFile" column="VIDEOFILE"/>
+		</resultMap>
+		
+		<resultMap type="Design" id="InstaResultSet">
+			<id property = "deNo" column="IN_NO"/>
+			<result property="reFile" column="IN_REFILE"/>
+			<result property="mainLink" column="IN_LINK"/>
+			<result property="mainComment" column="IN_COMMENT"/>
+			
+		</resultMap>
 
 <insert id="couponInput" parameterType="java.util.Map">
 	INSERT INTO COUPON (CP_NO,CP_NAME,CP_DISCOUNT,CP_DATE)
@@ -137,6 +156,51 @@
 	{opt_stock}, SYSDATE, NULL, #{prdt_code})
 </insert> -->
 
+<update id="DesignEd" parameterType="java.util.Map">
+	<foreach  item="d" collection="dlist"  index="index" 
+      separator=";" open="DECLARE BEGIN" close="; END;" >
+	UPDATE MAINDESIGN 
+	SET 
+	D_ORIFILE=#{d.oriFIle},
+	D_REFILE=#{d.reFile},
+	D_COMMENT=#{d.mainComment},
+	D_LINK=#{d.mainLink}
+	WHERE D_NO = #{d.deNo}
+</foreach>
+</update>
+
+<update id="DesignEdVideo" parameterType="Design">
+	UPDATE MAINVIDEO
+	SET VIDEOFILE=#{reFile}	
+	WHERE V_NO=1
+</update>
+
+<update id="DesignInsta"  parameterType="java.util.Map">
+<foreach  item="d" collection="dlist"  index="index" 
+     separator=";" open="DECLARE BEGIN" close="; END;" >
+	UPDATE INSTADESIGN 
+	SET
+	IN_ORIFILE = #{d.oriFIle},
+	IN_REFILE = #{d.reFile},
+	IN_LINK = #{d.mainLink},
+	IN_COMMENT = #{d.mainComment}
+	WHERE IN_NO = #{d.deNo}
+</foreach>
+</update>
+<select id="selectMainList" resultMap="MainResultSet" >
+	SELECT * FROM 
+	MAINDESIGN
+</select>
+
+<select id="selectVideo" resultMap="VideoResultSet">
+	SELECT * FROM
+	MAINVIDEO
+</select>
+
+<select id="selectInstaList" resultMap="InstaResultSet">
+	SELECT * FROM
+	INSTADESIGN	
+</select>
 
 
 </mapper>

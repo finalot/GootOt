@@ -79,10 +79,8 @@ th{
  margin-left: 3%;
 }  
 .main-design div{
-	margin-bottom: 6%;
-	padding-bottom: 2%;
-	border-bottom: 1px solid #f3f3f3;
-}
+	margin-bottom: 1%;
+	
 .main-text{
 	margin-right: 5%;
 }  
@@ -245,6 +243,7 @@ th{
             </div>
         </div>
     </section>
+    <form id="mainForm" action="DesignEd.do" method="POST" enctype="multipart/form-data">
     <table id="design-table">
     	<tr>
         	<td colspan="2" style="background:#dfe3e6; margin-bottom: 3%;padding-bottom: 2%;">
@@ -253,183 +252,109 @@ th{
         <tr >
         	<th ><span style="color: red">*</span> 메인배너</th>
         	<td class="main-design">
-        		<div style="display: flex;margin-top: 3%"><span>FILE 1</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+        		
+	<c:forEach var="d" items="${mainList}">        		
+				<input type="hidden" value="${d.deNo}" name="no"> 
+        		<div style="display: flex;margin-top: 3%"><span>FILE 1</span><input name="mainImg" class="mainbaner" src="/ot/resources/bupladFiles/${mainList[0].reFile}" value="${mainList[0].reFile}" type="file">
+        		<span>메인배너 문구</span><input name="mainComment" value="${d.mainComment }" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
+        		<span>바로가기 링크</span><input name="mainLink" value="${d.mainLink }" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>
-				
-				<div style="display: flex;"><span>FILE 2</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    		   
-        		
-				<div style="display: flex;"><span>FILE 3</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    		    		    
-				<div style="display: flex;"><span>FILE 4</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    		        		
-        		
-				<div style="display: flex;"><span>FILE 5</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    						
-				
-				<div style="display: flex;"><span>FILE 6</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    		        	   
-        		
-        		
-				<div style="display: flex;"><span>FILE 7</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    		        		
-				<div style="display: flex;"><span>FILE 8</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    		    		    
-        		
-        		
-				<div style="display: flex;"><span>FILE 9</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    						
-				
-				<div style="display: flex;"><span>FILE 10</span><input class="mainbaner" type="file">
-        		<span>메인배너 문구</span><input style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
-        		</div>    		        	
-        		</td>
-        	</tr>
-        	<tr>
-        		<th><span style="color: red">*</span>
-        		메인 영상</th>
-        	
-        		<td>
-        			<div style="display: flex"> FILE <input style="margin-left:2%;" type="file" class="main-video" ></div>
-        			</td>
-        		
-        	</tr>
-        	<tr>
-        		<th><span style="color: red">*</span>인스타 정보</th>
-        		<td class="main-design">
-        			<div style="display: flex;margin-top: 3%">
-        			FILE 1<input style="margin-left:2%;margin-right: 3%" type="file" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;" type="text" class="insta-link">	   	
-        			</div>
-        			<div style="display: flex">
-        			FILE 2<input style="margin-left:2%;margin-right: 3%" type="file" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;" type="text" class="insta-link">	   	
-        			</div>
-        			<div style="display: flex">
-        			FILE 3<input style="margin-left:2%;margin-right: 3%" type="file" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;" type="text" class="insta-link">	   	
-        			</div>
-        			<div style="display: flex">
-        			FILE 4<input style="margin-left:2%;margin-right: 3%" type="file" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;" type="text" class="insta-link">	   	
-        			</div>
-        			<div style="display: flex">
-        			FILE 5<input style="margin-left:2%;margin-right: 3%" type="file" class="insta-img">
-        			링크 <input style="margin-left:2%; border: 1px solid #333330;" type="text" class="insta-link">	   	
-        			</div>
-        		</td>
-        	
+        		<c:if test="${!empty  d.reFile   }">
+				<div style="    margin-left: 7%;"><a style="color: blue"  href="nfdown.ad?path=${d.reFile}" id="fildown">${d.reFile}</a></div>
+				</c:if>
+				<c:if test="${empty  d.reFile   }">
+				<div style="    margin-left: 7%;"><span >등록된 파일이 없습니다.</span></div>
+				</c:if>
+	</c:forEach>		
+						
+	
         	</tr>
     </table>
-    <div align="center">
-    <button style="width: 90px; height: 30px;border-radius: 10px; background: black;color: white;margin-bottom: 30px"> 배너등록 </button>
+    </form>
+     <div align="center">
+    <button id="mainBtn" style="width: 90px; height: 30px;border-radius: 10px; background: black;color: white;margin-bottom: 30px"> 메인배너등록 </button>
     </div>   
-   		
-    
-    	
-    
-    
-    
-    
+    <form id="VideoForm" action="DesignEdVideo.do" method="POST" enctype="multipart/form-data">
+    <table id="design-table">
+     	<tr>
+        		<th><span style="color: red">*</span>메인 영상</th>
+        		<td>
+        			<div style="display: flex"> FILE <input style="margin-left:2%;" type="file" name="mainvideo" class="main-video" ></div>
+        			<c:if test="${!empty  video.reFile   }">
+					<div style="    margin-left: 7%;"><a href="/ot/resources/bupladFiles/${video.reFile}">${video.reFile}</a></div>
+					</c:if>
+					<c:if test="${empty  video.reFile    }">
+					<div style="    margin-left: 7%;"><span >등록된 파일이 없습니다.</span></div>
+				</c:if>
+        			</td>
+        	</tr>
+    </table>
+    </form>
+       <div align="center">
+    <button id="videoBtn" style="width: 90px; height: 30px;border-radius: 10px; background: black;color: white;margin-bottom: 30px"> 동영상등록 </button>
+    </div>   
+    <form id="instaForm" action="DesignInsta.do" method="POST" enctype="multipart/form-data">
+   <table id="design-table">
+   		<tr>
+        		<th><span style="color: red">*</span>인스타 정보</th>
+        		<td class="main-design">
+        	<c:forEach var="in" items="${instaList}">	
+        			<div style="display: flex;margin-top: 3%">
+        		    <input type="hidden" value="${in.deNo }" name="inno">							
+        			FILE ${in.deNo }<input style="margin-left:2%;margin-right: 3%" type="file" name="instaimg" class="insta-img">
+        			인스타 문구 <input style="margin-left:2%; margin-right: 3%; border: 1px solid #333330;" value="${in.mainComment }" name="instacomment" type="text" class="insta-link">	   	
+        			링크 <input style="margin-left:2%; border: 1px solid #333330;" value="${in.mainLink }" name="instalink" type="text" class="insta-link">	   	
+        			</div>
+					<c:if test="${!empty  in.reFile   }">
+					<div style="    margin-left: 7%;"><a href='nfdown.ad?path="${in.reFile}"'>${in.reFile}</a></div>
+					</c:if>
+					<c:if test="${empty  in.reFile   }">
+					<div style="    margin-left: 7%;"><span >등록된 파일이 없습니다.</span></div>
+					</c:if>        			
+			</c:forEach>
+        			
+        		</td>
+        	</tr>
+   </table>
+       </form>
+     <div align="center">
+    <button id="InstaBtn" style="width: 90px; height: 30px;border-radius: 10px; background: black;color: white;margin-bottom: 30px"> 배너등록 </button>
+    </div>   
+   
+   
+   
     </div>
      <div class="page-wrapper">
     </div>
 
+<script>
+$('#fildown').click({
+	function(en){
+		var path = $(this).text();		
+	$.ajax({
+			url:"nfdown.ad",
+			data:{path : path},
+			success:function(){
+					alert("성공")		
+			},error:function(){
+				alert("실패")
+			}
+		});	
+	}
+});
+</script>
     <script>
-        $('#coupon_open').click(function(){
-               $('#coupon_div').css('display','block'); 
-        });
-        $('#coupon_close').click(function(){
-            $('#coupon_div').css('display','none');
-        });
-        $('#coupon_input').click(function(){
-            if($('#coupon_name').val() && $('#coupon_price').val() != ""){
-                var coupon_name = $('#coupon_name').val();
 
-                $('#d_coupon').append("<option value="+coupon_name+">"+coupon_name
-                                        +"</option>");
-                alert('쿠폰등록 완료');
-                $('#coupon_div').css('display','none');
-                    document.getElementById('#coupon_name').value = "";
-                    document.getElementById('#coupon_price').value = "";
-            }else{
-                
-                alert('쿠폰명 또는 쿠폰가격을 입력해 주세요')
-            }
-
-
-        });
-    </script>
-
-
-    <script>
-       
-        $('.category').click(function(){
-
-        var product = document.getElementById('product');
-        var money = document.getElementById('money');
-        var coupon = document.getElementById('coupon');
-          
-        if(product.checked == true){
-            $('#d_product').removeAttr('readonly').css('background','white').focus();
-        }else if(product.checked == false){
-            $('#d_product').css('background','rgba(190, 181, 181, 0.24)').attr("readonly",true).val('');
-        }
-        if(money.checked == true){
-            $('#d_money').removeAttr('readonly').css('background','white').focus();
-        }else if(money.checked == false){
-            $('#d_money').css('background','rgba(190, 181, 181, 0.24)').attr("readonly",true).val('');
-        }
-        if(coupon.checked ==true){
-            $('#d_coupon').removeAttr('disabled').css('background','white').focus();
-        }else{
-            $('#d_coupon').css('background','rgba(190, 181, 181, 0.24)').attr("disabled",true).val('');
-
-        }
-    });
-    </script>
-    <script>
-        $('.d-day').click(function(){
-            var day = parseInt($('input[name="d-day"]:checked').val());
-
-            var startday = document.getElementById('startday').value;
-                 startday = startday.split("-");
-           var end = new Date((startday[0]),(startday[1]-1),(parseInt(startday[2])+day));
-           
-           var endday = end.toISOString().substr(0,10);
-           
-         $('#endday').val(endday);   
-            
-        });
-        $('#d_coupon').click(function(){
-        	
-	     if($('#d_coupon').val()=='daily'){
-    		 $('#coupon-price').html('쿠폰가 : 3,000원');
-    	}else{
-    		 $('#coupon-price').html('');
-    	}
-	
-        });
-
+    	$('#mainBtn').click(function(){
+    		$('#mainForm').submit();
+    	});
+    	$('#videoBtn').click(function(){
+    		$('#VideoForm').submit();
+    	})
+    	$('#InstaBtn').click(function(){
+    		$('#instaForm').submit();
+    	})
+    	
     </script>
 
     <script type="text/javascript">

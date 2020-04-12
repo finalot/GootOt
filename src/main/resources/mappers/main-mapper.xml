@@ -21,8 +21,39 @@
 			<result property="prdtImagePath" column="PRDT_IMAGE_PATH"/>
 			<result property="prdtDetailImage" column="PRDT_DETAIL_IMAGE"/>
 			<result property="prdtDetailImagePath" column="PRDT_DETAIL_IMAGE_PATH"/>
+			<result property="prdtSale" column="PRDT_SALE"/>
+		</resultMap>
+		
+		<resultMap type="Product_opt" id="product_optResultSet">
+			<id property = "optNo" column="OPT_NO"/>
+			<result property="PrdtNo" column="PRDT_NO"/>
+			<result property="optColor" column="OPT_COLOR"/>
+			<result property="size" column="OPT_SIZE"/>
+			<result property="stock" column="OPT_STOCK"/>
+			<result property="optDate" column="OPT_DATE"/>
+			<result property="optModifyDate" column="MODIFY_DATE"/>
+			<result property="prdtCode" column="PRDT_CODE"/>
+		</resultMap>
+		
+		<resultMap type="Product_color" id="product_colorResultSet">
+			<id property = "pcName" column="PC_NAME"/>
+			<result property="pcRgb" column="PC_RGB"/>
+		</resultMap> 
+		
+	 <resultMap type="downCategory" id="downCategoryResultSet">
+			<id property = "downNo" column="DOWN_NO"/>
+			<result property="upNo" column="UP_NO"/>
+			<result property="downName" column="DOWN_NAME"/>
+			<result property="downUsing" column="DOWN_USING"/>
+		</resultMap>
+		
+		<resultMap type="upCategory" id="upCategoryResultSet">
+			<id property = "upNo" column="UP_NO"/>
+			<result property="upName" column="UP_NAME"/>
+			<result property="upUsing" column="UP_USING"/>
 		</resultMap>
 
+ 
 	
 		<select id="getListCount1" parameterType="_int" resultType="_int">
 	  	SELECT COUNT(*)
@@ -49,7 +80,70 @@
 		WHERE PRDT_NO LIKE #{product2}||'%'
 		ORDER BY PRDT_NO DESC
 		</select>
-
+		
+	 	<select id="selectProductOption1" parameterType="_int" resultMap="product_optResultSet">
+		SELECT *
+		FROM PRDT_OPT
+		WHERE PRDT_NO LIKE #{product1}||'%'
+		</select>
+		
+		<select id="selectProductOption2" parameterType="_int" resultMap="product_optResultSet">
+		SELECT *
+		FROM PRDT_OPT
+		WHERE PRDT_NO LIKE #{product2}||'%'
+		</select>
+		
+		<select id="selectProductColor1" parameterType="_int" resultMap="product_colorResultSet">
+		SELECT *
+		FROM P_COLOR
+		
+		</select>
+		
+		<select id="selectProductColor2" parameterType="_int" resultMap="product_colorResultSet">
+		SELECT *
+		FROM P_COLOR
+		
+		</select>
+		
+	
+  <select id="selectCategory1" parameterType="_int" resultMap="downCategoryResultSet">
+		SELECT *
+		FROM DOWN_CATE
+		WHERE UP_NO = #{product1}
+		AND DOWN_USING = 'Y'
+		ORDER BY DOWN_NO ASC
+		</select> 
+		
+		 <select id="selectUpCategory1" parameterType="_int" resultMap="upCategoryResultSet">
+		SELECT *
+		FROM UP_CATE
+		</select> 
+		
+		<select id="selectCategory2" parameterType="_int" resultMap="downCategoryResultSet">
+		SELECT *
+		FROM DOWN_CATE
+		WHERE UP_NO = #{product2}
+		AND DOWN_USING = 'Y'
+		ORDER BY DOWN_NO ASC
+		</select> 
+		
+		 <select id="selectUpCategory2" parameterType="_int" resultMap="upCategoryResultSet">
+		SELECT *
+		FROM UP_CATE
+		WHERE UP_USING = 'Y'
+		</select> 
+		
+		<select id="selectCategory3" parameterType="_int" resultMap="downCategoryResultSet">
+		SELECT *
+		FROM DOWN_CATE
+		WHERE DOWN_USING = 'Y'
+		</select> 
+		
+		 <select id="selectUpCategory3" parameterType="_int" resultMap="upCategoryResultSet">
+		SELECT *
+		FROM UP_CATE
+		WHERE UP_USING = 'Y'
+		</select> 
 		
 
 

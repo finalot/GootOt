@@ -1,18 +1,28 @@
 package com.kh.ot.main.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.ot.common.MainPagination;
-import com.kh.ot.common.Pagination;
 import com.kh.ot.main.service.MainService;
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
+import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.downCategory;
+import com.kh.ot.main.vo.upCategory;
 
 //@SessionAttributes("loginMember")
 @Controller
@@ -24,7 +34,7 @@ public class mainController {
 
 	@Autowired
 	private MainService mainService;
-	
+
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
@@ -33,22 +43,33 @@ public class mainController {
 	 * @return String
 	 */
 	@RequestMapping("product1.do")
-	public ModelAndView product1(ModelAndView mv,int product1,
-			@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
-		
-		int listCount = mainService.getListCount1(product1);
-		
-		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage,listCount);
+	public ModelAndView product1(ModelAndView mv, int product1,
+			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
 
-ArrayList<Product> plist = mainService.selectList1(mainPi,product1);
-		
-		mv.addObject("plist",plist);
-		mv.addObject("mainPi",mainPi);
+		int listCount = mainService.getListCount1(product1);
+
+		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage, listCount);
+
+		ArrayList<Product> plist = mainService.selectList1(mainPi, product1);
+
+		ArrayList<downCategory> dclist = mainService.selectCategoryList1(product1);
+		ArrayList<upCategory> uclist = mainService.selectUpCategoryList1();
+
+		ArrayList<Product_opt> polist = mainService.selectOptionList1(product1);
+
+		ArrayList<Product_color> pclist = mainService.selectColorList1();
+
+		mv.addObject("plist", plist);
+		mv.addObject("dclist", dclist);
+		mv.addObject("uclist", uclist);
+		mv.addObject("polist", polist);
+		mv.addObject("pclist", pclist);
+		mv.addObject("mainPi", mainPi);
 		mv.setViewName("product");
-		
+
 		return mv;
 	}
-	
+
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
@@ -57,23 +78,69 @@ ArrayList<Product> plist = mainService.selectList1(mainPi,product1);
 	 * @return String
 	 */
 	@RequestMapping("product2.do")
-	public ModelAndView product2(ModelAndView mv,int product2,
-			@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
-		
-		int listCount = mainService.getListCount2(product2);
-		
-		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage,listCount);
+	public ModelAndView product2(ModelAndView mv, int product2,
+			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
 
-ArrayList<Product> plist = mainService.selectList2(mainPi,product2);
-		
-		mv.addObject("plist",plist);
-		mv.addObject("mainPi",mainPi);
-		mv.setViewName("product");
-		
+		int listCount = mainService.getListCount2(product2);
+
+		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage, listCount);
+
+		ArrayList<Product> plist = mainService.selectList2(mainPi, product2);
+
+		ArrayList<downCategory> dclist = mainService.selectCategoryList2(product2);
+		ArrayList<upCategory> uclist = mainService.selectUpCategoryList2();
+
+		ArrayList<Product_opt> polist = mainService.selectOptionList2(product2);
+
+		ArrayList<Product_color> pclist = mainService.selectColorList2();
+
+		mv.addObject("plist", plist);
+		mv.addObject("dclist", dclist);
+		mv.addObject("uclist", uclist);
+		mv.addObject("polist", polist);
+		mv.addObject("pclist", pclist);
+		mv.addObject("mainPi", mainPi);
+		mv.setViewName("product2");
+
 		return mv;
 	}
 
+	/**
+	 * 이대윤 해더 에이작스
+	 * 
+	 * @param mv
+	 * @param product2
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("header.do")
+	public void header(HttpServletResponse response) throws JsonIOException, IOException {
+
+//ArrayList<downCategory> dclist = mainService.selectCategoryList3();
+		ArrayList<upCategory> uclist = mainService.selectUpCategoryList3();
+
+		response.setContentType("application/json; charset=utf-8");
+		Gson gson = new Gson();
+
+		gson.toJson(uclist, response.getWriter());
+
+	}
+
 	
+	  @RequestMapping("header2.do") public void header2(HttpServletResponse
+	  response) throws JsonIOException, IOException{
+	  
+	  ArrayList<downCategory> dclist = mainService.selectCategoryList3(); //
+//	  ArrayList<upCategory> uclist = mainService.selectUpCategoryList3();
+	  
+	  
+	 response.setContentType("application/json; charset=utf-8"); Gson gson = new Gson();
+	  
+	  gson.toJson(dclist,response.getWriter());
+	  
+	  }
+	 
+
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
@@ -85,6 +152,7 @@ ArrayList<Product> plist = mainService.selectList2(mainPi,product2);
 	public String review() {
 		return "review";
 	}
+
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
@@ -96,12 +164,12 @@ ArrayList<Product> plist = mainService.selectList2(mainPi,product2);
 	public String cartbutton() {
 		return "cart";
 	}
-	
 
 	@RequestMapping("todaymain.ad")
 	public String todaymain() {
 		return "admin/todaymain";
 	}
+
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
@@ -113,7 +181,7 @@ ArrayList<Product> plist = mainService.selectList2(mainPi,product2);
 	public String product_detail() {
 		return "productDetail";
 	}
-	
+
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
@@ -125,7 +193,7 @@ ArrayList<Product> plist = mainService.selectList2(mainPi,product2);
 	public String product_detail_qna_write() {
 		return "product_detail_qna_write";
 	}
-	
+
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
@@ -137,7 +205,7 @@ ArrayList<Product> plist = mainService.selectList2(mainPi,product2);
 	public String product_detail_qna_detail() {
 		return "product_detail_qna_detail";
 	}
-	
+
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
@@ -149,6 +217,7 @@ ArrayList<Product> plist = mainService.selectList2(mainPi,product2);
 	public String buynow() {
 		return "order";
 	}
+
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
@@ -160,7 +229,7 @@ ArrayList<Product> plist = mainService.selectList2(mainPi,product2);
 	public String notice() {
 		return "notice";
 	}
-	
+
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
@@ -172,10 +241,5 @@ ArrayList<Product> plist = mainService.selectList2(mainPi,product2);
 	public String faq() {
 		return "FaQ";
 	}
-	
-	
-	
 
-	
-	
 }

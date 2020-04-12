@@ -1,11 +1,19 @@
 package com.kh.ot.admin.controller;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +21,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,17 +30,16 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.ot.admin.servie.adminService;
 import com.kh.ot.admin.vo.Coupon;
-import com.kh.ot.admin.vo.DownCategory;
-import com.kh.ot.admin.vo.Product;
-import com.kh.ot.admin.vo.ProductOption;
-import com.kh.ot.admin.vo.UpCategory;
+import com.kh.ot.admin.vo.Design;
 
 @SessionAttributes("loginMember")
 @Controller
 public class menuController {
 
-	@Autowired
-	private adminService adService;
+
+		@Autowired
+		private adminService adService;
+
 
 	/**
 	 * @작성일 : 2020. 4. 4.
@@ -100,8 +106,8 @@ public class menuController {
 
 		ArrayList<Coupon> clist = adService.selectListCoupon();
 
-		if (!clist.isEmpty()) {
-			mv.addObject("clist", clist);
+		if(!clist.isEmpty()) {
+			mv.addObject("clist",clist);
 			mv.setViewName("admin/eventAdd");
 		} else {
 			mv.setViewName("admin/eventAdd");
@@ -116,9 +122,27 @@ public class menuController {
 		return "admin/eventList";
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 문태환
+	 * @내용 	: 디자인 리스트
+	 * @return
+	 */
 	@RequestMapping("DesignEdit.ad")
-	public String DesignEdit() {
-		return "admin/DesignEdit";
+	public ModelAndView DesignEdit(ModelAndView mv) {
+		
+		ArrayList<Design> mainList = adService.selectMainList();
+		Design video = adService.selectVideo();
+		ArrayList<Design> instaList = adService.selectInstaList();
+		
+		System.out.println(mainList);
+		
+		mv.addObject("mainList",mainList);
+		mv.addObject("video",video);
+		mv.addObject("instaList",instaList);
+		mv.setViewName("admin/DesignEdit");
+		
+		return mv;
 	}
 
 	@RequestMapping("QnA_Product.ad")
@@ -196,22 +220,24 @@ public class menuController {
 		return "admin/review_report_list";
 	}
 
-//	기능 시작 
+
+
+//	기능 시작
 
 	/**
-	 * @작성일 : 2020. 4. 7.
-	 * @작성자 : 문태환
-	 * @내용 : 쿠폰등록
+	 * @작성일  : 2020. 4. 7.
+	 * @작성자  : 문태환
+	 * @내용 	: 쿠폰등록
 	 * @param response
 	 * @throws IOException
 	 */
 	@RequestMapping("couponInput.do")
-	public void couponInput(HttpServletResponse response, String[] cpName, int[] cpDiscount) throws IOException {
+	public void couponInput(HttpServletResponse response,String[] cpName,int[] cpDiscount) throws IOException {
 
 		ArrayList<Coupon> clist = new ArrayList<Coupon>();
 
-		for (int i = 0; i < cpName.length; i++) {
-			Coupon co = new Coupon();
+		for(int i=0; i<cpName.length;i++) {
+			Coupon co  = new Coupon();
 			System.out.println("cpName : " + cpName[i]);
 			System.out.println(cpDiscount[i]);
 			co.setCpName(cpName[i]);
@@ -230,8 +256,16 @@ public class menuController {
 		}
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 8.
+	 * @작성자  : 문태환
+	 * @내용 	:쿠폰삭제
+	 * @param response
+	 * @param cpName
+	 * @throws IOException
+	 */
 	@RequestMapping("couponDelete.ad")
-	public void couponDelete(HttpServletResponse response, String cpName) throws IOException {
+	public void couponDelete(HttpServletResponse response,String cpName) throws IOException {
 
 		int result = adService.couponDelete(cpName);
 
@@ -294,80 +328,223 @@ public class menuController {
 		}
 	}
 
-	@RequestMapping("DownCategoryInsert.ad")
-	public void DownCategoryInsert(HttpServletResponse repsonse, String addOption2, int up_no) throws IOException {
+	/**
+	 * @작성일  : 2020. 4. 8.
+	 * @작성자  : 문태환
+	 * @내용 	: 디자인 업데이트
+	 * @param d
+	 * @param request
+	 * @param session
+	 * @param uploadFile
+	 * @return
+	 */
+	@RequestMapping(value="DesignEd.do", method=RequestMethod.POST)
+	public String DesignEd(int[] no, String[] mainComment,String[] mainLink, HttpServletRequest request,HttpSession session,
+	         @RequestParam(name="mainImg",required=false) MultipartFile[] uploadFile) {
 
-		System.out.println("up_no : " + up_no);
-		System.out.println("addOption2 : " + addOption2);
-		DownCategory dc = new DownCategory();
-		dc.setUp_no(up_no);
-		dc.setDown_name(addOption2);
 
-		int result = adService.DownCategoryInsert(dc);
+		ArrayList<Design> dlist = new ArrayList<Design>();
+		for(int i = 0;i<no.length-1;i++) {
+		Design d = new Design();
 
-		PrintWriter out = repsonse.getWriter();
 
-		if (result > 0) {
-			out.print("ok");
-		} else {
-			out.print("fail");
+
+		if(!uploadFile[i].getOriginalFilename().equals("")) {
+	         // 서버에 업로드
+	         // saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명을 반환해주는 메소드
+
+	         String renameFileName = saveFile(uploadFile[i],request);
+
+	         if(renameFileName != null) {
+	       d.setDeNo(no[i]);
+	       d.setMainComment(mainComment[i]);
+	       d.setMainLink(mainLink[i]);
+	       d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
+	       d.setReFile(renameFileName);
+	       dlist.add(d);
+	         		}
+				}
 		}
+				int result = adService.DesignEd(dlist);
+
+				if(result > -1 ) {
+					return "home";
+				}else {
+					return "에러야";
+				}
 	}
+
+		@RequestMapping(value="DesignEdVideo.do" , method=RequestMethod.POST)
+		public String DesignEdVideo(HttpServletRequest request,
+				@RequestParam(name="mainvideo",required=false) MultipartFile uploadFile) {
+			Design d = new Design();
+
+			if(!uploadFile.getOriginalFilename().equals("")) {
+		         // 서버에 업로드
+		         // saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명을 반환해주는 메소드
+		         String renameFileName = saveFile(uploadFile,request);
+		         if(renameFileName != null) {
+		        	 d.setReFile(renameFileName);
+		         }
+			}
+			int result = adService.DesignEdVideo(d);
+
+			if(result > -1) {
+				return "home";
+			}else {
+				return "에러야";
+			}
+		}
 
 	/**
-	 * @작성일 : 2020. 4. 9.
-	 * @작성자 : 이서현
-	 * @내용 : 카테고리 (대분류, 중분류) 삭제
+	 * @작성일  : 2020. 4. 11.
+	 * @작성자  : 문태환
+	 * @내용 	:인스타 업데이트
+	 * @param inno
+	 * @param instalink
+	 * @param request
+	 * @param session
+	 * @param uploadFile
+	 * @return
 	 */
-	@RequestMapping("UpCategoryDelete.ad")
-	public String UpCategoryDelete(int up_no, HttpServletRequest request) {
+	@RequestMapping(value="DesignInsta.do",method=RequestMethod.POST)
+	public String DesignInsta(int[] inno,String[] instalink, String[] instacomment, HttpServletRequest request,HttpSession session,
+	         @RequestParam(name="instaimg",required=false) MultipartFile[] uploadFile)  {
 
-		int result = adService.UpCategoryDelete(up_no);
+		ArrayList<Design> dlist = new ArrayList<Design>();
+		for(int i = 0;i<inno.length-1;i++) {
+		Design d = new Design();
 
-		if (result > 0) {
-			return "redirect:category.ad";
-		} else {
-			System.out.println("실패 ! ");
-			return "redirect:category.ad";
+		if(!uploadFile[i].getOriginalFilename().equals("")) {
+	         // 서버에 업로드
+	         // saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명을 반환해주는 메소드
+
+	         String renameFileName = saveFile(uploadFile[i],request);
+
+	         if(renameFileName != null) {
+	       d.setDeNo(inno[i]);
+	       d.setMainLink(instalink[i]);
+	       d.setMainComment(instacomment[i]);
+	       d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
+	       d.setReFile(renameFileName);
+	       dlist.add(d);
+	         		}
+				}
 		}
+		int result = adService.DesignInsta(dlist);
+
+			return "home";
+
 	}
-
-	@RequestMapping("DownCategoryDelete.ad")
-	public String DownCategoryDelete(int up_no, int down_no, HttpServletRequest request) {
-		System.out.println("up_no : " + up_no);
-		System.out.println("down_no : " + down_no);
-		DownCategory dc = new DownCategory();
-		dc.setUp_no(up_no);
-		dc.setDown_no(down_no);
-
-		int result = adService.DownCategoryDelete(dc);
-
-		if (result > 0) {
-			return "redirect:category.ad";
-		} else {
-			System.out.println("실패 ! ");
-			return "redirect:category.ad";
-		}
-	}
-
-	
-	
 	/**
-	 * @작성일 : 2020. 4. 12.
-	 * @작성자 : 이서현
-	 * @내용 : 상품 등록 (ProductAdd) 
+	 * @작성일  : 2020. 4. 8.
+	 * @작성자  : 문태환
+	 * @내용 	: 파일이름 변경
+	 * @param file
+	 * @param request
+	 * @return
 	 */
-	@RequestMapping("ProductInsert.ad") public String ProductInsert(Product p,ProductOption po, 
-				HttpServletRequest request, MultipartFile file) {
-	
-		int result = adService.ProductInsert(p,po);
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
+	      // 저장할 경로 설정et
+	      // 웹 서버 contextPath를 불러와서 폴더의 경로 찾음(webapp 하위의 resources)
+	      String root = request.getSession().getServletContext().getRealPath("resources");
 
-		if(result>0) { 
-			return "redirect:productList.ad"; 
-		}else {
-			System.out.println("에러"); 
-			return "redirect:productList.ad"; }
-	}
+	      String savePath = root + "\\buploadFiles";
+
+	      File folder = new File(savePath);
+
+	      if(!folder.exists()) {
+	         folder.mkdir(); // 폴더가 없다면 생성해주세요
+	      }
+
+	      String originFileName = file.getOriginalFilename();
+
+	      SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+	      String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+	               + originFileName.substring(originFileName.lastIndexOf(".")+1);
+
+	      String renamePath = folder + "\\" + renameFileName;
+
+	      try {
+	         file.transferTo(new File(renamePath));
+	      } catch (Exception e) {
+
+	         System.out.println("파일 전송 에러: " + e.getMessage());
+	      }
+	      return renameFileName;
+	   }
+		
+	/**
+	 * @작성일  : 2020. 4. 11.
+	 * @작성자  : 문태환
+	 * @내용 	: 파일다운로드 
+	 * @param path
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping("nfdown.ad")
+	public String fileDownload( HttpServletResponse response, HttpServletRequest request, String path) {
+	 System.out.println("path"+path);
+	    String folder =request.getSession().getServletContext().getRealPath("/resources/boardUploadFiles");
+	    String fileName = path;
 	 
-
+	    File file = new File(folder);
+	 
+	    FileInputStream fileInputStream = null;
+	    ServletOutputStream servletOutputStream = null;
+	 
+	    try{
+	        String downName = null;
+	        String browser = request.getHeader("User-Agent");
+	        //파일 인코딩
+	        if(browser.contains("MSIE") || browser.contains("Trident") || browser.contains("Chrome")){//브라우저 확인 파일명 encode  
+	            
+	            downName = URLEncoder.encode(fileName,"UTF-8").replaceAll("\\+", "%20");
+	            
+	        }else{
+	            
+	            downName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+	            
+	        }
+	        
+	        response.setHeader("Content-Disposition","attachment;filename=\"" + downName+"\"");             
+	        response.setContentType("application/octer-stream");
+	        response.setHeader("Content-Transfer-Encoding", "binary;");
+	 
+	        fileInputStream = new FileInputStream(file);
+	        servletOutputStream = response.getOutputStream();
+	 
+	        byte b [] = new byte[1024];
+	        int data = 0;
+	 
+	        while((data=(fileInputStream.read(b, 0, b.length))) != -1){
+	            
+	            servletOutputStream.write(b, 0, data);
+	            
+	        }
+	 
+	        servletOutputStream.flush();//출력
+	        
+	    }catch (Exception e) {
+	        e.printStackTrace();
+	    }finally{
+	        if(servletOutputStream!=null){
+	            try{
+	                servletOutputStream.close();
+	            }catch (IOException e){
+	                e.printStackTrace();
+	            }
+	        }
+	        if(fileInputStream!=null){
+	            try{
+	                fileInputStream.close();
+	            }catch (IOException e){
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	    return "redirect:DesignEdit.ad";
+	}
+	
 }

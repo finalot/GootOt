@@ -4512,7 +4512,9 @@ input[type=text] {
 }
 
 .yg_btn_145 {
-     height: 34px;
+      height: 34px;
+    margin-left: 92%;
+    margin-top: 2%;
     width: 107px;
     line-height: 38px;
     display: inline-block;
@@ -4525,9 +4527,6 @@ input[type=text] {
     color: #fff;
     border-radius: 0px;
     font-family: Nanum Gothic;
-    position: relative;
-    top: 12px;
-    left: 92%;
 }
 
 .check_btn_140 {
@@ -4743,6 +4742,20 @@ textarea {
     font-weight:600;
     left:11px;
 }
+#idMsg14 {
+	    color: #757575;
+    position: relative;
+    font-size:12px;
+    font-weight:500;
+    left:37px;
+}
+#idMsg15 {
+	    color: #757575;
+    position: relative;
+    font-size:12px;
+    font-weight:600;
+    left:37px;
+}
 
 .info li {
 	padding: 0 0 0 9px;
@@ -4867,7 +4880,7 @@ table td, table th {
     padding: 14px 0 14px 0;
     color: #2e2e2e;
     font-size: 12px;
-    top: -33px;
+    top: -44px;
     position:relative;
     width: 41%;
 }
