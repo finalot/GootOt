@@ -97,6 +97,8 @@ public class adminDao {
 	public int DownCategoryDelete(DownCategory downCategory) {
 		return sqlSession.update("adminMapper.DownCategoryDelete",downCategory);
 	}
+	
+	/*
 	 * @작성일  : 2020. 4. 8.
 	 * @작성자  : 문태환
 	 * @내용 	:메인배너등록

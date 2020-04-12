@@ -44,6 +44,9 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public ArrayList<UpCategory> UpCategorySelect() {
 		return adDao.upCategorySelect();
+	}
+	
+	@Override
 	public int DesignEd(ArrayList<Design>  dlist) {
 		return adDao.DesignEd(dlist);
 	}
@@ -52,6 +55,9 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public ArrayList<DownCategory> DownCategorySelect() {
 		return adDao.DownCategorySelect();
+	}
+	
+	@Override
 	public int DesignEdVideo(Design d) {
 		return adDao.DesignEdVideo(d);
 	}

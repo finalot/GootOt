@@ -414,6 +414,8 @@ public class BoardController extends HttpServlet {
 			
 	}
 	
+
+	
 	@RequestMapping("product_board_delete.do")
 	public String product_board_delete(int qna_no, HttpServletRequest request) {
 		int result = bService.deletePrBoard(qna_no);
@@ -515,10 +517,21 @@ public class BoardController extends HttpServlet {
     * @return
     */
    @RequestMapping("product_change_detail.do")
-   public String product_change_detail() {
-
-      return "product_change_detail";
-   }
+   public ModelAndView product_change_detail(ModelAndView mv, int qna_no 
+			/*@RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage*/) {
+		
+		Board b = bService.selectBoard(qna_no);
+		
+		if(b!=null) {
+			mv.addObject("b",b)
+					/* .addObject("currentPage",currentPage) */
+			.setViewName("product_change_detail");
+		} else {
+			mv.addObject("msg","게시글 상세조회 실패")
+			.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 
    /**
     * @작성일  : 2020.04.05
@@ -544,15 +557,138 @@ public class BoardController extends HttpServlet {
       return "product_change_write";
    }
    
-   @RequestMapping("product_board_detailView")
-   public ModelAndView product_board_detailView(ModelAndView mv,int qna_no) {
-	   
-	   mv.addObject("qna_no", qna_no);
-	   mv.setViewName("product_board_password");
-
-	   
-	   return mv; 
+   
+   
+   /**
+    * @작성일  : 2020. 4. 12.
+    * @작성자  : 우예진
+    * @내용    : 배송후 반품교환 insert글쓰기
+    * @param b
+    * @param request
+    * @param session
+ 	* @param uploadFile
+ 	* @return
+ 	*/
+@RequestMapping(value="product_change_insert.do",method=RequestMethod.POST)
+   public String product_change_insert(Board b,HttpServletRequest request,HttpSession session,
+         @RequestParam(name="uploadFile",required=false) MultipartFile uploadFile) {
+   
+      
+      Member m = (Member)session.getAttribute("loginMember");      
+      
+      b.setMem_no(m.getMemNo());
+      b.setQna_writer(m.getMemId());
+      System.out.println(uploadFile.getOriginalFilename());
+      
+      if(!uploadFile.getOriginalFilename().equals("")) {
+         // 서버에 업로드
+         // saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명을 반환해주는 메소드
+         
+         String renameFileName = saveFile(uploadFile,request);
+         
+         if(renameFileName != null) {
+            b.setOriginalFileName(uploadFile.getOriginalFilename());// DB에는 파일명 저장
+            b.setRenameFileName(renameFileName);
+         }
+         
+      }      
+      int result = bService.insertBoard(b);
+        
+      System.out.println(b);
+      
+      if(result >0) {
+         return "redirect:product_change.do";
+      } else {
+         return null;
+      }
    }
+   
+   /**
+    * @작성일  : 2020.04.12
+    * @작성자  : 우예진
+    * @내용    : 배송후상품교환  검색 기능
+    * @return
+    */
+	@RequestMapping("pc_search.do")
+   public ModelAndView pc_search(ModelAndView mv, 
+		   						@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
+		   						,String search_key,String search,String search_date) {
+	int b_cate_no = 4;
+	
+	SearchCondition sc = new SearchCondition();
+	
+	if(search_key.equals("writer")) {
+		sc.setWriter(search);
+	} else if(search_key.equals("title")) {
+		sc.setTitle(search);
+	}
+	
+	if(search_date.equals("week")) {
+		sc.setSearchDate(7);
+	}else if(search_date.equals("month")) {
+		sc.setSearchDate(30);
+	}else if(search_date.equals("month3")) {
+		sc.setSearchDate(90);
+	}else if(search_date.equals("all")) {
+		sc.setSearchDate(0);
+	}
+	
+	sc.setB_cate_no(b_cate_no);
+	
+	int listCount = bService.SearchListCount(sc);
+	
+	PageInfo pi = sc.getPageInfo(currentPage, listCount);
+	
+	ArrayList<Board> list = bService.selectSearchList(pi,sc);
+    
+    System.out.println("list:"+list);
+	
+	  mv.addObject("list",list);
+      mv.addObject("pi",pi);
+      mv.setViewName("product_change");
+	
+	return mv;
+   }
+   
+   
+	/**
+	 * @작성일  : 2020. 4. 11.
+	 * @작성자  : 우예진
+	 * @내용    : 상품문의 상세 비밀글(비밀글 타고들어갈때)
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("product_board_detailView")
+	   public ModelAndView product_board_detailView(ModelAndView mv,int qna_no) {
+		   
+		   mv.addObject("qna_no", qna_no);
+		   mv.setViewName("product_board_password");
+
+		   
+		   return mv; 
+	   }
+	
+	/**
+	 * @작성일  : 2020. 4. 12
+	 * @작성자  : 우예진
+	 * @내용    : 배송후 교환반품  상세 비밀글(비밀글 타고들어갈때)
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("product_change_detailView")
+	   public ModelAndView product_change_detailView(ModelAndView mv,int qna_no) {
+		   
+		   mv.addObject("qna_no", qna_no);
+		   mv.setViewName("product_change_password");
+
+		   
+		   return mv; 
+	   }
+   
+   
+
    /**
  * @작성일  : 2020. 4. 9.
  * @작성자  : 우예진

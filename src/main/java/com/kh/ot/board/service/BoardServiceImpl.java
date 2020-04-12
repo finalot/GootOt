@@ -67,6 +67,8 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.passwordCheck(b);
 	}
 
+
+
 	
 	
 }

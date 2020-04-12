@@ -116,7 +116,7 @@ input[type=password] {
          <div class="titleArea">
              <h2 style="display: inline-block;
    				 font-size: 20px;
-   				 padding: 35px 18px;
+   				 padding: 35px 20px;
    				 font-weight: 400;
     			letter-spacing: 2px;
     			margin-left: 46.8%;">상품 문의</h2>

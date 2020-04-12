@@ -112,7 +112,7 @@ a{
                         <strong> <a href="/article/배송문의/3001/279655/" style="color:#555555; font-size:12px;">▶ 일시품절/품절 관련 안내입니다.</a></span></strong>
                     </td>
                     <td>관리자</td>
-                    <td class=""><span class="txtNum">2017-11-09</span></td>
+                    <td class=""><span class="txtNum">2020-03-09</span></td>
                     <td class="displaynone"><img src="//img.echosting.cafe24.com/skin/base/board/ico_point0.gif" alt="0점"></td>
                 </tr>
       </tbody>
