@@ -12,9 +12,6 @@ import com.kh.ot.admin.vo.Product;
 import com.kh.ot.admin.vo.ProductOption;
 import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.admin.vo.Design;
-import com.kh.ot.board.dao.BoardDao;
-import com.kh.ot.board.vo.Board;
-import com.kh.ot.board.vo.PageInfo;
 
 @Service("adService")
 public class adminServiceImpl implements adminService{
@@ -64,10 +61,7 @@ public class adminServiceImpl implements adminService{
 		return adDao.selectInstaList();
 	}
 	
-	@Override
-	public int DesignEdVideo(Design d) {
-		return adDao.DesignEdVideo(d);
-	}
+
 	
 //	/////여기부터 서현쓰
 	
@@ -77,10 +71,7 @@ public class adminServiceImpl implements adminService{
 		return adDao.upCategorySelect();
 	}
 	
-	@Override
-	public int DesignEd(ArrayList<Design>  dlist) {
-		return adDao.DesignEd(dlist);
-	}
+
 
 	@Override
 	public ArrayList<DownCategory> DownCategorySelect() {
