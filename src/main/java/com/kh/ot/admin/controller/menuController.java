@@ -582,19 +582,17 @@ public class menuController {
 	}
 	
 
-	@RequestMapping("ProductInsert.ad") public String ProductInsert(Product p,ProductOption po, 
-				HttpServletRequest request, MultipartFile file) {
-	
-		int result = adService.ProductInsert(p,po);
-	
-		if(result>0) { 
-			return "redirect:productList.ad"; 
-		}else {
-			System.out.println("에러"); 
-			return "redirect:productList.ad"; 
-		}
-	
-	}
+	/*
+	 * @RequestMapping("ProductInsert.ad") public String ProductInsert(Product
+	 * p,ProductOption po, HttpServletRequest request, MultipartFile file) {
+	 * 
+	 * int result = adService.ProductInsert(p,po);
+	 * 
+	 * if(result>0) { return "redirect:productList.ad"; }else {
+	 * System.out.println("에러"); return "redirect:productList.ad"; }
+	 * 
+	 * }
+	 */
 	
 	
 	

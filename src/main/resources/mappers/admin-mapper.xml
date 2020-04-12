@@ -28,13 +28,13 @@
 			<result property="down_date" column="DOWN_DATE"/>
 		</resultMap>
 		
-	<!-- 	<resultMap type="Product" id="ProductInsertResultSet">
+		<!-- <resultMap type="Product" id="ProductInsertResultSet">
 			<id property="prdtNo" column="PRDT_NO"/>
 			<result property="upNo" column="UP_NO"/>
 			<result property="prdtName" column="PRDT_NAME"/>
 			<result property="prdtComment" column="PRDT_COMMENT"/>
 			<result property="prdtPrice" column="PRDT_PRICE"/>
-			<result property=prdtBrand column=PRDT_BRAND/>
+			<result property="prdtBrand" column="PRDT_BRAND"/>
 			<result property="prdtMake" column="PRDT_MAKE"/>
 			<result property="prdtImage" column="PRDT_IMAGE"/>
 			<result property="prdtDate" column="PRDT_DATE"/>
@@ -45,9 +45,10 @@
 			<result property="prdtImagePath" column="PRDT_IMAGE_PATH"/>
 			<result property="prdtDetailImage" column="PRDT_DETAIL_IMAGE"/>
 			<result property="prdtDetailImagePath" column="PRDT_DETAIL_IMAGE_PATH"/>
-		</resultMap> -->
+			<result property="prdtSale" column="PRDT_SALE"/>
+		</resultMap>
 		
-		<!-- <resultMap type="ProductOption" id="ProductOptionInsertResultSet">
+		<resultMap type="ProductOption" id="ProductOptionInsertResultSet">
 			<id property="opt_no" column="OPT_NO"/>
 			<result property="prdt_no" column="PRDT_NO"/>
 			<result property="prdt_no" column="OPT_COLOR"/>
@@ -148,9 +149,9 @@
 			,#{prdtPrice}, #{prdtBrand}, #{prdtMake}, #{prdtImage}
 			,SYSDATE, NULL, DEFAULT, #{downNO}, NULL
 			,#{prdtImagePath}, #{prdtDetailImage}, #{prdtDetailImagePath})	 
-</insert> -->
+</insert>
 
-<!-- <insert id="ProductOptionInsert" parameterType="ProductOption">
+<insert id="ProductOptionInsert" parameterType="ProductOption">
 	INSERT INTO PRDT_OPT VALUES
 	(PRODUCT_OPT_SEQ.NEXTVAL,#{prdt_no}, {opt_color}, {opt_size},
 	{opt_stock}, SYSDATE, NULL, #{prdt_code})

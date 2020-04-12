@@ -103,19 +103,17 @@ public class adminServiceImpl implements adminService{
 	}
 	
 	
-    @Override public int ProductInsert(Product p, ProductOption po) { 
-	  int result =0; 
-	  int presult = adDao.ProductInsert(p);
-  
-	  int poresult = 0; int prdtNo =p.getPrdtNo();
-  
-	  if(presult>0) { 
-    	poresult=adDao.ProductOptionInsert(po, prdtNo); 
-    	result =  presult * poresult; 
-	  }
-  
-	  	return result; 
-    }
+	/*
+	 * @Override public int ProductInsert(Product p, ProductOption po) { int result
+	 * =0; int presult = adDao.ProductInsert(p);
+	 * 
+	 * int poresult = 0; int prdtNo =p.getPrdtNo();
+	 * 
+	 * if(presult>0) { poresult=adDao.ProductOptionInsert(po, prdtNo); result =
+	 * presult * poresult; }
+	 * 
+	 * return result; }
+	 */
 
 
 
