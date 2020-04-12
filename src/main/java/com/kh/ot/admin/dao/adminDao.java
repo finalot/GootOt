@@ -97,7 +97,9 @@ public class adminDao {
 	public int DownCategoryDelete(DownCategory downCategory) {
 		return sqlSession.update("adminMapper.DownCategoryDelete",downCategory);
 	}
-	 * @작성일  : 2020. 4. 8.
+	
+	
+	/* * @작성일  : 2020. 4. 8.
 	 * @작성자  : 문태환
 	 * @내용 	:메인배너등록
 	 * @param d
@@ -152,24 +154,22 @@ public class adminDao {
 	
 	
 	
+	/**
+	 * @작성일 : 2020. 4. 12.
+	 * @작성자 : 이서현
+	 * @내용 : 상품, 상품옵션 등록 
+	 */
 	public int ProductInsert(Product p) {
 		return sqlSession.insert("adminMapper.ProductInsert",p);
 	}
-
-
 	
-
-
 	
-
-
-	/*
-	 * public int ProductOptionInsert(ProductOption po,int prdtNo) {
-	 * 
-	 * int result =0; List<ProductOption> polist = po.getProduct_OptionVOList();
-	 * 
-	 * for(ProductOption Option : polist) { Option.setPrdt_no(prdtNo); result =
-	 * sqlSession.insert("adminMapper.ProductOptionInsert",Option); } return result;
-	 * }
-	 */
+	public int ProductOptionInsert(ProductOption po,int prdtNo) {
+	
+	int result =0; List<ProductOption> polist = po.getProduct_OptionVOList();
+	
+	for(ProductOption Option : polist) { Option.setPrdt_no(prdtNo); result =
+	sqlSession.insert("adminMapper.ProductOptionInsert",Option); } return result;
+	}
+	 
 }
