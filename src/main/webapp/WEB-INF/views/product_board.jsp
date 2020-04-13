@@ -139,7 +139,7 @@ a{
                             <br>
                             <div class="ppro">
                             <c:choose>
-                            	<c:when test="{b.qna_secure=='T'}">
+                            	<c:when test="${b.qna_secure=='T'}">
                             <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
                                  <a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
                                  [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>

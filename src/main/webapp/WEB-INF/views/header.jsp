@@ -75,13 +75,12 @@ font-size: 9px !important;
 		<a href="index.jsp" class="logo"> <img src="<c:url value="/resources/images/icons/ot.png"/>"
 			alt="IMG-LOGO" style="max-height: 28px;">
 		</a> <a href="https://www.instagram.com/blackup_kr/" target="blank_"
-			class="topbar-social-item fa fa-instagram"></a> <a href="#"
-			class="chatBtn"><img
+			class="topbar-social-item fa fa-instagram"></a>
+			 <a href="#"class="chatBtn"><img
 			style="width: 15px; margin-left: 11px; margin-bottom: 4px;"
 			src="${ chatIcon }"></a> <a href="${cartbutton }"><img
 			style="width: 17px; margin-left: 15px; margin-bottom: 4px;"
 			src="<c:url value="/resources/images/icons/cart.png"/>"></a>
-
 		<!-- Menu -->
 		<div class="wrap_menu" style="margin-top: -0.5%;">
 			<nav class="menu">
@@ -287,10 +286,17 @@ font-size: 9px !important;
 			<div class="topbar2" style="margin-top: -1%;">
 				<div class="topbar-social">
 					<a href="https://www.instagram.com/blackup_kr/" target="blank_"
-						class="topbar-social-item fa fa-instagram"></a> <a href="#"
+						class="topbar-social-item fa fa-instagram"></a> 
+						
+						<c:if test="${ !empty sessionScope.loginMember }">			
+						<a href="#"
 						class="chatBtn"><img
 						style="width: 15px; margin-left: 11px; margin-bottom: 4px;"
-						src="/ot/resources/images/icons/chat_icon.png"></a> <a href="${cartbutton }"><img
+						src="/ot/resources/images/icons/chat_icon.png"></a> 
+						</c:if>
+						
+						
+						<a href="${cartbutton }"><img
 						style="width: 17px; margin-left: 15px; margin-bottom: 4px;"
 						src="/ot/resources/images/icons/cart.png"></a>
 
@@ -387,14 +393,14 @@ font-size: 9px !important;
 			<div class="btn-show-menu" style="margin-bottom: 10px;">
 				<!-- Header Icon mobile -->
 				<div class="header-icons-mobile">
-					<a href="https://www.instagram.com/blackup_kr/" target="blank_"
+	  				
+	  	<a href="https://www.instagram.com/blackup_kr/" target="blank_"
 						class="topbar-social-item fa fa-instagram"></a> <a href="#"
 						class="chatBtn"><img
 						style="width: 15px; margin-left: 11px; margin-bottom: 4px;"
 						src="/ot/resources/images/icons/chat_icon.png"></a> <a href="${cartbutton }"><img
 						style="width: 17px; margin-left: 15px; margin-bottom: 4px;"
 						src="/ot/resources/images/icons/cart.png"></a>
-
 					<!-- 	<span class="linedivide2"></span> -->
 					<!-- 
 					<div class="header-wrapicon2">

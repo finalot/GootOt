@@ -47,13 +47,13 @@
  #chat-list{
      position: absolute;
         margin-top: 390px; 
-           margin-left: -150px;
+           margin-left: -500px;
  }
  
 #chat_container{
       position: absolute;
       margin-top: 440px;
-    margin-left: -700px;
+    margin-left: -1000px;
     display: none;
    
     
@@ -216,7 +216,7 @@ a:cursor{
                <div id="chat" class="panel-collapse collapse in">
                   <div id="chatList" class="portlet-body chat-widget" style="">
                   <ul id="chat-user">
-                 	 <li style="padding: 2%;">
+             <!--     	 <li style="padding: 2%;">
                  	   <div style="display:flex">
 						  <img src="/ot/resources/aimages/icons/user.png" alt="회원사진" class="user-icon">
 						  <div style="width: 70%;">                
@@ -228,7 +228,7 @@ a:cursor{
 					  	  	<p class="massege-count">1</p>	
 					  	  </div>
 					  	</div>
-					 </li>
+					 </li> -->
 				 </ul>
                   </div>
                     <div class="portlet-footer" style="background: #333330;height: 80px;">
@@ -257,7 +257,7 @@ a:cursor{
                   <div id="chat-box"  style="background:#f3f3f3;overflow-y:auto;  width: auto; height: 450px;
                   border-right: 6px solid #333330;border-left: 6px solid #333330;width: 100%">
                    <!--메세지 샘플창 시작 -->
-                  <div> 
+                 <!--  <div> 
                   <span style="font-size:12px; margin-left: 18px">상담사</span>
                  <div style="display:flex">
                   <div style="color:black;width:270px;border-radius: 10px;background:white;margin-left:3.5%;margin-top:1%;">
@@ -266,7 +266,7 @@ a:cursor{
                   </div>
                   <span style="font-size:7px;margin-left:15px;margin-top: auto;">06:10 am</span>
                   </div>
-                  </div>
+                  </div> -->
                   <!--메세지 샘플창 끝 -->
                   
                   
@@ -360,39 +360,38 @@ a:cursor{
     <script src="http://localhost:82/socket.io/socket.io.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
+// 소켓 접속시 채팅 회원리스트 불러오기
    $(document).ready(function(){
 	   var socket = io("http://localhost:82");	
 	   
 	   socket.on('chats', function(data){
 		   console.log(data);
+		   
 	var userList="";	   
 		   
 	for(var i=0;i<data.length;i++){
-		for(var j=-1;j<=i;j++){
-			if(i == 0 || j > 0  && data[j].userId != data[i].userId ){
-				if(data[i].type == "user"){
+		
+		var last = data[i].message.length-1; 
 		   
  		 var user = '<li style="padding: 2%;">'+
 				   '<div style="display:flex">'+
 				  '<img src="/ot/resources/images/icons/user.png" alt="회원사진" class="user-icon">'+
 				  '<div style="width: 70%;">'+                
 			  	  '<button  onclick="chatBtn(this)" style="margin-left: 4%; font-weight: bold;">'+data[i].userId+'</button>'+
-			  	  '<p class="user-text"  style="margin-left: 5%;">'+data[i].message+'</p>'+
+			  	  '<p class="user-text"  style="margin-left: 5%;">'+data[i].message[last]+'</p>'+
 			  	  '</div>'+
 			  	  '<div>'+
-			  	  	'<p style="margin-bottom: 22%;">'+data[i].Time+'</p>'+
+			  	  	'<p style="margin-bottom: 22%;">'+data[i].Time[last]+'</p>'+
 			  	  	'<p class="massege-count">'+data[i].Count+'</p>'+
 			  	  '</div>'+
 			  	'</div>'+
 			 	'</li>';
  		 userList += user;
- 		 break;
-				}	 
-	    	}
-		}
-	}
+	
+    }
 		$('#chat-user').html(userList)   
 	
+		
 	 	 });
    });
    
@@ -432,47 +431,86 @@ a:cursor{
  <script>
    
    //아이디별 채팅 리스트 가져오기
+   		var userId ='';
+   
    function chatBtn(en){
 	   $('#chat_container').css('display','block');
 	   
 		var socket = io("http://localhost:82");
 	   
-		var userId = $(en).text();
-		//클리한 아이디 서버로 보내기
+	       userId = $(en).text();
+		//클릭한 아이디 서버로 보내기
 		socket.emit("userId",userId);
 		//몽고디비에서 find한 값 가져오기
 		socket.on("chatOne",function(chatOne){
 			console.log("chatOne : "+chatOne)
-			
 		var chatList="";
-		for(var i=0;i<chatOne.length;i++){
+		for(var i=1;i<chatOne[0].message.length;i++){
+			if(chatOne[0].type[i] == "user"){
 			
-			 var chat='<div align="right" style="text-align: right;"><span style="font-size:12px; margin-right: 10px">'+chatOne[i].userId+'</span>'+
+			 var chat='<div align="right" style="text-align: right;"><span style="font-size:12px; margin-right: 10px">'+chatOne[0].userId+'</span>'+
                      '<div style="display:flex; margin-left:4.5%;">'+
-                     '<span style="font-size:7px;margin-left:55px;margin-top: auto;">'+chatOne[i].Time+'</span>'+
+                     '<span style="font-size:7px;margin-left:55px;margin-top: auto;">'+chatOne[0].Time[i]+'</span>'+
                      '<div style="text-align: left; width: 270px;margin-left:3.5%;margin-top: 1%;margin-bottom: 1%;background: aliceblue;border-radius: 10px;">' +
                      '<pre style="color:black;word-break:break-all;word-wrap:break-word;white-space:pre-wrap;font-size:12px;background:none;'+
-                     'margin-left:3%;margin-top:3%;border:none;">'+chatOne[i].message+'</pre>'+
+                     'margin-left:3%;margin-top:3%;border:none;">'+chatOne[0].message[i]+'</pre>'+
                      '</div>'+
                      '</div>' + 
                      '</div>'; 
-			 
-                  chatList += chat;
+             
+			}else if(chatOne[0].type[i] == "admin"){
+				var chat='<div>'+ 
+					     '<span style="font-size:12px; margin-left: 18px">상담사</span>'+
+					     '<div style="display:flex">'+
+					     '<div style="color:black;width:270px;border-radius: 10px;background:white;margin-left:3.5%;margin-top:1%;">'+
+					     '<pre  style="resize:none; font-size:12px;background:none;'+
+					     'margin-left:3%;margin-top:3%;border:none;word-break:break-all;word-wrap:break-word;white-space:pre-wrap;">'+chatOne[0].message[i]+'</pre>'+
+					     '</div>'+
+					     '<span style="font-size:7px;margin-left:15px;margin-top: auto;">'+chatOne[0].Time[i]+'</span>'+
+					     '</div>'+
+					     '</div>'
+			}
+		     chatList += chat;
 		}
+		
 		   $('#chat-box').html(chatList);
 	 $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight)
 		});
    };
    
+   $(document).ready(function(){
+	   var socket = io("http://localhost:82");	
+	   
+	   socket.on('send_msg', function(data){
+		   console.log(data)
+		 if(userId == data.id && data.type == "user"){
+			 // 타입이 user인 data만 받아오기
+			 $('#chat-box').append('<div align="right" style="text-align: right;"><span style="font-size:12px; margin-right: 10px">'+data.id+'</span>'+
+                '<div style="display:flex; margin-left:4.5%;">'+
+                '<span style="font-size:7px;margin-left:55px;margin-top: auto;">'+data.Time+'</span>'+
+                '<div style="text-align: left; width: 270px;margin-left:3.5%;margin-top: 1%;margin-bottom: 1%;background: aliceblue;border-radius: 10px;">' +
+                '<pre style="color:black;word-break:break-all;word-wrap:break-word;white-space:pre-wrap;font-size:12px;background:none;'+
+                'margin-left:3%;margin-top:3%;border:none;">'+data.msg+'</pre>'+
+                '</div>'+
+                '</div>'+
+                '</div>'); 
+			    $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight)
+			 }
+	   	});
+	   });
+	   
   $('#chat_exit').click(function(){
 	  $('#chat_container').css('display','none');
   });
-
   
- </script>	
  
-   
-<script>
+
+/* $(document).ready(function(){
+var socket = io("http://localhost:82");
+  
+	 
+ }); */
+ 
 $(document).ready(function(){
 	var socket = io("http://localhost:82");
 	
@@ -503,29 +541,11 @@ $(document).ready(function(){
      '</div>'+
      '</div>')
               $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight)
-                      
-     socket.emit("send_msg", {id:"userId",msg:content,Time:strTime,type:"admin"});
+					 
+     socket.emit("send_msg", {id:userId,msg:content,Time:strTime,type:"admin"});
 		 document.getElementById('chatContent').value = "";
 		}
-		
      });
-	 socket.on('send_msg', function(data){
-		 
-		 if(data.type == "user"){
-			 // 타입이 user인 data만 받아오기
-			 $('#chat-box').append('<div align="right" style="text-align: right;"><span style="font-size:12px; margin-right: 10px">나</span>'+
-                     '<div style="display:flex; margin-left:4.5%;">'+
-                     '<span style="font-size:7px;margin-left:55px;margin-top: auto;">'+data.Time+'</span>'+
-                     '<div style="text-align: left; width: 270px;margin-left:3.5%;margin-top: 1%;margin-bottom: 1%;background: aliceblue;border-radius: 10px;">' +
-                     '<pre style="color:black;word-break:break-all;word-wrap:break-word;white-space:pre-wrap;font-size:12px;background:none;'+
-                     'margin-left:3%;margin-top:3%;border:none;">'+data.msg+'</pre>'+
-                     '</div>'+
-                     '</div>' + 
-                     '</div>'); 
-			    $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight)
-		 }
-	 });		 
-	 
 });
 </script>
 

@@ -346,7 +346,7 @@
                   <div id="chatList"  style="background:#f3f3f3;overflow-y:auto;  width: auto; height: 450px;
                   border-right: 6px solid #333330;border-left: 6px solid #333330;">
                    <!--메세지 샘플창 시작 -->
-                  <div> 
+             <!--      <div> 
                   <span style="font-size:12px; margin-left: 18px">상담사</span>
                  <div style="display:flex">
                   <div style="color:black;width:270px;border-radius: 10px;background:white;margin-left:3.5%;margin-top:1%;">
@@ -355,7 +355,7 @@
                   </div>
                   <span style="font-size:7px;margin-left:15px;margin-top: auto;">06:10 am</span>
                   </div>
-                  </div>
+                  </div> -->
                   <!--메세지 샘플창 끝 -->
                   
                   
@@ -399,13 +399,18 @@
 		</div>
 	</div>
 	<input type="hidden" id="chat-test" value="문태환">
+	
 <!--===============================================================================================-->
 	<script src="http://localhost:82/socket.io/socket.io.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 	<script>
 	$(document).ready(function(){
+		
 		var socket = io("http://localhost:82");
 	
+		if("${ !empty sessionScope.loginMember}" && "${loginMember.memId}" !='') {
+			socket.emit("login_member", {id:"${loginMember.memId}"})
+		}
 
 		 $('#addChat').click(function(){
 			 
@@ -435,17 +440,17 @@
                       
             
 			
-			socket.emit("send_msg", {id:"userId",msg:content,Time:strTime,type:"user"});
+			socket.emit("send_msg", {id:"${loginMember.memId}",msg:content,Time:strTime,type:"user"});
+		
 			document.getElementById('chatContent').value = "";
 			
 	                          
 				}
 		});
-		 
 		//소켓 서버로 부터 send_msg를 통해 이벤트를 받을 경우 
 			socket.on('send_msg', function(data) {
-			
-			if(data.type == "admin"){	
+				if(data.id == "${loginMember.memId}"){
+					if(data.type == "admin"){	
 				
 				 $('#chatList').append('<div>'+ 
                  '<span style="font-size:12px; margin-left: 18px">상담사</span>'+
@@ -457,25 +462,16 @@
                   '<span style="font-size:7px;margin-left:15px;margin-top: auto;">'+data.Time+'</span>'+
                   '</div>'+
                   '</div>')
-			}
+			    }
+				}
 			});
 	});
 	
-	var check = true
-	
-	$('.chatBtn').click(function(e){
-		e.stopPropagation();
-		if(check == true){
-		$('#chat_container').fadeIn(100);
-		check=false;
-		}else{
-		$('#chat_container').fadeOut(100);
-		check=true;
-		}
-		
-	})
+
 	
 	</script>
+	
+	
 	<script>
 	function keyevent(){
 	
@@ -487,6 +483,66 @@
 		if(event.keyCode==13){addChat();}
 
 	}
+	var check = true
+	
+	$('.chatBtn').click(function(e){
+		
+			   $('#chat_container').css('display','block');
+			   
+				var socket = io("http://localhost:82");
+			   
+			       userId = "${loginMember.memId}";
+				//클릭한 아이디 서버로 보내기
+				socket.emit("userId",userId);
+				//몽고디비에서 find한 값 가져오기
+				
+				
+				socket.on("chatOne",function(chatOne){
+					if(chatOne[0].userId == userId){
+					console.log("chatOne : "+chatOne)
+				var chatList="";
+				for(var i=1;i<chatOne[0].message.length;i++){
+					if(chatOne[0].type[i] == "user"){
+					
+					 var chat='<div align="right" style="text-align: right;"><span style="font-size:12px; margin-right: 10px">'+chatOne[0].userId+'</span>'+
+		                     '<div style="display:flex; margin-left:4.5%;">'+
+		                     '<span style="font-size:7px;margin-left:55px;margin-top: auto;">'+chatOne[0].Time[i]+'</span>'+
+		                     '<div style="text-align: left; width: 270px;margin-left:3.5%;margin-top: 1%;margin-bottom: 1%;background: aliceblue;border-radius: 10px;">' +
+		                     '<pre style="color:black;word-break:break-all;word-wrap:break-word;white-space:pre-wrap;font-size:12px;background:none;'+
+		                     'margin-left:3%;margin-top:3%;border:none;">'+chatOne[0].message[i]+'</pre>'+
+		                     '</div>'+
+		                     '</div>' + 
+		                     '</div>'; 
+		             
+					}else if(chatOne[0].type[i] == "admin"){
+						var chat='<div>'+ 
+							     '<span style="font-size:12px; margin-left: 18px">상담사</span>'+
+							     '<div style="display:flex">'+
+							     '<div style="color:black;width:270px;border-radius: 10px;background:white;margin-left:3.5%;margin-top:1%;">'+
+							     '<pre  style="resize:none; font-size:12px;background:none;'+
+							     'margin-left:3%;margin-top:3%;border:none;word-break:break-all;word-wrap:break-word;white-space:pre-wrap;">'+chatOne[0].message[i]+'</pre>'+
+							     '</div>'+
+							     '<span style="font-size:7px;margin-left:15px;margin-top: auto;">'+chatOne[0].Time[i]+'</span>'+
+							     '</div>'+
+							     '</div>'
+					}
+				     chatList += chat;
+				}
+					}
+				
+				   $('#chatList').html(chatList);
+			 $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight)
+				});
+		e.stopPropagation();
+		if(check == true){
+		$('#chat_container').fadeIn(100);
+		check=false;
+		}else{
+		$('#chat_container').fadeOut(100);
+		check=true;
+		}
+			
+	});
 	
 	</script>
 

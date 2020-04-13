@@ -17,6 +17,7 @@
 			<id property = "deNo" column="D_NO"/>
 			<result property="mainComment" column="D_COMMENT"/>
 			<result property="reFile" column="D_REFILE"/>
+			<result property="oriFIle" column="D_ORIFILE"/>
 			<result property="mainLink" column="D_LINK"/>
 		</resultMap>
 

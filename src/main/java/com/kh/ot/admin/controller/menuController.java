@@ -433,66 +433,42 @@ public class menuController {
 	 */
 	@RequestMapping("nfdown.ad")
 	public String fileDownload( HttpServletResponse response, HttpServletRequest request, String path) {
-	 System.out.println("path"+path);
 	    String folder =request.getSession().getServletContext().getRealPath("/resources/boardUploadFiles");
 	    String fileName = path;
-	 
-	    File file = new File(folder);
-	 
-	    FileInputStream fileInputStream = null;
-	    ServletOutputStream servletOutputStream = null;
-	 
-	    try{
-	        String downName = null;
-	        String browser = request.getHeader("User-Agent");
-	        //파일 인코딩
-	        if(browser.contains("MSIE") || browser.contains("Trident") || browser.contains("Chrome")){//브라우저 확인 파일명 encode  
-	            
-	            downName = URLEncoder.encode(fileName,"UTF-8").replaceAll("\\+", "%20");
-	            
-	        }else{
-	            
-	            downName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
-	            
-	        }
-	        
-	        response.setHeader("Content-Disposition","attachment;filename=\"" + downName+"\"");             
-	        response.setContentType("application/octer-stream");
-	        response.setHeader("Content-Transfer-Encoding", "binary;");
-	 
-	        fileInputStream = new FileInputStream(file);
-	        servletOutputStream = response.getOutputStream();
-	 
-	        byte b [] = new byte[1024];
-	        int data = 0;
-	 
-	        while((data=(fileInputStream.read(b, 0, b.length))) != -1){
-	            
-	            servletOutputStream.write(b, 0, data);
-	            
-	        }
-	 
-	        servletOutputStream.flush();//출력
-	        
-	    }catch (Exception e) {
-	        e.printStackTrace();
-	    }finally{
-	        if(servletOutputStream!=null){
-	            try{
-	                servletOutputStream.close();
-	            }catch (IOException e){
-	                e.printStackTrace();
-	            }
-	        }
-	        if(fileInputStream!=null){
-	            try{
-	                fileInputStream.close();
-	            }catch (IOException e){
-	                e.printStackTrace();
-	            }
-	        }
-	    }
-	    return "redirect:DesignEdit.ad";
-	}
-	
+        // 파일 이름 가지고 오고
+        String tempfileName = folder+path;
+        // 폴더까지 지정되어 있는 파일명 가져와서
+        StringBuilder sb = new StringBuilder("c:/tmp/");
+        sb.append(tempfileName);
+        // 파일 저장되어 있는 경로뒤에 붙여줘서
+        String saveFileName = sb.toString();
+        // saveFileName을 만든다.
+        
+ 
+        File file = new File(saveFileName);
+        long fileLength = file.length();
+        // 데이터베이스에 없는 정보는 파일로 만들어서 가져온다. 이 경우엔 Content-Length 가져온 것
+ 
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\";");
+        response.setHeader("Content-Transfer-Encoding", "binary"); 
+        response.setHeader("Content-Length", "" + fileLength);
+        response.setHeader("Pragma", "no-cache;");
+        response.setHeader("Expires", "-1;");
+        // 그 정보들을 가지고 reponse의 Header에 세팅한 후
+        
+        try (FileInputStream fis = new FileInputStream(saveFileName); OutputStream out = response.getOutputStream();) {
+            // saveFileName을 파라미터로 넣어 inputStream 객체를 만들고 
+            // response에서 파일을 내보낼 OutputStream을 가져와서  
+            int readCount = 0;
+            byte[] buffer = new byte[1024];
+            // 파일 읽을 만큼 크기의 buffer를 생성한 후 
+            while ((readCount = fis.read(buffer)) != -1) {
+                out.write(buffer, 0, readCount);
+                // outputStream에 씌워준다
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException("file Load Error");
+        }
+        return "redirect:DesignEdit.ad";
+	}	
 }
