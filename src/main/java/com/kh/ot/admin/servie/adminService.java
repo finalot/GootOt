@@ -116,12 +116,15 @@ public interface adminService{
 
 	public int DownCategoryDelete(DownCategory downCategory);
 
-	/**s
-	 * @작성일 : 2020. 4. 9.
-	 * @작성자 : 이서현
-	 * @내용 : 상품 등록 
+	/**
+	 * @작성일  : 2020. 4. 13.
+	 * @작성자  : 문태환
+	 * @내용 	: 어드민 상품문의 리스트
+	 * @param b_cate_no
+	 * @return
 	 */
-	/* public int ProductInsert(Product p, ProductOption po); */
+	public ArrayList<Board> selectList(int b_cate_no);
+
 
 
 }

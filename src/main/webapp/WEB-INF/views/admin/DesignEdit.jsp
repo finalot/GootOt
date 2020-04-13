@@ -260,7 +260,7 @@ th{
         		<span>바로가기 링크</span><input name="mainLink" value="${d.mainLink }" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>
         		<c:if test="${!empty  d.reFile   }">
-				<div style="    margin-left: 7%;"><a style="color: blue"  href="/ot/resources/buploadFiles/${ d.reFile }" download="${ d.oriFIle }"  id="fildown">${d.oriFIle}</a></div>
+				<div style="    margin-left: 7%;"><a style="color: blue"  href="/ot/resources/buploadFiles/${ d.reFile }" download="${ d.reFile }"  id="fildown">${d.reFile}</a></div>
 																               <%-- <a href="${ contextPath }/resources/buploadFiles/${ b.renameFileName }" download="${ b.originalFileName }">${ b.originalFileName }</a> --%>
 																
 				</c:if>
@@ -329,22 +329,6 @@ th{
      <div class="page-wrapper">
     </div>
 
-<script>
-$('#fildown').click({
-	function(en){
-		var path = $(this).text();		
-	$.ajax({
-			url:"nfdown.ad",
-			data:{path : path},
-			success:function(){
-					alert("성공")		
-			},error:function(){
-				alert("실패")
-			}
-		});	
-	}
-});
-</script>
     <script>
 
     	$('#mainBtn').click(function(){
