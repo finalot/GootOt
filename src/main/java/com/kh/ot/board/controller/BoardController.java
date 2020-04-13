@@ -1287,6 +1287,10 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
 	int b_cate_no = 1;
 	
 	SearchCondition sc = new SearchCondition();
+	sc.setSearch_key(search_key);
+	sc.setSearch(search);
+	sc.setSearch_date(search_date);
+	
 	
 	if(search_key.equals("writer")) {
 		sc.setWriter(search);
@@ -1314,6 +1318,7 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
     
     System.out.println("list:"+list);
 	
+      mv.addObject("sc",sc);
 	  mv.addObject("list",list);
       mv.addObject("pi",pi);
       mv.setViewName("product_board");
