@@ -125,6 +125,15 @@ public interface adminService{
 	 */
 	public ArrayList<Board> selectList(int b_cate_no);
 
+	/**
+	 * @작성일  : 2020. 4. 13.
+	 * @작성자  : 문태환 
+	 * @내용 	: 어드민 상품문의 업데이트
+	 * @param b
+	 * @return
+	 */
+	public int QnA_ProductUpdate(Board b);
+	
 
 
 }

@@ -10,9 +10,9 @@
 <title>입금관련 문의</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
-<link rel="stylesheet" href="/ot/resources/acss/mypage_list.css">
-<link rel="stylesheet" href="/ot/resources/acss/mypage_basic.css">
-<link rel="icon" type="image/png" href="/ot/resources/aimages/icons/favicon.png"/>
+<link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
+<link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
 </head>
 <style>
 .ec-base-table td{

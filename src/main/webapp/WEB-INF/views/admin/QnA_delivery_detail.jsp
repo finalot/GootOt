@@ -231,28 +231,9 @@ th{
       
         </div>
 </div>
-<form id="boardWriteForm" name="" action="/exec/front/Board/write/3001" method="post" target="_self" enctype="multipart/form-data">
-		<input id="board_no" name="board_no" value="3001" type="hidden">
-		<input id="product_no" name="product_no" value="0" type="hidden">
-		<input id="move_write_after" name="move_write_after" type="hidden">
-		<input id="cate_no" name="cate_no" value="" type="hidden">
-		<input id="bUsePassword" name="bUsePassword" value="" type="hidden">
-		<input id="order_id" name="order_id" value="" type="hidden">
-		<input id="is_post_checked" name="is_post_checked" value="" type="hidden">
-		<input id="22a52e1f2ba700edbc6c" name="22a52e1f2ba700edbc6c" value="be72b6700c2bb10ea29aac31702af80d" type="hidden">
-		<input id="fix_title_form_0" name="fix_title_form_0" value="[배송문의]" type="hidden">
-		<input id="bulletin_type" name="bulletin_type" value="title" type="hidden">
-		<input id="fix_content_0" name="fix_content_0" value="▶ 배송전 상품교환/주문취소/배송지변경/추가주문 문의시 [배송전 주문취소/변경] 게시판 또는 고객센터(1566-6813)로 오전 11시까지 꼭 요청 해주셔야합니다.<br/>
-		<br />
-		당일 주문건은 재고가 있을 시 당일 배송처리 되고 보통 다음날부터 입고가 되기 때문에 바로 안내가 어렵습니다.<br />
-		<br />
-		* 배송전 교환/취소시 [배송전 부분취소/변경] 제목선택을 안해주시면 상품교환/주문취소는 당일 처리되지 않습니다 *<br />
-		<br />
-		비회원으로 문의주실 경우엔 동명이인으로 인해 주문정보와 함께 남겨주셔야 바로 처리 가능합니다.<br />
-		<br />
-----------------------------------------------------------------------" type="hidden">
-	<input id="fix_add_content" name="fix_add_content" value="" type="hidden">
-	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
+<form id="boardUpdateForm" action="product_change_updateView.do" method="POST" enctype="multipart/form-data">
+<%-- 	<input type="hidden" name="qna_no" value="${b.qna_no}">
+ --%>	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
             $login_page_url = /member/login.html
             $deny_access_url = /index.html
@@ -265,81 +246,34 @@ th{
 				<col style="width:auto;">
 			</colgroup>
 		<tbody>
-		<tr>
-		<th scope="row">문의날짜</th>
-           <td><span>2020-02-02</span>	
-		   </td>
-    </tr>
-		<tr>
-		<th scope="row">문의고객</th>
-           <td><span>문태환</span>
-		   </td>
-    </tr>
+		
 	<tr>
 		<th scope="row">SUBJECT</th>
-           <td><span>배송좀 해주세요</span>
+           <td><select id="subject" name="b_cate_no">
+			<option value="4">[상품문의]</option>
+			</select>  	
 		   </td>
     </tr>
     
-	<tr class="displaynone">
-		<th scope="row">WRITER</th>
-           <td></td>
-    </tr>
-    
-	<tr class="displaynone">
-		<th scope="row">EMAIL</th>
-           <td></td>
-    </tr>
-    
-	<tr class="displaynone">
-		<th scope="row">POINT</th>
-           <td></td>	
     <tr>
+		<th scope="row">TITLE</th>
+        <%--    <td><input type="text" name="qna_title" style="width: 390px;height: 26px;" value="${b.qna_title }">
+           		<input type="hidden" value="${b.content}" id=b_content>	 --%>
+		   </td>
+    </tr>
+
     
 	<td colspan="2" class="clear">           
-     <script type="text/javascript" src="//editor.cafe24.com/js/nneditor.js?c=ko"></script>
-     <style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";		</style>		<script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
-     <script src="/ot/resources/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-    <script src="/ot/resources/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="/ot/resources/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
-    <script src="/ot/resources/assets/vendor/multi-select/js/jquery.multi-select.js"></script>
-    <script src="/ot/resources/assets/libs/js/main-js.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="/ot/resources/assets/vendor/datatables/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-    <script src="/ot/resources/assets/vendor/datatables/js/buttons.bootstrap4.min.js"></script>
-    <script src="/ot/resources/assets/vendor/datatables/js/data-table.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
-    <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
-    <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
-    <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
-  
-  <!--   <!-- Bootstrap JS-->
-    <script src="/ot/resources/avendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="/ot/resources/avendor/bootstrap-4.1/bootstrap.min.js"></script>
-    Vendor JS      
-    <script src="/ot/resources/avendor/slick/slick.min.js">
-    </script>
-    <script src="/ot/resources/avendor/wow/wow.min.js"></script>
-    <script src="/ot/resources/avendor/animsition/animsition.min.js"></script>
-    <script src="/ot/resources/avendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="/ot/resources/avendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="/ot/resources/avendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="/ot/resources/avendor/circle-progress/circle-progress.min.js"></script>
-    <script src="/ot/resources/avendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="/ot/resources/avendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="/ot/resources/avendor/select2/select2.min.js"></script> -->
-      <script src="/ot/resources/ajs/main.js"></script>
-      <script>
+            <script type="text/javascript" src="//editor.cafe24.com/js/nneditor.js?c=ko"></script>
+            <style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";</style>
+           <script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+            <script type="text/javascript">
+          /*   var b_content =$('#b_content').val(); */
             NN.Config.instanceID = "content";
-            NN.Config.value = "▶ 교환/반품/불량건교환 상품명을 기재해주셔야 더 정확한 안내 해드릴 수 있습니다.<br />\n<br />\n 배송 후 교환 / 반품 글 남겨주시면 기사님 방문 회수신청 자동으로 처리됩니다.<br />\n(기사님 방문시 경비실이나 전화 연락후 방문 해달라는 메모 등 배송메세지 같이 기재해주시면 메모해서 처리 해드립니다.)<br />\n 타 택배사 이용하실경우 미리 말씀해주셔야 방문 회수신청처리 안해드립니다.<br />\n<br />\n* 배송전 교환/취소시 [배송전 부분취소/변경] 제목선택을 안해주시면 상품교환/주문취소는 당일 처리되지 않습니다 *<br />\n<br />\n비회원으로 문의주실 경우엔 동명이인으로 인해 주문정보와 함께 남겨주셔야 바로 처리 가능합니다.<br />\n<br />\n----------------------------------------------------------------------<br>";
+            NN.Config.value = "ㅎㅇㅎㅇ";
             NN.Config.toolbarType = "simple";
                 
                 
@@ -376,28 +310,57 @@ th{
                 }
 
                 $Editor.push(oNN_content, "content");
+                
+                
             </script>	
             	
 		
 	</tbody>
 	
-		
+		<tbody class="">
+			<tr>
+				<th scope="row">FILE 01</th>
+                 <td><input type="file" name="reloadFile">
+                <%--  <c:if test="${ !empty b.originalFileName }">
+						<br>현재 업로드한 파일 : 
+				<a href="${ contextPath }/resources/buploadFiles/${ b.renameFileName }" download="${ b.originalFileName }">${ b.originalFileName }</a>
+					</c:if> --%>
+                 </td>
+            </tr>
+            
+			
+	</tbody>
 	<tbody>
-
+			<tr class="">
+				<th scope="row">PASSWORD</th>
+<%--                     <td><input id="qna_password" name="qna_password" value="${b.qna_password }" type="password"></td>
+ --%>            </tr>
+           
+			<tr class="">
+			<th scope="row">SECRET</th>
+                   <td><input id="secure0" name="qna_secure"  value="F" type="radio">
+                   <label for="secure0">공개글</label>
+				   <input id="secure1" name="qna_secure"  value="T" type="radio" checked="checked">
+				   <label for="secure1">비밀글</label></td>
+            </tr>
+            
+            
+		</tbody>
 	</table>
 </div>
 		<div class="ec-base-button ">
             <span class="gLeft">
                 <span class="displaynone"><a href="#none" onclick="" class="yg_btn_30 yg_btn4" alt="관리자답변보기">관리자답변보기</a></span>
-                <a href="product_change.jsp" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
+                <a href="product_change.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
-                <a href="#none" onclick="BOARD_WRITE.form_submit('boardWriteForm');" class="yg_btn_30 yg_btn4" alt="등록">OK</a>
-                <a href="product_change.jsp" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
+                <button id="update_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
+                
+                <a href="product_change.do" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
             </span>
         </div>
 	</div>
-</form>
+	</form>
 </div>
 </div>
 </div>

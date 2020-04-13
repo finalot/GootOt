@@ -108,5 +108,11 @@ public class adminServiceImpl implements adminService{
 	}
 
 
+	@Override
+	public int QnA_ProductUpdate(Board b) {
+		return adDao.QnA_ProductUpdate(b);
+	}
+
+
 
 }

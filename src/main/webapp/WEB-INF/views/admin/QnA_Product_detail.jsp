@@ -7,12 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<title>상품문의</title>
+<title>상품관련 문의</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
-<link rel="stylesheet" href="/ot/resources/acss/mypage_list.css">
-<link rel="stylesheet" href="/ot/resources/acss/mypage_basic.css">
-<link rel="icon" type="image/png" href="/ot/resources/aimages/icons/favicon.png"/>
+<link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
+<link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
 </head>
 <style>
 .ec-base-table td{
@@ -213,7 +213,7 @@ th{
 			
     <div id="container">
    				 <div class=title-text>
-    			<h2 style="font-weight: bold;">상품문의</h2>
+    			<h2 style="font-weight: bold;">상품관련 문의</h2>
     			</div>
         <div id="contents" style="margin-top:.5%; background: white;padding: 3%;    border-style: outset;">
       	<h3 style="font-weight: bold; border-bottom: 1px solid">문의내용</h3>
@@ -231,27 +231,10 @@ th{
       
         </div>
 </div>
-<form id="boardWriteForm" name="" action="/exec/front/Board/write/3001" method="post" target="_self" enctype="multipart/form-data">
-		<input id="board_no" name="board_no" value="3001" type="hidden">
-		<input id="product_no" name="product_no" value="0" type="hidden">
-		<input id="move_write_after" name="move_write_after" type="hidden">
-		<input id="cate_no" name="cate_no" value="" type="hidden">
-		<input id="bUsePassword" name="bUsePassword" value="" type="hidden">
-		<input id="order_id" name="order_id" value="" type="hidden">
-		<input id="is_post_checked" name="is_post_checked" value="" type="hidden">
-		<input id="22a52e1f2ba700edbc6c" name="22a52e1f2ba700edbc6c" value="be72b6700c2bb10ea29aac31702af80d" type="hidden">
-		<input id="fix_title_form_0" name="fix_title_form_0" value="[배송문의]" type="hidden">
-		<input id="bulletin_type" name="bulletin_type" value="title" type="hidden">
-		<input id="fix_content_0" name="fix_content_0" value="▶ 배송전 상품교환/주문취소/배송지변경/추가주문 문의시 [배송전 주문취소/변경] 게시판 또는 고객센터(1566-6813)로 오전 11시까지 꼭 요청 해주셔야합니다.<br/>
-		<br />
-		당일 주문건은 재고가 있을 시 당일 배송처리 되고 보통 다음날부터 입고가 되기 때문에 바로 안내가 어렵습니다.<br />
-		<br />
-		* 배송전 교환/취소시 [배송전 부분취소/변경] 제목선택을 안해주시면 상품교환/주문취소는 당일 처리되지 않습니다 *<br />
-		<br />
-		비회원으로 문의주실 경우엔 동명이인으로 인해 주문정보와 함께 남겨주셔야 바로 처리 가능합니다.<br />
-		<br />
-----------------------------------------------------------------------" type="hidden">
-	<input id="fix_add_content" name="fix_add_content" value="" type="hidden">
+
+<form id="boardWriteForm" name="" action="QnA_ProductUpdate.ad" >
+		<input type="hidden" name="qna_no" value="${b.qna_no} ">
+     <input type="hidden"  id="b_content" style="display: none;" value="${b.content}">
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
             $login_page_url = /member/login.html
@@ -267,38 +250,33 @@ th{
 		<tbody>
 		<tr>
 		<th scope="row">문의날짜</th>
-           <td><span>2020-02-02</span>	
+           <td><span>${b.qna_date }</span>	
 		   </td>
     </tr>
 		<tr>
 		<th scope="row">문의고객</th>
-           <td><span>문태환</span>
+           <td><span>${b.qna_writer }</span>
+		   </td>
+    </tr>
+    <tr>
+		<th scope="row">상품번호</th>
+           <td><span>${b.prdt_code }</span>
+		   </td>
+    </tr>
+    <tr>
+		<th scope="row">상품명</th>
+           <td><span>${b.prdt_name }</span>
 		   </td>
     </tr>
 	<tr>
 		<th scope="row">SUBJECT</th>
-           <td><span>배송좀 해주세요</span>
+           <td><span>${b.qna_title}</span>
 		   </td>
     </tr>
-    
-	<tr class="displaynone">
-		<th scope="row">WRITER</th>
-           <td></td>
-    </tr>
-    
-	<tr class="displaynone">
-		<th scope="row">EMAIL</th>
-           <td></td>
-    </tr>
-    
-	<tr class="displaynone">
-		<th scope="row">POINT</th>
-           <td></td>	
     <tr>
     
 	<td colspan="2" class="clear">           
     <script type="text/javascript" src="//editor.cafe24.com/js/nneditor.js?c=ko"></script>
-  	<style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";		</style>		<script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
     <script src="/ot/resources/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="/ot/resources/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/ot/resources/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
@@ -319,26 +297,35 @@ th{
     <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
     <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
   
-  <!--   <!-- Bootstrap JS-->
-    <script src="/ot/resources/avendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="/ot/resources/avendor/bootstrap-4.1/bootstrap.min.js"></script>
-    Vendor JS      
-    <script src="/ot/resources/avendor/slick/slick.min.js">
-    </script>
-    <script src="/ot/resources/avendor/wow/wow.min.js"></script>
-    <script src="/ot/resources/avendor/animsition/animsition.min.js"></script>
-    <script src="/ot/resources/avendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="/ot/resources/avendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="/ot/resources/avendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="/ot/resources/avendor/circle-progress/circle-progress.min.js"></script>
-    <script src="/ot/resources/avendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="/ot/resources/avendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="/ot/resources/avendor/select2/select2.min.js"></script> -->
-      <script src="/ot/resources/ajs/main.js"></script>
+  <!-- Bootstrap JS-->
+     <script src="/ot/resources/avendor/bootstrap-4.1/popper.min.js"></script>
+     <script src="/ot/resources/avendor/bootstrap-4.1/bootstrap.min.js"></script>
+     <!-- Vendor JS       -->
+     <script src="/ot/resources/avendor/slick/slick.min.js">
+     </script>
+     <script src="/ot/resources/avendor/wow/wow.min.js"></script>
+     <script src="/ot/resources/avendor/animsition/animsition.min.js"></script>
+     <script src="/ot/resources/avendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+     </script>
+     <script src="/ot/resources/avendor/counter-up/jquery.waypoints.min.js"></script>
+     <script src="/ot/resources/avendor/counter-up/jquery.counterup.min.js">
+     </script>
+     <script src="/ot/resources/avendor/circle-progress/circle-progress.min.js"></script>
+     <script src="/ot/resources/avendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+     <script src="/ot/resources/avendor/chartjs/Chart.bundle.min.js"></script>
+     <script src="/ot/resources/avendor/select2/select2.min.js">
+     </script>
+ 
+     <!-- Main JS-->
+
+     <script src="/ot/resources/ajs/main.js"></script>
+            <script type="text/javascript">
+
+            var b_content = $('#b_content').val();
+           
+            console.log(b_content)
             NN.Config.instanceID = "content";
-            NN.Config.value = "▶ 상품명을 기재해주셔야 더 정확한 안내 해드릴 수 있습니다.<br />\n<br />\n 배송 후 교환 / 반품 글 남겨주시면 기사님 방문 회수신청 자동으로 처리됩니다.<br />\n(기사님 방문시 경비실이나 전화 연락후 방문 해달라는 메모 등 배송메세지 같이 기재해주시면 메모해서 처리 해드립니다.)<br />\n 타 택배사 이용하실경우 미리 말씀해주셔야 방문 회수신청처리 안해드립니다.<br />\n<br />\n* 배송전 교환/취소시 [배송전 부분취소/변경] 제목선택을 안해주시면 상품교환/주문취소는 당일 처리되지 않습니다 *<br />\n<br />\n비회원으로 문의주실 경우엔 동명이인으로 인해 주문정보와 함께 남겨주셔야 바로 처리 가능합니다.<br />\n<br />\n----------------------------------------------------------------------<br>";
+            NN.Config.value = b_content;
             NN.Config.toolbarType = "simple";
                 
                 
@@ -385,24 +372,39 @@ th{
 
 	</table>
 </div>
+</div>
+
+
 		<div class="ec-base-button ">
             <span class="gLeft">
                 <span class="displaynone"><a href="#none" onclick="" class="yg_btn_30 yg_btn4" alt="관리자답변보기">관리자답변보기</a></span>
                 <a href="product_change.jsp" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
-                <a href="#none" onclick="BOARD_WRITE.form_submit('boardWriteForm');" class="yg_btn_30 yg_btn4" alt="등록">OK</a>
+                <button onclick="submitBtn()" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
                 <a href="product_change.jsp" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
             </span>
         </div>
+       
 	</div>
+	
 </form>
 </div>
 </div>
 </div>
-
-</div>
+ 
    <div class="page-wrapper">
 </div>
+
+
+<script>
+	function submitBtn(){
+		$('#boardWriteForm').submit();
+		
+	}
+
+
+</script>
+
 </body>
 </html>

@@ -17,14 +17,21 @@ public class Board {
 	private Date qna_modify_date; // 수정날짜
 	private String qna_password; // 게시판 비밀번호
 	private String qna_secure; // 비밀공개여부
-	private int prdt_code;
+	private int prdt_code; //상품코드
+	private String prdt_name;//상품이름
+	private String prdt_path; // 섬네일경로
+	private String prdt_img; //상품 이미지
+	
+	
 	
 	public Board() {}
 
-	public Board(int qna_no, int b_cate_no, int mem_no, String content, String qna_chk,
-			Date qna_date, String qna_writer, String qna_title, String originalFileName, String renameFileName,
-			Date qna_modify_date, String qna_password, String qna_secure,int prdr_code) {
-		super();
+
+	
+	public Board(int qna_no, int b_cate_no, int mem_no, String content, String qna_chk, Date qna_date,
+			String qna_writer, String qna_title, String originalFileName, String renameFileName, Date qna_modify_date,
+			String qna_password, String qna_secure, int prdt_code, String prdt_name, String prdt_path,
+			String prdt_img) {
 		this.qna_no = qna_no;
 		this.b_cate_no = b_cate_no;
 		this.mem_no = mem_no;
@@ -38,10 +45,38 @@ public class Board {
 		this.qna_modify_date = qna_modify_date;
 		this.qna_password = qna_password;
 		this.qna_secure = qna_secure;
-		this.prdt_code = prdr_code;
+		this.prdt_code = prdt_code;
+		this.prdt_name = prdt_name;
+		this.prdt_path = prdt_path;
+		this.prdt_img = prdt_img;
 	}
 
-	
+
+
+	public String getPrdt_name() {
+		return prdt_name;
+	}
+
+	public void setPrdt_name(String prdt_name) {
+		this.prdt_name = prdt_name;
+	}
+
+	public String getPrdt_path() {
+		return prdt_path;
+	}
+
+	public void setPrdt_path(String prdt_path) {
+		this.prdt_path = prdt_path;
+	}
+
+	public String getPrdt_img() {
+		return prdt_img;
+	}
+
+	public void setPrdt_img(String prdt_img) {
+		this.prdt_img = prdt_img;
+	}
+
 	public int getPrdt_code() {
 		return prdt_code;
 	}
@@ -160,8 +195,11 @@ public class Board {
 				+ ", qna_chk=" + qna_chk + ", qna_date=" + qna_date + ", qna_writer=" + qna_writer + ", qna_title="
 				+ qna_title + ", originalFileName=" + originalFileName + ", renameFileName=" + renameFileName
 				+ ", qna_modify_date=" + qna_modify_date + ", qna_password=" + qna_password + ", qna_secure="
-				+ qna_secure + ", prdt_code=" + prdt_code + "]";
+				+ qna_secure + ", prdt_code=" + prdt_code + ", prdt_name=" + prdt_name + ", prdt_path=" + prdt_path
+				+ ", prdt_img=" + prdt_img + "]";
 	}
+
+	
 
 	
 

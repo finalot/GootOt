@@ -210,6 +210,7 @@
                     <tr>
                         <th style="width: 10%;">게시글번호</th>
                         <th>상품</th>
+                        <th>상품이미지</th>
                         <th>제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
@@ -221,11 +222,12 @@
                     <tr>
                         <td>${b.qna_no}</td>
                          <c:if test="${b.prdt_code ne null }"> 
-                      <td>${b.prdt_code}</td> 
+                      <td>${b.prdt_name}</td> 
                         </c:if>
                         <c:if test="${b.prdt_code eq null }"> 
                         <td>선택한 상품이 없습니다</td>
                         </c:if> 
+                        <td align="center"><img style="width: 100px" src="${b.prdt_path }${b.prdt_img}" alt="상품이미지"></td>
                          <td>${b.qna_title }</td>
                         <td>${b.qna_writer }</td>
                         <td>${b.qna_date }</td>
@@ -240,8 +242,9 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>게시글번호</th>
+                         <th style="width: 10%;">게시글번호</th>
                         <th>상품</th>
+                        <th>상품이미지</th>
                         <th>제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
@@ -260,14 +263,12 @@
 	
 	<!-- // td(class=next) 클릭시 페이지 이동 -->
 	<script>
-     $("td").click(function(){
-    	 location.href='productListDetail.ad';
-  	 <%-- var userId = $(this).parent().find('input').val();
-  	 
-  	 console.log("선택한 유저 ID : "+userId);
-  	 
-     location.href="<%= request.getContextPath() %>/sone.rp?userId=" + userId; --%>
-    }); 
+     $('#example td').click(function(){
+	    var qna_no = $(this).parent('tr').children('td').eq(0).text();
+	
+		location.href="QnA_ProductUpdateView.ad?qna_no="+qna_no;
+    	 
+    });
     </script>
 
     <script src="/ot/resources/assets/vendor/jquery/jquery-3.3.1.min.js"></script>

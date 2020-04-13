@@ -344,11 +344,8 @@ public class menuController {
 	      }
 	            int result = adService.DesignEd(dlist);
 
-	            if(result > -1 ) {
 	               return "home";
-	            }else {
-	               return "에러야";
-	            }
+	           
 	   }
 
 	      @RequestMapping(value="DesignEdVideo.do" , method=RequestMethod.POST)
@@ -611,21 +608,44 @@ public class menuController {
 	}
 
 
-	/*
-	 * @RequestMapping("ProductInsert.ad") public String ProductInsert(Product
-	 * p,ProductOption po, HttpServletRequest request, MultipartFile file) {
-	 *
-	 * int result = adService.ProductInsert(p,po);
-	 *
-	 * if(result>0) { return "redirect:productList.ad"; }else {
-	 * System.out.println("에러"); return "redirect:productList.ad"; }
-	 *
-	 * }
+	
+	/**
+	 * @작성일  : 2020. 4. 13.
+	 * @작성자  : 문태환
+	 * @내용 	: 어드민 상품문의 디테일 화면
+	 * @param mv
+	 * @param qna_no
+	 * @return
 	 */
-
-
-
-
+	@RequestMapping("QnA_ProductUpdateView.ad")
+	public ModelAndView QnA_ProductUpdate(ModelAndView mv,int qna_no) {
+		
+	Board b = bService.selectBoard(qna_no);
+		System.out.println(b);
+		if(b!=null) {
+			mv.addObject("b",b);
+			mv.setViewName("admin/QnA_Product_detail");
+		
+		} else {
+			mv.addObject("msg","게시글 상세조회 실패")
+			.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@RequestMapping("QnA_ProductUpdate.ad")
+	public String QnA_ProductUpdate(Board b) {
+		
+		int result = adService.QnA_ProductUpdate(b);
+		
+		if(result > 0) {
+			
+			return "redirect:QnA_Product.ad";
+		}else {
+			return "에러다";
+		}
+		
+	}
 
 
 }

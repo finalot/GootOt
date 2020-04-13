@@ -161,6 +161,11 @@ public class adminDao {
 	public ArrayList<Board> selectList(int b_cate_no) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectList",b_cate_no);
 	}
+
+
+	public int QnA_ProductUpdate(Board b) {
+		return sqlSession.update("adminMapper.QnA_ProductUpdate",b);
+	}
 	
 	
 	
