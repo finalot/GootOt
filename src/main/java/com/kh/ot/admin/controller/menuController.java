@@ -1,4 +1,3 @@
-
 package com.kh.ot.admin.controller;
 
 import java.io.File;
@@ -32,6 +31,10 @@ import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.Design;
 import com.kh.ot.admin.vo.DownCategory;
 import com.kh.ot.admin.vo.UpCategory;
+import com.kh.ot.board.service.BoardService;
+import com.kh.ot.board.vo.Board;
+import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.common.Pagination;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
 
@@ -42,7 +45,9 @@ public class menuController {
 
 		@Autowired
 		private adminService adService;
-	
+		
+		 @Autowired
+	    private BoardService bService;
 	
 	/**
 	 * @작성일 : 2020. 4. 4.
