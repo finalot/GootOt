@@ -23,6 +23,7 @@
 		<result property="cpDiscount" column="CP_DISCOUNT"/>
 		<result property="cpdate" column="CP_DATE"/>
 		<result property="cpstatus" column="CP_STATUS"/>
+		<result property="cp_cdate" column="CP_COMDATE"/>
 	</resultMap>
 	
 	<select id="PointListCount" resultType="_int">
@@ -62,5 +63,17 @@
 		WHERE CP_STATUS='N'
 		ORDER BY CP_SEQ DESC
 	</select>
+	
+	<select id="CompleteCouponListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM COUPON_MEM
+		WHERE CP_STATUS='Y'
+	</select>
 
+	<select id="CompleteCouponSelectList" resultMap="CouponMemResultSet">
+		SELECT *
+		FROM COUPON_MEM
+		WHERE CP_STATUS='Y'
+		ORDER BY CP_SEQ DESC
+	</select>
 </mapper>

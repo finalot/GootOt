@@ -19,8 +19,8 @@
 <body>
 	<c:url var="mWishlist" value="mWishlist.do"/>
 	<c:url var="mPoint" value="mPoint.do"/>
-	<c:url var="mCoupon" value="mCoupon.do">
-	<c:url var="mCompletecoupon" value="mCompletecoupon.do"/>
+	<c:url var="mCoupon" value="mCoupon.do"/>
+	<c:url var="mCompleteCoupon" value="mCompleteCoupon.do"/>
 	
 	
 	
@@ -54,7 +54,7 @@
 	                    <strong class="title">POINT</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mPoint }">0원</a>
+	                    	<a href="${mPoint }">${PointCount} 원</a>
 	                    </strong>
 	                </li>
                 
@@ -62,7 +62,7 @@
 	                    <strong class="title">COUPON</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mCoupon }">${cp.listCount }<span>개</span></a>
+	                    	<a href="${mCoupon }">${CouponCount}<span>개</span></a>
 	                    </strong>
 	                </li>
 	            </ul>
@@ -92,9 +92,9 @@
 						<a href="${mCoupon }">사용가능한 쿠폰 목록</a>
 					</li>
 		            <li>	
-		            	<a href="${mCompletecoupon }">사용완료한 쿠폰 목록</a>
+		            	<a href="${mCompleteCoupon }">사용완료한 쿠폰 목록</a>
 	            	</li>
-						<p style="text-align: right; margin-right: 5px; padding-top: 15px;">사용가능 쿠폰 : ${cp.listCount }장</p>
+						<p style="text-align: right; margin-right: 5px; padding-top: 15px;">사용가능 쿠폰 : ${CouponCount}장</p>
         		</ul>
 			</div>
 					<div class="ec-base-table typeList">
@@ -144,15 +144,27 @@
 				</div>
 			</form>
 
-			<div
-				class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate">
-				<a href="/myshop/coupon/coupon.html?page=1" class="first"><img
-					src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지"></a>
-				<a href="/myshop/coupon/coupon.html?page=1"><img
-					src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"></a>
+			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate">
+				<a href="/myshop/coupon/coupon.html?page=1" class="first">
+					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+				</a>
+				<a href="/myshop/coupon/coupon.html?page=1">
+					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+				</a>
+				<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
 				<ol>
-					<li class="xans-record-"><a href="?page=1" class="this">1</a></li>
-				</ol>
+					<c:if test="${ p eq pi.currentPage }">
+					<li class="xans-record-"><a class="this">${p }</a></li>
+					</c:if>
+					
+					<c:if test="${ p ne pi.currentPage }">
+						<c:url var="pagination" value="mCoupon.do">
+							<c:param name="currentPage" value="${p }"/>
+						</c:url>
+						<a class="this" href="${ pagination }">${p }</a> &nbsp;&nbsp;
+					</c:if>
+					</ol>
+				</c:forEach>
 				<a href="/myshop/coupon/coupon.html?page=1"><img
 					src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지"></a>
 				<a href="/myshop/coupon/coupon.html?page=1" class="last"><img

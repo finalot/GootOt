@@ -11,10 +11,12 @@ public class CouponMem {
 	
 	private Date cpdate;			// 쿠폰 발급날짜 (sysdate)
 	private String cpstatus;		// 쿠폰 사용여부
+	private Date cp_cdate;			// 쿠폰 사용날짜
 	
 	public CouponMem() {}
 
-	public CouponMem(int memno, int cpseq, int cpno, String cpname, int cpDiscount, Date cpdate, String cpstatus) {
+	public CouponMem(int memno, int cpseq, int cpno, String cpname, int cpDiscount, Date cpdate, String cpstatus,
+			Date cp_cdate) {
 		super();
 		this.memno = memno;
 		this.cpseq = cpseq;
@@ -23,6 +25,7 @@ public class CouponMem {
 		this.cpDiscount = cpDiscount;
 		this.cpdate = cpdate;
 		this.cpstatus = cpstatus;
+		this.cp_cdate = cp_cdate;
 	}
 
 	public int getMemno() {
@@ -33,11 +36,11 @@ public class CouponMem {
 		this.memno = memno;
 	}
 
-	public int getcpseq() {
+	public int getCpseq() {
 		return cpseq;
 	}
 
-	public void setcpseq(int cpseq) {
+	public void setCpseq(int cpseq) {
 		this.cpseq = cpseq;
 	}
 
@@ -81,11 +84,22 @@ public class CouponMem {
 		this.cpstatus = cpstatus;
 	}
 
+	public Date getCp_cdate() {
+		return cp_cdate;
+	}
+
+	public void setCp_cdate(Date cp_cdate) {
+		this.cp_cdate = cp_cdate;
+	}
+
 	@Override
 	public String toString() {
 		return "CouponMem [memno=" + memno + ", cpseq=" + cpseq + ", cpno=" + cpno + ", cpname=" + cpname
-				+ ", cpDiscount=" + cpDiscount + ", cpdate=" + cpdate + ", cpstatus=" + cpstatus + "]";
+				+ ", cpDiscount=" + cpDiscount + ", cpdate=" + cpdate + ", cpstatus=" + cpstatus + ", cp_cdate="
+				+ cp_cdate + "]";
 	}
+
+	
 	
 	
 	

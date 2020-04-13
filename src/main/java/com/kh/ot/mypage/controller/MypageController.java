@@ -31,6 +31,7 @@ public class MypageController {
 	 */
 	@RequestMapping("mList.do")
 	public String mList() {
+		
 		return "mypage_list";
 	}
 	
@@ -44,12 +45,11 @@ public class MypageController {
 	@RequestMapping("mWishlist.do") //1
 	public ModelAndView mWishlist(ModelAndView mv) {
 		
-		int listCount = mpService.CouponListCount();
-		int point = 
+		int Coupon = mpService.CouponListCount();
 													// 사용 가능 포인트 셋팅
 													// 찜한 갯수 카운팅
 		
-		mv.addObject("couponcount", listCount); // 쿠폰 갯수 카운팅
+		mv.addObject("couponcount", Coupon); // 쿠폰 갯수 카운팅
 		//mv.addObject()						// 사용 가능 포인트 셋팅
 												// 찜한 갯수 카운팅
 		
@@ -72,8 +72,9 @@ public class MypageController {
 		
 		System.out.println(currentPage);
 		
-		int coupon = mpService.CouponListCount();
-		int listCount = mpService.PointListCount();
+		int coupon = mpService.CouponListCount(); // 사용 가능한 쿠폰 카운팅
+		
+		int listCount = mpService.PointListCount(); // 사용 가능한 쿠폰
 		
 		System.out.println("listCount : " + listCount);
 		
@@ -82,6 +83,7 @@ public class MypageController {
 		ArrayList<Point> list = mpService.PointSelectList(pi);
 		
 		mv.addObject("CouponCount",coupon);
+		mv.addObject("PointCount", listCount);
 		mv.addObject("list", list);
 		mv.addObject("pi",pi);
 		mv.setViewName("mypage_point");
@@ -103,7 +105,8 @@ public class MypageController {
 		System.out.println(currentPage);
 		
 		int listCount = mpService.PointUnavailListCount();
-		int coupon = mpService.CouponListCount();
+		int coupon = mpService.CouponListCount(); // 사용가능한 쿠폰
+		int point = mpService.PointListCount(); // 사용가능한 적립금
 		
 		System.out.println("listCount : " + listCount);
 		
@@ -111,6 +114,7 @@ public class MypageController {
 		
 		ArrayList<Point> list = mpService.PointselectUnavailList(pi);
 		
+		mv.addObject("PointCount", point);
 		mv.addObject("CouponCount",coupon);
 		mv.addObject("list", list);
 		mv.addObject("pi",pi);
@@ -137,6 +141,7 @@ public class MypageController {
 		
 		
 		int listCount = mpService.CouponListCount();
+		int point = mpService.PointListCount();
 		
 		System.out.println("listCount : " + listCount);
 		
@@ -144,6 +149,8 @@ public class MypageController {
 		
 		ArrayList<CouponMem> list = mpService.CouponSelectList(pi);
 		
+		mv.addObject("CouponCount", listCount);
+		mv.addObject("PointCount", point);
 		mv.addObject("list", list);
 		mv.addObject("pi", pi);
 		mv.setViewName("mypage_coupon");
@@ -164,6 +171,9 @@ public class MypageController {
 		
 		System.out.println(currentPage);
 		
+		int coupon = mpService.CouponListCount();
+		int point = mpService.PointListCount();
+		
 		int listCount = mpService.CompleteCouponListCount();
 		
 		System.out.println("listCount : " + listCount);
@@ -172,9 +182,11 @@ public class MypageController {
 		
 		ArrayList<CouponMem> list = mpService.CompleteCouponSelectList(pi);
 		
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
 		mv.addObject("list", list);
-		mv.addObject("pi",pi);
-		mv.setViewName("mypage_coupon");
+		mv.addObject("pi", pi);
+		mv.setViewName("mypage_completecoupon");
 		
 		return mv;
 	}
