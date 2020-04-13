@@ -255,12 +255,14 @@ th{
         		
 	<c:forEach var="d" items="${mainList}">        		
 				<input type="hidden" value="${d.deNo}" name="no"> 
-        		<div style="display: flex;margin-top: 3%"><span>FILE 1</span><input name="mainImg" class="mainbaner" src="/ot/resources/bupladFiles/${mainList[0].reFile}" value="${mainList[0].reFile}" type="file">
+        		<div style="display: flex;margin-top: 3%"><span>FILE 1</span><input name="mainImg" class="mainbaner" src="/ot/resources/bupladFiles/${d.reFile}" value="${mainList[0].reFile}" type="file">
         		<span>메인배너 문구</span><input name="mainComment" value="${d.mainComment }" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
         		<span>바로가기 링크</span><input name="mainLink" value="${d.mainLink }" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</div>
         		<c:if test="${!empty  d.reFile   }">
-				<div style="    margin-left: 7%;"><a style="color: blue"  href="nfdown.ad?path=${d.reFile}" id="fildown">${d.reFile}</a></div>
+				<div style="    margin-left: 7%;"><a style="color: blue"  href="/ot/resources/buploadFiles/${ d.reFile }" download="${ d.reFile }"  id="fildown">${d.reFile}</a></div>
+																               <%-- <a href="${ contextPath }/resources/buploadFiles/${ b.renameFileName }" download="${ b.originalFileName }">${ b.originalFileName }</a> --%>
+																
 				</c:if>
 				<c:if test="${empty  d.reFile   }">
 				<div style="    margin-left: 7%;"><span >등록된 파일이 없습니다.</span></div>
@@ -327,22 +329,6 @@ th{
      <div class="page-wrapper">
     </div>
 
-<script>
-$('#fildown').click({
-	function(en){
-		var path = $(this).text();		
-	$.ajax({
-			url:"nfdown.ad",
-			data:{path : path},
-			success:function(){
-					alert("성공")		
-			},error:function(){
-				alert("실패")
-			}
-		});	
-	}
-});
-</script>
     <script>
 
     	$('#mainBtn').click(function(){

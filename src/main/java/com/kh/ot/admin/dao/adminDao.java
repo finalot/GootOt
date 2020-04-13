@@ -13,8 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.DownCategory;
-import com.kh.ot.admin.vo.Product;
-import com.kh.ot.admin.vo.ProductOption;
 import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.vo.Board;
@@ -150,6 +148,18 @@ public class adminDao {
 
 	public ArrayList<Design> selectInstaList() {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectInstaList");
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 13.
+	 * @작성자  : 문태환
+	 * @내용 	: 어드민 상품문의 리스트
+	 * @param b_cate_no
+	 * @return
+	 */
+	public ArrayList<Board> selectList(int b_cate_no) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectList",b_cate_no);
 	}
 	
 	

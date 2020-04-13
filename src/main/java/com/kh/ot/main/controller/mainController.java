@@ -21,8 +21,8 @@ import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
-import com.kh.ot.main.vo.downCategory;
-import com.kh.ot.main.vo.upCategory;
+import com.kh.ot.main.vo.MaindownCategory;
+import com.kh.ot.main.vo.MainupCategory;
 
 //@SessionAttributes("loginMember")
 @Controller
@@ -52,8 +52,8 @@ public class mainController {
 
 		ArrayList<Product> plist = mainService.selectList1(mainPi, product1);
 
-		ArrayList<downCategory> dclist = mainService.selectCategoryList1(product1);
-		ArrayList<upCategory> uclist = mainService.selectUpCategoryList1();
+		ArrayList<MaindownCategory> dclist = mainService.selectCategoryList1(product1);
+		ArrayList<MainupCategory> uclist = mainService.selectUpCategoryList1();
 
 		ArrayList<Product_opt> polist = mainService.selectOptionList1(product1);
 
@@ -87,8 +87,8 @@ public class mainController {
 
 		ArrayList<Product> plist = mainService.selectList2(mainPi, product2);
 
-		ArrayList<downCategory> dclist = mainService.selectCategoryList2(product2);
-		ArrayList<upCategory> uclist = mainService.selectUpCategoryList2();
+		ArrayList<MaindownCategory> dclist = mainService.selectCategoryList2(product2);
+		ArrayList<MainupCategory> uclist = mainService.selectUpCategoryList2();
 
 		ArrayList<Product_opt> polist = mainService.selectOptionList2(product2);
 
@@ -117,7 +117,7 @@ public class mainController {
 	public void header(HttpServletResponse response) throws JsonIOException, IOException {
 
 //ArrayList<downCategory> dclist = mainService.selectCategoryList3();
-		ArrayList<upCategory> uclist = mainService.selectUpCategoryList3();
+		ArrayList<MainupCategory> uclist = mainService.selectUpCategoryList3();
 
 		response.setContentType("application/json; charset=utf-8");
 		Gson gson = new Gson();
@@ -130,7 +130,7 @@ public class mainController {
 	  @RequestMapping("header2.do") public void header2(HttpServletResponse
 	  response) throws JsonIOException, IOException{
 	  
-	  ArrayList<downCategory> dclist = mainService.selectCategoryList3(); //
+	  ArrayList<MaindownCategory> dclist = mainService.selectCategoryList3(); //
 //	  ArrayList<upCategory> uclist = mainService.selectUpCategoryList3();
 	  
 	  
@@ -242,4 +242,67 @@ public class mainController {
 		return "FaQ";
 	}
 
+	/**
+	 * @작성일 : 2020. 4. 13.
+	 * @작성자 :이대윤
+	 * @내용 : 프로덕트 가격 솔팅
+	 * @param @return
+	 * @return String
+	 */
+	
+//	@RequestMapping("sortPrice1.do")
+//	public ModelAndView sortPrice1(ModelAndView mv, int product1,int minPrice,int maxPrice,
+//			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
+//
+//		int listCount = mainService.getListCount1(product1);
+//
+//		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage, listCount);
+//
+//		ArrayList<Product> plist = mainService.selectSortPriceList1(mainPi, product1,minPrice,maxPrice);
+//
+//		ArrayList<MaindownCategory> dclist = mainService.selectCategoryList1(product1);
+//		ArrayList<MainupCategory> uclist = mainService.selectUpCategoryList1();
+//
+//		ArrayList<Product_opt> polist = mainService.selectOptionList1(product1);
+//
+//		ArrayList<Product_color> pclist = mainService.selectColorList1();
+//
+//		mv.addObject("plist", plist);
+//		mv.addObject("dclist", dclist);
+//		mv.addObject("uclist", uclist);
+//		mv.addObject("polist", polist);
+//		mv.addObject("pclist", pclist);
+//		mv.addObject("mainPi", mainPi);
+//		mv.setViewName("product1");
+//
+//		return mv;
+//	}
+//	
+//	@RequestMapping("sortPrice2.do")
+//	public ModelAndView sortPrice2(ModelAndView mv, int product2,int minPrice,int maxPrice,
+//			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
+//
+//		int listCount = mainService.getListCount2(product2);
+//
+//		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage, listCount);
+//
+//		ArrayList<Product> plist = mainService.selectSortPriceList2(mainPi, product2,minPrice,maxPrice);
+//
+//		ArrayList<MaindownCategory> dclist = mainService.selectCategoryList2(product2);
+//		ArrayList<MainupCategory> uclist = mainService.selectUpCategoryList2();
+//
+//		ArrayList<Product_opt> polist = mainService.selectOptionList2(product2);
+//
+//		ArrayList<Product_color> pclist = mainService.selectColorList2();
+//
+//		mv.addObject("plist", plist);
+//		mv.addObject("dclist", dclist);
+//		mv.addObject("uclist", uclist);
+//		mv.addObject("polist", polist);
+//		mv.addObject("pclist", pclist);
+//		mv.addObject("mainPi", mainPi);
+//		mv.setViewName("product2");
+//
+//		return mv;
+//	}
 }

@@ -14,17 +14,16 @@
 <typeAliases>
 <typeAlias type="com.kh.ot.member.vo.Member" alias="Member"/>
 <typeAlias type="com.kh.ot.board.vo.Board" alias="Board"/>
- <typeAlias type="com.kh.ot.main.vo.downCategory" alias="downCategory"/> 
- <typeAlias type="com.kh.ot.main.vo.upCategory" alias="upCategory"/> 
+ <typeAlias type="com.kh.ot.main.vo.MaindownCategory" alias="MaindownCategory"/> 
+ <typeAlias type="com.kh.ot.main.vo.MainupCategory" alias="MainupCategory"/> 
 <typeAlias type="com.kh.ot.main.vo.Product" alias="Product"/>
 <typeAlias type="com.kh.ot.main.vo.Product_opt" alias="Product_opt"/>
 <typeAlias type="com.kh.ot.main.vo.Product_color" alias="Product_color"/>
 <typeAlias type="com.kh.ot.admin.vo.Coupon" alias="Coupon"/>
-<!-- <typeAlias type="com.kh.ot.admin.vo.UpCategory" alias="UpCategory"/>
-<typeAlias type="com.kh.ot.admin.vo.DownCategory" alias="DownCategory"/> -->
-<!-- <typeAlias type="com.kh.ot.admin.vo.Product" alias="Product"/>
+ <typeAlias type="com.kh.ot.admin.vo.UpCategory" alias="UpCategory"/>
+<typeAlias type="com.kh.ot.admin.vo.DownCategory" alias="DownCategory"/> 
 <typeAlias type="com.kh.ot.admin.vo.ProductOption" alias="ProductOption"/>
- -->
+
 <typeAlias type="com.kh.ot.admin.vo.Design" alias="Design"/>
 <typeAlias type="com.kh.ot.admin.vo.Point" alias="Point"/>
 <typeAlias type="com.kh.ot.mypage.vo.CouponMem" alias="CouponMem"/>

@@ -9,8 +9,8 @@ import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
-import com.kh.ot.main.vo.downCategory;
-import com.kh.ot.main.vo.upCategory;
+import com.kh.ot.main.vo.MaindownCategory;
+import com.kh.ot.main.vo.MainupCategory;
 
 public interface MainService {
 	
@@ -64,16 +64,30 @@ public interface MainService {
 	 * @param @return
 	 * @return ArrayList<downCategory>
 	 */
-	ArrayList<downCategory> selectCategoryList1(int product1);
+	ArrayList<MaindownCategory> selectCategoryList1(int product1);
 
-	ArrayList<upCategory> selectUpCategoryList1();
+	ArrayList<MainupCategory> selectUpCategoryList1();
 
-	ArrayList<downCategory> selectCategoryList2(int product2);
+	ArrayList<MaindownCategory> selectCategoryList2(int product2);
 
-	ArrayList<upCategory> selectUpCategoryList2();
+	ArrayList<MainupCategory> selectUpCategoryList2();
 
-	ArrayList<downCategory> selectCategoryList3();
+	ArrayList<MaindownCategory> selectCategoryList3();
 	
-	ArrayList<upCategory> selectUpCategoryList3();
-	
+	ArrayList<MainupCategory> selectUpCategoryList3();
+
+	/**
+	 * @작성일 : 2020. 4. 13.
+	 * @작성자 :
+	 * @내용 :
+	 * @param @param mainPi
+	 * @param @param product1
+	 * @param @param minPrice
+	 * @param @param maxPrice
+	 * @param @return
+	 * @return ArrayList<Product>
+	 */
+//	ArrayList<Product> selectSortPriceList1(MainPageInfo mainPi, int product1, int minPrice, int maxPrice);
+//	ArrayList<Product> selectSortPriceList2(MainPageInfo mainPi, int product1, int minPrice, int maxPrice);
+//	
 }

@@ -20,13 +20,15 @@
 			<result property="qna_modify_date" column="QNA_MODIFY_DATE"/>
 			<result property="qna_password" column="QNA_PASSWORD"/>
 			<result property="qna_secure" column="QNA_SECURE"/>
+			<result property="prdt_code" column="PRDT_CODE"/>
+			
 		</resultMap>
 
 		<insert id="insertBoard" parameterType="Board">
 		INSERT INTO QNA
-		VALUES(QNA_SEQ.NEXTVAL, #{b_cate_no},#{mem_no}, #{content}, #{qna_chk}, SYSDATE,
+		VALUES(QNA_SEQ.NEXTVAL, #{b_cate_no},#{mem_no}, #{content}, DEFAULT, SYSDATE,
 				#{qna_writer},#{qna_title},#{originalFileName},#{renameFileName},SYSDATE,
-				#{qna_password},#{qna_secure})
+				#{qna_password},#{qna_secure},#{prdt_code})
 		</insert>
 		
 		<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">

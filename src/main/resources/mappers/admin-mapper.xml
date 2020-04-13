@@ -5,204 +5,203 @@
 
 
 <mapper namespace="adminMapper">
-		<!-- reusltMap -->
-		<resultMap type="Coupon" id="CouponResultSet">
-			<id property = "cpNo" column="CP_NO"/>
-			<result property="cpName" column="CP_NAME"/>
-			<result property="cpDiscount" column="CP_DISCOUNT"/>
-			<result property="cpDate" column="CP_DATE"/>
-		</resultMap>
-		
-		<resultMap type="UpCategory" id="UpCategorySelectResultSet">
-			<id property = "up_no" column="UP_NO"/>
-			<result property="up_name" column="UP_NAME"/>
-			<result property="up_using" column="UP_USING"/>
-			<result property="up_date" column="UP_DATE"/>
-		</resultMap>
-		
-		<resultMap type="DownCategory" id="DownCategorySelectResultSet">
-			<id property = "down_no" column="DOWN_NO"/>
-			<result property="up_no" column="UP_NO"/>
-			<result property="down_name" column="DOWN_NAME"/>
-			<result property="down_using" column="DOWN_USING"/>
-			<result property="down_date" column="DOWN_DATE"/>
-		</resultMap>
-		
-		<!-- <resultMap type="Product" id="ProductInsertResultSet">
-			<id property="prdtNo" column="PRDT_NO"/>
-			<result property="upNo" column="UP_NO"/>
-			<result property="prdtName" column="PRDT_NAME"/>
-			<result property="prdtComment" column="PRDT_COMMENT"/>
-			<result property="prdtPrice" column="PRDT_PRICE"/>
-			<result property="prdtBrand" column="PRDT_BRAND"/>
-			<result property="prdtMake" column="PRDT_MAKE"/>
-			<result property="prdtImage" column="PRDT_IMAGE"/>
-			<result property="prdtDate" column="PRDT_DATE"/>
-			<result property="prdtModifyDate" column="MODIFY_DATE"/>
-			<result property="prdtUser" column="PRDT_USER"/>
-			<result property="downNo" column="DOWN_NO"/>
-			<result property="prdtCode" column="PRDT_CODE"/>
-			<result property="prdtImagePath" column="PRDT_IMAGE_PATH"/>
-			<result property="prdtDetailImage" column="PRDT_DETAIL_IMAGE"/>
-			<result property="prdtDetailImagePath" column="PRDT_DETAIL_IMAGE_PATH"/>
-			<result property="prdtSale" column="PRDT_SALE"/>
-		</resultMap>
-		
-		<resultMap type="ProductOption" id="ProductOptionInsertResultSet">
-			<id property="opt_no" column="OPT_NO"/>
-			<result property="prdt_no" column="PRDT_NO"/>
-			<result property="prdt_no" column="OPT_COLOR"/>
-			<result property="prdt_no" column="OPT_SIZE"/>
-			<result property="prdt_no" column="OPT_STOCK"/>
-			<result property="prdt_no" column="OPT_DATE"/>
-			<result property="prdt_no" column="MODIFY_DATE"/>
-			<result property="prdt_no" column="OPT_USER"/>
-			<result property="prdt_no" column="PRDT_CODE"/>
-		</resultMap> -->
-		
-		<resultMap type="Design" id="MainResultSet">
-			<id property = "deNo" column="D_NO"/>
-			<result property="mainComment" column="D_COMMENT"/>
-			<result property="reFile" column="D_REFILE"/>
-			<result property="mainLink" column="D_LINK"/>
-		</resultMap>
+      <!-- reusltMap -->
+      <resultMap type="Coupon" id="CouponResultSet">
+         <id property = "cpNo" column="CP_NO"/>
+         <result property="cpName" column="CP_NAME"/>
+         <result property="cpDiscount" column="CP_DISCOUNT"/>
+         <result property="cpDate" column="CP_DATE"/>
+      </resultMap>
 
-		<resultMap type="Design" id="VideoResultSet">
-			<id property = "deNo" column="V_NO"/>
-			<result property="reFile" column="VIDEOFILE"/>
-		</resultMap>
-		
-		<resultMap type="Design" id="InstaResultSet">
-			<id property = "deNo" column="IN_NO"/>
-			<result property="reFile" column="IN_REFILE"/>
-			<result property="mainLink" column="IN_LINK"/>
-			<result property="mainComment" column="IN_COMMENT"/>
-			
-		</resultMap>
+      <resultMap type="UpCategory" id="UpCategorySelectResultSet">
+         <id property = "up_no" column="UP_NO"/>
+         <result property="up_name" column="UP_NAME"/>
+         <result property="up_using" column="UP_USING"/>
+         <result property="up_date" column="UP_DATE"/>
+      </resultMap>
+
+      <resultMap type="DownCategory" id="DownCategorySelectResultSet">
+         <id property = "down_no" column="DOWN_NO"/>
+         <result property="up_no" column="UP_NO"/>
+         <result property="down_name" column="DOWN_NAME"/>
+         <result property="down_using" column="DOWN_USING"/>
+         <result property="down_date" column="DOWN_DATE"/>
+      </resultMap>
+
+      <!-- <resultMap type="Product" id="ProductInsertResultSet">
+         <id property="prdtNo" column="PRDT_NO"/>
+         <result property="upNo" column="UP_NO"/>
+         <result property="prdtName" column="PRDT_NAME"/>
+         <result property="prdtComment" column="PRDT_COMMENT"/>
+         <result property="prdtPrice" column="PRDT_PRICE"/>
+         <result property="prdtBrand" column="PRDT_BRAND"/>
+         <result property="prdtMake" column="PRDT_MAKE"/>
+         <result property="prdtImage" column="PRDT_IMAGE"/>
+         <result property="prdtDate" column="PRDT_DATE"/>
+         <result property="prdtModifyDate" column="MODIFY_DATE"/>
+         <result property="prdtUser" column="PRDT_USER"/>
+         <result property="downNo" column="DOWN_NO"/>
+         <result property="prdtCode" column="PRDT_CODE"/>
+         <result property="prdtImagePath" column="PRDT_IMAGE_PATH"/>
+         <result property="prdtDetailImage" column="PRDT_DETAIL_IMAGE"/>
+         <result property="prdtDetailImagePath" column="PRDT_DETAIL_IMAGE_PATH"/>
+         <result property="prdtSale" column="PRDT_SALE"/>
+      </resultMap>
+
+      <resultMap type="ProductOption" id="ProductOptionInsertResultSet">
+         <id property="opt_no" column="OPT_NO"/>
+         <result property="prdt_no" column="PRDT_NO"/>
+         <result property="prdt_no" column="OPT_COLOR"/>
+         <result property="prdt_no" column="OPT_SIZE"/>
+         <result property="prdt_no" column="OPT_STOCK"/>
+         <result property="prdt_no" column="OPT_DATE"/>
+         <result property="prdt_no" column="MODIFY_DATE"/>
+         <result property="prdt_no" column="OPT_USER"/>
+         <result property="prdt_no" column="PRDT_CODE"/>
+      </resultMap> -->
+
+      <resultMap type="Design" id="MainResultSet">
+         <id property = "deNo" column="D_NO"/>
+         <result property="mainComment" column="D_COMMENT"/>
+         <result property="reFile" column="D_REFILE"/>
+         <result property="mainLink" column="D_LINK"/>
+      </resultMap>
+
+      <resultMap type="Design" id="VideoResultSet">
+         <id property = "deNo" column="V_NO"/>
+         <result property="reFile" column="VIDEOFILE"/>
+      </resultMap>
+
+      <resultMap type="Design" id="InstaResultSet">
+         <id property = "deNo" column="IN_NO"/>
+         <result property="reFile" column="IN_REFILE"/>
+         <result property="mainLink" column="IN_LINK"/>
+         <result property="mainComment" column="IN_COMMENT"/>
+
+      </resultMap>
 
 <insert id="couponInput" parameterType="java.util.Map">
-	INSERT INTO COUPON (CP_NO,CP_NAME,CP_DISCOUNT,CP_DATE)
-	SELECT COU_SEQ.NEXTVAL, A.*FROM(
+   INSERT INTO COUPON (CP_NO,CP_NAME,CP_DISCOUNT,CP_DATE)
+   SELECT COU_SEQ.NEXTVAL, A.*FROM(
 <foreach collection="clist" item="c"  separator="UNION ALL" >
-	SELECT #{c.cpName} as CP_NAME,
-				 #{c.cpDiscount} as 	CP_DISCOUNT,
-				 SYSDATE as CP_DATE
-	FROM DUAL
-	</foreach>) A
-</insert>		
+   SELECT #{c.cpName} as CP_NAME,
+             #{c.cpDiscount} as    CP_DISCOUNT,
+             SYSDATE as CP_DATE
+   FROM DUAL
+   </foreach>) A
+</insert>
 
 <select id="selectListCoupon" resultMap="CouponResultSet">
-	SELECT * FROM COUPON
-</select>	
+   SELECT * FROM COUPON
+</select>
 
 <delete id="couponDelete" parameterType="String" >
-	DELETE FROM COUPON
-	WHERE CP_NAME = #{cpName}
+   DELETE FROM COUPON
+   WHERE CP_NAME = #{cpName}
 </delete>
-		
+
 
 
 <select id="UpCategorySelect" resultMap="UpCategorySelectResultSet">
-	SELECT * 
-	FROM UP_CATE
-	WHERE UP_USING='Y'
+   SELECT *
+   FROM UP_CATE
+   WHERE UP_USING='Y'
 </select>
 
 <select id="DownCategorySelect" resultMap="DownCategorySelectResultSet">
-	SELECT * 
-	FROM DOWN_CATE D
-	LEFT JOIN UP_CATE U ON D.UP_NO=U.UP_NO
-	WHERE DOWN_USING='Y' 
+   SELECT *
+   FROM DOWN_CATE D
+   LEFT JOIN UP_CATE U ON D.UP_NO=U.UP_NO
+   WHERE DOWN_USING='Y'
 </select>
 
 <insert id="UpCategoryInsert" parameterType="String">
-	INSERT INTO UP_CATE (UP_NO, UP_NAME, UP_USING) VALUES
-	(UP_CATE_SEQ.NEXTVAL, #{addOption}, DEFAULT)
+   INSERT INTO UP_CATE (UP_NO, UP_NAME, UP_USING) VALUES
+   (UP_CATE_SEQ.NEXTVAL, #{addOption}, DEFAULT)
 </insert>
 
 <insert id="DownCategoryInsert" parameterType="DownCategory">
-	INSERT INTO DOWN_CATE  
+   INSERT INTO DOWN_CATE
     VALUES (DOWN_CATE_SEQ.NEXTVAL, #{up_no} ,#{down_name}, 'Y',SYSDATE)
 </insert>
 
 <update id="UpCategoryDelete" parameterType="_int">
-	UPDATE UP_CATE
-	SET UP_USING='N'
-	WHERE UP_NO=#{up_no}
+   UPDATE UP_CATE
+   SET UP_USING='N'
+   WHERE UP_NO=#{up_no}
 </update>
 
 
 <update id="DownCategoryDelete" parameterType="DownCategory">
-	UPDATE DOWN_CATE
-	SET DOWN_USING='N'
-	WHERE UP_NO=#{up_no}
-	AND DOWN_NO=#{down_no}
-	
+   UPDATE DOWN_CATE
+   SET DOWN_USING='N'
+   WHERE UP_NO=#{up_no}
+   AND DOWN_NO=#{down_no}
+
 </update>
-		
+
 <!-- <insert id="ProductInsert" parameterType="Product">
-	<selectkey id="prdtNo" resultType="_int" order="BEFORE">
-		SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
-	</selectkey>
-	INSERT INTO PRDT
-	VALUES (#{prdtNo}, #{upNo}, #{prdtName}, #{prdtComment}
-			,#{prdtPrice}, #{prdtBrand}, #{prdtMake}, #{prdtImage}
-			,SYSDATE, NULL, DEFAULT, #{downNO}, NULL
-			,#{prdtImagePath}, #{prdtDetailImage}, #{prdtDetailImagePath})	 
+   <selectkey id="prdtNo" resultType="_int" order="BEFORE">
+      SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
+   </selectkey>
+   INSERT INTO PRDT
+   VALUES (#{prdtNo}, #{upNo}, #{prdtName}, #{prdtComment}
+         ,#{prdtPrice}, #{prdtBrand}, #{prdtMake}, #{prdtImage}
+         ,SYSDATE, NULL, DEFAULT, #{downNO}, NULL
+         ,#{prdtImagePath}, #{prdtDetailImage}, #{prdtDetailImagePath})
 </insert>
 
 <insert id="ProductOptionInsert" parameterType="ProductOption">
-	INSERT INTO PRDT_OPT VALUES
-	(PRODUCT_OPT_SEQ.NEXTVAL,#{prdt_no}, {opt_color}, {opt_size},
-	{opt_stock}, SYSDATE, NULL, #{prdt_code})
+   INSERT INTO PRDT_OPT VALUES
+   (PRODUCT_OPT_SEQ.NEXTVAL,#{prdt_no}, {opt_color}, {opt_size},
+   {opt_stock}, SYSDATE, NULL, #{prdt_code})
 </insert> -->
 
 <update id="DesignEd" parameterType="java.util.Map">
-	<foreach  item="d" collection="dlist"  index="index" 
+   <foreach  item="d" collection="dlist"  index="index"
       separator=";" open="DECLARE BEGIN" close="; END;" >
-	UPDATE MAINDESIGN 
-	SET 
-	D_ORIFILE=#{d.oriFIle},
-	D_REFILE=#{d.reFile},
-	D_COMMENT=#{d.mainComment},
-	D_LINK=#{d.mainLink}
-	WHERE D_NO = #{d.deNo}
+   UPDATE MAINDESIGN
+   SET
+   D_ORIFILE=#{d.oriFIle},
+   D_REFILE=#{d.reFile},
+   D_COMMENT=#{d.mainComment},
+   D_LINK=#{d.mainLink}
+   WHERE D_NO = #{d.deNo}
 </foreach>
 </update>
 
 <update id="DesignEdVideo" parameterType="Design">
-	UPDATE MAINVIDEO
-	SET VIDEOFILE=#{reFile}	
-	WHERE V_NO=1
+   UPDATE MAINVIDEO
+   SET VIDEOFILE=#{reFile}
+   WHERE V_NO=1
 </update>
 
 <update id="DesignInsta"  parameterType="java.util.Map">
-<foreach  item="d" collection="dlist"  index="index" 
+<foreach  item="d" collection="dlist"  index="index"
      separator=";" open="DECLARE BEGIN" close="; END;" >
-	UPDATE INSTADESIGN 
-	SET
-	IN_ORIFILE = #{d.oriFIle},
-	IN_REFILE = #{d.reFile},
-	IN_LINK = #{d.mainLink},
-	IN_COMMENT = #{d.mainComment}
-	WHERE IN_NO = #{d.deNo}
+   UPDATE INSTADESIGN
+   SET
+   IN_ORIFILE = #{d.oriFIle},
+   IN_REFILE = #{d.reFile},
+   IN_LINK = #{d.mainLink},
+   IN_COMMENT = #{d.mainComment}
+   WHERE IN_NO = #{d.deNo}
 </foreach>
 </update>
 <select id="selectMainList" resultMap="MainResultSet" >
-	SELECT * FROM 
-	MAINDESIGN
+   SELECT * FROM
+   MAINDESIGN
 </select>
 
 <select id="selectVideo" resultMap="VideoResultSet">
-	SELECT * FROM
-	MAINVIDEO
+   SELECT * FROM
+   MAINVIDEO
 </select>
 
 <select id="selectInstaList" resultMap="InstaResultSet">
-	SELECT * FROM
-	INSTADESIGN	
+   SELECT * FROM
+   INSTADESIGN
 </select>
 
 
 </mapper>
-

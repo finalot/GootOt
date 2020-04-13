@@ -15,8 +15,8 @@ import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
-import com.kh.ot.main.vo.downCategory;
-import com.kh.ot.main.vo.upCategory;
+import com.kh.ot.main.vo.MaindownCategory;
+import com.kh.ot.main.vo.MainupCategory;
 
 @Service("mainService")
 public class MainServiceImpl implements MainService {
@@ -63,32 +63,40 @@ public class MainServiceImpl implements MainService {
 		return mainDao.selectColorList2();
 	}
 	@Override
-	public ArrayList<downCategory> selectCategoryList1(int product1) {
+	public ArrayList<MaindownCategory> selectCategoryList1(int product1) {
 		return mainDao.selectCategoryList1(product1);
 	}
 	@Override
-	public ArrayList<upCategory> selectUpCategoryList1() {
+	public ArrayList<MainupCategory> selectUpCategoryList1() {
 		return mainDao.selectUpCategoryList1();
 	}
 	@Override
-	public ArrayList<downCategory> selectCategoryList2(int product2) {
+	public ArrayList<MaindownCategory> selectCategoryList2(int product2) {
 		int product22 = product2/10;
 		System.out.println(product22);
 		return mainDao.selectCategoryList2(product22);
 	}
 	@Override
-	public ArrayList<upCategory> selectUpCategoryList2() {
+	public ArrayList<MainupCategory> selectUpCategoryList2() {
 		return mainDao.selectUpCategoryList2();
 	}
 	@Override
-	public ArrayList<downCategory> selectCategoryList3() {
+	public ArrayList<MaindownCategory> selectCategoryList3() {
 		
 		return mainDao.selectCategoryList3();
 	}
 	@Override
-	public ArrayList<upCategory> selectUpCategoryList3() {
+	public ArrayList<MainupCategory> selectUpCategoryList3() {
 		return mainDao.selectUpCategoryList3();
 	}
+//	@Override
+//	public ArrayList<Product> selectSortPriceList1(MainPageInfo mainPi, int product1, int minPrice, int maxPrice) {
+//		return mainDao.selectSortPriceList1(mainPi,product1,minPrice,maxPrice);
+//	}
+//	@Override
+//	public ArrayList<Product> selectSortPriceList2(MainPageInfo mainPi, int product2, int minPrice, int maxPrice) {
+//		return mainDao.selectSortPriceList2(mainPi,product2,minPrice,maxPrice);
+//	}
 	
 
 
