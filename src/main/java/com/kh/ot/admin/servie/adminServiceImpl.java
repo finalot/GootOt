@@ -66,6 +66,8 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public int UpCategoryInsert(String addOption) {
 		return adDao.UpCategoryInsert(addOption);
+	}
+	@Override
 	public int DesignInsta(ArrayList<Design> dlist) {
 		return adDao.DesignInsta(dlist);
 	}
@@ -74,6 +76,8 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public int DownCategoryInsert(DownCategory downCategory) {
 		return adDao.DownCategoryInsert(downCategory);
+	}
+	@Override
 	public ArrayList<Design> selectMainList() {
 		return adDao.selectMainList();
 	}
@@ -82,6 +86,8 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public int UpCategoryDelete(int up_no) {
 		return adDao.UpCategoryDelete(up_no);
+	}
+	@Override
 	public Design selectVideo() {
 		return adDao.selectVideo();
 	}

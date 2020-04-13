@@ -73,7 +73,7 @@
       
         </div>
 </div>
-<form id="boardUpdateForm" action="product_board_updateView.do">
+<form id="boardUpdateForm" action="product_board_updateView.do" method="POST" enctype="multipart/form-data">
 	<input type="hidden" name="qna_no" value="${b.qna_no}">
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
@@ -100,56 +100,63 @@
     <tr>
 		<th scope="row">TITLE</th>
            <td><input type="text" name="qna_title" style="width: 390px;height: 26px;" value="${b.qna_title }">
+           		<input type="hidden" value="${b.content}" id=b_content>	
 		   </td>
     </tr>
 
     
 	<td colspan="2" class="clear">           
             <script type="text/javascript" src="//editor.cafe24.com/js/nneditor.js?c=ko"></script>
-            <style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";		</style>		<script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+            <style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";</style>
+           <script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
             <script type="text/javascript">
+            var b_content =$('#b_content').val();
             NN.Config.instanceID = "content";
-            NN.Config.value = "${b.content}";
+            NN.Config.value = b_content;
             NN.Config.toolbarType = "simple";
                 
                 
                 
+          //Editor Height
+            NN.Config.height=400;
 
-                //Editor Height
-                NN.Config.height=400;
+            var oNN_content = new NNEditor();
+            oNN_content.build();
 
-                var oNN_content = new NNEditor();
-                oNN_content.build();
+            if (typeof $Editor != "object") {
+                $Editor = {
+                    _obj : {},
 
-                if (typeof $Editor != "object") {
-                    $Editor = {
-                        _obj : {},
+                    push : function(obj, id) {
+                        this._obj[id] = obj;
+                    },
 
-                        push : function(obj, id) {
-                            this._obj[id] = obj;
-                        },
+                    get : function(id) {
+                        return this._obj[id];
+                    },
 
-                        get : function(id) {
-                            return this._obj[id];
-                        },
+                    reset : function(id) {
+                        this._obj[id].getText().value = "";
+                        this._obj[id].getIFDoc().body.innerHTML = this._obj[id].Config.START_HTML;
+                    },
 
-                        reset : function(id) {
-                            this._obj[id].getText().value = "";
-                            this._obj[id].getIFDoc().body.innerHTML = this._obj[id].Config.START_HTML;
-                        },
+                    contents : function(id, context) {
+                        this._obj[id].getText().value = context;
+                        this._obj[id].getIFDoc().body.innerHTML = this._obj[id].view.parsing(2);
+                    }
+                };
+            }
 
-                        contents : function(id, context) {
-                            this._obj[id].getText().value = context;
-                            this._obj[id].getIFDoc().body.innerHTML = this._obj[id].view.parsing(2);
-                        }
-                    };
-                }
-
-                $Editor.push(oNN_content, "content");
+            $Editor.push(oNN_content, "content");
                 
                 
             </script>	
             	
+            	
+          
 		
 	</tbody>
 	

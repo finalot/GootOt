@@ -13,20 +13,20 @@
 			<result property="cpDate" column="CP_DATE"/>
 		</resultMap>
 		
-		<resultMap type="UpCategory" id="UpCategorySelectResultSet">
+		<!-- <resultMap type="UpCategory" id="UpCategorySelectResultSet">
 			<id property = "up_no" column="UP_NO"/>
 			<result property="up_name" column="UP_NAME"/>
 			<result property="up_using" column="UP_USING"/>
 			<result property="up_date" column="UP_DATE"/>
-		</resultMap>
-		
+		</resultMap> -->
+	<!-- 	
 		<resultMap type="DownCategory" id="DownCategorySelectResultSet">
 			<id property = "down_no" column="DOWN_NO"/>
 			<result property="up_no" column="UP_NO"/>
 			<result property="down_name" column="DOWN_NAME"/>
 			<result property="down_using" column="DOWN_USING"/>
 			<result property="down_date" column="DOWN_DATE"/>
-		</resultMap>
+		</resultMap> -->
 		
 	<!-- 	<resultMap type="Product" id="ProductInsertResultSet">
 			<id property="prdtNo" column="PRDT_NO"/>
@@ -101,43 +101,43 @@
 		
 
 
-<select id="UpCategorySelect" resultMap="UpCategorySelectResultSet">
+<!-- <select id="UpCategorySelect" resultMap="UpCategorySelectResultSet">
 	SELECT * 
 	FROM UP_CATE
 	WHERE UP_USING='Y'
-</select>
+</select> -->
 
-<select id="DownCategorySelect" resultMap="DownCategorySelectResultSet">
+<!-- <select id="DownCategorySelect" resultMap="DownCategorySelectResultSet">
 	SELECT * 
 	FROM DOWN_CATE D
 	LEFT JOIN UP_CATE U ON D.UP_NO=U.UP_NO
 	WHERE DOWN_USING='Y' 
-</select>
+</select> -->
 
-<insert id="UpCategoryInsert" parameterType="String">
+<!-- <insert id="UpCategoryInsert" parameterType="String">
 	INSERT INTO UP_CATE (UP_NO, UP_NAME, UP_USING) VALUES
 	(UP_CATE_SEQ.NEXTVAL, #{addOption}, DEFAULT)
 </insert>
-
-<insert id="DownCategoryInsert" parameterType="DownCategory">
+ -->
+<!-- <insert id="DownCategoryInsert" parameterType="DownCategory">
 	INSERT INTO DOWN_CATE  
     VALUES (DOWN_CATE_SEQ.NEXTVAL, #{up_no} ,#{down_name}, 'Y',SYSDATE)
-</insert>
+</insert> -->
 
-<update id="UpCategoryDelete" parameterType="_int">
+<!-- <update id="UpCategoryDelete" parameterType="_int">
 	UPDATE UP_CATE
 	SET UP_USING='N'
 	WHERE UP_NO=#{up_no}
-</update>
+</update> -->
 
-
+<!-- 
 <update id="DownCategoryDelete" parameterType="DownCategory">
 	UPDATE DOWN_CATE
 	SET DOWN_USING='N'
 	WHERE UP_NO=#{up_no}
 	AND DOWN_NO=#{down_no}
 	
-</update>
+</update> -->
 		
 <!-- <insert id="ProductInsert" parameterType="Product">
 	<selectkey id="prdtNo" resultType="_int" order="BEFORE">
