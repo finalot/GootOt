@@ -106,13 +106,13 @@
 			<div class="ec-base-tab tab_style">
         		<ul class="menu">
 					<li class="selected">
-						<a href="${mPoint }">적립내역보기</a>
+						<a href="${mPoint }">적립 내역 보기</a>
 					</li>
 <!-- 		            <li>
 		            	<a href="/ot/mypage_unavailpoint.jsp">미가용적립내역보기</a>
 	            	</li> -->
 		            <li>	
-		            	<a href="${mUnavailpoint }">미가용적립금/회원등급적립내역</a>
+		            	<a href="${mUnavailpoint }">미가용 적립금</a>
 	            	</li>
         		</ul>
 			</div>
@@ -128,8 +128,8 @@
 						<caption>적립금 내역</caption>
                 		<colgroup>
 							<col style="width:15%">
-							<col style="width:15%">
-							<col style="width:25%">
+							<col style="width:20%">
+							<col style="width:30%">
 							<col style="width:auto">
 						</colgroup>
 						
@@ -143,19 +143,25 @@
                     	</thead>
                     
 						<tbody class=" center">
-							<tr class="xans-record-">
-								<td>2020-03-11</td>
-		                        <td class="right">2,000원</td>
-		                        <td></td>
-		                        <td class="left">신규회원 적립금</td>
-		                    </tr>
+						
+						<c:if test="${ !empty list }">
+							<c:forEach var="pt" items="${list }">
+									<tr class="xans-record-">
+										<td>${pt.pt_date }</td>
+				                        <td>${pt.pt_price }</td>
+				                        <td>${pt.ordno }</td>
+				                        <td>${pt.pt_content }</td>
+				                    </tr>
+							</c:forEach>
+						</c:if>
 						</tbody>
 					</table>
 					
-					<p class="message displaynone">적립금 내역이 없습니다.</p>
+						<c:if test="${ empty list }">
+							<p class="message ">적립금 내역이 없습니다.</p>
+						</c:if>
 	        	</div>
 			</div>
-
 			<div class="xans-element- xans-myshop xans-myshop-historypaging ec-base-paginate">
 				<a href="/myshop/mileage/historyList.html?page=1" class="first">
 					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.DownCategory;
-import com.kh.ot.admin.vo.Product;
-import com.kh.ot.admin.vo.ProductOption;
 import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.vo.Board;
@@ -123,7 +121,7 @@ public interface adminService{
 	 * @작성자 : 이서현
 	 * @내용 : 상품 등록 
 	 */
-	/*
-	 * public int ProductInsert(Product p, ProductOption po);
-	 */
+	/* public int ProductInsert(Product p, ProductOption po); */
+
+
 }

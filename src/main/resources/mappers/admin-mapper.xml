@@ -12,29 +12,29 @@
 			<result property="cpDiscount" column="CP_DISCOUNT"/>
 			<result property="cpDate" column="CP_DATE"/>
 		</resultMap>
-		
-		<!-- <resultMap type="UpCategory" id="UpCategorySelectResultSet">
+
+		<resultMap type="UpCategory" id="UpCategorySelectResultSet">
 			<id property = "up_no" column="UP_NO"/>
 			<result property="up_name" column="UP_NAME"/>
 			<result property="up_using" column="UP_USING"/>
 			<result property="up_date" column="UP_DATE"/>
-		</resultMap> -->
-	<!-- 	
+		</resultMap>
+
 		<resultMap type="DownCategory" id="DownCategorySelectResultSet">
 			<id property = "down_no" column="DOWN_NO"/>
 			<result property="up_no" column="UP_NO"/>
 			<result property="down_name" column="DOWN_NAME"/>
 			<result property="down_using" column="DOWN_USING"/>
 			<result property="down_date" column="DOWN_DATE"/>
-		</resultMap> -->
-		
-	<!-- 	<resultMap type="Product" id="ProductInsertResultSet">
+		</resultMap>
+
+		<!-- <resultMap type="Product" id="ProductInsertResultSet">
 			<id property="prdtNo" column="PRDT_NO"/>
 			<result property="upNo" column="UP_NO"/>
 			<result property="prdtName" column="PRDT_NAME"/>
 			<result property="prdtComment" column="PRDT_COMMENT"/>
 			<result property="prdtPrice" column="PRDT_PRICE"/>
-			<result property=prdtBrand column=PRDT_BRAND/>
+			<result property="prdtBrand" column="PRDT_BRAND"/>
 			<result property="prdtMake" column="PRDT_MAKE"/>
 			<result property="prdtImage" column="PRDT_IMAGE"/>
 			<result property="prdtDate" column="PRDT_DATE"/>
@@ -45,9 +45,10 @@
 			<result property="prdtImagePath" column="PRDT_IMAGE_PATH"/>
 			<result property="prdtDetailImage" column="PRDT_DETAIL_IMAGE"/>
 			<result property="prdtDetailImagePath" column="PRDT_DETAIL_IMAGE_PATH"/>
-		</resultMap> -->
-		
-		<!-- <resultMap type="ProductOption" id="ProductOptionInsertResultSet">
+			<result property="prdtSale" column="PRDT_SALE"/>
+		</resultMap>
+
+		<resultMap type="ProductOption" id="ProductOptionInsertResultSet">
 			<id property="opt_no" column="OPT_NO"/>
 			<result property="prdt_no" column="PRDT_NO"/>
 			<result property="prdt_no" column="OPT_COLOR"/>
@@ -58,7 +59,7 @@
 			<result property="prdt_no" column="OPT_USER"/>
 			<result property="prdt_no" column="PRDT_CODE"/>
 		</resultMap> -->
-		
+
 		<resultMap type="Design" id="MainResultSet">
 			<id property = "deNo" column="D_NO"/>
 			<result property="mainComment" column="D_COMMENT"/>
@@ -70,13 +71,13 @@
 			<id property = "deNo" column="V_NO"/>
 			<result property="reFile" column="VIDEOFILE"/>
 		</resultMap>
-		
+
 		<resultMap type="Design" id="InstaResultSet">
 			<id property = "deNo" column="IN_NO"/>
 			<result property="reFile" column="IN_REFILE"/>
 			<result property="mainLink" column="IN_LINK"/>
 			<result property="mainComment" column="IN_COMMENT"/>
-			
+
 		</resultMap>
 
 <insert id="couponInput" parameterType="java.util.Map">
@@ -88,39 +89,39 @@
 				 SYSDATE as CP_DATE
 	FROM DUAL
 	</foreach>) A
-</insert>		
+</insert>
 
 <select id="selectListCoupon" resultMap="CouponResultSet">
 	SELECT * FROM COUPON
-</select>	
+</select>
 
 <delete id="couponDelete" parameterType="String" >
 	DELETE FROM COUPON
 	WHERE CP_NAME = #{cpName}
 </delete>
-		
 
 
-<!-- <select id="UpCategorySelect" resultMap="UpCategorySelectResultSet">
-	SELECT * 
+
+<select id="UpCategorySelect" resultMap="UpCategorySelectResultSet">
+	SELECT *
 	FROM UP_CATE
 	WHERE UP_USING='Y'
 </select> -->
 
-<!-- <select id="DownCategorySelect" resultMap="DownCategorySelectResultSet">
-	SELECT * 
+<select id="DownCategorySelect" resultMap="DownCategorySelectResultSet">
+	SELECT *
 	FROM DOWN_CATE D
 	LEFT JOIN UP_CATE U ON D.UP_NO=U.UP_NO
-	WHERE DOWN_USING='Y' 
-</select> -->
+	WHERE DOWN_USING='Y'
+</select>
 
 <!-- <insert id="UpCategoryInsert" parameterType="String">
 	INSERT INTO UP_CATE (UP_NO, UP_NAME, UP_USING) VALUES
 	(UP_CATE_SEQ.NEXTVAL, #{addOption}, DEFAULT)
 </insert>
- -->
-<!-- <insert id="DownCategoryInsert" parameterType="DownCategory">
-	INSERT INTO DOWN_CATE  
+
+<insert id="DownCategoryInsert" parameterType="DownCategory">
+	INSERT INTO DOWN_CATE
     VALUES (DOWN_CATE_SEQ.NEXTVAL, #{up_no} ,#{down_name}, 'Y',SYSDATE)
 </insert> -->
 
@@ -136,9 +137,9 @@
 	SET DOWN_USING='N'
 	WHERE UP_NO=#{up_no}
 	AND DOWN_NO=#{down_no}
-	
-</update> -->
-		
+
+</update>
+
 <!-- <insert id="ProductInsert" parameterType="Product">
 	<selectkey id="prdtNo" resultType="_int" order="BEFORE">
 		SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
@@ -147,20 +148,20 @@
 	VALUES (#{prdtNo}, #{upNo}, #{prdtName}, #{prdtComment}
 			,#{prdtPrice}, #{prdtBrand}, #{prdtMake}, #{prdtImage}
 			,SYSDATE, NULL, DEFAULT, #{downNO}, NULL
-			,#{prdtImagePath}, #{prdtDetailImage}, #{prdtDetailImagePath})	 
-</insert> -->
+			,#{prdtImagePath}, #{prdtDetailImage}, #{prdtDetailImagePath})
+</insert>
 
-<!-- <insert id="ProductOptionInsert" parameterType="ProductOption">
+<insert id="ProductOptionInsert" parameterType="ProductOption">
 	INSERT INTO PRDT_OPT VALUES
 	(PRODUCT_OPT_SEQ.NEXTVAL,#{prdt_no}, {opt_color}, {opt_size},
 	{opt_stock}, SYSDATE, NULL, #{prdt_code})
 </insert> -->
 
 <update id="DesignEd" parameterType="java.util.Map">
-	<foreach  item="d" collection="dlist"  index="index" 
+	<foreach  item="d" collection="dlist"  index="index"
       separator=";" open="DECLARE BEGIN" close="; END;" >
-	UPDATE MAINDESIGN 
-	SET 
+	UPDATE MAINDESIGN
+	SET
 	D_ORIFILE=#{d.oriFIle},
 	D_REFILE=#{d.reFile},
 	D_COMMENT=#{d.mainComment},
@@ -171,14 +172,14 @@
 
 <update id="DesignEdVideo" parameterType="Design">
 	UPDATE MAINVIDEO
-	SET VIDEOFILE=#{reFile}	
+	SET VIDEOFILE=#{reFile}
 	WHERE V_NO=1
 </update>
 
 <update id="DesignInsta"  parameterType="java.util.Map">
-<foreach  item="d" collection="dlist"  index="index" 
+<foreach  item="d" collection="dlist"  index="index"
      separator=";" open="DECLARE BEGIN" close="; END;" >
-	UPDATE INSTADESIGN 
+	UPDATE INSTADESIGN
 	SET
 	IN_ORIFILE = #{d.oriFIle},
 	IN_REFILE = #{d.reFile},
@@ -188,7 +189,7 @@
 </foreach>
 </update>
 <select id="selectMainList" resultMap="MainResultSet" >
-	SELECT * FROM 
+	SELECT * FROM
 	MAINDESIGN
 </select>
 
@@ -199,9 +200,8 @@
 
 <select id="selectInstaList" resultMap="InstaResultSet">
 	SELECT * FROM
-	INSTADESIGN	
+	INSTADESIGN
 </select>
 
 
 </mapper>
-

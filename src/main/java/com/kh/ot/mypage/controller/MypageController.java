@@ -1,13 +1,26 @@
 package com.kh.ot.mypage.controller;
 
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.kh.ot.admin.vo.Point;
+import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.common.Pagination;
+import com.kh.ot.mypage.service.MypageService;
 
 @SessionAttributes("loginMember")
 @Controller
 public class MypageController {
 
+	@Autowired
+	private MypageService mpService;
+	
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 : 신경섭
@@ -40,8 +53,24 @@ public class MypageController {
 	 * @return String
 	 */
 	@RequestMapping("mPoint.do")
-	public String mPoint() {
-		return "mypage_point";
+	public ModelAndView mPoint(ModelAndView mv,
+							   @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		
+		System.out.println(currentPage);
+		
+		int listCount = mpService.PointListCount();
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
+		
+		ArrayList<Point> list = mpService.PointSelectList(pi);
+		
+		mv.addObject("list", list);
+		mv.addObject("pi",pi);
+		mv.setViewName("mypage_point");
+		
+		return mv;
 	}
 	
 	/**
@@ -51,10 +80,33 @@ public class MypageController {
 	 * @param @return
 	 * @return String
 	 */
+	
+	
 	@RequestMapping("mCoupon.do")
 	public String mCoupon() {
 		return "mypage_coupon";
 	}
+	
+//	@RequestMapping("mCoupon.do")
+//	public ModelAndView mCoupon(ModelAndView mv,
+//								@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+//		
+//		System.out.println(currentPage);
+//		
+//		int listCount = mpService.getListCount();
+//		
+//		System.out.println("listCount : " + listCount);
+//		
+//		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
+//		
+//		ArrayList<Coupon> list = mpService.selectList(pi);
+//		
+//		mv.addObject("list", list);
+//		mv.addObject("pi",pi);
+//		mv.setViewName("mypage_coupon");
+//		
+//		return mv;
+//	}
 	
 	/**
 	 * @작성일 : 2020. 4. 3.
@@ -185,7 +237,7 @@ public class MypageController {
 	 */
 	@RequestMapping("mCompletecoupon.do")
 	public String mCompletecoupon() {
-		return "mypage_mCompletecoupon";
+		return "mypage_completecoupon";
 	}
 	
 	/**

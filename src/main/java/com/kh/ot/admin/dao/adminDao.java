@@ -13,8 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.DownCategory;
-import com.kh.ot.admin.vo.Product;
-import com.kh.ot.admin.vo.ProductOption;
 import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.vo.Board;
@@ -98,6 +96,7 @@ public class adminDao {
 		return sqlSession.update("adminMapper.DownCategoryDelete",downCategory);
 	}
 	
+	
 	/*
 	 * @작성일  : 2020. 4. 8.
 	 * @작성자  : 문태환
@@ -154,24 +153,21 @@ public class adminDao {
 	
 	
 	
-	public int ProductInsert(Product p) {
-		return sqlSession.insert("adminMapper.ProductInsert",p);
-	}
-
-
-	
-
-
-	
-
-
+	/**
+	 * @작성일 : 2020. 4. 12.
+	 * @작성자 : 이서현
+	 * @내용 : 상품, 상품옵션 등록 
+	 */
 	/*
+	 * public int ProductInsert(Product p) { return
+	 * sqlSession.insert("adminMapper.ProductInsert",p); }
+	 * 
 	 * public int ProductOptionInsert(ProductOption po,int prdtNo) {
 	 * 
 	 * int result =0; List<ProductOption> polist = po.getProduct_OptionVOList();
-	 * 
-	 * for(ProductOption Option : polist) { Option.setPrdt_no(prdtNo); result =
-	 * sqlSession.insert("adminMapper.ProductOptionInsert",Option); } return result;
-	 * }
+	 * for(ProductOption Option : polist) { Option.setPrdt_no(prdtNo); result
+	 * =sqlSession.insert("adminMapper.ProductOptionInsert",Option); } return
+	 * result; }
 	 */
+	 
 }
