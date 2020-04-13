@@ -1,15 +1,15 @@
 package com.kh.ot.main.vo;
 
-public class upCategory {
+public class MainupCategory {
 
 	private int upNo;
 	private String upName;
 	private String upUsing;
 	
-	public upCategory() {
+	public MainupCategory() {
 	}
 
-	public upCategory(int upNo, String upName, String upUsing) {
+	public MainupCategory(int upNo, String upName, String upUsing) {
 		super();
 		this.upNo = upNo;
 		this.upName = upName;

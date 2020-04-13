@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.kh.ot.admin.dao.adminDao;
 import com.kh.ot.admin.vo.Coupon;
+import com.kh.ot.admin.vo.DownCategory;
+import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.admin.vo.Design;
-import com.kh.ot.board.dao.BoardDao;
-import com.kh.ot.board.vo.Board;
-import com.kh.ot.board.vo.PageInfo;
 
 @Service("adService")
 public class adminServiceImpl implements adminService{
@@ -35,41 +34,85 @@ public class adminServiceImpl implements adminService{
 	public int couponDelete(String cpName) {
 		return adDao.couponDelete(cpName);
 	}
-
-
-	@Override
+	
 	public int DesignEd(ArrayList<Design>  dlist) {
 		return adDao.DesignEd(dlist);
 	}
 
-
-	@Override
 	public int DesignEdVideo(Design d) {
 		return adDao.DesignEdVideo(d);
-	}
-
-
-	@Override
+	}	
+	
 	public int DesignInsta(ArrayList<Design> dlist) {
 		return adDao.DesignInsta(dlist);
-	}
-
-
-	@Override
+	}	
+	
 	public ArrayList<Design> selectMainList() {
 		return adDao.selectMainList();
 	}
-
-
-	@Override
+	
 	public Design selectVideo() {
 		return adDao.selectVideo();
 	}
-
-
-	@Override
+	
 	public ArrayList<Design> selectInstaList() {
 		return adDao.selectInstaList();
 	}
+	
+
+	
+//	/////여기부터 서현쓰
+	
+	
+	@Override
+	public ArrayList<UpCategory> UpCategorySelect() {
+		return adDao.upCategorySelect();
+	}
+	
+
+
+	@Override
+	public ArrayList<DownCategory> DownCategorySelect() {
+		return adDao.DownCategorySelect();
+	}
+	
+	
+
+	@Override
+	public int UpCategoryInsert(String addOption) {
+		return adDao.UpCategoryInsert(addOption);
+	}
+
+	@Override
+	public int DownCategoryInsert(DownCategory downCategory) {
+		return adDao.DownCategoryInsert(downCategory);
+	}
+
+
+	@Override
+	public int UpCategoryDelete(int up_no) {
+		return adDao.UpCategoryDelete(up_no);
+	}
+
+
+	@Override
+	public int DownCategoryDelete(DownCategory downCategory) {
+		return adDao.DownCategoryDelete(downCategory);
+	}
+	
+	
+	/*
+	 * @Override public int ProductInsert(Product p, ProductOption po) { int result
+	 * =0; int presult = adDao.ProductInsert(p);
+	 * 
+	 * int poresult = 0; int prdtNo =p.getPrdtNo();
+	 * 
+	 * if(presult>0) { poresult=adDao.ProductOptionInsert(po, prdtNo); result =
+	 * presult * poresult; }
+	 * 
+	 * return result; }
+	 */
+
+
 
 }

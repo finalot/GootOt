@@ -4742,6 +4742,20 @@ textarea {
     font-weight:600;
     left:11px;
 }
+#idMsg14 {
+	    color: #757575;
+    position: relative;
+    font-size:12px;
+    font-weight:500;
+    left:37px;
+}
+#idMsg15 {
+	    color: #757575;
+    position: relative;
+    font-size:12px;
+    font-weight:600;
+    left:37px;
+}
 
 .info li {
 	padding: 0 0 0 9px;

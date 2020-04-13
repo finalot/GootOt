@@ -7,7 +7,7 @@ package com.kh.ot.main.vo;
  * @author user1
  *
  */
-public class downCategory {
+public class MaindownCategory {
 	
 	private int downNo;
 	private int upNo;
@@ -16,7 +16,7 @@ public class downCategory {
 	/**
 	 * 
 	 */
-	public downCategory() {
+	public MaindownCategory() {
 	}
 	/**
 	 * @param downNo
@@ -24,7 +24,7 @@ public class downCategory {
 	 * @param downName
 	 * @param downUsing
 	 */
-	public downCategory(int downNo, int upNo, String downName, String downUsing) {
+	public MaindownCategory(int downNo, int upNo, String downName, String downUsing) {
 		super();
 		this.downNo = downNo;
 		this.upNo = upNo;

@@ -82,4 +82,6 @@ public class BoardDao {
 		return sqlSession.selectOne("boardMapper.passwordCheck",b);
 	}
 
+
+
 }

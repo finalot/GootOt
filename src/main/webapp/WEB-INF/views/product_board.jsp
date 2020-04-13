@@ -112,7 +112,7 @@ a{
                         <strong> <a href="/article/배송문의/3001/279655/" style="color:#555555; font-size:12px;">▶ 일시품절/품절 관련 안내입니다.</a></span></strong>
                     </td>
                     <td>관리자</td>
-                    <td class=""><span class="txtNum">2017-11-09</span></td>
+                    <td class=""><span class="txtNum">2020-03-09</span></td>
                     <td class="displaynone"><img src="//img.echosting.cafe24.com/skin/base/board/ico_point0.gif" alt="0점"></td>
                 </tr>
       </tbody>
@@ -146,7 +146,7 @@ a{
                                  </c:when>
                                  <c:otherwise>
                                  <!-- <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image">  -->
-                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail2(this)">
                                  [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
                                  </c:otherwise>
                                  </c:choose>
@@ -284,6 +284,14 @@ a{
 	 location.href='product_board_detailView.do?qna_no='+q_no; 
 	
  }
+ 
+ function prdtDetail2(en){
+		
+		var q_no = $(en).parents('tr').children('td').eq(0).children('span').text();	 
+
+		 location.href='product_board_detail.do?qna_no='+q_no; 
+		
+	 }
  
  function pbSearch() {
 	 var search_key = $('#search_key').val();

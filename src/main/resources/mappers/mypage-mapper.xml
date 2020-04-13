@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mypageMapper">
+
+	<resultMap id="PointResultSet" type="Point">
+		<id property="ptno" column="POINT_NO"/>
+		<result property="memno" column="MEM_NO"/>
+		<result property="ordno" column="ORD_NO"/>
+		<result property="pt_date" column="POINT_DATE"/>
+		<result property="pt_price" column="POINT_PRICE"/>
+		<result property="pt_content" column="POINT_CONTENT"/>
+		<result property="pt_duedate" column="POINT_DUEDATE"/>
+	</resultMap>
+
+	<select id="PointListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM POINT
+		<!-- WHERE MEM_NO=#{memno} -->
+	</select>
+	
+	<select id="PointselectList" resultMap="PointResultSet">
+		SELECT *
+		FROM POINT
+		<!-- WHERE MEM_NO=#{memno} -->
+		ORDER BY POINT_NO DESC
+	</select>
+
+</mapper>

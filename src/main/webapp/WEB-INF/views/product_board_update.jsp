@@ -32,14 +32,14 @@
     color: #666;
      border-top: 1px solid #EEE !important;
     font-size: 13px;
-  
+
     }
-    
+
 .ec-base-table.typeWrite td {
     padding: 0px 0px 0px !important;
 }
 
- 
+
 .thumb{
  text-align: left !important;
    padding-left: 1% !important;
@@ -50,13 +50,13 @@
 
 </style>
 <body>
-   <%@include file="header.jsp" %>   
-    
-   
+   <%@include file="header.jsp" %>
+
+
     <div id="container">
         <div id="contents" style="margin-top:11.5%;">
          <div class="mypage_top_outer">
-          
+
          </div>
 
          <div class="titleArea">
@@ -68,9 +68,9 @@
              $url = /member/login.html
          -->
          </div>
-         
+
          <div class="xans-element- xans-board xans-board-writepackage-1002 xans-board-writepackage xans-board-1002 "><div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 "><div class="title">
-      
+
         </div>
 </div>
 <form id="boardUpdateForm" action="product_board_updateView.do" method="POST" enctype="multipart/form-data">
@@ -88,24 +88,24 @@
             <col style="width:auto;">
          </colgroup>
       <tbody>
-      
+
    <tr>
       <th scope="row">SUBJECT</th>
            <td><select id="subject" name="b_cate_no">
          <option value="1">[상품문의]</option>
-         </select>     
-         </td>
-    </tr>
-    
-    <tr>
-      <th scope="row">TITLE</th>
-           <td><input type="text" name="qna_title" style="width: 390px;height: 26px;" value="${b.qna_title }">
-           			<input type="hidden" value="${b.content}" id="b_content">	
+         </select>
          </td>
     </tr>
 
-    
-   <td colspan="2" class="clear">           
+    <tr>
+      <th scope="row">TITLE</th>
+           <td><input type="text" name="qna_title" style="width: 390px;height: 26px;" value="${b.qna_title }">
+           			<input type="hidden" value="${b.content}" id="b_content">
+         </td>
+    </tr>
+
+
+   <td colspan="2" class="clear">
             <script type="text/javascript" src="//editor.cafe24.com/js/nneditor.js?c=ko"></script>
             <style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";</style>
            <script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
@@ -117,9 +117,9 @@
             NN.Config.instanceID = "content";
             NN.Config.value = b_content;
             NN.Config.toolbarType = "simple";
-                
-                
-                
+
+
+
           //Editor Height
             NN.Config.height=400;
 
@@ -151,34 +151,34 @@
             }
 
             $Editor.push(oNN_content, "content");
-                
-                
-            </script>   
-               
-               
-          
-      
+
+
+            </script>
+
+
+
+
    </tbody>
-   
+
       <tbody class="">
          <tr>
             <th scope="row">FILE 01</th>
                  <td><input type="file" name="reloadFile">
                  <c:if test="${ !empty b.originalFileName }">
-                  <br>현재 업로드한 파일 : 
+                  <br>현재 업로드한 파일 :
                   <a href="${ contextPath }/resources/buploadFiles/${ b.renameFileName }" download="${ b.originalFileName }">${ b.originalFileName }</a>
                </c:if>
                  </td>
             </tr>
-            
-         
+
+
    </tbody>
    <tbody>
          <tr class="">
             <th scope="row">PASSWORD</th>
                     <td><input id="qna_password" name="qna_password" value="${b.qna_password }" type="password"></td>
             </tr>
-           
+
          <tr class="">
          <th scope="row">SECRET</th>
                    <td><input id="secure0" name="qna_secure"  value="F" type="radio">
@@ -186,8 +186,8 @@
                <input id="secure1" name="qna_secure"  value="T" type="radio" checked="checked">
                <label for="secure1">비밀글</label></td>
             </tr>
-            
-            
+
+
       </tbody>
    </table>
 </div>
@@ -198,7 +198,7 @@
             </span>
             <span class="gRight">
                 <button id="update_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
-                
+
                 <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
             </span>
         </div>
@@ -207,7 +207,7 @@
 </div>
 
    </div>
-   
+
  <%@include file="footer.jsp" %>
 </body>
 <script>
