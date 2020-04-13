@@ -217,214 +217,26 @@
                     </tr>
                 </thead>
                 <tbody>
+             <c:forEach var="b" items="${ list }">
                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
+                        <td>${b.qna_no}</td>
+                         <c:if test="${b.prdt_code ne null }"> 
+                      <td>${b.prdt_code}</td> 
+                        </c:if>
+                        <c:if test="${b.prdt_code eq null }"> 
+                        <td>선택한 상품이 없습니다</td>
+                        </c:if> 
+                         <td>${b.qna_title }</td>
+                        <td>${b.qna_writer }</td>
+                        <td>${b.qna_date }</td>
+                        <c:if test="${b.qna_chk  eq 'N' }">
+                      <td class="denied">답변중</td>
+                      	</c:if>
+                      	  <c:if test="${b.qna_chk  eq 'Y'}">
                       <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                   <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                   <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                   <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
+                      	</c:if>
+                      </tr>
+                       </c:forEach>
                 </tbody>
                 <tfoot>
                     <tr>

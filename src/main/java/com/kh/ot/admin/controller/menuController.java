@@ -31,6 +31,10 @@ import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.Design;
 import com.kh.ot.admin.vo.DownCategory;
 import com.kh.ot.admin.vo.UpCategory;
+import com.kh.ot.board.service.BoardService;
+import com.kh.ot.board.vo.Board;
+import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.common.Pagination;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -39,7 +43,9 @@ public class menuController {
 
 		@Autowired
 		private adminService adService;
-
+		
+		 @Autowired
+		  private BoardService bService;
 
 	/**
 	 * @작성일 : 2020. 4. 4.
@@ -141,9 +147,34 @@ public class menuController {
 
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 13.
+	 * @작성자  : 문태환
+	 * @내용 	: 게시판 리스트 호출
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("QnA_Product.ad")
-	public String QnA_Product() {
-		return "admin/QnA_Product";
+	public ModelAndView QnA_Product(ModelAndView mv,
+			 				@RequestParam(value="currentPage", 
+			 				required=false,defaultValue="1") int currentPage
+								) {
+		int b_cate_no = 1;
+	      
+	      int listCount = bService.getListCount(b_cate_no);
+	      
+	      System.out.println("listCount : " + listCount);
+	      
+	      
+	      ArrayList<Board> list = adService.selectList(b_cate_no);
+	      
+	      System.out.println("list"+list);
+	      
+	        mv.addObject("list",list);
+	        mv.setViewName("admin/QnA_Product");
+	      
+	      return mv; 
+			
 	}
 
 	@RequestMapping("QnA_Product_detail.ad")
