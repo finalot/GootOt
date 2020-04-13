@@ -28,7 +28,7 @@
 		INSERT INTO QNA
 		VALUES(QNA_SEQ.NEXTVAL, #{b_cate_no},#{mem_no}, #{content}, DEFAULT, SYSDATE,
 				#{qna_writer},#{qna_title},#{originalFileName},#{renameFileName},SYSDATE,
-				#{qna_password},#{qna_secure},#{prdt_code})
+				#{qna_password},#{qna_secure},NULL)
 		</insert>
 		
 		<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">

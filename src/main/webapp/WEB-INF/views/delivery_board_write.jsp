@@ -91,7 +91,7 @@
 	<tr>
 		<th scope="row">SUBJECT</th>
            <td><select id="subject" name="b_cate_no">
-			<option value="[배송문의]">[배송문의]</option>
+			<option value="2">[배송문의]</option>
 			</select>  	
 		   </td>
     </tr>

@@ -72,7 +72,7 @@
       
         </div>
 </div>
-<form id="boardWriteForm" name="" action="/exec/front/Board/write/3001" method="post" enctype="multipart/form-data">
+<form id="boardWriteForm" action="bank_insert.do" method="post" enctype="multipart/form-data">
 		
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
@@ -90,8 +90,8 @@
 		
 	<tr>
 		<th scope="row">SUBJECT</th>
-           <td><select id="subject" name="subject">
-			<option value="[배송문의]">[입금확인/입금자변경]</option>
+           <td><select id="subject" name="b_cate_no">
+			<option value="5">[입금확인/입금자변경]</option>
 			</select>  	
 		   </td>
     </tr>
@@ -152,21 +152,21 @@
 		<tbody class="">
 			<tr>
 				<th scope="row">FILE 01</th>
-                    <td><input name="attach_file[]" type="file"></td>
+                    <td><input name="uploadFile" type="file"></td>
             </tr>
-            
+			
 	</tbody>
 	<tbody>
 			<tr class="">
 				<th scope="row">PASSWORD</th>
-                    <td><input id="password" name="password" value="" type="password"></td>
+                    <td><input id="qna_password" name="qna_password" value="" type="password"></td>
             </tr>
             
 			<tr class="">
 			<th scope="row">SECRET</th>
-                   <td><input id="secure0" name="secure"  value="F" type="radio">
+                   <td><input id="secure0" name="qna_secure"  value="F" type="radio">
                    <label for="secure0">공개글</label>
-				   <input id="secure1" name="secure"  value="T" type="radio" checked="checked">
+				   <input id="secure1" name="qna_secure"  value="T" type="radio" checked="checked">
 				   <label for="secure1">비밀글</label></td>
             </tr>
             
@@ -181,7 +181,7 @@
                 <a href="bank_insert_board.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
-                <a href="bank_insert_board.do" onclick="BOARD_WRITE.form_submit('boardWriteForm');" class="yg_btn_30 yg_btn4" alt="등록">OK</a>
+                <button  id="bi_insert_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
                 <a href="bank_insert_board.do" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
             </span>
         </div>
@@ -192,5 +192,11 @@
 	</div>
 	
  <%@include file="footer.jsp" %>
+ <script>
+ 
+ $('#bi_insert_ok').click(function(){
+		$('#boardWriteForm').submit();
+	});
+ </script>
 </body>
 </html>

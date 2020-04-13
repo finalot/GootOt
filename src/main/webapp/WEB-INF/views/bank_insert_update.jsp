@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<title>배송 문의 업데이트</title>
+<title>입금확인/입금자확인 업데이트</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
 <link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
@@ -60,7 +60,7 @@
 			</div>
 
 			<div class="titleArea">
-    			<h2>배송 문의</h2>
+    			<h2>입금확인/입금자변경</h2>
 			</div>
 
 			<div class="xans-element- xans-layout xans-layout-logincheck ">
@@ -73,7 +73,7 @@
       
         </div>
 </div>
-<form id="boardUpdateForm" action="delivery_board_updateView.do" method="POST" enctype="multipart/form-data">
+<form id="boardUpdateForm" action="bank_insert_updateView.do" method="POST" enctype="multipart/form-data">
 	<input type="hidden" name="qna_no" value="${b.qna_no}">
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
@@ -92,7 +92,7 @@
 	<tr>
 		<th scope="row">SUBJECT</th>
            <td><select id="subject" name="b_cate_no">
-			<option value="2">[배송문의]</option>
+			<option value="5">[입금확인/입금자변경]</option>
 			</select>  	
 		   </td>
     </tr>
@@ -193,12 +193,12 @@
 		<div class="ec-base-button ">
             <span class="gLeft">
                 <span class="displaynone"><a href="#none" onclick="" class="yg_btn_30 yg_btn4" alt="관리자답변보기">관리자답변보기</a></span>
-                <a href="delivery_board.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
+                <a href="bank_insert_board.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
                 <button id="update_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
                 
-                <a href="delivery_board.do" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
+                <a href="bank_insert_board.do" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
             </span>
         </div>
 	</div>

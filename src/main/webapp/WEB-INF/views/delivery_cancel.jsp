@@ -22,11 +22,20 @@
     text-align: left !important;
  }
  
+ .ec-base-paginate1 {
+    margin: 30px auto;
+    text-align: center;
+    line-height: 0;
+    display: table;
+}
  
  
 .thumb{
  text-align: left !important;
 	padding-left: 1% !important;
+}
+a{
+	cursor:pointer;
 }
 </style>
 <body>
@@ -82,35 +91,45 @@
                     <td class="subject left txtBreak">
                         <strong> <a href="/article/배송문의/3001/279655/" style="color:#555555; font-size:14px;">▶ 배송 전 변경/취소 안내입니다.</a></span></strong>
                     </td>
-                    <td>홍길동</td>
-                    <td class=""><span class="txtNum">2017-11-09</span></td>
+                    <td>관리자</td>
+                    <td class=""><span class="txtNum">2020-03-09</span></td>
                     <td class="displaynone"><img src="//img.echosting.cafe24.com/skin/base/board/ico_point0.gif" alt="0점"></td>
                 </tr>
 		</tbody>	
 
 				<tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
+					<c:forEach var="b" items="${ list }">
           				<tr class="xans-record-">
 							<td>
 								<!-- no 공지번호 들어갈 곳 -->
-									<span id="idMsg4">141261</span>
+									<span id="idMsg4">${b.qna_no }</span>
 							</td>
                				<td class="thumb" >
                					<!-- subject 내용 들어갈 곳 -->
                					
+                        <c:choose>
+               			<c:when test="${b.qna_secure=='T'}">
                         <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
-                        <a id="idMsg10" style="color:#555555;" href="delivery_cancel_detail.do">
-                        [배송전 주문취소/변경]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                        <a id="idMsg10" style="color:#555555;" onclick="prdtDetail(this)">
+                        [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                        </c:when>
+                        <c:otherwise>
+                        <!-- <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image">  -->
+                        <a id="idMsg10" style="color:#555555;" onclick="prdtDetail2(this)">
+                         [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                        </c:otherwise>
+                    </c:choose>
                     </td>
-               				
-       						</td>
+                    
                				<td class="left">
                    				<!-- writer 내용들어갈곳 -->
 								<span id="idMsg11">홍길동</span>
-                				<td class="price center"><span id="idMsg4">2020-03-19</span></td>
+                				<td class="price center"><span id="idMsg4">${b.qna_date }</span></td>
 				                <td class="button">
 				                  
 				                </td>
            					</tr>
+           			</c:forEach>
 					</tbody>
 					
 					<tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
@@ -157,34 +176,84 @@
 				<option value="content">내용</option>
 				<option value="writer_name">글쓴이</option>
 				</select> 
-		<input id="search" name="search" class="inputTypeText" placeholder="" value="" type="text">
-		<a href="#none" onclick="BOARD.form_submit('boardSearchForm');" class="yg_btn_28 yg_btn318">
-		<span id="idMsg9">SEARCH</span></a></p>
+		 <input id="search" name="search" class="inputTypeText" type="text">
+      <a href="#none" onclick="pbSearch();" class="yg_btn_28 yg_btn318">
+      <span id="idMsg9">SEARCH</span></a></p>
        	 </fieldset>
 	</div>
 			
-			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate">
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first">
-					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지"></a>
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"></a>
-					
-					<ol>
-						<li class="xans-record-">
-							<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="this">1</a>
-						</li>
-       				</ol>
-       				
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지"></a>
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="last">
-					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
-			</div>
+			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate1">
+            <!-- <a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first"> -->
+
+               <img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+
+
+
+                  <c:url var="before" value="delivery_cancel.do">
+                  <c:param name="currentPage" value="${pi.currentPage -1 }"/>
+                  </c:url>
+                  <a href="${before}">
+                  <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+                  </a> &nbsp;
+
+               <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                     <c:if test="${ p eq pi.currentPage }">
+                        <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
+                        <b>${ p }</b> &nbsp;&nbsp;</font>
+                     </c:if>
+
+                     <c:if test="${ p ne pi.currentPage }">
+                        <c:url var="pagination" value="delivery_cancel.do">
+                           <c:param name="currentPage" value="${ p }"/>
+                     </c:url>
+                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+                     ${ p }</a> &nbsp;
+                  </c:if>
+               </c:forEach>
+
+
+               <c:url var="after" value="delivery_cancel.do">
+                     <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                  </c:url>
+                  <a href="${after}">
+               <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+               </a>
+
+
+               <img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+
+         </div>
+
 
         </div>
 		<hr class="layout">
 	</div>
 	
  <%@include file="footer.jsp" %>
+ <script>
+ function prdtDetail(en){
+		
+		var q_no = $(en).parents('tr').children('td').eq(0).children('span').text();	 
+
+		 location.href="delivery_cancel_detailView.do?qna_no="+q_no; 
+		
+	 }
+	 
+	 function prdtDetail2(en){
+			
+			var q_no = $(en).parents('tr').children('td').eq(0).children('span').text();	 
+
+			 location.href='delivery_cancel_detail.do?qna_no='+q_no; 
+			
+		 }
+	 
+	 function pbSearch() {
+		 var search_key = $('#search_key').val();
+		 var search_date = $('#search_date').val();
+		 var search = $('#search').val();
+		 
+		 location.href="dc_search.do?search_key="+search_key+"&search="+search+"&search_date="+search_date;
+	 }
+ </script>
 </body>
 </html>

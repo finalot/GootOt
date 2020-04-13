@@ -126,7 +126,7 @@ input[type=password] {
 <div class="xans-element- xans-board xans-board-secure-4 xans-board-secure xans-board-4 ">
 <div class="secret">            
             <fieldset>
-				
+				<input type="hidden" name="pna_no" id="qna_no" value="${qna_no}">
                 <span id="idMsg14">이 글은 비밀글입니다.</span>
                 <span id="idMsg15">비밀번호를 입력하여 주세요.</span><br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -136,7 +136,7 @@ input[type=password] {
                 <input id="qna_password" name="qna_password" type="password">
                 </p>
                 <div class="ec-base-button gBlank30">
-                    <a href="product_change.do" class="yg_btn_140 yg_btn3" alt="목록">LIST</a>
+                    <a href="delivery_board.do" class="yg_btn_140 yg_btn3" alt="목록">LIST</a>
                    <button  onclick="passwordCheck()" class="yg_btn_140 yg_btn5" alt="확인">OK</button>
                 </div>
             </fieldset>

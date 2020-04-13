@@ -102,7 +102,7 @@ a{
           				<tr class="xans-record-">
 							<td>
 								<!-- no 공지번호 들어갈 곳 -->
-									<span id="idMsg4">141261</span>
+									<span id="idMsg4">${b.qna_no }</span>
 							</td>
                				<td class="thumb" >
                					<!-- subject 내용 들어갈 곳 -->
@@ -131,7 +131,7 @@ a{
 				                </td>
            					</tr>
            					
-           					 </c:forEach>
+           	 </c:forEach>
 					</tbody>
 					
 					<tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
@@ -192,7 +192,7 @@ a{
 
 
 
-                  <c:url var="before" value="product_board.do">
+                  <c:url var="before" value="delivery_board.do">
                   <c:param name="currentPage" value="${pi.currentPage -1 }"/>
                   </c:url>
                   <a href="${before}">
@@ -206,7 +206,7 @@ a{
                      </c:if>
 
                      <c:if test="${ p ne pi.currentPage }">
-                        <c:url var="pagination" value="product_board.do">
+                        <c:url var="pagination" value="delivery_board.do">
                            <c:param name="currentPage" value="${ p }"/>
                      </c:url>
                      <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
@@ -215,7 +215,7 @@ a{
                </c:forEach>
 
 
-               <c:url var="after" value="product_board.do">
+               <c:url var="after" value="delivery_board.do">
                      <c:param name="currentPage" value="${pi.currentPage +1 }"/>
                   </c:url>
                   <a href="${after}">
@@ -238,7 +238,7 @@ a{
 		
 		var q_no = $(en).parents('tr').children('td').eq(0).children('span').text();	 
 
-		 location.href='delivery_board_detailView.do?qna_no='+q_no; 
+		 location.href="delivery_board_detailView.do?qna_no="+q_no; 
 		
 	 }
 	 

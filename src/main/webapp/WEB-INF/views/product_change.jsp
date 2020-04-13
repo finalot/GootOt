@@ -188,7 +188,7 @@ a{
 
 
 
-                  <c:url var="before" value="product_board.do">
+                  <c:url var="before" value="product_change.do">
                   <c:param name="currentPage" value="${pi.currentPage -1 }"/>
                   </c:url>
                   <a href="${before}">
@@ -202,7 +202,7 @@ a{
                      </c:if>
 
                      <c:if test="${ p ne pi.currentPage }">
-                        <c:url var="pagination" value="product_board.do">
+                        <c:url var="pagination" value="product_change.do">
                            <c:param name="currentPage" value="${ p }"/>
                      </c:url>
                      <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
@@ -211,7 +211,7 @@ a{
                </c:forEach>
 
 
-               <c:url var="after" value="product_board.do">
+               <c:url var="after" value="product_change.do">
                      <c:param name="currentPage" value="${pi.currentPage +1 }"/>
                   </c:url>
                   <a href="${after}">
