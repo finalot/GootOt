@@ -11,11 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.ot.main.vo.MainPageInfo;
+import com.kh.ot.main.vo.MainSearchCondition;
+import com.kh.ot.main.vo.MaindownCategory;
+import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
-import com.kh.ot.main.vo.MaindownCategory;
-import com.kh.ot.main.vo.MainupCategory;
 
 @Repository("mainDao")
 public class MainDao {
@@ -125,6 +126,22 @@ public class MainDao {
 	public ArrayList<MainupCategory> selectUpCategoryList3() {
 		return (ArrayList)sqlSession.selectList("productMapper.selectUpCategory3");
 	}
+
+	public ArrayList<Product> selectSortList1(MainPageInfo mainPi, MainSearchCondition msc) {
+		int offset=(mainPi.getCurrentPage() - 1) * mainPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("productMapper.selectSortProduct1",msc,rowBounds);
+	}
+	
+	public ArrayList<Product> selectSortList2(MainPageInfo mainPi, MainSearchCondition msc) {
+		int offset=(mainPi.getCurrentPage() - 1) * mainPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("productMapper.selectSortProduct2",msc,rowBounds);
+	}
+
+
 
 	
 	

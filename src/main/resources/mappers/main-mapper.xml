@@ -22,6 +22,8 @@
 			<result property="prdtDetailImage" column="PRDT_DETAIL_IMAGE"/>
 			<result property="prdtDetailImagePath" column="PRDT_DETAIL_IMAGE_PATH"/>
 			<result property="prdtSale" column="PRDT_SALE"/>
+			<result property="prdtScount" column="PRDT_SCOUNT"/>
+			<result property="prdtReview" column="PRDT_REVIEW"/>
 		</resultMap>
 		
 		<resultMap type="Product_opt" id="product_optResultSet">
@@ -145,7 +147,35 @@
 		WHERE UP_USING = 'Y'
 		</select> 
 		
-
+		<select id="selectSortProduct1" parameterType="MainSearchCondition" resultMap="productResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE UP_NO = #{product1}
+		CASE WHEN #{sort} = 1 THEN
+		ORDER BY PRDT_SCOUNT ASC
+		CASE WHEN #{sort} = 2 THEN
+		ORDER BY PRDT_REVIEW ASC
+		CASE WHEN #{sort} = 3 THEN
+		ORDER BY PRDT_PRICE DESC
+		CASE WHEN #{sort} = 4 THEN
+		ORDER BY PRDT_PRICE ASC
+		END CASE
+		</select>
+		
+		<select id="selectSortProduct2" parameterType="MainSearchCondition" resultMap="productResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NO LIKE #{product2}||'%'
+		CASE WHEN #{sort} = 1 THEN
+		ORDER BY PRDT_SCOUNT ASC
+		CASE WHEN #{sort} = 2 THEN
+		ORDER BY PRDT_REVIEW ASC
+		CASE WHEN #{sort} = 3 THEN
+		ORDER BY PRDT_PRICE DESC
+		CASE WHEN #{sort} = 4 THEN
+		ORDER BY PRDT_PRICE ASC
+		END CASE
+		</select>
 
 
 </mapper>

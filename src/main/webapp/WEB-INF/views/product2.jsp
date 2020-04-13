@@ -75,74 +75,11 @@
 	</c:forEach>
 						</ul>
 						<!--  -->
-						<h4 class="m-text14 p-b-32">
-							Filters
-						</h4>
+					
+						
 
-						<div class="filter-price p-t-22 p-b-50 bo3">
-							<div class="m-text15 p-b-17">
-								<small>price</small>
-							</div>
-
-							<div class="wra-filter-bar">
-								<div id="filter-bar"></div>
-							</div>
-
-							<div class="flex-sb-m flex-w p-t-16">
-								<div class="w-size11">
-									<!-- Button -->
-									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
-										ON
-									</button>
-								</div>
-
-								<div class="s-text3 p-t-10 p-b-10">
-									<small>가격 구간: <span id="value-lower">650</span>￦ - <span id="value-upper">980</span>￦</small>
-								</div>
-							</div>
-						</div>
-
-						<div class="filter-color p-t-22 p-b-50 bo3">
-							<div class="m-text15 p-b-12">
-								Color
-							</div>
-
-							<ul class="flex-w" id="color">
-							  <c:forEach var="pp" items="${ plist }">
-								<c:forEach var="poo" items="${ polist }">
-									<c:if test="${ pp.prdtNo eq poo.prdtNo }">
-										<c:forEach var="pcc" items="${ pclist }">
-											<c:if test="${ poo.optColor eq pcc.pcName }">
-								<script>
-											var test = ${ pclist};
-											console.log(test);
-											var mySet = new Set();
-
-
-								<li class="color-choice" id="${pcc.pcRgb}" style="width:17px;height:17px;display:inline-block;
-								border:1px solid black;margin-right:2px;margin-bottom:2px;background:${pcc.pcRgb};"></li>
-								</script>
-											</c:if>
-										</c:forEach>
-									 </c:if>
-								</c:forEach>
-							 </c:forEach> 
-							 <%-- <% ArrayList<Product> pplist = new ArrayList<Product>(); %>
-							 <% ArrayList<Product_color> pclist = new ArrayList<Product_color>(); %>
-							 <% ArrayList<Product_opt> polist = new ArrayList<Product_opt>(); %>
-
-
-
-							 <li class="color-choice" id="${pcc.pcRgb}" style="width:17px;height:17px;display:inline-block;
-								border:1px solid black;margin-right:2px;margin-bottom:2px;background:${pcc.pcRgb};"></li>
-							  --%>
-
-
-							</ul>
-						</div>
-
-						<div class="search-product pos-relative bo4 of-hidden">
-							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">
+						 <div class="search-product pos-relative bo4 of-hidden">
+							<!-- <input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products..."> -->
 
 							<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
 								<i class="fs-12 fa fa-search" aria-hidden="true"></i>
@@ -153,29 +90,24 @@
 
 				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
 					<!--  -->
-					<div class="flex-sb-m flex-w p-b-35">
+					<div class="flex-sb-m flex-w p-b-35" style="position:relative; left:80%; border:none;">
 						<div class="flex-w">
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10"style="background:black;">
-								<select class="selection-2" name="sorting"style="background:black;">
-									<option style="background:black">-정렬-</option>
-									<option>인기 순서</option>
-									<option>낮은 가격순</option>
-									<option>높은 가격순</option>
+								<select class="selection-2" id="sortSelect" name="sorting"style="background:black;" onchange="sort(this.value);">
+									<option style="background:black" value="0">최신게시물 순</option>
+									<option value="1" >인기순</option>
+									<option value="2">리뷰순</option>
+									<option value="3">낮은가격순</option>
+									<option value="4">높은가격순</option>
 								</select>
 							</div>
 
-							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10"style="background:black;">
-								<select class="selection-2" name="sorting">
-									<option>Price</option>
-									<option><font class="format-money">5000</font><small>￦</small> - <font class="format-money">50000</font><small>￦</small></option>
-									<option><font class="format-money">50000</font><small>￦</small> - <font class="format-money">100000</font><small>￦</small></option>
-									<option><font class="format-money">100000</font><small>￦</small> - <font class="format-money">150000</font><small>￦</small></option>
-
-								</select>
-							</div>
+							
 						</div>
 
 					</div>
+					
+						
 <c:url var="product_detail" value="product_detail.do">
 	<c:param name="product_detail" value="p1" />
 </c:url>
@@ -287,7 +219,7 @@
 										<c:if test="${p.prdtSale eq 0 }">
 										<small><font class="format-money">${ p.prdtPrice}</font> won</small>&nbsp;&nbsp;
 										</c:if>
-										<font style="font-size:9px;color:gray">리뷰 : 100</font>
+										<font style="font-size:9px;color:gray">리뷰 : ${p.prdtReview}</font>
 									</span>
 								</div>
 							</div>
@@ -380,10 +312,10 @@
 				
 				
 			<%String downPage = request.getParameter("product2"); %>
-				
+				<input type="hidden" id="product2val"value="<%=downPage %>">
 					<!-- Pagination -->
 					
-					<div class="pagination flex-m flex-w p-t-26" style="position:relative;left:47%;">
+					<div class="pagination flex-m flex-w p-t-26" >
 					
 <c:if test="${ mainPi.currentPage ne 1 }">
                   <c:url var="before" value="product2.do">
@@ -444,7 +376,18 @@
 	<div id="dropDownSelect2"></div>
 
 
-
+<script>
+					
+					function sort(arguments){
+						var sort = arguments;
+						var product2 = $('#product2val').val();
+						
+						console.log(sort);
+					location.href = "sort1.do?product2="+product2+"&sort="+sort;
+						
+					}
+					
+					</script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="/ot/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -497,11 +440,11 @@
 	    var filterBar = document.getElementById('filter-bar');
 
 	    noUiSlider.create(filterBar, {
-	        start: [ 5000, 150000 ],
+	        start: [ 0, 200000 ],
 	        connect: true,
 	        range: {
-	            'min': 5000,
-	            'max': 150000
+	            'min': 0,
+	            'max': 200000
 	        }
 	    });
 
@@ -517,5 +460,8 @@
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
+<script type="text/javascript">
+
+</script>
 </body>
 </html>
