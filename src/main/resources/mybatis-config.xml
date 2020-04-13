@@ -14,6 +14,7 @@
 <typeAliases>
 <typeAlias type="com.kh.ot.member.vo.Member" alias="Member"/>
 <typeAlias type="com.kh.ot.board.vo.Board" alias="Board"/>
+<typeAlias type="com.kh.ot.cart.vo.Cart" alias="Cart"/>
  <typeAlias type="com.kh.ot.main.vo.MainSearchCondition" alias="MainSearchCondition"/>  
  <typeAlias type="com.kh.ot.main.vo.MaindownCategory" alias="MaindownCategory"/> 
  <typeAlias type="com.kh.ot.main.vo.MainupCategory" alias="MainupCategory"/> 
