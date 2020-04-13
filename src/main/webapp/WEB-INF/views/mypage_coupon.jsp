@@ -15,6 +15,18 @@
 <link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png" />
 
 	<jsp:include page="header.jsp"/>
+	
+<style>
+.ec-base-paginate1 img {
+    vertical-align: none !important;
+}
+.ec-base-paginate1 {
+    margin: 30px auto;
+    text-align: center;
+    line-height: 0;
+    display: table;
+}
+</style>
 </head>
 <body>
 	<c:url var="mWishlist" value="mWishlist.do"/>
@@ -144,32 +156,75 @@
 				</div>
 			</form>
 
-			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate">
-				<a href="/myshop/coupon/coupon.html?page=1" class="first">
+
+			<!-- 페이징 처리 -->
+			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
+				<c:if test="${pi.currentPage eq 1 }">
+					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+				</c:if>
+				<c:if test="${pi.currentPage ne 1 }">
+					<c:url var="start" value="mCoupon.do">
+						<c:param name="currentPage" value="1"/>
+					</c:url>
+				<a href="${start }" class="first">
 					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
 				</a>
-				<a href="/myshop/coupon/coupon.html?page=1">
-					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
-				</a>
-				<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
-				<ol>
-					<c:if test="${ p eq pi.currentPage }">
-					<li class="xans-record-"><a class="this">${p }</a></li>
-					</c:if>
-					
-					<c:if test="${ p ne pi.currentPage }">
-						<c:url var="pagination" value="mCoupon.do">
-							<c:param name="currentPage" value="${p }"/>
-						</c:url>
-						<a class="this" href="${ pagination }">${p }</a> &nbsp;&nbsp;
-					</c:if>
-					</ol>
-				</c:forEach>
-				<a href="/myshop/coupon/coupon.html?page=1"><img
-					src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지"></a>
-				<a href="/myshop/coupon/coupon.html?page=1" class="last"><img
-					src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
+				</c:if> 
+				
+				
+				<c:if test="${ pi.currentPage eq 1 }">
+					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
+				</c:if>
+				<c:if test="${ pi.currentPage ne 1 }">
+				<c:url var="before" value="mCoupon.do">
+                  <c:param name="currentPage" value="${pi.currentPage - 1 }"/>
+                  </c:url>
+                  <a href="${before}">
+                  <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+                  </a> &nbsp;
+                 </c:if>
+                  
+				 <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                     <c:if test="${ p eq pi.currentPage }">
+                        <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
+                        <b>${ p }</b> &nbsp;&nbsp;</font>
+                     </c:if>
+
+                     <c:if test="${ p ne pi.currentPage }">
+                        <c:url var="pagination" value="mCoupon.do">
+                           <c:param name="currentPage" value="${ p }"/>
+                     </c:url>
+                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+                     ${ p }</a> &nbsp;
+                  </c:if>
+               </c:forEach>
+               
+               
+               <c:if test="${ pi.currentPage eq pi.maxPage }">
+					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+				</c:if>
+				<c:if test="${ pi.currentPage ne pi.maxPage }">
+				<c:url var="after" value="mCoupon.do">
+                     <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                  </c:url>
+                  <a href="${after}">
+               <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+               </a>
+               </c:if>
+               
+               <c:if test="${ pi.currentPage eq pi.maxPage }">
+               		<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+               </c:if>
+               <c:if test="${ pi.currentPage ne pi.maxPage }">
+               		<c:url var="end" value="mCoupon.do">
+               			<c:param name="currentPage" value="${pi.maxPage }"/>
+               		</c:url>
+					<a href="${end }" class="last">
+					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
+               </c:if>
 			</div>
+
+
 
 			<form id="frmSerialCoupon" name=""
 				action="/exec/front/myshop/couponSerial" method="post"

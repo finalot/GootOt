@@ -744,6 +744,10 @@ $('#delivery').click(function(){
 	$('.yg_btn_147').click(function(){
 		$('#orderdetail').css('display','none');
 	})
+	
+	$('.yg_btn_141').click(function() {
+		location.href="orderDetail.do";
+	})
 	</script>
 	
 	<script>
