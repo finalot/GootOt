@@ -9,20 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.ot.common.MainPagination;
 import com.kh.ot.main.service.MainService;
 import com.kh.ot.main.vo.MainPageInfo;
+import com.kh.ot.main.vo.MainSearchCondition;
+import com.kh.ot.main.vo.MaindownCategory;
+import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
-import com.kh.ot.main.vo.MaindownCategory;
-import com.kh.ot.main.vo.MainupCategory;
 
 //@SessionAttributes("loginMember")
 @Controller
@@ -241,68 +240,75 @@ public class mainController {
 	public String faq() {
 		return "FaQ";
 	}
-
+	
 	/**
-	 * @작성일 : 2020. 4. 13.
+	 * @작성일 : 2020. 4. 2.
 	 * @작성자 :이대윤
-	 * @내용 : 프로덕트 가격 솔팅
+	 * @내용 : 프로덕트1 정렬 후 불러오기
 	 * @param @return
 	 * @return String
 	 */
+	@RequestMapping("sort1.do")
+	public ModelAndView sort1(ModelAndView mv, int product1,int sort,
+			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
+		MainSearchCondition msc= new MainSearchCondition();
+		msc.setProduct1(product1);
+		System.out.println(product1);
+		msc.setSort(sort);
+		System.out.println(sort);
+		int listCount = mainService.getListCount1(product1);
+
+		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage, listCount);
+
+		ArrayList<Product> plist = mainService.selectSortList1(mainPi, msc);
+
+		ArrayList<MaindownCategory> dclist = mainService.selectCategoryList1(product1);
+		ArrayList<MainupCategory> uclist = mainService.selectUpCategoryList1();
+
+		ArrayList<Product_opt> polist = mainService.selectOptionList1(product1);
+
+		ArrayList<Product_color> pclist = mainService.selectColorList1();
+
+		mv.addObject("plist", plist);
+		mv.addObject("dclist", dclist);
+		mv.addObject("uclist", uclist);
+		mv.addObject("polist", polist);
+		mv.addObject("pclist", pclist);
+		mv.addObject("mainPi", mainPi);
+		mv.setViewName("product");
+
+		return mv;
+	}
+
 	
-//	@RequestMapping("sortPrice1.do")
-//	public ModelAndView sortPrice1(ModelAndView mv, int product1,int minPrice,int maxPrice,
-//			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
-//
-//		int listCount = mainService.getListCount1(product1);
-//
-//		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage, listCount);
-//
-//		ArrayList<Product> plist = mainService.selectSortPriceList1(mainPi, product1,minPrice,maxPrice);
-//
-//		ArrayList<MaindownCategory> dclist = mainService.selectCategoryList1(product1);
-//		ArrayList<MainupCategory> uclist = mainService.selectUpCategoryList1();
-//
-//		ArrayList<Product_opt> polist = mainService.selectOptionList1(product1);
-//
-//		ArrayList<Product_color> pclist = mainService.selectColorList1();
-//
-//		mv.addObject("plist", plist);
-//		mv.addObject("dclist", dclist);
-//		mv.addObject("uclist", uclist);
-//		mv.addObject("polist", polist);
-//		mv.addObject("pclist", pclist);
-//		mv.addObject("mainPi", mainPi);
-//		mv.setViewName("product1");
-//
-//		return mv;
-//	}
-//	
-//	@RequestMapping("sortPrice2.do")
-//	public ModelAndView sortPrice2(ModelAndView mv, int product2,int minPrice,int maxPrice,
-//			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
-//
-//		int listCount = mainService.getListCount2(product2);
-//
-//		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage, listCount);
-//
-//		ArrayList<Product> plist = mainService.selectSortPriceList2(mainPi, product2,minPrice,maxPrice);
-//
-//		ArrayList<MaindownCategory> dclist = mainService.selectCategoryList2(product2);
-//		ArrayList<MainupCategory> uclist = mainService.selectUpCategoryList2();
-//
-//		ArrayList<Product_opt> polist = mainService.selectOptionList2(product2);
-//
-//		ArrayList<Product_color> pclist = mainService.selectColorList2();
-//
-//		mv.addObject("plist", plist);
-//		mv.addObject("dclist", dclist);
-//		mv.addObject("uclist", uclist);
-//		mv.addObject("polist", polist);
-//		mv.addObject("pclist", pclist);
-//		mv.addObject("mainPi", mainPi);
-//		mv.setViewName("product2");
-//
-//		return mv;
-//	}
+	@RequestMapping("sort2.do")
+	public ModelAndView sort2(ModelAndView mv, int product2,int sort,
+			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
+MainSearchCondition msc= new MainSearchCondition();
+		msc.setProduct2(product2);
+		msc.setSort(sort);
+		
+		int listCount = mainService.getListCount2(product2);
+
+		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage, listCount);
+
+		ArrayList<Product> plist = mainService.selectSortList2(mainPi, msc);
+
+		ArrayList<MaindownCategory> dclist = mainService.selectCategoryList2(product2);
+		ArrayList<MainupCategory> uclist = mainService.selectUpCategoryList2();
+
+		ArrayList<Product_opt> polist = mainService.selectOptionList2(product2);
+
+		ArrayList<Product_color> pclist = mainService.selectColorList2();
+
+		mv.addObject("plist", plist);
+		mv.addObject("dclist", dclist);
+		mv.addObject("uclist", uclist);
+		mv.addObject("polist", polist);
+		mv.addObject("pclist", pclist);
+		mv.addObject("mainPi", mainPi);
+		mv.setViewName("product");
+
+		return mv;
+	}
 }

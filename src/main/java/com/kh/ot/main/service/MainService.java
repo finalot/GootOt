@@ -6,6 +6,7 @@ package com.kh.ot.main.service;
 import java.util.ArrayList;
 
 import com.kh.ot.main.vo.MainPageInfo;
+import com.kh.ot.main.vo.MainSearchCondition;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
@@ -76,18 +77,9 @@ public interface MainService {
 	
 	ArrayList<MainupCategory> selectUpCategoryList3();
 
-	/**
-	 * @작성일 : 2020. 4. 13.
-	 * @작성자 :
-	 * @내용 :
-	 * @param @param mainPi
-	 * @param @param product1
-	 * @param @param minPrice
-	 * @param @param maxPrice
-	 * @param @return
-	 * @return ArrayList<Product>
-	 */
-//	ArrayList<Product> selectSortPriceList1(MainPageInfo mainPi, int product1, int minPrice, int maxPrice);
-//	ArrayList<Product> selectSortPriceList2(MainPageInfo mainPi, int product1, int minPrice, int maxPrice);
-//	
+	ArrayList<Product> selectSortList1(MainPageInfo mainPi, MainSearchCondition msc);
+
+	ArrayList<Product> selectSortList2(MainPageInfo mainPi, MainSearchCondition msc);
+
+
 }

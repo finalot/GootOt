@@ -11,11 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.ot.main.vo.MainPageInfo;
+import com.kh.ot.main.vo.MainSearchCondition;
+import com.kh.ot.main.vo.MaindownCategory;
+import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
-import com.kh.ot.main.vo.MaindownCategory;
-import com.kh.ot.main.vo.MainupCategory;
 
 @Repository("mainDao")
 public class MainDao {
@@ -126,24 +127,21 @@ public class MainDao {
 		return (ArrayList)sqlSession.selectList("productMapper.selectUpCategory3");
 	}
 
-	/**
-	 * @작성일 : 2020. 4. 13.
-	 * @작성자 :이대윤 
-	 * 
-	 * @내용 :프라이스 정렬
-	 * @param @param mainPi
-	 * @param @param product1
-	 * @param @param minPrice
-	 * @param @param maxPrice
-	 * @param @return
-	 * @return ArrayList<Product>
-	 */
-//	public ArrayList<Product> selectSortPriceList1(MainPageInfo mainPi, int product1, int minPrice, int maxPrice) {
-//		int offset=(mainPi.getCurrentPage() - 1) * mainPi.getBoardLimit();
-//		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
-//		
-//		return (ArrayList)sqlSession.selectList("productMapper.selectSortPriceProduct1",product1,rowBounds);
-//	}
+	public ArrayList<Product> selectSortList1(MainPageInfo mainPi, MainSearchCondition msc) {
+		int offset=(mainPi.getCurrentPage() - 1) * mainPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("productMapper.selectSortProduct1",msc,rowBounds);
+	}
+	
+	public ArrayList<Product> selectSortList2(MainPageInfo mainPi, MainSearchCondition msc) {
+		int offset=(mainPi.getCurrentPage() - 1) * mainPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("productMapper.selectSortProduct2",msc,rowBounds);
+	}
+
+
 
 	
 	
