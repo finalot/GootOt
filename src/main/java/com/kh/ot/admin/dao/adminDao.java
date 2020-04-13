@@ -17,6 +17,8 @@ import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_opt;
 
 @Repository("adDao")
 public class adminDao {
@@ -150,24 +152,26 @@ public class adminDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectInstaList");
 	}
 	
-	
-	
-	
 	/**
 	 * @작성일 : 2020. 4. 12.
 	 * @작성자 : 이서현
 	 * @내용 : 상품, 상품옵션 등록 
 	 */
-	/*
-	 * public int ProductInsert(Product p) { return
-	 * sqlSession.insert("adminMapper.ProductInsert",p); }
-	 * 
-	 * public int ProductOptionInsert(ProductOption po,int prdtNo) {
-	 * 
-	 * int result =0; List<ProductOption> polist = po.getProduct_OptionVOList();
-	 * for(ProductOption Option : polist) { Option.setPrdt_no(prdtNo); result
-	 * =sqlSession.insert("adminMapper.ProductOptionInsert",Option); } return
-	 * result; }
-	 */
+	
+	public int ProductInsert(Product p) { 
+		return sqlSession.insert("adminMapper.ProductInsert",p); 
+	}
+	
+	public int ProductOptionInsert(Product_opt po,int prdtNo) {
+	
+		int result =0; 
+		List<Product_opt> polist = po.getOptionVOList();
+		for(Product_opt Option : polist) { 
+			Option.setPrdtNo(prdtNo);
+			result=sqlSession.insert("adminMapper.ProductOptionInsert",Option); 
+		} 
+		return result; 
+	}
+	 
 	 
 }

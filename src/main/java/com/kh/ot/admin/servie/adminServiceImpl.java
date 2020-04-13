@@ -9,6 +9,8 @@ import com.kh.ot.admin.dao.adminDao;
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.DownCategory;
 import com.kh.ot.admin.vo.UpCategory;
+import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.admin.vo.Design;
 
 @Service("adService")
@@ -99,19 +101,21 @@ public class adminServiceImpl implements adminService{
 	public int DownCategoryDelete(DownCategory downCategory) {
 		return adDao.DownCategoryDelete(downCategory);
 	}
+
+	@Override public int ProductInsert(Product p, Product_opt po) { 
+	  int result=0; 
+	  int presult = adDao.ProductInsert(p);
 	
+	  int poresult = 0; 
+	  int prdtNo =p.getPrdtNo();
 	
-	/*
-	 * @Override public int ProductInsert(Product p, ProductOption po) { int result
-	 * =0; int presult = adDao.ProductInsert(p);
-	 * 
-	 * int poresult = 0; int prdtNo =p.getPrdtNo();
-	 * 
-	 * if(presult>0) { poresult=adDao.ProductOptionInsert(po, prdtNo); result =
-	 * presult * poresult; }
-	 * 
-	 * return result; }
-	 */
+	  if(presult>0) { 
+		  poresult=adDao.ProductOptionInsert(po, prdtNo); 
+		  result =presult * poresult; 
+	  }
+	  	return result; 
+	}
+	 
 
 
 

@@ -47,8 +47,8 @@
 			<result property="prdtDetailImagePath" column="PRDT_DETAIL_IMAGE_PATH"/>
 			<result property="prdtSale" column="PRDT_SALE"/>
 		</resultMap>
-		
-		<resultMap type="ProductOption" id="ProductOptionInsertResultSet">
+		 -->
+<!-- 		<resultMap type="ProductOption" id="ProductOptionInsertResultSet">
 			<id property="opt_no" column="OPT_NO"/>
 			<result property="prdt_no" column="PRDT_NO"/>
 			<result property="prdt_no" column="OPT_COLOR"/>

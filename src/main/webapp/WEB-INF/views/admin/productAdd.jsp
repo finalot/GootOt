@@ -303,7 +303,7 @@ th{
     <!-- END WELCOME-->
     
     
-
+	<from action="ProductInsert.ad" method="post" id="productInsert">
     <!-- 이벤트 내용 -->
    <table id="addlist" style="border: 1px dotted; background: white; font-size:13pt;">
         <tr colspan="2">
@@ -314,23 +314,23 @@ th{
         	<th><span style="color:red">*</span> 분류</th>
         	<td>
 	       		대(大) : &nbsp;&nbsp;
-	       		
-<%-- 	       		<select>
-				  <c:forEach var="i" items="${options}" />
-				    <option value="${i.value}">${i.text}</options>
-				  </c:forEach>
-				</select>--%>
-                    <select id="select-category">
-                      <%--  <c:forEach var="i" items="${options}" />
-				    		<option value="${i.value}">${i.text}</option>
-				  		</c:forEach> --%>
-                   </select>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+	       	
+	       	<select name="bdivide" id="bdivide">
+	       		<option value="">선택1(대분류)</option>
+	       		<c:forEach var="up" items="${ulist }">
+	       			<option value="${up.up_no }">${up.up_name }</option>
+	       		</c:forEach>
+	       	</select>
+	       	
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+                                    
                                     중(中) : &nbsp;&nbsp;
-                   <select id="mdivide" onclick="test1();">
-                       <option>선택2(중분류)</option>
-                   </select>
+                                    
+            <select name="mdivide" id="mdivide">
+	       		<option value="">선택2(중분류)</option>
+	       	</select>	
+	       	
         	</td>
         </tr>
         <tr>
@@ -412,6 +412,8 @@ th{
         	</td>
         </tr>
     </table>
+    
+    </from><!-- Product.ad 옵션 끝남 -->
   <div style="height: 130px;">
           <div align="center" style="margin-bottom:3%">
     <button id="product-info-add" style="width: 100px; height: 40px;border-radius: 10px;;background: black; color: white">상품추가</button>
@@ -663,37 +665,27 @@ th{
         /* 모든 포커스 삭제하기  */
         $(':focus').blur();  
         </script>
-
-
+		
+		<!-- 카테고리 뿌리기  -->
         <script>
-        function categoryChange(e) {
-            var mdivide_a = ["선택","긴팔", "니트", "슬리브리스/반팔", "크롭","오프숄더"];
-            var mdivide_b = ["선택","자켓", "코트/점퍼", "가디건", "베스트"];
-            var mdivide_c = ["선택","슬렉스", "데님", "부츠컷", "와이드", "면바지/기타","트레이닝","조거팬츠","숏/반바지"];
-            var mdivide_d = ["선택","스커트","원피스"];
-            var mdivide_e = ["선택","귀걸이/귀찌","목걸이","반지","초커/팔찌","시계"];
-            var mdivide_f = ["선택","가방","신발"];
-            var mdivide_g = ["선택","벨트","안경/선글라스","모자/헤어","양말/스타킹","머플러/장갑","기타"];
-            var target = document.getElementById("mdivide");
-         
-
-            if(e.value == "a") var d = mdivide_a;
-            else if(e.value == "b") var d = mdivide_b;
-            else if(e.value == "c") var d = mdivide_c;
-            else if(e.value == "d") var d = mdivide_d;
-            else if(e.value == "e") var d = mdivide_e;
-            else if(e.value == "f") var d = mdivide_f;
-            else if(e.value == "g") var d = mdivide_g;
-
-            target.options.length = 0;
-
-            for (x in d) {
-                var opt = document.createElement("option");
-                opt.value = d[x];
-                opt.innerHTML = d[x];
-                target.appendChild(opt);
-            }   
-        }
+        $('#bdivide').click(function(){
+				$('#mdivide').children('option').remove()
+				$('#mdivide').append()
+        		var upno=$(this).val();
+				
+        	"<c:forEach var='d' items='${dlist}'>"
+				
+        		if(upno == "${d.up_no}"){
+					$('#mdivide').append('<option value="${d.down_no}">${d.down_name}</option>');
+					
+				}else{
+					$('#mdivide').append('<option>-------</option>')
+				}
+				
+        	"</c:forEach>"
+        });
+        
+     
         </script>
 
      <!-- Bootstrap JS-->

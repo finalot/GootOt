@@ -31,6 +31,8 @@ import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.Design;
 import com.kh.ot.admin.vo.DownCategory;
 import com.kh.ot.admin.vo.UpCategory;
+import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_opt;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -92,8 +94,15 @@ public class menuController {
 	}
 	
 	@RequestMapping("productAdd.ad")
-	public String productAdd() {
-		return "admin/productAdd";
+	public ModelAndView productAdd(ModelAndView mv ) {
+		
+		ArrayList<UpCategory> ulist = adService.UpCategorySelect();
+		ArrayList<DownCategory> dlist = adService.DownCategorySelect();
+	
+		mv.addObject("ulist", ulist);
+		mv.addObject("dlist", dlist);
+		mv.setViewName("admin/productAdd");
+		return mv;
 	}
 	
 	@RequestMapping("productList.ad")
@@ -577,20 +586,25 @@ public class menuController {
 			System.out.println("실패 ! ");
 			return "redirect:category.ad";
 		}
-	}
+	 }
 	
-
-	/*
-	 * @RequestMapping("ProductInsert.ad") public String ProductInsert(Product
-	 * p,ProductOption po, HttpServletRequest request, MultipartFile file) {
-	 * 
-	 * int result = adService.ProductInsert(p,po);
-	 * 
-	 * if(result>0) { return "redirect:productList.ad"; }else {
-	 * System.out.println("에러"); return "redirect:productList.ad"; }
-	 * 
-	 * }
+	/**
+	 * @작성일 : 2020. 4. 13.
+	 * @작성자 : 이서현
+	 * @내용 : 상품등록 
 	 */
+	@RequestMapping("ProductInsert.ad") public String ProductInsert(Product p, Product_opt po, 
+					HttpServletRequest request, MultipartFile file) {
+	
+	int result = adService.ProductInsert(p,po);
+	
+	if(result>0) { 
+		return "redirect:productList.ad"; 
+	}else {
+		System.out.println("에러"); 
+		return "redirect:productAdd.ad"; }
+	}
+	 
 	
 	
 	
