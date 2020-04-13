@@ -89,6 +89,14 @@ public class MainServiceImpl implements MainService {
 	public ArrayList<MainupCategory> selectUpCategoryList3() {
 		return mainDao.selectUpCategoryList3();
 	}
+//	@Override
+//	public ArrayList<Product> selectSortPriceList1(MainPageInfo mainPi, int product1, int minPrice, int maxPrice) {
+//		return mainDao.selectSortPriceList1(mainPi,product1,minPrice,maxPrice);
+//	}
+//	@Override
+//	public ArrayList<Product> selectSortPriceList2(MainPageInfo mainPi, int product2, int minPrice, int maxPrice) {
+//		return mainDao.selectSortPriceList2(mainPi,product2,minPrice,maxPrice);
+//	}
 	
 
 

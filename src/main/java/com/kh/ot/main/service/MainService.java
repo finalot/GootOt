@@ -75,5 +75,19 @@ public interface MainService {
 	ArrayList<MaindownCategory> selectCategoryList3();
 	
 	ArrayList<MainupCategory> selectUpCategoryList3();
-	
+
+	/**
+	 * @작성일 : 2020. 4. 13.
+	 * @작성자 :
+	 * @내용 :
+	 * @param @param mainPi
+	 * @param @param product1
+	 * @param @param minPrice
+	 * @param @param maxPrice
+	 * @param @return
+	 * @return ArrayList<Product>
+	 */
+//	ArrayList<Product> selectSortPriceList1(MainPageInfo mainPi, int product1, int minPrice, int maxPrice);
+//	ArrayList<Product> selectSortPriceList2(MainPageInfo mainPi, int product1, int minPrice, int maxPrice);
+//	
 }

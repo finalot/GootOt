@@ -126,6 +126,25 @@ public class MainDao {
 		return (ArrayList)sqlSession.selectList("productMapper.selectUpCategory3");
 	}
 
+	/**
+	 * @작성일 : 2020. 4. 13.
+	 * @작성자 :이대윤 
+	 * 
+	 * @내용 :프라이스 정렬
+	 * @param @param mainPi
+	 * @param @param product1
+	 * @param @param minPrice
+	 * @param @param maxPrice
+	 * @param @return
+	 * @return ArrayList<Product>
+	 */
+//	public ArrayList<Product> selectSortPriceList1(MainPageInfo mainPi, int product1, int minPrice, int maxPrice) {
+//		int offset=(mainPi.getCurrentPage() - 1) * mainPi.getBoardLimit();
+//		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
+//		
+//		return (ArrayList)sqlSession.selectList("productMapper.selectSortPriceProduct1",product1,rowBounds);
+//	}
+
 	
 	
 	
