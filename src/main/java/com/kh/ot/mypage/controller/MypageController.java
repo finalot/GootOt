@@ -13,6 +13,7 @@ import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.common.Pagination;
 import com.kh.ot.mypage.service.MypageService;
+import com.kh.ot.mypage.vo.CouponMem;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -40,9 +41,22 @@ public class MypageController {
 	 * @param @return
 	 * @return String
 	 */
-	@RequestMapping("mWishlist.do")
-	public String mWishlist() {
-		return "mypage_wishList";
+	@RequestMapping("mWishlist.do") //1
+	public ModelAndView mWishlist(ModelAndView mv) {
+		
+		int listCount = mpService.CouponListCount();
+		int point = 
+													// 사용 가능 포인트 셋팅
+													// 찜한 갯수 카운팅
+		
+		mv.addObject("couponcount", listCount); // 쿠폰 갯수 카운팅
+		//mv.addObject()						// 사용 가능 포인트 셋팅
+												// 찜한 갯수 카운팅
+		
+		
+		mv.setViewName("mypage_wishList");
+		
+		return mv;
 	}
 	
 	/**
@@ -52,12 +66,13 @@ public class MypageController {
 	 * @param @return
 	 * @return String
 	 */
-	@RequestMapping("mPoint.do")
+	@RequestMapping("mPoint.do") //2
 	public ModelAndView mPoint(ModelAndView mv,
 							   @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
 		System.out.println(currentPage);
 		
+		int coupon = mpService.CouponListCount();
 		int listCount = mpService.PointListCount();
 		
 		System.out.println("listCount : " + listCount);
@@ -66,12 +81,44 @@ public class MypageController {
 		
 		ArrayList<Point> list = mpService.PointSelectList(pi);
 		
+		mv.addObject("CouponCount",coupon);
 		mv.addObject("list", list);
 		mv.addObject("pi",pi);
 		mv.setViewName("mypage_point");
 		
 		return mv;
 	}
+	
+	/**
+	 * @작성일 : 2020. 4. 4.
+	 * @작성자 : 신경섭
+	 * @내용 : 적립금  - 미사용적립금
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("mUnavailpoint.do") 
+	public ModelAndView mUnavailpoint(ModelAndView mv,
+							    @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		
+		System.out.println(currentPage);
+		
+		int listCount = mpService.PointUnavailListCount();
+		int coupon = mpService.CouponListCount();
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
+		
+		ArrayList<Point> list = mpService.PointselectUnavailList(pi);
+		
+		mv.addObject("CouponCount",coupon);
+		mv.addObject("list", list);
+		mv.addObject("pi",pi);
+		mv.setViewName("mypage_unavailpoint");
+		
+		return mv;
+	}
+	
 	
 	/**
 	 * @작성일 : 2020. 4. 3.
@@ -81,32 +128,56 @@ public class MypageController {
 	 * @return String
 	 */
 	
-	
-	@RequestMapping("mCoupon.do")
-	public String mCoupon() {
-		return "mypage_coupon";
+
+	@RequestMapping("mCoupon.do") // 3
+	public ModelAndView mCoupon(ModelAndView mv,
+								@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		
+		System.out.println(currentPage);
+		
+		
+		int listCount = mpService.CouponListCount();
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
+		
+		ArrayList<CouponMem> list = mpService.CouponSelectList(pi);
+		
+		mv.addObject("list", list);
+		mv.addObject("pi", pi);
+		mv.setViewName("mypage_coupon");
+		
+		return mv;
 	}
 	
-//	@RequestMapping("mCoupon.do")
-//	public ModelAndView mCoupon(ModelAndView mv,
-//								@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
-//		
-//		System.out.println(currentPage);
-//		
-//		int listCount = mpService.getListCount();
-//		
-//		System.out.println("listCount : " + listCount);
-//		
-//		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
-//		
-//		ArrayList<Coupon> list = mpService.selectList(pi);
-//		
-//		mv.addObject("list", list);
-//		mv.addObject("pi",pi);
-//		mv.setViewName("mypage_coupon");
-//		
-//		return mv;
-//	}
+	/**
+	 * @작성일 : 2020. 4. 3.
+	 * @작성자 : 신경섭
+	 * @내용 : 마이페이지 쿠폰 - 사용완료한 쿠폰
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("mCompleteCoupon.do")
+	public ModelAndView mCompleteCoupon(ModelAndView mv,
+			@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		
+		System.out.println(currentPage);
+		
+		int listCount = mpService.CompleteCouponListCount();
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
+		
+		ArrayList<CouponMem> list = mpService.CompleteCouponSelectList(pi);
+		
+		mv.addObject("list", list);
+		mv.addObject("pi",pi);
+		mv.setViewName("mypage_coupon");
+		
+		return mv;
+	}
 	
 	/**
 	 * @작성일 : 2020. 4. 3.
@@ -227,28 +298,7 @@ public class MypageController {
 	public String mBoard_Adminmodify() {
 		return "mypage_board_adminmodify";
 	}
-	
-	/**
-	 * @작성일 : 2020. 4. 4.
-	 * @작성자 : 신경섭
-	 * @내용 : 쿠폰 - 사용완료쿠폰 탭
-	 * @param @return
-	 * @return String
-	 */
-	@RequestMapping("mCompletecoupon.do")
-	public String mCompletecoupon() {
-		return "mypage_completecoupon";
-	}
-	
-	/**
-	 * @작성일 : 2020. 4. 4.
-	 * @작성자 : 신경섭
-	 * @내용 : 적립금  - 미사용적립금
-	 * @param @return
-	 * @return String
-	 */
-	@RequestMapping("mUnavailpoint.do")
-	public String mUnavailpoint() {
-		return "mypage_unavailpoint";
-	}
 }
+	
+	
+

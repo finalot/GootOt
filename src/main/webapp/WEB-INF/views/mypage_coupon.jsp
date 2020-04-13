@@ -19,7 +19,7 @@
 <body>
 	<c:url var="mWishlist" value="mWishlist.do"/>
 	<c:url var="mPoint" value="mPoint.do"/>
-	<c:url var="mCoupon" value="mCoupon.do"/>
+	<c:url var="mCoupon" value="mCoupon.do">
 	<c:url var="mCompletecoupon" value="mCompletecoupon.do"/>
 	
 	
@@ -62,7 +62,7 @@
 	                    <strong class="title">COUPON</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mCoupon }">0<span>개</span></a>
+	                    	<a href="${mCoupon }">${cp.listCount }<span>개</span></a>
 	                    </strong>
 	                </li>
 	            </ul>
@@ -70,25 +70,6 @@
 		</div>
 		
 		<div id="contents">
-			<div class="mypage_top_outer">
-				<!-- <div module="myshop_bankbook">        
-			        <ul>
-			            <li module="Layout_shoppingInfo">
-			                <strong class="title"><a href="/myshop/wish_list.html">WISH</a></strong>
-			                <strong class="data {$use_interest_prd|display}"><a href="/myshop/wish_list.html">{$interest_prd_cnt}</a></strong>
-			            </li>
-			            <li>
-			                <strong class="title"><a href="/myshop/mileage/historyList.html">POINT</a></strong>
-			                <strong class="data"><a href="/myshop/mileage/historyList.html">{$avail_mileage}</a></strong>
-			            </li>
-			            <li class="etc {$display_coupon|display}">
-			                <strong class="title"><a href="/myshop/coupon/coupon.html">COUPON</a></strong>
-			                <strong class="data"><a href="/myshop/coupon/coupon.html">{$coupon_cnt}<span>개</span></a></strong>
-			                <a href="/myshop/coupon/coupon.html"></a>
-			            </li>
-			        </ul>
-			    </div> -->
-			</div>
 
 			<div class="titleArea">
 				<h2>COUPON</h2>
@@ -113,7 +94,7 @@
 		            <li>	
 		            	<a href="${mCompletecoupon }">사용완료한 쿠폰 목록</a>
 	            	</li>
-						<p style="text-align: right; margin-right: 5px; padding-top: 15px;">사용가능 쿠폰 : 0장</p>
+						<p style="text-align: right; margin-right: 5px; padding-top: 15px;">사용가능 쿠폰 : ${cp.listCount }장</p>
         		</ul>
 			</div>
 					<div class="ec-base-table typeList">
@@ -130,36 +111,29 @@
 								<tr>
 									<th scope="col">NO</th>
 									<th scope="col">COUPON NAME</th>
-									<th scope="col">PRODUCT</th>
-									<th scope="col">TOTAL PRICE</th>
+									<th scope="col">DISCOUNT</th>
 									<th scope="col">DATE</th>
 								</tr>
 							</thead>
-							<tbody class="displaynone center">
-								<tr class="">
-									<td></td>
-									<td class="left"></td>
-									<td></td>
-									<td></td>
-									<td class="left"></td>
-									<td></td>
-									<td></td>
+							<c:if test="${ !empty list}">
+								<c:forEach var="cp" items="${list }">
+							<tbody class="center">
+								<tr class="xans-record-">
+									<td>${cp.cpseq }</td>
+									<td>${cp.cpname }</td>
+									<td>${cp.cpDiscount }</td>
+									<td>${cp.cpdate }</td>
 								</tr>
-								<tr class="">
-									<td></td>
-									<td class="left"></td>
-									<td></td>
-									<td></td>
-									<td class="left"></td>
-									<td></td>
-									<td></td>
-								</tr>
+								</c:forEach>
+								</c:if>
 							</tbody>
+							<c:if test="${empty list }">
 							<tbody class="">
 								<tr>
 									<td colspan="7" class="message">보유하고 계신 쿠폰 내역이 없습니다</td>
 								</tr>
 							</tbody>
+							</c:if>
 						</table>
 					</div>
 					<p class="ec-base-button displaynone">

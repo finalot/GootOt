@@ -126,9 +126,9 @@
 					<caption>적립금 내역</caption>
                 	<colgroup>
 						<col style="width:13%">
-						<col style="width:13%">
 						<col style="width:15%">
 						<col style="width:20%">
+						<col style="width:18%">
 						<col style="width:auto">
 					</colgroup>
 					
@@ -142,33 +142,27 @@
                     	</tr>
                    	</thead>
                    	
-					<tbody class="displaynone center">
-						<tr class="">
-							<td></td>
-	                        <td></td>
-	                        <td>
+					<tbody class="center">
+					
+					<c:if test="${ !empty list }">
+						<c:forEach var="pt" items="${list }">
+						<tr class="xans-record-">
+							<td>${pt.pt_date }</td>
+	                        <td>${pt.pt_price }</td>
+	                        <td>${pt.ordno }
 	                        	<a href="/myshop/order/detail.html?order_id="></a>
                        		</td>
-	                        <td></td>
-                        	<td class="left"></td>
+	                        <td>${pt.pt_duedate }</td>
+                        	<td>${pt.pt_content }</td>
                     	</tr>
-						<tr class="">
-							<td></td>
-	                        <td></td>
-	                        <td><a href="/myshop/order/detail.html?order_id="></a></td>
-	                        <td></td>
-	                        <td class="left"></td>
-                    	</tr>
-						<tr class="">
-							<td></td>
-	                        <td></td>
-	                        <td><a href="/myshop/order/detail.html?order_id="></a></td>
-	                        <td></td>
-	                        <td class="left"></td>
-                    	</tr>
+						</c:forEach>
+					</c:if>
 					</tbody>
 				</table>
-				<p class="message ">적립금 내역이 없습니다.</p>
+				
+				<c:if test="${ empty list }">
+					<p class="message ">적립금 내역이 없습니다.</p>
+				</c:if>
         		</div>
 			</div>
 

@@ -65,7 +65,7 @@
 	                    <strong class="title">COUPON</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mCoupon }">0<span>개</span></a>
+	                    	<a href="${mCoupon }">${cp.listCount }<span>개</span></a>
 	                    </strong>
 	                </li>
 	            </ul>
