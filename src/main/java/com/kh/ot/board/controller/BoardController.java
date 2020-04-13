@@ -416,6 +416,14 @@ public class BoardController extends HttpServlet {
 	
 
 	
+	/**
+	 * @작성일  : 2020. 4. 12.
+	 * @작성자  : 우예진
+	 * @내용    : 상품문의 게시물 삭제
+	 * @param qna_no
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("product_board_delete.do")
 	public String product_board_delete(int qna_no, HttpServletRequest request) {
 		int result = bService.deletePrBoard(qna_no);
@@ -496,6 +504,24 @@ public class BoardController extends HttpServlet {
 	return mv;
    }
 	
+	/**
+	 * @작성일  : 2020. 4. 11.
+	 * @작성자  : 우예진
+	 * @내용    : 상품문의 상세 비밀글(비밀글 타고들어갈때)
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("product_board_detailView")
+	   public ModelAndView product_board_detailView(ModelAndView mv,int qna_no) {
+		   
+		   mv.addObject("qna_no", qna_no);
+		   mv.setViewName("product_board_password");
+
+		   
+		   return mv; 
+	   }
+	
 	
    /**
     * @작성일  : 2020.04.05
@@ -504,9 +530,29 @@ public class BoardController extends HttpServlet {
     * @return
     */
    @RequestMapping("product_change.do")
-   public String product_change() {
-
-      return "product_change";
+   public ModelAndView product_change(ModelAndView mv,
+							   @RequestParam(value="currentPage", 
+							   required=false,defaultValue="1") int currentPage) { 
+      
+      System.out.println(currentPage);
+	   
+	  int b_cate_no = 4;
+      
+      int listCount = bService.getListCount(b_cate_no);
+      
+      System.out.println("listCount : " + listCount);
+      
+      PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+      
+      ArrayList<Board> list = bService.selectList(pi,b_cate_no);
+      
+      System.out.println("list:"+list);
+      
+        mv.addObject("list",list);
+        mv.addObject("pi",pi);
+        mv.setViewName("product_change");
+      
+      return mv; 
    }
   
 
@@ -569,8 +615,8 @@ public class BoardController extends HttpServlet {
  	* @param uploadFile
  	* @return
  	*/
-@RequestMapping(value="product_change_insert.do",method=RequestMethod.POST)
-   public String product_change_insert(Board b,HttpServletRequest request,HttpSession session,
+   @RequestMapping(value="product_change_insert.do",method=RequestMethod.POST)
+   	public String product_change_insert(Board b,HttpServletRequest request,HttpSession session,
          @RequestParam(name="uploadFile",required=false) MultipartFile uploadFile) {
    
       
@@ -602,6 +648,48 @@ public class BoardController extends HttpServlet {
          return null;
       }
    }
+
+	/**
+	 * @작성일  : 2020. 4. 8.
+	 * @작성자  : 우예진
+	 * @내용    : 배송후교환반품 게시글 업데이트 화면 이동
+	 * @return
+	 */
+   @RequestMapping("product_change_update.do")
+   public ModelAndView product_change_update(ModelAndView mv, int qna_no) {
+
+	
+	Board b = bService.selectBoard(qna_no);
+	
+	if(b!=null) {
+		mv.addObject("b",b)
+				/* .addObject("currentPage",currentPage) */
+		.setViewName("product_change_update");
+	} else {
+		mv.addObject("msg","게시글 상세조회 실패")
+		.setViewName("common/errorPage");
+	}
+     return mv;
+ }
+
+	/**
+	 * @작성일  : 2020. 4. 12.
+	 * @작성자  : 우예진
+	 * @내용    : 배송후교환반품  게시물 삭제
+	 * @param qna_no
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("product_change_delete.do")
+	public String product_change_delete(int qna_no, HttpServletRequest request) {
+	int result = bService.deletePrBoard(qna_no);
+	
+	if(result >0) {
+		return "redirect:product_change.do";
+	} else {
+		return "에러다";
+	}
+}
    
    /**
     * @작성일  : 2020.04.12
@@ -610,7 +698,7 @@ public class BoardController extends HttpServlet {
     * @return
     */
 	@RequestMapping("pc_search.do")
-   public ModelAndView pc_search(ModelAndView mv, 
+	public ModelAndView pc_search(ModelAndView mv, 
 		   						@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
 		   						,String search_key,String search,String search_date) {
 	int b_cate_no = 4;
@@ -649,25 +737,7 @@ public class BoardController extends HttpServlet {
 	
 	return mv;
    }
-   
-   
-	/**
-	 * @작성일  : 2020. 4. 11.
-	 * @작성자  : 우예진
-	 * @내용    : 상품문의 상세 비밀글(비밀글 타고들어갈때)
-	 * @param mv
-	 * @param qna_no
-	 * @return
-	 */
-	@RequestMapping("product_board_detailView")
-	   public ModelAndView product_board_detailView(ModelAndView mv,int qna_no) {
-		   
-		   mv.addObject("qna_no", qna_no);
-		   mv.setViewName("product_board_password");
-
-		   
-		   return mv; 
-	   }
+	
 	
 	/**
 	 * @작성일  : 2020. 4. 12
@@ -687,7 +757,26 @@ public class BoardController extends HttpServlet {
 		   return mv; 
 	   }
    
-   
+	/**
+	 * @작성일  : 2020. 4. 9.
+	 * @작성자  : 우예진 
+	 * @내용    : 배송후교환반품 게시글 업데이트 
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("product_change_updateView.do")
+	public String product_change_updateView(Board b,HttpServletRequest request) {
+
+			int result = bService.UpdatePrBoard(b);
+		
+		if(result > 0) {
+			return "redirect:product_change.do";
+		}else {
+			return "에러다";
+		}
+			
+	}
 
    /**
  * @작성일  : 2020. 4. 9.

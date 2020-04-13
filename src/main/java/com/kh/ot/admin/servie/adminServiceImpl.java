@@ -14,7 +14,7 @@ import com.kh.ot.admin.vo.Design;
 
 @Service("adService")
 public class adminServiceImpl implements adminService{
-	
+
 	@Autowired
 	private adminDao adDao;
 
@@ -35,49 +35,49 @@ public class adminServiceImpl implements adminService{
 	public int couponDelete(String cpName) {
 		return adDao.couponDelete(cpName);
 	}
-	
+
 	public int DesignEd(ArrayList<Design>  dlist) {
 		return adDao.DesignEd(dlist);
 	}
 
 	public int DesignEdVideo(Design d) {
 		return adDao.DesignEdVideo(d);
-	}	
-	
+	}
+
 	public int DesignInsta(ArrayList<Design> dlist) {
 		return adDao.DesignInsta(dlist);
-	}	
-	
+	}
+
 	public ArrayList<Design> selectMainList() {
 		return adDao.selectMainList();
 	}
-	
+
 	public Design selectVideo() {
 		return adDao.selectVideo();
 	}
-	
+
 	public ArrayList<Design> selectInstaList() {
 		return adDao.selectInstaList();
 	}
-	
 
-	
+
+
 //	/////여기부터 서현쓰
-	
-	
+
+
 	@Override
 	public ArrayList<UpCategory> UpCategorySelect() {
 		return adDao.upCategorySelect();
 	}
-	
+
 
 
 	@Override
 	public ArrayList<DownCategory> DownCategorySelect() {
 		return adDao.DownCategorySelect();
 	}
-	
-	
+
+
 
 	@Override
 	public int UpCategoryInsert(String addOption) {
@@ -106,7 +106,7 @@ public class adminServiceImpl implements adminService{
 	public ArrayList<Board> selectList(int b_cate_no) {
 		return adDao.selectList(b_cate_no);
 	}
-	
+
 
 
 }
