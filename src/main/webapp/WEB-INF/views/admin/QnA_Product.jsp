@@ -210,6 +210,7 @@
                     <tr>
                         <th style="width: 10%;">게시글번호</th>
                         <th>상품</th>
+                        <th>상품이미지</th>
                         <th>제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
@@ -217,219 +218,33 @@
                     </tr>
                 </thead>
                 <tbody>
+             <c:forEach var="b" items="${ list }">
                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
+                        <td>${b.qna_no}</td>
+                         <c:if test="${b.prdt_code ne null }"> 
+                      <td>${b.prdt_name}</td> 
+                        </c:if>
+                        <c:if test="${b.prdt_code eq null }"> 
+                        <td>선택한 상품이 없습니다</td>
+                        </c:if> 
+                        <td align="center"><img style="width: 100px" src="${b.prdt_path }${b.prdt_img}" alt="상품이미지"></td>
+                         <td>${b.qna_title }</td>
+                        <td>${b.qna_writer }</td>
+                        <td>${b.qna_date }</td>
+                        <c:if test="${b.qna_chk  eq 'N' }">
+                      <td class="denied">답변중</td>
+                      	</c:if>
+                      	  <c:if test="${b.qna_chk  eq 'Y'}">
                       <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                   <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                   <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                   <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                     <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
-                    <tr>
-                        <td>100</td>
-                        <td>점퍼</td>
-                        <td>사이즈문의</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변필요</td>
-                    </tr>
+                      	</c:if>
+                      </tr>
+                       </c:forEach>
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>게시글번호</th>
+                         <th style="width: 10%;">게시글번호</th>
                         <th>상품</th>
+                        <th>상품이미지</th>
                         <th>제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
@@ -448,14 +263,12 @@
 	
 	<!-- // td(class=next) 클릭시 페이지 이동 -->
 	<script>
-     $("td").click(function(){
-    	 location.href='productListDetail.ad';
-  	 <%-- var userId = $(this).parent().find('input').val();
-  	 
-  	 console.log("선택한 유저 ID : "+userId);
-  	 
-     location.href="<%= request.getContextPath() %>/sone.rp?userId=" + userId; --%>
-    }); 
+     $('#example td').click(function(){
+	    var qna_no = $(this).parent('tr').children('td').eq(0).text();
+	
+		location.href="QnA_ProductUpdateView.ad?qna_no="+qna_no;
+    	 
+    });
     </script>
 
     <script src="/ot/resources/assets/vendor/jquery/jquery-3.3.1.min.js"></script>

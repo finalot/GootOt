@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
 <link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
 <link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
+ <link rel="stylesheet" href="/ot/resources/css/popup.css">
 </head>
 <style>
 .ec-base-table td{
@@ -58,7 +59,7 @@ a{
 <body>
    <%@include file="header.jsp" %>
 
-
+	
     <div id="container">
         <div id="contents" style="margin-top:11.5%;">
          <div class="mypage_top_outer">
@@ -69,12 +70,15 @@ a{
              <h2>상품 문의</h2>
          </div>
 
+		
+	
          <div class="xans-element- xans-layout xans-layout-logincheck ">
          <!--
              $url = /member/login.html
          -->
          </div>
 
+	
          <div class="xans-element- xans-myshop xans-myshop-wishlist ec-base-table typeList xans-record-">
          <!--
               $login_page = /member/login.html
@@ -104,7 +108,7 @@ a{
 
                <tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
 
-                <tr style="background-color:#F9F9F9; color:#555555;" class="xans-record-">
+               <tr style="background-color:#F9F9F9; color:#555555;" class="xans-record-">
             <td style="font-weight:600;"></td>
                     <td class="displaynone"></td>
                     <td></td>
@@ -114,7 +118,7 @@ a{
                     <td>관리자</td>
                     <td class=""><span class="txtNum">2020-03-09</span></td>
                     <td class="displaynone"><img src="//img.echosting.cafe24.com/skin/base/board/ico_point0.gif" alt="0점"></td>
-                </tr>
+                </tr> 
       </tbody>
 	
 	
@@ -129,7 +133,7 @@ a{
                            <td class="thumb" >
                               <!-- subject 내용 들어갈 곳 -->
 
-                             <img src="//black-up.kr/web/product/medium/201910/7e87ddc2879aa1c854575447f27b6026.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
+                             <img src="${b.prdt_path }${b.prdt_img}"  style="width: 80px">
 
                          </td>
 
@@ -138,18 +142,32 @@ a{
                             <span id="prd_name">러트 세미 부츠컷 슬랙스</span>
                             <br>
                             <div class="ppro">
-                            <c:choose>
-                            	<c:when test="${b.qna_secure=='T'}">
+                            	<c:if test="${b.qna_secure=='T'}">
                             <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
+                            		 	<c:if test="${b.qna_chk  == 'N'}">
                                  <a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
-                                 [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
-                                 </c:when>
-                                 <c:otherwise>
-                                 <!-- <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image">  -->
+                                 [답변 전]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+                             			<c:if test="${b.qna_chk  == 'Y'}">
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
+                                 [답변 완료]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+                             	</c:if>
+                             	
+                             		<c:if test="${b.qna_secure=='F'}">
+                            		 	<c:if test="${b.qna_chk  == 'N'}">
                                  <a id="idMsg10" style="color:#555555;"onclick="prdtDetail2(this)">
-                                 [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
-                                 </c:otherwise>
-                                 </c:choose>
+                                 [답변 전]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+                             			<c:if test="${b.qna_chk  == 'Y'}">
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail2(this)">
+                                 [답변 완료]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+								</c:if>                               
                             </div>
                          </td>
                            <td class="left">
@@ -165,7 +183,7 @@ a{
                </tbody>
 
                <tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
-                      <tr class="xans-record-">
+                   <%--    <tr class="xans-record-">
                      <td>
                         <!-- no 공지번호 들어갈 곳 -->
                            <span id="idMsg4">${b.qna_no }</span>
@@ -195,15 +213,16 @@ a{
                             <td class="button">
 
                             </td>
-                          </tr>
+                          </tr> --%>
                </tbody>
 
               </table>
 
 
          </div>
+        
 <%-- 		<c:if test="${! empty sessionScope.loginMember }"> --%>
-        <a href="product_board_write.do" class="hov1 s-text1 trans-0-4 yg_btn_145">
+        <a href="#layer2" id="submitBtn" class="hov1 s-text1 trans-0-4 yg_btn_145">
         <span style="position: relative;top: -2px;">write</span></a>
      <%--    </c:if> --%>
 			
@@ -234,20 +253,32 @@ a{
                <img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
 
 
-
+					<c:if test="${empty sc }">
                   <c:url var="before" value="product_board.do">
                   <c:param name="currentPage" value="${pi.currentPage -1 }"/>
                   </c:url>
+                      </c:if>
+					<c:if test="${!empty sc }">
+                  <c:url var="before" value="pb_search.do">
+                  <c:param name="currentPage" value="${pi.currentPage -1 }"/>
+                  <c:param name="search_date" value="${sc.search_date }"/>
+                  <c:param name="search_key" value="${sc.search_key }"/>
+                  <c:param name="search" value="${sc.search }"/>
+                  </c:url>
+                      </c:if>
+                                            
                   <a href="${before}">
                   <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
                   </a> &nbsp;
+             
 
                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
                      <c:if test="${ p eq pi.currentPage }">
                         <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
                         <b>${ p }</b> &nbsp;&nbsp;</font>
                      </c:if>
-
+					
+					 <c:if test="${empty sc }">	
                      <c:if test="${ p ne pi.currentPage }">
                         <c:url var="pagination" value="product_board.do">
                            <c:param name="currentPage" value="${ p }"/>
@@ -255,12 +286,39 @@ a{
                      <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
                      ${ p }</a> &nbsp;
                   </c:if>
+                  </c:if>
+                  
+                  	 <c:if test="${!empty sc }">	
+                     <c:if test="${ p ne pi.currentPage }">
+                        <c:url var="pagination" value="pb_search.do">
+                           <c:param name="currentPage" value="${ p }"/>
+                           <c:param name="search_date" value="${sc.search_date }"/>
+		                  <c:param name="search_key" value="${sc.search_key }"/>
+		                  <c:param name="search" value="${sc.search }"/>
+                     </c:url>
+                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+                     ${ p }</a> &nbsp;
+                  </c:if>
+                  </c:if>
+                  
+                  
                </c:forEach>
 
-
-               <c:url var="after" value="product_board.do">
+				     <c:if test="${empty sc }">	
+                    <c:url var="after" value="product_board.do">
                      <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                    </c:url>
+                     </c:if>
+                     
+                  <c:if test="${!empty sc }">
+                  <c:url var="after" value="pb_search.do">
+                  <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                  <c:param name="search_date" value="${sc.search_date }"/>
+                  <c:param name="search_key" value="${sc.search_key }"/>
+                  <c:param name="search" value="${sc.search }"/>
                   </c:url>
+                      </c:if>
+                  
                   <a href="${after}">
                <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
                </a>
@@ -273,7 +331,26 @@ a{
         </div>
       <hr class="layout">
    </div>
+  
    <input id="q_no" type="hidden" value="${b.qna_no}">
+<!-- 레이어 팝업 -->
+  <div class="dim-layer">
+   					 <div class="dimBg"></div>
+    					<div id="layer2" class="pop-layer">
+     					   <div class="pop-container">
+        					    <div class="pop-conts" style="text-align: center">
+          			      <!--content //-->
+              		  <p class="ctxt mb20" id="check_ment"><br></p>
+
+              		  <div class="btn-r">
+                    <a href="#" class="btn-layerClose">Close</a>
+                	</div>
+                <!--// content-->
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="memId" value="${loginMember.memId }">
  <%@include file="footer.jsp" %>
  <script>
  
@@ -301,6 +378,56 @@ a{
 	 location.href="pb_search.do?search_key="+search_key+"&search="+search+"&search_date="+search_date;
  }
  
+ 
+ $('#submitBtn').click(function(){
+	 var memId = $('#memId').val();	
+	 
+	 if(memId==""){
+		 $('#check_ment').html('<br>로그인후 이용해 주세요!<br>');
+		 var $href = $(this).attr('href');
+		 layer_popup($href);
+	 }else{
+		 location.href="product_board_write.do";
+	 }
+	 
+ })
+ 
+
+ 
+ function layer_popup(el){
+
+     var $el = $(el);        //레이어의 id를 $el 변수에 저장
+     var isDim = $el.prev().hasClass('dimBg');   //dimmed 레이어를 감지하기 위한 boolean 변수
+
+     isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
+
+     var $elWidth = ~~($el.outerWidth()),
+         $elHeight = ~~($el.outerHeight()),
+         docWidth = $(document).width(),
+         docHeight = $(document).height();
+
+     // 화면의 중앙에 레이어를 띄운다.
+     if ($elHeight < docHeight || $elWidth < docWidth) {
+         $el.css({
+             marginTop: -$elHeight /2,
+             marginLeft: -$elWidth/2
+         })
+     } else {
+         $el.css({top: 0, left: 0});
+     }
+
+     $el.find('a.btn-layerClose').click(function(){
+         isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+         return false;
+     });
+
+     $('.layer .dimBg').click(function(){
+         $('.dim-layer').fadeOut();
+         return false;
+     });
+
+ }
+
  
  </script>
 </body>

@@ -21,12 +21,21 @@
     padding-left: 3px;
     text-align: left !important;
  }
- 
+ .ec-base-paginate1 {
+    margin: 30px auto;
+    text-align: center;
+    line-height: 0;
+    display: table;
+}
  
  
 .thumb{
  text-align: left !important;
 	padding-left: 1% !important;
+}
+
+a{
+	cursor:pointer;
 }
 </style>
 <body>
@@ -100,12 +109,12 @@
                			<c:choose>
                			<c:when test="${b.qna_secure=='T'}">
                         <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
-                        <a id="idMsg10" style="color:#555555;" href="product_change_detail.do">
+                        <a id="idMsg10" style="color:#555555;" onclick="prdtDetail(this)">
                         [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
                         </c:when>
                         <c:otherwise>
                         <!-- <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image">  -->
-                        <a id="idMsg10" style="color:#555555;" href="product_change_detail.do">
+                        <a id="idMsg10" style="color:#555555;" onclick="prdtDetail2(this)">
                          [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
                         </c:otherwise>
                     </c:choose>
@@ -179,7 +188,7 @@
 
 
 
-                  <c:url var="before" value="product_board.do">
+                  <c:url var="before" value="product_change.do">
                   <c:param name="currentPage" value="${pi.currentPage -1 }"/>
                   </c:url>
                   <a href="${before}">
@@ -193,7 +202,7 @@
                      </c:if>
 
                      <c:if test="${ p ne pi.currentPage }">
-                        <c:url var="pagination" value="product_board.do">
+                        <c:url var="pagination" value="product_change.do">
                            <c:param name="currentPage" value="${ p }"/>
                      </c:url>
                      <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
@@ -202,7 +211,7 @@
                </c:forEach>
 
 
-               <c:url var="after" value="product_board.do">
+               <c:url var="after" value="product_change.do">
                      <c:param name="currentPage" value="${pi.currentPage +1 }"/>
                   </c:url>
                   <a href="${after}">

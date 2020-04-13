@@ -90,8 +90,8 @@
 		
 	<tr>
 		<th scope="row">SUBJECT</th>
-           <td><select id="subject" name="subject">
-			<option value="4">[배송후 교환반품]</option>
+           <td><select id="subject" name="b_cate_no">
+			<option value="2">[배송후 교환반품]</option>
 			</select>  	
 		   </td>
     </tr>

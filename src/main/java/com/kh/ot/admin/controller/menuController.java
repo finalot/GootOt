@@ -1,3 +1,4 @@
+
 package com.kh.ot.admin.controller;
 
 import java.io.File;
@@ -604,14 +605,45 @@ public class menuController {
 		System.out.println("에러"); 
 		return "redirect:productAdd.ad"; }
 	}
-	 
 	
 	
-	
-	 
+	/**
+	 * @작성일  : 2020. 4. 13.
+	 * @작성자  : 문태환
+	 * @내용 	: 어드민 상품문의 디테일 화면
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("QnA_ProductUpdateView.ad")
+	public ModelAndView QnA_ProductUpdate(ModelAndView mv,int qna_no) {
 		
+	Board b = bService.selectBoard(qna_no);
+		System.out.println(b);
+		if(b!=null) {
+			mv.addObject("b",b);
+			mv.setViewName("admin/QnA_Product_detail");
+		
+		} else {
+			mv.addObject("msg","게시글 상세조회 실패")
+			.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@RequestMapping("QnA_ProductUpdate.ad")
+	public String QnA_ProductUpdate(Board b) {
+		
+		int result = adService.QnA_ProductUpdate(b);
+		
+		if(result > 0) {
+			
+			return "redirect:QnA_Product.ad";
+		}else {
+			return "에러다";
+		}
+		
+	}
+	
 
 }
-	
-	
-

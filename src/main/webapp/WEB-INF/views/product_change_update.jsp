@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<title>배송 후 교환반품</title>
+<title>배송후교환반품 글쓰기</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
 <link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
@@ -60,7 +60,7 @@
 			</div>
 
 			<div class="titleArea">
-    			<h2>상품 문의</h2>
+    			<h2>배송후 교환반품</h2>
 			</div>
 
 			<div class="xans-element- xans-layout xans-layout-logincheck ">
@@ -73,7 +73,7 @@
       
         </div>
 </div>
-<form id="boardUpdateForm" action="product_board_updateView.do">
+<form id="boardUpdateForm" action="product_change_updateView.do" method="POST" enctype="multipart/form-data">
 	<input type="hidden" name="qna_no" value="${b.qna_no}">
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
@@ -92,7 +92,7 @@
 	<tr>
 		<th scope="row">SUBJECT</th>
            <td><select id="subject" name="b_cate_no">
-			<option value="1">[상품문의]</option>
+			<option value="4">[상품문의]</option>
 			</select>  	
 		   </td>
     </tr>
@@ -100,16 +100,22 @@
     <tr>
 		<th scope="row">TITLE</th>
            <td><input type="text" name="qna_title" style="width: 390px;height: 26px;" value="${b.qna_title }">
+           		<input type="hidden" value="${b.content}" id=b_content>	
 		   </td>
     </tr>
 
     
 	<td colspan="2" class="clear">           
             <script type="text/javascript" src="//editor.cafe24.com/js/nneditor.js?c=ko"></script>
-            <style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";		</style>		<script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+            <style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";</style>
+           <script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
             <script type="text/javascript">
+            var b_content =$('#b_content').val();
             NN.Config.instanceID = "content";
-            NN.Config.value = "${b.content}";
+            NN.Config.value = b_content;
             NN.Config.toolbarType = "simple";
                 
                 
@@ -187,12 +193,12 @@
 		<div class="ec-base-button ">
             <span class="gLeft">
                 <span class="displaynone"><a href="#none" onclick="" class="yg_btn_30 yg_btn4" alt="관리자답변보기">관리자답변보기</a></span>
-                <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
+                <a href="product_change.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
                 <button id="update_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
                 
-                <a href="product_board.do" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
+                <a href="product_change.do" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
             </span>
         </div>
 	</div>

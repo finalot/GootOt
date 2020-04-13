@@ -20,19 +20,42 @@
 			<result property="qna_modify_date" column="QNA_MODIFY_DATE"/>
 			<result property="qna_password" column="QNA_PASSWORD"/>
 			<result property="qna_secure" column="QNA_SECURE"/>
+			<result property="prdt_code" column="PRDT_CODE"/>
+		</resultMap>
+		
+		<resultMap type="Board" id="boardImgResultSet">
+			<id property = "qna_no" column="QNA_NO"/>
+			<result property="b_cate_no" column="B_CATE_NO"/>
+			<result property="mem_no" column="MEM_NO"/>
+			<result property="content" column="QNA_INFO"/>
+			<result property="qna_chk" column="QNA_CHK"/>
+			<result property="qna_date" column="QNA_DATE"/>
+			<result property="qna_writer" column="QNA_WRITER"/>
+			<result property="qna_title" column="QNA_TITLE"/>
+			<result property="originalFileName" column="ORIGINAL_FILENAME"/>
+			<result property="renameFileName" column="RENAME_FILENAME"/>
+			<result property="qna_modify_date" column="QNA_MODIFY_DATE"/>
+			<result property="qna_password" column="QNA_PASSWORD"/>
+			<result property="qna_secure" column="QNA_SECURE"/>
+			<result property="prdt_code" column="PRDT_CODE"/>
+			<result property="prdt_name" column="PRDT_NAME"/>
+			<result property="prdt_path" column="PRDT_IMAGE_PATH"/>
+			<result property="prdt_img" column="PRDT_IMAGE"/>
+			
 		</resultMap>
 
 		<insert id="insertBoard" parameterType="Board">
 		INSERT INTO QNA
-		VALUES(QNA_SEQ.NEXTVAL, #{b_cate_no},#{mem_no}, #{content}, #{qna_chk}, SYSDATE,
+		VALUES(QNA_SEQ.NEXTVAL, #{b_cate_no},#{mem_no}, #{content}, DEFAULT, SYSDATE,
 				#{qna_writer},#{qna_title},#{originalFileName},#{renameFileName},SYSDATE,
-				#{qna_password},#{qna_secure})
+				#{qna_password},#{qna_secure},NULL)
 		</insert>
 		
-		<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
+		<select id="selectBoard" parameterType="_int" resultMap="boardImgResultSet">
 		SELECT *
-		FROM QNA
-		WHERE QNA_NO=#{qna_no}
+		FROM QNA Q
+		LEFT JOIN PRDT P  ON(Q.PRDT_CODE = P.PRDT_NO)
+		WHERE Q.QNA_NO=#{qna_no}
 		</select>
 
 		<select id="getListCount" parameterType="_int" resultType="_int">
@@ -41,10 +64,11 @@
 		WHERE B_CATE_NO=#{b_cate_no}
 	</select>
 		
-		<select id="selectList" resultMap="boardResultSet">
+		<select id="selectList" resultMap="boardImgResultSet">
 		SELECT *
-		FROM QNA
-		WHERE B_CATE_NO=#{b_cate_no}
+		FROM QNA Q
+		LEFT JOIN PRDT P  ON(Q.PRDT_CODE = P.PRDT_NO)
+		WHERE Q.B_CATE_NO=#{b_cate_no}
 		ORDER BY QNA_NO DESC
 		</select>
 		
@@ -65,18 +89,19 @@
 		
 		</select>
 		
-		<select id="selectSearchList" resultMap="boardResultSet" >
+		<select id="selectSearchList" resultMap="boardImgResultSet" >
 			SELECT *
-			FROM QNA
+			FROM QNA Q
+			LEFT JOIN PRDT P  ON(Q.PRDT_CODE = P.PRDT_NO)
 		    WHERE B_CATE_NO=#{b_cate_no}
 		  <if test="searchDate != 0"> 
-		    AND QNA_DATE BETWEEN SYSDATE-#{searchDate} AND SYSDATE
+		    AND Q.QNA_DATE BETWEEN SYSDATE-#{searchDate} AND SYSDATE
 		    </if>
 			<if test="writer != null">
-			AND QNA_WRITER LIKE '%' || #{writer} || '%'
+			AND Q.QNA_WRITER LIKE '%' || #{writer} || '%'
 			</if>
 			<if test="title != null">
-			AND QNA_TITLE LIKE '%' || #{title} || '%'
+			AND Q.QNA_TITLE LIKE '%' || #{title} || '%'
 			</if>
 			ORDER BY QNA_NO DESC
 		</select>

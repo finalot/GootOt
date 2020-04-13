@@ -65,7 +65,7 @@
 	                    <strong class="title">COUPON</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mCoupon }">0<span>개</span></a>
+	                    	<a href="${mCoupon }">${CouponCount} <span>개</span></a>
 	                    </strong>
 	                </li>
 	            </ul>
@@ -73,26 +73,6 @@
 		</div>
 		
         <div id="contents">
-			<div class="mypage_top_outer">
-			 <!-- <div module="myshop_bankbook">        
-			        <ul>
-			            <li module="Layout_shoppingInfo">
-			                <strong class="title"><a href="/myshop/wish_list.html">WISH</a></strong>
-			                <strong class="data {$use_interest_prd|display}"><a href="/myshop/wish_list.html">{$interest_prd_cnt}</a></strong>
-			            </li>
-			            <li>
-			                <strong class="title"><a href="/myshop/mileage/historyList.html">POINT</a></strong>
-			                <strong class="data"><a href="/myshop/mileage/historyList.html">{$avail_mileage}</a></strong>
-			            </li>
-			            <li class="etc {$display_coupon|display}">
-			                <strong class="title"><a href="/myshop/coupon/coupon.html">COUPON</a></strong>
-			                <strong class="data"><a href="/myshop/coupon/coupon.html">{$coupon_cnt}<span>개</span></a></strong>
-			                <a href="/myshop/coupon/coupon.html"></a>
-			            </li>
-			        </ul>
-			    </div> -->
-			</div>
-
 			<div class="titleArea">
     			<h2>POINT</h2>
 			</div>

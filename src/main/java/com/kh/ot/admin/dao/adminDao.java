@@ -151,6 +151,23 @@ public class adminDao {
 	public ArrayList<Design> selectInstaList() {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectInstaList");
 	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 13.
+	 * @작성자  : 문태환
+	 * @내용 	: 어드민 상품문의 리스트
+	 * @param b_cate_no
+	 * @return
+	 */
+	public ArrayList<Board> selectList(int b_cate_no) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectList",b_cate_no);
+	}
+
+
+	public int QnA_ProductUpdate(Board b) {
+		return sqlSession.update("adminMapper.QnA_ProductUpdate",b);
+	}
 	
 	/**
 	 * @작성일 : 2020. 4. 12.

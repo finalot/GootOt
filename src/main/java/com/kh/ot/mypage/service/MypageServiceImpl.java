@@ -9,6 +9,7 @@ import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.mypage.dao.MypageDao;
+import com.kh.ot.mypage.vo.CouponMem;
 
 @Service("mpService")
 public class MypageServiceImpl implements MypageService{
@@ -26,8 +27,34 @@ public class MypageServiceImpl implements MypageService{
 		return mpDao.PointSelectList(pi);
 	}
 
-//	@Override
-//	public ArrayList<Coupon> selectList(PageInfo pi) {
-//		return mpDao.selectList(pi);
-//	}
+	@Override
+	public int PointUnavailListCount() {
+		return mpDao.PointUnavailListCount();
+	}
+
+	@Override
+	public ArrayList<Point> PointselectUnavailList(PageInfo pi) {
+		return mpDao.PointselectUnavailList(pi);
+	}
+
+	@Override
+	public int CouponListCount() {
+		return mpDao.CouponListCount();
+	}
+
+	@Override
+	public ArrayList<CouponMem> CouponSelectList(PageInfo pi) {
+		return mpDao.CouponSelectList(pi);
+	}
+
+	@Override
+	public int CompleteCouponListCount() {
+		return mpDao.CompleteCouponListCount();
+	}
+
+	@Override
+	public ArrayList<CouponMem> CompleteCouponSelectList(PageInfo pi) {
+		return mpDao.CompleteCouponSelectList(pi);
+
+	}
 }

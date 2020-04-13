@@ -66,6 +66,9 @@
 .detail_text p{
 	font-size:12px;
 }
+a{
+	cursor:pointer;
+}
 </style>
 <body>
 	<%@include file="header.jsp" %>	
