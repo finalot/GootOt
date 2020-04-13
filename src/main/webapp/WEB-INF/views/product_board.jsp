@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
 <link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
 <link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
+ <link rel="stylesheet" href="/ot/resources/css/popup.css">
 </head>
 <style>
 .ec-base-table td{
@@ -58,7 +59,7 @@ a{
 <body>
    <%@include file="header.jsp" %>
 
-
+	
     <div id="container">
         <div id="contents" style="margin-top:11.5%;">
          <div class="mypage_top_outer">
@@ -69,12 +70,15 @@ a{
              <h2>상품 문의</h2>
          </div>
 
+		
+	
          <div class="xans-element- xans-layout xans-layout-logincheck ">
          <!--
              $url = /member/login.html
          -->
          </div>
 
+	
          <div class="xans-element- xans-myshop xans-myshop-wishlist ec-base-table typeList xans-record-">
          <!--
               $login_page = /member/login.html
@@ -202,8 +206,9 @@ a{
 
 
          </div>
+        
 <%-- 		<c:if test="${! empty sessionScope.loginMember }"> --%>
-        <a href="product_board_write.do" class="hov1 s-text1 trans-0-4 yg_btn_145">
+        <a href="#layer2" id="submitBtn" class="hov1 s-text1 trans-0-4 yg_btn_145">
         <span style="position: relative;top: -2px;">write</span></a>
      <%--    </c:if> --%>
 			
@@ -273,7 +278,26 @@ a{
         </div>
       <hr class="layout">
    </div>
+  
    <input id="q_no" type="hidden" value="${b.qna_no}">
+<!-- 레이어 팝업 -->
+  <div class="dim-layer">
+   					 <div class="dimBg"></div>
+    					<div id="layer2" class="pop-layer">
+     					   <div class="pop-container">
+        					    <div class="pop-conts" style="text-align: center">
+          			      <!--content //-->
+              		  <p class="ctxt mb20" id="check_ment"><br></p>
+
+              		  <div class="btn-r">
+                    <a href="#" class="btn-layerClose">Close</a>
+                	</div>
+                <!--// content-->
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="memId" value="${loginMember.memId }">
  <%@include file="footer.jsp" %>
  <script>
  
@@ -301,6 +325,56 @@ a{
 	 location.href="pb_search.do?search_key="+search_key+"&search="+search+"&search_date="+search_date;
  }
  
+ 
+ $('#submitBtn').click(function(){
+	 var memId = $('#memId').val();	
+	 
+	 if(memId==""){
+		 $('#check_ment').html('<br>로그인후 이용해 주세요!<br>');
+		 var $href = $(this).attr('href');
+		 layer_popup($href);
+	 }else{
+		 location.href="product_board_write.do";
+	 }
+	 
+ })
+ 
+
+ 
+ function layer_popup(el){
+
+     var $el = $(el);        //레이어의 id를 $el 변수에 저장
+     var isDim = $el.prev().hasClass('dimBg');   //dimmed 레이어를 감지하기 위한 boolean 변수
+
+     isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
+
+     var $elWidth = ~~($el.outerWidth()),
+         $elHeight = ~~($el.outerHeight()),
+         docWidth = $(document).width(),
+         docHeight = $(document).height();
+
+     // 화면의 중앙에 레이어를 띄운다.
+     if ($elHeight < docHeight || $elWidth < docWidth) {
+         $el.css({
+             marginTop: -$elHeight /2,
+             marginLeft: -$elWidth/2
+         })
+     } else {
+         $el.css({top: 0, left: 0});
+     }
+
+     $el.find('a.btn-layerClose').click(function(){
+         isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+         return false;
+     });
+
+     $('.layer .dimBg').click(function(){
+         $('.dim-layer').fadeOut();
+         return false;
+     });
+
+ }
+
  
  </script>
 </body>

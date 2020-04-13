@@ -61,6 +61,9 @@
  text-align: left !important;
 	padding-left: 1% !important;
 }
+a{
+	cursor:pointer;
+}
 </style>
 <body>
 	<%@include file="header.jsp" %>	
@@ -86,7 +89,7 @@
       
         </div>
 </div>
-<form id="boardWriteForm" name="" action="/exec/front/Board/write/3001" method="post" enctype="multipart/form-data">
+<form id="boardWriteForm" name="" method="post" enctype="multipart/form-data">
 		
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
@@ -110,12 +113,12 @@
     
     <tr>
 		<th scope="row">TITLE</th>
-           <td>문의합니다.</td>
+           <td>${b.qna_title }</td>
     </tr>
     
 	<tr>
 		<th scope="row">WRITER</th>
-           <td>홍길동</td>
+           <td>${b.qna_writer }</td>
     </tr>
     
     <tr>
@@ -125,7 +128,7 @@
                                 <span>POINT</span> <img src="/web/upload/yangji_pc_crumb/ico_point0.gif" alt="0점">
                             &nbsp;</li>
                             <li class="" style="text-align: right;position: relative;top: -52px;font-weight:600;">
-                                <span>DATE</span> <span class="txtNum">2020-03-26</span>
+                                <span>DATE</span> <span class="txtNum">${b.qna_date }</span>
                             </li>
                     
                         </ul>
@@ -142,9 +145,8 @@
 <br> -->
 </div>	
 
-<div class="detail_text">
-<!-- 문의할 내용 -->
-배송이 바로 가능한가요?
+<div style="font-weight:600;" class="detail_text">
+${b.content }
 </div>
 </div>
                     </td>
@@ -158,7 +160,11 @@
 	<tbody>
 		<tr>
 				<th scope="row">FILE 01</th>
-                 <td><input type="file" name="uploadFile"></td>
+                 <td>
+                 <c:if test="${!empty b.originalFileName }">
+               <a href="${ contextPath }/resources/buploadFiles/${ b.renameFileName }" download="${ b.originalFileName }">${ b.originalFileName }</a>
+                 </c:if>
+                 </td>
             </tr>
             
 		</tbody>
@@ -170,8 +176,8 @@
                 <a href="delivery_board.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
-                <a href="delivery_board.do" onclick="BOARD_WRITE.form_submit('boardWriteForm');" class="yg_btn_30 yg_btn4" alt="등록">UPDATE</a>
-                <a href="delivery_board.do" class="yg_btn_30 yg_btn4" alt="취소">DELETE</a>
+                 <a onclick="updateQnA()" class="yg_btn_30 yg_btn4" alt="등록">UPDATE</a>
+                <a onclick="deleteQnA()" class="yg_btn_30 yg_btn4" alt="취소">DELETE</a>
             </span>
         </div>
 	</div>
@@ -179,6 +185,22 @@
 </div>
 
 	</div>
+	
+	<input type="hidden" id="qq_no" value="${b.qna_no}">  
+	
+	<script>
+function updateQnA(){
+	var qna_no = $('#qq_no').val()
+	location.href="delivery_board_update.do?qna_no="+qna_no;
+};
+
+function deleteQnA(){
+	var qna_no = $('#qq_no').val()
+	location.href="delivery_board_delete.do?qna_no="+qna_no;
+};
+
+
+</script>
 	
  <%@include file="footer.jsp" %>
 </body>

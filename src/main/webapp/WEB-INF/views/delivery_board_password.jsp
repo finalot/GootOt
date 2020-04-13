@@ -122,11 +122,11 @@ input[type=password] {
     			margin-left: 46.8%;">배송 문의</h2>
          </div>
          
-         <form id="boardSecureForm" name="" action="/exec/front/Board/secure/6" method="post" target="_self" enctype="multipart/form-data">
+         <!-- <form id="boardSecureForm" name="" action="/exec/front/Board/secure/6" method="post" target="_self" enctype="multipart/form-data"> -->
 <div class="xans-element- xans-board xans-board-secure-4 xans-board-secure xans-board-4 ">
 <div class="secret">            
             <fieldset>
-				
+				<input type="hidden" name="pna_no" id="qna_no" value="${qna_no}">
                 <span id="idMsg14">이 글은 비밀글입니다.</span>
                 <span id="idMsg15">비밀번호를 입력하여 주세요.</span><br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -136,19 +136,43 @@ input[type=password] {
                 <input id="qna_password" name="qna_password" type="password">
                 </p>
                 <div class="ec-base-button gBlank30">
-                    <a href="product_board.do" class="yg_btn_140 yg_btn3" alt="목록">LIST</a>
-                    <a href="#none" onclick="BOARD.form_submit('boardSecureForm');" class="yg_btn_140 yg_btn5" alt="확인">OK</a>
+                    <a href="delivery_board.do" class="yg_btn_140 yg_btn3" alt="목록">LIST</a>
+                   <button  onclick="passwordCheck()" class="yg_btn_140 yg_btn5" alt="확인">OK</button>
                 </div>
             </fieldset>
 </div>
 </div>
-</form>
+<!-- </form> -->
 </div>
 </div>
 
 
          
  <%@include file="footer.jsp" %>
+ 
+ <script>
+	function passwordCheck(){
+			
+		var qna_no = $('#qna_no').val();
+		var password = $("#qna_password").val();
+		
+		$.ajax({
+			url:"passwordCheck.do",
+			data : {qna_no : qna_no , password : password},
+			success : function(data){
+				if(data =="ok"){
+					location.href="delivery_board_detail.do?qna_no="+qna_no;
+				}else{
+					alert("비밀번호를 확인해 주세요");
+				}
+			},
+			error:function(){
+				alert("에러다");	
+			}
+		})
+	}
+
+</script>
 
 </body>
 

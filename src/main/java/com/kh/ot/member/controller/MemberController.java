@@ -3,7 +3,6 @@ package com.kh.ot.member.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 
@@ -32,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ot.member.service.MemberService;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.service.MypageService;
 
 /**
  * @author yejin
@@ -49,6 +49,9 @@ public class MemberController extends HttpServlet {
 	// 빈 스키냉을 통해 아래의 'mService'의 이름을 가지고 있는 빈을 찾아서
 	// 자동으로 생성 후 주입해준다.
 
+	@Autowired
+	private MypageService mpService;
+	
 	@Autowired
 	private MemberService mService;
 
@@ -89,9 +92,17 @@ public class MemberController extends HttpServlet {
 	 * @return
 	 */
 	@RequestMapping("MyPage.do")
-	public String MyPage() {
+	public ModelAndView MyPage(ModelAndView mv) {
 
-		return "mypage";
+		int coupon = mpService.CouponListCount();
+		int point = mpService.PointListCount();
+		
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+		
+		mv.setViewName("mypage");
+		
+		return mv;
 	}
 
 	/**

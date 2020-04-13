@@ -6,6 +6,7 @@ package com.kh.ot.main.service;
 import java.util.ArrayList;
 
 import com.kh.ot.main.vo.MainPageInfo;
+import com.kh.ot.main.vo.MainSearchCondition;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
@@ -75,5 +76,10 @@ public interface MainService {
 	ArrayList<MaindownCategory> selectCategoryList3();
 	
 	ArrayList<MainupCategory> selectUpCategoryList3();
-	
+
+	ArrayList<Product> selectSortList1(MainPageInfo mainPi, MainSearchCondition msc);
+
+	ArrayList<Product> selectSortList2(MainPageInfo mainPi, MainSearchCondition msc);
+
+
 }

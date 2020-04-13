@@ -61,11 +61,103 @@ public class BoardController extends HttpServlet {
     * @return
     */
    @RequestMapping("bad_product_detail.do")
-   public String bad_product_detail() {
+   public ModelAndView bad_product_detail(ModelAndView mv, int qna_no 
+			/*@RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage*/) {
+		
+		Board b = bService.selectBoard(qna_no);
+		
+		if(b!=null) {
+			mv.addObject("b",b)
+					/* .addObject("currentPage",currentPage) */
+			.setViewName("bad_product_detail");
+		} else {
+			mv.addObject("msg","게시글 상세조회 실패")
+			.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 
-      return "bad_product_detail";
-   }
+   /**
+	 * @작성일  : 2020. 4. 13
+	 * @작성자  : 우예진
+	 * @내용    : 상품불량 및 오배송접수 상세 비밀글(비밀글 타고들어갈때)
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("bad_product_detailView")
+	   public ModelAndView bad_product_detailView(ModelAndView mv,int qna_no) {
+		   
+		   mv.addObject("qna_no", qna_no);
+		   mv.setViewName("bad_product_password");
 
+		   
+		   return mv; 
+	   }
+
+   
+   
+   /**
+	 * @작성일  : 2020. 4. 13
+	 * @작성자  : 우예진
+	 * @내용    : 상품불량 및 오배송접수 화면 이동
+	 * @return
+	 */
+ @RequestMapping("bad_product_update.do")
+ public ModelAndView bad_product_update(ModelAndView mv, int qna_no) {
+
+	
+	Board b = bService.selectBoard(qna_no);
+	
+	if(b!=null) {
+		mv.addObject("b",b)
+				/* .addObject("currentPage",currentPage) */
+		.setViewName("bad_product_update");
+	} else {
+		mv.addObject("msg","게시글 상세조회 실패")
+		.setViewName("common/errorPage");
+	}
+   return mv;
+}
+ 
+  
+  /**
+	 * @작성일  : 2020. 4. 13.
+	 * @작성자  : 우예진
+	 * @내용    : 상품불량 및 오배송접수 업데이트 완료
+	 * @return
+	 */
+@RequestMapping("bad_product_updateView.do")
+public String bad_product_updateView(Board b,HttpServletRequest request) {
+
+		int result = bService.UpdatePrBoard(b);
+	
+	if(result > 0) {
+		return "redirect:bad_product_board.do";
+	}else {
+		return "에러다";
+	}
+		
+}
+
+	/**
+	 * @작성일  : 2020. 4. 13
+	 * @작성자  : 우예진
+	 * @내용    : 상품불량 및 오배송접수  게시물 삭제
+	 * @param qna_no
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("bad_product_delete.do")
+	public String bad_product_delete(int qna_no, HttpServletRequest request) {
+		int result = bService.deletePrBoard(qna_no);
+
+		if(result >0) {
+			return "redirect:bad_product_board.do";
+		} else {
+			return "에러다";
+		}
+}
 
    /**
     * @작성일  : 2020.04.04
@@ -86,22 +178,121 @@ public class BoardController extends HttpServlet {
     * @return
     */
    @RequestMapping("bad_product_board.do")
-   public String bad_product_board() {
+   public ModelAndView bad_product_board(ModelAndView mv,
+		   @RequestParam(value="currentPage", 
+		   required=false,defaultValue="1") int currentPage) { 
 
-      return "bad_product_board";
+	   		System.out.println(currentPage);
+
+	   		int b_cate_no = 6;
+
+	   		int listCount = bService.getListCount(b_cate_no);
+
+	   		System.out.println("listCount : " + listCount);
+
+	   		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+
+	   		ArrayList<Board> list = bService.selectList(pi,b_cate_no);
+
+	   		System.out.println("list:"+list);
+
+	   		mv.addObject("list",list);
+	   		mv.addObject("pi",pi);
+	   		mv.setViewName("bad_product_board");
+
+	   		return mv; 
    }
-
+   
    
    /**
-    * @작성일  : 2020.04.05
+    * @작성일  : 2020. 4. 13
     * @작성자  : 우예진
-    * @내용    : 입금확인/입금자변경 상세정보
+    * @내용    : 상품불량 및 오배송접수 insert글쓰기
+    * @param b
+    * @param request
+    * @param session
+ 	* @param uploadFile
+ 	* @return
+ 	*/
+   @RequestMapping(value="bad_product_insert.do",method=RequestMethod.POST)
+   	public String bad_product_insert(Board b,HttpServletRequest request,HttpSession session,
+         @RequestParam(name="uploadFile",required=false) MultipartFile uploadFile) {
+   
+      
+      Member m = (Member)session.getAttribute("loginMember");      
+      
+      b.setMem_no(m.getMemNo());
+      b.setQna_writer(m.getMemId());
+      System.out.println(uploadFile.getOriginalFilename());
+      
+      if(!uploadFile.getOriginalFilename().equals("")) {
+         // 서버에 업로드
+         // saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명을 반환해주는 메소드
+         
+         String renameFileName = saveFile(uploadFile,request);
+         
+         if(renameFileName != null) {
+            b.setOriginalFileName(uploadFile.getOriginalFilename());// DB에는 파일명 저장
+            b.setRenameFileName(renameFileName);
+         }
+         
+      }      
+      int result = bService.insertBoard(b);
+        
+      System.out.println(b);
+      
+      if(result >0) {
+         return "redirect:bad_product_board.do";
+      } else {
+         return null;
+      }
+   }
+   
+   /**
+    * @작성일  : 2020.04.13
+    * @작성자  : 우예진
+    * @내용    : 입금확인/입금자변경 검색 기능
     * @return
     */
-   @RequestMapping("bank_insert_detail.do")
-   public String bank_insert_detail() {
-
-      return "bank_insert_detail";
+	@RequestMapping("bp_search.do")
+	public ModelAndView bp_search(ModelAndView mv, 
+		   						@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
+		   						,String search_key,String search,String search_date) {
+	int b_cate_no = 6;
+	
+	SearchCondition sc = new SearchCondition();
+	
+	if(search_key.equals("writer")) {
+		sc.setWriter(search);
+	} else if(search_key.equals("title")) {
+		sc.setTitle(search);
+	}
+	
+	if(search_date.equals("week")) {
+		sc.setSearchDate(7);
+	}else if(search_date.equals("month")) {
+		sc.setSearchDate(30);
+	}else if(search_date.equals("month3")) {
+		sc.setSearchDate(90);
+	}else if(search_date.equals("all")) {
+		sc.setSearchDate(0);
+	}
+	
+	sc.setB_cate_no(b_cate_no);
+	
+	int listCount = bService.SearchListCount(sc);
+	
+	PageInfo pi = sc.getPageInfo(currentPage, listCount);
+	
+	ArrayList<Board> list = bService.selectSearchList(pi,sc);
+    
+    System.out.println("list:"+list);
+	
+	  mv.addObject("list",list);
+      mv.addObject("pi",pi);
+      mv.setViewName("bad_product_board");
+	
+	return mv;
    }
 
 
@@ -128,6 +319,50 @@ public class BoardController extends HttpServlet {
 
       return "bank_insert_write";
    }
+   
+   /**
+    * @작성일  : 2020. 4. 13
+    * @작성자  : 우예진
+    * @내용    : 입금확인/입금자변경 insert글쓰기
+    * @param b
+    * @param request
+    * @param session
+ 	* @param uploadFile
+ 	* @return
+ 	*/
+   @RequestMapping(value="bank_insert.do",method=RequestMethod.POST)
+   	public String bank_insert(Board b,HttpServletRequest request,HttpSession session,
+         @RequestParam(name="uploadFile",required=false) MultipartFile uploadFile) {
+   
+      
+      Member m = (Member)session.getAttribute("loginMember");      
+      
+      b.setMem_no(m.getMemNo());
+      b.setQna_writer(m.getMemId());
+      System.out.println(uploadFile.getOriginalFilename());
+      
+      if(!uploadFile.getOriginalFilename().equals("")) {
+         // 서버에 업로드
+         // saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명을 반환해주는 메소드
+         
+         String renameFileName = saveFile(uploadFile,request);
+         
+         if(renameFileName != null) {
+            b.setOriginalFileName(uploadFile.getOriginalFilename());// DB에는 파일명 저장
+            b.setRenameFileName(renameFileName);
+         }
+         
+      }      
+      int result = bService.insertBoard(b);
+        
+      System.out.println(b);
+      
+      if(result >0) {
+         return "redirect:bank_insert_board.do";
+      } else {
+         return null;
+      }
+   }
 
 
    /**
@@ -137,10 +372,184 @@ public class BoardController extends HttpServlet {
     * @return
     */
    @RequestMapping("bank_insert_board.do")
-   public String bank_insert_board() {
+   public ModelAndView bank_insert_board(ModelAndView mv,
+		   @RequestParam(value="currentPage", 
+		   required=false,defaultValue="1") int currentPage) { 
 
-      return "bank_insert_board";
+	   		System.out.println(currentPage);
+
+	   		int b_cate_no = 5;
+
+	   		int listCount = bService.getListCount(b_cate_no);
+
+	   		System.out.println("listCount : " + listCount);
+
+	   		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+
+	   		ArrayList<Board> list = bService.selectList(pi,b_cate_no);
+
+	   		System.out.println("list:"+list);
+
+	   		mv.addObject("list",list);
+	   		mv.addObject("pi",pi);
+	   		mv.setViewName("bank_insert_board");
+
+	   		return mv; 
    }
+   
+   /**
+    * @작성일  : 2020.04.13
+    * @작성자  : 우예진
+    * @내용    : 입금확인/입금자변경 검색 기능
+    * @return
+    */
+	@RequestMapping("bi_search.do")
+	public ModelAndView bi_search(ModelAndView mv, 
+		   						@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
+		   						,String search_key,String search,String search_date) {
+	int b_cate_no = 5;
+	
+	SearchCondition sc = new SearchCondition();
+	
+	if(search_key.equals("writer")) {
+		sc.setWriter(search);
+	} else if(search_key.equals("title")) {
+		sc.setTitle(search);
+	}
+	
+	if(search_date.equals("week")) {
+		sc.setSearchDate(7);
+	}else if(search_date.equals("month")) {
+		sc.setSearchDate(30);
+	}else if(search_date.equals("month3")) {
+		sc.setSearchDate(90);
+	}else if(search_date.equals("all")) {
+		sc.setSearchDate(0);
+	}
+	
+	sc.setB_cate_no(b_cate_no);
+	
+	int listCount = bService.SearchListCount(sc);
+	
+	PageInfo pi = sc.getPageInfo(currentPage, listCount);
+	
+	ArrayList<Board> list = bService.selectSearchList(pi,sc);
+    
+    System.out.println("list:"+list);
+	
+	  mv.addObject("list",list);
+      mv.addObject("pi",pi);
+      mv.setViewName("bank_insert_board");
+	
+	return mv;
+   }
+   
+   
+   
+   /**
+	 * @작성일  : 2020. 4. 13
+	 * @작성자  : 우예진
+	 * @내용    : 입금확인/입금자변경 화면 이동
+	 * @return
+	 */
+  @RequestMapping("bank_insert_update.do")
+  public ModelAndView bank_insert_update(ModelAndView mv, int qna_no) {
+
+	
+	Board b = bService.selectBoard(qna_no);
+	
+	if(b!=null) {
+		mv.addObject("b",b)
+				/* .addObject("currentPage",currentPage) */
+		.setViewName("bank_insert_update");
+	} else {
+		mv.addObject("msg","게시글 상세조회 실패")
+		.setViewName("common/errorPage");
+	}
+    return mv;
+}
+  
+   
+   /**
+ 	 * @작성일  : 2020. 4. 13.
+ 	 * @작성자  : 우예진
+ 	 * @내용    : 입금확인/입금자변경 업데이트 완료
+ 	 * @return
+ 	 */
+ @RequestMapping("bank_insert_updateView.do")
+ public String bank_insert_updateView(Board b,HttpServletRequest request) {
+
+		int result = bService.UpdatePrBoard(b);
+	
+	if(result > 0) {
+		return "redirect:bank_insert_board.do";
+	}else {
+		return "에러다";
+	}
+		
+}
+ 
+ /**
+	 * @작성일  : 2020. 4. 13
+	 * @작성자  : 우예진
+	 * @내용    : 입금확인/입금자변경  게시물 삭제
+	 * @param qna_no
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("bank_insert_delete.do")
+	public String bank_insert_delete(int qna_no, HttpServletRequest request) {
+	int result = bService.deletePrBoard(qna_no);
+	
+	if(result >0) {
+		return "redirect:bank_insert_board.do";
+	} else {
+		return "에러다";
+	}
+}
+	
+	/**
+	    * @작성일  : 2020.04.05
+	    * @작성자  : 우예진
+	    * @내용    : 입금확인/입금자변경 상세정보
+	    * @return
+	    */
+	   @RequestMapping("bank_insert_detail.do")
+	   public ModelAndView bank_insert_detail(ModelAndView mv, int qna_no 
+				/*@RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage*/) {
+			
+			Board b = bService.selectBoard(qna_no);
+			
+			if(b!=null) {
+				mv.addObject("b",b)
+						/* .addObject("currentPage",currentPage) */
+				.setViewName("bank_insert_detail");
+			} else {
+				mv.addObject("msg","게시글 상세조회 실패")
+				.setViewName("common/errorPage");
+			}
+			return mv;
+		}
+
+	   
+	   
+	   /**
+		 * @작성일  : 2020. 4. 13
+		 * @작성자  : 우예진
+		 * @내용    : 입금확인/입금자변경 상세 비밀글(비밀글 타고들어갈때)
+		 * @param mv
+		 * @param qna_no
+		 * @return
+		 */
+		@RequestMapping("bank_insert_detailView")
+		   public ModelAndView bank_insert_detailView(ModelAndView mv,int qna_no) {
+			   
+			   mv.addObject("qna_no", qna_no);
+			   mv.setViewName("bank_insert_password");
+
+			   
+			   return mv; 
+		   }
 
 
    /**
@@ -150,11 +559,104 @@ public class BoardController extends HttpServlet {
     * @return
     */
    @RequestMapping("delivery_board_detail.do")
-   public String delivery_board_detail() {
+   public ModelAndView delivery_board_detail(ModelAndView mv, int qna_no 
+			/*@RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage*/) {
+		
+		Board b = bService.selectBoard(qna_no);
+		
+		if(b!=null) {
+			mv.addObject("b",b)
+					/* .addObject("currentPage",currentPage) */
+			.setViewName("delivery_board_detail");
+		} else {
+			mv.addObject("msg","게시글 상세조회 실패")
+			.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 
-      return "delivery_board_detail";
-   }
+   
+   
+   /**
+	 * @작성일  : 2020. 4. 13
+	 * @작성자  : 우예진
+	 * @내용    : 배송문의 상세 비밀글(비밀글 타고들어갈때)
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("delivery_board_detailView")
+	   public ModelAndView delivery_board_detailView(ModelAndView mv,int qna_no) {
+		   
+		   mv.addObject("qna_no", qna_no);
+		   mv.setViewName("delivery_board_password");
 
+		   
+		   return mv; 
+	   }
+	
+	
+	/**
+	 * @작성일  : 2020. 4. 13
+	 * @작성자  : 우예진
+	 * @내용    : 배송문의 업데이트 화면 이동
+	 * @return
+	 */
+   @RequestMapping("delivery_board_update.do")
+   public ModelAndView delivery_board_update(ModelAndView mv, int qna_no) {
+
+	
+	Board b = bService.selectBoard(qna_no);
+	
+	if(b!=null) {
+		mv.addObject("b",b)
+				/* .addObject("currentPage",currentPage) */
+		.setViewName("delivery_board_update");
+	} else {
+		mv.addObject("msg","게시글 상세조회 실패")
+		.setViewName("common/errorPage");
+	}
+     return mv;
+ }
+  
+   	/**
+   	 * @작성일  : 2020. 4. 13.
+   	 * @작성자  : 우예진
+   	 * @내용    : 배송문의 업데이트 완료
+   	 * @return
+   	 */
+   @RequestMapping("delivery_board_updateView.do")
+   public String delivery_board_updateView(Board b,HttpServletRequest request) {
+
+		int result = bService.UpdatePrBoard(b);
+	
+	if(result > 0) {
+		return "redirect:delivery_board.do";
+	}else {
+		return "에러다";
+	}
+		
+}
+   
+   /**
+	 * @작성일  : 2020. 4. 13
+	 * @작성자  : 우예진
+	 * @내용    : 배송문의  게시물 삭제
+	 * @param qna_no
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("delivery_board_delete.do")
+	public String delivery_board_delete(int qna_no, HttpServletRequest request) {
+	int result = bService.deletePrBoard(qna_no);
+	
+	if(result >0) {
+		return "redirect:delivery_board.do";
+	} else {
+		return "에러다";
+	}
+}
+   
 
    /**
     * @작성일  : 2020.04.05
@@ -181,6 +683,52 @@ public class BoardController extends HttpServlet {
 
       return "delivery_board_write";
    }
+   
+   
+   /**
+    * @작성일  : 2020. 4. 13
+    * @작성자  : 우예진
+    * @내용    : 배송후 반품교환 insert글쓰기
+    * @param b
+    * @param request
+    * @param session
+ 	* @param uploadFile
+ 	* @return
+ 	*/
+   @RequestMapping(value="delivery_board_insert.do",method=RequestMethod.POST)
+   	public String delivery_board_insert(Board b,HttpServletRequest request,HttpSession session,
+         @RequestParam(name="uploadFile",required=false) MultipartFile uploadFile) {
+   
+      
+      Member m = (Member)session.getAttribute("loginMember");      
+      
+      b.setMem_no(m.getMemNo());
+      b.setQna_writer(m.getMemId());
+      System.out.println(uploadFile.getOriginalFilename());
+      
+      if(!uploadFile.getOriginalFilename().equals("")) {
+         // 서버에 업로드
+         // saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명을 반환해주는 메소드
+         
+         String renameFileName = saveFile(uploadFile,request);
+         
+         if(renameFileName != null) {
+            b.setOriginalFileName(uploadFile.getOriginalFilename());// DB에는 파일명 저장
+            b.setRenameFileName(renameFileName);
+         }
+         
+      }      
+      int result = bService.insertBoard(b);
+        
+      System.out.println(b);
+      
+      if(result >0) {
+         return "redirect:delivery_board.do";
+      } else {
+         return null;
+      }
+   }
+   
 
    /**
     * @작성일  : 2020.04.05
@@ -189,21 +737,109 @@ public class BoardController extends HttpServlet {
     * @return
     */
    @RequestMapping("delivery_board.do")
-   public String delivery_board() {
+   public ModelAndView delivery_board(ModelAndView mv,
+		   @RequestParam(value="currentPage", 
+		   required=false,defaultValue="1") int currentPage) { 
 
-      return "delivery_board";
+	   		System.out.println(currentPage);
+
+	   		int b_cate_no = 2;
+
+	   		int listCount = bService.getListCount(b_cate_no);
+
+	   		System.out.println("listCount : " + listCount);
+
+	   		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+
+	   		ArrayList<Board> list = bService.selectList(pi,b_cate_no);
+
+	   		System.out.println("list:"+list);
+
+	   		mv.addObject("list",list);
+	   		mv.addObject("pi",pi);
+	   		mv.setViewName("delivery_board");
+
+	   		return mv; 
    }
-
+   
+   
+   /**
+    * @작성일  : 2020.04.13
+    * @작성자  : 우예진
+    * @내용    : 배송문의 검색 기능
+    * @return
+    */
+	@RequestMapping("de_search.do")
+	public ModelAndView de_search(ModelAndView mv, 
+		   						@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
+		   						,String search_key,String search,String search_date) {
+	int b_cate_no = 2;
+	
+	SearchCondition sc = new SearchCondition();
+	
+	if(search_key.equals("writer")) {
+		sc.setWriter(search);
+	} else if(search_key.equals("title")) {
+		sc.setTitle(search);
+	}
+	
+	if(search_date.equals("week")) {
+		sc.setSearchDate(7);
+	}else if(search_date.equals("month")) {
+		sc.setSearchDate(30);
+	}else if(search_date.equals("month3")) {
+		sc.setSearchDate(90);
+	}else if(search_date.equals("all")) {
+		sc.setSearchDate(0);
+	}
+	
+	sc.setB_cate_no(b_cate_no);
+	
+	int listCount = bService.SearchListCount(sc);
+	
+	PageInfo pi = sc.getPageInfo(currentPage, listCount);
+	
+	ArrayList<Board> list = bService.selectSearchList(pi,sc);
+    
+    System.out.println("list:"+list);
+	
+	  mv.addObject("list",list);
+      mv.addObject("pi",pi);
+      mv.setViewName("delivery_board");
+	
+	return mv;
+   }
+   
    /**
     * @작성일  : 2020.04.05
     * @작성자  : 우예진
-    * @내용    : 배송전취소/변경 페이지 이동
+    * @내용    : 배송전 주문취소/변경 페이지 이동
     * @return
     */
    @RequestMapping("delivery_cancel.do")
-   public String delivery_cancel() {
+   public ModelAndView delivery_cancel(ModelAndView mv,
+		   @RequestParam(value="currentPage", 
+		   required=false,defaultValue="1") int currentPage) { 
 
-      return "delivery_cancel";
+	   		System.out.println(currentPage);
+
+	   		int b_cate_no = 3;
+
+	   		int listCount = bService.getListCount(b_cate_no);
+
+	   		System.out.println("listCount : " + listCount);
+
+	   		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+
+	   		ArrayList<Board> list = bService.selectList(pi,b_cate_no);
+
+	   		System.out.println("list:"+list);
+
+	   		mv.addObject("list",list);
+	   		mv.addObject("pi",pi);
+	   		mv.setViewName("delivery_cancel");
+
+	   		return mv; 
    }
 
    /**
@@ -213,10 +849,100 @@ public class BoardController extends HttpServlet {
     * @return
     */
    @RequestMapping("delivery_cancel_detail.do")
-   public String delivery_cancel_detail() {
+   public ModelAndView delivery_cancel_detail(ModelAndView mv, int qna_no 
+			/*@RequestParam(value="currentPage",required=false, defaultValue="1") int currentPage*/) {
+		
+		Board b = bService.selectBoard(qna_no);
+		
+		if(b!=null) {
+			mv.addObject("b",b)
+					/* .addObject("currentPage",currentPage) */
+			.setViewName("delivery_cancel_detail");
+		} else {
+			mv.addObject("msg","게시글 상세조회 실패")
+			.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+   
+   /**
+	 * @작성일  : 2020. 4. 13
+	 * @작성자  : 우예진
+	 * @내용    : 배송문의 상세 비밀글(비밀글 타고들어갈때)
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("delivery_cancel_detailView")
+	   public ModelAndView delivery_cancel_detailView(ModelAndView mv,int qna_no) {
+		   
+		   mv.addObject("qna_no", qna_no);
+		   mv.setViewName("delivery_cancel_password");
 
-      return "delivery_cancel_detail";
-   }
+		   
+		   return mv; 
+	   }
+   
+   /**
+	 * @작성일  : 2020. 4. 13
+	 * @작성자  : 우예진
+	 * @내용    : 배송전 주문취소/변경 업데이트 화면 이동
+	 * @return
+	 */
+  @RequestMapping("delivery_cancel_update.do")
+  public ModelAndView delivery_cancel_update(ModelAndView mv, int qna_no) {
+
+	
+	Board b = bService.selectBoard(qna_no);
+	
+	if(b!=null) {
+		mv.addObject("b",b)
+				/* .addObject("currentPage",currentPage) */
+		.setViewName("delivery_cancel_update");
+	} else {
+		mv.addObject("msg","게시글 상세조회 실패")
+		.setViewName("common/errorPage");
+	}
+    return mv;
+}
+   
+	/**
+  	 * @작성일  : 2020. 4. 13.
+  	 * @작성자  : 우예진
+  	 * @내용    : 배송전 주문취소/변경 업데이트 완료
+  	 * @return
+  	 */
+  @RequestMapping("delivery_cancel_updateView.do")
+  public String delivery_cancel_updateView(Board b,HttpServletRequest request) {
+
+		int result = bService.UpdatePrBoard(b);
+	
+	if(result > 0) {
+		return "redirect:delivery_cancel.do";
+	}else {
+		return "에러다";
+	}
+		
+}
+  
+  /**
+	 * @작성일  : 2020. 4. 13
+	 * @작성자  : 우예진
+	 * @내용    : 배송전 주문취소/변경 문의  게시물 삭제
+	 * @param qna_no
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("delivery_cancel_delete.do")
+	public String delivery_cancel_delete(int qna_no, HttpServletRequest request) {
+	int result = bService.deletePrBoard(qna_no);
+	
+	if(result >0) {
+		return "redirect:delivery_cancel.do";
+	} else {
+		return "에러다";
+	}
+}
 
    /**
     * @작성일  : 2020.04.05
@@ -240,6 +966,97 @@ public class BoardController extends HttpServlet {
    public String delivery_cancel_write() {
 
       return "delivery_cancel_write";
+   }
+   
+   /**
+    * @작성일  : 2020. 4. 13
+    * @작성자  : 우예진
+    * @내용    : 배송후 반품교환 insert글쓰기
+    * @param b
+    * @param request
+    * @param session
+ 	* @param uploadFile
+ 	* @return
+ 	*/
+   @RequestMapping(value="delivery_cancel_insert.do",method=RequestMethod.POST)
+   	public String delivery_cancel_insert(Board b,HttpServletRequest request,HttpSession session,
+         @RequestParam(name="uploadFile",required=false) MultipartFile uploadFile) {
+   
+      
+      Member m = (Member)session.getAttribute("loginMember");      
+      
+      b.setMem_no(m.getMemNo());
+      b.setQna_writer(m.getMemId());
+      System.out.println(uploadFile.getOriginalFilename());
+      
+      if(!uploadFile.getOriginalFilename().equals("")) {
+         // 서버에 업로드
+         // saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명을 반환해주는 메소드
+         
+         String renameFileName = saveFile(uploadFile,request);
+         
+         if(renameFileName != null) {
+            b.setOriginalFileName(uploadFile.getOriginalFilename());// DB에는 파일명 저장
+            b.setRenameFileName(renameFileName);
+         }
+         
+      }      
+      int result = bService.insertBoard(b);
+        
+      System.out.println(b);
+      
+      if(result >0) {
+         return "redirect:delivery_cancel.do";
+      } else {
+         return null;
+      }
+   }
+   
+   /**
+    * @작성일  : 2020.04.13
+    * @작성자  : 우예진
+    * @내용    : 배송전 주문취소/변경 검색 기능
+    * @return
+    */
+	@RequestMapping("dc_search.do")
+	public ModelAndView dc_search(ModelAndView mv, 
+		   						@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
+		   						,String search_key,String search,String search_date) {
+	int b_cate_no = 3;
+	
+	SearchCondition sc = new SearchCondition();
+	
+	if(search_key.equals("writer")) {
+		sc.setWriter(search);
+	} else if(search_key.equals("title")) {
+		sc.setTitle(search);
+	}
+	
+	if(search_date.equals("week")) {
+		sc.setSearchDate(7);
+	}else if(search_date.equals("month")) {
+		sc.setSearchDate(30);
+	}else if(search_date.equals("month3")) {
+		sc.setSearchDate(90);
+	}else if(search_date.equals("all")) {
+		sc.setSearchDate(0);
+	}
+	
+	sc.setB_cate_no(b_cate_no);
+	
+	int listCount = bService.SearchListCount(sc);
+	
+	PageInfo pi = sc.getPageInfo(currentPage, listCount);
+	
+	ArrayList<Board> list = bService.selectSearchList(pi,sc);
+    
+    System.out.println("list:"+list);
+	
+	  mv.addObject("list",list);
+      mv.addObject("pi",pi);
+      mv.setViewName("delivery_cancel");
+	
+	return mv;
    }
 
    /**

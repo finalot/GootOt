@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.ot.main.dao.MainDao;
 import com.kh.ot.main.vo.MainPageInfo;
+import com.kh.ot.main.vo.MainSearchCondition;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
@@ -89,6 +90,15 @@ public class MainServiceImpl implements MainService {
 	public ArrayList<MainupCategory> selectUpCategoryList3() {
 		return mainDao.selectUpCategoryList3();
 	}
+	@Override
+	public ArrayList<Product> selectSortList1(MainPageInfo mainPi, MainSearchCondition msc) {
+		return mainDao.selectSortList1(mainPi,msc);
+	}
+	@Override
+	public ArrayList<Product> selectSortList2(MainPageInfo mainPi, MainSearchCondition msc) {
+		return mainDao.selectSortList2(mainPi,msc);
+	}
+
 	
 
 
