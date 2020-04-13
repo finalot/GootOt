@@ -57,7 +57,6 @@ public class MypageDao {
 	}
 
 	public int CompleteCouponListCount() {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("mypageMapper.CompleteCouponListCount");
 	}
 
