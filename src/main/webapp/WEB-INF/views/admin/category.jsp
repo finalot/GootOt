@@ -299,11 +299,9 @@
              		for(var i=0;i<data.length;i++){
              			console.log(data[i].up_no);
              			if(data[i].up_no==document.getElementById('hid').value){
-             				
              				$('#sel2').append('<option value="'+data[i].down_no+'">'+data[i].down_name+'</option>')
              			}
              		}
-            		
              },error:function(){
              	console.log("에러발생");
              }

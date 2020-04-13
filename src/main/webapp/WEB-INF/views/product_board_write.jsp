@@ -203,6 +203,7 @@
             </span>
         </div>
 	</div>
+	<input tyep="hidden" name="prdtCode" value="">
 	</form>
 </div>
 

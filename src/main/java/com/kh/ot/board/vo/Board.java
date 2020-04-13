@@ -17,12 +17,13 @@ public class Board {
 	private Date qna_modify_date; // 수정날짜
 	private String qna_password; // 게시판 비밀번호
 	private String qna_secure; // 비밀공개여부
+	private int prdt_code;
 	
 	public Board() {}
 
 	public Board(int qna_no, int b_cate_no, int mem_no, String content, String qna_chk,
 			Date qna_date, String qna_writer, String qna_title, String originalFileName, String renameFileName,
-			Date qna_modify_date, String qna_password, String qna_secure) {
+			Date qna_modify_date, String qna_password, String qna_secure,int prdr_code) {
 		super();
 		this.qna_no = qna_no;
 		this.b_cate_no = b_cate_no;
@@ -37,9 +38,18 @@ public class Board {
 		this.qna_modify_date = qna_modify_date;
 		this.qna_password = qna_password;
 		this.qna_secure = qna_secure;
+		this.prdt_code = prdr_code;
 	}
 
 	
+	public int getPrdt_code() {
+		return prdt_code;
+	}
+
+	public void setPrdt_code(int prdt_code) {
+		this.prdt_code = prdt_code;
+	}
+
 	public int getQna_no() {
 		return qna_no;
 	}
@@ -147,12 +157,13 @@ public class Board {
 	@Override
 	public String toString() {
 		return "Board [qna_no=" + qna_no + ", b_cate_no=" + b_cate_no + ", mem_no=" + mem_no + ", content=" + content
-				+ ", qna_chk=" + qna_chk + ", qna_date=" + qna_date + ", qna_writer="
-				+ qna_writer + ", qna_title=" + qna_title + ", originalFileName=" + originalFileName
-				+ ", renameFileName=" + renameFileName + ", qna_modify_date=" + qna_modify_date + ", qna_password="
-				+ qna_password + ", qna_secure=" + qna_secure + "]";
+				+ ", qna_chk=" + qna_chk + ", qna_date=" + qna_date + ", qna_writer=" + qna_writer + ", qna_title="
+				+ qna_title + ", originalFileName=" + originalFileName + ", renameFileName=" + renameFileName
+				+ ", qna_modify_date=" + qna_modify_date + ", qna_password=" + qna_password + ", qna_secure="
+				+ qna_secure + ", prdt_code=" + prdt_code + "]";
 	}
 
+	
 
 
 	
