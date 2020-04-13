@@ -89,18 +89,19 @@
 		
 		</select>
 		
-		<select id="selectSearchList" resultMap="boardResultSet" >
+		<select id="selectSearchList" resultMap="boardImgResultSet" >
 			SELECT *
-			FROM QNA
+			FROM QNA Q
+			LEFT JOIN PRDT P  ON(Q.PRDT_CODE = P.PRDT_NO)
 		    WHERE B_CATE_NO=#{b_cate_no}
 		  <if test="searchDate != 0"> 
-		    AND QNA_DATE BETWEEN SYSDATE-#{searchDate} AND SYSDATE
+		    AND Q.QNA_DATE BETWEEN SYSDATE-#{searchDate} AND SYSDATE
 		    </if>
 			<if test="writer != null">
-			AND QNA_WRITER LIKE '%' || #{writer} || '%'
+			AND Q.QNA_WRITER LIKE '%' || #{writer} || '%'
 			</if>
 			<if test="title != null">
-			AND QNA_TITLE LIKE '%' || #{title} || '%'
+			AND Q.QNA_TITLE LIKE '%' || #{title} || '%'
 			</if>
 			ORDER BY QNA_NO DESC
 		</select>

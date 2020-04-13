@@ -108,7 +108,7 @@ a{
 
                <tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
 
-                <tr style="background-color:#F9F9F9; color:#555555;" class="xans-record-">
+               <tr style="background-color:#F9F9F9; color:#555555;" class="xans-record-">
             <td style="font-weight:600;"></td>
                     <td class="displaynone"></td>
                     <td></td>
@@ -118,7 +118,7 @@ a{
                     <td>관리자</td>
                     <td class=""><span class="txtNum">2020-03-09</span></td>
                     <td class="displaynone"><img src="//img.echosting.cafe24.com/skin/base/board/ico_point0.gif" alt="0점"></td>
-                </tr>
+                </tr> 
       </tbody>
 	
 	
@@ -133,7 +133,7 @@ a{
                            <td class="thumb" >
                               <!-- subject 내용 들어갈 곳 -->
 
-                             <img src="//black-up.kr/web/product/medium/201910/7e87ddc2879aa1c854575447f27b6026.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
+                             <img src="${b.prdt_path }${b.prdt_img}"  style="width: 80px">
 
                          </td>
 
@@ -142,18 +142,32 @@ a{
                             <span id="prd_name">러트 세미 부츠컷 슬랙스</span>
                             <br>
                             <div class="ppro">
-                            <c:choose>
-                            	<c:when test="${b.qna_secure=='T'}">
+                            	<c:if test="${b.qna_secure=='T'}">
                             <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
+                            		 	<c:if test="${b.qna_chk  == 'N'}">
                                  <a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
-                                 [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
-                                 </c:when>
-                                 <c:otherwise>
-                                 <!-- <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image">  -->
+                                 [답변 전]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+                             			<c:if test="${b.qna_chk  == 'Y'}">
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
+                                 [답변 완료]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+                             	</c:if>
+                             	
+                             		<c:if test="${b.qna_secure=='F'}">
+                            		 	<c:if test="${b.qna_chk  == 'N'}">
                                  <a id="idMsg10" style="color:#555555;"onclick="prdtDetail2(this)">
-                                 [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
-                                 </c:otherwise>
-                                 </c:choose>
+                                 [답변 전]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+                             			<c:if test="${b.qna_chk  == 'Y'}">
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail2(this)">
+                                 [답변 완료]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+								</c:if>                               
                             </div>
                          </td>
                            <td class="left">
@@ -169,7 +183,7 @@ a{
                </tbody>
 
                <tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
-                      <tr class="xans-record-">
+                   <%--    <tr class="xans-record-">
                      <td>
                         <!-- no 공지번호 들어갈 곳 -->
                            <span id="idMsg4">${b.qna_no }</span>
@@ -199,7 +213,7 @@ a{
                             <td class="button">
 
                             </td>
-                          </tr>
+                          </tr> --%>
                </tbody>
 
               </table>
@@ -239,20 +253,32 @@ a{
                <img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
 
 
-
+					<c:if test="${empty sc }">
                   <c:url var="before" value="product_board.do">
                   <c:param name="currentPage" value="${pi.currentPage -1 }"/>
                   </c:url>
+                      </c:if>
+					<c:if test="${!empty sc }">
+                  <c:url var="before" value="pb_search.do">
+                  <c:param name="currentPage" value="${pi.currentPage -1 }"/>
+                  <c:param name="search_date" value="${sc.search_date }"/>
+                  <c:param name="search_key" value="${sc.search_key }"/>
+                  <c:param name="search" value="${sc.search }"/>
+                  </c:url>
+                      </c:if>
+                                            
                   <a href="${before}">
                   <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
                   </a> &nbsp;
+             
 
                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
                      <c:if test="${ p eq pi.currentPage }">
                         <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
                         <b>${ p }</b> &nbsp;&nbsp;</font>
                      </c:if>
-
+					
+					 <c:if test="${empty sc }">	
                      <c:if test="${ p ne pi.currentPage }">
                         <c:url var="pagination" value="product_board.do">
                            <c:param name="currentPage" value="${ p }"/>
@@ -260,12 +286,39 @@ a{
                      <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
                      ${ p }</a> &nbsp;
                   </c:if>
+                  </c:if>
+                  
+                  	 <c:if test="${!empty sc }">	
+                     <c:if test="${ p ne pi.currentPage }">
+                        <c:url var="pagination" value="pb_search.do">
+                           <c:param name="currentPage" value="${ p }"/>
+                           <c:param name="search_date" value="${sc.search_date }"/>
+		                  <c:param name="search_key" value="${sc.search_key }"/>
+		                  <c:param name="search" value="${sc.search }"/>
+                     </c:url>
+                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+                     ${ p }</a> &nbsp;
+                  </c:if>
+                  </c:if>
+                  
+                  
                </c:forEach>
 
-
-               <c:url var="after" value="product_board.do">
+				     <c:if test="${empty sc }">	
+                    <c:url var="after" value="product_board.do">
                      <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                    </c:url>
+                     </c:if>
+                     
+                  <c:if test="${!empty sc }">
+                  <c:url var="after" value="pb_search.do">
+                  <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                  <c:param name="search_date" value="${sc.search_date }"/>
+                  <c:param name="search_key" value="${sc.search_key }"/>
+                  <c:param name="search" value="${sc.search }"/>
                   </c:url>
+                      </c:if>
+                  
                   <a href="${after}">
                <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
                </a>

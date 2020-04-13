@@ -10,7 +10,9 @@ public class SearchCondition extends Pagination {
 	private String writer;
 	private int searchDate;
 	private int b_cate_no;
-	
+	private String search_key;
+	private String search;
+	private String search_date;
 	public SearchCondition() {}
 
 	
@@ -22,6 +24,38 @@ public class SearchCondition extends Pagination {
 		this.writer = writer;
 		this.searchDate = searchDate;
 		this.b_cate_no = b_cate_no;
+	}
+
+
+
+	public String getSearch_date() {
+		return search_date;
+	}
+
+	public void setSearch_date(String search_date) {
+		this.search_date = search_date;
+	}
+
+
+
+	public String getSearch_key() {
+		return search_key;
+	}
+
+	public void setSearch_key(String search_key) {
+		this.search_key = search_key;
+	}
+
+
+
+	public String getSearch() {
+		return search;
+	}
+
+
+
+	public void setSearch(String search) {
+		this.search = search;
 	}
 
 
