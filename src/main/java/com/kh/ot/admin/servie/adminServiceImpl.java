@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import com.kh.ot.admin.dao.adminDao;
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.DownCategory;
-import com.kh.ot.admin.vo.Product;
-import com.kh.ot.admin.vo.ProductOption;
 import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.admin.vo.Design;
 
