@@ -7,12 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<title>배송전 교환반품</title>
+<title>배송전 문의</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
-<link rel="stylesheet" href="/ot/resources/acss/mypage_list.css">
-<link rel="stylesheet" href="/ot/resources/acss/mypage_basic.css">
-<link rel="icon" type="image/png" href="/ot/resources/aimages/icons/favicon.png"/>
+<link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
+<link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
 </head>
 <style>
 .ec-base-table td{
@@ -177,11 +177,14 @@ th{
                             	<li>
                                     <a href="QnA_Product.ad">상품문의</a>
                                 </li>
+                                 <li>
+                                    <a href="QnA_del.ad">배송 문의</a>
+                                </li>
                                 <li>
                                     <a href="QnA_delivery_cancel.ad">배송전 문의</a>
                                 </li>
                                 <li>
-                                    <a href="productReturn.ad">배송후 문의</a>
+                                    <a href="QnA_delivery_after.ad">배송후 문의</a>
                                 </li>
                                  <li>
                                     <a href="QnA_bank_insert.ad">입금확인/입급자 변경 문의</a>
@@ -213,7 +216,7 @@ th{
 			
     <div id="container">
    				 <div class=title-text>
-    			<h2 style="font-weight: bold;">배송전 교환반품</h2>
+    			<h2 style="font-weight: bold;">상품관련 문의</h2>
     			</div>
         <div id="contents" style="margin-top:.5%; background: white;padding: 3%;    border-style: outset;">
       	<h3 style="font-weight: bold; border-bottom: 1px solid">문의내용</h3>
@@ -231,9 +234,11 @@ th{
       
         </div>
 </div>
-<form id="boardUpdateForm" action="product_change_updateView.do" method="POST" enctype="multipart/form-data">
-<%-- 	<input type="hidden" name="qna_no" value="${b.qna_no}">
- --%>	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
+
+<form id="boardWriteForm" name="" action="QnA_deliveryUpdate.ad" >
+		<input type="hidden" name="qna_no" value="${b.qna_no} ">
+     <input type="hidden"  id="b_content" style="display: none;" value="${b.content}">
+	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
             $login_page_url = /member/login.html
             $deny_access_url = /index.html
@@ -246,34 +251,74 @@ th{
 				<col style="width:auto;">
 			</colgroup>
 		<tbody>
-		
+		<tr>
+		<th scope="row">문의날짜</th>
+           <td><span>${b.qna_date }</span>	
+		   </td>
+    </tr>
+		<tr>
+		<th scope="row">문의고객</th>
+           <td><span>${b.qna_writer }</span>
+		   </td>
+    </tr>
 	<tr>
 		<th scope="row">SUBJECT</th>
-           <td><select id="subject" name="b_cate_no">
-			<option value="4">[상품문의]</option>
-			</select>  	
+           <td><span>${b.qna_title}</span>
 		   </td>
     </tr>
-    
     <tr>
-		<th scope="row">TITLE</th>
-        <%--    <td><input type="text" name="qna_title" style="width: 390px;height: 26px;" value="${b.qna_title }">
-           		<input type="hidden" value="${b.content}" id=b_content>	 --%>
-		   </td>
-    </tr>
-
     
 	<td colspan="2" class="clear">           
-            <script type="text/javascript" src="//editor.cafe24.com/js/nneditor.js?c=ko"></script>
-            <style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";</style>
-           <script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
-           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
-           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
-           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+    <script type="text/javascript" src="//editor.cafe24.com/js/nneditor.js?c=ko"></script>
+    <script src="/ot/resources/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/ot/resources/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/ot/resources/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="/ot/resources/assets/vendor/multi-select/js/jquery.multi-select.js"></script>
+    <script src="/ot/resources/assets/libs/js/main-js.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="/ot/resources/assets/vendor/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="/ot/resources/assets/vendor/datatables/js/buttons.bootstrap4.min.js"></script>
+    <script src="/ot/resources/assets/vendor/datatables/js/data-table.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+  
+  <!-- Bootstrap JS-->
+     <script src="/ot/resources/avendor/bootstrap-4.1/popper.min.js"></script>
+     <script src="/ot/resources/avendor/bootstrap-4.1/bootstrap.min.js"></script>
+     <!-- Vendor JS       -->
+     <script src="/ot/resources/avendor/slick/slick.min.js">
+     </script>
+     <script src="/ot/resources/avendor/wow/wow.min.js"></script>
+     <script src="/ot/resources/avendor/animsition/animsition.min.js"></script>
+     <script src="/ot/resources/avendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+     </script>
+     <script src="/ot/resources/avendor/counter-up/jquery.waypoints.min.js"></script>
+     <script src="/ot/resources/avendor/counter-up/jquery.counterup.min.js">
+     </script>
+     <script src="/ot/resources/avendor/circle-progress/circle-progress.min.js"></script>
+     <script src="/ot/resources/avendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+     <script src="/ot/resources/avendor/chartjs/Chart.bundle.min.js"></script>
+     <script src="/ot/resources/avendor/select2/select2.min.js">
+     </script>
+ 
+     <!-- Main JS-->
+
+     <script src="/ot/resources/ajs/main.js"></script>
             <script type="text/javascript">
-          /*   var b_content =$('#b_content').val(); */
+
+            var b_content = $('#b_content').val();
+           
+            console.log(b_content)
             NN.Config.instanceID = "content";
-            NN.Config.value = "ㅎㅇㅎㅇ";
+            NN.Config.value = b_content+"----------------------------------------------------------------------";
             NN.Config.toolbarType = "simple";
                 
                 
@@ -310,63 +355,49 @@ th{
                 }
 
                 $Editor.push(oNN_content, "content");
-                
-                
             </script>	
             	
 		
 	</tbody>
 	
-		<tbody class="">
-			<tr>
-				<th scope="row">FILE 01</th>
-                 <td><input type="file" name="reloadFile">
-                <%--  <c:if test="${ !empty b.originalFileName }">
-						<br>현재 업로드한 파일 : 
-				<a href="${ contextPath }/resources/buploadFiles/${ b.renameFileName }" download="${ b.originalFileName }">${ b.originalFileName }</a>
-					</c:if> --%>
-                 </td>
-            </tr>
-            
-			
-	</tbody>
+		
 	<tbody>
-			<tr class="">
-				<th scope="row">PASSWORD</th>
-<%--                     <td><input id="qna_password" name="qna_password" value="${b.qna_password }" type="password"></td>
- --%>            </tr>
-           
-			<tr class="">
-			<th scope="row">SECRET</th>
-                   <td><input id="secure0" name="qna_secure"  value="F" type="radio">
-                   <label for="secure0">공개글</label>
-				   <input id="secure1" name="qna_secure"  value="T" type="radio" checked="checked">
-				   <label for="secure1">비밀글</label></td>
-            </tr>
-            
-            
-		</tbody>
+
 	</table>
-</div>
-		<div class="ec-base-button ">
-            <span class="gLeft">
-                <span class="displaynone"><a href="#none" onclick="" class="yg_btn_30 yg_btn4" alt="관리자답변보기">관리자답변보기</a></span>
-                <a href="product_change.do" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
-            </span>
-            <span class="gRight">
-                <button id="update_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
-                
-                <a href="product_change.do" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
-            </span>
-        </div>
-	</div>
-	</form>
-</div>
 </div>
 </div>
 
+
+		<div class="ec-base-button ">
+            <span class="gLeft">
+                <span class="displaynone"><a href="#none" onclick="" class="yg_btn_30 yg_btn4" alt="관리자답변보기">관리자답변보기</a></span>
+                <a href="product_change.jsp" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
+            </span>
+            <span class="gRight">
+                <button onclick="submitBtn()" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
+                <a href="product_change.jsp" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
+            </span>
+        </div>
+       
+	</div>
+	
+</form>
 </div>
+</div>
+</div>
+ 
    <div class="page-wrapper">
 </div>
+
+
+<script>
+	function submitBtn(){
+		$('#boardWriteForm').submit();
+		
+	}
+
+
+</script>
+
 </body>
 </html>

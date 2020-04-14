@@ -146,11 +146,14 @@
                             	<li>
                                     <a href="QnA_Product.ad">상품문의</a>
                                 </li>
+                                 <li>
+                                    <a href="QnA_del.ad">배송 문의</a>
+                                </li>
                                 <li>
                                     <a href="QnA_delivery_cancel.ad">배송전 문의</a>
                                 </li>
                                 <li>
-                                    <a href="productReturn.ad">배송후 문의</a>
+                                    <a href="QnA_delivery_after.ad">배송후 문의</a>
                                 </li>
                                  <li>
                                     <a href="QnA_bank_insert.ad">입금확인/입급자 변경 문의</a>
