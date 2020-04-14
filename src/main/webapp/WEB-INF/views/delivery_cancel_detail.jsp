@@ -128,7 +128,7 @@ a{
 					<li class="displaynone">
                                 <span>POINT</span> <img src="/web/upload/yangji_pc_crumb/ico_point0.gif" alt="0점">
                             &nbsp;</li>
-                            <li class="" style="text-align: right;position: relative;top: -52px;font-weight:600;">
+                            <li class="" style="text-align: right;position: relative;top: -76px;font-weight:600;">
                                 <span>DATE</span> <span class="txtNum">${b.qna_date }</span>
                             </li>
          

@@ -575,7 +575,12 @@
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 			$(this).on('click', function(){
+				if("${loginMember.memId}"==""){
+					alert('로그인후 이용해주세요');
+					location.href="loginView.do";
+				}else{
 				swal(nameProduct, "관심상품에 등록되었습니다 !", "success");
+				}
 			});
 		});
 
