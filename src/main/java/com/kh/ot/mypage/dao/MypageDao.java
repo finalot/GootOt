@@ -52,7 +52,9 @@ public class MypageDao {
 	 */
 
 	public int CouponListCount(int memNo) {
-		return sqlSession.selectOne("mypageMapper.CouponListCount", memNo);
+		System.out.println(memNo);
+		int i =memNo;
+		return sqlSession.selectOne("mypageMapper.CouponListCount", i);
 	}
 
 	public ArrayList<CouponMem> CouponSelectList(int memNo, PageInfo pi) {

@@ -156,7 +156,7 @@ public class MypageController {
 		System.out.println(currentPage);
 		
 		Member m = (Member)session.getAttribute("loginMember");
-		
+		System.out.println(m);
 		int memNo = m.getMemNo();
 		
 		int listCount = mpService.CouponListCount(memNo);
