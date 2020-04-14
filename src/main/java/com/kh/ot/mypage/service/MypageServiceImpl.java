@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.dao.MypageDao;
 import com.kh.ot.mypage.vo.CouponMem;
 
@@ -18,43 +19,49 @@ public class MypageServiceImpl implements MypageService{
 	private MypageDao mpDao;
 
 	@Override
-	public int PointListCount() {
-		return mpDao.PointListCount();
+	public int PointListCount(int memNo) {
+		return mpDao.PointListCount(memNo);
 	}
 
 	@Override
-	public ArrayList<Point> PointSelectList(PageInfo pi) {
-		return mpDao.PointSelectList(pi);
+	public ArrayList<Point> PointSelectList(int memNo, PageInfo pi) {
+		return mpDao.PointSelectList(memNo, pi);
 	}
 
 	@Override
-	public int PointUnavailListCount() {
-		return mpDao.PointUnavailListCount();
+	public int PointUnavailListCount(int memNo) {
+		return mpDao.PointUnavailListCount(memNo);
+	}
+	
+	@Override
+	public ArrayList<Point> PointselectUnavailList(int memNo, PageInfo pi) {
+		return mpDao.PointselectUnavailList(memNo, pi);
 	}
 
 	@Override
-	public ArrayList<Point> PointselectUnavailList(PageInfo pi) {
-		return mpDao.PointselectUnavailList(pi);
+	public int CouponListCount(int memNo) {
+		return mpDao.CouponListCount(memNo);
 	}
 
 	@Override
-	public int CouponListCount() {
-		return mpDao.CouponListCount();
+	public ArrayList<CouponMem> CouponSelectList(int memNo, PageInfo pi) {
+		return mpDao.CouponSelectList(memNo, pi);
 	}
 
 	@Override
-	public ArrayList<CouponMem> CouponSelectList(PageInfo pi) {
-		return mpDao.CouponSelectList(pi);
+	public int CompleteCouponListCount(int memNo) {
+		return mpDao.CompleteCouponListCount(memNo);
 	}
 
 	@Override
-	public int CompleteCouponListCount() {
-		return mpDao.CompleteCouponListCount();
+	public ArrayList<CouponMem> CompleteCouponSelectList(int memNo, PageInfo pi) {
+		return mpDao.CompleteCouponSelectList(memNo, pi);
+
 	}
 
+	
 	@Override
-	public ArrayList<CouponMem> CompleteCouponSelectList(PageInfo pi) {
-		return mpDao.CompleteCouponSelectList(pi);
-
+	public int PointPrice(Member m) {
+		return mpDao.PointPrice(m);
 	}
 }

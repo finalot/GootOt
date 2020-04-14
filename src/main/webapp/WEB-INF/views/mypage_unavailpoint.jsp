@@ -67,7 +67,7 @@
 	                    <strong class="title">POINT</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mPoint }">0원</a>
+	                    	<a href="${mPoint }">${loginMember.mem_point }원</a>
 	                    </strong>
 	                </li>
                 
@@ -75,7 +75,7 @@
 	                    <strong class="title">COUPON</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mCoupon }">0<span>개</span></a>
+	                    	<a href="${mCoupon }">${CouponCount }<span>개</span></a>
 	                    </strong>
 	                </li>
 	            </ul>

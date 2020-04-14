@@ -82,7 +82,7 @@
 	                    <strong class="title">POINT</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mPoint }">0원</a>
+	                    	<a href="${mPoint }">${loginMember.mem_point }원</a>
 	                    </strong>
 	                </li>
                 

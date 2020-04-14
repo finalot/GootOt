@@ -20,6 +20,7 @@
 		<result property="mem_status" column="MEM_STATUS"/>
 	</resultMap>
 
+
 	<resultMap id="memberdailyCheck" type="Member">
 		<id property="memNo" column="MEM_NO"/>
 		<result property="tdDate" column="TC_DATE"/>
