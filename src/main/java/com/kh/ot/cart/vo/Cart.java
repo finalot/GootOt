@@ -9,12 +9,14 @@ public class Cart {
 	private int prdt_sumprice; // 상품총금액
 	private String prdt_color; // 상품컬러
 	private String prdt_size; // 상품사이즈
-	private String mem_name; // 회원이름
+	private String path; // 이미지 경로
+	private String image; // 이미지
+	private String prdt_name; // 상품이름
 	
 	public Cart() {}
 
 	public Cart(int mem_no, int prdt_no, int prdt_price, int prdt_count, int prdt_sumprice, String prdt_color,
-			String prdt_size, String mem_name) {
+			String prdt_size) {
 		super();
 		this.mem_no = mem_no;
 		this.prdt_no = prdt_no;
@@ -23,7 +25,6 @@ public class Cart {
 		this.prdt_sumprice = prdt_sumprice;
 		this.prdt_color = prdt_color;
 		this.prdt_size = prdt_size;
-		this.mem_name = mem_name;
 	}
 
 	public int getMem_no() {
@@ -84,21 +85,39 @@ public class Cart {
 	
 	
 
-	public String getMem_name() {
-		return mem_name;
+	public String getPath() {
+		return path;
 	}
 
-	public void setMem_name(String mem_name) {
-		this.mem_name = mem_name;
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
+
+	public String getPrdt_name() {
+		return prdt_name;
+	}
+
+	public void setPrdt_name(String prdt_name) {
+		this.prdt_name = prdt_name;
 	}
 
 	@Override
 	public String toString() {
 		return "Cart [mem_no=" + mem_no + ", prdt_no=" + prdt_no + ", prdt_price=" + prdt_price + ", prdt_count="
 				+ prdt_count + ", prdt_sumprice=" + prdt_sumprice + ", prdt_color=" + prdt_color + ", prdt_size="
-				+ prdt_size + ", mem_name=" + mem_name + "]";
+				+ prdt_size + "]";
 	}
-
+	
+	
 	
 	
 	

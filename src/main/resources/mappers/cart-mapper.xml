@@ -12,11 +12,34 @@
 			<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
 			<result property="prdt_color" column="PRDT_COLOR"/>
 			<result property="prdt_size" column="PRDT_SIZE"/>
-			<result property="mem_name" column="MEM_NAME"/>
-	
+			<result property="path" column="PRDT_IMAGE_PATH"/>
+			<result property="image" column="PRDT_IMAGE"/>
+			<result property="prdt_name" column="PRDT_NAME"/>
+			
 	</resultMap>
 
+	
+	<resultMap type="Coupon" id="couponMemResultSet">
+		<id property="cpmem_no" column="CPMEM_NO"/>
+		<result property ="cpName" column="CP_NAME"/>
+		<result property="cpDiscount" column="CP_DISCOUNT"/>
+	</resultMap>
 
+	<select id="selectList" parameterType="_int" resultMap="cartResultSet">
+	SELECT * 
+	FROM CRT C
+	JOIN PRDT P ON (C.PRDT_NO = P.PRDT_NO)
+	WHERE C.MEM_NO = #{mem_no}
+	</select>
+
+
+	<select id="selectCouponList" parameterType="_int" resultMap="couponMemResultSet">
+	SELECT *
+	FROM COUPON_MEM CM
+	JOIN COUPON C ON (CM.CP_NO=C.CP_NO)
+	WHERE CM.MEM_NO = #{mem_no}
+	
+	</select>
 
 
 
