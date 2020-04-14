@@ -127,13 +127,13 @@
 									<div class="block2-overlay trans-0-4">
 										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
 											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+											<i class="icon-wishlist icon_heart dis-none" style="display:block;"></i>
 										</a>
 
 										<div id="${p.prdtNo }" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width:60%;margin-left:20%">
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
 												<small>관심상품 담기</small>
 											</button>
 										</div>
@@ -147,13 +147,13 @@
 									<div class="block2-overlay trans-0-4">
 										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
 											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+											<i class="icon-wishlist icon_heart dis-none" style="display:block;"></i>
 										</a>
 
 										<div id="${p.prdtNo }" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width:60%;margin-left:20%">
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
 												<small>관심상품 담기</small>
 											</button>
 										</div>
@@ -170,13 +170,13 @@
 									<div class="block2-overlay trans-0-4">
 										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
 											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+											<i class="icon-wishlist icon_heart dis-none" style="display:block;"></i>
 										</a>
 
 										<div id="${p.prdtNo }" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width:60%;margin-left:20%">
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
 												<small>관심상품 담기</small>
 											</button>
 										</div>
@@ -379,7 +379,6 @@
 						var sort = arguments;
 						var product1 = $('#product1val').val();
 						
-						console.log(sort);
 					location.href = "sort1.do?product1="+product1+"&sort="+sort;
 						
 					}

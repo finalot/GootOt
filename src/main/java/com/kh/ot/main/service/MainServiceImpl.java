@@ -16,6 +16,7 @@ import com.kh.ot.main.vo.MainSearchCondition;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.Wish;
 import com.kh.ot.main.vo.MaindownCategory;
 import com.kh.ot.main.vo.MainupCategory;
 
@@ -97,6 +98,14 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public ArrayList<Product> selectSortList2(MainPageInfo mainPi, MainSearchCondition msc) {
 		return mainDao.selectSortList2(mainPi,msc);
+	}
+	@Override
+	public int insertWish(Wish w) {
+		return mainDao.insertWish(w);
+	}
+	@Override
+	public ArrayList<Wish> selectWish(int memNo) {
+		return mainDao.selectWish(memNo);
 	}
 
 	

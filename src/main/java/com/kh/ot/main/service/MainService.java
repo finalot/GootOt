@@ -7,11 +7,12 @@ import java.util.ArrayList;
 
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.MainSearchCondition;
+import com.kh.ot.main.vo.MaindownCategory;
+import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
-import com.kh.ot.main.vo.MaindownCategory;
-import com.kh.ot.main.vo.MainupCategory;
+import com.kh.ot.main.vo.Wish;
 
 public interface MainService {
 	
@@ -80,6 +81,10 @@ public interface MainService {
 	ArrayList<Product> selectSortList1(MainPageInfo mainPi, MainSearchCondition msc);
 
 	ArrayList<Product> selectSortList2(MainPageInfo mainPi, MainSearchCondition msc);
+
+	int insertWish(Wish w);
+
+	ArrayList<Wish> selectWish(int memNo);
 
 
 }

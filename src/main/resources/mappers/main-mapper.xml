@@ -42,6 +42,11 @@
 			<result property="pcRgb" column="PC_RGB"/>
 		</resultMap> 
 		
+		<resultMap type="Wish" id="WishResultSet">
+			<id property = "memNo" column="MEM_NO"/>
+			<result property="prdtNo" column="PRDT_NO"/>
+		</resultMap> 
+		
 	 <resultMap type="MaindownCategory" id="MaindownCategoryResultSet">
 			<id property = "downNo" column="DOWN_NO"/>
 			<result property="upNo" column="UP_NO"/>
@@ -61,18 +66,21 @@
 	  	SELECT COUNT(*)
 	  	FROM PRDT
 	  	WHERE UP_NO = #{product1}
+	  	AND PRDT_STATUS = 'Y'
 		</select>
 		
 		<select id="getListCount2" parameterType="_int" resultType="_int">
 	  	SELECT COUNT(*)
 	  	FROM PRDT
 	  	WHERE PRDT_NO LIKE #{product2}||'%'
+	  	AND PRDT_STATUS = 'Y'
 		</select>
   
 		<select id="selectProduct1" parameterType="_int" resultMap="productResultSet">
 		SELECT *
 		FROM PRDT
 		WHERE UP_NO = #{product1}
+		AND PRDT_STATUS = 'Y'
 		ORDER BY PRDT_NO DESC
 		</select>
 		
@@ -80,6 +88,7 @@
 		SELECT *
 		FROM PRDT
 		WHERE PRDT_NO LIKE #{product2}||'%'
+		AND PRDT_STATUS = 'Y'
 		ORDER BY PRDT_NO DESC
 		</select>
 		
@@ -153,6 +162,7 @@
 		SELECT *
 		FROM PRDT
 		WHERE UP_NO = #{product1}
+		AND PRDT_STATUS = 'Y'
 		<if test="sort == 0">
 		ORDER BY PRDT_NO DESC
 		</if>
@@ -174,6 +184,7 @@
 		SELECT *
 		FROM PRDT
 		WHERE PRDT_NO LIKE #{product2}||'%'
+		AND PRDT_STATUS = 'Y'
 		<if test="sort == 0">
 		ORDER BY PRDT_NO DESC
 		</if>
@@ -190,6 +201,17 @@
 		ORDER BY PRDT_PRICE DESC
 		</if>
 		</select>
+		
+		<select id="selectWish" parameterType="_int" resultMap="WishResultSet">
+		SELECT MEM_NO,PRDT_NO
+		FROM DIBS
+		WHERE MEM_NO = #{memNo}
+		</select>
+		
+		<insert id="insertWish" parameterType="Wish">
+		INSERT INTO DIBS
+		VALUES(DIBS_SEQ.NEXTVAL,#{memNo},#{prdtNo},DEFAULT,NULL,NULL,DEFAULT)
+		</insert>
 
 
 </mapper>
