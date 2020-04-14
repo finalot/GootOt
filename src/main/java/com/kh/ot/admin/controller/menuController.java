@@ -157,9 +157,25 @@ public class menuController {
 	}
 	
 	@RequestMapping("QnA_Product.ad")
-	public String QnA_Product() {
-		return "admin/QnA_Product";
-	}
+	   public ModelAndView QnA_Product(ModelAndView mv,
+	                      @RequestParam(value="currentPage", 
+	                      required=false,defaultValue="1") int currentPage
+	                        ) {
+	      int b_cate_no = 1;
+	         
+	         
+	         
+	         ArrayList<Board> list = adService.selectList(b_cate_no);
+	         
+	         System.out.println("list"+list);
+	         
+	           mv.addObject("list",list);
+	           mv.setViewName("admin/QnA_Product");
+	         
+	         return mv; 
+	         
+	   }
+
 	
 	@RequestMapping("QnA_Product_detail.ad")
 	public String QnA_Product_detail() {
