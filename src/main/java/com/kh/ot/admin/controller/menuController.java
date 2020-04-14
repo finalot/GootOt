@@ -196,15 +196,79 @@ public class menuController {
 	      return mv;
 
 	}
+	
+	/**
+	 * @작성일  : 2020. 4. 14.
+	 * @작성자  : 문태환
+	 * @내용 	: 배송문의 게시판 리스트 뿌리기
+	 * @param mv
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("QnA_del.ad")
+	public ModelAndView QnA_del(ModelAndView mv,
+			 				@RequestParam(value="currentPage",
+			 				required=false,defaultValue="1") int currentPage
+								) {
+		int b_cate_no = 2;
 
-	@RequestMapping("QnA_delivery_cancel.ad")
-	public String QnA_delivery_cancel() {
-		return "admin/QnA_delivery_cancel";
+
+
+	      ArrayList<Board> list = adService.selectList(b_cate_no);
+
+	      System.out.println("list"+list);
+
+	        mv.addObject("list",list);
+	        mv.setViewName("admin/QnA_del");
+
+	      return mv;
+
 	}
 
-	@RequestMapping("productReturn.ad")
-	public String productReturn() {
-		return "admin/productReturn";
+	/**
+	 * @작성일  : 2020. 4. 14.
+	 * @작성자  : 문태환
+	 * @내용 	: 배송전 문의 리스트 뿌리기
+	 * @param mv
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("QnA_delivery_cancel.ad")
+	public ModelAndView QnA_delivery_cancel(ModelAndView mv,
+				@RequestParam(value="currentPage",
+				required=false,defaultValue="1") int currentPage) {
+		int b_cate_no = 3;
+				
+				ArrayList<Board> list = adService.selectList(b_cate_no);
+				
+				System.out.println("list"+list);
+				
+				mv.addObject("list",list);
+				mv.setViewName("admin/QnA_delivery_cancel");
+				
+				return mv;
+				}
+
+	/**
+	 * @작성일  : 2020. 4. 14.
+	 * @작성자  : 문태환
+	 * @내용 	: 배송후 문의 게시판 뿌리기
+	 * @return
+	 */
+	@RequestMapping("QnA_delivery_after.ad")
+	public ModelAndView productReturn(ModelAndView mv,
+			@RequestParam(value="currentPage",
+			required=false,defaultValue="1") int currentPage) {
+			int b_cate_no = 4;
+			
+			ArrayList<Board> list = adService.selectList(b_cate_no);
+			
+			System.out.println("list"+list);
+			
+			mv.addObject("list",list);
+			mv.setViewName("admin/QnA_delivery_after");
+			
+			return mv;
 	}
 
 	/**
@@ -771,5 +835,183 @@ public class menuController {
 		}
 
 	}
+	/**
+	 * @작성일  : 2020. 4. 14.
+	 * @작성자  : 문태환
+	 * @내용 	: 입급관련 디테일 화면이동
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("QnA_bankUpdateView.ad")
+	public ModelAndView QnA_bankUpdateView(ModelAndView mv,int qna_no) {
 
+		Board b = bService.selectBoard(qna_no);
+		System.out.println(b);
+		if(b!=null) {
+			mv.addObject("b",b);
+			mv.setViewName("admin/QnA_bank_detail");
+
+		} else {
+			mv.addObject("msg","게시글 상세조회 실패")
+			.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	/**
+	 * @작성일  : 2020. 4. 14.
+	 * @작성자  : 문태환
+	 * @내용 	: 입금관련 문의 업데이트
+	 * @param b
+	 * @return
+	 */
+	@RequestMapping("QnA_bankUpdate.ad")
+	public String QnA_bankUpdate(Board b) {
+
+		int result = adService.QnA_ProductUpdate(b);
+
+		if(result > 0) {
+
+			return "redirect:QnA_bank_insert.ad";
+		}else {
+			return "에러다";
+		}
+	}
+	
+	
+	/**
+	 * @작성일  : 2020. 4. 14.
+	 * @작성자  : 문태환
+	 * @내용 	: 배송문의 디테일 화면
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("QnA_delUpdateView.ad")
+	public ModelAndView QnA_delUpdateView(ModelAndView mv,int qna_no) {
+
+		Board b = bService.selectBoard(qna_no);
+		System.out.println(b);
+		if(b!=null) {
+			mv.addObject("b",b);
+			mv.setViewName("admin/QnA_delivery_detail");
+
+		} else {
+			mv.addObject("msg","게시글 상세조회 실패")
+			.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	/**
+	 * @작성일  : 2020. 4. 14.
+	 * @작성자  : 문태환
+	 * @내용 	: 배송문의 업데이트
+	 * @param b
+	 * @return
+	 */
+	@RequestMapping("QnA_delUpdate.ad")
+	public String QnA_delUpdate(Board b) {
+
+		int result = adService.QnA_ProductUpdate(b);
+
+		if(result > 0) {
+
+			return "redirect:QnA_del.ad";
+		}else {
+			return "에러다";
+		}
+		
+	}
+	
+	
+	/**
+	 * @작성일  : 2020. 4. 14.
+	 * @작성자  : 문태환
+	 * @내용 	: 배송전 문의 디테일 화면
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("QnA_deliveryUpdateView.ad")
+	public ModelAndView QnA_deliveryUpdateView(ModelAndView mv,int qna_no) {
+
+		Board b = bService.selectBoard(qna_no);
+		System.out.println(b);
+		if(b!=null) {
+			mv.addObject("b",b);
+			mv.setViewName("admin/QnA_delivery_detail");
+
+		} else {
+			mv.addObject("msg","게시글 상세조회 실패")
+			.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	/**
+	 * @작성일  : 2020. 4. 14.
+	 * @작성자  : 문태환
+	 * @내용 	: 배송전 문의 업데이트
+	 * @param b
+	 * @return
+	 */
+	@RequestMapping("QnA_deliveryUpdate.ad")
+	public String QnA_deliveryUpdate(Board b) {
+
+		int result = adService.QnA_ProductUpdate(b);
+
+		if(result > 0) {
+
+			return "redirect:QnA_delivery_cancel.ad";
+		}else {
+			return "에러다";
+		}
+		
+	}
+	/**
+	 * @작성일  : 2020. 4. 14.
+	 * @작성자  : 문태환
+	 * @내용 	: 배송후 문의 업데이트
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("QnA_afterUpdateView.ad")
+	public ModelAndView QnA_afterUpdateView(ModelAndView mv,int qna_no) {
+
+		Board b = bService.selectBoard(qna_no);
+		System.out.println(b);
+		if(b!=null) {
+			mv.addObject("b",b);
+			mv.setViewName("admin/QnA_delivery_after_detail");
+
+		} else {
+			mv.addObject("msg","게시글 상세조회 실패")
+			.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	/**
+	 * @작성일  : 2020. 4. 14.
+	 * @작성자  : 문태환
+	 * @내용 	: 배송후 문의 업데이트
+	 * @param b
+	 * @return
+	 */
+	@RequestMapping("QnA_afterUpdate.ad")
+	public String QnA_afterUpdate(Board b) {
+
+		int result = adService.QnA_ProductUpdate(b);
+
+		if(result > 0) {
+
+			return "redirect:QnA_delivery_after.ad";
+		}else {
+			return "에러다";
+		}
+	}
+	
 }

@@ -27,7 +27,6 @@
     background-color: transparent !important;
     border-color: #e6e6f2 !important;
 	}
-
 	.table table-striped table-bordered second tbody td.process {
     color: #00ad5f;
 	}
@@ -37,9 +36,6 @@
 	}
 	td.denied {
     color: #fa4251;
-	}
-	.title-4{
-	font-weight: bold;
 	}
     </style>
     
@@ -148,15 +144,18 @@
                          <li class="active has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-question"></i>Q & A</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                         <ul class="list-unstyled navbar__sub-list js-sub-list">
                             	<li>
                                     <a href="QnA_Product.ad">상품문의</a>
+                                </li>
+                                 <li>
+                                    <a href="QnA_del.ad">배송 문의</a>
                                 </li>
                                 <li>
                                     <a href="QnA_delivery_cancel.ad">배송전 문의</a>
                                 </li>
                                 <li>
-                                    <a href="productReturn.ad">배송후 문의</a>
+                                    <a href="QnA_delivery_after.ad">배송후 문의</a>
                                 </li>
                                  <li>
                                     <a href="QnA_bank_insert.ad">입금확인/입급자 변경 문의</a>
@@ -185,14 +184,13 @@
         </aside>
         <!-- END MENU SIDEBAR-->
         
-        
          <!-- WELCOME-->
       <section class="welcome p-t-10">
           <div class="container">
               <div class="row">
                   <div class="col-md-12">
                       <h1 class="title-4">
-                     	상품문의
+                      	배송전 문의
                       </h1>
                       <hr class="line-seprate">
                   </div>
@@ -205,46 +203,39 @@
         <div class="card">
     <div class="card-body">
         <div class="table-responsive">
-            <table id="example" class="table table-striped table-bordered second" style="width:100%">
+        <table id="example" class="table table-striped table-bordered second" style="width:100%">
                 <thead>
                     <tr>
-                        <th style="width: 10%;">게시글번호</th>
-                        <th>제목</th>
+                        <th style="width: 10%">게시글번호</th>
+                        <th style="width: 40%;">제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
-                        <th>진행상태</th>
+                        <th>답변여부</th>
                     </tr>
                 </thead>
                 <tbody>
-           <%--   <c:forEach var="b" items="${ list }">
+                <c:forEach var="b" items="${ list }">
                     <tr>
-                        <td>${b.qna_no}</td>
-                         <c:if test="${b.prdt_code ne null }"> 
-                      <td>${b.prdt_name}</td> 
-                        </c:if>
-                        <c:if test="${b.prdt_code eq null }"> 
-                        <td>선택한 상품이 없습니다</td>
-                        </c:if> 
-                        <td align="center"><img style="width: 100px" src="${b.prdt_path }${b.prdt_img}" alt="상품이미지"></td>
-                         <td>${b.qna_title }</td>
-                        <td>${b.qna_writer }</td>
-                        <td>${b.qna_date }</td>
-                        <c:if test="${b.qna_chk  eq 'N' }">
+                       <td>${b.qna_no}</td>
+                       <td>${b.qna_title }</td>
+                       <td>${b.qna_writer }</td>
+                     <td>${b.qna_date }</td>
+                         <c:if test="${b.qna_chk  eq 'N' }">
                       <td class="denied">답변중</td>
                       	</c:if>
                       	  <c:if test="${b.qna_chk  eq 'Y'}">
                       <td class="process">답변완료</td>
                       	</c:if>
-                      </tr>
-                       </c:forEach> --%>
+                    </tr>
+                  </c:forEach> 
                 </tbody>
                 <tfoot>
-                    <tr>
-                         <th style="width: 10%;">게시글번호</th>
+                   <tr>
+                        <th>게시글번호</th>
                         <th>제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
-                        <th>진행상태</th>
+                        <th>답변여부</th>
                     </tr>
                 </tfoot>
             </table>
@@ -262,10 +253,11 @@
      $('#example td').click(function(){
 	    var qna_no = $(this).parent('tr').children('td').eq(0).text();
 	
-		location.href="QnA_ProductUpdateView.ad?qna_no="+qna_no;
+		location.href="QnA_deliveryUpdateView.ad?qna_no="+qna_no;
     	 
     });
     </script>
+
 
     <script src="/ot/resources/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="/ot/resources/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
