@@ -152,17 +152,6 @@ public class mainController {
 		return "review";
 	}
 
-	/**
-	 * @작성일 : 2020. 4. 2.
-	 * @작성자 :이대윤
-	 * @내용 : 카트 페이지 이동
-	 * @param @return
-	 * @return String
-	 */
-	@RequestMapping("cartbutton.do")
-	public String cartbutton() {
-		return "cart";
-	}
 
 	@RequestMapping("todaymain.ad")
 	public String todaymain() {
@@ -275,7 +264,19 @@ public class mainController {
 		mv.addObject("polist", polist);
 		mv.addObject("pclist", pclist);
 		mv.addObject("mainPi", mainPi);
-		mv.setViewName("product");
+		
+		if(sort == 0) {
+			mv.setViewName("product");
+		}else if(sort ==1) {
+			mv.setViewName("product_sort_1");
+		}else if(sort ==2) {
+			mv.setViewName("product_sort_2");
+		}else if(sort ==3) {
+			mv.setViewName("product_sort_3");
+		}else if(sort ==4) {
+			mv.setViewName("product_sort_4");
+		}
+		
 
 		return mv;
 	}
@@ -307,8 +308,19 @@ MainSearchCondition msc= new MainSearchCondition();
 		mv.addObject("polist", polist);
 		mv.addObject("pclist", pclist);
 		mv.addObject("mainPi", mainPi);
-		mv.setViewName("product");
-
+		
+		if(sort == 0) {
+			mv.setViewName("product2");
+		}else if(sort ==1) {
+			mv.setViewName("product2_sort_1");
+		}else if(sort ==2) {
+			mv.setViewName("product2_sort_2");
+		}else if(sort ==3) {
+			mv.setViewName("product2_sort_3");
+		}else if(sort ==4) {
+			mv.setViewName("product2_sort_4");
+		}
+		
 		return mv;
 	}
 }

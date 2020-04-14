@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +70,8 @@
 	                    <strong class="title">POINT</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mPoint }">0원</a>
+	                    	<a href="${mPoint }">
+	                    	<fmt:formatNumber value="${loginMember.mem_point }" pattern="#,###"/>원</a>
 	                    </strong>
 	                </li>
                 
@@ -76,7 +79,7 @@
 	                    <strong class="title">COUPON</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mCoupon }">${CouponCount} <span>개</span></a>
+	                    	<a href="${mCoupon }">${CouponCount }<span>개</span></a>
 	                    </strong>
 	                </li>
 	            </ul>
@@ -119,6 +122,7 @@
 						<caption>적립금 내역</caption>
                 		<colgroup>
 							<col style="width:15%">
+							<col style="width:15%">
 							<col style="width:20%">
 							<col style="width:30%">
 							<col style="width:auto">
@@ -126,7 +130,8 @@
 						
 						<thead>
 							<tr>
-								<th scope="col">주문날짜</th>
+								<th scope="col">적립날짜</th>
+								<th scope="col">구분</th>
 	                        	<th scope="col">적립금</th>
 		                        <th scope="col">관련 주문</th>
 		                        <th scope="col">내용</th>
@@ -139,7 +144,10 @@
 							<c:forEach var="pt" items="${list }">
 									<tr class="xans-record-">
 										<td>${pt.pt_date }</td>
-				                        <td>${pt.pt_price }</td>
+										<td>${pt.pt_part }</td>
+				                        <td>
+				                        	<fmt:formatNumber value="${pt.pt_price }" pattern="#,###"/>
+			                        	</td>
 				                        <td>
 				                        <a href="/myshop/order/detail.html?order_id=">${pt.ordno }</a>
 				                        </td>

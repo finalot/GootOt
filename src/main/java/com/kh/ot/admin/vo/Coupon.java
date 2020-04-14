@@ -8,6 +8,7 @@ public class Coupon {
 	private String cpName;
 	private int cpDiscount;
 	private Date cpDate;
+	private int cpmem_no;
 	
 	public Coupon() {
 	}
@@ -51,12 +52,23 @@ public class Coupon {
 	public void setCpDate(Date cpDate) {
 		this.cpDate = cpDate;
 	}
+	
+	
+
+	public int getCpmem_no() {
+		return cpmem_no;
+	}
+
+	public void setCpmem_no(int cpmem_no) {
+		this.cpmem_no = cpmem_no;
+	}
 
 	@Override
 	public String toString() {
 		return "Coupon [cpNo=" + cpNo + ", cpName=" + cpName + ", cpDiscount=" + cpDiscount + ", cpDate=" + cpDate
-				+ "]";
+				+ ", cpmem_no=" + cpmem_no + "]";
 	}
+
 	
 	
 

@@ -84,15 +84,17 @@
 		</select>
 		
 	 	<select id="selectProductOption1" parameterType="_int" resultMap="product_optResultSet">
-		SELECT *
+		SELECT PRDT_NO, OPT_COLOR
 		FROM PRDT_OPT
 		WHERE PRDT_NO LIKE #{product1}||'%'
+		GROUP BY PRDT_NO, OPT_COLOR
 		</select>
 		
 		<select id="selectProductOption2" parameterType="_int" resultMap="product_optResultSet">
-		SELECT *
+		SELECT PRDT_NO, OPT_COLOR
 		FROM PRDT_OPT
 		WHERE PRDT_NO LIKE #{product2}||'%'
+		GROUP BY PRDT_NO, OPT_COLOR
 		</select>
 		
 		<select id="selectProductColor1" parameterType="_int" resultMap="product_colorResultSet">
@@ -151,30 +153,42 @@
 		SELECT *
 		FROM PRDT
 		WHERE UP_NO = #{product1}
-		CASE WHEN #{sort} = 1 THEN
-		ORDER BY PRDT_SCOUNT ASC
-		CASE WHEN #{sort} = 2 THEN
-		ORDER BY PRDT_REVIEW ASC
-		CASE WHEN #{sort} = 3 THEN
-		ORDER BY PRDT_PRICE DESC
-		CASE WHEN #{sort} = 4 THEN
+		<if test="sort == 0">
+		ORDER BY PRDT_NO DESC
+		</if>
+		<if test="sort == 1">
+		ORDER BY PRDT_SCOUNT DESC
+		</if>
+		<if test="sort == 2">
+		ORDER BY PRDT_REVIEW DESC
+		</if>
+		<if test="sort == 3">
 		ORDER BY PRDT_PRICE ASC
-		END CASE
+		</if>
+		<if test="sort == 4">
+		ORDER BY PRDT_PRICE DESC
+		</if>
 		</select>
 		
 		<select id="selectSortProduct2" parameterType="MainSearchCondition" resultMap="productResultSet">
 		SELECT *
 		FROM PRDT
 		WHERE PRDT_NO LIKE #{product2}||'%'
-		CASE WHEN #{sort} = 1 THEN
-		ORDER BY PRDT_SCOUNT ASC
-		CASE WHEN #{sort} = 2 THEN
-		ORDER BY PRDT_REVIEW ASC
-		CASE WHEN #{sort} = 3 THEN
-		ORDER BY PRDT_PRICE DESC
-		CASE WHEN #{sort} = 4 THEN
+		<if test="sort == 0">
+		ORDER BY PRDT_NO DESC
+		</if>
+		<if test="sort == 1">
+		ORDER BY PRDT_SCOUNT DESC
+		</if>
+		<if test="sort == 2">
+		ORDER BY PRDT_REVIEW DESC
+		</if>
+		<if test="sort == 3">
 		ORDER BY PRDT_PRICE ASC
-		END CASE
+		</if>
+		<if test="sort == 4">
+		ORDER BY PRDT_PRICE DESC
+		</if>
 		</select>
 
 

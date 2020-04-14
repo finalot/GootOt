@@ -311,10 +311,12 @@ font-size: 9px !important;
 				<div class="topbar-child2">
 					<span class="topbar-email"> . </span>
 
-			
+					
 					<c:url var="loginView" value="loginView.do"/>				
 					<c:url var="joinView" value="joinView.do"/>				
-					<c:url var="MyPage" value="MyPage.do"/>
+					<c:url var="MyPage" value="MyPage.do">
+						<c:param name="memNo" value="${loginMember.memNo}"/>
+					</c:url>
 					<c:url var="logout" value="logout.do"/>
 					<%-- <c:url var="todaymain" value="todaymain.ad"/> --%>
 					
@@ -331,7 +333,7 @@ font-size: 9px !important;
 					&nbsp;&nbsp; <span class="topbar-email"> . </span> &nbsp;&nbsp; <a
 						href="${joinView}" class="topbar-email"> Join </a> &nbsp;&nbsp; <span
 						class="topbar-email"> . </span> &nbsp;&nbsp; <a
-						href="${MyPage}" class="topbar-email"> MyPage </a>
+						href="${MyPage }" class="topbar-email"> MyPage </a>
 					&nbsp;&nbsp; <span class="topbar-email"> . </span> &nbsp;&nbsp; <a
 						href="notice.do" class="topbar-email"> Notice </a> &nbsp;&nbsp; <span
 						class="topbar-email"> . </span> &nbsp; <a href="#" id="allmenubar1"

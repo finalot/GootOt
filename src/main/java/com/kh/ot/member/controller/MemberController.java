@@ -92,10 +92,11 @@ public class MemberController extends HttpServlet {
 	 * @return
 	 */
 	@RequestMapping("MyPage.do")
-	public ModelAndView MyPage(ModelAndView mv) {
+	public ModelAndView MyPage(ModelAndView mv,
+								@RequestParam("memNo") int memNo) {
 
-		int coupon = mpService.CouponListCount();
-		int point = mpService.PointListCount();
+		int coupon = mpService.CouponListCount(memNo);
+		int point = mpService.PointListCount(memNo);
 		
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
@@ -516,8 +517,10 @@ public class MemberController extends HttpServlet {
 							   @RequestParam("address2") String addr2,
 							   @RequestParam("mobile1") String mobile1,
 							   @RequestParam("mobile2") String mobile2,
-							   @RequestParam("mobile3") String mobile3) {
+							   @RequestParam("mobile3") String mobile3,
+							   HttpSession session) {
 		
+		m = (Member)session.getAttribute("loginMember");
 		
 		m.setMemPwd(pwd);
 //		System.out.println(pwd);
