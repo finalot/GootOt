@@ -17,7 +17,7 @@
 	</resultMap>
 
 	<resultMap id="CouponMemResultSet" type="CouponMem">
-		<id property="cp_memno" column="CPMEM_NO"/>
+		<id property="cpmem_no" column="CPMEM_NO"/>
 		<result property="memno" column="MEM_NO"/>
 		<result property="cpno" column="CP_NO"/>
 		<result property="cpdate" column="CP_DATE"/>
@@ -74,12 +74,12 @@
 		ORDER BY POINT_NO DESC
 	</select>
 	
-	<select id="CouponListCount" resultType="_int" parameterType="_int">
+	<select id="CouponListCount" resultType="_int" parameterType="Member">
 		SELECT COUNT(*)
 		FROM COUPON C
 		JOIN COUPON_MEM CM
 		ON (C.CP_NO = CM.CP_NO)
-		WHERE MEM_NO=#{i}
+		WHERE MEM_NO=#{memNo}
 		AND CP_USING='N'
 		
 	</select>

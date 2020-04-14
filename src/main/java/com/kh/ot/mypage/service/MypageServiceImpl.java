@@ -39,8 +39,8 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public int CouponListCount(int memNo) {
-		return mpDao.CouponListCount(memNo);
+	public int CouponListCount(Member m) {
+		return mpDao.CouponListCount(m);
 	}
 
 	@Override
