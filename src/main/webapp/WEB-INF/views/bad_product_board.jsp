@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
 <link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
 <link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
+ <link rel="stylesheet" href="/ot/resources/css/popup.css">
 </head>
 <style>
 .ec-base-table td{
@@ -104,39 +105,56 @@ a{
 								<!-- no 공지번호 들어갈 곳 -->
 									<span id="idMsg4">${b.qna_no }</span>
 							</td>
-               				<td class="thumb" >
-               					<!-- subject 내용 들어갈 곳 -->
-               					
-                      <c:choose>
-               			<c:when test="${b.qna_secure=='T'}">
-                        <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
-                        <a id="idMsg10" style="color:#555555;" onclick="prdtDetail(this)">
-                        [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
-                        </c:when>
-                        <c:otherwise>
-                        <!-- <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image">  -->
-                        <a id="idMsg10" style="color:#555555;" onclick="prdtDetail2(this)">
-                         [답변 전]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
-                        </c:otherwise>
-                    </c:choose>
-                    </td>
                				
-       				
-               				<td class="left">
-                   				<!-- writer 내용들어갈곳 -->
-								<span id="idMsg11">${b.qna_writer }</span>
-                				<td class="price center"><span id="idMsg4">${b.qna_date }</span></td>
-				                <td class="button">
-				                  
-				                </td>
-           					</tr>
-            	 </c:forEach>
-					</tbody>
+               					
+                        <!-- 상품명 이름 들어갈 곳 -->
+                         <td class="thumb">
+                            
+                            <div class="ppro">
+                            	<c:if test="${b.qna_secure=='T'}">
+                            <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
+                            		 	<c:if test="${b.qna_chk  == 'N'}">
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
+                                 [답변 전]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+                             			<c:if test="${b.qna_chk  == 'Y'}">
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
+                                 [답변 완료]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+                             	</c:if>
+                             	
+                             		<c:if test="${b.qna_secure=='F'}">
+                            		 	<c:if test="${b.qna_chk  == 'N'}">
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail2(this)">
+                                 [답변 전]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+                             			<c:if test="${b.qna_chk  == 'Y'}">
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail2(this)">
+                                 [답변 완료]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+								</c:if>                               
+                            </div>
+                         </td>
+                           <td class="left">
+                               <!-- writer 내용들어갈곳 -->
+                        <span id="idMsg11">${b.qna_writer }</span>
+                            <td class="price center"><span id="idMsg4">${b.qna_date }</span></td>
+                            <td class="button">
+
+                            </td>
+                          
+                          
+                          </c:forEach>
+               </tbody>
 					
 					<tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
-          				<tr class="xans-record-">
+          				<!-- <tr class="xans-record-">
 							<td>
-								<!-- no 공지번호 들어갈 곳 -->
+								no 공지번호 들어갈 곳
 									<span id="idMsg4">141262</span>
 							</td>
                				<td class="subject left txtBreak">
@@ -147,25 +165,27 @@ a{
                				
        						</td>
                				<td class="left">
-                   				<!-- writer 내용들어갈곳 -->
+                   				writer 내용들어갈곳
 								<span id="idMsg11">홍길동</span>
                 				<td class="price center"><span id="idMsg4">2020-03-19</span></td>
 				                <td class="button">
 				                  
 				                </td>
-           					</tr>
+           					</tr> -->
 					</tbody>
 					
         		</table>
         		
 		
 			</div>
-				
-        <a href="bad_product_write.do" class="hov1 s-text1 trans-0-4 yg_btn_145">
+			
+		<!-- 레어어 팝업  --> 
+		<a href="#layer2" id="submitBtn" class="hov1 s-text1 trans-0-4 yg_btn_145">
         <span style="position: relative;top: -2px;">write</span></a>
-    			
+	
 			<div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 "><fieldset class="boardSearch">
-<legend>게시물 검색</legend>
+			<legend>게시물 검색</legend>
+			<form action="bp_search.do">
             <p><select id="search_date" name="search_date">
 				<option value="week">일주일</option>
 				<option value="month">한달</option>
@@ -180,6 +200,7 @@ a{
 		<input id="search" name="search" class="inputTypeText" type="text">
       <a href="#none" onclick="pbSearch();" class="yg_btn_28 yg_btn318">
       <span id="idMsg9">SEARCH</span></a></p>
+      </form>
        	 </fieldset>
 	</div>
 			
@@ -190,19 +211,32 @@ a{
 
 
 
+               <c:if test="${empty sc }">
                   <c:url var="before" value="bad_product_board.do">
                   <c:param name="currentPage" value="${pi.currentPage -1 }"/>
                   </c:url>
+                      </c:if>
+					<c:if test="${!empty sc }">
+                  <c:url var="before" value="bp_search.do">
+                  <c:param name="currentPage" value="${pi.currentPage -1 }"/>
+                  <c:param name="search_date" value="${sc.search_date }"/>
+                  <c:param name="search_key" value="${sc.search_key }"/>
+                  <c:param name="search" value="${sc.search }"/>
+                  </c:url>
+                      </c:if>
+                                            
                   <a href="${before}">
                   <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
                   </a> &nbsp;
+             
 
                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
                      <c:if test="${ p eq pi.currentPage }">
                         <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
                         <b>${ p }</b> &nbsp;&nbsp;</font>
                      </c:if>
-
+					
+					 <c:if test="${empty sc }">	
                      <c:if test="${ p ne pi.currentPage }">
                         <c:url var="pagination" value="bad_product_board.do">
                            <c:param name="currentPage" value="${ p }"/>
@@ -210,12 +244,39 @@ a{
                      <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
                      ${ p }</a> &nbsp;
                   </c:if>
+                  </c:if>
+                  
+                  	 <c:if test="${!empty sc }">	
+                     <c:if test="${ p ne pi.currentPage }">
+                        <c:url var="pagination" value="bp_search.do">
+                           <c:param name="currentPage" value="${ p }"/>
+                           <c:param name="search_date" value="${sc.search_date }"/>
+		                  <c:param name="search_key" value="${sc.search_key }"/>
+		                  <c:param name="search" value="${sc.search }"/>
+                     </c:url>
+                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+                     ${ p }</a> &nbsp;
+                  </c:if>
+                  </c:if>
+                  
+                  
                </c:forEach>
 
-
-               <c:url var="after" value="bad_product_board.do">
+				     <c:if test="${empty sc }">	
+                    <c:url var="after" value="bad_product_board.do">
                      <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                    </c:url>
+                     </c:if>
+                     
+                  <c:if test="${!empty sc }">
+                  <c:url var="after" value="bp_search.do">
+                  <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                  <c:param name="search_date" value="${sc.search_date }"/>
+                  <c:param name="search_key" value="${sc.search_key }"/>
+                  <c:param name="search" value="${sc.search }"/>
                   </c:url>
+                      </c:if>
+                  
                   <a href="${after}">
                <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
                </a>
@@ -228,6 +289,27 @@ a{
         </div>
 		<hr class="layout">
 	</div>
+	
+	  <input id="q_no" type="hidden" value="${b.qna_no}">
+<!-- 레이어 팝업 -->
+  <div class="dim-layer">
+   					 <div class="dimBg"></div>
+    					<div id="layer2" class="pop-layer">
+     					   <div class="pop-container">
+        					    <div class="pop-conts" style="text-align: center">
+          			      <!--content //-->
+              		  <p class="ctxt mb20" id="check_ment"><br></p>
+
+              		  <div class="btn-r">
+                    <a href="#" class="btn-layerClose">Close</a>
+                	</div>
+                <!--// content-->
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="memId" value="${loginMember.memId }">
+	
 	
  <jsp:include page="footer.jsp"/>
  <script>
@@ -254,6 +336,56 @@ a{
 		 
 		 location.href="bp_search.do?search_key="+search_key+"&search="+search+"&search_date="+search_date;
 	 }
+	 
+	 $('#submitBtn').click(function(e){
+		 e.stopPropagation();
+		 var memId = $('#memId').val();	
+		 
+		 if(memId==""){
+			 $('#check_ment').html('<br>로그인후 이용해 주세요!<br>');
+			 var $href = $(this).attr('href');
+			 layer_popup($href);
+		 }else{
+			 location.href="bad_product_write.do";
+		 }
+		 
+	 })
+	 
+	 function layer_popup(el){
+
+     var $el = $(el);        //레이어의 id를 $el 변수에 저장
+     var isDim = $el.prev().hasClass('dimBg');   //dimmed 레이어를 감지하기 위한 boolean 변수
+
+     isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
+
+     var $elWidth = ~~($el.outerWidth()),
+         $elHeight = ~~($el.outerHeight()),
+         docWidth = $(document).width(),
+         docHeight = $(document).height();
+
+     // 화면의 중앙에 레이어를 띄운다.
+     if ($elHeight < docHeight || $elWidth < docWidth) {
+         $el.css({
+             marginTop: -$elHeight /2,
+             marginLeft: -$elWidth/2
+         })
+     } else {
+         $el.css({top: 0, left: 0});
+     }
+
+     $el.find('a.btn-layerClose').click(function(){
+         isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+         return false;
+     });
+
+     $('.layer .dimBg').click(function(){
+         $('.dim-layer').fadeOut();
+         return false;
+     });
+
+ }
+
+ 
 </script>
 </body>
 </html>
