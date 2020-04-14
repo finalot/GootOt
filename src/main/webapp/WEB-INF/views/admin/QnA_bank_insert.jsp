@@ -144,15 +144,18 @@
                          <li class="active has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-question"></i>Q & A</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                           <ul class="list-unstyled navbar__sub-list js-sub-list">
                             	<li>
                                     <a href="QnA_Product.ad">상품문의</a>
+                                </li>
+                                 <li>
+                                    <a href="QnA_del.ad">배송 문의</a>
                                 </li>
                                 <li>
                                     <a href="QnA_delivery_cancel.ad">배송전 문의</a>
                                 </li>
                                 <li>
-                                    <a href="productReturn.ad">배송후 문의</a>
+                                    <a href="QnA_delivery_after.ad">배송후 문의</a>
                                 </li>
                                  <li>
                                     <a href="QnA_bank_insert.ad">입금확인/입급자 변경 문의</a>
@@ -200,199 +203,31 @@
         <div class="card">
     <div class="card-body">
         <div class="table-responsive">
-            <table id="example" class="table table-striped table-bordered second" style="width:100%">
+        <table id="example" class="table table-striped table-bordered second" style="width:100%">
                 <thead>
                     <tr>
                         <th style="width: 10%">게시글번호</th>
-                        <th>제목</th>
+                        <th style="width: 40%;">제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
                         <th>답변여부</th>
                     </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="b" items="${ list }">
                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
+                       <td>${b.qna_no}</td>
+                       <td>${b.qna_title }</td>
+                       <td>${b.qna_writer }</td>
+                     <td>${b.qna_date }</td>
+                         <c:if test="${b.qna_chk  eq 'N' }">
+                      <td class="denied">답변중</td>
+                      	</c:if>
+                      	  <c:if test="${b.qna_chk  eq 'Y'}">
+                      <td class="process">답변완료</td>
+                      	</c:if>
                     </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                      <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                      <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                    <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                    <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                      <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                    <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                      <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                      <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                      <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                    <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                    <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                    <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                      <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
+                  </c:forEach> 
                 </tbody>
                 <tfoot>
                    <tr>
@@ -415,15 +250,14 @@
 	
 	<!-- // td(class=next) 클릭시 페이지 이동 -->
 	<script>
-     $("td").click(function(){
-    	 location.href='QnA_bank_detail.ad';
-  	 <%-- var userId = $(this).parent().find('input').val();
-  	 
-  	 console.log("선택한 유저 ID : "+userId);
-  	 
-     location.href="<%= request.getContextPath() %>/sone.rp?userId=" + userId; --%>
-    }); 
+     $('#example td').click(function(){
+	    var qna_no = $(this).parent('tr').children('td').eq(0).text();
+	
+		location.href="QnA_bankUpdateView.ad?qna_no="+qna_no;
+    	 
+    });
     </script>
+
 
     <script src="/ot/resources/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="/ot/resources/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
