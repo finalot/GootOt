@@ -157,17 +157,6 @@ public class mainController {
 		return "review";
 	}
 
-	/**
-	 * @작성일 : 2020. 4. 2.
-	 * @작성자 :이대윤
-	 * @내용 : 카트 페이지 이동
-	 * @param @return
-	 * @return String
-	 */
-	@RequestMapping("cartbutton.do")
-	public String cartbutton() {
-		return "cart";
-	}
 
 	@RequestMapping("todaymain.ad")
 	public String todaymain() {
