@@ -35,6 +35,8 @@ import com.kh.ot.board.service.BoardService;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.common.Pagination;
+import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_opt;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -43,9 +45,9 @@ public class menuController {
 
 		@Autowired
 		private adminService adService;
-		
+
 		 @Autowired
-		  private BoardService bService;
+	    private BoardService bService;
 
 	/**
 	 * @작성일 : 2020. 4. 4.
@@ -98,8 +100,15 @@ public class menuController {
 	}
 
 	@RequestMapping("productAdd.ad")
-	public String productAdd() {
-		return "admin/productAdd";
+	public ModelAndView productAdd(ModelAndView mv ) {
+
+		ArrayList<UpCategory> ulist = adService.UpCategorySelect();
+		ArrayList<DownCategory> dlist = adService.DownCategorySelect();
+
+		mv.addObject("ulist", ulist);
+		mv.addObject("dlist", dlist);
+		mv.setViewName("admin/productAdd");
+		return mv;
 	}
 
 	@RequestMapping("productList.ad")
@@ -170,22 +179,22 @@ public class menuController {
 	 */
 	@RequestMapping("QnA_Product.ad")
 	public ModelAndView QnA_Product(ModelAndView mv,
-			 				@RequestParam(value="currentPage", 
+			 				@RequestParam(value="currentPage",
 			 				required=false,defaultValue="1") int currentPage
 								) {
 		int b_cate_no = 1;
-	      
-	      
-	      
+
+
+
 	      ArrayList<Board> list = adService.selectList(b_cate_no);
-	      
+
 	      System.out.println("list"+list);
-	      
+
 	        mv.addObject("list",list);
 	        mv.setViewName("admin/QnA_Product");
-	      
-	      return mv; 
-			
+
+	      return mv;
+
 	}
 
 	@RequestMapping("QnA_delivery_cancel.ad")
@@ -208,45 +217,45 @@ public class menuController {
 	 */
 	@RequestMapping("QnA_bank_insert.ad")
 	public ModelAndView QnA_bank_insert(ModelAndView mv,
-			@RequestParam(value="currentPage", 
+			@RequestParam(value="currentPage",
 			required=false,defaultValue="1") int currentPage) {
 			int b_cate_no = 5;
-			
-			
+
+
 			ArrayList<Board> list = adService.selectList(b_cate_no);
-			
+
 			System.out.println("list"+list);
-			
+
 			mv.addObject("list",list);
 			mv.setViewName("admin/QnA_bank_insert");
-			
-			return mv; 
+
+			return mv;
 			}
 	/**
 	 * @작성일  : 2020. 4. 14.
 	 * @작성자  : 문태환
-	 * @내용 	: 불량상품 문의 리스트 
+	 * @내용 	: 불량상품 문의 리스트
 	 * @param mv
 	 * @param currentPage
 	 * @return
 	 */
 	@RequestMapping("QnA_bad_product.ad")
 	public ModelAndView QnA_bad_product(ModelAndView mv,
-				@RequestParam(value="currentPage", 
+				@RequestParam(value="currentPage",
 				required=false,defaultValue="1") int currentPage
 				) {
 				int b_cate_no = 6;
-				
-				
-				
+
+
+
 				ArrayList<Board> list = adService.selectList(b_cate_no);
-				
+
 				System.out.println("list"+list);
-				
+
 				mv.addObject("list",list);
 				mv.setViewName("admin/QnA_bad_product");
-				
-				return mv; 
+
+				return mv;
 	}
 
 	@RequestMapping("status.ad")
@@ -391,8 +400,11 @@ public class menuController {
 	      }
 	            int result = adService.DesignEd(dlist);
 
+	            if(result > -1 ) {
 	               return "home";
-	           
+	            }else {
+	               return "에러야";
+	            }
 	   }
 
 	      @RequestMapping(value="DesignEdVideo.do" , method=RequestMethod.POST)
@@ -652,10 +664,26 @@ public class menuController {
 			System.out.println("실패 ! ");
 			return "redirect:category.ad";
 		}
+	 }
+
+	/**
+	 * @작성일 : 2020. 4. 13.
+	 * @작성자 : 이서현
+	 * @내용 : 상품등록
+	 */
+	@RequestMapping("ProductInsert.ad") public String ProductInsert(Product p, Product_opt po,
+					HttpServletRequest request, MultipartFile file) {
+
+	int result = adService.ProductInsert(p,po);
+
+	if(result>0) {
+		return "redirect:productList.ad";
+	}else {
+		System.out.println("에러");
+		return "redirect:productAdd.ad"; }
 	}
 
 
-	
 	/**
 	 * @작성일  : 2020. 4. 13.
 	 * @작성자  : 문태환
@@ -666,20 +694,20 @@ public class menuController {
 	 */
 	@RequestMapping("QnA_ProductUpdateView.ad")
 	public ModelAndView QnA_ProductUpdate(ModelAndView mv,int qna_no) {
-		
+
 	Board b = bService.selectBoard(qna_no);
 		System.out.println(b);
 		if(b!=null) {
 			mv.addObject("b",b);
 			mv.setViewName("admin/QnA_Product_detail");
-		
+
 		} else {
 			mv.addObject("msg","게시글 상세조회 실패")
 			.setViewName("common/errorPage");
 		}
 		return mv;
 	}
-	
+
 	/**
 	 * @작성일  : 2020. 4. 14.
 	 * @작성자  : 문태환
@@ -689,16 +717,16 @@ public class menuController {
 	 */
 	@RequestMapping("QnA_ProductUpdate.ad")
 	public String QnA_ProductUpdate(Board b) {
-		
+
 		int result = adService.QnA_ProductUpdate(b);
-		
+
 		if(result > 0) {
-			
+
 			return "redirect:QnA_Product.ad";
 		}else {
 			return "에러다";
 		}
-		
+
 	}
 	/**
 	 * @작성일  : 2020. 4. 14.
@@ -710,13 +738,13 @@ public class menuController {
 	 */
 	@RequestMapping("QnA_badUpdateView.ad")
 	public ModelAndView QnA_BadUpdateView(ModelAndView mv,int qna_no) {
-		
+
 		Board b = bService.selectBoard(qna_no);
 		System.out.println(b);
 		if(b!=null) {
 			mv.addObject("b",b);
 			mv.setViewName("admin/QnA_bad_detail");
-		
+
 		} else {
 			mv.addObject("msg","게시글 상세조회 실패")
 			.setViewName("common/errorPage");
@@ -732,16 +760,16 @@ public class menuController {
 	 */
 	@RequestMapping("QnA_BadUpdate.ad")
 	public String QnA_BadUpdate(Board b) {
-		
+
 		int result = adService.QnA_ProductUpdate(b);
-		
+
 		if(result > 0) {
-			
+
 			return "redirect:QnA_bad_product.ad";
 		}else {
 			return "에러다";
 		}
-		
+
 	}
-	
+
 }

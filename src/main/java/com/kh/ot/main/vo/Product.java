@@ -1,6 +1,7 @@
 package com.kh.ot.main.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Product {
 
@@ -351,16 +352,18 @@ public class Product {
 	public void setPrdtDetailImagePath(String prdtDetailImagePath) {
 		this.prdtDetailImagePath = prdtDetailImagePath;
 	}
-
+	
 
 	@Override
 	public String toString() {
-		return "product [prdtNo=" + prdtNo + ", upNo=" + upNo + ", prdtName=" + prdtName + ", prdtComment="
+		return "Product [prdtNo=" + prdtNo + ", upNo=" + upNo + ", prdtName=" + prdtName + ", prdtComment="
 				+ prdtComment + ", prdtPrice=" + prdtPrice + ", prdtMake=" + prdtMake + ", prdtImage=" + prdtImage
 				+ ", prdtDate=" + prdtDate + ", prdtModifyDate=" + prdtModifyDate + ", downNo=" + downNo + ", prdtCode="
 				+ prdtCode + ", prdtImagePath=" + prdtImagePath + ", prdtDetailImage=" + prdtDetailImage
-				+ ", prdtDetailImagePath=" + prdtDetailImagePath + "]";
+				+ ", prdtDetailImagePath=" + prdtDetailImagePath + ", prdtSale=" + prdtSale + "]";
 	}
+	
+	
 	
 	
 	

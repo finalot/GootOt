@@ -1,6 +1,7 @@
 package com.kh.ot.main.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Product_opt {
 
@@ -12,6 +13,9 @@ public class Product_opt {
 	private Date optDate;
 	private Date optModifyDate;
 	private String prdtCode;
+	
+	List<Product_opt> OptionVOList;
+	
 	
 	public Product_opt() {
 	}
@@ -27,6 +31,22 @@ public class Product_opt {
 		this.optDate = optDate;
 		this.optModifyDate = optModifyDate;
 		this.prdtCode = prdtCode;
+	}
+	
+	
+	//서현 사용 생성자
+	public Product_opt(int optNo, int prdtNo, String optColor, String size, int stock, Date optDate, Date optModifyDate,
+			String prdtCode, List<Product_opt> optionVOList) {
+		super();
+		this.optNo = optNo;
+		PrdtNo = prdtNo;
+		this.optColor = optColor;
+		this.size = size;
+		this.stock = stock;
+		this.optDate = optDate;
+		this.optModifyDate = optModifyDate;
+		this.prdtCode = prdtCode;
+		OptionVOList = optionVOList;
 	}
 
 	public int getOptNo() {
@@ -92,6 +112,16 @@ public class Product_opt {
 	public void setPrdtCode(String prdtCode) {
 		this.prdtCode = prdtCode;
 	}
+	
+	
+
+	public List<Product_opt> getOptionVOList() {
+		return OptionVOList;
+	}
+
+	public void setOptionVOList(List<Product_opt> optionVOList) {
+		OptionVOList = optionVOList;
+	}
 
 	@Override
 	public String toString() {
@@ -99,6 +129,8 @@ public class Product_opt {
 				+ ", stock=" + stock + ", optDate=" + optDate + ", optModifyDate=" + optModifyDate + ", prdtCode="
 				+ prdtCode + "]";
 	}
+
+	
 
 	
 	

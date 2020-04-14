@@ -12,7 +12,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -34,8 +34,8 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/css/main.css">
 <!--===============================================================================================-->
 <style>
 .totalDetail {
@@ -286,7 +286,7 @@
 
 								</div>
 							</td>
-							<td class="column-6"><img src="/ot/images/icons/icon-point.png" width="15px;height:15px;" 
+							<td class="column-6"><img src="/ot/resources/images/icons/icon-point.png" width="15px;height:15px;" 
 							style="position: relative;left: -5px;
 								top: -1px;">900원</td>
 							<td class="column-7" style="padding-left: 40px;">기본배송</td>
@@ -310,7 +310,7 @@
 									style="margin-left: 31px;">
 								</div>
 						</td>
-							<td class="column-6"><img src="/ot/images/icons/icon-point.png" width="15px;height:15px;" 
+							<td class="column-6"><img src="/ot/resources/images/icons/icon-point.png" width="15px;height:15px;" 
 							style="position: relative;left: -5px;
 								top: -1px;">900원</td>
 							<td class="column-7" style="padding-left: 40px;">기본배송</td>

@@ -8,6 +8,8 @@ import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_opt;
 
 public interface adminService{
 
@@ -115,6 +117,15 @@ public interface adminService{
 	public int UpCategoryDelete(int up_no);
 
 	public int DownCategoryDelete(DownCategory downCategory);
+	
+	/**s
+	 * @작성일 : 2020. 4. 9.
+	 * @작성자 : 이서현
+	 * @내용 : 상품 등록 
+	 */
+	public int ProductInsert(Product p, Product_opt po);
+
+	
 
 	/**
 	 * @작성일  : 2020. 4. 13.
