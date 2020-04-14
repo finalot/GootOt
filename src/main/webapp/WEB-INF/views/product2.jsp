@@ -130,7 +130,7 @@
 											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
 										</a>
 
-										<div class="block2-btn-addcart w-size1 trans-0-4">
+										<div id="${p.prdtNo }" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
 											style="width:60%;margin-left:20%">
@@ -151,7 +151,7 @@
 											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
 										</a>
 
-										<div class="block2-btn-addcart w-size1 trans-0-4">
+										<div id="${p.prdtNo }" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
 											style="width:60%;margin-left:20%">
@@ -174,7 +174,7 @@
 											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
 										</a>
 
-										<div class="block2-btn-addcart w-size1 trans-0-4">
+										<div id="${p.prdtNo }" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
 											style="width:60%;margin-left:20%">
@@ -383,7 +383,7 @@
 						var product2 = $('#product2val').val();
 						
 						console.log(sort);
-					location.href = "sort1.do?product2="+product2+"&sort="+sort;
+					location.href = "sort2.do?product2="+product2+"&sort="+sort;
 						
 					}
 					
