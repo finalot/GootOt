@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +56,8 @@ th, td {
 	                    <strong class="title">POINT</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mPoint }">0원</a>
+	                    	<a href="${mPoint }">
+	                    	<fmt:formatNumber value="${loginMember.mem_point }" pattern="#,###"/>원</a>
 	                    </strong>
 	                </li>
                 
@@ -63,7 +65,7 @@ th, td {
 	                    <strong class="title">COUPON</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mCoupon }">0<span>개</span></a>
+	                    	<a href="${mCoupon }">${CouponCount}<span>개</span></a>
 	                    </strong>
 	                </li>
 	            </ul>

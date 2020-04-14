@@ -20,6 +20,7 @@
 		<result property="mem_status" column="MEM_STATUS"/>
 	</resultMap>
 
+
 	<resultMap id="memberdailyCheck" type="Member">
 		<id property="memNo" column="MEM_NO"/>
 		<result property="tdDate" column="TC_DATE"/>
@@ -86,7 +87,7 @@
 <insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER
 		VALUES(MEM_SEQ.NEXTVAL,#{memId},#{memPwd},#{memName},#{memSsn},#{memAddress},
-		#{memEmail},#{memPhone},DEFAULT,#{memOwner},#{bank},#{returnBank},DEFAULT)
+		#{memEmail},#{memPhone},DEFAULT,#{memOwner},#{bank},#{returnBank},DEFAULT,DEFAULT)
 
 	</insert>
 	

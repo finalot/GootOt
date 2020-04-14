@@ -2,6 +2,8 @@ package com.kh.ot.mypage.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.common.Pagination;
+import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
 import com.kh.ot.mypage.vo.CouponMem;
 
@@ -43,9 +46,10 @@ public class MypageController {
 	 * @return String
 	 */
 	@RequestMapping("mWishlist.do") //1
-	public ModelAndView mWishlist(ModelAndView mv) {
+	public ModelAndView mWishlist(ModelAndView mv,
+									@RequestParam("memNo") int memNo) {
 		
-		int Coupon = mpService.CouponListCount();
+		int Coupon = mpService.CouponListCount(memNo);
 													// 사용 가능 포인트 셋팅
 													// 찜한 갯수 카운팅
 		
@@ -68,19 +72,26 @@ public class MypageController {
 	 */
 	@RequestMapping("mPoint.do") //2
 	public ModelAndView mPoint(ModelAndView mv,
-							   @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
-		
+							   @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage,
+							   HttpSession session) {
 		System.out.println(currentPage);
 		
-		int coupon = mpService.CouponListCount(); // 사용 가능한 쿠폰 카운팅
+		Member m = (Member)session.getAttribute("loginMember");
 		
-		int listCount = mpService.PointListCount(); // 사용 가능한 쿠폰
+		int memNo = m.getMemNo();
+		
+		int result = mpService.PointPrice(m); // 
+		
+		int coupon = mpService.CouponListCount(memNo); // 사용 가능한 쿠폰 카운팅
+		
+		int listCount = mpService.PointListCount(memNo); // 사용 가능한 쿠폰
+		
 		
 		System.out.println("listCount : " + listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
 		
-		ArrayList<Point> list = mpService.PointSelectList(pi);
+		ArrayList<Point> list = mpService.PointSelectList(memNo,pi);
 		
 		mv.addObject("CouponCount",coupon);
 		mv.addObject("PointCount", listCount);
@@ -100,19 +111,23 @@ public class MypageController {
 	 */
 	@RequestMapping("mUnavailpoint.do") 
 	public ModelAndView mUnavailpoint(ModelAndView mv,
-							    @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
-		
+							    @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage,
+							    HttpSession session) {
 		System.out.println(currentPage);
 		
-		int listCount = mpService.PointUnavailListCount();
-		int coupon = mpService.CouponListCount(); // 사용가능한 쿠폰
-		int point = mpService.PointListCount(); // 사용가능한 적립금
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		int listCount = mpService.PointUnavailListCount(memNo);
+		int coupon = mpService.CouponListCount(memNo); // 사용가능한 쿠폰
+		int point = mpService.PointListCount(memNo); // 사용가능한 적립금
 		
 		System.out.println("listCount : " + listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
 		
-		ArrayList<Point> list = mpService.PointselectUnavailList(pi);
+		ArrayList<Point> list = mpService.PointselectUnavailList(memNo,pi);
 		
 		mv.addObject("PointCount", point);
 		mv.addObject("CouponCount",coupon);
@@ -135,19 +150,24 @@ public class MypageController {
 
 	@RequestMapping("mCoupon.do") // 3
 	public ModelAndView mCoupon(ModelAndView mv,
-								@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+								@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, 
+								HttpSession session) {
 		
 		System.out.println(currentPage);
 		
+		Member m = (Member)session.getAttribute("loginMember");
 		
-		int listCount = mpService.CouponListCount();
-		int point = mpService.PointListCount();
+		int memNo = m.getMemNo();
+		
+		int listCount = mpService.CouponListCount(memNo);
+		
+		int point = mpService.PointListCount(memNo);
 		
 		System.out.println("listCount : " + listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
 		
-		ArrayList<CouponMem> list = mpService.CouponSelectList(pi);
+		ArrayList<CouponMem> list = mpService.CouponSelectList(memNo, pi);
 		
 		mv.addObject("CouponCount", listCount);
 		mv.addObject("PointCount", point);
@@ -167,20 +187,24 @@ public class MypageController {
 	 */
 	@RequestMapping("mCompleteCoupon.do")
 	public ModelAndView mCompleteCoupon(ModelAndView mv,
-			@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
-		
+			@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage,
+			HttpSession session) {
 		System.out.println(currentPage);
 		
-		int coupon = mpService.CouponListCount();
-		int point = mpService.PointListCount();
+		Member m = (Member)session.getAttribute("loginMember");
 		
-		int listCount = mpService.CompleteCouponListCount();
+		int memNo = m.getMemNo();
+		
+		int coupon = mpService.CouponListCount(memNo);
+		int point = mpService.PointListCount(memNo);
+		
+		int listCount = mpService.CompleteCouponListCount(memNo);
 		
 		System.out.println("listCount : " + listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
 		
-		ArrayList<CouponMem> list = mpService.CompleteCouponSelectList(pi);
+		ArrayList<CouponMem> list = mpService.CompleteCouponSelectList(memNo,pi);
 		
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
