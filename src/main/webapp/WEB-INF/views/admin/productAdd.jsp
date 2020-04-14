@@ -303,7 +303,7 @@ th{
     <!-- END WELCOME-->
     
     
-	<from action="ProductInsert.ad" method="post" id="productInsert">
+	<!-- <from action="ProductInsert.ad" method="post" id="productInsert"> -->
     <!-- 이벤트 내용 -->
    <table id="addlist" style="border: 1px dotted; background: white; font-size:13pt;">
         <tr colspan="2">
@@ -331,12 +331,6 @@ th{
 	       		<option value="">선택2(중분류)</option>
 	       	</select>	
 	       	
-        	</td>
-        </tr>
-        <tr>
-        	<th><span style="color:red">*</span> 상품코드</th>
-        	<td>
-        		<input type="text" id="product_code">
         	</td>
         </tr>
         <tr>
@@ -380,12 +374,20 @@ th{
         <tr>
         	<th><span style="color:red">*</span> 색상설정</th>
         	<td>
-        	
+        		<!-- 가지고 있는 기존 색상 뿌리기  -->
+        		
+        		<c:forEach var="pc" items="${pclist }">
+        		<c:if test="${not empty pc.pcRgb}">
+        			<div id="selectColor" style="width:20px;height:20px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
+				</c:if>
+        		</c:forEach>
+        		
+        		
         		 <div id="color-area" style="display: block;" >
                     <div id="color-div" class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <div class="input-group" style="    width: 105px" >
-                                <input type="text" style=" padding-right: 0%;;padding-left: 36%;"  id="input-group" class="form-control demo" value="#ff0000" />
+                                <input type="text" style=" padding-right: 0%;;padding-left: 36%;"  id="text-color" class="form-control demo" value="#ff0000" />
 								
                                   <span>등록 색상명 </span> <input type="text" id="color-name">
                             </div>
@@ -413,7 +415,7 @@ th{
         </tr>
     </table>
     
-    </from><!-- Product.ad 옵션 끝남 -->
+
   <div style="height: 130px;">
           <div align="center" style="margin-bottom:3%">
     <button id="product-info-add" style="width: 100px; height: 40px;border-radius: 10px;;background: black; color: white">상품추가</button>
@@ -446,17 +448,17 @@ th{
     
 
     <div style="height: 130px;">
-        <<!-- div align="center">
-            <button style="background: black;
+        <div align="center">
+            <button id="productInsertBtn" style="background: black;
             color: white;
             font-size: 20px;
             padding: 10px;
             height: 65px;
             width: 135px;
             border-radius: 10px;">
-            <b>등록</b></button> -->
-            <a style="background: black; color: white; font-size: 20px; padding: 10px; height: 65px; width: 135px; border-radius: 10px; align:center;"
-            	onclick="productOptionAdd();"></a>
+            <b>등록</b></button>
+           <!--  <a style="background: black; color: white; font-size: 20px; padding: 10px; height: 65px; width: 135px; border-radius: 10px; align:center;"
+            	onclick="productOptionAdd();"></a> -->
         </div>
     </div>
    
@@ -663,7 +665,7 @@ th{
   		
         
         /* 모든 포커스 삭제하기  */
-        $(':focus').blur();  
+        /* $(':focus').blur();   */
         </script>
 		
 		<!-- 카테고리 뿌리기  -->
@@ -684,6 +686,16 @@ th{
 				
         	"</c:forEach>"
         });
+        
+        $('#color-area').click(function(){
+        	
+        	"<c:forEach var='pc' items='${pclist}'>"
+        	
+        	var result = $('pc.pcRgb').val();
+        	console.log(result);
+        		
+        	"</c:forEach>"
+        }) 
         
      
         </script>

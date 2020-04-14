@@ -35,7 +35,9 @@ import com.kh.ot.board.service.BoardService;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.common.Pagination;
+import com.kh.ot.main.service.MainService;
 import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 
 @SessionAttributes("loginMember")
@@ -48,6 +50,9 @@ public class menuController {
 		
 		 @Autowired
 	    private BoardService bService;
+		 
+		 @Autowired
+		private MainService mainService;
 	
 	/**
 	 * @작성일 : 2020. 4. 4.
@@ -104,9 +109,11 @@ public class menuController {
 		
 		ArrayList<UpCategory> ulist = adService.UpCategorySelect();
 		ArrayList<DownCategory> dlist = adService.DownCategorySelect();
-	
+		ArrayList<Product_color> pclist = mainService.selectColorList2();
+		
 		mv.addObject("ulist", ulist);
 		mv.addObject("dlist", dlist);
+		mv.addObject("pclist", pclist);
 		mv.setViewName("admin/productAdd");
 		return mv;
 	}
