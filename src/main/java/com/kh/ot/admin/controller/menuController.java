@@ -121,8 +121,12 @@ public class menuController {
 	}
 
 	@RequestMapping("productList.ad")
-	public String productList() {
-		return "admin/productList";
+	public ModelAndView productList(ModelAndView mv) {
+		ArrayList<Product> plist = adService.ProductSelectList();
+		
+		mv.addObject("plist", plist);
+		mv.setViewName("admin/productList");
+		return mv;
 	}
 
 	/**
@@ -1020,6 +1024,24 @@ public class menuController {
 			return "redirect:QnA_delivery_after.ad";
 		}else {
 			return "에러다";
+		}
+	}
+	
+	
+	/**
+	 * @작성일 : 2020. 4. 14.
+	 * @작성자 : 이서현
+	 * @내용 : 상품리스트 상품 삭제 버튼
+	 */
+	@RequestMapping("ProductDelete.ad")
+	public String ProductDelete(int prdtNo, HttpServletRequest request) {
+		int result = adService.ProductDelete(prdtNo);
+		
+		if(result>0) {
+			return "redirect:productList.ad";
+		}else {
+			System.out.println("상품 삭제 오류 ! ");
+			return "redirect:productList.ad";
 		}
 	}
 	

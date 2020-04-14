@@ -144,6 +144,20 @@ public interface adminService{
 	 * @return
 	 */
 	public int QnA_ProductUpdate(Board b);
+
+	/**
+	 * @작성일 : 2020. 4. 14.
+	 * @작성자 : 이서현
+	 * @내용 : 상품 리스트 뿌리기 
+	 */
+	public ArrayList<Product> ProductSelectList();
+
+	/**
+	 * @작성일 : 2020. 4. 14.
+	 * @작성자 : 이서현
+	 * @내용 : 상품리스트 - 상품삭제 버튼
+	 */
+	public int ProductDelete(int prdtNo);
 	
 
 

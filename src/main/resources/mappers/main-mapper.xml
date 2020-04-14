@@ -24,6 +24,7 @@
 			<result property="prdtSale" column="PRDT_SALE"/>
 			<result property="prdtScount" column="PRDT_SCOUNT"/>
 			<result property="prdtReview" column="PRDT_REVIEW"/>
+			<result property="prdtStatus" column="PRDT_STATUS"/>
 		</resultMap>
 		
 		<resultMap type="Product_opt" id="product_optResultSet">
@@ -176,6 +177,17 @@
 		ORDER BY PRDT_PRICE ASC
 		END CASE
 		</select>
+		
+		<select id="ProductSelectList" resultMap="productResultSet">
+			SELECT * FROM PRDT
+			WHERE PRDT_STATUS='Y'
+		</select>
+		
+		<update id="ProductDelete" parameterType="_int">
+			UPDATE PRDT
+			SET PRDT_STATUS='N'
+			WHERE PRDT_NO=#{prdtNo}
+		</update>
 
 
 </mapper>

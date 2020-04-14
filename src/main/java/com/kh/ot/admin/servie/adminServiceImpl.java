@@ -72,14 +72,10 @@ public class adminServiceImpl implements adminService{
 		return adDao.upCategorySelect();
 	}
 
-
-
 	@Override
 	public ArrayList<DownCategory> DownCategorySelect() {
 		return adDao.DownCategorySelect();
 	}
-
-
 
 	@Override
 	public int UpCategoryInsert(String addOption) {
@@ -127,6 +123,18 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public int QnA_ProductUpdate(Board b) {
 		return adDao.QnA_ProductUpdate(b);
+	}
+
+
+	@Override
+	public ArrayList<Product> ProductSelectList() {
+		return adDao.ProductSelectList();
+	}
+
+
+	@Override
+	public int ProductDelete(int prdtNo) {
+		return adDao.ProductDelete(prdtNo);
 	}
 
 

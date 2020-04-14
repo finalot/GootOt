@@ -220,20 +220,36 @@
                     </tr>
                 </thead>
                 <tbody>
+                	
+                   <c:forEach var="p" items="${plist }">
+                   <c:url var="ProductDelete" value="ProductDelete.ad">
+                		<c:param name="prdtNo" value="${p.prdtNo}"></c:param>
+                	</c:url>
+                   	<tr>
+                   		<td>${p.upNo }</td>
+                   		<td>${p.downNo }</td>
+                   		<td>${p.prdtName }</td>
+                   		<td>${p.prdtImage }</td>
+                   		<td>${p.prdtPrice }</td>
+                   		<td>${p.prdtSale }</td>
+                   		
+                   		<c:if test="${p.prdtStatus eq 'Y'}">
+                   			<td class="process">판매중</td>
+                   		</c:if>
+                   		<c:if test="${p.prdtStatus eq 'N'}">
+                   			<td class="denied">판매중지</td>
+                   		</c:if>
+                   		
+                        <td>
+                       		<!-- <button type="button" id="prdtDeleteBtn" class="btn btn-danger" style="margin-left:20%;">삭제</button> -->
+                       		<a href="${ProductDelete }" class="btn btn-danger" style="margin-left:20%;">삭제</a>
+                       		
+                       	</td>
+                   	</tr>
+                   </c:forEach>
                    
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>대분류</th>
-                        <th>중분류</th>
-                        <th>상품명</th>
-                        <th>대표이미지</th>
-                        <th>가격</th>
-                        <th>할인가</th>
-                        <th>상태</th>
-                         <th>삭제</th>
-                    </tr>
-                </tfoot>
+               
             </table>
         </div>
         </div>
@@ -245,15 +261,18 @@
 	
 	
 	<!-- // td(class=next) 클릭시 페이지 이동 -->
+	<!-- 나중에 하기  -->
 	<script>
-     $("td").click(function(){
+    <%--  $("td").click(function(){
     	 location.href='productListDetail.ad';
-  	 <%-- var userId = $(this).parent().find('input').val();
+  	 var userId = $(this).parent().find('input').val();
   	 
   	 console.log("선택한 유저 ID : "+userId);
   	 
-     location.href="<%= request.getContextPath() %>/sone.rp?userId=" + userId; --%>
-    }); 
+     location.href="<%= request.getContextPath() %>/sone.rp?userId=" + userId;
+    });  --%>
+  
+     
     </script>
 
     <script src="/ot/resources/assets/vendor/jquery/jquery-3.3.1.min.js"></script>

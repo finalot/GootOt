@@ -189,6 +189,16 @@ public class adminDao {
 		} 
 		return result; 
 	}
+
+
+	public ArrayList<Product> ProductSelectList() {
+		return (ArrayList)sqlSession.selectList("productMapper.ProductSelectList");
+	}
+
+
+	public int ProductDelete(int prdtNo) {
+		return sqlSession.update("productMapper.ProductDelete",prdtNo);
+	}
 	 
 	 
 }
