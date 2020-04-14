@@ -43,6 +43,11 @@
 			<result property="pcRgb" column="PC_RGB"/>
 		</resultMap> 
 		
+		<resultMap type="Wish" id="WishResultSet">
+			<id property = "memNo" column="MEM_NO"/>
+			<result property="prdtNo" column="PRDT_NO"/>
+		</resultMap> 
+		
 	 <resultMap type="MaindownCategory" id="MaindownCategoryResultSet">
 			<id property = "downNo" column="DOWN_NO"/>
 			<result property="upNo" column="UP_NO"/>
@@ -62,18 +67,21 @@
 	  	SELECT COUNT(*)
 	  	FROM PRDT
 	  	WHERE UP_NO = #{product1}
+	  	AND PRDT_STATUS = 'Y'
 		</select>
 		
 		<select id="getListCount2" parameterType="_int" resultType="_int">
 	  	SELECT COUNT(*)
 	  	FROM PRDT
 	  	WHERE PRDT_NO LIKE #{product2}||'%'
+	  	AND PRDT_STATUS = 'Y'
 		</select>
   
 		<select id="selectProduct1" parameterType="_int" resultMap="productResultSet">
 		SELECT *
 		FROM PRDT
 		WHERE UP_NO = #{product1}
+		AND PRDT_STATUS = 'Y'
 		ORDER BY PRDT_NO DESC
 		</select>
 		
@@ -81,19 +89,22 @@
 		SELECT *
 		FROM PRDT
 		WHERE PRDT_NO LIKE #{product2}||'%'
+		AND PRDT_STATUS = 'Y'
 		ORDER BY PRDT_NO DESC
 		</select>
 		
 	 	<select id="selectProductOption1" parameterType="_int" resultMap="product_optResultSet">
-		SELECT *
+		SELECT PRDT_NO, OPT_COLOR
 		FROM PRDT_OPT
 		WHERE PRDT_NO LIKE #{product1}||'%'
+		GROUP BY PRDT_NO, OPT_COLOR
 		</select>
 		
 		<select id="selectProductOption2" parameterType="_int" resultMap="product_optResultSet">
-		SELECT *
+		SELECT PRDT_NO, OPT_COLOR
 		FROM PRDT_OPT
 		WHERE PRDT_NO LIKE #{product2}||'%'
+		GROUP BY PRDT_NO, OPT_COLOR
 		</select>
 		
 		<select id="selectProductColor1" parameterType="_int" resultMap="product_colorResultSet">
@@ -152,30 +163,44 @@
 		SELECT *
 		FROM PRDT
 		WHERE UP_NO = #{product1}
-		CASE WHEN #{sort} = 1 THEN
-		ORDER BY PRDT_SCOUNT ASC
-		CASE WHEN #{sort} = 2 THEN
-		ORDER BY PRDT_REVIEW ASC
-		CASE WHEN #{sort} = 3 THEN
-		ORDER BY PRDT_PRICE DESC
-		CASE WHEN #{sort} = 4 THEN
+		AND PRDT_STATUS = 'Y'
+		<if test="sort == 0">
+		ORDER BY PRDT_NO DESC
+		</if>
+		<if test="sort == 1">
+		ORDER BY PRDT_SCOUNT DESC
+		</if>
+		<if test="sort == 2">
+		ORDER BY PRDT_REVIEW DESC
+		</if>
+		<if test="sort == 3">
 		ORDER BY PRDT_PRICE ASC
-		END CASE
+		</if>
+		<if test="sort == 4">
+		ORDER BY PRDT_PRICE DESC
+		</if>
 		</select>
 		
 		<select id="selectSortProduct2" parameterType="MainSearchCondition" resultMap="productResultSet">
 		SELECT *
 		FROM PRDT
 		WHERE PRDT_NO LIKE #{product2}||'%'
-		CASE WHEN #{sort} = 1 THEN
-		ORDER BY PRDT_SCOUNT ASC
-		CASE WHEN #{sort} = 2 THEN
-		ORDER BY PRDT_REVIEW ASC
-		CASE WHEN #{sort} = 3 THEN
-		ORDER BY PRDT_PRICE DESC
-		CASE WHEN #{sort} = 4 THEN
+		AND PRDT_STATUS = 'Y'
+		<if test="sort == 0">
+		ORDER BY PRDT_NO DESC
+		</if>
+		<if test="sort == 1">
+		ORDER BY PRDT_SCOUNT DESC
+		</if>
+		<if test="sort == 2">
+		ORDER BY PRDT_REVIEW DESC
+		</if>
+		<if test="sort == 3">
 		ORDER BY PRDT_PRICE ASC
-		END CASE
+		</if>
+		<if test="sort == 4">
+		ORDER BY PRDT_PRICE DESC
+		</if>
 		</select>
 		
 		<select id="ProductSelectList" resultMap="productResultSet">
@@ -188,6 +213,16 @@
 			SET PRDT_STATUS='N'
 			WHERE PRDT_NO=#{prdtNo}
 		</update>
+		<select id="selectWish" parameterType="_int" resultMap="WishResultSet">
+		SELECT MEM_NO,PRDT_NO
+		FROM DIBS
+		WHERE MEM_NO = #{memNo}
+		</select>
+		
+		<insert id="insertWish" parameterType="Wish">
+		INSERT INTO DIBS
+		VALUES(DIBS_SEQ.NEXTVAL,#{memNo},#{prdtNo},DEFAULT,NULL,NULL,DEFAULT)
+		</insert>
 
 
 </mapper>

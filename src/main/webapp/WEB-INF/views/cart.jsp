@@ -85,16 +85,17 @@ margin-right: 3%;
 						</tr>
 
 						<tr class="table-row">
+						<c:forEach var="c" items="${list }">
 						    <input type="checkbox" name=pro_check style="position: relative;top: 136px;left: 22px;">
 							<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="//black-up.kr/web/product/medium/201910/7e87ddc2879aa1c854575447f27b6026.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
+									<img src="${c.path }${c.image}"onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
 								</div>
 							</td>
-							<td class="column-2">Men Tshirt
-							<br><span id="idMsg7">[옵션 : 블루/S/1개]</span>
+							<td class="column-2">${c.prdt_name }
+							<br><span id="idMsg7">[옵션 : ${c.prdt_color }/${c.prdt_size }/${c.prdt_count}개]</span>
 							</td>
-							<td class="column-3"><font id="pro-price" class="format-money">29000</font> won</td>
+							<td class="column-3"><font id="pro-price" class="format-money">${c.prdt_price }</font> won</td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
 									<!-- <button class="num-product-down1 color1 flex-c-m size7 bg8 eff2"> -->
@@ -112,13 +113,14 @@ margin-right: 3%;
 							</td>
 							<td class="column-6"><img src="/ot/resources/images/icons/icon-point.png" width="15px;height:15px;" 
 							style="position: relative;left: -5px;
-								top: -1px;">900원</td>
+								top: -1px;"> 3%</td>
 							<td class="column-7" style="padding-left: 40px;">기본배송</td>
 							<td class="column-8"><font class="format-money">2500</font> won</td>
-							<td class="column-5"><font class="format-money">58000</font> won</td>
+							<td class="column-5"><font class="format-money">${c.prdt_sumprice }</font> won</td>
+							</c:forEach>
 						</tr>
 
-						<tr class="table-row">
+						<!-- <tr class="table-row">
 							 <input type="checkbox" name=pro_check style="position: relative;top: 276px;left: 9px;">
 							<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
@@ -130,15 +132,15 @@ margin-right: 3%;
 							<td class="column-3"><font class="format-money">29000</font> won</td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
-									<!-- <button class="num-product-down1 color1 flex-c-m size7 bg8 eff2">
+									<button class="num-product-down1 color1 flex-c-m size7 bg8 eff2">
 										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-									</button> -->
+									</button>
 
 									<input style="margin-left: 22%;" class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1">
-<!-- 
+
 									<button class="num-product-up1 color1 flex-c-m size7 bg8 eff2">
 										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-									</button> -->
+									</button>
 								</div>
 						</td>
 							<td class="column-6"><img src="/ot/resources/images/icons/icon-point.png" width="15px;height:15px;" 
@@ -147,7 +149,7 @@ margin-right: 3%;
 							<td class="column-7" style="padding-left: 40px;">기본배송</td>
 							<td class="column-8"><font class="format-money">2500</font> won</td>
 							<td class="column-5"><font class="format-money">58000</font> won</td>
-						</tr>
+						</tr> -->
 					</table>
 				</div>
 			</div>
@@ -235,7 +237,7 @@ margin-right: 3%;
 						</td>	
 					</tr>
 					
-					<tr class="txt14">
+				<!-- 	<tr class="txt14">
 						<th scope="row" style="padding: 11px 0 10px 18px;
    						 border: 1px solid #ddd;
     					 border-bottom-width: 0;
@@ -247,7 +249,7 @@ margin-right: 3%;
 						<td style="border-top: 1px solid #ddd;"><span class="m-text21 w-size20 w-full-sm" style="position: relative;left: 9px;top: 1px;">
 							0 won</span>
 						</td>	
-					</tr>
+					</tr> -->
 					
 					<tr class="txt14">
 						<th scope="row" style="padding: 11px 0 10px 18px;
@@ -495,8 +497,8 @@ margin-right: 3%;
                   <option value="018">018</option>
                   <option value="019">019</option>
                   </select>
-                    -<input id="mobile2"  name="mobile[]" maxlength="4" value="" type="text">
-                    -<input id="mobile3"  name="mobile[]" maxlength="4" value="" type="text">
+                    -<input id="mobile2"  name="mobile2" maxlength="4" value="" type="text">
+                    -<input id="mobile3"  name="mobile3" maxlength="4" value="" type="text">
                 </td>
             </tr>
             
@@ -532,7 +534,7 @@ margin-right: 3%;
                 </th>
                 <td style="border-top:1px solid #ddd;">
                 	<input id="delivery" name="delivery" type="radio">
-                    <label id="delivery" style="position: relative; left: -2px;top: -2px;">주문자 정보와 동일</label>
+                    <label for="delivery" style="position: relative; left: -2px;top: -2px;">주문자 정보와 동일</label>
                     <!-- <input id="delivery2" name="delivery2"  type="radio"
                     style="position: relative;left: -2px;">
                     <label id="delivery2" style="position: relative;left: -3px;top: -2px;">새로운배송지</label> -->
@@ -555,13 +557,13 @@ margin-right: 3%;
                       주소<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td>
-                   <input id="zipCode" style=" width:50px;" name="postcode1"  class="inputTypeText" placeholder="" readonly="readonly" maxlength="14" value="" type="text" style="width:50px;">
+                   <input id="zipCode-1" style=" width:50px;" name="postcode1"  class="inputTypeText" placeholder=""  maxlength="14" value="" type="text" style="width:50px;">
                    <a href="#none" onclick="addrSearch();" id="postBtn" class="yg_btn_24 yg_btn3">우편번호</a>
                    <br>
-                   <input id="address1"  name="address1" class="inputTypeText" placeholder="" readonly="readonly" value="" type="text"><span id="idMsg" style="left: 7px;
+                   <input id="address1-1"  name="address1" class="inputTypeText" placeholder=""  value="" type="text"><span id="idMsg" style="left: 7px;
                   position: relative;">기본주소</span>
                    <br>
-                   <input id="address2" name="address2"  class="inputTypeText" placeholder="" value="" type="text"><span id="idMsg" style="left: 7px;
+                   <input id="address2-1" name="address2"  class="inputTypeText" placeholder="" value="" type="text"><span id="idMsg" style="left: 7px;
                position: relative;">나머지주소</span>
                    
                 </td>
@@ -572,7 +574,7 @@ margin-right: 3%;
                     휴대전화<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td style="border-bottom:1px solid #ddd;">
-                    <select id="mobile1" name="mobile1" style="font-size:12px;">
+                    <select id="mobile1-1" name="mobile1" style="font-size:12px;">
                   <option value="010">010</option>
                   <option value="011">011</option>
                   <option value="016">016</option>
@@ -580,8 +582,8 @@ margin-right: 3%;
                   <option value="018">018</option>
                   <option value="019">019</option>
                   </select>
-                    -<input id="mobile2"  name="mobile[]" maxlength="4" value="" type="text">
-                    -<input id="mobile3"  name="mobile[]" maxlength="4" value="" type="text">
+                    -<input id="mobile2-1"  name="mobile2" maxlength="4" value="" type="text">
+                    -<input id="mobile3-1"  name="mobile3" maxlength="4" value="" type="text">
                 </td>
             </tr>
             
@@ -623,12 +625,13 @@ margin-right: 3%;
 		</div>
 		<div style="margin-left: 3%;margin-left: 5%; margin-top: 6%;height: 52%;">
 		<ul id="coupon-list" style="font-size: 14px;font-weight: 600;">
-			<li><input class="mycoupon" type="radio" name="mycoupon" value="1000">mycoupon1</li>
-			<li><input class="mycoupon" type="radio" name="mycoupon" value="2000">mycoupon2</li>
-			<li><input class="mycoupon" type="radio" name="mycoupon" value="3000">mycoupon3</li>
-			<li><input class="mycoupon" type="radio" name="mycoupon" value="4000">mycoupon4</li>
-			<li><input class="mycoupon" type="radio" name="mycoupon" value="5000">mycoupon5</li>
-			<li><input class="mycoupon" type="radio" name="mycoupon" value="6000">mycoupon6</li>
+		<c:forEach var="cp" items="${clist }">
+			<li>
+			<input class="mycoupon" type="radio" name="mycoupon" value="${cp.cpDiscount }">
+			<input class="mycouponNo" type="hidden" name="mycouponNo" value="${cp.cpmem_no }">
+			${cp.cpName}
+			</li>
+		</c:forEach>
 		</ul>
 		
 		</div>
@@ -710,6 +713,7 @@ margin-right: 3%;
 	});
 	
 $('#delivery').click(function(){
+	
 	if($('#delivery').prop('checked') == true){
 		$('#userName-1').val("${sessionScope.loginMember.memName}")
 		  $('#zipCode-1').val(address[0])
@@ -745,9 +749,7 @@ $('#delivery').click(function(){
 		$('#orderdetail').css('display','none');
 	})
 	
-	$('.yg_btn_141').click(function() {
-		location.href="orderDetail.do";
-	})
+	
 	</script>
 	
 	<script>

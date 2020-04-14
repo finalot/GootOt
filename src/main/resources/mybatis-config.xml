@@ -18,6 +18,7 @@
  <typeAlias type="com.kh.ot.main.vo.MainSearchCondition" alias="MainSearchCondition"/>
  <typeAlias type="com.kh.ot.main.vo.MaindownCategory" alias="MaindownCategory"/>
  <typeAlias type="com.kh.ot.main.vo.MainupCategory" alias="MainupCategory"/>
+ <typeAlias type="com.kh.ot.main.vo.Wish" alias="Wish"/>
 <typeAlias type="com.kh.ot.main.vo.Product" alias="Product"/>
 <typeAlias type="com.kh.ot.main.vo.Product_opt" alias="Product_opt"/>
 <typeAlias type="com.kh.ot.main.vo.Product_color" alias="Product_color"/>
@@ -39,6 +40,7 @@
 <mapper resource="mappers/main-mapper.xml"/>
 <mapper resource="mappers/admin-mapper.xml"/>
 <mapper resource="mappers/mypage-mapper.xml"/>
+<mapper resource="mappers/cart-mapper.xml"/>
 </mappers>
 
 

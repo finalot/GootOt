@@ -17,6 +17,7 @@ import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.Wish;
 
 @Repository("mainDao")
 public class MainDao {
@@ -139,6 +140,14 @@ public class MainDao {
 		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("productMapper.selectSortProduct2",msc,rowBounds);
+	}
+
+	public int insertWish(Wish w) {
+		return sqlSession.insert("productMapper.insertWish", w);
+	}
+
+	public ArrayList<Wish> selectWish(int memNo) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectWish",memNo);
 	}
 
 

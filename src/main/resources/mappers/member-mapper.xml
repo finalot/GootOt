@@ -18,7 +18,9 @@
 		<result property="bank" column="BANK"/>
 		<result property="returnBank" column="RETURN_BANK"/>
 		<result property="mem_status" column="MEM_STATUS"/>
+		<result property="mem_point" column="MEM_POINT"/>
 	</resultMap>
+
 
 	<resultMap id="memberdailyCheck" type="Member">
 		<id property="memNo" column="MEM_NO"/>
@@ -86,7 +88,7 @@
 <insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER
 		VALUES(MEM_SEQ.NEXTVAL,#{memId},#{memPwd},#{memName},#{memSsn},#{memAddress},
-		#{memEmail},#{memPhone},DEFAULT,#{memOwner},#{bank},#{returnBank},DEFAULT)
+		#{memEmail},#{memPhone},DEFAULT,#{memOwner},#{bank},#{returnBank},DEFAULT,DEFAULT)
 
 	</insert>
 	
