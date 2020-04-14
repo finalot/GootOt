@@ -1,14 +1,17 @@
 package com.kh.ot.main.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -22,6 +25,8 @@ import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.Wish;
+import com.kh.ot.member.vo.Member;
 
 //@SessionAttributes("loginMember")
 @Controller
@@ -152,17 +157,6 @@ public class mainController {
 		return "review";
 	}
 
-	/**
-	 * @작성일 : 2020. 4. 2.
-	 * @작성자 :이대윤
-	 * @내용 : 카트 페이지 이동
-	 * @param @return
-	 * @return String
-	 */
-	@RequestMapping("cartbutton.do")
-	public String cartbutton() {
-		return "cart";
-	}
 
 	@RequestMapping("todaymain.ad")
 	public String todaymain() {
@@ -333,5 +327,53 @@ MainSearchCondition msc= new MainSearchCondition();
 		}
 		
 		return mv;
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 14.
+	 * @작성자 :이대윤
+	 * @내용 : wish 인설트
+	 * @param @return
+	 * @return String
+	 * @throws IOException 
+	 */
+	@RequestMapping("wishInsert.do")
+	@ResponseBody
+	public void wishInsert(String prdtNo,HttpServletResponse response,HttpSession session) throws IOException {
+		Member m = new Member();
+		Wish w = new Wish();
+		int result = 0;
+		int result2 = 0;
+		int memNo;
+		m = (Member)session.getAttribute("loginMember");
+		memNo = m.getMemNo();
+		
+		PrintWriter out = response.getWriter();
+
+		ArrayList<Wish> wlist = mainService.selectWish(memNo);
+		
+		
+		for(int i=0; i<wlist.size();i++) {
+			if(wlist.get(i).getPrdtNo().equals(prdtNo)) {
+				result2++;
+			}
+		}
+		
+		if(result2>0) {
+			out.print("fail");
+		}else {
+			
+			w.setMemNo(memNo);
+			w.setPrdtNo(prdtNo);
+			result = mainService.insertWish(w);
+			
+			
+			if(result>0) {
+			out.print("ok");
+			}
+		}
+		
+		
+		
 	}
 }

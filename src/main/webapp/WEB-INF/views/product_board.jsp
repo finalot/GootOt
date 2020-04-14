@@ -273,7 +273,8 @@ a{
              
 
                <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                     <c:if test="${ p eq pi.currentPage }">
+                 
+		   <c:if test="${ p eq pi.currentPage }">
                         <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
                         <b>${ p }</b> &nbsp;&nbsp;</font>
                      </c:if>

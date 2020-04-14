@@ -4421,6 +4421,13 @@ input[type=text] {
     line-height: 22px;
     border: 1px solid #ddd;
 }
+#mobile1-1 {
+    width: 60px;
+    margin: 0 4px 0 0;
+    height: 26px;
+    line-height: 22px;
+    border: 1px solid #ddd;
+}
 #mobile2, #mobile3 {
     width: 50px;
     margin: 0 4px 0 0;
@@ -4429,6 +4436,16 @@ input[type=text] {
     border: 1px solid #ddd;
     left: 4px;
 /*     position: relative; */
+}
+
+#mobile2-1, #mobile3-1 {
+    width: 50px;
+    margin: 0 4px 0 0;
+    height: 23px;
+    line-height: 22px;
+    border: 1px solid #ddd;
+    left: 4px;
+    /* position: relative; */
 }
 
 #idMsg {
@@ -4579,6 +4596,16 @@ input[type=text] {
 
 #address1, #address2 {
 	width: 280px;
+    margin: 5px 0 0;
+    line-height: 22px;
+    padding: 2px 4px;
+    border: 1px solid #ddd;
+    color: #222;
+    font-size: 12px;
+}
+
+#address1-1, #address2-1 {
+    width: 280px;
     margin: 5px 0 0;
     line-height: 22px;
     padding: 2px 4px;
