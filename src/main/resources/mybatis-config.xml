@@ -24,7 +24,6 @@
  <typeAlias type="com.kh.ot.admin.vo.UpCategory" alias="UpCategory"/>
 <typeAlias type="com.kh.ot.admin.vo.DownCategory" alias="DownCategory"/> 
 <typeAlias type="com.kh.ot.admin.vo.ProductOption" alias="ProductOption"/>
-
 <typeAlias type="com.kh.ot.admin.vo.Design" alias="Design"/>
 <typeAlias type="com.kh.ot.admin.vo.Point" alias="Point"/>
 <typeAlias type="com.kh.ot.mypage.vo.CouponMem" alias="CouponMem"/>

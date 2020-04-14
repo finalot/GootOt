@@ -267,7 +267,6 @@
 	    var qna_no = $(this).parent('tr').children('td').eq(0).text();
 	
 		location.href="QnA_ProductUpdateView.ad?qna_no="+qna_no;
-    	 
     });
     </script>
 

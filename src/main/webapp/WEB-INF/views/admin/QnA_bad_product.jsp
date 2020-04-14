@@ -211,188 +211,20 @@
                     </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="b" items="${ list }">
                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
+                       <td>${b.qna_no}</td>
+                       <td>${b.qna_title }</td>
+                       <td>${b.qna_writer }</td>
+                     <td>${b.qna_date }</td>
+                         <c:if test="${b.qna_chk  eq 'N' }">
+                      <td class="denied">답변중</td>
+                      	</c:if>
+                      	  <c:if test="${b.qna_chk  eq 'Y'}">
+                      <td class="process">답변완료</td>
+                      	</c:if>
                     </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                      <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                      <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                    <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                    <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                      <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                    <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                      <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                      <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                      <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                    <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                    <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                     <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                    <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
-                      <tr>
-                        <td>200</td>
-                        <td>기다려봐</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">답변완료</td>
-                    </tr>
+                  </c:forEach> 
                 </tbody>
                 <tfoot>
                    <tr>
@@ -414,15 +246,13 @@
 	
 	
 	<!-- // td(class=next) 클릭시 페이지 이동 -->
-	<script>
-     $("td").click(function(){
-    	 location.href='QnA_bad_detail.ad';
-  	 <%-- var userId = $(this).parent().find('input').val();
-  	 
-  	 console.log("선택한 유저 ID : "+userId);
-  	 
-     location.href="<%= request.getContextPath() %>/sone.rp?userId=" + userId; --%>
-    }); 
+		<script>
+     $('#example td').click(function(){
+	    var qna_no = $(this).parent('tr').children('td').eq(0).text();
+	
+		location.href="QnA_badUpdateView.ad?qna_no="+qna_no;
+    	 
+    });
     </script>
 
    <script src="/ot/resources/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
