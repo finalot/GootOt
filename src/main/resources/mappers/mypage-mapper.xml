@@ -50,25 +50,27 @@
 	<select id="PointListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM POINT
-		WHERE MEM_NO=#{memno}
+		WHERE MEM_NO=#{memNo}
 	</select>
 	
 	<select id="PointselectList" resultMap="PointResultSet">
 		SELECT *
 		FROM POINT
-		WHERE MEM_NO=#{memno}
+		WHERE MEM_NO=#{memNo}
 		ORDER BY POINT_NO DESC
 	</select>
 	
 	<select id="PointUnavailListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM POINT
+		WHERE MEM_NO=#{memNo}
 		
 	</select>
 
 	<select id="PointselectUnavailList" resultMap="PointResultSet">
 		SELECT *
 		FROM POINT
+		WHERE MEM_NO=#{memNo}
 		ORDER BY POINT_NO DESC
 	</select>
 	
@@ -102,7 +104,7 @@
 	</select>
 	
 	<select id="selectPoint" resultType="_int">
-		SELECT SUM(DECODE(POINT_PART,'적립',1*POINT_PRICE,'사용',-1*POINT_PRICE)) AS B 
+		SELECT SUM(DECODE(POINT_PART,'적립',1*POINT_PRICE,'사용',-1*POINT_PRICE)) AS PointSum 
 		FROM POINT
 		WHERE MEM_NO=#{memNo}
 	</select> 

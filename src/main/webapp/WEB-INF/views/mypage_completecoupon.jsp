@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +70,8 @@
 	                    <strong class="title">POINT</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mPoint }">${loginMember.mem_point }원</a>
+	                    	<a href="${mPoint }">
+	                    	<fmt:formatNumber value="${loginMember.mem_point }" pattern="#,###"/>원</a>
 	                    </strong>
 	                </li>
                 
@@ -138,7 +140,9 @@
 								<tr class="xans-record-">
 									<td>${cp.cpseq }</td>
 									<td>${cp.cpname }</td>
-									<td>${cp.cpDiscount }</td>
+									<td>
+										<fmt:formatNumber value="${cp.cpDiscount }" pattern="#,###"/>
+									</td>
 									<td>${cp.cp_cdate }</td>
 								</tr>
 								</c:forEach>

@@ -130,7 +130,7 @@
 						
 						<thead>
 							<tr>
-								<th scope="col">주문날짜</th>
+								<th scope="col">적립날짜</th>
 								<th scope="col">구분</th>
 	                        	<th scope="col">적립금</th>
 		                        <th scope="col">관련 주문</th>
@@ -145,7 +145,9 @@
 									<tr class="xans-record-">
 										<td>${pt.pt_date }</td>
 										<td>${pt.pt_part }</td>
-				                        <td>${pt.pt_price }</td>
+				                        <td>
+				                        	<fmt:formatNumber value="${pt.pt_price }" pattern="#,###"/>
+			                        	</td>
 				                        <td>
 				                        <a href="/myshop/order/detail.html?order_id=">${pt.ordno }</a>
 				                        </td>

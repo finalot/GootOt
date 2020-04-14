@@ -24,7 +24,7 @@ public class MypageDao {
 	 * =========================================
 	 */
 	public int PointListCount(int memNo) {
-		return sqlSession.selectOne("mypageMapper.PointListCount");
+		return sqlSession.selectOne("mypageMapper.PointListCount",memNo);
 	}
 
 	public ArrayList<Point> PointSelectList(int memNo, PageInfo pi) {
@@ -35,7 +35,7 @@ public class MypageDao {
 	}
 
 	public int PointUnavailListCount(int memNo) {
-		return sqlSession.selectOne("mypageMapper.PointUnavailListCount");
+		return sqlSession.selectOne("mypageMapper.PointUnavailListCount",memNo);
 	}
 
 	public ArrayList<Point> PointselectUnavailList(int memNo, PageInfo pi) {
