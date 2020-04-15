@@ -117,6 +117,7 @@ margin-right: 3%;
 							<td class="column-7" style="padding-left: 40px;">기본배송</td>
 							<td class="column-8"><font class="format-money">2500</font> won</td>
 							<td class="column-5"><font class="format-money">${c.prdt_sumprice }</font> won</td>
+							<input type="hidden" name="sumprice" value="${c.prdt_sumprice }">											
 							</c:forEach>
 						</tr>
 
@@ -174,7 +175,7 @@ margin-right: 3%;
 				</colgroup>
 			    		<tr>	
 			    			<th scope="col">
-			    			<strong style="position: relative;left: 148px;">총 주문 금액</strong>
+			    			<strong  style="position: relative;left: 148px;">총 주문 금액</strong>
 			    			</th>
 			    			
 			    			<th scope="col">
@@ -194,20 +195,23 @@ margin-right: 3%;
 			    			<td class="price">
 			    			<span class="m-text21 w-size20 w-full-sm"
 			    			style="position: relative;left: 143px;">
-						<font class="format-money">58000</font> won
+						<font id="sumprice" class="format-money"></font> won
 					</span>
 			    		</td>
 			    		
 			    			<td class="option">
 			    			<strong id="plus_mark" style="position: relative;left: 40px;"> - </strong>
 			    				<span class="m-text21 w-size20 w-full-sm" style="position: relative;left: 39px;">
-							0 won</span>
+								<font style="padding-right: 5px;" id="minusprice" class="format-money"></font>won							 
+							 </span>
+							 
+							<!--  <span id="m-text21 w-size20 w-full-sm">won</span> -->
 						</td>	
 
 						 	<td class="total-price">
 						 	<strong>=</strong>
 						 	<span class="m-text21 w-size20 w-full-sm">
-						<font class="format-money">58000</font> <span id="m-text21">won</span>
+						<font id="allprice" class="format-money"></font> <span id="m-text21">won</span>
 					</span>
 					</td>
 						 	
@@ -236,20 +240,6 @@ margin-right: 3%;
 							0 won</span>
 						</td>	
 					</tr>
-					
-				<!-- 	<tr class="txt14">
-						<th scope="row" style="padding: 11px 0 10px 18px;
-   						 border: 1px solid #ddd;
-    					 border-bottom-width: 0;
-   						 color: #353535;
-   					     text-align: left;
-    					font-weight: normal;
-    					background-color: #fafafa;">
-						<strong>총 부가결제금액</strong></th>
-						<td style="border-top: 1px solid #ddd;"><span class="m-text21 w-size20 w-full-sm" style="position: relative;left: 9px;top: 1px;">
-							0 won</span>
-						</td>	
-					</tr> -->
 					
 					<tr class="txt14">
 						<th scope="row" style="padding: 11px 0 10px 18px;
@@ -280,12 +270,15 @@ margin-right: 3%;
     					background-color: #fafafa;">
 						<strong>적립금</strong></th>
 						<td style="border-top: 1px solid #ddd;">
-						<input type="text" name="point" id="point" size="20px;" style="margin-left: 8px; margin-top:10px;">
-						<span id="idMsg5">원 (총 사용가능 적립금 : <font class="format-money">2000</font>원)</span>
+						<input  type="number" step="1000" min="2000" max="${loginMember.mem_point }" name="point" id="point" size="20px;" style="margin-left: 8px; margin-top:10px;    border: 1px solid #ddd; width:146px;">
+						<span id="idMsg5">원 </span> 
+						<a id="pointdetail" 
+						class="more yg_btn_24 yg_btn3" style="top:-1px; cursor: pointer;">적립금사용</a>
 						
-						<br>
+						
 						
 						<ul class="info" style="margin: 18px 1px 8px;">
+						<li><span id="idMsg5">(총 사용가능 적립금 : <font class="format-money">${loginMember.mem_point }</font>원)</span></li>
 								<li id="idMsg6">- 적립금은 최소 2,000 이상일 때 결제가 가능합니다.</li>
                                 <li id="idMsg6">- 최대 사용금액은 제한이 없습니다.</li>
                                 <li id="idMsg6">- 1회 구매시 적립금 최대 사용금액은 2,000입니다.</li>
@@ -676,8 +669,61 @@ margin-right: 3%;
 	<script type="text/javascript" src="/ot/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="/ot/resources/vendor/select2/select2.min.js"></script>
-	
+
+<!-- 금액관련 스크립트 -->
 	<script>
+		
+	  var sum =0;
+	  var price=0;
+	  var point=0;
+	  
+	  $(function(){
+		var sumprice = document.getElementsByName('sumprice');
+		
+		for(var i=0;i<sumprice.length;i++){
+		      sum += Number(sumprice[i].value);
+		}
+	    $('#sumprice').text(sum);		
+		
+
+	    
+		$('#allprice').text(sum);		
+	})
+	
+	/*쿠폰사용 스크립트*/ 
+	 $('.mycoupon').click(function(){
+		var price = $(this).val();
+		
+		$('#coupon-price').text(price);
+		
+	})
+	$('.yg_btn_146').click(function(){
+		var price = $('#coupon-price').text();
+		$('#coupon-point').val(price);
+		$('#orderdetail').css('display','none');
+		
+		$('#allprice').text(Number(sum)-Number(price)-Number(point));
+		$('#minusprice').html(Number(point)+Number(price));
+
+	});
+	$('.yg_btn_147').click(function(){
+		$('#orderdetail').css('display','none');
+	})
+
+		/*적립금사용 스크립트*/
+	 $('#pointdetail').click(function() {
+		 point = $('#point').val();
+		 
+		 console.log(point);
+		$('#allprice').text(sum-price-point);
+		$('#minusprice').text(Number(point)+Number(price));
+ 	});
+	
+	
+	</script>
+
+	
+<script>
 	console.log($('#pro-price').text())
 	
 	var address =new Array();
@@ -733,21 +779,7 @@ $('#delivery').click(function(){
 		}
 });	
 	
-	$('.mycoupon').click(function(){
-		var price = $(this).val();
-		
-		$('#coupon-price').text(price);
-		
-	})
-	$('.yg_btn_146').click(function(){
-		var price = $('#coupon-price').text();
-		$('#coupon-point').val(price);
-		$('#orderdetail').css('display','none');
-
-	});
-	$('.yg_btn_147').click(function(){
-		$('#orderdetail').css('display','none');
-	})
+	
 	
 	
 	</script>
@@ -954,6 +986,10 @@ $('#delivery').click(function(){
 	$('#orderdetail').css('display','block');
 	
 });
+ 
+
+ 
+ 
 $('.close').click(function(){
 	$('#orderdetail').css('display','none');
 })
