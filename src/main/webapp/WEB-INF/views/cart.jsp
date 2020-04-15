@@ -90,7 +90,7 @@ margin-right: 3%;
 						<c:forEach var="c" items="${list }">
 							<tr class="table-row">
 							<td>
-							   <input type="checkbox" name=pro_check style="  position: relative;left: 47px;">
+							   <input type="checkbox" class="pro_check" name=pro_check style="  position: relative;left: 47px;">
 							</td>
 							<td class="column-1">
 							    	 <div class="cart-img-product b-rad-4 o-f-hidden">
@@ -103,16 +103,7 @@ margin-right: 3%;
 							<td class="column-3"><font id="pro-price" class="format-money">${c.prdt_price }</font> won</td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
-									<!-- <button class="num-product-down1 color1 flex-c-m size7 bg8 eff2"> -->
-										<!-- <i class="fs-12 fa fa-minus" aria-hidden="true"></i> -->
-									<!-- </button> -->
-
 									<input style="margin-left: 22%;" class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
-
-									<!-- <button class="num-product-up1 color1 flex-c-m size7 bg8 eff2"> -->
-										<!-- <i class="fs-12 fa fa-plus" aria-hidden="true"></i> -->
-									<!-- </button> -->
-									
 							
 								</div>
 							</td>
@@ -126,37 +117,6 @@ margin-right: 3%;
 							<input type="hidden" name="ca_no" value="${c.ca_no }">										
 							</c:forEach>
 					
-
-						<!-- <tr class="table-row">
-							 <input type="checkbox" name=pro_check style="position: relative;top: 276px;left: 9px;">
-							<td class="column-1">
-								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="//black-up.kr/web/product/medium/201910/7e87ddc2879aa1c854575447f27b6026.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
-								</div>
-							</td>
-							<td class="column-2">Mug Adventure
-							<br><span id="idMsg7">[옵션 : 베이지/S/1개]</span></td>
-							<td class="column-3"><font class="format-money">29000</font> won</td>
-							<td class="column-4">
-								<div class="flex-w bo5 of-hidden w-size17">
-									<button class="num-product-down1 color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-									</button>
-
-									<input style="margin-left: 22%;" class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1">
-
-									<button class="num-product-up1 color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-									</button>
-								</div>
-						</td>
-							<td class="column-6"><img src="/ot/resources/images/icons/icon-point.png" width="15px;height:15px;" 
-							style="position: relative;left: -5px;
-								top: -1px;">900원</td>
-							<td class="column-7" style="padding-left: 40px;">기본배송</td>
-							<td class="column-8"><font class="format-money">2500</font> won</td>
-							<td class="column-5"><font class="format-money">58000</font> won</td>
-						</tr> -->
 					</table>
 				</div>
 			</div>
@@ -683,34 +643,54 @@ margin-right: 3%;
 	  var price;
 	  var point;
 	  
-	  $(function(){
+	 $('#pro_cart').click(function(){
+			//var pro_check = document.getElementsByName('pro_check');
+			var sumprice = document.getElementsByName('sumprice');
+			var pro_cart = document.getElementById('pro_cart');
+			sum=0;
+			for(var i=0;i<sumprice.length;i++){
+					if(pro_cart.checked==true){
+			     			sum += Number(sumprice[i].value);
+			}
+			}
+		    $('#sumprice').text(sum);		
+		    
+			$('#allprice').text(sum);	
+	 }); 
+	  
+	$('.pro_check').click(function(){
+		var pro_check = document.getElementsByName('pro_check');
 		var sumprice = document.getElementsByName('sumprice');
-		
+		sum=0;
 		for(var i=0;i<sumprice.length;i++){
-		      sum += Number(sumprice[i].value);
+				if(pro_check[i].checked==true){
+		     			sum += Number(sumprice[i].value);
+				}
 		}
-	    $('#sumprice').text(sum);		
 		
-
+		console.log("sum : "+sum)
+	    $('#sumprice').text(sum);		
 	    
 		$('#allprice').text(sum);		
 	})
 	
 	/*쿠폰사용 스크립트*/ 
 	 $('.mycoupon').click(function(){
-		var price = $(this).val();
+
+		 price = $(this).val();
 		
 		$('#coupon-price').text(price);
 		
 	})
 	$('.yg_btn_146').click(function(){
-	     price = $('#coupon-price').text();
+		price=0;
+	     price = Number($('#coupon-price').text());
 		$('#coupon-point').val(price);
 		$('#orderdetail').css('display','none');
 		
 		
-		$('#allprice').text(Number(sum)-Number(price)-Number(point));
-		$('#minusprice').text(Number(point)+Number(price));
+		$('#allprice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
+		$('#minusprice').text(Number($('#point').val())+Number($('#coupon-price').text()));
 
 	});
 	$('.yg_btn_147').click(function(){
@@ -719,11 +699,11 @@ margin-right: 3%;
 
 		/*적립금사용 스크립트*/
 	 $('#pointdetail').click(function() {
-		 point = $('#point').val();
+		 point =0;
+		 point = Number($('#point').val());
 		 
-		 console.log(point);
-		$('#allprice').text(Number(sum)-Number(price)-Number(point));
-		$('#minusprice').text(Number(point)+Number(price));
+		$('#allprice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
+		$('#minusprice').text(Number($('#point').val())+Number($('#coupon-price').text()));
  	});
 	
 	
