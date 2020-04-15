@@ -197,10 +197,11 @@ public class MypageController {
 		int memNo = m.getMemNo();
 		
 		int coupon = mpService.CouponListCount(m);
+		
 		int point = mpService.PointListCount(memNo);
 		
-		int listCount = mpService.CompleteCouponListCount(memNo);
-		
+		int listCount = mpService.CompleteCouponListCount(m);
+		System.out.println(m);
 		System.out.println("listCount : " + listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);

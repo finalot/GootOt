@@ -81,7 +81,6 @@
 		ON (C.CP_NO = CM.CP_NO)
 		WHERE MEM_NO=#{memNo}
 		AND CP_USING='N'
-		
 	</select>
 	
 	<select id="CouponSelectList" resultMap="CouponMemResultSet">
@@ -91,18 +90,25 @@
 		ON (C.CP_NO = CM.CP_NO)
 		WHERE MEM_NO=#{memNo}
 		AND CP_USING='N'
+		ORDER BY CPMEM_NO DESC
 	</select>
 	
-	<select id="CompleteCouponListCount" resultType="_int">
+	<select id="CompleteCouponListCount" resultType="_int" parameterType="Member">
 		SELECT COUNT(*)
-		FROM COUPON_MEM
-		WHERE CP_USING='Y'
+		FROM COUPON C
+		JOIN COUPON_MEM CM
+		ON (C.CP_NO = CM.CP_NO)
+		WHERE MEM_NO=#{memNo}
+		AND CP_USING='Y'
 	</select>
 
 	<select id="CompleteCouponSelectList" resultMap="CouponMemResultSet">
 		SELECT *
-		FROM COUPON_MEM
-		WHERE CP_USING='Y'
+		FROM COUPON C
+		JOIN COUPON_MEM CM
+		ON (C.CP_NO = CM.CP_NO)
+		WHERE MEM_NO=#{memNo}
+		AND CP_USING='Y'
 		ORDER BY CPMEM_NO DESC
 	</select>
 	
