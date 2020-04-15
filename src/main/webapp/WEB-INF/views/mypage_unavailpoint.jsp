@@ -118,10 +118,10 @@
 			<div class="ec-base-tab tab_style">
         		<ul class="menu">
 					<li>
-						<a href="${mPoint }">적립 내역 보기</a>
+						<a href="${mPoint }">포인트 내역 보기</a>
 					</li>
 		            <li class="selected">	
-		            	<a href="${mUnavailpoint }">미가용 적립금</a>
+		            	<a href="${mUnavailpoint }">미가용 포인트 내역 보기</a>
 	            	</li>
         		</ul>
 			</div>

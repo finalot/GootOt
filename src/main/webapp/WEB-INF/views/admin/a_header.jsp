@@ -371,8 +371,9 @@ a:cursor{
 		   
 	for(var i=0;i<data.length;i++){
 		
-		var last = data[i].message.length-1; 
-		   
+		var last = data[i].message.length-1;
+		   if(last > -1){
+			   
  		 var user = '<li style="padding: 2%;">'+
 				   '<div style="display:flex">'+
 				  '<img src="/ot/resources/images/icons/user.png" alt="회원사진" class="user-icon">'+
@@ -382,12 +383,12 @@ a:cursor{
 			  	  '</div>'+
 			  	  '<div>'+
 			  	  	'<p style="margin-bottom: 22%;">'+data[i].Time[last]+'</p>'+
-			  	  	'<p class="massege-count">'+data[i].Count+'</p>'+
+			  	  	'<p class="massege-count">'+data[i].count.length+'</p>'+
 			  	  '</div>'+
 			  	'</div>'+
 			 	'</li>';
  		 userList += user;
-	
+		   }
     }
 		$('#chat-user').html(userList)   
 	
@@ -445,7 +446,7 @@ a:cursor{
 		socket.on("chatOne",function(chatOne){
 			console.log("chatOne : "+chatOne)
 		var chatList="";
-		for(var i=1;i<chatOne[0].message.length;i++){
+		for(var i=0;i<chatOne[0].message.length;i++){
 			if(chatOne[0].type[i] == "user"){
 			
 			 var chat='<div align="right" style="text-align: right;"><span style="font-size:12px; margin-right: 10px">'+chatOne[0].userId+'</span>'+

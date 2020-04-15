@@ -17,14 +17,14 @@
 	</resultMap>
 
 	<resultMap id="CouponMemResultSet" type="CouponMem">
-		<id property="cpseq" column="CP_SEQ"/>
+		<id property="cpmem_no" column="CPMEM_NO"/>
 		<result property="memno" column="MEM_NO"/>
 		<result property="cpno" column="CP_NO"/>
-		<result property="cpname" column="CP_NAME"/>
-		<result property="cpDiscount" column="CP_DISCOUNT"/>
 		<result property="cpdate" column="CP_DATE"/>
-		<result property="cpstatus" column="CP_STATUS"/>
-		<result property="cp_cdate" column="CP_COMDATE"/>
+		<result property="cpusing" column="CP_USING"/>
+		<result property="cp_usedate" column="CP_USE_DATE"/>
+		<result property="cpname" column="CP_NAME"/>
+		<result property="cpdiscount" column="CP_DISCOUNT"/>
 	</resultMap>
 	
 	<!-- 임시 resultmap (적립금) -->
@@ -74,33 +74,42 @@
 		ORDER BY POINT_NO DESC
 	</select>
 	
-	<select id="CouponListCount" resultType="_int">
+	<select id="CouponListCount" resultType="_int" parameterType="Member">
 		SELECT COUNT(*)
-		FROM COUPON_MEM
-		WHERE MEM_NO=#{memNo} 
-		AND CP_STATUS='N'
-		
+		FROM COUPON C
+		JOIN COUPON_MEM CM
+		ON (C.CP_NO = CM.CP_NO)
+		WHERE MEM_NO=#{memNo}
+		AND CP_USING='N'
 	</select>
 	
 	<select id="CouponSelectList" resultMap="CouponMemResultSet">
 		SELECT *
-		FROM COUPON_MEM
-		WHERE CP_STATUS='N'
-		AND MEM_NO=#{memNo} 
-		ORDER BY CP_SEQ DESC
+		FROM COUPON C
+		JOIN COUPON_MEM CM
+		ON (C.CP_NO = CM.CP_NO)
+		WHERE MEM_NO=#{memNo}
+		AND CP_USING='N'
+		ORDER BY CPMEM_NO DESC
 	</select>
 	
-	<select id="CompleteCouponListCount" resultType="_int">
+	<select id="CompleteCouponListCount" resultType="_int" parameterType="Member">
 		SELECT COUNT(*)
-		FROM COUPON_MEM
-		WHERE CP_STATUS='Y'
+		FROM COUPON C
+		JOIN COUPON_MEM CM
+		ON (C.CP_NO = CM.CP_NO)
+		WHERE MEM_NO=#{memNo}
+		AND CP_USING='Y'
 	</select>
 
 	<select id="CompleteCouponSelectList" resultMap="CouponMemResultSet">
 		SELECT *
-		FROM COUPON_MEM
-		WHERE CP_STATUS='Y'
-		ORDER BY CP_SEQ DESC
+		FROM COUPON C
+		JOIN COUPON_MEM CM
+		ON (C.CP_NO = CM.CP_NO)
+		WHERE MEM_NO=#{memNo}
+		AND CP_USING='Y'
+		ORDER BY CPMEM_NO DESC
 	</select>
 	
 	<select id="selectPoint" resultType="_int">

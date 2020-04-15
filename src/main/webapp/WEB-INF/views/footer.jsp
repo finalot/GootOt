@@ -438,7 +438,6 @@
                       '</div>')
               $('#chatList').scrollTop($('#chatList')[0].scrollHeight)
                       
-            
 			
 			socket.emit("send_msg", {id:"${loginMember.memId}",msg:content,Time:strTime,type:"user"});
 		
@@ -493,11 +492,11 @@
 			   
 			       userId = "${loginMember.memId}";
 				//클릭한 아이디 서버로 보내기
-				socket.emit("userId",userId);
+				socket.emit("userId2",userId);
 				//몽고디비에서 find한 값 가져오기
 				
 				
-				socket.on("chatOne",function(chatOne){
+				socket.on("chatOne2",function(chatOne){
 					if(chatOne[0].userId == userId){
 					console.log("chatOne : "+chatOne)
 				var chatList="";
@@ -572,24 +571,42 @@
 <!--===============================================================================================-->
 	<script type="text/javascript" src="<c:url value="/resources/vendor/sweetalert/sweetalert.min.js"/>"></script>
 	<script type="text/javascript">
-		$('.block2-btn-addcart').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-			$(this).on('click', function(){
+	
+	function wish(arguments){
+	
+			
+			var nameProduct = $('.block2-btn-addcart').parent().parent().parent().find('.block2-name').html();
+			var productId = arguments;
 				if("${loginMember.memId}"==""){
 					alert('로그인후 이용해주세요');
 					location.href="loginView.do";
+					
 				}else{
-				swal(nameProduct, "관심상품에 등록되었습니다 !", "success");
+					
+					$.ajax({
+						url:"wishInsert.do",
+						type:"post",
+						data:{prdtNo:productId},
+						success:function(data){
+							if(data =="ok"){
+								swal(nameProduct, "관심상품에 등록되었습니다 !", "success");
+							}else if(data == "fail"){
+								swal(nameProduct, "이미 관심상품에 등록되어있는 상품입니다.");
+							}
+						}
+					});
+					
+				
 				}
-			});
-		});
+		};
 
-		$('.block2-btn-addwishlist').each(function(){
+		/* $('.block2-btn-addwishlist').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 			$(this).on('click', function(){
 				swal(nameProduct, "Like 되었습니다 !", "success");
 			});
-		});
+		}); */
+	
 	</script>
 
 <!--===============================================================================================-->

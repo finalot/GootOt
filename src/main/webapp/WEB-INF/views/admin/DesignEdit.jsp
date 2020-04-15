@@ -248,32 +248,51 @@ th{
     </section>
     <form id="mainForm" action="DesignEd.do" method="POST" enctype="multipart/form-data">
     <table id="design-table">
-    	<tr>
+   <!--  	<tr>
         	<td colspan="2" style="background:#dfe3e6; margin-bottom: 3%;padding-bottom: 2%;">
         	<h3 style="color: black;margin-left: 3%;"> 디자인 상세정보</h3></td>
-        </tr>
+        </tr> -->
         <tr >
-        	<th ><span style="color: red">*</span> 메인배너</th>
-        	<td class="main-design">
-        		
-	<c:forEach var="d" items="${mainList}">        		
+        	<th rowspan="11" ><span style="color: red">*</span> 메인배너</th>
+        </tr>
+        	  
+      
+        		<c:forEach var="d" items="${mainList}"> 
+        		<tr>
+        		  	<td class="main-design">
+        		<div class="malist">
 				<input type="hidden" value="${d.deNo}" name="no"> 
-        		<div style="display: flex;margin-top: 3%"><span>FILE 1</span><input name="mainImg" class="mainbaner" src="/ot/resources/bupladFiles/${d.reFile}" value="${d.reFile}" type="file">
-        		<span>메인배너 문구</span><input name="mainComment" value="${d.mainComment }" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
-        		<span>바로가기 링크</span><input name="mainLink" value="${d.mainLink }" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+				
+        		<div style="display: flex;margin-top: 3%"><span>FILE ${d.deNo}</span>
+        		
+        		<c:if test="${empty  d.reFile   }">
+        		<input name="mainImg" name="mainbaner" class="mainbaner" type="file">
+        		<a  class="fildown" name="fildown" style="display:none ;color: blue"  href="/ot/resources/buploadFiles/${ d.reFile }" download="${ d.reFile }" >${d.reFile}</a>
+        		<span>메인배너 문구</span>
+        		<input  name="mainComment" value="${d.mainComment }" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
+        		<span style="margin-left: 1%;">바로가기 링크</span><input  name="mainLink" value="${d.mainLink }" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+        		</c:if>
+        		
+        		<c:if test="${!empty  d.reFile   }">
+        		<input name="mainImg" name="mainbaner"  style="display:none;"class="mainbaner" type="file">
+        		<a  class="fildown" name="fildown" style="width : 20%;margin-left: 3%;display:block ;color: blue"  href="/ot/resources/buploadFiles/${ d.reFile }" download="${ d.reFile }" >${d.reFile}</a>
+        		<span>메인배너 문구</span>
+        		<input  readonly name="mainComment" value="${d.mainComment }" style=" background: #f3f3f3;margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
+        		<span style="    margin-left: 1%;">바로가기 링크</span>
+        		<input  readonly name="mainLink" value="${d.mainLink }" style="background: #f3f3f3 ;margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
+        		</c:if>
+        		<c:if test="${!empty  d.reFile   }">
+        		<input type="button"  value="수정"  class="editBtn" style="margin-left: 3%;height: 30px;width: 90px; background: black; color: white; border-radius: 10px;">
+        		</c:if>
         		</div>
         		<c:if test="${!empty  d.reFile   }">
-				<div style="    margin-left: 7%;"><a style="color: blue"  href="/ot/resources/buploadFiles/${ d.reFile }" download="${ d.reFile }"  id="fildown">${d.reFile}</a></div>
-																               <%-- <a href="${ contextPath }/resources/buploadFiles/${ b.renameFileName }" download="${ b.originalFileName }">${ b.originalFileName }</a> --%>
-																
+				<div style="    margin-left: 7%;"></div>
 				</c:if>
-				<c:if test="${empty  d.reFile   }">
-				<div style="    margin-left: 7%;"><span >등록된 파일이 없습니다.</span></div>
-				</c:if>
-	</c:forEach>		
-						
+				</div>
+					</td>
+			</tr>
+				</c:forEach>	
 	
-        	</tr>
     </table>
     </form>
      <div align="center">
@@ -284,14 +303,22 @@ th{
      	<tr>
         		<th><span style="color: red">*</span>메인 영상</th>
         		<td>
-        			<div style="display: flex"> FILE <input style="margin-left:2%;" type="file" name="mainvideo" class="main-video" value="${video.reFile}" src="${video.reFile}" ></div>
         			<c:if test="${!empty  video.reFile   }">
-					<div style="    margin-left: 7%;"><a href="/ot/resources/bupladFiles/${video.reFile}">${video.reFile}</a></div>
-					</c:if>
-					<c:if test="${empty  video.reFile    }">
-					<div style="    margin-left: 7%;"><span >등록된 파일이 없습니다.</span></div>
-				</c:if>
-        			</td>
+        			<div style="display: flex"> FILE 
+        			<input style="margin-left:2%; display: none" type="file" name="mainvideo"  class="main-video"  >
+        			<a style="margin-left:3%" class="mainvideoLink" href="/ot/resources/bupladFiles/${video.reFile}">${video.reFile}</a>
+        			<input type="button"  value="수정"  class="editBtn" style="margin-left: 3%;height: 30px;width: 90px; background: black; color: white; border-radius: 10px;">
+        			</div>
+				    </c:if>
+				    
+					 <c:if test="${empty  video.reFile   }">
+        			<div style="display: flex"> FILE 
+        			<input style="margin-left:2%;" type="file" name="mainvideo" class="main-video" >
+        			<a class="mainvideoLink" style="display: none"href="/ot/resources/bupladFiles/${video.reFile}">${video.reFile}</a>
+        			</div>
+				    </c:if>
+
+        		</td>
         	</tr>
     </table>
     </form>
@@ -300,26 +327,40 @@ th{
     </div>   
     <form id="instaForm" action="DesignInsta.do" method="POST" enctype="multipart/form-data">
    <table id="design-table">
-   		<tr>
-        		<th><span style="color: red">*</span>인스타 정보</th>
-        		<td class="main-design">
+   	
+         <tr >
+        	<th rowspan="6" ><span style="color: red">*</span> 메인배너</th>
+        </tr>
+        	
         	<c:forEach var="in" items="${instaList}">	
+        		<tr>
+        	<td class="main-design">
         			<div style="display: flex;margin-top: 3%">
+        			
+        			<c:if test="${empty in.reFile  }">
         		    <input type="hidden" value="${in.deNo }" name="inno">							
         			FILE ${in.deNo }<input style="margin-left:2%;margin-right: 3%" type="file" name="instaimg" class="insta-img">
+        										<a  style=";margin-left: 3%" class="instaFile" href='nfdown.ad?path="${in.reFile}"'>${in.reFile}</a>
         			인스타 문구 <input style="margin-left:2%; margin-right: 3%; border: 1px solid #333330;" value="${in.mainComment }" name="instacomment" type="text" class="insta-link">	   	
         			링크 <input style="margin-left:2%; border: 1px solid #333330;" value="${in.mainLink }" name="instalink" type="text" class="insta-link">	   	
+        			</c:if>
+        			
+        				<c:if test="${!empty in.reFile  }">
+        		    <input type="hidden" value="${in.deNo }" name="inno">							
+        			FILE ${in.deNo }<input style="margin-left:2%;margin-right: 3%;display:none" type="file" name="instaimg" class="insta-img">
+        						<a style="margin-right: 12%;margin-left: 3%" class="instaFile" href='nfdown.ad?path="${in.reFile}"'>${in.reFile}</a>
+        			인스타 문구 <input readonly style="margin-left:2%; margin-right: 3%; border: 1px solid #333330;background: #f3f3f3 " value="${in.mainComment }" name="instacomment" type="text" class="insta-text">	   	
+        			링크 <input readonly style="background: #f3f3f3;margin-left:2%; border: 1px solid #333330;" value="${in.mainLink }" name="instalink" type="text" class="insta-link">	   	
+        			 <input  type="button"  value="수정"  class="editBtn" style="margin-left: 3%;height: 30px;width: 90px; background: black; color: white; border-radius: 10px;">
+        			</c:if>
+
         			</div>
-					<c:if test="${!empty  in.reFile   }">
-					<div style="    margin-left: 7%;"><a href='nfdown.ad?path="${in.reFile}"'>${in.reFile}</a></div>
-					</c:if>
-					<c:if test="${empty  in.reFile   }">
-					<div style="    margin-left: 7%;"><span >등록된 파일이 없습니다.</span></div>
-					</c:if>        			
+				  </td>
+				  </tr>
 			</c:forEach>
         			
-        		</td>
-        	</tr>
+        	
+        	
    </table>
        </form>
      <div align="center">
@@ -332,8 +373,47 @@ th{
      <div class="page-wrapper">
     </div>
 
-    <script>
+<script>
+$('.editBtn').click(function(){
+	$(this).parents('td').find('.mainbaner').css("display","block");
+	$(this).parents('td').find('.fildown').css("display","none");
+	$(this).parents('td').find('.main-text').css("background","white").removeAttr('readonly').val(" ");
+	$(this).parents('td').find('.main-link').css("background","white").removeAttr('readonly').val(" ");
+	$(this).parents('td').find('.main-video').css("display","block");
+	$(this).parents('td').find('.mainvideoLink').css("display","none");
+	$(this).parents('td').find('.insta-img').css("display","block");
+	$(this).parents('td').find('.instaFile').css("display","none");
+	$(this).parents('td').find('.insta-text').css("background","white").removeAttr('readonly').val(" ");
+	$(this).parents('td').find('.insta-link').css("background","white").removeAttr('readonly').val(" ");
+	
+	
+	
+	
+	});
 
+</script>
+
+
+    <script>
+    $(function(){
+    	
+    	var mainbaner = document.getElementsByname('mainbaner');
+    	var fildown = document.getElementsByname('fildown');
+
+    "<c:forEach var='b'  items='${mainList}'>"
+    
+    	if("${!empty  b.reFile }"){
+    		mainbaner[i].style.display=none;
+    		fildown[i].style.display=block;
+    	}else{
+    		mainbaner[i].style.display=block;
+    		fildown[i].style.display=none;				
+    	}
+    
+    "</c:forEach>"	
+})
+    	
+    	
     	$('#mainBtn').click(function(){
     		$('#mainForm').submit();
     	});

@@ -73,7 +73,9 @@ margin-right: 3%;
 				<div class="wrap-table-shopping-cart bgwhite">
 					<table class="table-shopping-cart">
 						<tr class="table-head">
-							<input type="checkbox" id="pro_cart" style="position: relative;top: 40px;left: 35px;">
+						<th>
+							<input type="checkbox" id="pro_cart"  style="  position: relative;left: 47px;">
+						</th>
 							<th class="column-1"><span id="cart_font">Image</span></th>
 							<th class="column-2">Product Name</th>
 							<th class="column-3">Price</th>
@@ -84,13 +86,16 @@ margin-right: 3%;
 							<th class="column-5">Total</th>
 						</tr>
 
-						<tr class="table-row">
+					
 						<c:forEach var="c" items="${list }">
-						    <input type="checkbox" name=pro_check style="position: relative;top: 136px;left: 22px;">
+							<tr class="table-row">
+							<td>
+							   <input type="checkbox" name=pro_check style="  position: relative;left: 47px;">
+							</td>
 							<td class="column-1">
-								<div class="cart-img-product b-rad-4 o-f-hidden">
+							    	 <div class="cart-img-product b-rad-4 o-f-hidden">
 									<img src="${c.path }${c.image}"onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
-								</div>
+								    </div>
 							</td>
 							<td class="column-2">${c.prdt_name }
 							<br><span id="idMsg7">[옵션 : ${c.prdt_color }/${c.prdt_size }/${c.prdt_count}개]</span>
@@ -119,7 +124,7 @@ margin-right: 3%;
 							<td class="column-5"><font class="format-money">${c.prdt_sumprice }</font> won</td>
 							<input type="hidden" name="sumprice" value="${c.prdt_sumprice }">											
 							</c:forEach>
-						</tr>
+					
 
 						<!-- <tr class="table-row">
 							 <input type="checkbox" name=pro_check style="position: relative;top: 276px;left: 9px;">

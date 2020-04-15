@@ -43,7 +43,7 @@ public interface MypageService {
 	 * @return int
 	 */
 
-	int CouponListCount(int memNo);
+	int CouponListCount(Member m);
 	
 	ArrayList<CouponMem> CouponSelectList(int memNo, PageInfo pi);
 	
@@ -55,7 +55,7 @@ public interface MypageService {
 	 * @return int
 	 */
 	
-	int CompleteCouponListCount(int memNo);
+	int CompleteCouponListCount(Member m);
 
 	ArrayList<CouponMem> CompleteCouponSelectList(int memNo, PageInfo pi);
 	

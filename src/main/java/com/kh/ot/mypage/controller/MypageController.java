@@ -47,9 +47,10 @@ public class MypageController {
 	 */
 	@RequestMapping("mWishlist.do") //1
 	public ModelAndView mWishlist(ModelAndView mv,
-									@RequestParam("memNo") int memNo) {
+									@RequestParam("memNo") int memNo,HttpSession session ) {
 		
-		int Coupon = mpService.CouponListCount(memNo);
+		Member m = (Member)session.getAttribute("loginMember");
+		int Coupon = mpService.CouponListCount(m);
 													// 사용 가능 포인트 셋팅
 													// 찜한 갯수 카운팅
 		
@@ -82,7 +83,7 @@ public class MypageController {
 		
 		int result = mpService.PointPrice(m); // 
 		
-		int coupon = mpService.CouponListCount(memNo); // 사용 가능한 쿠폰 카운팅
+		int coupon = mpService.CouponListCount(m); // 사용 가능한 쿠폰 카운팅
 		
 		int listCount = mpService.PointListCount(memNo); // 사용 가능한 쿠폰
 		
@@ -120,7 +121,7 @@ public class MypageController {
 		int memNo = m.getMemNo();
 		
 		int listCount = mpService.PointUnavailListCount(memNo);
-		int coupon = mpService.CouponListCount(memNo); // 사용가능한 쿠폰
+		int coupon = mpService.CouponListCount(m); // 사용가능한 쿠폰
 		int point = mpService.PointListCount(memNo); // 사용가능한 적립금
 		
 		System.out.println("listCount : " + listCount);
@@ -156,10 +157,10 @@ public class MypageController {
 		System.out.println(currentPage);
 		
 		Member m = (Member)session.getAttribute("loginMember");
-		
+		System.out.println(m);
 		int memNo = m.getMemNo();
 		
-		int listCount = mpService.CouponListCount(memNo);
+		int listCount = mpService.CouponListCount(m);
 		
 		int point = mpService.PointListCount(memNo);
 		
@@ -195,11 +196,12 @@ public class MypageController {
 		
 		int memNo = m.getMemNo();
 		
-		int coupon = mpService.CouponListCount(memNo);
+		int coupon = mpService.CouponListCount(m);
+		
 		int point = mpService.PointListCount(memNo);
 		
-		int listCount = mpService.CompleteCouponListCount(memNo);
-		
+		int listCount = mpService.CompleteCouponListCount(m);
+		System.out.println(m);
 		System.out.println("listCount : " + listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
