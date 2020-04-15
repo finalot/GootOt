@@ -122,7 +122,8 @@ margin-right: 3%;
 							<td class="column-7" style="padding-left: 40px;">기본배송</td>
 							<td class="column-8"><font class="format-money">2500</font> won</td>
 							<td class="column-5"><font class="format-money">${c.prdt_sumprice }</font> won</td>
-							<input type="hidden" name="sumprice" value="${c.prdt_sumprice }">											
+							<input type="hidden" name="sumprice" value="${c.prdt_sumprice }">
+							<input type="hidden" name="ca_no" value="${c.ca_no }">										
 							</c:forEach>
 					
 
@@ -677,9 +678,9 @@ margin-right: 3%;
 <!-- 금액관련 스크립트 -->
 	<script>
 		
-	  var sum =0;
-	  var price=0;
-	  var point=0;
+	  var sum;
+	  var price;
+	  var point;
 	  
 	  $(function(){
 		var sumprice = document.getElementsByName('sumprice');
@@ -702,12 +703,13 @@ margin-right: 3%;
 		
 	})
 	$('.yg_btn_146').click(function(){
-		var price = $('#coupon-price').text();
+	     price = $('#coupon-price').text();
 		$('#coupon-point').val(price);
 		$('#orderdetail').css('display','none');
 		
+		
 		$('#allprice').text(Number(sum)-Number(price)-Number(point));
-		$('#minusprice').html(Number(point)+Number(price));
+		$('#minusprice').text(Number(point)+Number(price));
 
 	});
 	$('.yg_btn_147').click(function(){
@@ -719,7 +721,7 @@ margin-right: 3%;
 		 point = $('#point').val();
 		 
 		 console.log(point);
-		$('#allprice').text(sum-price-point);
+		$('#allprice').text(Number(sum)-Number(price)-Number(point));
 		$('#minusprice').text(Number(point)+Number(price));
  	});
 	

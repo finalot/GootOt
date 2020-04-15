@@ -5,7 +5,8 @@
   
 <mapper namespace="cartMapper">
 	<resultMap type="Cart" id="cartResultSet">
-			<id property = "mem_no" column="MEM_NO"/>
+			<id property = "ca_no" column="CA_NO"/>
+			<result property="mem_no" column="MEM_NO"/>
 			<result property="prdt_no" column="PRDT_NO"/>
 			<result property="prdt_price" column="PRDT_PRICE"/>
 			<result property="prdt_count" column="PRDT_COUNT"/>
