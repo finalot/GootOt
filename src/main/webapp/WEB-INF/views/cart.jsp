@@ -202,7 +202,7 @@ margin-right: 3%;
     					background-color: #fafafa;">
 						<strong>총 할인금액</strong></th>
 						<td><span class="m-text21 w-size20 w-full-sm" style="position: relative;left: 9px;top: 1px;">
-							0 won</span>
+							<font id="minusprice2">0</font> won</span>
 						</td>	
 					</tr>
 					
@@ -361,7 +361,7 @@ margin-right: 3%;
 					</span>
 
 					<span class="m-text21 w-size20 w-full-sm">
-						<font class="format-money">58000</font> won
+						<font id="allprice2" class="format-money"></font> won
 					</span>
 				</div>
 				
@@ -388,7 +388,7 @@ margin-right: 3%;
 					</span>
 
 					<span class="m-text21 w-size20 w-full-sm">
-						<font class="format-money">60500</font> <span id="m-text21">won</span>
+						<font id="resultPrice" name="resultPrice" class="format-money"></font> <span id="m-text21">won</span>
 					</span>
 				</div>
 
@@ -641,7 +641,7 @@ margin-right: 3%;
 	  var sum;
 	  var price;
 	  var point;
-	  
+	  var delivry = 2500;
 	 $('#pro_cart').click(function(){
 			//var pro_check = document.getElementsByName('pro_check');
 			var sumprice = document.getElementsByName('sumprice');
@@ -654,7 +654,11 @@ margin-right: 3%;
 			}
 		    $('#sumprice').text(sum);		
 		    
-			$('#allprice').text(sum);	
+			$('#allprice2').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
+			$('#allprice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
+			$('#minusprice').text(Number($('#point').val())+Number($('#coupon-price').text()));
+			$('#minusprice2').text(Number($('#point').val())+Number($('#coupon-price').text()));
+			$('#resultPrice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val())+delivry);
 	 }); 
 	  
 	$('.pro_check').click(function(){
@@ -669,8 +673,12 @@ margin-right: 3%;
 		
 		console.log("sum : "+sum)
 	    $('#sumprice').text(sum);		
-	    
-		$('#allprice').text(sum);		
+		
+		$('#allprice2').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
+		$('#allprice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
+		$('#minusprice').text(Number($('#point').val())+Number($('#coupon-price').text()));
+		$('#minusprice2').text(Number($('#point').val())+Number($('#coupon-price').text()));
+		$('#resultPrice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val())+delivry);
 	})
 	
 	/*쿠폰사용 스크립트*/ 
@@ -688,8 +696,11 @@ margin-right: 3%;
 		$('#orderdetail').css('display','none');
 		
 		
+		$('#allprice2').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
 		$('#allprice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
 		$('#minusprice').text(Number($('#point').val())+Number($('#coupon-price').text()));
+		$('#minusprice2').text(Number($('#point').val())+Number($('#coupon-price').text()));
+		$('#resultPrice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val())+delivry);
 
 	});
 	$('.yg_btn_147').click(function(){
@@ -701,8 +712,11 @@ margin-right: 3%;
 		 point =0;
 		 point = Number($('#point').val());
 		 
+		$('#allprice2').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
 		$('#allprice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
 		$('#minusprice').text(Number($('#point').val())+Number($('#coupon-price').text()));
+		$('#minusprice2').text(Number($('#point').val())+Number($('#coupon-price').text()));
+		$('#resultPrice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val())+delivry);
  	});
 	
 	
