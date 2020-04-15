@@ -17,6 +17,7 @@ import com.kh.ot.common.Pagination;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.MyBoard;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -65,7 +66,7 @@ public class MypageController {
 	}
 	
 	/**
-	 * @작성일 : 2020. 4. 2.
+	 * @작성일 : 2020. 4. 15.
 	 * @작성자 : 신경섭
 	 * @내용 : 마이페이지 적립금 이동
 	 * @param @return
@@ -104,7 +105,7 @@ public class MypageController {
 	}
 	
 	/**
-	 * @작성일 : 2020. 4. 4.
+	 * @작성일 : 2020. 4. 15.
 	 * @작성자 : 신경섭
 	 * @내용 : 적립금  - 미사용적립금
 	 * @param @return
@@ -141,14 +142,13 @@ public class MypageController {
 	
 	
 	/**
-	 * @작성일 : 2020. 4. 3.
+	 * @작성일 : 2020. 4. 15.
 	 * @작성자 : 신경섭
 	 * @내용 : 마이페이지 쿠폰 이동
 	 * @param @return
 	 * @return String
 	 */
 	
-
 	@RequestMapping("mCoupon.do") // 3
 	public ModelAndView mCoupon(ModelAndView mv,
 								@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, 
@@ -180,7 +180,7 @@ public class MypageController {
 	}
 	
 	/**
-	 * @작성일 : 2020. 4. 3.
+	 * @작성일 : 2020. 4. 15.
 	 * @작성자 : 신경섭
 	 * @내용 : 마이페이지 쿠폰 - 사용완료한 쿠폰
 	 * @param @return
@@ -218,15 +218,35 @@ public class MypageController {
 	}
 	
 	/**
-	 * @작성일 : 2020. 4. 3.
+	 * @작성일 : 2020. 4. 16.
 	 * @작성자 : 신경섭
 	 * @내용 : 마이페이지 내가 쓴 게시글 이동
 	 * @param @return
 	 * @return String
 	 */
 	@RequestMapping("mBoard.do")
-	public String mBoard() {
-		return "mypage_board";
+	public ModelAndView mBoard(ModelAndView mv, HttpSession session, 
+								@RequestParam(value="currentPage", 
+								required=false,defaultValue="1") int currentPage) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		int listCount = mpService.getListCount(memNo);
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<MyBoard> list = mpService.selectList(pi, memNo);
+		
+		System.out.println("list : " + list);
+
+   		mv.addObject("list",list);
+   		mv.addObject("pi", pi);
+		mv.setViewName("mypage_board");
+		return mv;
 	}
 	
 	/**

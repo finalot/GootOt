@@ -7,11 +7,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.MyBoard;
 
 @Repository("mpDao")
 public class MypageDao {
@@ -82,6 +82,17 @@ public class MypageDao {
 		m.setMem_point(pointSet);
 		 
 		return sqlSession.update("mypageMapper.updatePoint", m);
+	}
+
+	public int getListCount(int memNo) {
+		return sqlSession.selectOne("mypageMapper.selectBoardListCount", memNo);
+	}
+
+	public ArrayList<MyBoard> selectList(PageInfo pi, int memNo) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList) sqlSession.selectList("mypageMapper.selectBoardList", memNo, rowBounds);
 	}
 
 }
