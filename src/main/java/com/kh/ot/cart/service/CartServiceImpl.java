@@ -25,4 +25,9 @@ public class CartServiceImpl implements CartService{
 	public ArrayList<Coupon> selectCouponList(int mem_no) {
 		return cDao.selectCouponList(mem_no);
 	}
+
+	@Override
+	public int CartDeleteProduct(int ca_no) {
+		return cDao.CartDeleteProduct(ca_no);
+	}
 }

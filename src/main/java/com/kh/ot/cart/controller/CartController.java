@@ -64,6 +64,27 @@ public class CartController extends HttpServlet {
    		return mv; 
 	}
 	
+	/**
+	 * @작성일  : 2020. 4. 15.
+	 * @작성자  : 우예진
+	 * @내용    : 선택상품삭제
+	 * @param ca_no
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("CartDeleteProduct.do") 
+	public String CartDeleteProduct(int ca_no, HttpServlet request) {
+		
+		int result = cService.CartDeleteProduct(ca_no);
+
+		if(result >0) {
+			return "redirect:cartbutton.do";
+		} else {
+			return "에러다";
+		}
+		
+	}
+	
 	
 
 }

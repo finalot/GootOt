@@ -86,11 +86,12 @@ margin-right: 3%;
 							<th class="column-5">Total</th>
 						</tr>
 
-					
 						<c:forEach var="c" items="${list }">
 							<tr class="table-row">
 							<td>
 							   <input type="checkbox" class="pro_check" name=pro_check style="  position: relative;left: 47px; top:-13px;">
+							   <br>
+							   
 							</td>
 							<td class="column-1">
 							    	 <div class="cart-img-product b-rad-4 o-f-hidden">
@@ -113,13 +114,21 @@ margin-right: 3%;
 							<td class="column-7" style="padding-left: 40px;">기본배송</td>
 							<td class="column-8"><font class="format-money">2500</font> won</td>
 							<td class="column-5"><font class="format-money">${c.prdt_sumprice }</font> won</td>
+							<td class="column-5">
+							
+							
 							<input type="hidden" name="sumprice" value="${c.prdt_sumprice }">
 							<input type="hidden" name="ca_no" value="${c.ca_no }">										
 							</c:forEach>
-					
+
 					</table>
 				</div>
 			</div>
+			
+			
+			<!-- 선택상품삭제 -->
+			<a id="delete_product" data-cartNum="${c.ca_no }"
+						class="more yg_btn_24 yg_btn3" style="top:10px; cursor: pointer;left:1132px;">선택상품삭제</a>
 
 		
 			
@@ -141,7 +150,7 @@ margin-right: 3%;
 				</colgroup>
 			    		<tr>	
 			    			<th scope="col">
-			    			<strong  style="position: relative;left: 148px;">총 주문 금액</strong>
+			    			<strong  style="position: relative;left: 131px;">총 주문 금액</strong>
 			    			</th>
 			    			
 			    			<th scope="col">
@@ -151,7 +160,7 @@ margin-right: 3%;
 							</th>
 							
 							<th scope="col">
-							<strong>총 결제예정 금액</strong>
+							<strong style="position: relative;left: -18px;">총 결제예정 금액</strong>
 							</th>
 			    		</tr>
 			    	<tbody class="center">
@@ -496,6 +505,23 @@ margin-right: 3%;
                     <!-- <input id="delivery2" name="delivery2"  type="radio"
                     style="position: relative;left: -2px;">
                     <label id="delivery2" style="position: relative;left: -3px;top: -2px;">새로운배송지</label> -->
+                    
+                    <select id="new_delivery" name="new_delivery" style="font-size:12px;width: 220px;">
+                    <option value="new_delivery1">::: 새로운 배송지를 선택해주세요 :::</option>
+                    <option value="new_delivery2">배송지2</option>
+                    <option value="new_delivery3">배송지3</option>
+                    <option value="new_delivery3">배송지4</option>
+                    <option value="new_delivery3">배송지5</option>
+                    <option value="new_delivery3">배송지6</option>
+                    <option value="new_delivery3">배송지7</option>
+                    <option value="new_delivery3">배송지8</option>
+                    <option value="new_delivery3">배송지9</option>
+                    <option value="new_delivery3">배송지10</option>
+                    </select>
+                    
+                    
+                    
+                    
                 </td>
                 </tr>
                 
@@ -993,6 +1019,43 @@ $('#delivery').click(function(){
 $('.close').click(function(){
 	$('#orderdetail').css('display','none');
 })
+
+
+</script>
+
+<script>
+<!-- 선택상품삭제 스크립트 -->
+/* function delete_product() {
+	var ca_no = $('#ca_no').val()
+	location.href="CartDeleteProduct.do?ca_no="+ca_no;
+}
+  */
+ 
+  $("#delete_product").click(function() {
+	 var confirm = alert("삭제하시겠습니까?");
+	 
+	 
+	 if(confirm) {
+		 var checkArr = new Array();
+		 var ca_no = $('#ca_no').val()
+		 
+		 $("input[name='pro_check']:checked").each(function() {
+			 ca_no.push($(this).attr("data-cartNum"))
+		 });
+		 
+		 $.ajax({
+			url : "CartDeleteProduct.do",
+			type : "post",
+			data : { ca_no : ca_no},
+			success : function() {
+				location.href = "cartbutton.do";
+			}
+		 });
+	 } 
+	 
+	 
+ });
+ 
 </script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
