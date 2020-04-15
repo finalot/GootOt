@@ -438,7 +438,6 @@
                       '</div>')
               $('#chatList').scrollTop($('#chatList')[0].scrollHeight)
                       
-            
 			
 			socket.emit("send_msg", {id:"${loginMember.memId}",msg:content,Time:strTime,type:"user"});
 		
@@ -493,11 +492,11 @@
 			   
 			       userId = "${loginMember.memId}";
 				//클릭한 아이디 서버로 보내기
-				socket.emit("userId",userId);
+				socket.emit("userId2",userId);
 				//몽고디비에서 find한 값 가져오기
 				
 				
-				socket.on("chatOne",function(chatOne){
+				socket.on("chatOne2",function(chatOne){
 					if(chatOne[0].userId == userId){
 					console.log("chatOne : "+chatOne)
 				var chatList="";

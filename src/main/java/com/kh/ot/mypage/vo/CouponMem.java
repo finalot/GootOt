@@ -3,29 +3,36 @@ package com.kh.ot.mypage.vo;
 import java.sql.Date;
 
 public class CouponMem {
+	private int cpmem_no;			// 쿠폰기본키
 	private int memno;				// 회원테이블의 회원번호
-	private int cpseq;				// 쿠폰 시퀀스(갯수)
-	private int cpno;				// 쿠폰 번호(조인용)
-	private String cpname;			// 쿠폰 이름
-	private int cpDiscount;			// 할인율
-	
+	private int cpno;				// 조인용 -> cpname이랑 cpdiscount 값 가져옴
 	private Date cpdate;			// 쿠폰 발급날짜 (sysdate)
-	private String cpstatus;		// 쿠폰 사용여부
-	private Date cp_cdate;			// 쿠폰 사용날짜
+	private String cpusing;			// 쿠폰 사용여부
+	private Date cp_usedate;		// 쿠폰 사용날짜
+	private String cpname;			// 쿠폰 이름
+	private int cpdiscount;			// 쿠폰 할인율
 	
 	public CouponMem() {}
 
-	public CouponMem(int memno, int cpseq, int cpno, String cpname, int cpDiscount, Date cpdate, String cpstatus,
-			Date cp_cdate) {
+	public CouponMem(int cpmem_no, int memno, int cpno, Date cpdate, String cpusing, Date cp_usedate, String cpname,
+			int cpdiscount) {
 		super();
+		this.cpmem_no = cpmem_no;
 		this.memno = memno;
-		this.cpseq = cpseq;
 		this.cpno = cpno;
-		this.cpname = cpname;
-		this.cpDiscount = cpDiscount;
 		this.cpdate = cpdate;
-		this.cpstatus = cpstatus;
-		this.cp_cdate = cp_cdate;
+		this.cpusing = cpusing;
+		this.cp_usedate = cp_usedate;
+		this.cpname = cpname;
+		this.cpdiscount = cpdiscount;
+	}
+
+	public int getcpmem_no() {
+		return cpmem_no;
+	}
+
+	public void setcpmem_no(int cpmem_no) {
+		this.cpmem_no = cpmem_no;
 	}
 
 	public int getMemno() {
@@ -36,36 +43,12 @@ public class CouponMem {
 		this.memno = memno;
 	}
 
-	public int getCpseq() {
-		return cpseq;
-	}
-
-	public void setCpseq(int cpseq) {
-		this.cpseq = cpseq;
-	}
-
 	public int getCpno() {
 		return cpno;
 	}
 
 	public void setCpno(int cpno) {
 		this.cpno = cpno;
-	}
-
-	public String getCpname() {
-		return cpname;
-	}
-
-	public void setCpname(String cpname) {
-		this.cpname = cpname;
-	}
-
-	public int getCpDiscount() {
-		return cpDiscount;
-	}
-
-	public void setCpDiscount(int cpDiscount) {
-		this.cpDiscount = cpDiscount;
 	}
 
 	public Date getCpdate() {
@@ -76,35 +59,42 @@ public class CouponMem {
 		this.cpdate = cpdate;
 	}
 
-	public String getCpstatus() {
-		return cpstatus;
+	public String getCpusing() {
+		return cpusing;
 	}
 
-	public void setCpstatus(String cpstatus) {
-		this.cpstatus = cpstatus;
+	public void setCpusing(String cpusing) {
+		this.cpusing = cpusing;
 	}
 
-	public Date getCp_cdate() {
-		return cp_cdate;
+	public Date getCp_usedate() {
+		return cp_usedate;
 	}
 
-	public void setCp_cdate(Date cp_cdate) {
-		this.cp_cdate = cp_cdate;
+	public void setCp_usedate(Date cp_usedate) {
+		this.cp_usedate = cp_usedate;
+	}
+
+	public String getCpname() {
+		return cpname;
+	}
+
+	public void setCpname(String cpname) {
+		this.cpname = cpname;
+	}
+
+	public int getCpdiscount() {
+		return cpdiscount;
+	}
+
+	public void setCpdiscount(int cpdiscount) {
+		this.cpdiscount = cpdiscount;
 	}
 
 	@Override
 	public String toString() {
-		return "CouponMem [memno=" + memno + ", cpseq=" + cpseq + ", cpno=" + cpno + ", cpname=" + cpname
-				+ ", cpDiscount=" + cpDiscount + ", cpdate=" + cpdate + ", cpstatus=" + cpstatus + ", cp_cdate="
-				+ cp_cdate + "]";
+		return "CouponMem [cpmem_no=" + cpmem_no + ", memno=" + memno + ", cpno=" + cpno + ", cpdate=" + cpdate
+				+ ", cpusing=" + cpusing + ", cp_usedate=" + cp_usedate + ", cpname=" + cpname + ", cpdiscount="
+				+ cpdiscount + "]";
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
 }

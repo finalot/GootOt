@@ -43,7 +43,7 @@ public interface MypageService {
 	 * @return int
 	 */
 
-	int CouponListCount(int memNo);
+	int CouponListCount(Member m);
 	
 	ArrayList<CouponMem> CouponSelectList(int memNo, PageInfo pi);
 	

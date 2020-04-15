@@ -93,9 +93,11 @@ public class MemberController extends HttpServlet {
 	 */
 	@RequestMapping("MyPage.do")
 	public ModelAndView MyPage(ModelAndView mv,
-								@RequestParam("memNo") int memNo) {
+								@RequestParam("memNo") int memNo,HttpSession session) {
 
-		int coupon = mpService.CouponListCount(memNo);
+	   Member m =(Member)session.getAttribute("loginMember");
+		
+		int coupon = mpService.CouponListCount(m);
 		int point = mpService.PointListCount(memNo);
 		
 		mv.addObject("CouponCount", coupon);

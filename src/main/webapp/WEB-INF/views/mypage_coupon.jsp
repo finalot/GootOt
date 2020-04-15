@@ -133,10 +133,10 @@
 								<c:forEach var="cp" items="${list }">
 							<tbody class="center">
 								<tr class="xans-record-">
-									<td>${cp.cpseq }</td>
+									<td>${cp.cpmem_no }</td>
 									<td>${cp.cpname }</td>
 									<td>
-										<fmt:formatNumber value="${cp.cpDiscount }" pattern="#,###"/>
+										<fmt:formatNumber value="${cp.cpdiscount }" pattern="#,###"/>
 									</td>
 									<td>${cp.cpdate }</td>
 								</tr>
