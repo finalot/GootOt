@@ -90,7 +90,7 @@ margin-right: 3%;
 						<c:forEach var="c" items="${list }">
 							<tr class="table-row">
 							<td>
-							   <input type="checkbox" name=pro_check style="  position: relative;left: 47px;">
+							   <input type="checkbox" name=pro_check style="  position: relative;left: 47px; top:-13px;">
 							</td>
 							<td class="column-1">
 							    	 <div class="cart-img-product b-rad-4 o-f-hidden">
@@ -184,10 +184,9 @@ margin-right: 3%;
 			    			</th>
 			    			
 			    			<th scope="col">
-							<strong>총 </strong><strong id="total">할인</strong>
-							<strong id="plus_mark"> + </strong>
-							<strong id="total" class="">부가결제</strong>
-							<strong> 금액</strong>
+						<!-- 	<strong>총 </strong><strong id="total">할인</strong>
+							<strong> 금액</strong> -->
+							<strong style="position:relative; left:33px;">총 할인 금액</strong>
 							</th>
 							
 							<th scope="col">
