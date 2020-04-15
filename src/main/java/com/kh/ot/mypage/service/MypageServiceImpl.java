@@ -11,6 +11,7 @@ import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.dao.MypageDao;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.MyBoard;
 
 @Service("mpService")
 public class MypageServiceImpl implements MypageService{
@@ -63,5 +64,15 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public int PointPrice(Member m) {
 		return mpDao.PointPrice(m);
+	}
+
+	@Override
+	public int getListCount(int memNo) {
+		return mpDao.getListCount(memNo);
+	}
+
+	@Override
+	public ArrayList<MyBoard> selectList(PageInfo pi, int memNo) {
+		return mpDao.selectList(pi, memNo);
 	}
 }
