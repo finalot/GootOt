@@ -99,5 +99,15 @@
 	AND O.ORD_STATUS = 'A'
 	
 	</select>
+	<insert id="payInsert">
+		<foreach  item="p" collection="plist"  index="index" 
+      separator=";" open="DECLARE BEGIN" close="; END;" >
+		INSERT INTO  PAY
+	 	VALUES(PAY_SEQ.NEXTVAL,#{p.mem_no},#{p.sumprice},#{p.pay_category},SYSDATE,
+						#{p.pay_usedcp},#{p.pay_point},'N')
+		</foreach>
+	</insert>
+
+
 
 </mapper>

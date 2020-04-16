@@ -17,6 +17,7 @@ import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.cart.service.CartService;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.member.vo.Member;
 
 
@@ -118,11 +119,15 @@ public class CartController extends HttpServlet {
 	 */
 	@RequestMapping("cartInsert.do")
 	public ModelAndView cartInsert(ModelAndView mv,HttpSession session,
-										int[] prdtArr, String[] sizeArr, String[] colorArr,int[] countArr,
-										String ord_receiver, String ord_phone, String ord_address,String ord_message) {
+						int[] prdtArr, String[] sizeArr, String[] colorArr,int[] countArr,
+						String ord_receiver, String ord_phone, String ord_address,String ord_message,
+						int[] sumpriceArr,String pay_category,int pay_point,int pay_usedcp,int coupon_price){
+						
+		
 		Member m =(Member)session.getAttribute("loginMember");
 		
 		ArrayList<Ord> olist = new ArrayList<Ord>();
+		ArrayList<Pay> plist = new ArrayList<Pay>();
 		
 		for(int i=0;i<prdtArr.length;i++) {
 			Ord o = new Ord();
@@ -138,9 +143,32 @@ public class CartController extends HttpServlet {
 
 			olist.add(o);
 		}
+		
+		
+		for(int i=0;i<sumpriceArr.length;i++) {
+			Pay p = new Pay();
+			if(i==0) {
+			p.setMem_no(m.getMemNo());
+			p.setSumprice(sumpriceArr[i]+2500-pay_point-coupon_price);
+			p.setPay_category(pay_category);
+			p.setPay_usedcp(pay_usedcp);
+			p.setPay_point(pay_point);
+			}else {
+			p.setMem_no(m.getMemNo());
+			p.setSumprice(sumpriceArr[i]);
+			p.setPay_category(pay_category);
+			p.setPay_usedcp(pay_usedcp);
+			p.setPay_point(pay_point);
+			}
+		
+			plist.add(p);
+		}
+		System.out.println(plist);
 		int result = cService.cartInsert(olist);
 		
+		int result2 = cService.payInsert(plist);
 		if(result > 0) {
+			
 			return null;
 		}else {
 			return null;

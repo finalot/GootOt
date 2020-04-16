@@ -9,6 +9,7 @@ import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.cart.dao.CartDao;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.cart.vo.Pay;
 
 
 @Service("cService")
@@ -40,5 +41,9 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public ArrayList<Ord> selectOrderList(int mem_no) {
 		return cDao.selectOrderList(mem_no);
+
+	@Override
+	public int payInsert(ArrayList<Pay> plist) {
+		return cDao.payInsert(plist);
 	}
 }
