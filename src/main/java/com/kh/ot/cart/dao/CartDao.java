@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.cart.vo.Pay;
 
 @Repository("cDao")
 public class CartDao {
@@ -54,10 +55,30 @@ public class CartDao {
 		return sqlSession.delete("cartMapper.deleteCart",map);
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 16.
+	 * @작성자  : 문태환 
+	 * @내용 	: 주문정보 인설트
+	 * @param olist
+	 * @return
+	 */
 	public int cartInsert(ArrayList<Ord> olist) {
 		   Map<String, Object> map = new HashMap<String, Object>();
 		   map.put("olist", olist);
 		return sqlSession.insert("cartMapper.cartInsert",map);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 16.
+	 * @작성자  : 문태환
+	 * @내용 	: 결제정보 인설트
+	 * @param plist
+	 * @return
+	 */
+	public int payInsert(ArrayList<Pay> plist) {
+		  Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("plist", plist);
+		return sqlSession.insert("cartMapper.payInsert",map);
 	}
 
 }

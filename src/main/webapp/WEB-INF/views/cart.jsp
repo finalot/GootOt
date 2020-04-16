@@ -677,7 +677,7 @@ margin-right: 3%;
 					if(pro_cart.checked==true){
 			     			sum += Number(sumprice[i].value);
 			}
-			}
+		}
 		    $('#sumprice').text(sum);
 
 			$('#allprice2').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
@@ -827,18 +827,27 @@ $('#delivery').click(function(){
 		var ord_phone = ($('#mobile1-1').val()+"-"+$('#mobile2-1').val()+"-"+ $('#mobile3-1').val());
 		var ord_address = ($('#zipCode-1').val()+","+$('#address1-1').val()+","+$('#address2-1').val());
 		var ord_message = $('#omessage').val();
-	
+		
+		var pay_usedcp =  $('#pay_usedcp').val();
+		var pay_point = $('#point').val(); 
+		var pay_category = $('input[name="pay_category"]:checked').val();
+		
+		var coupon_price = $('#coupon-price').text();
 		
 	 	var prdtArr = new Array();
 	 	var sizeArr = new Array();
 	 	var colorArr = new Array();
 	 	var countArr = new Array();
-
+		var sumpriceArr = new Array();
+		
+		
 	   var pro_check = document.getElementsByName('pro_check');
 	   var prdt_no = document.getElementsByName('prdt_no');
 	   var ord_size = document.getElementsByName('ord_size');
 	   var ord_color = document.getElementsByName('ord_color');
 	   var ord_count = document.getElementsByName('ord_count');
+	   
+	   var sumprice = document.getElementsByName('sumprice');
 	   
 	   
 				 var count=0;
@@ -849,12 +858,18 @@ $('#delivery').click(function(){
 						 sizeArr[count] = ord_size[i].value
 						 colorArr[count] = ord_color[i].value
 						 countArr[count] = ord_count[i].value
+						 sumpriceArr[count] = sumprice[i].value;
+						 
+						 
 						 count++;
 					
 					 }
 				 }
-			
- 	location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+"&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+"&colorArr="+colorArr+"&countArr="+countArr;
+			console.log(sumpriceArr);
+  location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+
+		 "&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+
+		 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
+		 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price; 
 		
  	});
 		
@@ -901,17 +916,31 @@ $('#delivery').click(function(){
 				    			
 				    			var ord_receiver =$('#userName-1').val();
 				    			var ord_phone = ($('#mobile1-1').val()+"-"+$('#mobile2-1').val()+"-"+ $('#mobile3-1').val());
-				    			var ord_address = ($('#zipCode-1').val()+","+$('#address1-1')+","+$('#address2-1').val());
+				    			var ord_address = ($('#zipCode-1').val()+","+$('#address1-1').val()+","+$('#address2-1').val());
 				    			var ord_message = $('#omessage').val();
+				    			
+				    			var pay_usedcp =  $('#pay_usedcp').val();
+				    			var pay_point = $('#point').val(); 
+				    			var pay_category = $('input[name="pay_category"]:checked').val();
+				    			
+				    			var coupon_price = $('#coupon-price').text();
 				    			
 				    		 	var prdtArr = new Array();
 				    		 	var sizeArr = new Array();
 				    		 	var colorArr = new Array();
 				    		 	var countArr = new Array();
-
+				    			var sumpriceArr = new Array();
+				    			
+				    			
 				    		   var pro_check = document.getElementsByName('pro_check');
 				    		   var prdt_no = document.getElementsByName('prdt_no');
-
+				    		   var ord_size = document.getElementsByName('ord_size');
+				    		   var ord_color = document.getElementsByName('ord_color');
+				    		   var ord_count = document.getElementsByName('ord_count');
+				    		   
+				    		   var sumprice = document.getElementsByName('sumprice');
+				    		   
+				    		   
 				    					 var count=0;
 				    					 for(var i=0;i<pro_check.length;i++){
 				    						 
@@ -920,14 +949,18 @@ $('#delivery').click(function(){
 				    							 sizeArr[count] = ord_size[i].value
 				    							 colorArr[count] = ord_color[i].value
 				    							 countArr[count] = ord_count[i].value
-											
+				    							 sumpriceArr[count] = sumprice[i].value;
+				    							 
+				    							 
 				    							 count++;
 				    						
 				    						 }
 				    					 }
-				    				
-	location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+"&ord_address="+
-							ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+"&colorArr="+colorArr+"&countArr="+countArr;
+				    				console.log(sumpriceArr);
+				    	  location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+
+				    			 "&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+
+				    			 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
+				    			 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price; 
 	 			    			
 				    		} else {
 				    		

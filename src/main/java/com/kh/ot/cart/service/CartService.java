@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.cart.vo.Pay;
 
 public interface CartService {
 
@@ -44,5 +45,14 @@ public interface CartService {
 	 * @return
 	 */
 	int cartInsert(ArrayList<Ord> olist);
+
+	/**
+	 * @작성일  : 2020. 4. 16.
+	 * @작성자  : 문태환
+	 * @내용 	: pay 결제정보 인설트
+	 * @param plist
+	 * @return
+	 */
+	int payInsert(ArrayList<Pay> plist);
 
 }
