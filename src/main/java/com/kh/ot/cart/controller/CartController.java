@@ -73,15 +73,18 @@ public class CartController extends HttpServlet {
 	 * @return
 	 */
 	@RequestMapping("CartDeleteProduct.do") 
-	public String CartDeleteProduct(int ca_no, HttpServlet request) {
+	public void CartDeleteProduct(int[] checkArr) {
 		
-		int result = cService.CartDeleteProduct(ca_no);
+		System.out.println(checkArr[0]);
+		System.out.println(checkArr[1]);
+		
+		//int result = cService.CartDeleteProduct(ca_no);
 
-		if(result >0) {
+		/*if(result >0) {
 			return "redirect:cartbutton.do";
 		} else {
 			return "에러다";
-		}
+		}*/
 		
 	}
 	

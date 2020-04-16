@@ -118,7 +118,7 @@ margin-right: 3%;
 							
 							
 							<input type="hidden" name="sumprice" value="${c.prdt_sumprice }">
-							<input type="hidden" name="ca_no" value="${c.ca_no }">										
+							<input type="hidden" class="ca_no" name="ca_no" value="${c.ca_no }">										
 							</c:forEach>
 
 					</table>
@@ -1031,26 +1031,48 @@ $('.close').click(function(){
 }
   */
  
+/*   
+  $('.pro_check').click(function(){
+  		
+	var pro_check = document.getElementsByName('pro_check');
+	
+	if()
+	  	$(this).parents('tr').find('.ca_no').val();
+  
+  })
+   */
+  
   $("#delete_product").click(function() {
-	 var confirm = alert("삭제하시겠습니까?");
 	 
-	 
-	 if(confirm) {
+	  
+	 if(confirm("삭제하시겠습니까?") == true) {
+
 		 var checkArr = new Array();
-		 var ca_no = $('#ca_no').val()
+		 var pro_check = document.getElementsByName('pro_check');
+		 var ca_no = document.getElementsByName('ca_no');
 		 
-		 $("input[name='pro_check']:checked").each(function() {
+		 var count=0;
+		 for(var i=0;i<pro_check.length;i++){
+			 if(pro_check[i].checked ==true){
+				 
+				  checkArr[count] = ca_no[i].value
+				 count++;
+			 }
+		 }					
+		  console.log(checkArr);
+		 
+	/* 	  $("input[name='pro_check']:checked").each(function() {
 			 ca_no.push($(this).attr("data-cartNum"))
-		 });
+		 }); */
 		 
 		 $.ajax({
 			url : "CartDeleteProduct.do",
-			type : "post",
-			data : { ca_no : ca_no},
+			traditional : true,
+			data : { 'checkArr' : checkArr},
 			success : function() {
 				location.href = "cartbutton.do";
 			}
-		 });
+		 }); 
 	 } 
 	 
 	 
