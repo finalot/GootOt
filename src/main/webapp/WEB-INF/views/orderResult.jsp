@@ -117,7 +117,7 @@
 					 <li style="position: relative;left: 553px;top: 58px;">
 					 <span id="idMsg4" style="font-weight:600;">${o.ord_no }</span></li>
            			 <li><span id="idMsg4" style="font-weight:600;position: relative;left: 551px;top: 54px;">
-           			 주문일자 : <span>2020-03-15 20:23:05</span></li>
+           			 주문일자 : <span id="today">2020-03-15 20:23:05</span></li>
        		 </ul>
 		</div>
 		
@@ -421,6 +421,27 @@
 	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+	<script>
+	$(function(){
+		
+		var today = new Date();   
+		var year = today.getFullYear();
+		var month = (today.getMonth()+1);
+		var day  = today.getDate();
+		var hours = today.getHours(); // 시
+		var minutes = today.getMinutes();  // 분
+		  var ampm = hours >= 12 ? 'pm' : 'am';
+		  hours = hours % 12;
+		  hours = hours ? hours : 12; // the hour '0' should be '12'
+		  minutes = minutes < 10 ? '0'+minutes : minutes;
+		  var strTime = year+'-'+month+'-'+day+' '+ampm+' '+hours +':' + minutes;
+		  
+		  $('#today').text(strTime);
+		
+	})
+	
+	
+	</script>
 	<script type="text/javascript">
 		$(".selection-1").select2({
 			minimumResultsForSearch: 20,
@@ -531,6 +552,8 @@
 			        $('input[name="pro_check"]').prop('checked', checked);
 
 			    });
+			    
+			    
 	
 		 
 	</script>

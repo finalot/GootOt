@@ -68,8 +68,10 @@ public class CartDao {
 		return sqlSession.insert("cartMapper.cartInsert",map);
 	}
 
+	
 	public ArrayList<Ord> selectOrderList(int mem_no) {
 		return (ArrayList)sqlSession.selectList("cartMapper.selectOrderList",mem_no);
+	}
 	/**
 	 * @작성일  : 2020. 4. 16.
 	 * @작성자  : 문태환
@@ -81,6 +83,17 @@ public class CartDao {
 		  Map<String, Object> map = new HashMap<String, Object>();
 		   map.put("plist", plist);
 		return sqlSession.insert("cartMapper.payInsert",map);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 16.
+	 * @작성자  : 우예진
+	 * @내용    : 결제 리스트 
+	 * @param p
+	 * @return
+	 */
+	public ArrayList<Pay> selectPayList(Pay p) {
+		return (ArrayList)sqlSession.selectList("cartMapper.selectPayList",p);
 	}
 
 }

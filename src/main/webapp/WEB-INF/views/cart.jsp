@@ -823,9 +823,9 @@ $('#delivery').click(function(){
 
 	$('#idMsg3').click(function(){
 		
-		location.href ="orderResult.do";
+		location.href ="orderResultView.do";
 	});
-		var ord_receiver =$('#userName-1').val();
+	/* 	var ord_receiver =$('#userName-1').val();
 		var ord_phone = ($('#mobile1-1').val()+"-"+$('#mobile2-1').val()+"-"+ $('#mobile3-1').val());
 		var ord_address = ($('#zipCode-1').val()+","+$('#address1-1').val()+","+$('#address2-1').val());
 		var ord_message = $('#omessage').val();
@@ -872,7 +872,7 @@ $('#delivery').click(function(){
 		 "&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+
 		 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
 		 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price; 
-		
+		 */
  	
 		
 		 /*  if($('#pay2').prop('checked') == true){

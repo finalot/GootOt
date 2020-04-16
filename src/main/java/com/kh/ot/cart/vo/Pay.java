@@ -12,6 +12,7 @@ public class Pay {
 	private int pay_usedcp; //사용쿠폰번호
 	private int pay_point; //사용적립금
 	private String pay_yn; // 결제완료여부
+	private String prdt_no; // 상품번호(문자열)
 	
 	public Pay() {
 	}
@@ -91,6 +92,16 @@ public class Pay {
 
 	public void setPay_yn(String pay_yn) {
 		this.pay_yn = pay_yn;
+	}
+	
+	
+
+	public String getPrdt_no() {
+		return prdt_no;
+	}
+
+	public void setPrdt_no(String prdt_no) {
+		this.prdt_no = prdt_no;
 	}
 
 	@Override

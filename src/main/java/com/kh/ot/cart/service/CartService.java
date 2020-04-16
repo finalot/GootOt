@@ -55,12 +55,21 @@ public interface CartService {
 	 */
 	ArrayList<Ord> selectOrderList(int mem_no);
 
-	
+	/**
 	 * @작성자  : 문태환
 	 * @내용 	: pay 결제정보 인설트
 	 * @param plist
 	 * @return
 	 */
 	int payInsert(ArrayList<Pay> plist);
+
+	/**
+	 * @작성일  : 2020. 4. 16.
+	 * @작성자  : 우예진
+	 * @내용    : 결제정보 리스트
+	 * @param p
+	 * @return
+	 */
+	ArrayList<Pay> selectPayList(Pay p);
 
 }
