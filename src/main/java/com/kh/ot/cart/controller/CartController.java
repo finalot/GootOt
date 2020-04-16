@@ -165,10 +165,9 @@ public class CartController extends HttpServlet {
 		}
 		System.out.println(plist);
 		int result = cService.cartInsert(olist);
-		
-		int result2 = cService.payInsert(plist);
+	
 		if(result > 0) {
-			
+			int result2 = cService.payInsert(plist);
 			return null;
 		}else {
 			return null;
