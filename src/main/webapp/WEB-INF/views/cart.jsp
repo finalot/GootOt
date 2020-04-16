@@ -126,7 +126,7 @@ margin-right: 3%;
 
 
 			<!-- 선택상품삭제 -->
-			<a id="delete_product" data-cartNum="${c.ca_no }"
+			<a id="delete_product" 
 						class="more yg_btn_24 yg_btn3" style="top:10px; cursor: pointer;left:1132px;">선택상품삭제</a>
 
 

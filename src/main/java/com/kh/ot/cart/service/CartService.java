@@ -26,14 +26,15 @@ public interface CartService {
 	 */
 	ArrayList<Coupon> selectCouponList(int mem_no);
 
+
 	/**
-	 * @작성일  : 2020. 4. 15.
+	 * @작성일  : 2020. 4. 16.
 	 * @작성자  : 우예진
-	 * @내용    : cart 선택상품삭제
-	 * @param ca_no
+	 * @내용    : cart 상품 삭제
+	 * @param checkArr
 	 * @return
 	 */
-	int CartDeleteProduct(int ca_no);
+	int deleteCart(ArrayList<Cart> noArr);
 
 	/**
 	 * @작성일  : 2020. 4. 16.
