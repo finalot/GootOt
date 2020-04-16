@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
@@ -93,6 +94,20 @@ public class MypageDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList) sqlSession.selectList("mypageMapper.selectBoardList", memNo, rowBounds);
+	}
+
+	public int SearchListCount(SearchCondition sc) {
+		
+		System.out.println(sc);
+		return sqlSession.selectOne("mypageMapper.SearchListCount", sc);
+	}
+
+	public ArrayList<MyBoard> selectSearchList(PageInfo pi, SearchCondition sc) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectSearchList", sc, rowBounds);
 	}
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.common.Pagination;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
@@ -233,7 +234,12 @@ public class MypageController {
 		
 		int memNo = m.getMemNo();
 		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
 		int listCount = mpService.getListCount(memNo);
+		
 		
 		System.out.println("listCount : " + listCount);
 		
@@ -243,6 +249,8 @@ public class MypageController {
 		
 		System.out.println("list : " + list);
 
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
    		mv.addObject("list",list);
    		mv.addObject("pi", pi);
 		mv.setViewName("mypage_board");
@@ -355,6 +363,51 @@ public class MypageController {
 	@RequestMapping("mBoard_adminmodify.do")
 	public String mBoard_Adminmodify() {
 		return "mypage_board_adminmodify";
+	}
+	
+	@RequestMapping("mBoardsearch.do")
+	public ModelAndView mBoardsearch(ModelAndView mv, HttpSession session,
+									@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage, 
+									String search_key,String search) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		SearchCondition sc = new SearchCondition();
+		sc.setSearch_key(search_key);
+		sc.setSearch(search);
+		sc.setMemno(memNo);
+		
+		System.out.println(sc);
+		
+		if(search_key.equals("writer")) {
+			sc.setWriter(search);
+		} else if(search_key.equals("title")) {
+			sc.setTitle(search);
+		}
+		
+		int listCount = mpService.SearchListCount(sc);
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = sc.getPageInfo(currentPage, listCount);
+		
+		ArrayList<MyBoard> list = mpService.selectSearchList(pi, sc);
+		
+		System.out.println("list : " + list);
+
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+   		mv.addObject("list",list);
+   		mv.addObject("pi", pi);
+		mv.setViewName("mypage_board");
+		
+		return mv;
 	}
 }
 	
