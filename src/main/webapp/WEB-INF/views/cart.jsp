@@ -112,14 +112,11 @@ margin-right: 3%;
 							<td class="column-7" style="padding-left: 40px;">기본배송</td>
 							<td class="column-8"><font class="format-money">2500</font> won</td>
 							<td class="column-5"><font class="format-money">${c.prdt_sumprice }</font> won</td>
-							<td class="column-5">
-
-
 							<input type="hidden" name="sumprice" value="${c.prdt_sumprice }">
 							<input type="hidden"class="ca_no"  name="ca_no" value="${c.ca_no }">										
 							<input type="hidden" name="prdt_no" value="${c.prdt_no }">
-							<input type="hidden" name="ord_size" value="${c.prdt_color }">
-							<input type="hidden" name="ord_color" value="${c.prdt_size }">
+							<input type="hidden" name="ord_color" value="${c.prdt_color }">
+							<input type="hidden" name="ord_size" value="${c.prdt_size }">
 							<input type="hidden" name="ord_count" value="${c.prdt_count }">
 							</tr>
 					</c:forEach>
@@ -662,6 +659,8 @@ margin-right: 3%;
 <!--===============================================================================================-->
 	<script type="text/javascript" src="/ot/resources/vendor/select2/select2.min.js"></script>
 
+
+
 <!-- 금액관련 스크립트 -->
 	<script>
 
@@ -777,7 +776,7 @@ margin-right: 3%;
 	  //폰번호 잘라서 정보 뿌리기
 	  "<c:forTokens items='${sessionScope.loginMember.memPhone}'  delims='-'  var='phone'>"
 	  phone[count1] = "${phone}"
-	  count1++
+	  count1++;
 	  " </c:forTokens>"
 
 	   $('#mobile2').val(phone[1])
@@ -823,10 +822,43 @@ $('#delivery').click(function(){
 
 
 	$('#idMsg3').click(function(){
+		
+		var ord_receiver =$('#userName-1').val();
+		var ord_phone = ($('#mobile1-1').val()+"-"+$('#mobile2-1').val()+"-"+ $('#mobile3-1').val());
+		var ord_address = ($('#zipCode-1').val()+","+$('#address1-1').val()+","+$('#address2-1').val());
+		var ord_message = $('#omessage').val();
+	
+		
+	 	var prdtArr = new Array();
+	 	var sizeArr = new Array();
+	 	var colorArr = new Array();
+	 	var countArr = new Array();
 
-
-
-		 if($('#pay2').prop('checked') == true){
+	   var pro_check = document.getElementsByName('pro_check');
+	   var prdt_no = document.getElementsByName('prdt_no');
+	   var ord_size = document.getElementsByName('ord_size');
+	   var ord_color = document.getElementsByName('ord_color');
+	   var ord_count = document.getElementsByName('ord_count');
+	   
+	   
+				 var count=0;
+				 for(var i=0;i<pro_check.length;i++){
+					 
+					 if(pro_check[i].checked ==true){
+						 prdtArr[count] = prdt_no[i].value
+						 sizeArr[count] = ord_size[i].value
+						 colorArr[count] = ord_color[i].value
+						 countArr[count] = ord_count[i].value
+						 count++;
+					
+					 }
+				 }
+			
+ 	location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+"&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+"&colorArr="+colorArr+"&countArr="+countArr;
+		
+ 	});
+		
+		/*  if($('#pay2').prop('checked') == true){
 			 IMP.init('imp71871253');
 		}else if($('#pay4').prop('checked') == true){
 			IMP.init('imp36292670');
@@ -866,7 +898,39 @@ $('#delivery').click(function(){
 				    			msg += '카드 승인번호 : ' + rsp.apply_num;
 
 				    			alert(msg);
+				    			
+				    			var ord_receiver =$('#userName-1').val();
+				    			var ord_phone = ($('#mobile1-1').val()+"-"+$('#mobile2-1').val()+"-"+ $('#mobile3-1').val());
+				    			var ord_address = ($('#zipCode-1').val()+","+$('#address1-1')+","+$('#address2-1').val());
+				    			var ord_message = $('#omessage').val();
+				    			
+				    		 	var prdtArr = new Array();
+				    		 	var sizeArr = new Array();
+				    		 	var colorArr = new Array();
+				    		 	var countArr = new Array();
+
+				    		   var pro_check = document.getElementsByName('pro_check');
+				    		   var prdt_no = document.getElementsByName('prdt_no');
+
+				    					 var count=0;
+				    					 for(var i=0;i<pro_check.length;i++){
+				    						 
+				    						 if(pro_check[i].checked ==true){
+				    							 prdtArr[count] = prdt_no[i].value
+				    							 sizeArr[count] = ord_size[i].value
+				    							 colorArr[count] = ord_color[i].value
+				    							 countArr[count] = ord_count[i].value
+											
+				    							 count++;
+				    						
+				    						 }
+				    					 }
+				    				
+	location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+"&ord_address="+
+							ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+"&colorArr="+colorArr+"&countArr="+countArr;
+	 			    			
 				    		} else {
+				    		
 				    			//[3] 아직 제대로 결제가 되지 않았습니다.
 				    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 				    		}
@@ -876,10 +940,10 @@ $('#delivery').click(function(){
 				        msg += '에러내용 : ' + rsp.error_msg;
 
 				        alert(msg);
-
+				        
 				    }
 				});
-	});
+	}); */
 
 	</script>
 <!-- 아임포트 결제 API -->
@@ -1037,22 +1101,7 @@ $('.close').click(function(){
 
 <script>
 <!-- 선택상품삭제 스크립트 -->
-/* function delete_product() {
-	var ca_no = $('#ca_no').val()
-	location.href="CartDeleteProduct.do?ca_no="+ca_no;
-}
-  */
 
-/*
-  $('.pro_check').click(function(){
-
-	var pro_check = document.getElementsByName('pro_check');
-
-	if()
-	  	$(this).parents('tr').find('.ca_no').val();
-
-  })
-   */
 
   $("#delete_product").click(function() {
 

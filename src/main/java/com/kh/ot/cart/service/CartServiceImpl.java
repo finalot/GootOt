@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.cart.dao.CartDao;
 import com.kh.ot.cart.vo.Cart;
+import com.kh.ot.cart.vo.Ord;
 
 
 @Service("cService")
@@ -29,5 +30,10 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public int CartDeleteProduct(int ca_no) {
 		return cDao.CartDeleteProduct(ca_no);
+	}
+
+	@Override
+	public int cartInsert(ArrayList<Ord> olist) {
+		return cDao.cartInsert(olist);
 	}
 }

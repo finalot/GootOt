@@ -49,7 +49,14 @@
 	
 	</delete>
 
-
-
+	<insert id="cartInsert">
+		<foreach  item="o" collection="olist"  index="index" 
+      separator=";" open="DECLARE BEGIN" close="; END;" >
+		INSERT INTO  ORD 
+	 	VALUES(ORD_SEQ.NEXTVAL,NULL,#{o.mem_no},#{o.prdt_no},SYSDATE,
+	 					#{o.ord_receiver},#{o.ord_phone},#{o.ord_address},#{o.ord_message},
+	 					'A',#{o.ord_size},#{o.ord_color},#{o.ord_count})
+		</foreach>
+	</insert>
 
 </mapper>

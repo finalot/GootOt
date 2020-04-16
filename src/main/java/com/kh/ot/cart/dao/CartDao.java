@@ -1,6 +1,8 @@
 package com.kh.ot.cart.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.cart.vo.Cart;
+import com.kh.ot.cart.vo.Ord;
 
 @Repository("cDao")
 public class CartDao {
@@ -39,6 +42,12 @@ public class CartDao {
 
 	public int CartDeleteProduct(int ca_no) {
 		return sqlSession.delete("cartMapper.CartDeleteProduct",ca_no);
+	}
+
+	public int cartInsert(ArrayList<Ord> olist) {
+		   Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("olist", olist);
+		return sqlSession.insert("cartMapper.cartInsert",map);
 	}
 
 }

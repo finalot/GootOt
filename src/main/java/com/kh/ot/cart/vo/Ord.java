@@ -14,7 +14,7 @@ public class Ord {
 	private String ord_status; //배송상태
 	private String ord_size; // 상품 사이즈
 	private String ord_color; //상품 컬러
-	private String ord_count; //상품 수량
+	private int ord_count; //상품 수량
 
 	public Ord() {
 		super();
@@ -22,7 +22,7 @@ public class Ord {
 
 	public Ord(int ord_no, int mem_no, int prdt_no, Date ord_date, String ord_receiver, String ord_phone,
 			String ord_address, String ord_message, String ord_status, String ord_size, String ord_color,
-			String ord_count) {
+			int ord_count) {
 		super();
 		this.ord_no = ord_no;
 		this.mem_no = mem_no;
@@ -126,11 +126,11 @@ public class Ord {
 		this.ord_color = ord_color;
 	}
 
-	public String getOrd_count() {
+	public int getOrd_count() {
 		return ord_count;
 	}
 
-	public void setOrd_count(String ord_count) {
+	public void setOrd_count(int ord_count) {
 		this.ord_count = ord_count;
 	}
 

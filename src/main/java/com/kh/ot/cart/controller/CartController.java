@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.cart.service.CartService;
 import com.kh.ot.cart.vo.Cart;
+import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.member.vo.Member;
 
 
@@ -78,6 +79,7 @@ public class CartController extends HttpServlet {
 		System.out.println(checkArr[0]);
 		System.out.println(checkArr[1]);
 		
+		
 		//int result = cService.CartDeleteProduct(ca_no);
 
 		/*if(result >0) {
@@ -88,6 +90,53 @@ public class CartController extends HttpServlet {
 		
 	}
 	
+	/**
+	 * @작성일  : 2020. 4. 16.
+	 * @작성자  : 문태환
+	 * @내용 	: 주문정보 인설트
+	 * @param mv
+	 * @param session
+	 * @param prdtArr
+	 * @param sizeArr
+	 * @param colorArr
+	 * @param countArr
+	 * @param ord_receiver
+	 * @param ord_phone
+	 * @param ord_address
+	 * @param ord_message
+	 * @return
+	 */
+	@RequestMapping("cartInsert.do")
+	public ModelAndView cartInsert(ModelAndView mv,HttpSession session,
+										int[] prdtArr, String[] sizeArr, String[] colorArr,int[] countArr,
+										String ord_receiver, String ord_phone, String ord_address,String ord_message) {
+		Member m =(Member)session.getAttribute("loginMember");
+		
+		ArrayList<Ord> olist = new ArrayList<Ord>();
+		
+		for(int i=0;i<prdtArr.length;i++) {
+			Ord o = new Ord();
+			o.setMem_no(m.getMemNo());
+			o.setPrdt_no(prdtArr[i]);
+			o.setOrd_receiver(ord_receiver);
+			o.setOrd_phone(ord_phone);
+			o.setOrd_address(ord_address);
+			o.setOrd_message(ord_message);
+			o.setOrd_size(sizeArr[i]);
+			o.setOrd_color(colorArr[i]);
+			o.setOrd_count(countArr[i]);
+
+			olist.add(o);
+		}
+		int result = cService.cartInsert(olist);
+		
+		if(result > 0) {
+			return null;
+		}else {
+			return null;
+		}
+		
 	
+	}
 
 }
