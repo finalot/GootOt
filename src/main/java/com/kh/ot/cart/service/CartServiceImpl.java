@@ -36,4 +36,9 @@ public class CartServiceImpl implements CartService{
 	public int cartInsert(ArrayList<Ord> olist) {
 		return cDao.cartInsert(olist);
 	}
+
+	@Override
+	public ArrayList<Ord> selectOrderList(int mem_no) {
+		return cDao.selectOrderList(mem_no);
+	}
 }

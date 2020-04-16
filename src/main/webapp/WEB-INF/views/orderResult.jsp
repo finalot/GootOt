@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,27 +56,38 @@
 		<br>
 		<p class="membertype" style="position: relative;left: -182px;top: 102px;">
     		<strong>
-    		<span><span class="mem_type">홍길동</span></span>
+    		<span><span class="mem_type">${loginMember.memName}</span></span>
     		</strong>
  			님은 현재 
 			<strong>
 			<span class="mem_type2" style="color:rgba(230,106,87,1);">MEMBER</span>
 			</strong>
   			입니다.
-  			<div class="xans-myshop-bankbook "><ul><li class="xans-layout-shoppinginfo "><strong class="title"><a href="/myshop/wish_list.html">WISH</a></strong>
+  			<div class="xans-myshop-bankbook "><ul><li class="xans-layout-shoppinginfo ">
+  			<strong class="title">
+  			<a>WISH</a></strong>
   			<br>
-			<strong class="data "><a href="/myshop/wish_list.html"><span id="xans_myshop_interest_prd_cnt">0개</span></a></strong>
+			<strong class="data ">
+			<a  href="${mWishlist }">
+			<span id="xans_myshop_interest_prd_cnt">0개</span></a></strong>
 			</li>
+			
                 <li>
-                    <strong class="title"><a href="/myshop/mileage/historyList.html">POINT</a></strong>
+                    <strong class="title">
+                    <a>POINT</a></strong>
                     <br>
-                    <strong class="data"><a href="/myshop/mileage/historyList.html">0원</a></strong>
+                    <strong class="data">
+                   <a href="${mPoint }">
+	                <fmt:formatNumber value="${loginMember.mem_point }" pattern="#,###"/>원</a>
+                    </strong>
                 </li>
                 <li class="etc ">
-                    <strong class="title"><a href="/myshop/coupon/coupon.html">COUPON</a></strong>
+                    <strong class="title">
+                    <a>COUPON</a></strong>
                     <br>
-                    <strong class="data"><a href="/myshop/coupon/coupon.html">0<span>개</span></a></strong>
-                    <a href="/myshop/coupon/coupon.html"></a>
+                   <strong class="data">
+	                    	<a href="${mCoupon }">${CouponCount}<span>개</span></a>
+	               </strong>
                 </li>
             </ul>
 </div>
@@ -102,7 +115,7 @@
         </p>
        		  <ul>
 					 <li style="position: relative;left: 553px;top: 58px;">
-					 <span id="idMsg4" style="font-weight:600;">주문번호 : 20200315-0006124</span></li>
+					 <span id="idMsg4" style="font-weight:600;">${o.ord_no }</span></li>
            			 <li><span id="idMsg4" style="font-weight:600;position: relative;left: 551px;top: 54px;">
            			 주문일자 : <span>2020-03-15 20:23:05</span></li>
        		 </ul>
@@ -179,55 +192,39 @@
 							<th class="column-5">Total</th>
 						</tr>
 
+						<c:forEach var="o" items="${olist }">
 						<tr class="table-row">
 						    
 							<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="//black-up.kr/web/product/medium/201910/7e87ddc2879aa1c854575447f27b6026.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
+								<img src="${o.path }${o.image}"onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
 								</div>
 							</td>
-							<td class="column-2">Men Tshirt
-							<br><span id="idMsg7">[옵션 : 블루/S/1개]</span></td>
-							<td class="column-3">29,000 won</td>
+							<td class="column-2">${o.prdt_name }
+							<br><span id="idMsg7">[옵션 : ${o.ord_color }/${o.ord_size }/${o.ord_count}개]</span></td>
+							<td class="column-3"><font id="pro-price" class="format-money">${o.ord_price }</font> won</td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
-							
 									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1"
 									style="margin-left: 31px;">
 
 								</div>
 							</td>
-							<td class="column-6"><img src="/ot/images/icons/icon-point.png" width="15px;height:15px;" 
+							<td class="column-6"><img src="/ot/resources/images/icons/icon-point.png" width="15px;height:15px;" 
 							style="position: relative;left: -5px;
-								top: -1px;">900원</td>
+								top: -1px;">3%</td>
 							<td class="column-7" style="padding-left: 40px;">기본배송</td>
-							<td class="column-8">2,500 won</td>
-							<td class="column-5">58,000 won</td>
+							<td class="column-8"><font class="format-money">2500</font> won</td>
+							<td class="column-5"><font class="format-money">${o.prdt_sumprice }</font> won</td>
+							<input type="hidden" name="sumprice" value="${o.prdt_sumprice }">
+						<%-- 	<input type="hidden"class="ca_no"  name="ca_no" value="${c.ca_no }">	 --%>									
+							<input type="hidden" name="prdt_no" value="${o.ord_no }">
+							<input type="hidden" name="ord_color" value="${o.ord_color }">
+							<input type="hidden" name="ord_size" value="${o.ord_size }">
+							<input type="hidden" name="ord_count" value="${o.ord_count }">
 						</tr>
-
-						<tr class="table-row">
-							
-							<td class="column-1">
-								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="//black-up.kr/web/product/medium/201910/7e87ddc2879aa1c854575447f27b6026.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
-								</div>
-							</td>
-							<td class="column-2">Mug Adventure
-							<br><span id="idMsg7">[옵션 : 블루/S/1개]</span></td>
-							<td class="column-3">29,000 won</td>
-							<td class="column-4">
-								<div class="flex-w bo5 of-hidden w-size17">
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1"
-									style="margin-left: 31px;">
-								</div>
-						</td>
-							<td class="column-6"><img src="/ot/images/icons/icon-point.png" width="15px;height:15px;" 
-							style="position: relative;left: -5px;
-								top: -1px;">900원</td>
-							<td class="column-7" style="padding-left: 40px;">기본배송</td>
-							<td class="column-8">2,500 won</td>
-							<td class="column-5">58,000 won</td>
-						</tr>
+						
+				</c:forEach>
 					</table>
 				</div>
 			</div>
@@ -236,7 +233,7 @@
 			
 
 			<!-- Total -->
-			<h3 class=" " style="position: relative;font-size: 12px;font-weight: 600; top:63px;left:-48px;">
+			<h3 class=" " style="position: relative;font-size: 12px;font-weight: 600; top:73px;left:-48px;">
 			결제 예정 금액</h3><br>
  
 			<div class="totalArea"style="display:flex;margin-top: 3%;">
@@ -271,9 +268,9 @@
 			    		<tr>
 			    		
 			    			<td class="price">
-			    			<span class="m-text21 w-size20 w-full-sm"
-			    			style="position: relative;left: 143px;">
-						58,000 won
+			    			<span class="m-text21 w-size20 w-full-sm">
+						<font id="allprice2" class="format-money"></font> won
+					</span>
 					</span>
 			    		</td>
 			    		
@@ -282,9 +279,9 @@
 						</td>	
 
 						 	<td class="total-price">
-						 
+						 	<strong>=</strong>
 						 	<span class="m-text21 w-size20 w-full-sm">
-						58,000 <span id="m-text21">won</span>
+						<font id="resultPrice" name="resultPrice" class="format-money"></font> <span id="m-text21">won</span>
 					</span>
 					</td>
 						 	
@@ -319,7 +316,7 @@
     					background-color: #fafafa;">
 						<span id="idMsg4">받으시는분</span></th>
 						<td>
-						<span id="idMsg13">홍길동</span>
+						<span id="idMsg13">${o.ord_receiver}</span>
 						</td>	
 					</tr>
 					
@@ -348,7 +345,7 @@
     					background-color: #fafafa;">
 						<span id="idMsg4">주소</span></th>
 						<td style="border-top: 1px solid #ddd;">
-						<span id="idMsg13">서울시 강남구 테헤란로</span>
+						<span id="idMsg13">${loginMember.memAddress}</span>
 						</td>	
 					</tr>
 					
@@ -362,7 +359,7 @@
     					background-color: #fafafa;">
 						<span id="idMsg4">휴대전화</span></th>
 						<td style="border-top: 1px solid #ddd;">
-						<span id="idMsg13">010-1234-5678</span>
+						<span id="idMsg13">${loginMember.memPhone}</span>
 						</td>	
 					</tr>
 					

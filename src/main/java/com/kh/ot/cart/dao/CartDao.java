@@ -54,10 +54,21 @@ public class CartDao {
 		return sqlSession.delete("cartMapper.deleteCart",map);
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 16.
+	 * @작성자  : 문태환
+	 * @내용    : cart insert
+	 * @param olist
+	 * @return
+	 */
 	public int cartInsert(ArrayList<Ord> olist) {
 		   Map<String, Object> map = new HashMap<String, Object>();
 		   map.put("olist", olist);
 		return sqlSession.insert("cartMapper.cartInsert",map);
+	}
+
+	public ArrayList<Ord> selectOrderList(int mem_no) {
+		return (ArrayList)sqlSession.selectList("cartMapper.selectOrderList",mem_no);
 	}
 
 }

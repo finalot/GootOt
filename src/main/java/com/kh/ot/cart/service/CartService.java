@@ -45,4 +45,13 @@ public interface CartService {
 	 */
 	int cartInsert(ArrayList<Ord> olist);
 
+	/**
+	 * @작성일  : 2020. 4. 16.
+	 * @작성자  : 우예진
+	 * @내용    : 주문결과창 값 뿌려주기
+	 * @param mem_no
+	 * @return
+	 */
+	ArrayList<Ord> selectOrderList(int mem_no);
+
 }

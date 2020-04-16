@@ -148,5 +148,42 @@ public class CartController extends HttpServlet {
 		
 	
 	}
+	
+	/**
+	 * @작성일  : 2020. 4. 16.
+	 * @작성자  : 우예진
+	 * @내용    : 주문후 결과창 페이지 이동
+	 * @return
+	 */
+	@RequestMapping("orderResult.do")
+	public String orderResult() {
+		
+		return "orderResult";
+	}
+	
+	@RequestMapping("orderResultView.do")
+	public ModelAndView orderResultView(ModelAndView mv,HttpSession session) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		int mem_no = m.getMemNo();
+		
+		ArrayList<Cart> list = cService.selectList(mem_no);
+		ArrayList<Coupon> clist = cService.selectCouponList(mem_no);
+		ArrayList<Ord> olist = cService.selectOrderList(mem_no);
+		
+		System.out.println("list:"+list);
+		System.out.println("clist: " + clist);
+		System.out.println("olist: " + olist);
+
+   		mv.addObject("list",list);
+   		mv.addObject("clist", clist);
+   		mv.addObject("olist", olist);
+   		mv.setViewName("cart");
+
+   		return mv; 
+	}
+	
+	
+	
 
 }

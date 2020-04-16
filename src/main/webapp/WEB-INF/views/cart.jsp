@@ -823,42 +823,10 @@ $('#delivery').click(function(){
 
 	$('#idMsg3').click(function(){
 		
-		var ord_receiver =$('#userName-1').val();
-		var ord_phone = ($('#mobile1-1').val()+"-"+$('#mobile2-1').val()+"-"+ $('#mobile3-1').val());
-		var ord_address = ($('#zipCode-1').val()+","+$('#address1-1').val()+","+$('#address2-1').val());
-		var ord_message = $('#omessage').val();
-	
+		location.href ="orderResult.do";
+	});
 		
-	 	var prdtArr = new Array();
-	 	var sizeArr = new Array();
-	 	var colorArr = new Array();
-	 	var countArr = new Array();
-
-	   var pro_check = document.getElementsByName('pro_check');
-	   var prdt_no = document.getElementsByName('prdt_no');
-	   var ord_size = document.getElementsByName('ord_size');
-	   var ord_color = document.getElementsByName('ord_color');
-	   var ord_count = document.getElementsByName('ord_count');
-	   
-	   
-				 var count=0;
-				 for(var i=0;i<pro_check.length;i++){
-					 
-					 if(pro_check[i].checked ==true){
-						 prdtArr[count] = prdt_no[i].value
-						 sizeArr[count] = ord_size[i].value
-						 colorArr[count] = ord_color[i].value
-						 countArr[count] = ord_count[i].value
-						 count++;
-					
-					 }
-				 }
-			
- 	location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+"&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+"&colorArr="+colorArr+"&countArr="+countArr;
-		
- 	});
-		
-		/*  if($('#pay2').prop('checked') == true){
+		 /*  if($('#pay2').prop('checked') == true){
 			 IMP.init('imp71871253');
 		}else if($('#pay4').prop('checked') == true){
 			IMP.init('imp36292670');
@@ -899,36 +867,8 @@ $('#delivery').click(function(){
 
 				    			alert(msg);
 				    			
-				    			var ord_receiver =$('#userName-1').val();
-				    			var ord_phone = ($('#mobile1-1').val()+"-"+$('#mobile2-1').val()+"-"+ $('#mobile3-1').val());
-				    			var ord_address = ($('#zipCode-1').val()+","+$('#address1-1')+","+$('#address2-1').val());
-				    			var ord_message = $('#omessage').val();
-				    			
-				    		 	var prdtArr = new Array();
-				    		 	var sizeArr = new Array();
-				    		 	var colorArr = new Array();
-				    		 	var countArr = new Array();
-
-				    		   var pro_check = document.getElementsByName('pro_check');
-				    		   var prdt_no = document.getElementsByName('prdt_no');
-
-				    					 var count=0;
-				    					 for(var i=0;i<pro_check.length;i++){
-				    						 
-				    						 if(pro_check[i].checked ==true){
-				    							 prdtArr[count] = prdt_no[i].value
-				    							 sizeArr[count] = ord_size[i].value
-				    							 colorArr[count] = ord_color[i].value
-				    							 countArr[count] = ord_count[i].value
-											
-				    							 count++;
-				    						
-				    						 }
-				    					 }
-				    				
-	location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+"&ord_address="+
-							ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+"&colorArr="+colorArr+"&countArr="+countArr;
 	 			    			
+				    		
 				    		} else {
 				    		
 				    			//[3] 아직 제대로 결제가 되지 않았습니다.
@@ -943,8 +883,8 @@ $('#delivery').click(function(){
 				        
 				    }
 				});
-	}); */
-
+	}); 
+ */
 	</script>
 <!-- 아임포트 결제 API -->
 

@@ -25,6 +25,30 @@
 		<result property ="cpName" column="CP_NAME"/>
 		<result property="cpDiscount" column="CP_DISCOUNT"/>
 	</resultMap>
+	
+	
+	<resultMap type="Ord" id="ordResultSet">
+		<id property="ord_no" column="ORD_NO"/>
+		<result property="ord_detailno" column="ORD_DETAILNO"/>
+		<result property="mem_no" column="MEM_NO"/>
+		<result property="prdt_no" column="PRDT_NO"/>
+		<result property="ord_date" column="ORD_DATE"/>
+		<result property="ord_receiver" column="ORD_RECEIVER"/>
+		<result property="ord_phone" column="ORD_PHONE"/>
+		<result property="ord_address" column="ORD_ADDRESS"/>
+		<result property="ord_message" column="ORD_MESSAGE"/>
+		<result property="ord_status" column="ORD_STATUS"/>
+		<result property="ord_size" column="ORD_SIZE"/>
+		<result property="ord_color" column="ORD_COLOR"/>
+		<result property="ord_count" column="ORD_COUNT"/>
+		<result property="path" column="PRDT_IMAGE_PATH"/>
+		<result property="image" column="PRDT_IMAGE"/>
+		<result property="prdt_name" column="PRDT_NAME"/>
+		<result property="prdt_price" column="PRDT_PRICE"/>
+		<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
+		
+	
+	</resultMap>
 
 	<select id="selectList" parameterType="_int" resultMap="cartResultSet">
 	SELECT * 
@@ -66,5 +90,14 @@
 	 					'A',#{o.ord_size},#{o.ord_color},#{o.ord_count})
 		</foreach>
 	</insert>
+	
+	<select id="selectOrderList" parameterType="_int" resultMap="ordResultSet">
+	SELECT *
+	FROM ORD O
+	JOIN PRDT P ON (O.PRDT_NO = P.PRDT_NO)
+	WHERE O.MEM_NO = #{mem_no} 
+	AND O.ORD_STATUS = 'A'
+	
+	</select>
 
 </mapper>
