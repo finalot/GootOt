@@ -37,4 +37,8 @@ public class CartDao {
 		return (ArrayList)sqlSession.selectList("cartMapper.selectCouponList",mem_no);
 	}
 
+	public int CartDeleteProduct(int ca_no) {
+		return sqlSession.delete("cartMapper.CartDeleteProduct",ca_no);
+	}
+
 }

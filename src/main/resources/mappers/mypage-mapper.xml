@@ -27,6 +27,14 @@
 		<result property="cpdiscount" column="CP_DISCOUNT"/>
 	</resultMap>
 	
+	<resultMap id="MyBoardResultSet" type="MyBoard">
+		<id property="bno" column="BNO"/>
+		<result property="memno" column="MEM_NO"/>
+		<result property="qna_no" column="QNA_NO"/>
+		<result property="b_cate_no" column="B_CATE_NO"/>
+		<result property="b_date" column="B_DATE"/>
+	</resultMap>
+	
 	<!-- 임시 resultmap (적립금) -->
 	<!-- <resultMap id="memberResultSet11" type="Member">
 			<id property="memNo" column="MEM_NO"/>
@@ -123,4 +131,19 @@
 		SET MEM_POINT=#{mem_point}
 		WHERE MEM_NO=#{memNo}
 	</update>
+	
+	<select id="selectBoardListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM QNA
+		WHERE MEM_NO=#{memNo}
+	</select>
+	
+	<select id="selectBoardList" resultMap="MyBoardResultSet">
+		SELECT *
+		FROM QNA
+		WHERE MEM_NO=#{memNo}
+	</select>
+	
+	
+	
 </mapper>

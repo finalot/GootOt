@@ -41,6 +41,13 @@
 	WHERE CM.MEM_NO = #{mem_no}
 	
 	</select>
+	
+	<delete id="CartDeleteProduct" parameterType="_int">
+		DELETE 
+		FROM CRT
+		WHERE CA_NO=#{ca_no}
+	
+	</delete>
 
 
 
