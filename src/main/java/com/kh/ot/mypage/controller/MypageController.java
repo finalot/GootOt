@@ -405,6 +405,7 @@ public class MypageController {
 		mv.addObject("PointCount", point);
    		mv.addObject("list",list);
    		mv.addObject("pi", pi);
+   		mv.addObject("sc",sc);
 		mv.setViewName("mypage_board");
 		
 		return mv;

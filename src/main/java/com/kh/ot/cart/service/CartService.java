@@ -70,6 +70,6 @@ public interface CartService {
 	 * @param p
 	 * @return
 	 */
-	ArrayList<Pay> selectPayList(Pay p);
+	ArrayList<Pay> selectPayList(ArrayList<Pay> list);
 
 }

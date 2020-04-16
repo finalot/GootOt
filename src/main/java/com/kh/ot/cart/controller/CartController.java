@@ -165,12 +165,15 @@ public class CartController extends HttpServlet {
 		}
 		System.out.println(plist);
 		int result = cService.cartInsert(olist);
-
-
-		if(result > 0) {
+		System.out.println(result);
+		if(result > -2) {
 			int result2 = cService.payInsert(plist);
-			return "redirect:orderResultView.do?prdtArr="+prdtArr;
+			session.setAttribute("olist", olist);
+			session.setAttribute("plist", plist);
+			return "redirect:orderResultView.do?";
+
 		}else {
+			
 			return null;
 		}
 
@@ -192,44 +195,45 @@ public class CartController extends HttpServlet {
 	@RequestMapping("orderResultView.do")
 	public ModelAndView orderResultView(ModelAndView mv,HttpSession session) {
 
-		Member m = (Member)session.getAttribute("loginMember");
-		int mem_no = m.getMemNo();
-		String prdt_no = "";
-
-		int prdtArr[] = new int[2];
-
-		prdtArr[0] = 11002;
-		prdtArr[1] = 11002;
-
-		for(int i=0;i<prdtArr.length;i++) {
-			if(i == prdtArr.length-1) {
-				prdt_no += prdtArr[i];
-			}else {
-				prdt_no += prdtArr[i]+",";
-			}
-		}
-		Pay p = new Pay();
-
-		p.setMem_no(m.getMemNo());
-		p.setPrdt_no(prdt_no);
-
-		ArrayList<Pay> plist = cService.selectPayList(p);
-
-
-		ArrayList<Cart> list = cService.selectList(mem_no);
-		ArrayList<Coupon> clist = cService.selectCouponList(mem_no);
-		ArrayList<Ord> olist = cService.selectOrderList(mem_no);
-
-		System.out.println("list:"+list);
-		System.out.println("clist: " + clist);
-		System.out.println("olist: " + olist);
-		System.out.println("plist : " + plist);
-
-
-   		mv.addObject("list",list);
-   		mv.addObject("clist", clist);
-   		mv.addObject("olist", olist);
-   		mv.setViewName("cart");
+//		Member m = (Member)session.getAttribute("loginMember");
+//	
+//		
+//		int mem_no = m.getMemNo();
+//
+//		int prdtArr[] = new int[2];
+//
+//		prdtArr[0] = 11002;
+//		prdtArr[1] = 11002;
+//
+//		
+//		ArrayList<Pay> pplist = new ArrayList<Pay>();
+//		
+//		for(int i=0;i<prdtArr.length;i++) {
+//			Pay p = new Pay();
+//			p.setMem_no(m.getMemNo());
+//			p.setPrdt_no(prdtArr[i]);
+//		
+//			pplist.add(p);
+//		}
+//
+//
+//		ArrayList<Pay> plist = cService.selectPayList(pplist);
+//
+//
+//		ArrayList<Cart> list = cService.selectList(mem_no);
+//		ArrayList<Coupon> clist = cService.selectCouponList(mem_no);
+//		ArrayList<Ord> olist = cService.selectOrderList(mem_no);
+//
+//		System.out.println("list:"+list);
+//		System.out.println("clist: " + clist);
+//		System.out.println("olist: " + olist);
+//		System.out.println("plist : " + plist);
+//
+//
+//   		mv.addObject("list",list);
+//   		mv.addObject("clist", clist);
+//   		mv.addObject("olist", olist);
+   		mv.setViewName("orderResult");
 
    		return mv;
 	}

@@ -326,7 +326,7 @@ a{
                         <b>${ p }</b> &nbsp;&nbsp;</font>
                      </c:if>
 					
-					 <c:if test="${ empty sc }">	
+					<c:if test="${ empty sc }">	
                      <c:if test="${ p ne pi.currentPage }">
                         <c:url var="pagination" value="mBoard.do">
                            <c:param name="currentPage" value="${ p }"/>

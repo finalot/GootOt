@@ -120,14 +120,18 @@
 	</insert>
 
 
-	<select id="selectPayList" parameterType="Pay" resultMap="payResultSet">
+	<select id="selectPayList" parameterType="java.util.Map" resultMap="payResultSet">
 		SELECT *
 		FROM ORD O 
 		JOIN PAY PA ON (O.ORD_NO = PA.ORD_NO)
-		WHERE O.MEM_NO = #{mem_no} 
-		AND O.PRDT_NO IN (#{prdt_no})
+		WHERE O.MEM_NO = #{mem_no}
+		AND O.PRDT_NO IN
+		 <foreach item="p" index="index" collection="list"
+                      open="(" separator="," close=")">
+             			   #{p.prdt_no}
+        </foreach>  
 		AND O.ORD_STATUS = 'A'
-		
+
 	</select>
 
 

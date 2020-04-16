@@ -12,30 +12,30 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/themify/themify-icons.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/fonts/themify/themify-icons.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/elegant-font/html-css/style.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/fonts/elegant-font/html-css/style.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/vendor/animate/animate.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/vendor/slick/slick.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/css/main.css">
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -141,9 +141,9 @@
     					font-weight: normal;
     					background-color: #fafafa;">
 						<strong>최종결제금액</strong></th>
-						<td><span class="m-text21 w-size20 w-full-sm" style="margin-left:6px;">
-						60,500 <span id="m-text21">won</span>
-					</span>
+						<td><span class="m-text21 w-size20 w-full-sm" id="totalPrice" style="margin-left:6px;">
+										</span>
+								 <span id="m-text21">won</span>
 						</td>	
 					</tr>
 					
@@ -159,10 +159,9 @@
 						<strong>결제수단</strong></th>
 						<td style="border-top: 1px solid #ddd;">
 						<ul class="info" style="margin: 14px 1px 12px;">
-								<li id="idMsg5">무통장 입금</li>
-                                <li id="idMsg5">입금자: 홍길동. 계좌번호 : 국민은행 543001-01-454061</li>
-                                <li id="idMsg5">현금영수증 발행 : 신청안함</li>
-                                
+								<li id="pCategory"></li>
+                               <!--  <li id="idMsg5">입금자: 홍길동. 계좌번호 : 국민은행 543001-01-454061</li>
+                                <li id="idMsg5">현금영수증 발행 : 신청안함</li> -->
                             </ul>
 						</td>	
 					</tr>
@@ -202,7 +201,7 @@
 							</td>
 							<td class="column-2">${o.prdt_name }
 							<br><span id="idMsg7">[옵션 : ${o.ord_color }/${o.ord_size }/${o.ord_count}개]</span></td>
-							<td class="column-3"><font id="pro-price" class="format-money">${o.ord_price }</font> won</td>
+							<td class="column-3"><font id="pro-price" class="format-money"></font> won</td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
 									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1"
@@ -316,7 +315,7 @@
     					background-color: #fafafa;">
 						<span id="idMsg4">받으시는분</span></th>
 						<td>
-						<span id="idMsg13">${o.ord_receiver}</span>
+						<span id="ord_receiver"></span>
 						</td>	
 					</tr>
 					
@@ -345,7 +344,7 @@
     					background-color: #fafafa;">
 						<span id="idMsg4">주소</span></th>
 						<td style="border-top: 1px solid #ddd;">
-						<span id="idMsg13">${loginMember.memAddress}</span>
+						<span id="ord_address"></span>
 						</td>	
 					</tr>
 					
@@ -359,7 +358,7 @@
     					background-color: #fafafa;">
 						<span id="idMsg4">휴대전화</span></th>
 						<td style="border-top: 1px solid #ddd;">
-						<span id="idMsg13">${loginMember.memPhone}</span>
+						<span id="ord_phone"></span>
 						</td>	
 					</tr>
 					
@@ -372,7 +371,7 @@
     					font-weight: normal;
     					background-color: #fafafa;">
 						<span id="idMsg4">배송메시지</span></th>
-						<td style="border-top: 1px solid #ddd;">
+						<td id="ord_message" style="border-top: 1px solid #ddd;">
 						<!--배송메시지  내용 -->
 						</td>	
 					</tr>
@@ -413,14 +412,14 @@
 
 
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/animsition/js/animsition.min.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/bootstrap/js/popper.js"></script>
-	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/bootstrap/js/popper.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/select2/select2.min.js"></script>
 	<script>
 	$(function(){
 		
@@ -437,8 +436,33 @@
 		  var strTime = year+'-'+month+'-'+day+' '+ampm+' '+hours +':' + minutes;
 		  
 		  $('#today').text(strTime);
+		var totalPrice = 0;
+		var pCategory="";
 		
-	})
+		  "<c:forEach var ='p' items='${plist}'>"
+		  			totalPrice +=Number("${p.sumprice}")
+		  			pCategory = "${p.pay_category}"
+		  "</c:forEach>"
+		  
+		  $('#totalPrice').text(totalPrice);
+		  		if(pCategory == "card"){
+		  			$('#pCategory').text("카드 결제");
+		  		}else if(pCategory == "phone"){
+		  			$('#pCategory').text("핸드폰 결제");
+		  		}else if(pCategory == "kakaopay"){
+		  			$('#pCategory').text("카카오 페이 결제");
+		  		}else if(pCategory == "cash"){
+		  			$('#pCategory').text("무통장 입금");
+		  		}
+		  		
+	 	  "<c:forEach var ='o' items='${olist}'>"
+		  		$('#ord_receiver').text("${o.ord_receiver}");
+		  	 	 $('#ord_address').text("${o.ord_address}");
+		  	 	$('#ord_phone').text("${o.ord_phone}");
+		  	 	$('#ord_message').text("${o.ord_message}");
+		   "</c:forEach>" 
+		  
+	});
 	
 	
 	</script>

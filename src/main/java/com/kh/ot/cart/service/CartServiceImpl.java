@@ -49,7 +49,7 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public ArrayList<Pay> selectPayList(Pay p) {
-		return cDao.selectPayList(p);
+	public ArrayList<Pay> selectPayList(ArrayList<Pay> list) {
+		return cDao.selectPayList(list);
 	}
 }

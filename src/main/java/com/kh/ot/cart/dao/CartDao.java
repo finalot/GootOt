@@ -92,8 +92,10 @@ public class CartDao {
 	 * @param p
 	 * @return
 	 */
-	public ArrayList<Pay> selectPayList(Pay p) {
-		return (ArrayList)sqlSession.selectList("cartMapper.selectPayList",p);
+	public ArrayList<Pay> selectPayList(ArrayList<Pay> list) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("list", list);
+		return (ArrayList)sqlSession.selectList("cartMapper.selectPayList",map);
 	}
 
 }
