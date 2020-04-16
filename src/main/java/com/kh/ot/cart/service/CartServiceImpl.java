@@ -27,7 +27,7 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public int CartDeleteProduct(int ca_no) {
-		return cDao.CartDeleteProduct(ca_no);
+	public int deleteCart(ArrayList<Cart> noArr) {
+		return cDao.deleteCart(noArr);
 	}
 }

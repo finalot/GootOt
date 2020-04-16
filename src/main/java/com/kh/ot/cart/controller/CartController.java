@@ -3,6 +3,7 @@ package com.kh.ot.cart.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,10 +74,19 @@ public class CartController extends HttpServlet {
 	 * @return
 	 */
 	@RequestMapping("CartDeleteProduct.do") 
-	public void CartDeleteProduct(int[] checkArr) {
+	public void CartDeleteProduct(int[] checkArr,HttpServletResponse response) {
 		
-		System.out.println(checkArr[0]);
-		System.out.println(checkArr[1]);
+		ArrayList<Cart> noArr = new ArrayList<Cart>();	
+		
+		for(int i =0; i<checkArr.length;i++) {
+			Cart c = new Cart();
+			c.setCa_no(checkArr[i]);
+			noArr.add(c);
+		}
+		
+		
+		int result =  cService.deleteCart(noArr);
+		
 		
 		//int result = cService.CartDeleteProduct(ca_no);
 

@@ -42,11 +42,19 @@
 	
 	</select>
 	
-	<delete id="CartDeleteProduct" parameterType="_int">
-		DELETE 
-		FROM CRT
-		WHERE CA_NO=#{ca_no}
-	
+	<delete id="deleteCart" parameterType="java.util.Map">
+		<foreach  item="c" collection="noArr"  index="index" 
+		      separator=";" open="DECLARE BEGIN" close="; END;" >
+			DELETE FROM CRT
+			WHERE CA_NO = #{c.ca_no}
+		</foreach>
+
+	<!-- 	DELETE FROM CRT
+		<where>
+		 <foreach collection="noArr" item="noArr" open="" close="" separator="OR">		
+		  (CA_NO = #{noArr.ca_no})
+		  </foreach>
+		</where> -->
 	</delete>
 
 

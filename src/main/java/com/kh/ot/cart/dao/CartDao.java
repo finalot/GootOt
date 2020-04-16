@@ -1,6 +1,8 @@
 package com.kh.ot.cart.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +39,18 @@ public class CartDao {
 		return (ArrayList)sqlSession.selectList("cartMapper.selectCouponList",mem_no);
 	}
 
-	public int CartDeleteProduct(int ca_no) {
-		return sqlSession.delete("cartMapper.CartDeleteProduct",ca_no);
+
+	/**
+	 * @작성일  : 2020. 4. 16.
+	 * @작성자  : 우예진
+	 * @내용    : cart 상품 삭제
+	 * @param checkArr
+	 * @return
+	 */
+	public int deleteCart(ArrayList<Cart> noArr) {
+		   Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("noArr", noArr);
+		return sqlSession.delete("cartMapper.deleteCart",map);
 	}
 
 }
