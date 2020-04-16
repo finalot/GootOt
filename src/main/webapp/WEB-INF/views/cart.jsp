@@ -85,8 +85,6 @@ margin-right: 3%;
 							<th class="column-8">CHARGE</th>
 							<th class="column-5">Total</th>
 						</tr>
-
-					
 						<c:forEach var="c" items="${list }">
 							<tr class="table-row">
 							<td>
@@ -104,7 +102,6 @@ margin-right: 3%;
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
 									<input style="margin-left: 22%;" class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
-							
 								</div>
 							</td>
 							<td class="column-6"><img src="/ot/resources/images/icons/icon-point.png" width="15px;height:15px;" 
@@ -115,8 +112,12 @@ margin-right: 3%;
 							<td class="column-5"><font class="format-money">${c.prdt_sumprice }</font> won</td>
 							<input type="hidden" name="sumprice" value="${c.prdt_sumprice }">
 							<input type="hidden" name="ca_no" value="${c.ca_no }">										
-							</c:forEach>
-					
+							<input type="hidden" name="prdt_no" value="${c.prdt_no }">
+							<input type="hidden" name="ord_size" value="${c.prdt_color }">
+							<input type="hidden" name="ord_color" value="${c.prdt_size }">
+							<input type="hidden" name="ord_count" value="${c.prdt_count }">
+							</tr>
+					</c:forEach>
 					</table>
 				</div>
 			</div>
@@ -235,7 +236,7 @@ margin-right: 3%;
     					background-color: #fafafa;">
 						<strong>적립금</strong></th>
 						<td style="border-top: 1px solid #ddd;">
-						<input  type="number" step="1000" min="2000" max="${loginMember.mem_point }" name="point" id="point" size="20px;" style="margin-left: 8px; margin-top:10px;    border: 1px solid #ddd; width:146px;">
+						<input  type="number" step="1000" min="2000" max="${loginMember.mem_point }" name="pay_point" id="point" size="20px;" style="margin-left: 8px; margin-top:10px;    border: 1px solid #ddd; width:146px;">
 						<span id="idMsg5">원 </span> 
 						<a id="pointdetail" 
 						class="more yg_btn_24 yg_btn3" style="top:-1px; cursor: pointer;">적립금사용</a>
@@ -274,17 +275,17 @@ margin-right: 3%;
 			    style="border:1px solid #ddd;width: 100%;margin-right: 3%;margin-left:-4%; margin-top:2%;">
 			    
 			    <div class="method">
-			    	<input type="radio" value="cash" name="paymethod" id="pay1" checked="checked" onclick="payshow1();">
+			    	<input type="radio" value="cash" name=pay_category id="pay1" checked="checked" onclick="payshow1();">
 			    	<label for="pay1">무통장 입금</label>
 			    	
-			    	<input type="radio" value="card" name="paymethod" id="pay2" onclick="payshow2();">
+			    	<input type="radio" value="card" name="pay_category" id="pay2" onclick="payshow2();">
 			    	<label for="pay2">카드 결제</label>
 			    	
-			    	<input type="radio" value="kakaopay" name="paymethod" id="pay3" onclick="payshow3();">
+			    	<input type="radio" value="kakaopay" name="pay_category" id="pay3" onclick="payshow3();">
 			    	<label for="pay3">카카오페이(간편결제)<a href="http://www.kakao.com/kakaopay" target="_blank">
 			    	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_info2.gif" alt="info"></a></label>
 			    	
-			    	<input type="radio" value="payco" name="paymethod" id="pay4" onclick="payshow4();">
+			    	<input type="radio" value="phone" name="pay_category" id="pay4" onclick="payshow4();">
 			    	<label for="pay4">휴대폰 결제<a href="http://www.payco.com/payco/guide.nhn" target="_blank">
 			    	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_info2.gif" alt="info"></a></label>
 			    </div>
@@ -482,7 +483,8 @@ margin-right: 3%;
       필수입력사항
    </p>
 	<div style="display:flex;margin-top: 3%;">
-			    <form method="GET" name="inputForm"
+
+ <form  name="inputForm" action="cartInsert.do" class="cartInsert"
 			    style="width: 100%;margin-right: 3%;margin-left:-4%; margin-top:2%;">
         <table class="jointype3" style="height: 100%;width: 109%;">
         <tbody>
@@ -504,7 +506,7 @@ margin-right: 3%;
                       받으시는 분<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                    </th>
                 <td>
-                    <input type="text" name="userName" id="userName-1" size="20px"> 
+                    <input type="text" name="ord_receiver" id="userName-1" size="20px"> 
                 </td>
             </tr>
             
@@ -550,15 +552,13 @@ margin-right: 3%;
             	배송메시지
             	</th>
             	<td style="border-bottom:1px solid #ddd;">
-            		<textarea id="omessage" name="omessage" maxlength="255" cols="70"></textarea>
+            		<textarea id="omessage" name="ord_message" maxlength="255" cols="70"></textarea>
             	</td>
-            
-            
             </tr>
-           
 			
 			</tbody>
 		</table>
+		<input type="hidden" id="pay_usedcp" name="pay_usedcp" value="">
 	</form>
 	</div>
 	</section>
@@ -718,11 +718,19 @@ margin-right: 3%;
 		$('#minusprice2').text(Number($('#point').val())+Number($('#coupon-price').text()));
 		$('#resultPrice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val())+delivry);
  	});
+		
+	$('.mycoupon').click(function(){
+		var cpmem_no=$(this).next().val();
+		$('#pay_usedcp').val(cpmem_no);
+	})
+	
 	
 	
 	</script>
+<!-- 금액 관련 스트립트 -->
 
-	
+
+<!-- 주소관련 스크립트 -->	
 <script>
 	console.log($('#pro-price').text())
 	
@@ -779,11 +787,10 @@ $('#delivery').click(function(){
 		}
 });	
 	
-	
-	
-	
 	</script>
-	
+<!-- 주소관련 스크립트 -->	
+
+<!-- 아임포트 결제 API -->	
 	<script>
 
 	
@@ -805,7 +812,7 @@ $('#delivery').click(function(){
 				    pay_method : 'card',
 				    merchant_uid : 'merchant_' + new Date().getTime(),
 				    name : '주문명:결제테스트',
-				    amount : 60500,
+				    amount : Number($('#resultPrice').text()),
 				    buyer_email : '${sessionScope.loginMember.memEmail}',
 				    buyer_name : '${sessionScope.loginMember.memName}',
 				    buyer_tel : '${sessionScope.loginMember.memPhone}',
@@ -842,11 +849,15 @@ $('#delivery').click(function(){
 				        msg += '에러내용 : ' + rsp.error_msg;
 
 				        alert(msg);
+				        
 				    }
 				});
 	});
 	
 	</script>
+<!-- 아임포트 결제 API -->		
+	
+	
 	<script type="text/javascript">
 		$(".selection-1").select2({
 			minimumResultsForSearch: 20,
