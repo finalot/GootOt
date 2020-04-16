@@ -15,6 +15,12 @@ public class Ord {
 	private String ord_size; // 상품 사이즈
 	private String ord_color; //상품 컬러
 	private int ord_count; //상품 수량
+	private String path; // 이미지 경로
+	private String image; // 이미지
+	private String prdt_name; // 상품이름
+	private int prdt_price; // 가격
+	private int prdt_sumprice; // 총 가격
+	
 
 	public Ord() {
 		super();
@@ -133,14 +139,60 @@ public class Ord {
 	public void setOrd_count(int ord_count) {
 		this.ord_count = ord_count;
 	}
+	
+	
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public int getPrdt_price() {
+		return prdt_price;
+	}
+
+	public void setPrdt_price(int prdt_price) {
+		this.prdt_price = prdt_price;
+	}
+
+	public int getPrdt_sumprice() {
+		return prdt_sumprice;
+	}
+
+	public void setPrdt_sumprice(int prdt_sumprice) {
+		this.prdt_sumprice = prdt_sumprice;
+	}
+	
+	
+
+	public String getPrdt_name() {
+		return prdt_name;
+	}
+
+	public void setPrdt_name(String prdt_name) {
+		this.prdt_name = prdt_name;
+	}
 
 	@Override
 	public String toString() {
 		return "Ord [ord_no=" + ord_no + ", mem_no=" + mem_no + ", prdt_no=" + prdt_no + ", ord_date=" + ord_date
 				+ ", ord_receiver=" + ord_receiver + ", ord_phone=" + ord_phone + ", ord_address=" + ord_address
 				+ ", ord_message=" + ord_message + ", ord_status=" + ord_status + ", ord_size=" + ord_size
-				+ ", ord_color=" + ord_color + ", ord_count=" + ord_count + "]";
+				+ ", ord_color=" + ord_color + ", ord_count=" + ord_count + ", path=" + path + ", image=" + image
+				+ ", prdt_name=" + prdt_name + ", prdt_price=" + prdt_price + ", prdt_sumprice=" + prdt_sumprice + "]";
 	}
+
 
 	
 	

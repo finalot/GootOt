@@ -39,7 +39,17 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
+	public ArrayList<Ord> selectOrderList(int mem_no) {
+		return cDao.selectOrderList(mem_no);
+	}
+
+	@Override
 	public int payInsert(ArrayList<Pay> plist) {
 		return cDao.payInsert(plist);
+	}
+
+	@Override
+	public ArrayList<Pay> selectPayList(Pay p) {
+		return cDao.selectPayList(p);
 	}
 }

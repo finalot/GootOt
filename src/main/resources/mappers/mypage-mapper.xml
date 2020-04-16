@@ -28,11 +28,16 @@
 	</resultMap>
 	
 	<resultMap id="MyBoardResultSet" type="MyBoard">
-		<id property="bno" column="BNO"/>
+		<id property="qna_no" column="QNA_NO"/>
 		<result property="memno" column="MEM_NO"/>
-		<result property="qna_no" column="QNA_NO"/>
 		<result property="b_cate_no" column="B_CATE_NO"/>
-		<result property="b_date" column="B_DATE"/>
+		<result property="b_cate_name" column="B_CATE_NAME"/>
+		<result property="qna_date" column="QNA_DATE"/>
+		<result property="qna_writer" column="QNA_WRITER"/>
+		<result property="qna_title" column="QNA_TITLE"/>
+		<result property="qna_secure" column="QNA_SECURE"/>
+		<result property="qna_chk" column="QNA_CHK"/>
+		
 	</resultMap>
 	
 	<!-- 임시 resultmap (적립금) -->
@@ -115,7 +120,7 @@
 		FROM COUPON C
 		JOIN COUPON_MEM CM
 		ON (C.CP_NO = CM.CP_NO)
-		WHERE MEM_NO=#{memNo}
+		WHERE QNA_WRITER=#{qna_writer} AND QNA_WRITER='admin'
 		AND CP_USING='Y'
 		ORDER BY CPMEM_NO DESC
 	</select>
@@ -134,16 +139,49 @@
 	
 	<select id="selectBoardListCount" resultType="_int">
 		SELECT COUNT(*)
-		FROM QNA
-		WHERE MEM_NO=#{memNo}
+        FROM QNA Q
+        JOIN BOARD_CATEGORY MB
+        ON (Q.B_CATE_NO = MB.B_CATE_NO)
+        WHERE MEM_NO=#{memNo}
+        ORDER BY QNA_NO DESC
 	</select>
 	
 	<select id="selectBoardList" resultMap="MyBoardResultSet">
 		SELECT *
-		FROM QNA
-		WHERE MEM_NO=#{memNo}
+        FROM QNA Q
+        JOIN BOARD_CATEGORY MB
+        ON (Q.B_CATE_NO = MB.B_CATE_NO)
+        WHERE MEM_NO=#{memno}
+        ORDER BY QNA_NO DESC
 	</select>
 	
+	<select id="SearchListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM QNA Q
+		JOIN BOARD_CATEGORY MB
+		ON (Q.B_CATE_NO = MB.B_CATE_NO)
+		WHERE MEM_NO=#{memno}
+		<if test="writer != null">
+		AND Q.QNA_WRITER LIKE '%' || #{writer} || '%'
+		</if>
+		<if test="title != null">
+		AND Q.QNA_TITLE LIKE '%' || #{title} || '%'
+		</if>
+		ORDER BY QNA_NO DESC
+	</select>
 	
-	
+	<select id="selectSearchList" resultMap="MyBoardResultSet">
+		SELECT *
+		FROM QNA Q
+		JOIN BOARD_CATEGORY MB
+		ON (Q.B_CATE_NO = MB.B_CATE_NO)
+		WHERE MEM_NO=#{memno}
+		<if test="writer != null">
+		AND Q.QNA_WRITER LIKE '%' || #{writer} || '%'
+		</if>
+		<if test="title != null">
+		AND Q.QNA_TITLE LIKE '%' || #{title} || '%'
+		</if>
+		ORDER BY QNA_NO DESC
+	</select>
 </mapper>

@@ -1312,6 +1312,7 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
 	
 	int listCount = bService.SearchListCount(sc);
 	
+	System.out.println(sc);
 	PageInfo pi = sc.getPageInfo(currentPage, listCount);
 	
 	ArrayList<Board> list = bService.selectSearchList(pi,sc);

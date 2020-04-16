@@ -823,7 +823,9 @@ $('#delivery').click(function(){
 
 	$('#idMsg3').click(function(){
 		
-		var ord_receiver =$('#userName-1').val();
+		location.href ="orderResultView.do";
+	});
+	/* 	var ord_receiver =$('#userName-1').val();
 		var ord_phone = ($('#mobile1-1').val()+"-"+$('#mobile2-1').val()+"-"+ $('#mobile3-1').val());
 		var ord_address = ($('#zipCode-1').val()+","+$('#address1-1').val()+","+$('#address2-1').val());
 		var ord_message = $('#omessage').val();
@@ -870,10 +872,10 @@ $('#delivery').click(function(){
 		 "&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+
 		 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
 		 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price; 
+		 */
+ 	
 		
- 	});
-		
-		/*  if($('#pay2').prop('checked') == true){
+		 /*  if($('#pay2').prop('checked') == true){
 			 IMP.init('imp71871253');
 		}else if($('#pay4').prop('checked') == true){
 			IMP.init('imp36292670');
@@ -962,6 +964,7 @@ $('#delivery').click(function(){
 				    			 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
 				    			 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price; 
 	 			    			
+				    		
 				    		} else {
 				    		
 				    			//[3] 아직 제대로 결제가 되지 않았습니다.
@@ -976,8 +979,8 @@ $('#delivery').click(function(){
 				        
 				    }
 				});
-	}); */
-
+	}); 
+ */
 	</script>
 <!-- 아임포트 결제 API -->
 

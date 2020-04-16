@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.dao.MypageDao;
 import com.kh.ot.mypage.vo.CouponMem;
@@ -74,5 +75,15 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public ArrayList<MyBoard> selectList(PageInfo pi, int memNo) {
 		return mpDao.selectList(pi, memNo);
+	}
+
+	@Override
+	public int SearchListCount(SearchCondition sc) {
+		return mpDao.SearchListCount(sc);
+	}
+
+	@Override
+	public ArrayList<MyBoard> selectSearchList(PageInfo pi, SearchCondition sc) {
+		return mpDao.selectSearchList(pi, sc);
 	}
 }
