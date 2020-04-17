@@ -308,6 +308,7 @@ th{
     
 	<!-- <from action="ProductInsert.ad" method="post" id="productInsert"> -->
     <!-- 이벤트 내용 -->
+   <form action="ProductInsert.ad" method="post" id="ProductInsert">
    <table id="addlist" style="border: 1px dotted; background: white; font-size:13pt;">
         <tr colspan="2">
         	<td colspan="2" style="background:#dfe3e6; margin-bottom: 2%;padding-bottom: 2%;">
@@ -318,7 +319,7 @@ th{
         	<td>
 	       		대(大) : &nbsp;&nbsp;
 	       	
-	       	<select name="bdivide" id="bdivide">
+	       	<select name="upNo" id="bdivide">
 	       		<option value="">선택1(대분류)</option>
 	       		<c:forEach var="up" items="${ulist }">
 	       			<option value="${up.up_no }">${up.up_name }</option>
@@ -330,7 +331,7 @@ th{
                                     
                                     중(中) : &nbsp;&nbsp;
                                     
-            <select name="mdivide" id="mdivide">
+            <select name="downNo" id="mdivide">
 	       		<option value="">선택2(중분류)</option>
 	       	</select>	
 	       	
@@ -339,20 +340,20 @@ th{
         <tr>
         	<th><span style="color:red">*</span> 상품명</th>
         	<td>
-        		<input type="text" id="product_name">
+        		<input type="text" id="product_name" name="prdtName">
         	</td>
         </tr>
         <tr>
         	<th><span style="color:red">*</span> 가격</th>
         	<td>
-        		<input type="number" id="product_price" min="5,000" step="500" style="width:20%;">
+        		<input type="number" id="product_price" name="prdtPrice" min="5,000" step="500" style="width:20%;">
         	</td>
         </tr>
       
         <tr>
         	<th><span style="color:red">*</span> 할인가</th>
         	<td>
-        		<input type="number" id="product_sale" style="width:20%;"> &nbsp; &nbsp; %
+        		<input type="number" id="product_sale" name="prdtSale" style="width:20%;"> &nbsp; &nbsp; %
         	</td>
         </tr>
         <tr>
@@ -363,15 +364,19 @@ th{
 			<img id="titleImg" width="177px" height="200">
 			</div>
 			<div class="fileArea" id="fileArea">
-		      				<input type="file" id="thumbnailImg1"
-		      				name="thumbnailImg1" onchange="loadImg(this, 1);" />
+		      				<input type="file" id="thumbnailImg1" 
+		      				name="prdtImage" onchange="loadImg(this, 1);" />
 		     			 </div>
+        	</td>
+        	<td>
+        		<input type="hidden" name="prdtImagePath">
+        		<input type="hidden" name="prdtDetailImagePath">
         	</td>
         </tr>
         <tr>
         	<th><span style="color:red">*</span> 상세설명</th>
         	<td>
-        		<input type="file" id="descrptionImg" style="border:white 1px;">
+        		<input type="file" id="descrptionImg" name="prdtDetailImage" style="border:white 1px;">
         	</td>
         </tr>
         <tr>
@@ -417,6 +422,7 @@ th{
         	</td>
         </tr>
     </table>
+    </form>
     
 
   <div style="height: 130px;">
@@ -472,6 +478,27 @@ th{
 	<!-- 옵션설정 select -->
 	<script>
 	
+	$('#productInsertBtn').click(function(){
+		$('#ProductInsert').submit();
+		
+		if(('#bdivide')==null){
+			alert("대분류 선택해주세요")
+			return false;
+		}
+		if(('#mdivide')==null){
+			alert('중분류 선택해주세요 ');
+			return false;
+		}
+		if(('#product_name')==""){
+			alert('상품명 입력해주세요')
+			return false;
+		}
+		
+		
+		
+		return true;
+		
+	})
 	
 	function test1(){
 		var mtext = document.getElementById("mdivide_value");
@@ -688,6 +715,8 @@ th{
 				}
 				
         	"</c:forEach>"
+        	
+        	
         });
         
         $('#color-area').click(function(){
@@ -699,6 +728,8 @@ th{
         		
         	"</c:forEach>"
         }) 
+        
+        
         
      
         </script>

@@ -242,7 +242,7 @@
                    		
                         <td>
                        		<!-- <button type="button" id="prdtDeleteBtn" class="btn btn-danger" style="margin-left:20%;">삭제</button> -->
-                       		<a href="${ProductDelete }" class="btn btn-danger" style="margin-left:20%;">삭제</a>
+                       		<a href="${ProductDelete }" class="btn btn-danger" id="prdtDeleteBtn" style="margin-left:20%;">삭제</a>
                        		
                        	</td>
                    	</tr>
@@ -263,6 +263,9 @@
 	<!-- // td(class=next) 클릭시 페이지 이동 -->
 	<!-- 나중에 하기  -->
 	<script>
+	$('#prdtDeleteBtn').click(function(){
+		alert('상품이 삭제되었습니다.')
+	});
     <%--  $("td").click(function(){
     	 location.href='productListDetail.ad';
   	 var userId = $(this).parent().find('input').val();

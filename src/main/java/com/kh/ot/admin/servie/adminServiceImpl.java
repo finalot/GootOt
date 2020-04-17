@@ -99,18 +99,17 @@ public class adminServiceImpl implements adminService{
 		return adDao.DownCategoryDelete(downCategory);
 	}
 
-	@Override public int ProductInsert(Product p, Product_opt po) { 
-	  int result=0; 
-	  int presult = adDao.ProductInsert(p);
-	
-	  int poresult = 0; 
-	  int prdtNo =p.getPrdtNo();
-	
-	  if(presult>0) { 
-		  poresult=adDao.ProductOptionInsert(po, prdtNo); 
-		  result =presult * poresult; 
-	  }
-	  	return result; 
+	@Override public int ProductInsert(Product p) { 
+		/*
+		 *  주완님이 도와준 코딩
+		 * int result=0; int presult = adDao.ProductInsert(p);
+		 * 
+		 * int poresult = 0; int prdtNo =p.getPrdtNo();
+		 * 
+		 * if(presult>0) { poresult=adDao.ProductOptionInsert(po, prdtNo); result
+		 * =presult * poresult; } return result;
+		 */
+		return adDao.ProductInsert(p);
 	}
 	 
 

@@ -123,9 +123,7 @@ public interface adminService{
 	 * @작성자 : 이서현
 	 * @내용 : 상품 등록 
 	 */
-	public int ProductInsert(Product p, Product_opt po);
-
-	
+	public int ProductInsert(Product p);
 
 	/**
 	 * @작성일  : 2020. 4. 13.

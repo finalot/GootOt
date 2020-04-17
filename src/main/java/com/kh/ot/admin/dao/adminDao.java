@@ -172,23 +172,21 @@ public class adminDao {
 	/**
 	 * @작성일 : 2020. 4. 12.
 	 * @작성자 : 이서현
-	 * @내용 : 상품, 상품옵션 등록 
+	 * @내용 : 상품만 등록
 	 */
 	
 	public int ProductInsert(Product p) { 
-		return sqlSession.insert("adminMapper.ProductInsert",p); 
+		return sqlSession.insert("productMapper.ProductInsert",p); 
 	}
 	
-	public int ProductOptionInsert(Product_opt po,int prdtNo) {
-	
-		int result =0; 
-		List<Product_opt> polist = po.getOptionVOList();
-		for(Product_opt Option : polist) { 
-			Option.setPrdtNo(prdtNo);
-			result=sqlSession.insert("adminMapper.ProductOptionInsert",Option); 
-		} 
-		return result; 
-	}
+	/*
+	 * public int ProductOptionInsert(Product_opt po,int prdtNo) {
+	 * 
+	 * int result =0; List<Product_opt> polist = po.getOptionVOList();
+	 * for(Product_opt Option : polist) { Option.setPrdtNo(prdtNo);
+	 * result=sqlSession.insert("adminMapper.ProductOptionInsert",Option); } return
+	 * result; }
+	 */
 
 
 	public ArrayList<Product> ProductSelectList() {
