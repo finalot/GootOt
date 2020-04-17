@@ -332,8 +332,16 @@ font-size: 9px !important;
 					</c:if>
 					&nbsp;&nbsp; <span class="topbar-email"> . </span> &nbsp;&nbsp; <a
 						href="${joinView}" class="topbar-email"> Join </a> &nbsp;&nbsp; <span
-						class="topbar-email"> . </span> &nbsp;&nbsp; <a
-						href="${MyPage }" class="topbar-email"> MyPage </a>
+						class="topbar-email"> . </span> &nbsp;&nbsp;
+						
+						<c:if test="${ !empty sessionScope.loginMember }">
+							<a href="${MyPage }" class="topbar-email"> MyPage </a>
+						</c:if>
+						
+						<c:if test="${ empty sessionScope.loginMember }">
+							<a href='${loginView}'  class="topbar-email"> MyPage </a>
+						</c:if>
+						
 					&nbsp;&nbsp; <span class="topbar-email"> . </span> &nbsp;&nbsp; <a
 						href="notice.do" class="topbar-email"> Notice </a> &nbsp;&nbsp; <span
 						class="topbar-email"> . </span> &nbsp; <a href="#" id="allmenubar1"

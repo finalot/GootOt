@@ -19,6 +19,7 @@ import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
+import com.kh.ot.cart.vo.Ord;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -35,9 +36,33 @@ public class MypageController {
 	 * @return String
 	 */
 	@RequestMapping("mList.do")
-	public String mList() {
+	public ModelAndView mList(ModelAndView mv, HttpSession session,
+			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
 		
-		return "mypage_list";
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		int listCount = mpService.getOrderListCount(memNo);
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Ord> list = mpService.selectOrderList(pi, memNo);
+		
+		System.out.println("list : " + list);
+
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+   		mv.addObject("list",list);
+   		mv.addObject("pi", pi);
+		mv.setViewName("mypage_list");
+		return mv;
 	}
 	
 	/**
@@ -365,6 +390,18 @@ public class MypageController {
 		return "mypage_board_adminmodify";
 	}
 	
+	/**
+	 * @작성일 : 2020. 4. 17.
+	 * @작성자 : 신경섭
+	 * @내용 : 내가 쓴 게시글 검색
+	 * @param @param mv
+	 * @param @param session
+	 * @param @param currentPage
+	 * @param @param search_key
+	 * @param @param search
+	 * @param @return
+	 * @return ModelAndView
+	 */
 	@RequestMapping("mBoardsearch.do")
 	public ModelAndView mBoardsearch(ModelAndView mv, HttpSession session,
 									@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage, 

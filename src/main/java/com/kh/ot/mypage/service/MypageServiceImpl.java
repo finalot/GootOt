@@ -9,6 +9,7 @@ import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
+import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.dao.MypageDao;
 import com.kh.ot.mypage.vo.CouponMem;
@@ -61,7 +62,6 @@ public class MypageServiceImpl implements MypageService{
 
 	}
 
-	
 	@Override
 	public int PointPrice(Member m) {
 		return mpDao.PointPrice(m);
@@ -85,5 +85,15 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public ArrayList<MyBoard> selectSearchList(PageInfo pi, SearchCondition sc) {
 		return mpDao.selectSearchList(pi, sc);
+	}
+
+	@Override
+	public int getOrderListCount(int memNo) {
+		return mpDao.getOrderListCount(memNo);
+	}
+
+	@Override
+	public ArrayList<Ord> selectOrderList(PageInfo pi, int memNo) {
+		return mpDao.selectOrderList(pi, memNo);
 	}
 }

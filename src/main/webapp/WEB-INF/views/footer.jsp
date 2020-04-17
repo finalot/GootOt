@@ -289,7 +289,13 @@
 					</div>
 		</button>
 	
-				
+		<c:url var="loginView" value="loginView.do"/>		
+		<c:url var="wishlist" value="mWishlist.do">
+			<c:param name="memNo" value="${loginMember.memNo }"/>
+		</c:url>
+		<c:url var="MyPage" value="MyPage.do">
+						<c:param name="memNo" value="${loginMember.memNo}"/>
+					</c:url>
 		
 		<button style="width:88%;height:12%;background:snow;margin-top:-430%;margin-left:-88%;border-radius:10%;"href="/web/index.jsp">
 		<a class="symbol-btn-back-to-top" href="index.jsp" >
@@ -298,19 +304,42 @@
 				onmouseout="this.src='/ot/resources/images/icons/icon-header-03.png'">
 		</a></button>
 		
-		<button style="width:88%;height:12%;background:snow;margin-top:-210%;margin-left:-88%;border-radius:10%;"href="/web/index.jsp">
-		<a class="symbol-btn-back-to-top" href="/ot/mypage_wishList.jsp" >
-			<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-04.png"/>" class="header-icon1" alt="ICON"
-				onmouseover="this.src='/ot/resources/images/icons/icon-header-04-4.png'"
-				onmouseout="this.src='/ot/resources/images/icons/icon-header-04.png'">
-		</a></button>
+		<c:if test="${ !empty sessionScope.loginMember }">
+			<button style="width:88%;height:12%;background:snow;margin-top:-210%;margin-left:-88%;border-radius:10%;" href="/web/index.jsp">
+			<a class="symbol-btn-back-to-top" href="${wishlist }" >
 			
+				<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-04.png"/>" class="header-icon1" alt="ICON"
+					onmouseover="this.src='/ot/resources/images/icons/icon-header-04-4.png'"
+					onmouseout="this.src='/ot/resources/images/icons/icon-header-04.png'">
+			</a></button>
+		</c:if>
+		
+		<c:if test="${ empty sessionScope.loginMember }">
+		<button style="width:88%;height:12%;background:snow;margin-top:-210%;margin-left:-88%;border-radius:10%;" href="/web/index.jsp">
+			<a class="symbol-btn-back-to-top" href="${loginView }" >
+				<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-04.png"/>" class="header-icon1" alt="ICON"
+					onmouseover="this.src='/ot/resources/images/icons/icon-header-04-4.png'"
+					onmouseout="this.src='/ot/resources/images/icons/icon-header-04.png'">
+			</a></button>
+		</c:if>
+		
+		
+		<c:if test="${ !empty sessionScope.loginMember }">	
 		<button style="width:88%;height:12%;background:snow;margin-top:10%;margin-left:-88%;border-radius:10%;"href="/web/index.jsp">
-		<a class="header-wrapicon1 dis-block"href="/ot/mypage.jsp" >
+			<a class="header-wrapicon1 dis-block"href="${MyPage }" >
 				<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-01.png"/>" class="header-icon1" alt="ICON"
 				onmouseover="this.src='/ot/resources/images/icons/icon-header-01-1.png'"
 				onmouseout="this.src='/ot/resources/images/icons/icon-header-01.png'">
 			</a></button>
+		</c:if>
+		<c:if test="${ empty sessionScope.loginMember }">	
+		<button style="width:88%;height:12%;background:snow;margin-top:10%;margin-left:-88%;border-radius:10%;"href="/web/index.jsp">
+			<a class="header-wrapicon1 dis-block"href="${loginView }" >
+				<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-01.png"/>" class="header-icon1" alt="ICON"
+				onmouseover="this.src='/ot/resources/images/icons/icon-header-01-1.png'"
+				onmouseout="this.src='/ot/resources/images/icons/icon-header-01.png'">
+			</a></button>
+		</c:if>
 		
 		<button class="chatBtn" style="width:88%;height:12%;margin-top:230%;margin-left:-88%;border-radius:10%;">
 			<img  style="border-radius:10%;" src="/ot/resources/images/icons/icon-header-05.png" class="header-icon1" alt="ICON"

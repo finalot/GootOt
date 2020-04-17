@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
+import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
@@ -102,6 +103,18 @@ public interface MypageService {
 	int SearchListCount(SearchCondition sc);
 
 	ArrayList<MyBoard> selectSearchList(PageInfo pi, SearchCondition sc);
+
+	/**
+	 * @작성일 : 2020. 4. 17.
+	 * @작성자 : 신경섭
+	 * @내용 : 주문정보
+	 * @param @param memNo
+	 * @param @return
+	 * @return int
+	 */
+	int getOrderListCount(int memNo);
+
+	ArrayList<Ord> selectOrderList(PageInfo pi, int memNo);
 
 	
 }
