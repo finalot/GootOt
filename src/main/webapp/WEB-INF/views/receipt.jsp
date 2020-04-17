@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -136,9 +138,10 @@ p {
 								</thead>
 								
 								<tbody>
+								<c:forEach  var = "c" items="${clist}">
 									<tr>
 									<td align="left" valign="middle" style="padding:13px 10px 10px; border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; border-left:1px solid #d5d5d5; color:#393939;">
-       								(ot) 호딘 트레이닝 팬츠 <br>[COLOR: 블랙(0 won)]
+       								${c.prdt_name}<br>[COLOR: ${c.prdt_color }(${c.prdt_price } won)]
     								</td>
     								
     								<td align="center" valign="middle" style="padding:13px 10px 10px; border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#393939;">
@@ -154,6 +157,7 @@ p {
     								</td>
     								</tr>
     								
+    								</c:forEach>
     								<tr>
     								<td align="right" valign="middle" colspan="4" style="padding:13px 10px 10px; border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; border-left:1px solid #d5d5d5; color:#393939;">
             						<span id="rec">총 상품구매금액</span>
@@ -163,6 +167,8 @@ p {
             						<strong>= 총 결제금액 21,500 won</strong>
         							</td>
         							</tr>
+        							
+        							
         					</tbody>
 					</table>
 
