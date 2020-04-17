@@ -361,16 +361,16 @@ th{
         	<td>
         		<div id="titleImgArea">
         		<!-- input file에 accept에 저장할 경로 미리 설정할 수 있다.  -->
-			<img id="titleImg" width="177px" height="200">
+			<img id="titleImg" width="177px" height="200px" style="width:180px; height:200px;">
 			</div>
-			<div class="fileArea" id="fileArea">
+			<div class="fileArea" id="fileArea" >
 		      				<input type="file" id="thumbnailImg1" 
 		      				name="prdtImage" onchange="loadImg(this, 1);" />
 		     			 </div>
         	</td>
         	<td>
-        		<input type="hidden" name="prdtImagePath">
-        		<input type="hidden" name="prdtDetailImagePath">
+        		<!-- <input type="hidden" name="prdtImagePath">
+        		<input type="hidden" name="prdtDetailImagePath"> -->
         	</td>
         </tr>
         <tr>
