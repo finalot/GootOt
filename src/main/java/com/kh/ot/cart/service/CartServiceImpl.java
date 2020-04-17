@@ -57,4 +57,14 @@ public class CartServiceImpl implements CartService{
 	public ArrayList<Cart> selecPro(ArrayList<Ord> olist) {
 		return cDao.selecPro(olist);
 	}
+
+	@Override
+	public int updatePrice(Cart ct) {
+		return cDao.updatePrice(ct);
+	}
+
+	@Override
+	public int updateCoupon(int pay_usedcp) {
+		return cDao.updateCoupon(pay_usedcp);
+	}
 }

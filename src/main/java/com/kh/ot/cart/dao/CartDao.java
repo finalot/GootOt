@@ -98,10 +98,40 @@ public class CartDao {
 		return (ArrayList)sqlSession.selectList("cartMapper.selectPayList",map);
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 상품선택
+	 * @param olist
+	 * @return
+	 */
 	public ArrayList<Cart> selecPro(ArrayList<Ord> olist) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		   map.put("olist", olist);
 		return (ArrayList)sqlSession.selectList("cartMapper.selecPro",map);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 누적금액업데이트
+	 * @param ct
+	 * @return
+	 */
+	public int updatePrice(Cart ct) {
+			
+		return sqlSession.update("cartMapper.updatePrice",ct);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 사용쿠폰 업데이트
+	 * @param pay_usedcp
+	 * @return
+	 */
+	public int updateCoupon(int pay_usedcp) {
+		return sqlSession.update("cartMapper.updateCoupon",pay_usedcp);
 	}
 
 }

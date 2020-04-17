@@ -749,8 +749,16 @@ margin-right: 3%;
 		var cpmem_no=$(this).next().val();
 		$('#pay_usedcp').val(cpmem_no);
 	})
+		
+	$(function(){
+	if(Number("${loginMember.mem_point}") >= Number(2000)){
+			$('#point').css("background","white").removeAttr('readonly');
+	}else{
+			$('#point').css("background","#f3f3f3").attr('readonly',true);
+		}
 
-
+	})
+	
 
 	</script>
 <!-- 금액 관련 스트립트 -->
@@ -862,16 +870,22 @@ $('#delivery').click(function(){
 						 countArr[count] = ord_count[i].value
 						 sumpriceArr[count] = sumprice[i].value;
 						 
-						 
 						 count++;
-					
 					 }
 				 }
-			console.log(sumpriceArr);
+				 var canoArr = new Array();
+				 var ca_no = document.getElementsByName('ca_no');
+
+				 for(var i=0;i<pro_check.length;i++){
+						 canoArr[i] = ca_no[i].value
+					 }
+				 
+				 
+				 
   location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+
 		 "&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+
 		 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
-		 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price; 
+		 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price+"&canoArr="+canoArr; 
 	});
  	
 		

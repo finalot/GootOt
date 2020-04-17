@@ -7,6 +7,43 @@
 <head>
 <meta charset="UTF-8">
 <title>결제완료창</title>
+<style>
+#ord_address {
+	    color: #000;
+    position: relative;
+    font-size:12px;
+    font-weight:600;
+    left:11px;
+}
+
+
+#ord_phone {
+	    color: #000;
+    position: relative;
+    font-size:12px;
+    font-weight:600;
+    left:11px;
+}
+
+
+#ord_message {
+	color: #000;
+    position: relative;
+    font-size:12px;
+    font-weight:600;
+    left:11px;
+}
+
+#ord_receiver{
+	 color: #000;
+    position: relative;
+    font-size:12px;
+    font-weight:600;
+    left:11px;
+}
+
+
+</style>
  <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -71,7 +108,6 @@
 			<a  href="${mWishlist }">
 			<span id="xans_myshop_interest_prd_cnt">0개</span></a></strong>
 			</li>
-			
                 <li>
                     <strong class="title">
                     <a>POINT</a></strong>
@@ -190,7 +226,7 @@
 							<th class="column-5">Total</th>
 						</tr>
 
-						<c:forEach var="c" items="${list }">
+						<c:forEach var="c" items="${sessionScope.list }">
 						<tr class="table-row">
 						    
 							<td class="column-1">

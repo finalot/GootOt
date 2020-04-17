@@ -81,4 +81,22 @@ public interface CartService {
 	 */
 	ArrayList<Cart> selecPro(ArrayList<Ord> olist);
 
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 회원 누적적립금 업데이트
+	 * @param updatePrice
+	 * @return
+	 */
+	int updatePrice(Cart ct);
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 사용쿠폰 업데이트
+	 * @param pay_usedcp
+	 * @return
+	 */
+	int updateCoupon(int pay_usedcp);
+
 }
