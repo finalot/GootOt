@@ -12,6 +12,7 @@ import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
+import com.kh.ot.member.vo.Member;
 
 @Repository("cDao")
 public class CartDao {
@@ -132,6 +133,39 @@ public class CartDao {
 	 */
 	public int updateCoupon(int pay_usedcp) {
 		return sqlSession.update("cartMapper.updateCoupon",pay_usedcp);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 사용포인트 차감
+	 * @param py
+	 * @return
+	 */
+	public int updatePoint(Pay py) {
+		return sqlSession.update("cartMapper.updatePoint",py);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 결제완료 화편 회원정보 리셋
+	 * @param m
+	 * @return
+	 */
+	public Member selectMember(Member m) {
+		return sqlSession.selectOne("cartMapper.selectMember",m);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 결제완료 화면 쿠폰 카운트
+	 * @param m
+	 * @return
+	 */
+	public int countCoupon(Member m) {
+		return sqlSession.selectOne("cartMapper.countCoupon",m);
 	}
 
 }

@@ -114,7 +114,7 @@
                     <br>
                     <strong class="data">
                    <a href="${mPoint }">
-	                <fmt:formatNumber value="${loginMember.mem_point }" pattern="#,###"/>원</a>
+	                <fmt:formatNumber value="${mem.mem_point }" pattern="#,###"/>원</a>
                     </strong>
                 </li>
                 <li class="etc ">
@@ -122,7 +122,7 @@
                     <a>COUPON</a></strong>
                     <br>
                    <strong class="data">
-	                    	<a href="${mCoupon }">${CouponCount}<span>개</span></a>
+	                    	<a href="${mCoupon }">${mem.countCounpon}<span>개</span></a>
 	               </strong>
                 </li>
             </ul>

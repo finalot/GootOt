@@ -179,6 +179,9 @@ public class CartController extends HttpServlet {
 		ct.setMem_no(m.getMemNo());
 		ct.setPrdt_sumprice(updatePrice);
 		
+		Pay py = new Pay();
+		py.setMem_no(m.getMemNo());
+		py.setPay_point(pay_point);
 
 		
 		int result = cService.cartInsert(olist);
@@ -187,6 +190,8 @@ public class CartController extends HttpServlet {
 			int result3 =  cService.deleteCart(noArr);
 			int result4 = cService.updatePrice(ct);	
 			int result5 = cService.updateCoupon(pay_usedcp);
+			int result6 = cService.updatePoint(py);
+			
 			session.setAttribute("olist", olist);
 			session.setAttribute("plist", plist);
 			return "redirect:orderResultView.do?";
@@ -223,8 +228,13 @@ public class CartController extends HttpServlet {
 	@RequestMapping("orderResultView.do")
 	public ModelAndView orderResultView(ModelAndView mv,HttpSession session) {
 		
-			
+		Member m = 	(Member)session.getAttribute("loginMember");
 		
+		Member mem = cService.selectMember(m);
+		int count  = cService.countCoupon(m);
+		mem.setCountCounpon(count);
+		
+		mv.addObject("mem",mem);
    		mv.setViewName("orderResult");
 
    		return mv;

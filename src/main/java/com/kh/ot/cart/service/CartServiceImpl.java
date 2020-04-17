@@ -10,6 +10,7 @@ import com.kh.ot.cart.dao.CartDao;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
+import com.kh.ot.member.vo.Member;
 
 
 @Service("cService")
@@ -66,5 +67,20 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public int updateCoupon(int pay_usedcp) {
 		return cDao.updateCoupon(pay_usedcp);
+	}
+
+	@Override
+	public int updatePoint(Pay py) {
+		return cDao.updatePoint(py);
+	}
+
+	@Override
+	public Member selectMember(Member m) {
+		return cDao.selectMember(m);
+	}
+
+	@Override
+	public int countCoupon(Member m) {
+		return cDao.countCoupon(m);
 	}
 }

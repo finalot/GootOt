@@ -6,6 +6,7 @@ import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
+import com.kh.ot.member.vo.Member;
 
 public interface CartService {
 
@@ -98,5 +99,32 @@ public interface CartService {
 	 * @return
 	 */
 	int updateCoupon(int pay_usedcp);
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 사용포인트 차감
+	 * @param py
+	 * @return
+	 */
+	int updatePoint(Pay py);
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 결제완료 페이지 회원정보 리셋
+	 * @param m
+	 * @return
+	 */
+	Member selectMember(Member m);
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 결제완료 페이지 회원정보 쿠폰
+	 * @param m
+	 * @return
+	 */
+	int countCoupon(Member m);
 
 }
