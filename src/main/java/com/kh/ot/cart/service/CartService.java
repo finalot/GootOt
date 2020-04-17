@@ -127,4 +127,13 @@ public interface CartService {
 	 */
 	int countCoupon(Member m);
 
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환 
+	 * @내용 	: 재고수량 카운트
+	 * @param olist
+	 * @return
+	 */
+	int updateProduct(ArrayList<Ord> olist);
+
 }

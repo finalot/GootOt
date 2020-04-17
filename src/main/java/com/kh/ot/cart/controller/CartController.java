@@ -191,6 +191,7 @@ public class CartController extends HttpServlet {
 			int result4 = cService.updatePrice(ct);	
 			int result5 = cService.updateCoupon(pay_usedcp);
 			int result6 = cService.updatePoint(py);
+			int result7 = cService.updateProduct(olist);
 			
 			session.setAttribute("olist", olist);
 			session.setAttribute("plist", plist);

@@ -168,4 +168,17 @@ public class CartDao {
 		return sqlSession.selectOne("cartMapper.countCoupon",m);
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 상품재고 업데이트
+	 * @param olist
+	 * @return
+	 */
+	public int updateProduct(ArrayList<Ord> olist) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("olist", olist);
+		return sqlSession.update("cartMapper.updateProduct",map);
+	}
+
 }
