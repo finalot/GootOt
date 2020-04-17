@@ -308,7 +308,7 @@ th{
     
 	<!-- <from action="ProductInsert.ad" method="post" id="productInsert"> -->
     <!-- 이벤트 내용 -->
-   <form action="ProductInsert.ad" method="post" id="ProductInsert">
+   <form action="ProductInsert.ad" method="post" id="ProductInsert"enctype="multipart/form-data">
    <table id="addlist" style="border: 1px dotted; background: white; font-size:13pt;">
         <tr colspan="2">
         	<td colspan="2" style="background:#dfe3e6; margin-bottom: 2%;padding-bottom: 2%;">
@@ -365,7 +365,7 @@ th{
 			</div>
 			<div class="fileArea" id="fileArea">
 		      				<input type="file" id="thumbnailImg1" 
-		      				name="prdtImage" onchange="loadImg(this, 1);" />
+		      				name="thumbnailImg" onchange="loadImg(this, 1);" />
 		     			 </div>
         	</td>
         	<td>
@@ -376,7 +376,7 @@ th{
         <tr>
         	<th><span style="color:red">*</span> 상세설명</th>
         	<td>
-        		<input type="file" id="descrptionImg" name="prdtDetailImage" style="border:white 1px;">
+        		<input type="file" id="descrptionImg" name="descrptionImg" style="border:white 1px;">
         	</td>
         </tr>
         <tr>

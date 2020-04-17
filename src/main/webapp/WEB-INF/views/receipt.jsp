@@ -92,14 +92,18 @@ p {
                  <thead>
                  	<tr>
                  		<th colspan="1" rowspan="1" scope="col" width="33%" 
-                 		style="padding:13px 10px 10px; font-weight:normal; background-color:#f5f6f5; border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; border-left:1px solid #d5d5d5; color:#80878d;">주문자</th><th colspan="1" rowspan="1" scope="col" width="33%" style="padding:13px 10px 10px; font-weight:normal; background-color:#f5f6f5;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#80878d;">주문번호</th><th colspan="1" rowspan="1" scope="col" width="34%" style="padding:13px 10px 10px; font-weight:normal; background-color:#f5f6f5;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#80878d;">주문일자</th></tr></thead>
+                 		style="padding:13px 10px 10px; font-weight:normal; background-color:#f5f6f5; border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; border-left:1px solid #d5d5d5; color:#80878d;">주문자</th><th colspan="1" rowspan="1" scope="col" width="33%" style="padding:13px 10px 10px; font-weight:normal; background-color:#f5f6f5;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#80878d;">주문번호</th>
+                 		<th colspan="1" rowspan="1" scope="col" width="34%" style="padding:13px 10px 10px; font-weight:normal; background-color:#f5f6f5;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#80878d;">주문일자</th></tr></thead>
                             <tbody>
+                            <c:forEach var="o" items="${olist}">
                                <tr>
                               	 <td align="center" valign="middle" 
                               	 style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; border-left:1px solid #d5d5d5; color:#393939;">${loginMember.memId }(${loginMember.memName })</td>
                               	 <td align="center" valign="middle" style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5;border-right:1px solid #d5d5d5; color:#393939;">${o.ord_no }</td>
-                              	 <td align="center" valign="middle" style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#393939;">2020-03-16 23:32:35</td></tr></tbody>
-                              
+                              	 <td align="center" valign="middle" style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#393939;">${o.ord_date }</td>
+                              	 </tr>
+                               </c:forEach>
+                              	 </tbody>
                </table>
               </td>
            </tr>

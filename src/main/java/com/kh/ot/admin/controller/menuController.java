@@ -1022,12 +1022,17 @@ public class menuController {
 	 * @작성자 : 이서현
 	 * @내용 : 상품등록
 	 */
-	@RequestMapping("ProductInsert.ad")
-	public String ProductInsert(Product p, HttpServletRequest request, MultipartFile file) {
+	@RequestMapping(value="ProductInsert.ad" ,method=RequestMethod.POST)
+	public String ProductInsert(Product p, HttpServletRequest request,
+			@RequestParam(name="thumbnailImg",required=false) MultipartFile file1,
+			@RequestParam(name="descrptionImg",required=false) MultipartFile file2	) {
 		// Product만 있는거
 
 		String root = request.getSession().getServletContext().getRealPath("resources");
-
+		
+		System.out.println(file1);
+		System.out.println(file2);
+		
 		String savePath = "";
 		String saveDetailPath = "";
 		String frontPath = "/ot/resources/images/oT";
@@ -1151,8 +1156,8 @@ public class menuController {
 			folder.mkdir(); // 폴더가 없다면 생성해주세요
 		}
 
-		String originFileName = file.getOriginalFilename();
-		String originDetailFileName = file.getOriginalFilename();
+		String originFileName = file1.getOriginalFilename();
+		String originDetailFileName = file2.getOriginalFilename();
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
@@ -1164,8 +1169,8 @@ public class menuController {
 		String renameDetailPath = folder + "\\" + renameDetailName;
 
 		try {
-			file.transferTo(new File(renamePath));
-			file.transferTo(new File(renameDetailPath));
+			file1.transferTo(new File(renamePath));
+			file2.transferTo(new File(renameDetailPath));
 		} catch (Exception e) {
 
 			System.out.println("파일 전송 에러: " + e.getMessage());

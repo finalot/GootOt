@@ -59,6 +59,7 @@ public class CartController extends HttpServlet {
 		ArrayList<Cart> list = cService.selectList(mem_no);
 		ArrayList<Coupon> clist = cService.selectCouponList(mem_no);
 
+		session.setAttribute("list","");
 		session.setAttribute("list", list);
    		mv.addObject("list",list);
    		mv.addObject("clist", clist);
@@ -193,6 +194,10 @@ public class CartController extends HttpServlet {
 			int result6 = cService.updatePoint(py);
 			int result7 = cService.updateProduct(olist);
 			
+			
+			
+			session.setAttribute("olist", "");
+			session.setAttribute("plist", "");
 			session.setAttribute("olist", olist);
 			session.setAttribute("plist", plist);
 			return "redirect:orderResultView.do?";
@@ -249,8 +254,18 @@ public class CartController extends HttpServlet {
 	 * @return
 	 */
 	@RequestMapping("receipt.do")
-	public String receipt() {
-		return "receipt";
+	public ModelAndView receipt(ModelAndView mv,HttpSession session) {
+		
+		ArrayList<Ord> olist = (ArrayList<Ord>)session.getAttribute("olist");
+		ArrayList<Pay> plist = (ArrayList<Pay>)session.getAttribute("plist");
+		
+		System.out.println(olist);
+		
+		mv.addObject("olist",olist);
+		mv.addObject("plist",plist);
+		mv.setViewName("receipt");
+		
+		return mv;
 	}
 
 
