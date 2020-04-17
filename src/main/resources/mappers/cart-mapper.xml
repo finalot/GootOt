@@ -200,6 +200,21 @@
 		WHERE M.MEM_NO = #{memNo}
 		AND CM.CP_USING='N'
 	</select>
+	
+	<update id="updateProduct" parameterType="java.util.Map">
+		<foreach  item="o" collection="olist"  index="index" 
+      	 separator=";" open="DECLARE BEGIN" close="; END;" >
+				UPDATE PRDT_OPT SET 
+				OPT_STOCK = (SELECT SUM(OPT_STOCK)
+										FROM PRDT_OPT
+										WHERE PRDT_NO = #{o.prdt_no}
+										AND 	OPT_COLOR = #{o.ord_color}
+										AND OPT_SIZE = #{o.ord_size}) - #{o.ord_count} 
+            	WHERE PRDT_NO = #{o.prdt_no}
+				AND 	OPT_COLOR = #{o.ord_color}
+				AND OPT_SIZE = #{o.ord_size}
+		</foreach>
+	</update>
 
 
 </mapper>

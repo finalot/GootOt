@@ -83,4 +83,9 @@ public class CartServiceImpl implements CartService{
 	public int countCoupon(Member m) {
 		return cDao.countCoupon(m);
 	}
+
+	@Override
+	public int updateProduct(ArrayList<Ord> olist) {
+		return cDao.updateProduct(olist);
+	}
 }
