@@ -4204,7 +4204,7 @@ font-family: Montserrat-Bold;
 
 .yg_btn_141 {
     height: 38px;
-    width: 140px;
+    width: 217px;
     line-height: 38px;
     display: inline-block;
     font-size: 11px;
@@ -4312,7 +4312,7 @@ h3 {
 .required4 {
 	margin: -16px 0 -9px;
     text-align: right;
-    top: 41px;
+    top: 44px;
     position: relative;
     font-size: 12px;
     font-weight: 600;
@@ -4332,7 +4332,7 @@ h3 {
 .required2 {
 	margin: -16px 0 -9px;
     text-align: right;
-    top: 41px;
+    top: 45px;
     position: relative;
     font-size: 12px;
     font-weight: 600;
@@ -4657,6 +4657,7 @@ p {
 #omessage {
 	width: 750px;
     height: 56px;
+    font-size: 12px;
 }
 textarea {
 	padding: 5px 6px;
@@ -4977,3 +4978,38 @@ input[type=email] {
     color: #222;
     font-size: 12px;
 }
+
+#ord_address {
+	    color: #000;
+    position: relative;
+    font-size:12px;
+    font-weight:600;
+    left:11px;
+}
+
+
+#ord_phone {
+	    color: #000;
+    position: relative;
+    font-size:12px;
+    font-weight:600;
+    left:11px;
+}
+
+
+#ord_message {
+	    color: #000;
+    position: relative;
+    font-size:12px;
+    font-weight:600;
+    left:11px;
+}
+
+#ord_receiver{
+	 color: #000;
+    position: relative;
+    font-size:12px;
+    font-weight:600;
+    left:11px;
+}
+

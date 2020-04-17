@@ -230,7 +230,7 @@
 			
 
 			<!-- Total -->
-			<h3 class=" " style="position: relative;font-size: 12px;font-weight: 600; top:73px;left:-48px;">
+			<%-- <h3 class=" " style="position: relative;font-size: 12px;font-weight: 600; top:73px;left:-48px;">
 			결제 예정 금액</h3><br>
  
 			<div class="totalArea"style="display:flex;margin-top: 3%;">
@@ -289,7 +289,7 @@
 			    
 		</form>
 	</div>
-			
+			 --%>
 	
 	<!-- 수정함 수정함 기억해내! -->
 	<h3 class=" " style="position: relative;font-size: 12px;font-weight: 600; top:50px;left:-47px;">
@@ -318,7 +318,7 @@
 					</tr>
 					
 					
-					<tr>
+				<!-- 	<tr>
 						<th scope="row" style="padding: 11px 0 10px 18px;
    						 border: 1px solid #ddd;
     					 border-bottom-width: 0;
@@ -330,7 +330,7 @@
 						<td style="border-top: 1px solid #ddd;">
 							<span id="idMsg13">10115</span>
 						</td>	
-					</tr>
+					</tr> -->
 					
 					<tr>
 						<th scope="row" style="padding: 11px 0 10px 18px;
@@ -369,23 +369,22 @@
     					font-weight: normal;
     					background-color: #fafafa;">
 						<span id="idMsg4">배송메시지</span></th>
-						<td id="ord_message" style="border-top: 1px solid #ddd;">
+						<td style="border-top: 1px solid #ddd;">
 						<!--배송메시지  내용 -->
+						<span id="ord_message"></span>
 						</td>	
 					</tr>
 			
 			</tbody>
 		</table>
-	</form>
+	<!-- </form> -->
 	</div>
 	
-	<a href="#none" class=" yg_btn_24 yg_btn32">현금영수증 신청</a>
-	<a href="#none" class=" yg_btn_24 yg_btn32">세금계산서 신청</a>
-	<a href="#none" class=" yg_btn_24 yg_btn32">거래명세서 인쇄</a>
+	<a href="#none" class=" yg_btn_24 yg_btn32">영수증 보기</a>
 	
 	 <div class="" style="margin-left:25%;">
         <a href="index.jsp" class="yg_btn_24 yg_btn31"><span style="position:relative;top:7px;">쇼핑계속하기</span></a>
-        <a href="mypage_list.jsp" class="hov1 s-text1 trans-0-4 yg_btn_143">주문확인하기</a>
+        <a href="mList.do" class="hov1 s-text1 trans-0-4 yg_btn_143">주문확인하기</a>
     </div>
 	</section>
 
