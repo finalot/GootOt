@@ -134,5 +134,18 @@
 
 	</select>
 
+	<select id="selecPro" parameterType="java.util.Map" resultMap="cartResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NO IN
+		 <foreach item="o" index="index" collection="olist"
+                      open="(" separator="," close=")">
+             			   #{o.prdt_no}
+        </foreach>  
+		
+	
+	
+	</select>
+
 
 </mapper>

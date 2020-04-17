@@ -72,4 +72,13 @@ public interface CartService {
 	 */
 	ArrayList<Pay> selectPayList(ArrayList<Pay> list);
 
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 결제화면 상품 이미지 가져오기
+	 * @param olist
+	 * @return
+	 */
+	ArrayList<Cart> selecPro(ArrayList<Ord> olist);
+
 }

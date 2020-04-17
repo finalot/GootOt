@@ -52,4 +52,9 @@ public class CartServiceImpl implements CartService{
 	public ArrayList<Pay> selectPayList(ArrayList<Pay> list) {
 		return cDao.selectPayList(list);
 	}
+
+	@Override
+	public ArrayList<Cart> selecPro(ArrayList<Ord> olist) {
+		return cDao.selecPro(olist);
+	}
 }

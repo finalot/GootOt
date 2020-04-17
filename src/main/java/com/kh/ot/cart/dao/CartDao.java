@@ -98,4 +98,10 @@ public class CartDao {
 		return (ArrayList)sqlSession.selectList("cartMapper.selectPayList",map);
 	}
 
+	public ArrayList<Cart> selecPro(ArrayList<Ord> olist) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("olist", olist);
+		return (ArrayList)sqlSession.selectList("cartMapper.selecPro",map);
+	}
+
 }

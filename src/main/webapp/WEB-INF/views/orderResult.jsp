@@ -187,21 +187,20 @@
 							<th class="column-4 p-l-70">Quantity</th>
 							<th class="column-6">POINT</th>
 							<th class="column-7">DELIVERY</th>
-							<th class="column-8">CHARGE</th>
 							<th class="column-5">Total</th>
 						</tr>
 
-						<c:forEach var="o" items="${olist }">
+						<c:forEach var="c" items="${list }">
 						<tr class="table-row">
 						    
 							<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
-								<img src="${o.path }${o.image}"onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
+								<img src="${c.path }${c.image}"onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
 								</div>
 							</td>
-							<td class="column-2">${o.prdt_name }
-							<br><span id="idMsg7">[옵션 : ${o.ord_color }/${o.ord_size }/${o.ord_count}개]</span></td>
-							<td class="column-3"><font id="pro-price" class="format-money"></font> won</td>
+							<td class="column-2">${c.prdt_name }
+							<br><span id="idMsg7">[옵션 : ${c.prdt_color }/${c.prdt_size }/${c.prdt_color}개]</span></td>
+							<td class="column-3"><font id="pro-price" class="format-money">${c.prdt_price }</font> </td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
 									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1"
@@ -213,14 +212,13 @@
 							style="position: relative;left: -5px;
 								top: -1px;">3%</td>
 							<td class="column-7" style="padding-left: 40px;">기본배송</td>
-							<td class="column-8"><font class="format-money">2500</font> won</td>
-							<td class="column-5"><font class="format-money">${o.prdt_sumprice }</font> won</td>
-							<input type="hidden" name="sumprice" value="${o.prdt_sumprice }">
-						<%-- 	<input type="hidden"class="ca_no"  name="ca_no" value="${c.ca_no }">	 --%>									
-							<input type="hidden" name="prdt_no" value="${o.ord_no }">
+							<td class="column-5"><font class="format-money">${c.prdt_price }</font> won</td>
+						<%-- 	<input type="hidden" name="sumprice" value="${c.prdt_sumprice }">
+							<input type="hidden"class="ca_no"  name="ca_no" value="${c.ca_no }">										
+							<input type="hidden" name="prdt_no" value="${c.ord_no }">
 							<input type="hidden" name="ord_color" value="${o.ord_color }">
 							<input type="hidden" name="ord_size" value="${o.ord_size }">
-							<input type="hidden" name="ord_count" value="${o.ord_count }">
+							<input type="hidden" name="ord_count" value="${o.ord_count }"> --%>
 						</tr>
 						
 				</c:forEach>
@@ -463,7 +461,6 @@
 		   "</c:forEach>" 
 		  
 	});
-	
 	
 	</script>
 	<script type="text/javascript">

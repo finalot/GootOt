@@ -60,6 +60,7 @@ public class CartController extends HttpServlet {
 		System.out.println("list:"+list);
 		System.out.println("clist: " + clist);
 
+		session.setAttribute("list", list);
    		mv.addObject("list",list);
    		mv.addObject("clist", clist);
    		mv.setViewName("cart");
@@ -76,7 +77,7 @@ public class CartController extends HttpServlet {
 	 * @return
 	 */
 	@RequestMapping("CartDeleteProduct.do")
-	public void CartDeleteProduct(int[] checkArr,HttpServletResponse response) {
+	public void CartDeleteProduct(int[] checkArr,HttpServletResponse response,HttpSession session) {
 
 		ArrayList<Cart> noArr = new ArrayList<Cart>();
 
@@ -85,7 +86,7 @@ public class CartController extends HttpServlet {
 			c.setCa_no(checkArr[i]);
 			noArr.add(c);
 		}
-
+			
 
 		int result =  cService.deleteCart(noArr);
 
@@ -192,11 +193,26 @@ public class CartController extends HttpServlet {
 		return "orderResult";
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 결제완료 화면
+	 * @param mv
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("orderResultView.do")
 	public ModelAndView orderResultView(ModelAndView mv,HttpSession session) {
 
+//		ArrayList<Ord> olist =  (ArrayList<Ord>)session.getAttribute("olist");
+//		
+//		ArrayList<Cart> clist = cService.selecPro(olist);
+//		
+//		session.getAttribute("plist");
+//		
+//		System.out.println(clist);
+//		
 //		Member m = (Member)session.getAttribute("loginMember");
-//	
 //		
 //		int mem_no = m.getMemNo();
 //
