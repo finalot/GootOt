@@ -10,7 +10,7 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -32,9 +32,10 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" type="text/css" href="css/receipt.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/css/receipt.css">
+	<link rel="stylesheet" href="/ot/resources/css/popup.css">
 <!--===============================================================================================-->
 <style>
 p {
@@ -46,7 +47,7 @@ p {
 }
 </style>
 </head>
-<body>
+<body id="popup" style="margin:0;">
 
 	<div id="readFrame">
 	<table align="center" class="outsideBorder" width="700" border="0" cellpadding="0" cellspacing="0" 
@@ -67,7 +68,7 @@ p {
             <p>안녕하세요. <strong>ot</strong> 입니다.<br>
                         저희 쇼핑몰을 이용해주셔서 진심으로 감사드립니다.</p>
             <p style="margin-top:13px;">
-             <strong>우예진(asdok97)</strong> 고객님께서 저희 쇼핑몰에서 주문하신 내역입니다.</p>
+             <strong>${loginMember.memName }(${loginMember.memId})</strong> 고객님께서 저희 쇼핑몰에서 주문하신 내역입니다.</p>
         </td>
     </tr>
     <!-- //인사말 -->
@@ -93,7 +94,9 @@ p {
                             <tbody>
                                <tr>
                               	 <td align="center" valign="middle" 
-                              	 style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; border-left:1px solid #d5d5d5; color:#393939;">asdok97(우예진)</td><td align="center" valign="middle" style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5;border-right:1px solid #d5d5d5; color:#393939;">20200316-0010199</td><td align="center" valign="middle" style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#393939;">2020-03-16 23:32:35</td></tr></tbody>
+                              	 style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; border-left:1px solid #d5d5d5; color:#393939;">${loginMember.memId }(${loginMember.memName })</td>
+                              	 <td align="center" valign="middle" style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5;border-right:1px solid #d5d5d5; color:#393939;">20200316-0010199</td>
+                              	 <td align="center" valign="middle" style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#393939;">2020-03-16 23:32:35</td></tr></tbody>
                </table>
               </td>
            </tr>
@@ -157,7 +160,6 @@ p {
             						<strong>19,000 won</strong> 
             						+ 총 배송비 <strong>2,500 won</strong> 
             						- 총 할인금액 <strong>0 won</strong>
-            						- 총 부가결제금액 <strong>0 won</strong>
             						<strong>= 총 결제금액 21,500 won</strong>
         							</td>
         							</tr>
@@ -253,7 +255,7 @@ p {
                             <p style="margin-top:0; margin-left:10px;">
                                                          무통장 입금 결제를 신청하신 경우 상기 결제 금액을 아래의 해당 입금 계좌로 입금해주시기 바랍니다.<br>
                              <span style="">무통장 입금 주문시 입력하신 입금자명
-                             <strong>(우예진)</strong>과 실제 입금하신 분의 성함이 동일해야 합니다.<br>
+                             <strong>(${loginMember.memName })</strong>과 실제 입금하신 분의 성함이 동일해야 합니다.<br>
                              </span>
                              
                              <strong>농협 : 301-0231-3595-51 
@@ -351,7 +353,7 @@ p {
                         <p>주문내역에 착오가 있거나, 주문내역을 변경하실 경우, 그외 기타 문의사항이 있으시면<br>
                                                       저희 쇼핑몰 고객 서비스 센터로 연락 주십시오.</p>
                         <p style="margin-top:13px;">다시 한번 저희 쇼핑몰을 이용해주신 
-                        <strong>우예진(asdok97)</strong> 
+                        <strong>${loginMember.memName }(${loginMember.memId })</strong> 
                        	 고객님께 진심으로 감사드립니다.</p>
                     	</td>
                     	</tr>

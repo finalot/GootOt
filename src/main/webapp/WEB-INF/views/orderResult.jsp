@@ -416,7 +416,8 @@
 	<!-- </form> -->
 	</div>
 	
-	<a href="#none" class=" yg_btn_24 yg_btn32">영수증 보기</a>
+	<c:url var="cReceipt" value="receipt.do"/>
+	<a href="#none" onclick="window.open('${cReceipt}','order_receipt','width=790,height=940,left=900,top=20'); return false;" class=" yg_btn_24 yg_btn32">영수증 보기</a>
 	
 	 <div class="" style="margin-left:25%;">
         <a href="index.jsp" class="yg_btn_24 yg_btn31"><span style="position:relative;top:7px;">쇼핑계속하기</span></a>
@@ -609,6 +610,10 @@
 
 			    });
 			    
+			    
+			    function receipt(){
+			    	location.href="receipt.do?";
+			    };
 			    
 	
 		 

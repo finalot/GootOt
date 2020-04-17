@@ -60,6 +60,8 @@
 		<result property="pay_point" column="PAY_POINT"/>
 		<result property="pay_yn" column="PAY_YN"/>
 	</resultMap>
+	
+	
 
 	<resultMap id="memResultSet" type="Member">
 		<id property="memNo" column="MEM_NO"/>
