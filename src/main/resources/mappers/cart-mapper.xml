@@ -74,6 +74,7 @@
 	FROM COUPON_MEM CM
 	JOIN COUPON C ON (CM.CP_NO=C.CP_NO)
 	WHERE CM.MEM_NO = #{mem_no}
+	AND CM.CP_USING = 'N'
 	
 	</select>
 	
@@ -142,10 +143,21 @@
                       open="(" separator="," close=")">
              			   #{o.prdt_no}
         </foreach>  
-		
-	
 	
 	</select>
+	
+	<update id="updatePrice">
+		UPDATE MEMBER SET 
+		MEM_SUMMONEY = (SELECT SUM(MEM_SUMMONEY) 
+                FROM MEMBER
+                WHERE MEM_NO=#{mem_no}) + #{prdt_sumprice}
+		WHERE MEM_NO=#{mem_no} 
+	</update>
 
+	<update id="updateCoupon">
+			UPDATE COUPON_MEM SET
+			CP_USING = 'Y'
+			WHERE CPMEM_NO = #{pay_usedcp}
+	</update>
 
 </mapper>

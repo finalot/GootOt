@@ -207,8 +207,11 @@
 		UPDATE QNA
 		SET QNA_INFO=#{content},QNA_CHK='Y'
 		WHERE QNA_NO = #{qna_no}
-		
 </update>
+
+
+
+
 
 </mapper>
 

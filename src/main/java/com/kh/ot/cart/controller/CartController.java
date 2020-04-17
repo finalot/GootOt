@@ -3,6 +3,7 @@ package com.kh.ot.cart.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -50,15 +51,13 @@ public class CartController extends HttpServlet {
 	 */
 
 	@RequestMapping("cartbutton.do")
-	public ModelAndView cartbutton(ModelAndView mv,HttpSession session) {
+	public ModelAndView cartbutton(ModelAndView mv,HttpSession session,HttpServletRequest request) {
 
 		Member m = (Member)session.getAttribute("loginMember");
 		int mem_no = m.getMemNo();
 
 		ArrayList<Cart> list = cService.selectList(mem_no);
 		ArrayList<Coupon> clist = cService.selectCouponList(mem_no);
-		System.out.println("list:"+list);
-		System.out.println("clist: " + clist);
 
 		session.setAttribute("list", list);
    		mv.addObject("list",list);
@@ -122,13 +121,21 @@ public class CartController extends HttpServlet {
 	public String cartInsert(ModelAndView mv,HttpSession session,
 						int[] prdtArr, String[] sizeArr, String[] colorArr,int[] countArr,
 						String ord_receiver, String ord_phone, String ord_address,String ord_message,
-						int[] sumpriceArr,String pay_category,int pay_point,int pay_usedcp,int coupon_price){
+						int[] sumpriceArr,String pay_category,int pay_point,int pay_usedcp,int coupon_price,
+						int[] canoArr){
 
 
 		Member m =(Member)session.getAttribute("loginMember");
 
 		ArrayList<Ord> olist = new ArrayList<Ord>();
 		ArrayList<Pay> plist = new ArrayList<Pay>();
+		ArrayList<Cart> noArr = new ArrayList<Cart>();
+
+		for(int i =0; i<canoArr.length;i++) {
+			Cart c = new Cart();
+			c.setCa_no(canoArr[i]);
+			noArr.add(c);
+		}
 
 		for(int i=0;i<prdtArr.length;i++) {
 			Ord o = new Ord();
@@ -164,15 +171,27 @@ public class CartController extends HttpServlet {
 
 			plist.add(p);
 		}
-		System.out.println(plist);
+		int updatePrice = 0;
+		for(int i=0;i<sumpriceArr.length;i++) {
+				updatePrice += 	sumpriceArr[i];
+		}
+		Cart ct = new Cart();
+		ct.setMem_no(m.getMemNo());
+		ct.setPrdt_sumprice(updatePrice);
+		
+
+		
 		int result = cService.cartInsert(olist);
-		System.out.println(result);
 		if(result > -2) {
 			int result2 = cService.payInsert(plist);
+			int result3 =  cService.deleteCart(noArr);
+			int result4 = cService.updatePrice(ct);	
+			int result5 = cService.updateCoupon(pay_usedcp);
 			session.setAttribute("olist", olist);
 			session.setAttribute("plist", plist);
 			return "redirect:orderResultView.do?";
 
+			
 		}else {
 			
 			return null;
@@ -203,52 +222,9 @@ public class CartController extends HttpServlet {
 	 */
 	@RequestMapping("orderResultView.do")
 	public ModelAndView orderResultView(ModelAndView mv,HttpSession session) {
-
-//		ArrayList<Ord> olist =  (ArrayList<Ord>)session.getAttribute("olist");
-//		
-//		ArrayList<Cart> clist = cService.selecPro(olist);
-//		
-//		session.getAttribute("plist");
-//		
-//		System.out.println(clist);
-//		
-//		Member m = (Member)session.getAttribute("loginMember");
-//		
-//		int mem_no = m.getMemNo();
-//
-//		int prdtArr[] = new int[2];
-//
-//		prdtArr[0] = 11002;
-//		prdtArr[1] = 11002;
-//
-//		
-//		ArrayList<Pay> pplist = new ArrayList<Pay>();
-//		
-//		for(int i=0;i<prdtArr.length;i++) {
-//			Pay p = new Pay();
-//			p.setMem_no(m.getMemNo());
-//			p.setPrdt_no(prdtArr[i]);
-//		
-//			pplist.add(p);
-//		}
-//
-//
-//		ArrayList<Pay> plist = cService.selectPayList(pplist);
-//
-//
-//		ArrayList<Cart> list = cService.selectList(mem_no);
-//		ArrayList<Coupon> clist = cService.selectCouponList(mem_no);
-//		ArrayList<Ord> olist = cService.selectOrderList(mem_no);
-//
-//		System.out.println("list:"+list);
-//		System.out.println("clist: " + clist);
-//		System.out.println("olist: " + olist);
-//		System.out.println("plist : " + plist);
-//
-//
-//   		mv.addObject("list",list);
-//   		mv.addObject("clist", clist);
-//   		mv.addObject("olist", olist);
+		
+			
+		
    		mv.setViewName("orderResult");
 
    		return mv;
