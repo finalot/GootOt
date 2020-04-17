@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,30 +12,30 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/themify/themify-icons.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/fonts/themify/themify-icons.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/elegant-font/html-css/style.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/fonts/elegant-font/html-css/style.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/vendor/animate/animate.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/vendor/slick/slick.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/ot/resources/css/main.css">
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -54,27 +56,38 @@
 		<br>
 		<p class="membertype" style="position: relative;left: -182px;top: 102px;">
     		<strong>
-    		<span><span class="mem_type">홍길동</span></span>
+    		<span><span class="mem_type">${loginMember.memName}</span></span>
     		</strong>
  			님은 현재 
 			<strong>
 			<span class="mem_type2" style="color:rgba(230,106,87,1);">MEMBER</span>
 			</strong>
   			입니다.
-  			<div class="xans-myshop-bankbook "><ul><li class="xans-layout-shoppinginfo "><strong class="title"><a href="/myshop/wish_list.html">WISH</a></strong>
+  			<div class="xans-myshop-bankbook "><ul><li class="xans-layout-shoppinginfo ">
+  			<strong class="title">
+  			<a>WISH</a></strong>
   			<br>
-			<strong class="data "><a href="/myshop/wish_list.html"><span id="xans_myshop_interest_prd_cnt">0개</span></a></strong>
+			<strong class="data ">
+			<a  href="${mWishlist }">
+			<span id="xans_myshop_interest_prd_cnt">0개</span></a></strong>
 			</li>
+			
                 <li>
-                    <strong class="title"><a href="/myshop/mileage/historyList.html">POINT</a></strong>
+                    <strong class="title">
+                    <a>POINT</a></strong>
                     <br>
-                    <strong class="data"><a href="/myshop/mileage/historyList.html">0원</a></strong>
+                    <strong class="data">
+                   <a href="${mPoint }">
+	                <fmt:formatNumber value="${loginMember.mem_point }" pattern="#,###"/>원</a>
+                    </strong>
                 </li>
                 <li class="etc ">
-                    <strong class="title"><a href="/myshop/coupon/coupon.html">COUPON</a></strong>
+                    <strong class="title">
+                    <a>COUPON</a></strong>
                     <br>
-                    <strong class="data"><a href="/myshop/coupon/coupon.html">0<span>개</span></a></strong>
-                    <a href="/myshop/coupon/coupon.html"></a>
+                   <strong class="data">
+	                    	<a href="${mCoupon }">${CouponCount}<span>개</span></a>
+	               </strong>
                 </li>
             </ul>
 </div>
@@ -102,9 +115,9 @@
         </p>
        		  <ul>
 					 <li style="position: relative;left: 553px;top: 58px;">
-					 <span id="idMsg4" style="font-weight:600;">주문번호 : 20200315-0006124</span></li>
+					 <span id="idMsg4" style="font-weight:600;">${o.ord_no }</span></li>
            			 <li><span id="idMsg4" style="font-weight:600;position: relative;left: 551px;top: 54px;">
-           			 주문일자 : <span>2020-03-15 20:23:05</span></li>
+           			 주문일자 : <span id="today">2020-03-15 20:23:05</span></li>
        		 </ul>
 		</div>
 		
@@ -128,9 +141,9 @@
     					font-weight: normal;
     					background-color: #fafafa;">
 						<strong>최종결제금액</strong></th>
-						<td><span class="m-text21 w-size20 w-full-sm" style="margin-left:6px;">
-						60,500 <span id="m-text21">won</span>
-					</span>
+						<td><span class="m-text21 w-size20 w-full-sm" id="totalPrice" style="margin-left:6px;">
+										</span>
+								 <span id="m-text21">won</span>
 						</td>	
 					</tr>
 					
@@ -146,10 +159,9 @@
 						<strong>결제수단</strong></th>
 						<td style="border-top: 1px solid #ddd;">
 						<ul class="info" style="margin: 14px 1px 12px;">
-								<li id="idMsg5">무통장 입금</li>
-                                <li id="idMsg5">입금자: 홍길동. 계좌번호 : 국민은행 543001-01-454061</li>
-                                <li id="idMsg5">현금영수증 발행 : 신청안함</li>
-                                
+								<li id="pCategory"></li>
+                               <!--  <li id="idMsg5">입금자: 홍길동. 계좌번호 : 국민은행 543001-01-454061</li>
+                                <li id="idMsg5">현금영수증 발행 : 신청안함</li> -->
                             </ul>
 						</td>	
 					</tr>
@@ -175,59 +187,41 @@
 							<th class="column-4 p-l-70">Quantity</th>
 							<th class="column-6">POINT</th>
 							<th class="column-7">DELIVERY</th>
-							<th class="column-8">CHARGE</th>
 							<th class="column-5">Total</th>
 						</tr>
 
+						<c:forEach var="c" items="${list }">
 						<tr class="table-row">
 						    
 							<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="//black-up.kr/web/product/medium/201910/7e87ddc2879aa1c854575447f27b6026.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
+								<img src="${c.path }${c.image}"onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
 								</div>
 							</td>
-							<td class="column-2">Men Tshirt
-							<br><span id="idMsg7">[옵션 : 블루/S/1개]</span></td>
-							<td class="column-3">29,000 won</td>
+							<td class="column-2">${c.prdt_name }
+							<br><span id="idMsg7">[옵션 : ${c.prdt_color }/${c.prdt_size }/${c.prdt_color}개]</span></td>
+							<td class="column-3"><font id="pro-price" class="format-money">${c.prdt_price }</font> </td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
-							
 									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1"
 									style="margin-left: 31px;">
 
 								</div>
 							</td>
-							<td class="column-6"><img src="/ot/images/icons/icon-point.png" width="15px;height:15px;" 
+							<td class="column-6"><img src="/ot/resources/images/icons/icon-point.png" width="15px;height:15px;" 
 							style="position: relative;left: -5px;
-								top: -1px;">900원</td>
+								top: -1px;">3%</td>
 							<td class="column-7" style="padding-left: 40px;">기본배송</td>
-							<td class="column-8">2,500 won</td>
-							<td class="column-5">58,000 won</td>
+							<td class="column-5"><font class="format-money">${c.prdt_price }</font> won</td>
+						<%-- 	<input type="hidden" name="sumprice" value="${c.prdt_sumprice }">
+							<input type="hidden"class="ca_no"  name="ca_no" value="${c.ca_no }">										
+							<input type="hidden" name="prdt_no" value="${c.ord_no }">
+							<input type="hidden" name="ord_color" value="${o.ord_color }">
+							<input type="hidden" name="ord_size" value="${o.ord_size }">
+							<input type="hidden" name="ord_count" value="${o.ord_count }"> --%>
 						</tr>
-
-						<tr class="table-row">
-							
-							<td class="column-1">
-								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="//black-up.kr/web/product/medium/201910/7e87ddc2879aa1c854575447f27b6026.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
-								</div>
-							</td>
-							<td class="column-2">Mug Adventure
-							<br><span id="idMsg7">[옵션 : 블루/S/1개]</span></td>
-							<td class="column-3">29,000 won</td>
-							<td class="column-4">
-								<div class="flex-w bo5 of-hidden w-size17">
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1"
-									style="margin-left: 31px;">
-								</div>
-						</td>
-							<td class="column-6"><img src="/ot/images/icons/icon-point.png" width="15px;height:15px;" 
-							style="position: relative;left: -5px;
-								top: -1px;">900원</td>
-							<td class="column-7" style="padding-left: 40px;">기본배송</td>
-							<td class="column-8">2,500 won</td>
-							<td class="column-5">58,000 won</td>
-						</tr>
+						
+				</c:forEach>
 					</table>
 				</div>
 			</div>
@@ -236,7 +230,7 @@
 			
 
 			<!-- Total -->
-			<h3 class=" " style="position: relative;font-size: 12px;font-weight: 600; top:63px;left:-48px;">
+			<%-- <h3 class=" " style="position: relative;font-size: 12px;font-weight: 600; top:73px;left:-48px;">
 			결제 예정 금액</h3><br>
  
 			<div class="totalArea"style="display:flex;margin-top: 3%;">
@@ -271,9 +265,9 @@
 			    		<tr>
 			    		
 			    			<td class="price">
-			    			<span class="m-text21 w-size20 w-full-sm"
-			    			style="position: relative;left: 143px;">
-						58,000 won
+			    			<span class="m-text21 w-size20 w-full-sm">
+						<font id="allprice2" class="format-money"></font> won
+					</span>
 					</span>
 			    		</td>
 			    		
@@ -282,9 +276,9 @@
 						</td>	
 
 						 	<td class="total-price">
-						 
+						 	<strong>=</strong>
 						 	<span class="m-text21 w-size20 w-full-sm">
-						58,000 <span id="m-text21">won</span>
+						<font id="resultPrice" name="resultPrice" class="format-money"></font> <span id="m-text21">won</span>
 					</span>
 					</td>
 						 	
@@ -295,7 +289,7 @@
 			    
 		</form>
 	</div>
-			
+			 --%>
 	
 	<!-- 수정함 수정함 기억해내! -->
 	<h3 class=" " style="position: relative;font-size: 12px;font-weight: 600; top:50px;left:-47px;">
@@ -319,12 +313,12 @@
     					background-color: #fafafa;">
 						<span id="idMsg4">받으시는분</span></th>
 						<td>
-						<span id="idMsg13">홍길동</span>
+						<span id="ord_receiver"></span>
 						</td>	
 					</tr>
 					
 					
-					<tr>
+				<!-- 	<tr>
 						<th scope="row" style="padding: 11px 0 10px 18px;
    						 border: 1px solid #ddd;
     					 border-bottom-width: 0;
@@ -336,7 +330,7 @@
 						<td style="border-top: 1px solid #ddd;">
 							<span id="idMsg13">10115</span>
 						</td>	
-					</tr>
+					</tr> -->
 					
 					<tr>
 						<th scope="row" style="padding: 11px 0 10px 18px;
@@ -348,7 +342,7 @@
     					background-color: #fafafa;">
 						<span id="idMsg4">주소</span></th>
 						<td style="border-top: 1px solid #ddd;">
-						<span id="idMsg13">서울시 강남구 테헤란로</span>
+						<span id="ord_address"></span>
 						</td>	
 					</tr>
 					
@@ -362,7 +356,7 @@
     					background-color: #fafafa;">
 						<span id="idMsg4">휴대전화</span></th>
 						<td style="border-top: 1px solid #ddd;">
-						<span id="idMsg13">010-1234-5678</span>
+						<span id="ord_phone"></span>
 						</td>	
 					</tr>
 					
@@ -377,21 +371,20 @@
 						<span id="idMsg4">배송메시지</span></th>
 						<td style="border-top: 1px solid #ddd;">
 						<!--배송메시지  내용 -->
+						<span id="ord_message"></span>
 						</td>	
 					</tr>
 			
 			</tbody>
 		</table>
-	</form>
+	<!-- </form> -->
 	</div>
 	
-	<a href="#none" class=" yg_btn_24 yg_btn32">현금영수증 신청</a>
-	<a href="#none" class=" yg_btn_24 yg_btn32">세금계산서 신청</a>
-	<a href="#none" class=" yg_btn_24 yg_btn32">거래명세서 인쇄</a>
+	<a href="#none" class=" yg_btn_24 yg_btn32">영수증 보기</a>
 	
 	 <div class="" style="margin-left:25%;">
         <a href="index.jsp" class="yg_btn_24 yg_btn31"><span style="position:relative;top:7px;">쇼핑계속하기</span></a>
-        <a href="mypage_list.jsp" class="hov1 s-text1 trans-0-4 yg_btn_143">주문확인하기</a>
+        <a href="mList.do" class="hov1 s-text1 trans-0-4 yg_btn_143">주문확인하기</a>
     </div>
 	</section>
 
@@ -416,14 +409,59 @@
 
 
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/animsition/js/animsition.min.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/bootstrap/js/popper.js"></script>
-	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/bootstrap/js/popper.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+	<script type="text/javascript" src="/ot/resources/vendor/select2/select2.min.js"></script>
+	<script>
+	$(function(){
+		
+		var today = new Date();   
+		var year = today.getFullYear();
+		var month = (today.getMonth()+1);
+		var day  = today.getDate();
+		var hours = today.getHours(); // 시
+		var minutes = today.getMinutes();  // 분
+		  var ampm = hours >= 12 ? 'pm' : 'am';
+		  hours = hours % 12;
+		  hours = hours ? hours : 12; // the hour '0' should be '12'
+		  minutes = minutes < 10 ? '0'+minutes : minutes;
+		  var strTime = year+'-'+month+'-'+day+' '+ampm+' '+hours +':' + minutes;
+		  
+		  $('#today').text(strTime);
+		var totalPrice = 0;
+		var pCategory="";
+		
+		  "<c:forEach var ='p' items='${plist}'>"
+		  			totalPrice +=Number("${p.sumprice}")
+		  			pCategory = "${p.pay_category}"
+		  "</c:forEach>"
+		  
+		  $('#totalPrice').text(totalPrice);
+		  		if(pCategory == "card"){
+		  			$('#pCategory').text("카드 결제");
+		  		}else if(pCategory == "phone"){
+		  			$('#pCategory').text("핸드폰 결제");
+		  		}else if(pCategory == "kakaopay"){
+		  			$('#pCategory').text("카카오 페이 결제");
+		  		}else if(pCategory == "cash"){
+		  			$('#pCategory').text("무통장 입금");
+		  		}
+		  		
+	 	  "<c:forEach var ='o' items='${olist}'>"
+		  		$('#ord_receiver').text("${o.ord_receiver}");
+		  	 	 $('#ord_address').text("${o.ord_address}");
+		  	 	$('#ord_phone').text("${o.ord_phone}");
+		  	 	$('#ord_message').text("${o.ord_message}");
+		   "</c:forEach>" 
+		  
+	});
+	
+	</script>
 	<script type="text/javascript">
 		$(".selection-1").select2({
 			minimumResultsForSearch: 20,
@@ -534,6 +572,8 @@
 			        $('input[name="pro_check"]').prop('checked', checked);
 
 			    });
+			    
+			    
 	
 		 
 	</script>

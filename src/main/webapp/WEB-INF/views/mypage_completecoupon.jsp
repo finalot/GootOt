@@ -45,7 +45,7 @@
 			<div class="xans-myshop-bankbook " style="width: 80%;">
     			<p class="xans-element- xans-myshop xans-myshop-asyncbenefit mypage_top ">
     				<strong>
-    					<span><span class="xans-member- var-name">홍길동</span></span>
+    					<span><span class="xans-member- var-name">${loginMember.memName }</span></span>
     				</strong>
  					님은 현재 
 					<strong>
@@ -138,12 +138,12 @@
 								<c:forEach var="cp" items="${list }">
 							<tbody class="center">
 								<tr class="xans-record-">
-									<td>${cp.cpseq }</td>
+									<td>${cp.cpmem_no }</td>
 									<td>${cp.cpname }</td>
 									<td>
-										<fmt:formatNumber value="${cp.cpDiscount }" pattern="#,###"/>
+										<fmt:formatNumber value="${cp.cpdiscount }" pattern="#,###"/>
 									</td>
-									<td>${cp.cp_cdate }</td>
+									<td>${cp.cp_usedate }</td>
 								</tr>
 								</c:forEach>
 								</c:if>

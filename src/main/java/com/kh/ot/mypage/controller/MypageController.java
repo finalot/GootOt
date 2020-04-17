@@ -13,10 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.common.Pagination;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.MyBoard;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -65,7 +67,7 @@ public class MypageController {
 	}
 	
 	/**
-	 * @작성일 : 2020. 4. 2.
+	 * @작성일 : 2020. 4. 15.
 	 * @작성자 : 신경섭
 	 * @내용 : 마이페이지 적립금 이동
 	 * @param @return
@@ -104,7 +106,7 @@ public class MypageController {
 	}
 	
 	/**
-	 * @작성일 : 2020. 4. 4.
+	 * @작성일 : 2020. 4. 15.
 	 * @작성자 : 신경섭
 	 * @내용 : 적립금  - 미사용적립금
 	 * @param @return
@@ -141,14 +143,13 @@ public class MypageController {
 	
 	
 	/**
-	 * @작성일 : 2020. 4. 3.
+	 * @작성일 : 2020. 4. 15.
 	 * @작성자 : 신경섭
 	 * @내용 : 마이페이지 쿠폰 이동
 	 * @param @return
 	 * @return String
 	 */
 	
-
 	@RequestMapping("mCoupon.do") // 3
 	public ModelAndView mCoupon(ModelAndView mv,
 								@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, 
@@ -180,7 +181,7 @@ public class MypageController {
 	}
 	
 	/**
-	 * @작성일 : 2020. 4. 3.
+	 * @작성일 : 2020. 4. 15.
 	 * @작성자 : 신경섭
 	 * @내용 : 마이페이지 쿠폰 - 사용완료한 쿠폰
 	 * @param @return
@@ -197,10 +198,11 @@ public class MypageController {
 		int memNo = m.getMemNo();
 		
 		int coupon = mpService.CouponListCount(m);
+		
 		int point = mpService.PointListCount(memNo);
 		
-		int listCount = mpService.CompleteCouponListCount(memNo);
-		
+		int listCount = mpService.CompleteCouponListCount(m);
+		System.out.println(m);
 		System.out.println("listCount : " + listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
@@ -217,15 +219,42 @@ public class MypageController {
 	}
 	
 	/**
-	 * @작성일 : 2020. 4. 3.
+	 * @작성일 : 2020. 4. 16.
 	 * @작성자 : 신경섭
 	 * @내용 : 마이페이지 내가 쓴 게시글 이동
 	 * @param @return
 	 * @return String
 	 */
 	@RequestMapping("mBoard.do")
-	public String mBoard() {
-		return "mypage_board";
+	public ModelAndView mBoard(ModelAndView mv, HttpSession session, 
+								@RequestParam(value="currentPage", 
+								required=false,defaultValue="1") int currentPage) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		int listCount = mpService.getListCount(memNo);
+		
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<MyBoard> list = mpService.selectList(pi, memNo);
+		
+		System.out.println("list : " + list);
+
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+   		mv.addObject("list",list);
+   		mv.addObject("pi", pi);
+		mv.setViewName("mypage_board");
+		return mv;
 	}
 	
 	/**
@@ -334,6 +363,52 @@ public class MypageController {
 	@RequestMapping("mBoard_adminmodify.do")
 	public String mBoard_Adminmodify() {
 		return "mypage_board_adminmodify";
+	}
+	
+	@RequestMapping("mBoardsearch.do")
+	public ModelAndView mBoardsearch(ModelAndView mv, HttpSession session,
+									@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage, 
+									String search_key,String search) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		SearchCondition sc = new SearchCondition();
+		sc.setSearch_key(search_key);
+		sc.setSearch(search);
+		sc.setMemno(memNo);
+		
+		System.out.println(sc);
+		
+		if(search_key.equals("writer")) {
+			sc.setWriter(search);
+		} else if(search_key.equals("title")) {
+			sc.setTitle(search);
+		}
+		
+		int listCount = mpService.SearchListCount(sc);
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = sc.getPageInfo(currentPage, listCount);
+		
+		ArrayList<MyBoard> list = mpService.selectSearchList(pi, sc);
+		
+		System.out.println("list : " + list);
+
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+   		mv.addObject("list",list);
+   		mv.addObject("pi", pi);
+   		mv.addObject("sc",sc);
+		mv.setViewName("mypage_board");
+		
+		return mv;
 	}
 }
 	

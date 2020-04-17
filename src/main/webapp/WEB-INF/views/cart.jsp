@@ -61,14 +61,14 @@ margin-right: 3%;
 			Cart
 		</h2>
 	</section>
-	
+
 
 	<!-- Cart -->
  <c:if	test="${! empty sessionScope.loginMember }">
 	<section class="cart bgwhite p-t-70 p-b-100">
 			<div class="container">
 				<!-- <h3 style="font-size:12px;font-weight:600;">국내배송상품 주문내역</h3> -->
-		
+
 			<div class="container-table-cart pos-relative" style="position: relative;right: 4%;">
 				<div class="wrap-table-shopping-cart bgwhite">
 					<table class="table-shopping-cart">
@@ -85,12 +85,12 @@ margin-right: 3%;
 							<th class="column-8">CHARGE</th>
 							<th class="column-5">Total</th>
 						</tr>
-
-					
 						<c:forEach var="c" items="${list }">
 							<tr class="table-row">
 							<td>
-							   <input type="checkbox" name=pro_check style="  position: relative;left: 47px;">
+							   <input type="checkbox" class="pro_check" name=pro_check style="  position: relative;left: 47px; top:-13px;">
+							   <br>
+
 							</td>
 							<td class="column-1">
 							    	 <div class="cart-img-product b-rad-4 o-f-hidden">
@@ -103,74 +103,43 @@ margin-right: 3%;
 							<td class="column-3"><font id="pro-price" class="format-money">${c.prdt_price }</font> won</td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
-									<!-- <button class="num-product-down1 color1 flex-c-m size7 bg8 eff2"> -->
-										<!-- <i class="fs-12 fa fa-minus" aria-hidden="true"></i> -->
-									<!-- </button> -->
-
 									<input style="margin-left: 22%;" class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
-
-									<!-- <button class="num-product-up1 color1 flex-c-m size7 bg8 eff2"> -->
-										<!-- <i class="fs-12 fa fa-plus" aria-hidden="true"></i> -->
-									<!-- </button> -->
-									
-							
 								</div>
 							</td>
-							<td class="column-6"><img src="/ot/resources/images/icons/icon-point.png" width="15px;height:15px;" 
+							<td class="column-6"><img src="/ot/resources/images/icons/icon-point.png" width="15px;height:15px;"
 							style="position: relative;left: -5px;
 								top: -1px;"> 3%</td>
 							<td class="column-7" style="padding-left: 40px;">기본배송</td>
 							<td class="column-8"><font class="format-money">2500</font> won</td>
 							<td class="column-5"><font class="format-money">${c.prdt_sumprice }</font> won</td>
-								</tr>
-							</c:forEach>
-					
-
-						<!-- <tr class="table-row">
-							 <input type="checkbox" name=pro_check style="position: relative;top: 276px;left: 9px;">
-							<td class="column-1">
-								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="//black-up.kr/web/product/medium/201910/7e87ddc2879aa1c854575447f27b6026.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
-								</div>
-							</td>
-							<td class="column-2">Mug Adventure
-							<br><span id="idMsg7">[옵션 : 베이지/S/1개]</span></td>
-							<td class="column-3"><font class="format-money">29000</font> won</td>
-							<td class="column-4">
-								<div class="flex-w bo5 of-hidden w-size17">
-									<button class="num-product-down1 color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-									</button>
-
-									<input style="margin-left: 22%;" class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1">
-
-									<button class="num-product-up1 color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-									</button>
-								</div>
-						</td>
-							<td class="column-6"><img src="/ot/resources/images/icons/icon-point.png" width="15px;height:15px;" 
-							style="position: relative;left: -5px;
-								top: -1px;">900원</td>
-							<td class="column-7" style="padding-left: 40px;">기본배송</td>
-							<td class="column-8"><font class="format-money">2500</font> won</td>
-							<td class="column-5"><font class="format-money">58000</font> won</td>
-						</tr> -->
+							<input type="hidden" name="sumprice" value="${c.prdt_sumprice }">
+							<input type="hidden"class="ca_no"  name="ca_no" value="${c.ca_no }">										
+							<input type="hidden" name="prdt_no" value="${c.prdt_no }">
+							<input type="hidden" name="ord_color" value="${c.prdt_color }">
+							<input type="hidden" name="ord_size" value="${c.prdt_size }">
+							<input type="hidden" name="ord_count" value="${c.prdt_count }">
+							</tr>
+					</c:forEach>
 					</table>
 				</div>
 			</div>
 
-		
-			
+
+			<!-- 선택상품삭제 -->
+			<a id="delete_product" 
+						class="more yg_btn_24 yg_btn3" style="top:10px; cursor: pointer;left:1132px;">선택상품삭제</a>
+
+
+
 
 			<!-- Total -->
 			<h3 class=" " style="position: relative;font-size: 12px;font-weight: 600; top:70px;left:-48px;">
 			결제 예정 금액</h3><br>
- 
+
 			<div class="totalArea"style="display:flex;margin-top: 3%;">
 			    <form method="POST" name="payform"
 			    style="width: 100%;margin-right: 3%;margin-left:-4%; margin-top:2%;">
-			    
+
 			    <table class="cashfuture"  style="height: 48%;width: 109%;
 			   border-top: 1px solid #ddd;border-left: 1px solid #ddd;border-right: 1px solid #ddd;">
 			    <colgroup>
@@ -178,49 +147,51 @@ margin-right: 3%;
 					<col style="width:38%">
 					<col style="width:57%">
 				</colgroup>
-			    		<tr>	
+			    		<tr>
 			    			<th scope="col">
-			    			<strong style="position: relative;left: 148px;">총 주문 금액</strong>
+			    			<strong  style="position: relative;left: 145px;">총 주문 금액</strong>
 			    			</th>
-			    			
+
 			    			<th scope="col">
-							<strong>총 </strong><strong id="total">할인</strong>
-							<strong id="plus_mark"> + </strong>
-							<strong id="total" class="">부가결제</strong>
-							<strong> 금액</strong>
+						<!-- 	<strong>총 </strong><strong id="total">할인</strong>
+							<strong> 금액</strong> -->
+							<strong style="position:relative; left:45px;">총 할인 금액</strong>
 							</th>
-							
+
 							<th scope="col">
-							<strong>총 결제예정 금액</strong>
+							<strong style="position: relative;left: -3px;">총 결제예정 금액</strong>
 							</th>
 			    		</tr>
 			    	<tbody class="center">
 			    		<tr>
-			    		
+
 			    			<td class="price">
 			    			<span class="m-text21 w-size20 w-full-sm"
 			    			style="position: relative;left: 143px;">
-						<font class="format-money">58000</font> won
+						<font id="sumprice" class="format-money"></font> won
 					</span>
 			    		</td>
-			    		
+
 			    			<td class="option">
 			    			<strong id="plus_mark" style="position: relative;left: 40px;"> - </strong>
 			    				<span class="m-text21 w-size20 w-full-sm" style="position: relative;left: 39px;">
-							0 won</span>
-						</td>	
+								<font style="padding-right: 5px;" id="minusprice" class="format-money"></font>won
+							 </span>
+
+							<!--  <span id="m-text21 w-size20 w-full-sm">won</span> -->
+						</td>
 
 						 	<td class="total-price">
 						 	<strong>=</strong>
 						 	<span class="m-text21 w-size20 w-full-sm">
-						<font class="format-money">58000</font> <span id="m-text21">won</span>
+						<font id="allprice" class="format-money"></font> <span id="m-text21">won</span>
 					</span>
 					</td>
-						 	
+
 			    		</tr>
 			 	</tbody>
 			    </table>
-			    
+
 			    <div class="detail-pay">
 				<table style="height: 128%;width: 109%;
 			    border: 1px solid #ddd;">
@@ -239,24 +210,10 @@ margin-right: 3%;
     					background-color: #fafafa;">
 						<strong>총 할인금액</strong></th>
 						<td><span class="m-text21 w-size20 w-full-sm" style="position: relative;left: 9px;top: 1px;">
-							0 won</span>
-						</td>	
+							<font id="minusprice2">0</font> won</span>
+						</td>
 					</tr>
-					
-				<!-- 	<tr class="txt14">
-						<th scope="row" style="padding: 11px 0 10px 18px;
-   						 border: 1px solid #ddd;
-    					 border-bottom-width: 0;
-   						 color: #353535;
-   					     text-align: left;
-    					font-weight: normal;
-    					background-color: #fafafa;">
-						<strong>총 부가결제금액</strong></th>
-						<td style="border-top: 1px solid #ddd;"><span class="m-text21 w-size20 w-full-sm" style="position: relative;left: 9px;top: 1px;">
-							0 won</span>
-						</td>	
-					</tr> -->
-					
+
 					<tr class="txt14">
 						<th scope="row" style="padding: 11px 0 10px 18px;
    						 border: 1px solid #ddd;
@@ -268,14 +225,14 @@ margin-right: 3%;
 						<strong>쿠폰</strong></th>
 						<td style="border-top: 1px solid #ddd;">
 					<input name="coupon-point" id="coupon-point" class="format-money" size="20px;" style="border:1px solid #ddd;;margin-left: 8px; margin-top:2px;" readonly>
-						<a id="infodetail" 
+						<a id="infodetail"
 						class="more yg_btn_24 yg_btn3" style="top:-1px; cursor: pointer;">쿠폰사용</a>
 						<br>
-						</td>	
+						</td>
 					</tr>
-					
-					
-					
+
+
+
 					<tr class="txt14">
 						<th scope="row" style="padding: 11px 0 10px 18px;
    						 border: 1px solid #ddd;
@@ -286,12 +243,15 @@ margin-right: 3%;
     					background-color: #fafafa;">
 						<strong>적립금</strong></th>
 						<td style="border-top: 1px solid #ddd;">
-						<input type="text" name="point" id="point" size="20px;" style="margin-left: 8px; margin-top:10px;">
-						<span id="idMsg5">원 (총 사용가능 적립금 : <font class="format-money">2000</font>원)</span>
-						
-						<br>
-						
+						<input  type="number" step="1000" min="2000" max="${loginMember.mem_point }" name="pay_point" id="point" size="20px;" style="margin-left: 8px; margin-top:10px;    border: 1px solid #ddd; width:146px;">
+						<span id="idMsg5">원 </span>
+						<a id="pointdetail"
+						class="more yg_btn_24 yg_btn3" style="top:-1px; cursor: pointer;">적립금사용</a>
+
+
+
 						<ul class="info" style="margin: 18px 1px 8px;">
+						<li><span id="idMsg5">(총 사용가능 적립금 : <font class="format-money">${loginMember.mem_point }</font>원)</span></li>
 								<li id="idMsg6">- 적립금은 최소 2,000 이상일 때 결제가 가능합니다.</li>
                                 <li id="idMsg6">- 최대 사용금액은 제한이 없습니다.</li>
                                 <li id="idMsg6">- 1회 구매시 적립금 최대 사용금액은 2,000입니다.</li>
@@ -299,20 +259,20 @@ margin-right: 3%;
                                 <li id="idMsg6">- 적립금 사용 시 배송비는 적립금으로 사용 할 수 없습니다.</li>
                                 <li id="idMsg6">- 적립금 사용 시 해당 상품에 대한 적립금은 적립되지 않습니다.</li>
                             </ul>
-						</td>	
+						</td>
 					</tr>
-				
-				
+
+
 				</tbody>
-				
-				
+
+
 				</table>
-		
+
 			    </div>
 		</form>
 	</div>
 			<h3 class=" " style="position: relative;font-size: 12px;
-   font-weight: 600; top:89px;left:-48px;">결제 수단</h3><br>
+   font-weight: 600; top:93px;left:-48px;">결제 수단</h3><br>
     <p class = "required3" style="color:#000;">
       <img src = "/ot/resources/images/red.png" alt="필수">
       필수입력사항
@@ -320,24 +280,24 @@ margin-right: 3%;
 			<div style="display:flex;margin-top: 5%;">
 			    <form method="POST" name="payform"
 			    style="border:1px solid #ddd;width: 100%;margin-right: 3%;margin-left:-4%; margin-top:2%;">
-			    
+
 			    <div class="method">
-			    	<input type="radio" value="cash" name="paymethod" id="pay1" checked="checked" onclick="payshow1();">
+			    	<input type="radio" value="cash" name=pay_category id="pay1" checked="checked" onclick="payshow1();">
 			    	<label for="pay1">무통장 입금</label>
-			    	
-			    	<input type="radio" value="card" name="paymethod" id="pay2" onclick="payshow2();">
+
+			    	<input type="radio" value="card" name="pay_category" id="pay2" onclick="payshow2();">
 			    	<label for="pay2">카드 결제</label>
-			    	
-			    	<input type="radio" value="kakaopay" name="paymethod" id="pay3" onclick="payshow3();">
+
+			    	<input type="radio" value="kakaopay" name="pay_category" id="pay3" onclick="payshow3();">
 			    	<label for="pay3">카카오페이(간편결제)<a href="http://www.kakao.com/kakaopay" target="_blank">
 			    	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_info2.gif" alt="info"></a></label>
-			    	
-			    	<input type="radio" value="payco" name="paymethod" id="pay4" onclick="payshow4();">
+
+			    	<input type="radio" value="phone" name="pay_category" id="pay4" onclick="payshow4();">
 			    	<label for="pay4">휴대폰 결제<a href="http://www.payco.com/payco/guide.nhn" target="_blank">
 			    	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_info2.gif" alt="info"></a></label>
 			    </div>
-			    
-			    
+
+
 			    <div id="pay-cash">
 			    	<table>
 			    		<tbody>
@@ -345,7 +305,7 @@ margin-right: 3%;
 			    				<th>입금자명</th>
 			    				<td><input type="text" name="userName" id="userName" size="10px"></td>
 			    			</tr>
-			    			
+
 			    			<tr>
 			    				<th>입금은행</th>
 			    				<td>
@@ -358,45 +318,45 @@ margin-right: 3%;
 								</td>
 			    			</tr>
 			    		</tbody>
-			    	
+
 			    	</table>
 			    </div>
-			    
+
 			    <div id="pay-card" style="padding-left: 29px; display:none;">
 			    	<p id="shipfee" class="help"
 			    	style="font-size: 12px;font-weight: 600;color: #000;">
 			    	최소 결제 가능 금액은 결제금액에서 배송비를 제외한 금액입니다.</p>
-			    	
-			    	<p id="pg" class="help" 
+
+			    	<p id="pg" class="help"
 			  		style="font-size: 12px;font-weight: 600;color: #000;">
 			  		소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</p>
-			    </div>	
-			    
+			    </div>
+
 			   <div id="pay-kakaopay" style="padding-left:29px; display:none;">
 			   	<p class="help" style="font-size: 12px;font-weight: 600;color: #000;">
 			   	휴대폰에 설치된 카카오톡 앱에서 비밀번호 입력만으로 빠르고 안전하게 결제가 가능한 서비스 입니다.</p>
-			   
+
 			   <p class="help" style="font-size: 12px;font-weight: 600;color: #000;">
 			   	안드로이드의 경우 구글 플레이, 아이폰의 경우 앱 스토어에서 카카오톡 앱을 설치 한 후,<br>
                	최초 1회 카드 및 계좌 정보를 등록하셔야 사용 가능합니다.</p>
-               	
+
                	<p class="help" style="font-size: 12px;font-weight: 600;color: #000;">
                	인터넷 익스플로러의 경우 8 이상에서만 결제 가능합니다.</p>
-               	
+
                	<p class="help" style="font-size: 12px;font-weight: 600;color: #000;">
                	BC카드 중 신한, 하나, 국민카드는 결제가 불가능합니다.</p>
-               	
+
 			   </div>
-			   
+
 			   <div id="pay-payco" style="padding-left:29px; display:none;">
 			   	<p class="help" style="font-size: 12px;font-weight: 600;color: #000;" >
 			   소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수 있습니다.</p>
-			   
+
 			   <p class="help" style="font-size: 12px;font-weight: 600;color: #000;" >
 			</p>
 			   </div>
       </form>
-	
+
 			<div  class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
 				<!-- <h5 class="m-text20 p-b-24">
 					결제예정금액
@@ -409,13 +369,13 @@ margin-right: 3%;
 					</span>
 
 					<span class="m-text21 w-size20 w-full-sm">
-						<font class="format-money">58000</font> won
+						<font id="allprice2" class="format-money"></font> won
 					</span>
 				</div>
-				
+
 
 				<!--  -->
-				
+
 				<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
 					<span class="s-text18 w-size19 w-full-sm">
 						총 배송비 :
@@ -426,7 +386,7 @@ margin-right: 3%;
 					</span>
 
 
-					
+
 				</div>
 
 				<!--  -->
@@ -436,28 +396,28 @@ margin-right: 3%;
 					</span>
 
 					<span class="m-text21 w-size20 w-full-sm">
-						<font class="format-money">60500</font> <span id="m-text21">won</span>
+						<font id="resultPrice" name="resultPrice" class="format-money"></font> <span id="m-text21">won</span>
 					</span>
 				</div>
 
 				<div class="size15 trans-0-4">
 					<!-- Button -->
 					<button id="idMsg3" class="hov1 s-text1 trans-0-4 yg_btn_141"
-						style="position: relative;left: 43px;">
-						전체상품주문
+						style="position: relative;left: 77px;">
+						상품 주문
 					</button>
-					
-					<button  id="idMsg3" class="hov1 s-text1 trans-0-4 yg_btn_142" 
+
+					<!-- <button  id="idMsg3" class="hov1 s-text1 trans-0-4 yg_btn_142"
 						style="position: relative;left: 54px;">
 						선택상품주문
-					</button>
+					</button> -->
 				</div>
 			</div>
-			
+
 			</div>
 			<h3 class=" " style="    position: relative;
     font-size: 12px;
-    font-weight: 600; top:63px;left:-48px;">주문 정보</h3><br>
+    font-weight: 600; top:68px;left:-48px;">주문 정보</h3><br>
     <p class = "required2" style="color:#000;">
       <img src = "/ot/resources/images/red.png" alt="필수">
       필수입력사항
@@ -470,10 +430,10 @@ margin-right: 3%;
                    	 주문하시는 분<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                   <td style="border-top:1px solid #ddd;">
-                	<input type="text" name="userName" id="userName" size="20px" value="${sessionScope.loginMember.memName}"> 
+                	<input type="text" name="userName" id="userName" size="20px" value="${sessionScope.loginMember.memName}">
                 </td>
                 </tr>
-           
+
             <tr>
                 <th>
                       주소<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
@@ -489,7 +449,7 @@ margin-right: 3%;
                position: relative;">나머지주소</span>
                 </td>
             </tr>
-            
+
             <tr>
                 <th style="border-bottom:1px solid #ddd;">
                     휴대전화<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
@@ -507,30 +467,31 @@ margin-right: 3%;
                     -<input id="mobile3"  name="mobile3" maxlength="4" value="" type="text">
                 </td>
             </tr>
-            
+
             <tr>
                 <th>
                     이메일<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                 </th>
                 <td>
                     <input id="email" name="email" value="${sessionScope.loginMember.memEmail} " type="text">
-                   
+
                 </td>
             </tr>
 			</tbody>
 		</table>
 	</form>
-	
+
 	<!-- 수정함 수정함 기억해내! -->
 	<h3 class=" " style="    position: relative;
     font-size: 12px;
-   font-weight: 600; top:63px;left:-48px;">배송 정보</h3><br>
+   font-weight: 600; top:67px;left:-48px;">배송 정보</h3><br>
     <p class = "required4" style="color:#000;">
       <img src = "/ot/resources/images/red.png" alt="필수">
       필수입력사항
    </p>
 	<div style="display:flex;margin-top: 3%;">
-			    <form method="GET" name="inputForm"
+
+ <form  name="inputForm" action="cartInsert.do" class="cartInsert"
 			    style="width: 100%;margin-right: 3%;margin-left:-4%; margin-top:2%;">
         <table class="jointype3" style="height: 100%;width: 109%;">
         <tbody>
@@ -544,20 +505,37 @@ margin-right: 3%;
                     <!-- <input id="delivery2" name="delivery2"  type="radio"
                     style="position: relative;left: -2px;">
                     <label id="delivery2" style="position: relative;left: -3px;top: -2px;">새로운배송지</label> -->
+
+                    <select id="new_delivery" name="new_delivery" style="font-size:12px;width: 220px;">
+                    <option value="new_delivery1">::: 새로운 배송지를 선택해주세요 :::</option>
+                    <option value="new_delivery2">배송지2</option>
+                    <option value="new_delivery3">배송지3</option>
+                    <option value="new_delivery3">배송지4</option>
+                    <option value="new_delivery3">배송지5</option>
+                    <option value="new_delivery3">배송지6</option>
+                    <option value="new_delivery3">배송지7</option>
+                    <option value="new_delivery3">배송지8</option>
+                    <option value="new_delivery3">배송지9</option>
+                    <option value="new_delivery3">배송지10</option>
+                    </select>
+
+
+
+
                 </td>
                 </tr>
-                
+
                  <tr>
                 <th>
                       받으시는 분<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                    </th>
                 <td>
-                    <input type="text" name="userName" id="userName-1" size="20px"> 
+                    <input type="text" name="ord_receiver" id="userName-1" size="20px">
                 </td>
             </tr>
-            
-           
-            
+
+
+
             <tr>
                 <th>
                       주소<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
@@ -571,10 +549,10 @@ margin-right: 3%;
                    <br>
                    <input id="address2-1" name="address2"  class="inputTypeText" placeholder="" value="" type="text"><span id="idMsg" style="left: 7px;
                position: relative;">나머지주소</span>
-                   
+
                 </td>
             </tr>
-            
+
             <tr>
                 <th style="border-bottom:1px solid #ddd;">
                     휴대전화<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
@@ -592,26 +570,24 @@ margin-right: 3%;
                     -<input id="mobile3-1"  name="mobile3" maxlength="4" value="" type="text">
                 </td>
             </tr>
-            
+
             <tr>
             	<th style="border-bottom:1px solid #ddd;">
             	배송메시지
             	</th>
             	<td style="border-bottom:1px solid #ddd;">
-            		<textarea id="omessage" name="omessage" maxlength="255" cols="70"></textarea>
+            		<textarea id="omessage" name="ord_message" maxlength="255" cols="70"></textarea>
             	</td>
-            
-            
             </tr>
-           
-			
+
 			</tbody>
 		</table>
+		<input type="hidden" id="pay_usedcp" name="pay_usedcp" value="">
 	</form>
 	</div>
 	</section>
 	</c:if>
-	
+
 	<c:if test="${ empty sessionScope.loginMember }">
 		<section class="cart bgwhite p-t-70 p-b-100" style="height: 50%;">
 			<div align="center"><h3 style="font-size: 32px;">로그인후 이용 해 주세요</h3></div>
@@ -622,7 +598,7 @@ margin-right: 3%;
         <div class="header">
             <h3 style="font-size: 14px;position: relative;top: 1px;">총 주문금액 상세내역</h3>
         </div>
-        
+
         <a href="#none" class="close" onclick="OrderLayer.offDiv('order_layer_detail');">
         <img src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif" alt="닫기"
         style="position: relative;left: -14px;top: -33px;"></a>
@@ -639,7 +615,7 @@ margin-right: 3%;
 			</li>
 		</c:forEach>
 		</ul>
-		
+
 		</div>
 		<div style="margin-left: 1px;display: flex;background: #f3f3f3;height: 8%;color: black;font-weight: bold;">
 		<span style="margin-left: 4%;margin-top: 2%; font-size: 14px;">총 할인금액</span> <span id="coupon-price" style="margin-top:2%;margin-left: 40%; font-size: 14px;">0</span><span style="margin-left: 2%;margin-top: 2%;font-size: 14px;">원</span>
@@ -649,7 +625,7 @@ margin-right: 3%;
 						style="position: relative;left: -5px;">
 						쿠폰적용
 					</button>
-					<button  id="idMsg3" class="hov1 s-text1 trans-0-4 yg_btn_147" 
+					<button  id="idMsg3" class="hov1 s-text1 trans-0-4 yg_btn_147"
 						style="position: relative;left: 15px;">
 						취소
 					</button>
@@ -682,10 +658,108 @@ margin-right: 3%;
 	<script type="text/javascript" src="/ot/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="/ot/resources/vendor/select2/select2.min.js"></script>
-	
+
+
+
+<!-- 금액관련 스크립트 -->
 	<script>
+
+	  var sum;
+	  var price;
+	  var point;
+	  var delivry = 2500;
+	 $('#pro_cart').click(function(){
+			//var pro_check = document.getElementsByName('pro_check');
+			var sumprice = document.getElementsByName('sumprice');
+			var pro_cart = document.getElementById('pro_cart');
+			sum=0;
+			for(var i=0;i<sumprice.length;i++){
+					if(pro_cart.checked==true){
+			     			sum += Number(sumprice[i].value);
+			}
+		}
+		    $('#sumprice').text(sum);
+
+			$('#allprice2').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
+			$('#allprice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
+			$('#minusprice').text(Number($('#point').val())+Number($('#coupon-price').text()));
+			$('#minusprice2').text(Number($('#point').val())+Number($('#coupon-price').text()));
+			$('#resultPrice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val())+delivry);
+	 });
+
+	$('.pro_check').click(function(){
+		var pro_check = document.getElementsByName('pro_check');
+		var sumprice = document.getElementsByName('sumprice');
+		sum=0;
+		for(var i=0;i<sumprice.length;i++){
+				if(pro_check[i].checked==true){
+		     			sum += Number(sumprice[i].value);
+				}
+		}
+
+		console.log("sum : "+sum)
+	    $('#sumprice').text(sum);
+
+		$('#allprice2').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
+		$('#allprice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
+		$('#minusprice').text(Number($('#point').val())+Number($('#coupon-price').text()));
+		$('#minusprice2').text(Number($('#point').val())+Number($('#coupon-price').text()));
+		$('#resultPrice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val())+delivry);
+	})
+
+	/*쿠폰사용 스크립트*/
+	 $('.mycoupon').click(function(){
+
+		 price = $(this).val();
+
+		$('#coupon-price').text(price);
+
+	})
+	$('.yg_btn_146').click(function(){
+		price=0;
+	     price = Number($('#coupon-price').text());
+		$('#coupon-point').val(price);
+		$('#orderdetail').css('display','none');
+
+
+		$('#allprice2').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
+		$('#allprice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
+		$('#minusprice').text(Number($('#point').val())+Number($('#coupon-price').text()));
+		$('#minusprice2').text(Number($('#point').val())+Number($('#coupon-price').text()));
+		$('#resultPrice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val())+delivry);
+
+	});
+	$('.yg_btn_147').click(function(){
+		$('#orderdetail').css('display','none');
+	})
+
+		/*적립금사용 스크립트*/
+	 $('#pointdetail').click(function() {
+		 point =0;
+		 point = Number($('#point').val());
+
+		$('#allprice2').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
+		$('#allprice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val()));
+		$('#minusprice').text(Number($('#point').val())+Number($('#coupon-price').text()));
+		$('#minusprice2').text(Number($('#point').val())+Number($('#coupon-price').text()));
+		$('#resultPrice').text(Number(sum)-Number($('#coupon-price').text())-Number($('#point').val())+delivry);
+ 	});
+
+	$('.mycoupon').click(function(){
+		var cpmem_no=$(this).next().val();
+		$('#pay_usedcp').val(cpmem_no);
+	})
+
+
+
+	</script>
+<!-- 금액 관련 스트립트 -->
+
+
+<!-- 주소관련 스크립트 -->
+<script>
 	console.log($('#pro-price').text())
-	
+
 	var address =new Array();
 	var phone = new Array();
 	var count=0
@@ -702,84 +776,119 @@ margin-right: 3%;
 	  //폰번호 잘라서 정보 뿌리기
 	  "<c:forTokens items='${sessionScope.loginMember.memPhone}'  delims='-'  var='phone'>"
 	  phone[count1] = "${phone}"
-	  count1++
+	  count1++;
 	  " </c:forTokens>"
 
 	   $('#mobile2').val(phone[1])
 	  $('#mobile3').val(phone[2])
-	  
-	  
+
+
 	 var firstnum = document.getElementById('mobile1');
-		
+
   		for(var i=0;  i < 10;i++){
-	 		if(firstnum.children[i].value == phone[0]){		
+	 		if(firstnum.children[i].value == phone[0]){
 	       		firstnum.children[i].selected = true;
-    		} 
-	 	}  
+    		}
+	 	}
 	});
-	
+
 $('#delivery').click(function(){
-	
+
 	if($('#delivery').prop('checked') == true){
 		$('#userName-1').val("${sessionScope.loginMember.memName}")
 		  $('#zipCode-1').val(address[0])
 		  $('#address1-1').val(address[1])
 		  $('#address2-1').val(address[2])
-		  
+
 	 $('#mobile2-1').val(phone[1])
 	  $('#mobile3-1').val(phone[2])
-	  
-	  var firstnum = document.getElementById('mobile1-1');
-			
-	  		for(var i=0;  i < 10;i++){
-		 		if(firstnum.children[i].value == phone[0]){		
-		       		firstnum.children[i].selected = true;
-	    		} 
-		 	}  
-		}
-});	
-	
-	$('.mycoupon').click(function(){
-		var price = $(this).val();
-		
-		$('#coupon-price').text(price);
-		
-	})
-	$('.yg_btn_146').click(function(){
-		var price = $('#coupon-price').text();
-		$('#coupon-point').val(price);
-		$('#orderdetail').css('display','none');
 
-	});
-	$('.yg_btn_147').click(function(){
-		$('#orderdetail').css('display','none');
-	})
-	
-	
+	  var firstnum = document.getElementById('mobile1-1');
+
+	  		for(var i=0;  i < 10;i++){
+		 		if(firstnum.children[i].value == phone[0]){
+		       		firstnum.children[i].selected = true;
+	    		}
+		 	}
+		}
+});
+
 	</script>
-	
+<!-- 주소관련 스크립트 -->
+
+<!-- 아임포트 결제 API -->
 	<script>
 
-	
-	
+
+
 	$('#idMsg3').click(function(){
 		
+		//location.href ="orderResultView.do";
+
+	 	var ord_receiver =$('#userName-1').val();
+		var ord_phone = ($('#mobile1-1').val()+"-"+$('#mobile2-1').val()+"-"+ $('#mobile3-1').val());
+		var ord_address = ($('#zipCode-1').val()+","+$('#address1-1').val()+","+$('#address2-1').val());
+		var ord_message = $('#omessage').val();
+		
+		var pay_usedcp =  $('#pay_usedcp').val();
+		var pay_point = $('#point').val(); 
+		var pay_category = $('input[name="pay_category"]:checked').val();
+		
+		var coupon_price = $('#coupon-price').text();
+		
+	 	var prdtArr = new Array();
+	 	var sizeArr = new Array();
+	 	var colorArr = new Array();
+	 	var countArr = new Array();
+		var sumpriceArr = new Array();
 		
 		
-		 if($('#pay2').prop('checked') == true){
+	   var pro_check = document.getElementsByName('pro_check');
+	   var prdt_no = document.getElementsByName('prdt_no');
+	   var ord_size = document.getElementsByName('ord_size');
+	   var ord_color = document.getElementsByName('ord_color');
+	   var ord_count = document.getElementsByName('ord_count');
+	   
+	   var sumprice = document.getElementsByName('sumprice');
+	   
+	   
+				 var count=0;
+				 for(var i=0;i<pro_check.length;i++){
+					 
+					 if(pro_check[i].checked ==true){
+						 prdtArr[count] = prdt_no[i].value
+						 sizeArr[count] = ord_size[i].value
+						 colorArr[count] = ord_color[i].value
+						 countArr[count] = ord_count[i].value
+						 sumpriceArr[count] = sumprice[i].value;
+						 
+						 
+						 count++;
+					
+					 }
+				 }
+			console.log(sumpriceArr);
+  location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+
+		 "&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+
+		 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
+		 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price; 
+	});
+ 	
+		
+		 /*  if($('#pay2').prop('checked') == true){
 			 IMP.init('imp71871253');
 		}else if($('#pay4').prop('checked') == true){
-			IMP.init('imp36292670');	 
+			IMP.init('imp36292670');
 		 }else if($('#pay3').prop('checked') == true) {
-			IMP.init('imp97532169');	 
+			IMP.init('imp97532169');
 		 }
-			 
+
 				IMP.request_pay({
 				    pg : 'inicis',
 				    pay_method : 'card',
 				    merchant_uid : 'merchant_' + new Date().getTime(),
 				    name : '주문명:결제테스트',
-				    amount : 60500,
+				    amount : Number($('#resultPrice').text()),
 				    buyer_email : '${sessionScope.loginMember.memEmail}',
 				    buyer_name : '${sessionScope.loginMember.memName}',
 				    buyer_tel : '${sessionScope.loginMember.memPhone}',
@@ -806,7 +915,58 @@ $('#delivery').click(function(){
 				    			msg += '카드 승인번호 : ' + rsp.apply_num;
 
 				    			alert(msg);
+				    			
+				    			var ord_receiver =$('#userName-1').val();
+				    			var ord_phone = ($('#mobile1-1').val()+"-"+$('#mobile2-1').val()+"-"+ $('#mobile3-1').val());
+				    			var ord_address = ($('#zipCode-1').val()+","+$('#address1-1').val()+","+$('#address2-1').val());
+				    			var ord_message = $('#omessage').val();
+				    			
+				    			var pay_usedcp =  $('#pay_usedcp').val();
+				    			var pay_point = $('#point').val(); 
+				    			var pay_category = $('input[name="pay_category"]:checked').val();
+				    			
+				    			var coupon_price = $('#coupon-price').text();
+				    			
+				    		 	var prdtArr = new Array();
+				    		 	var sizeArr = new Array();
+				    		 	var colorArr = new Array();
+				    		 	var countArr = new Array();
+				    			var sumpriceArr = new Array();
+				    			
+				    			
+				    		   var pro_check = document.getElementsByName('pro_check');
+				    		   var prdt_no = document.getElementsByName('prdt_no');
+				    		   var ord_size = document.getElementsByName('ord_size');
+				    		   var ord_color = document.getElementsByName('ord_color');
+				    		   var ord_count = document.getElementsByName('ord_count');
+				    		   
+				    		   var sumprice = document.getElementsByName('sumprice');
+				    		   
+				    		   
+				    					 var count=0;
+				    					 for(var i=0;i<pro_check.length;i++){
+				    						 
+				    						 if(pro_check[i].checked ==true){
+				    							 prdtArr[count] = prdt_no[i].value
+				    							 sizeArr[count] = ord_size[i].value
+				    							 colorArr[count] = ord_color[i].value
+				    							 countArr[count] = ord_count[i].value
+				    							 sumpriceArr[count] = sumprice[i].value;
+				    							 
+				    							 
+				    							 count++;
+				    						
+				    						 }
+				    					 }
+				    				console.log(sumpriceArr);
+				    	  location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+
+				    			 "&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+
+				    			 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
+				    			 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price; 
+	 			    			
+				    		
 				    		} else {
+				    		
 				    			//[3] 아직 제대로 결제가 되지 않았습니다.
 				    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 				    		}
@@ -816,11 +976,15 @@ $('#delivery').click(function(){
 				        msg += '에러내용 : ' + rsp.error_msg;
 
 				        alert(msg);
+				        
 				    }
 				});
-	});
-	
+	}); 
+ */
 	</script>
+<!-- 아임포트 결제 API -->
+
+
 	<script type="text/javascript">
 		$(".selection-1").select2({
 			minimumResultsForSearch: 20,
@@ -831,7 +995,7 @@ $('#delivery').click(function(){
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect2')
 		});
-		
+
 		 function addrSearch() {
 		      new daum.Postcode({
 		          oncomplete: function(data) {
@@ -866,7 +1030,7 @@ $('#delivery').click(function(){
 
 		              // 우편번호와 주소 정보를 해당 필드에 넣는다.
 		              $('#zipCode').val(data.zonecode); //5자리 새우편번호 사용
-		              
+
 		              $('#address1').val(fullAddr);
 
 		              // 커서를 상세주소 필드로 이동한다.
@@ -874,12 +1038,12 @@ $('#delivery').click(function(){
 		          }
 		      }).open();
 		  };
-		  
+
 		  function validateEmail(email) {
 			  var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 			  return re.test(email);
 			  }
-		  
+
 		  function payshow1() {
 			  if($('input:radio[id=pay1]').is(':checked')) {
 				  $('#pay-cash').show();
@@ -890,7 +1054,7 @@ $('#delivery').click(function(){
 				  $('#pay-cash').hide();
 			  }
 		  }
-		  
+
 		  function payshow2() {
 			  if($('input:radio[id=pay2]').is(':checked')) {
 				  $('#pay-card').show();
@@ -901,7 +1065,7 @@ $('#delivery').click(function(){
 				  $('#pay-card').hide();
 			  }
 		  }
-			  
+
 			  function payshow3() {
 				  if($('input:radio[id=pay3]').is(':checked')) {
 					  $('#pay-kakaopay').show();
@@ -912,7 +1076,7 @@ $('#delivery').click(function(){
 					  $('#pay-card').hide();
 				  }
 		  }
-			  
+
 			  function payshow4() {
 				  if($('input:radio[id=pay4]').is(':checked')) {
 					  $('#pay-payco').show();
@@ -923,7 +1087,7 @@ $('#delivery').click(function(){
 					  $('#pay-card').hide();
 				  }
 		  }
-			  
+
 			  var $pro_cart = $('#pro_cart');
 			    $pro_cart.change(function () {
 			        var $this = $(this);
@@ -931,13 +1095,13 @@ $('#delivery').click(function(){
 			        $('input[name="pro_check"]').prop('checked', checked);
 
 			    });
-	
 
-				
-		 
+
+
+
 	</script>
 			<script>
-								
+
 /*[ +/- num product ]
    ===========================================================*/
    $('.num-product-down1').on('click', function(e){
@@ -958,15 +1122,62 @@ $('#delivery').click(function(){
  $('#infodetail').click(function(e){
 	e.stopPropagation();
 	$('#orderdetail').css('display','block');
-	
+
 });
+
+
+
+
 $('.close').click(function(){
 	$('#orderdetail').css('display','none');
 })
+
+
+</script>
+
+<script>
+<!-- 선택상품삭제 스크립트 -->
+
+
+  $("#delete_product").click(function() {
+
+
+	 if(confirm("삭제하시겠습니까?") == true) {
+
+		 var checkArr = new Array();
+		 var pro_check = document.getElementsByName('pro_check');
+		 var ca_no = document.getElementsByName('ca_no');
+
+		 var count=0;
+		 for(var i=0;i<pro_check.length;i++){
+			 if(pro_check[i].checked ==true){
+
+				  checkArr[count] = ca_no[i].value
+				 count++;
+			 }
+		 }
+		  console.log(checkArr);
+
+	/* 	  $("input[name='pro_check']:checked").each(function() {
+			 ca_no.push($(this).attr("data-cartNum"))
+		 }); */
+
+		 $.ajax({
+			url : "CartDeleteProduct.do",
+			traditional : true,
+			data : { 'checkArr' : checkArr},
+			success : function() {
+				location.href = "cartbutton.do";
+			}
+		 });
+	 }
+
+
+ });
+
 </script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
 </body>
 </html>
-

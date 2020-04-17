@@ -43,7 +43,7 @@
 			<div class="xans-myshop-bankbook " style="width: 80%;">
     			<p class="xans-element- xans-myshop xans-myshop-asyncbenefit mypage_top ">
     				<strong>
-    					<span><span class="xans-member- var-name">홍길동</span></span>
+    					<span><span class="xans-member- var-name">${loginMember.memName }</span></span>
     				</strong>
  					님은 현재 
 					<strong>
@@ -118,10 +118,10 @@
 			<div class="ec-base-tab tab_style">
         		<ul class="menu">
 					<li>
-						<a href="${mPoint }">적립 내역 보기</a>
+						<a href="${mPoint }">포인트 내역 보기</a>
 					</li>
 		            <li class="selected">	
-		            	<a href="${mUnavailpoint }">미가용 적립금</a>
+		            	<a href="${mUnavailpoint }">미가용 포인트 내역 보기</a>
 	            	</li>
         		</ul>
 			</div>

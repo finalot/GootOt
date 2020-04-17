@@ -32,7 +32,7 @@ input {
 			<div class="xans-myshop-bankbook " style="width: 80%;">
     			<p class="xans-element- xans-myshop xans-myshop-asyncbenefit mypage_top ">
     				<strong>
-    					<span><span class="xans-member- var-name">홍길동</span></span>
+    					<span><span class="xans-member- var-name">${loginMember.memName }</span></span>
     				</strong>
  					님은 현재 
 					<strong>

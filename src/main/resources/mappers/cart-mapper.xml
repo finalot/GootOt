@@ -5,7 +5,8 @@
   
 <mapper namespace="cartMapper">
 	<resultMap type="Cart" id="cartResultSet">
-			<id property = "mem_no" column="MEM_NO"/>
+			<id property = "ca_no" column="CA_NO"/>
+			<result property="mem_no" column="MEM_NO"/>
 			<result property="prdt_no" column="PRDT_NO"/>
 			<result property="prdt_price" column="PRDT_PRICE"/>
 			<result property="prdt_count" column="PRDT_COUNT"/>
@@ -24,6 +25,41 @@
 		<result property ="cpName" column="CP_NAME"/>
 		<result property="cpDiscount" column="CP_DISCOUNT"/>
 	</resultMap>
+	
+	
+	<resultMap type="Ord" id="ordResultSet">
+		<id property="ord_no" column="ORD_NO"/>
+		<result property="ord_detailno" column="ORD_DETAILNO"/>
+		<result property="mem_no" column="MEM_NO"/>
+		<result property="prdt_no" column="PRDT_NO"/>
+		<result property="ord_date" column="ORD_DATE"/>
+		<result property="ord_receiver" column="ORD_RECEIVER"/>
+		<result property="ord_phone" column="ORD_PHONE"/>
+		<result property="ord_address" column="ORD_ADDRESS"/>
+		<result property="ord_message" column="ORD_MESSAGE"/>
+		<result property="ord_status" column="ORD_STATUS"/>
+		<result property="ord_size" column="ORD_SIZE"/>
+		<result property="ord_color" column="ORD_COLOR"/>
+		<result property="ord_count" column="ORD_COUNT"/>
+		<result property="path" column="PRDT_IMAGE_PATH"/>
+		<result property="image" column="PRDT_IMAGE"/>
+		<result property="prdt_name" column="PRDT_NAME"/>
+		<result property="prdt_price" column="PRDT_PRICE"/>
+		<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
+		
+	
+	</resultMap>
+	
+	<resultMap type="Pay" id="payResultSet">
+		<id property="ord_no" column="ORD_NO"/>
+		<result property="mem_no" column="MEM_NO"/>
+		<result property="sumprice" column="PAY_MONEY"/>
+		<result property="pay_category" column="PAY_CATEGORY"/>
+		<result property="pay_date" column="PAY_DATE"/>
+		<result property="pay_usedcp" column="PAY_USEDCP"/>
+		<result property="pay_point" column="PAY_POINT"/>
+		<result property="pay_yn" column="PAY_YN"/>
+	</resultMap>
 
 	<select id="selectList" parameterType="_int" resultMap="cartResultSet">
 	SELECT * 
@@ -40,8 +76,76 @@
 	WHERE CM.MEM_NO = #{mem_no}
 	
 	</select>
+	
+	<delete id="deleteCart" parameterType="java.util.Map">
+		<foreach  item="c" collection="noArr"  index="index" 
+		      separator=";" open="DECLARE BEGIN" close="; END;" >
+			DELETE FROM CRT
+			WHERE CA_NO = #{c.ca_no}
+		</foreach>
+
+	<!-- 	DELETE FROM CRT
+		<where>
+		 <foreach collection="noArr" item="noArr" open="" close="" separator="OR">		
+		  (CA_NO = #{noArr.ca_no})
+		  </foreach>
+		</where> -->
+	</delete>
+
+	<insert id="cartInsert">
+		<foreach  item="o" collection="olist"  index="index" 
+      separator=";" open="DECLARE BEGIN" close="; END;" >
+		INSERT INTO  ORD 
+	 	VALUES(ORD_SEQ.NEXTVAL,NULL,#{o.mem_no},#{o.prdt_no},SYSDATE,
+	 					#{o.ord_receiver},#{o.ord_phone},#{o.ord_address},#{o.ord_message},
+	 					'A',#{o.ord_size},#{o.ord_color},#{o.ord_count})
+		</foreach>
+	</insert>
+	
+	<select id="selectOrderList" parameterType="_int" resultMap="ordResultSet">
+	SELECT *
+	FROM ORD O
+	JOIN PRDT P ON (O.PRDT_NO = P.PRDT_NO)
+	WHERE O.MEM_NO = #{mem_no} 
+	AND O.ORD_STATUS = 'A'
+	
+	</select>
+	<insert id="payInsert">
+		<foreach  item="p" collection="plist"  index="index" 
+      separator=";" open="DECLARE BEGIN" close="; END;" >
+		INSERT INTO  PAY
+	 	VALUES(PAY_SEQ.NEXTVAL,#{p.mem_no},#{p.sumprice},#{p.pay_category},SYSDATE,
+						#{p.pay_usedcp},#{p.pay_point},'N')
+		</foreach>
+	</insert>
 
 
+	<select id="selectPayList" parameterType="java.util.Map" resultMap="payResultSet">
+		SELECT *
+		FROM ORD O 
+		JOIN PAY PA ON (O.ORD_NO = PA.ORD_NO)
+		WHERE O.MEM_NO = #{mem_no}
+		AND O.PRDT_NO IN
+		 <foreach item="p" index="index" collection="list"
+                      open="(" separator="," close=")">
+             			   #{p.prdt_no}
+        </foreach>  
+		AND O.ORD_STATUS = 'A'
+
+	</select>
+
+	<select id="selecPro" parameterType="java.util.Map" resultMap="cartResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NO IN
+		 <foreach item="o" index="index" collection="olist"
+                      open="(" separator="," close=")">
+             			   #{o.prdt_no}
+        </foreach>  
+		
+	
+	
+	</select>
 
 
 </mapper>

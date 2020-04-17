@@ -5,6 +5,7 @@ import java.sql.Date;
 import com.kh.ot.common.Pagination;
 
 public class SearchCondition extends Pagination {
+	private int memno;
 	private String title;
 	private String content;
 	private String writer;
@@ -13,59 +14,29 @@ public class SearchCondition extends Pagination {
 	private String search_key;
 	private String search;
 	private String search_date;
+	
 	public SearchCondition() {}
 
-	
-
-	public SearchCondition(String title, String content, String writer, int searchDate, int b_cate_no) {
+	public SearchCondition(int memno, String title, String content, String writer, int searchDate, int b_cate_no,
+			String search_key, String search, String search_date) {
 		super();
+		this.memno = memno;
 		this.title = title;
 		this.content = content;
 		this.writer = writer;
 		this.searchDate = searchDate;
 		this.b_cate_no = b_cate_no;
-	}
-
-
-
-	public String getSearch_date() {
-		return search_date;
-	}
-
-	public void setSearch_date(String search_date) {
+		this.search_key = search_key;
+		this.search = search;
 		this.search_date = search_date;
 	}
 
-
-
-	public String getSearch_key() {
-		return search_key;
+	public int getMemno() {
+		return memno;
 	}
 
-	public void setSearch_key(String search_key) {
-		this.search_key = search_key;
-	}
-
-
-
-	public String getSearch() {
-		return search;
-	}
-
-
-
-	public void setSearch(String search) {
-		this.search = search;
-	}
-
-
-
-	public int getSearchDate() {
-		return searchDate;
-	}
-
-	public void setSearchDate(int searchDate) {
-		this.searchDate = searchDate;
+	public void setMemno(int memno) {
+		this.memno = memno;
 	}
 
 	public String getTitle() {
@@ -92,6 +63,14 @@ public class SearchCondition extends Pagination {
 		this.writer = writer;
 	}
 
+	public int getSearchDate() {
+		return searchDate;
+	}
+
+	public void setSearchDate(int searchDate) {
+		this.searchDate = searchDate;
+	}
+
 	public int getB_cate_no() {
 		return b_cate_no;
 	}
@@ -100,10 +79,40 @@ public class SearchCondition extends Pagination {
 		this.b_cate_no = b_cate_no;
 	}
 
+	public String getSearch_key() {
+		return search_key;
+	}
+
+	public void setSearch_key(String search_key) {
+		this.search_key = search_key;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public String getSearch_date() {
+		return search_date;
+	}
+
+	public void setSearch_date(String search_date) {
+		this.search_date = search_date;
+	}
+
 	@Override
 	public String toString() {
-		return "SearchCondition [title=" + title + ", content=" + content + ", writer=" + writer + ", searchDate="
-				+ searchDate + ", b_cate_no=" + b_cate_no + "]";
+		return "SearchCondition [memno=" + memno + ", title=" + title + ", content=" + content + ", writer=" + writer
+				+ ", searchDate=" + searchDate + ", b_cate_no=" + b_cate_no + ", search_key=" + search_key + ", search="
+				+ search + ", search_date=" + search_date + "]";
 	}
+	
+
+	
+
+	
 
 }

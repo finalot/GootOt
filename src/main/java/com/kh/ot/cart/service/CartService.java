@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.cart.vo.Cart;
+import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.cart.vo.Pay;
 
 public interface CartService {
 
@@ -24,5 +26,59 @@ public interface CartService {
 	 * @return
 	 */
 	ArrayList<Coupon> selectCouponList(int mem_no);
+
+
+	/**
+	 * @작성일  : 2020. 4. 16.
+	 * @작성자  : 우예진
+	 * @내용    : cart 상품 삭제
+	 * @param checkArr
+	 * @return
+	 */
+	int deleteCart(ArrayList<Cart> noArr);
+
+	/**
+	 * @작성일  : 2020. 4. 16.
+	 * @작성자  : 문태환
+	 * @내용 	: cart 주문정보 인설트
+	 * @param olist
+	 * @return
+	 */
+	int cartInsert(ArrayList<Ord> olist);
+
+	/**
+	 * @작성일  : 2020. 4. 16.
+	 * @작성자  : 우예진
+	 * @내용    : 주문결과창 값 뿌려주기
+	 * @param mem_no
+	 * @return
+	 */
+	ArrayList<Ord> selectOrderList(int mem_no);
+
+	/**
+	 * @작성자  : 문태환
+	 * @내용 	: pay 결제정보 인설트
+	 * @param plist
+	 * @return
+	 */
+	int payInsert(ArrayList<Pay> plist);
+
+	/**
+	 * @작성일  : 2020. 4. 16.
+	 * @작성자  : 우예진
+	 * @내용    : 결제정보 리스트
+	 * @param p
+	 * @return
+	 */
+	ArrayList<Pay> selectPayList(ArrayList<Pay> list);
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 결제화면 상품 이미지 가져오기
+	 * @param olist
+	 * @return
+	 */
+	ArrayList<Cart> selecPro(ArrayList<Ord> olist);
 
 }

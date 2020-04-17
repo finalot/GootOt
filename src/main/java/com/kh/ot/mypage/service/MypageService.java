@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.MyBoard;
 
 public interface MypageService {
 
@@ -55,15 +57,51 @@ public interface MypageService {
 	 * @return int
 	 */
 	
-	int CompleteCouponListCount(int memNo);
+	int CompleteCouponListCount(Member m);
 
 	ArrayList<CouponMem> CompleteCouponSelectList(int memNo, PageInfo pi);
 	
 	
 
+	/**
+	 * @작성일 : 2020. 4. 14.
+	 * @작성자 : 신경섭
+	 * @내용 : 적립금 계산
+	 * @param @param m
+	 * @param @return
+	 * @return int
+	 */
 	int PointPrice(Member m);
 
 
+	
+	/**
+	 * @작성일 : 2020. 4. 16.
+	 * @작성자 : 신경섭
+	 * @내용 : 내가 쓴 게시판 조회
+	 * @param @param memNo
+	 * @param @param b_cate_no
+	 * @param @return
+	 * @return int
+	 */
+	int getListCount(int memNo);
+
+	ArrayList<MyBoard> selectList(PageInfo pi, int memNo);
+	
+	
+	
+
+	/**
+	 * @작성일 : 2020. 4. 16.
+	 * @작성자 : 신경섭
+	 * @내용 : 게시판 검색 기능
+	 * @param @param sc
+	 * @param @return
+	 * @return int
+	 */
+	int SearchListCount(SearchCondition sc);
+
+	ArrayList<MyBoard> selectSearchList(PageInfo pi, SearchCondition sc);
 
 	
 }
