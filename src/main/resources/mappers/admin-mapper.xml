@@ -12,14 +12,14 @@
          <result property="cpDiscount" column="CP_DISCOUNT"/>
          <result property="cpDate" column="CP_DATE"/>
       </resultMap>
-      
+
       <resultMap type="UpCategory" id="UpCategorySelectResultSet">
          <id property = "up_no" column="UP_NO"/>
          <result property="up_name" column="UP_NAME"/>
          <result property="up_using" column="UP_USING"/>
          <result property="up_date" column="UP_DATE"/>
       </resultMap>
-      
+
       <resultMap type="DownCategory" id="DownCategorySelectResultSet">
          <id property = "down_no" column="DOWN_NO"/>
          <result property="up_no" column="UP_NO"/>
@@ -27,7 +27,7 @@
          <result property="down_using" column="DOWN_USING"/>
          <result property="down_date" column="DOWN_DATE"/>
       </resultMap>
-      
+
       <!-- <resultMap type="Product" id="ProductInsertResultSet">
          <id property="prdtNo" column="PRDT_NO"/>
          <result property="upNo" column="UP_NO"/>
@@ -59,7 +59,7 @@
          <result property="prdt_no" column="OPT_USER"/>
          <result property="prdt_no" column="PRDT_CODE"/>
       </resultMap> -->
-      
+
       <resultMap type="Design" id="MainResultSet">
          <id property = "deNo" column="D_NO"/>
          <result property="mainComment" column="D_COMMENT"/>
@@ -71,13 +71,13 @@
          <id property = "deNo" column="V_NO"/>
          <result property="reFile" column="VIDEOFILE"/>
       </resultMap>
-      
+
       <resultMap type="Design" id="InstaResultSet">
          <id property = "deNo" column="IN_NO"/>
          <result property="reFile" column="IN_REFILE"/>
          <result property="mainLink" column="IN_LINK"/>
          <result property="mainComment" column="IN_COMMENT"/>
-         
+
       </resultMap>
 
 <insert id="couponInput" parameterType="java.util.Map">
@@ -89,30 +89,30 @@
              SYSDATE as CP_DATE
    FROM DUAL
    </foreach>) A
-</insert>      
+</insert>
 
 <select id="selectListCoupon" resultMap="CouponResultSet">
    SELECT * FROM COUPON
-</select>   
+</select>
 
 <delete id="couponDelete" parameterType="String" >
    DELETE FROM COUPON
    WHERE CP_NAME = #{cpName}
 </delete>
-      
+
 
 
 <select id="UpCategorySelect" resultMap="UpCategorySelectResultSet">
-   SELECT * 
+   SELECT *
    FROM UP_CATE
    WHERE UP_USING='Y'
 </select>
 
 <select id="DownCategorySelect" resultMap="DownCategorySelectResultSet">
-   SELECT * 
+   SELECT *
    FROM DOWN_CATE D
    LEFT JOIN UP_CATE U ON D.UP_NO=U.UP_NO
-   WHERE DOWN_USING='Y' 
+   WHERE DOWN_USING='Y'
 </select>
 
 <insert id="UpCategoryInsert" parameterType="String">
@@ -121,7 +121,7 @@
 </insert>
 
 <insert id="DownCategoryInsert" parameterType="DownCategory">
-   INSERT INTO DOWN_CATE  
+   INSERT INTO DOWN_CATE
     VALUES (DOWN_CATE_SEQ.NEXTVAL, #{up_no} ,#{down_name}, 'Y',SYSDATE)
 </insert>
 
@@ -137,9 +137,9 @@
    SET DOWN_USING='N'
    WHERE UP_NO=#{up_no}
    AND DOWN_NO=#{down_no}
-   
+
 </update>
-      
+
 <!-- <insert id="ProductInsert" parameterType="Product">
    <selectkey id="prdtNo" resultType="_int" order="BEFORE">
       SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
@@ -148,7 +148,7 @@
    VALUES (#{prdtNo}, #{upNo}, #{prdtName}, #{prdtComment}
          ,#{prdtPrice}, #{prdtBrand}, #{prdtMake}, #{prdtImage}
          ,SYSDATE, NULL, DEFAULT, #{downNO}, NULL
-         ,#{prdtImagePath}, #{prdtDetailImage}, #{prdtDetailImagePath})    
+         ,#{prdtImagePath}, #{prdtDetailImage}, #{prdtDetailImagePath})
 </insert>
 
 <insert id="ProductOptionInsert" parameterType="ProductOption">
@@ -158,10 +158,10 @@
 </insert> -->
 
 <update id="DesignEd" parameterType="java.util.Map">
-   <foreach  item="d" collection="dlist"  index="index" 
+   <foreach  item="d" collection="dlist"  index="index"
       separator=";" open="DECLARE BEGIN" close="; END;" >
-   UPDATE MAINDESIGN 
-   SET 
+   UPDATE MAINDESIGN
+   SET
    D_ORIFILE=#{d.oriFIle},
    D_REFILE=#{d.reFile},
    D_COMMENT=#{d.mainComment},
@@ -172,14 +172,14 @@
 
 <update id="DesignEdVideo" parameterType="Design">
    UPDATE MAINVIDEO
-   SET VIDEOFILE=#{reFile}   
+   SET VIDEOFILE=#{reFile}
    WHERE V_NO=1
 </update>
 
 <update id="DesignInsta"  parameterType="java.util.Map">
-<foreach  item="d" collection="dlist"  index="index" 
+<foreach  item="d" collection="dlist"  index="index"
      separator=";" open="DECLARE BEGIN" close="; END;" >
-   UPDATE INSTADESIGN 
+   UPDATE INSTADESIGN
    SET
    IN_ORIFILE = #{d.oriFIle},
    IN_REFILE = #{d.reFile},
@@ -189,7 +189,7 @@
 </foreach>
 </update>
 <select id="selectMainList" resultMap="MainResultSet" >
-   SELECT * FROM 
+   SELECT * FROM
    MAINDESIGN
 </select>
 
@@ -200,14 +200,17 @@
 
 <select id="selectInstaList" resultMap="InstaResultSet">
    SELECT * FROM
-   INSTADESIGN   
+   INSTADESIGN
 </select>
 
 <update id="QnA_ProductUpdate" parameterType="Board">
-      UPDATE QNA
-      SET QNA_INFO=#{content},QNA_CHK='Y'
-      WHERE QNA_NO = #{qna_no}
-      
+		UPDATE QNA
+		SET QNA_INFO=#{content},QNA_CHK='Y'
+		WHERE QNA_NO = #{qna_no}
 </update>
+
+
+
+
 
 </mapper>

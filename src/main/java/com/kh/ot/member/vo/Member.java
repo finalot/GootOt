@@ -20,6 +20,7 @@ public class Member {
 	private String returnBank; // 환불게좌
 	private String mem_status; // 회원탈퇴여부
 	private int mem_point;  // 적립금
+	private int countCounpon; //쿠폰 카운트
 
 
 	public Member() {
@@ -46,6 +47,16 @@ public class Member {
 		this.returnBank = returnBank;
 		this.mem_status = mem_status;
 		this.mem_point = mem_point;
+	}
+
+
+	public int getCountCounpon() {
+		return countCounpon;
+	}
+
+
+	public void setCountCounpon(int countCounpon) {
+		this.countCounpon = countCounpon;
 	}
 
 

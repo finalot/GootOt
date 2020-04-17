@@ -749,8 +749,16 @@ margin-right: 3%;
 		var cpmem_no=$(this).next().val();
 		$('#pay_usedcp').val(cpmem_no);
 	})
+		
+	$(function(){
+	if(Number("${loginMember.mem_point}") >= Number(2000)){
+			$('#point').css("background","white").removeAttr('readonly');
+	}else{
+			$('#point').css("background","#f3f3f3").attr('readonly',true);
+		}
 
-
+	})
+	
 
 	</script>
 <!-- 금액 관련 스트립트 -->
@@ -830,8 +838,8 @@ $('#delivery').click(function(){
 		var ord_address = ($('#zipCode-1').val()+","+$('#address1-1').val()+","+$('#address2-1').val());
 		var ord_message = $('#omessage').val();
 		
-		var pay_usedcp =  $('#pay_usedcp').val();
-		var pay_point = $('#point').val(); 
+		var pay_usedcp =  Number($('#pay_usedcp').val());
+		var pay_point = Number($('#point').val()); 
 		var pay_category = $('input[name="pay_category"]:checked').val();
 		
 		var coupon_price = $('#coupon-price').text();
@@ -862,16 +870,42 @@ $('#delivery').click(function(){
 						 countArr[count] = ord_count[i].value
 						 sumpriceArr[count] = sumprice[i].value;
 						 
-						 
 						 count++;
-					
 					 }
-				 }
-			console.log(sumpriceArr);
-  location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+
-		 "&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+
-		 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
-		 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price; 
+			 }
+			 var canoArr = new Array();
+			 var ca_no = document.getElementsByName('ca_no');
+
+				for(var i=0;i<pro_check.length;i++){
+					 canoArr[i] = ca_no[i].value
+			 }
+			if(!prdtArr.length){
+				alert('선택된 상품이 없습니다.');
+			}else if($('#userName-1').val()=="" || $('#mobile1-1').val()=="" || $('#mobile2-1').val() =="" ||
+					$('#mobile3-1').val()=="" ||	$('#zipCode-1').val()==""||	$('#address1-1').val()=="" ||
+					$('#address2-1').val()=="")
+				{
+				alert('배송정보를 확인하세요')
+				}else{
+					
+					 var checkArr = new Array();
+					 var ca_no = document.getElementsByName('ca_no');
+					 var count=0;
+					 for(var i=0;i<pro_check.length;i++){
+						 if(pro_check[i].checked ==true){
+							 checkArr[count] = ca_no[i].value
+							 count++;
+						 }
+					 }
+					
+					  location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+
+						 "&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+
+						 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
+						 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price+"&canoArr="+checkArr;					
+				}
+				 
+				 
+ 
 	});
  	
 		

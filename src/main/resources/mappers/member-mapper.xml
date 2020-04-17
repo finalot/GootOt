@@ -88,7 +88,7 @@
 <insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER
 		VALUES(MEM_SEQ.NEXTVAL,#{memId},#{memPwd},#{memName},#{memSsn},#{memAddress},
-		#{memEmail},#{memPhone},NULL,#{memOwner},#{bank},#{returnBank},DEFAULT,DEFAULT)
+		#{memEmail},#{memPhone},NULL,#{memOwner},#{bank},#{returnBank},'N',DEFAULT)
 
 	</insert>
 	

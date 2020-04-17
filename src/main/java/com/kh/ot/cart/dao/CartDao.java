@@ -12,6 +12,7 @@ import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
+import com.kh.ot.member.vo.Member;
 
 @Repository("cDao")
 public class CartDao {
@@ -98,10 +99,86 @@ public class CartDao {
 		return (ArrayList)sqlSession.selectList("cartMapper.selectPayList",map);
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 상품선택
+	 * @param olist
+	 * @return
+	 */
 	public ArrayList<Cart> selecPro(ArrayList<Ord> olist) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		   map.put("olist", olist);
 		return (ArrayList)sqlSession.selectList("cartMapper.selecPro",map);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 누적금액업데이트
+	 * @param ct
+	 * @return
+	 */
+	public int updatePrice(Cart ct) {
+			
+		return sqlSession.update("cartMapper.updatePrice",ct);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 사용쿠폰 업데이트
+	 * @param pay_usedcp
+	 * @return
+	 */
+	public int updateCoupon(int pay_usedcp) {
+		return sqlSession.update("cartMapper.updateCoupon",pay_usedcp);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 사용포인트 차감
+	 * @param py
+	 * @return
+	 */
+	public int updatePoint(Pay py) {
+		return sqlSession.update("cartMapper.updatePoint",py);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 결제완료 화편 회원정보 리셋
+	 * @param m
+	 * @return
+	 */
+	public Member selectMember(Member m) {
+		return sqlSession.selectOne("cartMapper.selectMember",m);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 결제완료 화면 쿠폰 카운트
+	 * @param m
+	 * @return
+	 */
+	public int countCoupon(Member m) {
+		return sqlSession.selectOne("cartMapper.countCoupon",m);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 문태환
+	 * @내용 	: 상품재고 업데이트
+	 * @param olist
+	 * @return
+	 */
+	public int updateProduct(ArrayList<Ord> olist) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("olist", olist);
+		return sqlSession.update("cartMapper.updateProduct",map);
 	}
 
 }

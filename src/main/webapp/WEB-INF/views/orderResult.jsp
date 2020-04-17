@@ -7,6 +7,43 @@
 <head>
 <meta charset="UTF-8">
 <title>결제완료창</title>
+<style>
+#ord_address {
+	    color: #000;
+    position: relative;
+    font-size:12px;
+    font-weight:600;
+    left:11px;
+}
+
+
+#ord_phone {
+	    color: #000;
+    position: relative;
+    font-size:12px;
+    font-weight:600;
+    left:11px;
+}
+
+
+#ord_message {
+	color: #000;
+    position: relative;
+    font-size:12px;
+    font-weight:600;
+    left:11px;
+}
+
+#ord_receiver{
+	 color: #000;
+    position: relative;
+    font-size:12px;
+    font-weight:600;
+    left:11px;
+}
+
+
+</style>
  <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -71,14 +108,13 @@
 			<a  href="${mWishlist }">
 			<span id="xans_myshop_interest_prd_cnt">0개</span></a></strong>
 			</li>
-			
                 <li>
                     <strong class="title">
                     <a>POINT</a></strong>
                     <br>
                     <strong class="data">
                    <a href="${mPoint }">
-	                <fmt:formatNumber value="${loginMember.mem_point }" pattern="#,###"/>원</a>
+	                <fmt:formatNumber value="${mem.mem_point }" pattern="#,###"/>원</a>
                     </strong>
                 </li>
                 <li class="etc ">
@@ -86,7 +122,7 @@
                     <a>COUPON</a></strong>
                     <br>
                    <strong class="data">
-	                    	<a href="${mCoupon }">${CouponCount}<span>개</span></a>
+	                    	<a href="${mCoupon }">${mem.countCounpon}<span>개</span></a>
 	               </strong>
                 </li>
             </ul>
@@ -190,7 +226,7 @@
 							<th class="column-5">Total</th>
 						</tr>
 
-						<c:forEach var="c" items="${list }">
+						<c:forEach var="c" items="${sessionScope.list }">
 						<tr class="table-row">
 						    
 							<td class="column-1">
@@ -380,7 +416,8 @@
 	<!-- </form> -->
 	</div>
 	
-	<a href="#none" class=" yg_btn_24 yg_btn32">영수증 보기</a>
+	<c:url var="cReceipt" value="receipt.do"/>
+	<a href="#none" onclick="window.open('${cReceipt}','order_receipt','width=790,height=940,left=900,top=20'); return false;" class=" yg_btn_24 yg_btn32">영수증 보기</a>
 	
 	 <div class="" style="margin-left:25%;">
         <a href="index.jsp" class="yg_btn_24 yg_btn31"><span style="position:relative;top:7px;">쇼핑계속하기</span></a>
@@ -458,6 +495,8 @@
 		  	 	$('#ord_phone').text("${o.ord_phone}");
 		  	 	$('#ord_message').text("${o.ord_message}");
 		   "</c:forEach>" 
+		   
+		  	
 		  
 	});
 	
@@ -573,6 +612,10 @@
 
 			    });
 			    
+			    
+			    function receipt(){
+			    	location.href="receipt.do?";
+			    };
 			    
 	
 		 

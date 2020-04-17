@@ -230,7 +230,7 @@
 			,#{prdtPrice}, NULL, NULL, #{prdtImage}
 			,SYSDATE, NULL, DEFAULT, #{downNo}, PRODUCT_SEQ.NEXTVAL
 			,#{prdtImagePath}, #{prdtDetailImage},#{prdtDetailImagePath}
-			,#{prdtSale}, DEFAULT, DEFAULT, DEFAULT)	 
+			,#{prdtSale}, DEFAULT, DEFAULT)	 
 	</insert>
 
 

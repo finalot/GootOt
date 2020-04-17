@@ -60,6 +60,25 @@
 		<result property="pay_point" column="PAY_POINT"/>
 		<result property="pay_yn" column="PAY_YN"/>
 	</resultMap>
+	
+	
+
+	<resultMap id="memResultSet" type="Member">
+		<id property="memNo" column="MEM_NO"/>
+		<result property="memId" column="MEM_ID"/>
+		<result property="memPwd" column="MEM_PWD"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="memSsn" column="MEM_SSN"/>
+		<result property="memAddress" column="MEM_ADDRESS"/>
+		<result property="memEmail" column="MEM_EMAIL"/>
+		<result property="memPhone" column="MEM_PHONE"/>
+		<result property="memSumMoney" column="MEM_SUMMONEY"/>
+		<result property="memOwner" column="MEM_OWNER"/>
+		<result property="bank" column="BANK"/>
+		<result property="returnBank" column="RETURN_BANK"/>
+		<result property="mem_status" column="MEM_STATUS"/>
+		<result property="mem_point" column="MEM_POINT"/>
+	</resultMap>
 
 	<select id="selectList" parameterType="_int" resultMap="cartResultSet">
 	SELECT * 
@@ -74,6 +93,7 @@
 	FROM COUPON_MEM CM
 	JOIN COUPON C ON (CM.CP_NO=C.CP_NO)
 	WHERE CM.MEM_NO = #{mem_no}
+	AND CM.CP_USING = 'N'
 	
 	</select>
 	
@@ -142,10 +162,59 @@
                       open="(" separator="," close=")">
              			   #{o.prdt_no}
         </foreach>  
-		
-	
 	
 	</select>
+	
+	<update id="updatePrice">
+		UPDATE MEMBER SET 
+		MEM_SUMMONEY = (SELECT SUM(MEM_SUMMONEY) 
+                FROM MEMBER
+                WHERE MEM_NO=#{mem_no}) + #{prdt_sumprice}
+		WHERE MEM_NO=#{mem_no} 
+	</update>
+
+	<update id="updateCoupon">
+			UPDATE COUPON_MEM SET
+			CP_USING = 'Y'
+			WHERE CPMEM_NO = #{pay_usedcp}
+	</update>
+
+	<update id="updatePoint">
+			UPDATE MEMBER SET 
+			MEM_POINT = (SELECT SUM(MEM_POINT) 
+             FROM MEMBER
+             WHERE MEM_NO=#{mem_no}) - #{pay_point}
+			WHERE MEM_NO=#{mem_no} 
+	</update>
+	<select id="selectMember" parameterType="Member" resultMap="memResultSet">
+		SELECT * FROM
+		MEMBER
+		WHERE MEM_NO = #{memNo}
+	
+	</select>
+		
+	<select id="countCoupon" parameterType="Member" resultType="_int" >
+		SELECT count(*) FROM
+		MEMBER M
+		JOIN COUPON_MEM CM ON(M.MEM_NO = CM.MEM_NO)
+		WHERE M.MEM_NO = #{memNo}
+		AND CM.CP_USING='N'
+	</select>
+	
+	<update id="updateProduct" parameterType="java.util.Map">
+		<foreach  item="o" collection="olist"  index="index" 
+      	 separator=";" open="DECLARE BEGIN" close="; END;" >
+				UPDATE PRDT_OPT SET 
+				OPT_STOCK = (SELECT SUM(OPT_STOCK)
+										FROM PRDT_OPT
+										WHERE PRDT_NO = #{o.prdt_no}
+										AND 	OPT_COLOR = #{o.ord_color}
+										AND OPT_SIZE = #{o.ord_size}) - #{o.ord_count} 
+            	WHERE PRDT_NO = #{o.prdt_no}
+				AND 	OPT_COLOR = #{o.ord_color}
+				AND OPT_SIZE = #{o.ord_size}
+		</foreach>
+	</update>
 
 
 </mapper>
