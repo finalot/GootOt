@@ -495,6 +495,8 @@
 		  	 	$('#ord_phone').text("${o.ord_phone}");
 		  	 	$('#ord_message').text("${o.ord_message}");
 		   "</c:forEach>" 
+		   
+		  	
 		  
 	});
 	

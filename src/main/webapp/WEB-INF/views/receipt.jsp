@@ -97,8 +97,9 @@ p {
                                <tr>
                               	 <td align="center" valign="middle" 
                               	 style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; border-left:1px solid #d5d5d5; color:#393939;">${loginMember.memId }(${loginMember.memName })</td>
-                              	 <td align="center" valign="middle" style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5;border-right:1px solid #d5d5d5; color:#393939;">20200316-0010199</td>
+                              	 <td align="center" valign="middle" style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5;border-right:1px solid #d5d5d5; color:#393939;">${o.ord_no }</td>
                               	 <td align="center" valign="middle" style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#393939;">2020-03-16 23:32:35</td></tr></tbody>
+                              
                </table>
               </td>
            </tr>
@@ -138,22 +139,22 @@ p {
 								</thead>
 								
 								<tbody>
-								<c:forEach  var = "c" items="${clist}">
+								<c:forEach  var = "c" items="${list}">
 									<tr>
 									<td align="left" valign="middle" style="padding:13px 10px 10px; border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; border-left:1px solid #d5d5d5; color:#393939;">
        								${c.prdt_name}<br>[COLOR: ${c.prdt_color }(${c.prdt_price } won)]
     								</td>
     								
     								<td align="center" valign="middle" style="padding:13px 10px 10px; border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#393939;">
-        							1
+        							${c.prdt_count }
    									</td>
    									
    									<td align="center" valign="middle" style="padding:13px 10px 10px; border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#393939;">
-        							19,000 won
+        							${c.prdt_price } won
     								</td>
     								
     								<td align="center" valign="middle" style="padding:13px 10px 10px; border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#393939;">
-        							19,000 won
+        							${c.prdt_price } won
     								</td>
     								</tr>
     								
@@ -161,10 +162,10 @@ p {
     								<tr>
     								<td align="right" valign="middle" colspan="4" style="padding:13px 10px 10px; border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; border-left:1px solid #d5d5d5; color:#393939;">
             						<span id="rec">총 상품구매금액</span>
-            						<strong>19,000 won</strong> 
+            						<strong id="allprice2">50000 won</strong> 
             						+ 총 배송비 <strong>2,500 won</strong> 
             						- 총 할인금액 <strong>0 won</strong>
-            						<strong>= 총 결제금액 21,500 won</strong>
+            						<strong id="resultPrice">= 총 결제금액 21,500 won</strong>
         							</td>
         							</tr>
         							
@@ -207,8 +208,8 @@ p {
             					<th align="left" colspan="1" rowspan="1" scope="row" valign="middle" width="22%" style="padding:13px 10px 10px; font-weight:normal; background-color:#f5f6f5;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#80878d;">
             					결제수단
             					</th>
-            					<td align="left" valign="middle" width="28%" style="width:179px; padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#393939;">
-            					무통장 입금
+            					<td id="pCategory" align="left" valign="middle" width="28%" style="width:179px; padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#393939;">
+            					
             					</td>
             					</tr>
             					
@@ -217,8 +218,8 @@ p {
             					style="padding:13px 10px 10px; font-weight:normal; background-color:#f5f6f5;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; border-left:1px solid #d5d5d5; color:#80878d;">
             					쿠폰할인
             					</th>
-            					<td align="left" valign="middle" width="28%" style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#393939;">
-            					0 won
+            					<td id="coupon-point" align="left" valign="middle" width="28%" style="padding:13px 10px 10px;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#393939;">
+            					
             					</td>
             					<th align="left" colspan="1" rowspan="1" scope="row" valign="middle" width="22%" style="padding:13px 10px 10px; font-weight:normal; background-color:#f5f6f5;  border-bottom:1px solid #d5d5d5; border-right:1px solid #d5d5d5; color:#80878d;">
             					지급예정 적립금
@@ -385,4 +386,63 @@ p {
 
 </div>
 </body>
+
+
+<script>
+$(function() {
+	var today = new Date();   
+	var year = today.getFullYear();
+	var month = (today.getMonth()+1);
+	var day  = today.getDate();
+	var hours = today.getHours(); // 시
+	var minutes = today.getMinutes();  // 분
+	  var ampm = hours >= 12 ? 'pm' : 'am';
+	  hours = hours % 12;
+	  hours = hours ? hours : 12; // the hour '0' should be '12'
+	  minutes = minutes < 10 ? '0'+minutes : minutes;
+	  var strTime = year+'-'+month+'-'+day+' '+ampm+' '+hours +':' + minutes;
+	  
+	  $('#today').text(strTime);
+	var totalPrice = 0;
+	var pCategory="";
+	
+	  "<c:forEach var ='p' items='${plist}'>"
+	  			totalPrice +=Number("${p.sumprice}")
+	  			pCategory = "${p.pay_category}"
+	  "</c:forEach>"
+	  
+	  $('#totalPrice').text(totalPrice);
+	  		if(pCategory == "card"){
+	  			$('#pCategory').text("카드 결제");
+	  		}else if(pCategory == "phone"){
+	  			$('#pCategory').text("핸드폰 결제");
+	  		}else if(pCategory == "kakaopay"){
+	  			$('#pCategory').text("카카오 페이 결제");
+	  		}else if(pCategory == "cash"){
+	  			$('#pCategory').text("무통장 입금");
+	  		}
+	  		
+ 	  "<c:forEach var ='o' items='${olist}'>"
+	  		$('#ord_receiver').text("${o.ord_receiver}");
+	  	 	 $('#ord_address').text("${o.ord_address}");
+	  	 	$('#ord_phone').text("${o.ord_phone}");
+	  	 	$('#ord_message').text("${o.ord_message}");
+	   "</c:forEach>" 
+	   
+	  	  var sum;
+	  	  var price=0;
+	  	  var point;
+	  	  var delivry = 2500;
+	  	  
+	  	  
+	     price = Number($('#coupon-price').text());
+		$('#coupon-point').val(price);
+	  	  
+	  
+});
+
+
+
+
+</script>
 </html>
