@@ -254,6 +254,17 @@ public class CartController extends HttpServlet {
    		return mv;
 	}
 
+	
+	/**
+	 * @작성일  : 2020. 4. 17.
+	 * @작성자  : 우예진
+	 * @내용    : 영수증 리스트 뿌려주기
+	 * @return
+	 */
+	@RequestMapping("receipt.do")
+	public String receipt() {
+		return "receipt";
+	}
 
 
 
