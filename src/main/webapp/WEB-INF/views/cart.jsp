@@ -149,17 +149,17 @@ margin-right: 3%;
 				</colgroup>
 			    		<tr>
 			    			<th scope="col">
-			    			<strong  style="position: relative;left: 131px;">총 주문 금액</strong>
+			    			<strong  style="position: relative;left: 145px;">총 주문 금액</strong>
 			    			</th>
 
 			    			<th scope="col">
 						<!-- 	<strong>총 </strong><strong id="total">할인</strong>
 							<strong> 금액</strong> -->
-							<strong style="position:relative; left:33px;">총 할인 금액</strong>
+							<strong style="position:relative; left:45px;">총 할인 금액</strong>
 							</th>
 
 							<th scope="col">
-							<strong style="position: relative;left: -18px;">총 결제예정 금액</strong>
+							<strong style="position: relative;left: -3px;">총 결제예정 금액</strong>
 							</th>
 			    		</tr>
 			    	<tbody class="center">
@@ -272,7 +272,7 @@ margin-right: 3%;
 		</form>
 	</div>
 			<h3 class=" " style="position: relative;font-size: 12px;
-   font-weight: 600; top:89px;left:-48px;">결제 수단</h3><br>
+   font-weight: 600; top:93px;left:-48px;">결제 수단</h3><br>
     <p class = "required3" style="color:#000;">
       <img src = "/ot/resources/images/red.png" alt="필수">
       필수입력사항
@@ -403,21 +403,21 @@ margin-right: 3%;
 				<div class="size15 trans-0-4">
 					<!-- Button -->
 					<button id="idMsg3" class="hov1 s-text1 trans-0-4 yg_btn_141"
-						style="position: relative;left: 43px;">
-						전체상품주문
+						style="position: relative;left: 77px;">
+						상품 주문
 					</button>
 
-					<button  id="idMsg3" class="hov1 s-text1 trans-0-4 yg_btn_142"
+					<!-- <button  id="idMsg3" class="hov1 s-text1 trans-0-4 yg_btn_142"
 						style="position: relative;left: 54px;">
 						선택상품주문
-					</button>
+					</button> -->
 				</div>
 			</div>
 
 			</div>
 			<h3 class=" " style="    position: relative;
     font-size: 12px;
-    font-weight: 600; top:63px;left:-48px;">주문 정보</h3><br>
+    font-weight: 600; top:68px;left:-48px;">주문 정보</h3><br>
     <p class = "required2" style="color:#000;">
       <img src = "/ot/resources/images/red.png" alt="필수">
       필수입력사항
@@ -484,7 +484,7 @@ margin-right: 3%;
 	<!-- 수정함 수정함 기억해내! -->
 	<h3 class=" " style="    position: relative;
     font-size: 12px;
-   font-weight: 600; top:63px;left:-48px;">배송 정보</h3><br>
+   font-weight: 600; top:67px;left:-48px;">배송 정보</h3><br>
     <p class = "required4" style="color:#000;">
       <img src = "/ot/resources/images/red.png" alt="필수">
       필수입력사항
