@@ -306,8 +306,9 @@ th{
     <!-- END WELCOME-->
     
     
-	<from action="ProductInsert.ad" method="post" id="productInsert">
+	<!-- <from action="ProductInsert.ad" method="post" id="productInsert"> -->
     <!-- 이벤트 내용 -->
+   <form action="ProductInsert.ad" method="post" id="ProductInsert">
    <table id="addlist" style="border: 1px dotted; background: white; font-size:13pt;">
         <tr colspan="2">
         	<td colspan="2" style="background:#dfe3e6; margin-bottom: 2%;padding-bottom: 2%;">
@@ -318,7 +319,7 @@ th{
         	<td>
 	       		대(大) : &nbsp;&nbsp;
 	       	
-	       	<select name="bdivide" id="bdivide">
+	       	<select name="upNo" id="bdivide">
 	       		<option value="">선택1(대분류)</option>
 	       		<c:forEach var="up" items="${ulist }">
 	       			<option value="${up.up_no }">${up.up_name }</option>
@@ -330,35 +331,29 @@ th{
                                     
                                     중(中) : &nbsp;&nbsp;
                                     
-            <select name="mdivide" id="mdivide">
+            <select name="downNo" id="mdivide">
 	       		<option value="">선택2(중분류)</option>
 	       	</select>	
 	       	
         	</td>
         </tr>
         <tr>
-        	<th><span style="color:red">*</span> 상품코드</th>
-        	<td>
-        		<input type="text" id="product_code">
-        	</td>
-        </tr>
-        <tr>
         	<th><span style="color:red">*</span> 상품명</th>
         	<td>
-        		<input type="text" id="product_name">
+        		<input type="text" id="product_name" name="prdtName">
         	</td>
         </tr>
         <tr>
         	<th><span style="color:red">*</span> 가격</th>
         	<td>
-        		<input type="number" id="product_price" min="5,000" step="500" style="width:20%;">
+        		<input type="number" id="product_price" name="prdtPrice" min="5,000" step="500" style="width:20%;">
         	</td>
         </tr>
       
         <tr>
         	<th><span style="color:red">*</span> 할인가</th>
         	<td>
-        		<input type="number" id="product_sale" style="width:20%;"> &nbsp; &nbsp; %
+        		<input type="number" id="product_sale" name="prdtSale" style="width:20%;"> &nbsp; &nbsp; %
         	</td>
         </tr>
         <tr>
@@ -369,26 +364,38 @@ th{
 			<img id="titleImg" width="177px" height="200">
 			</div>
 			<div class="fileArea" id="fileArea">
-		      				<input type="file" id="thumbnailImg1"
-		      				name="thumbnailImg1" onchange="loadImg(this, 1);" />
+		      				<input type="file" id="thumbnailImg1" 
+		      				name="prdtImage" onchange="loadImg(this, 1);" />
 		     			 </div>
+        	</td>
+        	<td>
+        		<input type="hidden" name="prdtImagePath">
+        		<input type="hidden" name="prdtDetailImagePath">
         	</td>
         </tr>
         <tr>
         	<th><span style="color:red">*</span> 상세설명</th>
         	<td>
-        		<input type="file" id="descrptionImg" style="border:white 1px;">
+        		<input type="file" id="descrptionImg" name="prdtDetailImage" style="border:white 1px;">
         	</td>
         </tr>
         <tr>
         	<th><span style="color:red">*</span> 색상설정</th>
         	<td>
-        	
+        		<!-- 가지고 있는 기존 색상 뿌리기  -->
+        		
+        		<c:forEach var="pc" items="${pclist }">
+        		<c:if test="${not empty pc.pcRgb}">
+        			<div id="selectColor" style="width:20px;height:20px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
+				</c:if>
+        		</c:forEach>
+        		
+        		
         		 <div id="color-area" style="display: block;" >
                     <div id="color-div" class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <div class="input-group" style="    width: 105px" >
-                                <input type="text" style=" padding-right: 0%;;padding-left: 36%;"  id="input-group" class="form-control demo" value="#ff0000" />
+                                <input type="text" style=" padding-right: 0%;;padding-left: 36%;"  id="text-color" class="form-control demo" value="#ff0000" />
 								
                                   <span>등록 색상명 </span> <input type="text" id="color-name">
                             </div>
@@ -415,8 +422,9 @@ th{
         	</td>
         </tr>
     </table>
+    </form>
     
-    </from><!-- Product.ad 옵션 끝남 -->
+
   <div style="height: 130px;">
           <div align="center" style="margin-bottom:3%">
     <button id="product-info-add" style="width: 100px; height: 40px;border-radius: 10px;;background: black; color: white">상품추가</button>
@@ -449,17 +457,17 @@ th{
     
 
     <div style="height: 130px;">
-        <<!-- div align="center">
-            <button style="background: black;
+        <div align="center">
+            <button id="productInsertBtn" style="background: black;
             color: white;
             font-size: 20px;
             padding: 10px;
             height: 65px;
             width: 135px;
             border-radius: 10px;">
-            <b>등록</b></button> -->
-            <a style="background: black; color: white; font-size: 20px; padding: 10px; height: 65px; width: 135px; border-radius: 10px; align:center;"
-            	onclick="productOptionAdd();"></a>
+            <b>등록</b></button>
+           <!--  <a style="background: black; color: white; font-size: 20px; padding: 10px; height: 65px; width: 135px; border-radius: 10px; align:center;"
+            	onclick="productOptionAdd();"></a> -->
         </div>
     </div>
    
@@ -470,6 +478,27 @@ th{
 	<!-- 옵션설정 select -->
 	<script>
 	
+	$('#productInsertBtn').click(function(){
+		$('#ProductInsert').submit();
+		
+		if(('#bdivide')==null){
+			alert("대분류 선택해주세요")
+			return false;
+		}
+		if(('#mdivide')==null){
+			alert('중분류 선택해주세요 ');
+			return false;
+		}
+		if(('#product_name')==""){
+			alert('상품명 입력해주세요')
+			return false;
+		}
+		
+		
+		
+		return true;
+		
+	})
 	
 	function test1(){
 		var mtext = document.getElementById("mdivide_value");
@@ -666,7 +695,7 @@ th{
   		
         
         /* 모든 포커스 삭제하기  */
-        $(':focus').blur();  
+        /* $(':focus').blur();   */
         </script>
 		
 		<!-- 카테고리 뿌리기  -->
@@ -686,7 +715,21 @@ th{
 				}
 				
         	"</c:forEach>"
+        	
+        	
         });
+        
+        $('#color-area').click(function(){
+        	
+        	"<c:forEach var='pc' items='${pclist}'>"
+        	
+        	var result = $('pc.pcRgb').val();
+        	console.log(result);
+        		
+        	"</c:forEach>"
+        }) 
+        
+        
         
      
         </script>

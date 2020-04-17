@@ -212,6 +212,7 @@
                         <th>대분류</th>
                         <th>중분류</th>
                         <th>상품명</th>
+                        <th>대표이미지</th>
                         <th>가격</th>
                         <th>할인가</th>
                         <th>상태</th>
@@ -219,304 +220,36 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>아우터</td>
-                        <td>점퍼</td>
-                        <td>뽀글이 점퍼</td>
-                        <td>34,000</td>
-                        <td>5%</td>
-                          <td class="process">Processed</td>
-                        <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
+                	
+                   <c:forEach var="p" items="${plist }">
+                   <c:url var="ProductDelete" value="ProductDelete.ad">
+                		<c:param name="prdtNo" value="${p.prdtNo}"></c:param>
+                	</c:url>
+                   	<tr>
+                   		<td>${p.upNo }</td>
+                   		<td>${p.downNo }</td>
+                   		<td>${p.prdtName }</td>
+                   		<td>${p.prdtImage }</td>
+                   		<td>${p.prdtPrice }</td>
+                   		<td>${p.prdtSale }</td>
+                   		
+                   		<c:if test="${p.prdtStatus eq 'Y'}">
+                   			<td class="process">판매중</td>
+                   		</c:if>
+                   		<c:if test="${p.prdtStatus eq 'N'}">
+                   			<td class="denied">판매중지</td>
+                   		</c:if>
+                   		
+                        <td>
+                       		<!-- <button type="button" id="prdtDeleteBtn" class="btn btn-danger" style="margin-left:20%;">삭제</button> -->
+                       		<a href="${ProductDelete }" class="btn btn-danger" id="prdtDeleteBtn" style="margin-left:20%;">삭제</a>
+                       		
                        	</td>
-                    </tr>
-                    <tr>
-                        <td>아우터</td>
-                        <td>점퍼</td>
-                        <td>뽀글이 점퍼</td>
-                        <td>34,000</td>
-                        <td>5%</td>
-                        <td class="process">Processed</td>
-                        <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>아우터</td>
-                        <td>점퍼</td>
-                        <td>뽀글이 점퍼</td>
-                        <td>34,000</td>
-                        <td>5%</td>
-                        <td class="process">Processed</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>아우터</td>
-                        <td>점퍼</td>
-                        <td>뽀글이 점퍼</td>
-                        <td>34,000</td>
-                        <td>5%</td>
-                        <td class="process">Processed</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>아우터</td>
-                        <td>점퍼</td>
-                        <td>뽀글이 점퍼</td>
-                        <td>34,000</td>
-                        <td>5%</td>
-                        <td class="process">Processed</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>상의</td>
-                        <td>긴팔</td>
-                        <td>무난한 긴팔</td>
-                        <td>19,000</td>
-                        <td>30%</td>
-                        <td class="process">Processed</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>상의</td>
-                        <td>긴팔</td>
-                        <td>무난한 긴팔</td>
-                        <td>19,000</td>
-                        <td>30%</td>
-                        <td class="process">Processed</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>슬렉스</td>
-                        <td>무난한 슬렉스</td>
-                        <td>32,000</td>
-                        <td>20%</td>
-                        <td class="process">Processed</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                             <td>하의</td>
-                        <td>슬렉스</td>
-                        <td>무난한 슬렉스</td>
-                        <td>32,000</td>
-                        <td>20%</td>
-                        <td class="process">Processed</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                             <td>하의</td>
-                        <td>슬렉스</td>
-                        <td>무난한 슬렉스</td>
-                        <td>32,000</td>
-                        <td>20%</td>
-                        <td class="process">Processed</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>슬렉스</td>
-                        <td>무난한 슬렉스</td>
-                        <td>32,000</td>
-                        <td>20%</td>
-                        <td class="process">Processed</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>슬렉스</td>
-                        <td>무난한 슬렉스</td>
-                        <td>32,000</td>
-                        <td>20%</td>
-                        <td class="process">Processed</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                       	<td>하의</td>
-                        <td>슬렉스</td>
-                        <td>무난한 슬렉스</td>
-                        <td>32,000</td>
-                        <td>20%</td>
-                        <td class="process">Processed</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>슬렉스</td>
-                        <td>무난한 슬렉스</td>
-                        <td>32,000</td>
-                        <td>20%</td>
-                        <td class="process">Processed</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>데님</td>
-                        <td>게스 데님 청바지</td>
-                        <td>50,000</td>
-                        <td>1%</td>
-                        <td class="denied">denied</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>데님</td>
-                        <td>게스 데님 청바지</td>
-                        <td>50,000</td>
-                        <td>1%</td>
-                        <td class="denied">denied</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>데님</td>
-                        <td>게스 데님 청바지</td>
-                        <td>50,000</td>
-                        <td>1%</td>
-                        <td class="denied">denied</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>데님</td>
-                        <td>게스 데님 청바지</td>
-                        <td>50,000</td>
-                        <td>1%</td>
-                        <td class="denied">denied</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>데님</td>
-                        <td>게스 데님 청바지</td>
-                        <td>50,000</td>
-                        <td>1%</td>
-                        <td class="denied">denied</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>데님</td>
-                        <td>게스 데님 청바지</td>
-                        <td>50,000</td>
-                        <td>1%</td>
-                        <td class="denied">denied</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>데님</td>
-                        <td>게스 데님 청바지</td>
-                        <td>50,000</td>
-                        <td>1%</td>
-                        <td class="denied">denied</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>데님</td>
-                        <td>게스 데님 청바지</td>
-                        <td>50,000</td>
-                        <td>1%</td>
-                        <td class="denied">denied</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>데님</td>
-                        <td>게스 데님 청바지</td>
-                        <td>50,000</td>
-                        <td>1%</td>
-                        <td class="denied">denied</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>데님</td>
-                        <td>게스 데님 청바지</td>
-                        <td>50,000</td>
-                        <td>1%</td>
-                        <td class="denied">denied</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>데님</td>
-                        <td>게스 데님 청바지</td>
-                        <td>50,000</td>
-                        <td>1%</td>
-                        <td class="denied">denied</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                        <td>하의</td>
-                        <td>데님</td>
-                        <td>게스 데님 청바지</td>
-                        <td>50,000</td>
-                        <td>1%</td>
-                        <td class="denied">denied</td>
-                         <td style="align:center;">
-                       		<button type="button" class="btn btn-danger">삭제</button>
-                       	</td>
-                    </tr>
+                   	</tr>
+                   </c:forEach>
+                   
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>대분류</th>
-                        <th>중분류</th>
-                        <th>상품명</th>
-                        <th>가격</th>
-                        <th>할인가</th>
-                        <th>상태</th>
-                         <th>삭제</th>
-                    </tr>
-                </tfoot>
+               
             </table>
         </div>
         </div>
@@ -528,15 +261,21 @@
 	
 	
 	<!-- // td(class=next) 클릭시 페이지 이동 -->
+	<!-- 나중에 하기  -->
 	<script>
-     $("td").click(function(){
+	$('#prdtDeleteBtn').click(function(){
+		alert('상품이 삭제되었습니다.')
+	});
+    <%--  $("td").click(function(){
     	 location.href='productListDetail.ad';
-  	 <%-- var userId = $(this).parent().find('input').val();
+  	 var userId = $(this).parent().find('input').val();
   	 
   	 console.log("선택한 유저 ID : "+userId);
   	 
-     location.href="<%= request.getContextPath() %>/sone.rp?userId=" + userId; --%>
-    }); 
+     location.href="<%= request.getContextPath() %>/sone.rp?userId=" + userId;
+    });  --%>
+  
+     
     </script>
 
     <script src="/ot/resources/assets/vendor/jquery/jquery-3.3.1.min.js"></script>

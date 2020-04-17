@@ -381,7 +381,7 @@
 	    	console.log($('#hid').val());
 	    	 
 	    	var down_no = $('#sel2 option:selected').val();
-	    	console.log($('#sel2 option:selected').val());
+	    	consolVAR e.log($('#sel2 option:selected').val());
 	    	
 	    	   $.ajax({
 	    		   url:"DownCategoryDelete.ad",

@@ -22,6 +22,7 @@ public class Product {
 	private int prdtSale;
 	private int prdtScount;
 	private int prdtReview;
+	private String prdtStatus;
 	
 	
 
@@ -37,9 +38,20 @@ public class Product {
 
 
 
+	
+
+
+
+
+
+
+
+
+
 	public Product(int prdtNo, int upNo, String prdtName, String prdtComment, int prdtPrice, String prdtMake,
 			String prdtImage, Date prdtDate, Date prdtModifyDate, int downNo, String prdtCode, String prdtImagePath,
-			String prdtDetailImage, String prdtDetailImagePath, int prdtSale, int prdtScount, int prdtReview) {
+			String prdtDetailImage, String prdtDetailImagePath, int prdtSale, int prdtScount, int prdtReview,
+			String prdtStatus) {
 		super();
 		this.prdtNo = prdtNo;
 		this.upNo = upNo;
@@ -58,7 +70,18 @@ public class Product {
 		this.prdtSale = prdtSale;
 		this.prdtScount = prdtScount;
 		this.prdtReview = prdtReview;
+		this.prdtStatus = prdtStatus;
 	}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -351,8 +374,50 @@ public class Product {
 	 */
 	public void setPrdtDetailImagePath(String prdtDetailImagePath) {
 		this.prdtDetailImagePath = prdtDetailImagePath;
+	
+	
 	}
 	
+	
+	
+
+	public String getPrdtStatus() {
+		return prdtStatus;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public void setPrdtStatus(String prdtStatus) {
+		this.prdtStatus = prdtStatus;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	@Override
 	public String toString() {
@@ -360,10 +425,15 @@ public class Product {
 				+ prdtComment + ", prdtPrice=" + prdtPrice + ", prdtMake=" + prdtMake + ", prdtImage=" + prdtImage
 				+ ", prdtDate=" + prdtDate + ", prdtModifyDate=" + prdtModifyDate + ", downNo=" + downNo + ", prdtCode="
 				+ prdtCode + ", prdtImagePath=" + prdtImagePath + ", prdtDetailImage=" + prdtDetailImage
-				+ ", prdtDetailImagePath=" + prdtDetailImagePath + ", prdtSale=" + prdtSale + "]";
+				+ ", prdtDetailImagePath=" + prdtDetailImagePath + ", prdtSale=" + prdtSale + ", prdtScount="
+				+ prdtScount + ", prdtReview=" + prdtReview + ", prdtStatus=" + prdtStatus + "]";
 	}
-	
-	
+
+
+
+
+
+
 	
 	
 	

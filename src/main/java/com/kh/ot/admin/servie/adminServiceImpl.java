@@ -72,14 +72,10 @@ public class adminServiceImpl implements adminService{
 		return adDao.upCategorySelect();
 	}
 
-
-
 	@Override
 	public ArrayList<DownCategory> DownCategorySelect() {
 		return adDao.DownCategorySelect();
 	}
-
-
 
 	@Override
 	public int UpCategoryInsert(String addOption) {
@@ -103,18 +99,17 @@ public class adminServiceImpl implements adminService{
 		return adDao.DownCategoryDelete(downCategory);
 	}
 
-	@Override public int ProductInsert(Product p, Product_opt po) { 
-	  int result=0; 
-	  int presult = adDao.ProductInsert(p);
-	
-	  int poresult = 0; 
-	  int prdtNo =p.getPrdtNo();
-	
-	  if(presult>0) { 
-		  poresult=adDao.ProductOptionInsert(po, prdtNo); 
-		  result =presult * poresult; 
-	  }
-	  	return result; 
+	@Override public int ProductInsert(Product p) { 
+		/*
+		 *  주완님이 도와준 코딩
+		 * int result=0; int presult = adDao.ProductInsert(p);
+		 * 
+		 * int poresult = 0; int prdtNo =p.getPrdtNo();
+		 * 
+		 * if(presult>0) { poresult=adDao.ProductOptionInsert(po, prdtNo); result
+		 * =presult * poresult; } return result;
+		 */
+		return adDao.ProductInsert(p);
 	}
 	 
 
@@ -127,6 +122,18 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public int QnA_ProductUpdate(Board b) {
 		return adDao.QnA_ProductUpdate(b);
+	}
+
+
+	@Override
+	public ArrayList<Product> ProductSelectList() {
+		return adDao.ProductSelectList();
+	}
+
+
+	@Override
+	public int ProductDelete(int prdtNo) {
+		return adDao.ProductDelete(prdtNo);
 	}
 
 
