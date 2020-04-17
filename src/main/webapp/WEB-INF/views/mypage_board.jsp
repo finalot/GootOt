@@ -97,16 +97,7 @@ a{
 			</div>
 
 			<div class="xans-element- xans-myshop xans-myshop-boardpackage ">
-				<div class="xans-element- xans-myshop xans-myshop-boardlisthead ">
-					<p style="font-size:13px;">
-						분류 선택 <select id="board_sort" name="board_sort" onchange="BOARD.change_sort('boardSearchForm', this);">
-							<option value="D">작성 일자별</option>
-							<option value="C">분류별</option>
-						</select>
-					</p>
-				</div>
-				<div
-					class="xans-element- xans-myshop xans-myshop-boardlist ec-base-table typeList gBorder gBlank10">
+				<div class="xans-element- xans-myshop xans-myshop-boardlist ec-base-table typeList gBorder gBlank10">
 					<!--
             $count = 10
             $relation_post = yes
@@ -149,9 +140,14 @@ a{
 								
 							<c:if test="${ !empty list }">
 								<c:forEach var="b" items="${list }">
-							<tr class="xans-record-">
+								
+							<tr class="xans-record-" id="catecheck">
+							
 								<td>${b.qna_no }</td>
-								<td><a href="${mBoard_adminreply }">${b.b_cate_name }</a></td>
+								<td>
+									<a onclick="boardmove(this); "id="cate">${b.b_cate_name }
+									</a>
+								</td>
 								
 								<c:if test="${b.b_cate_no eq 1 }">
 								<td class="left">
@@ -241,7 +237,9 @@ a{
                          		
 								<td>${b.qna_writer }</td>
 								<td><span class="txtNum">${b.qna_date }</span></td>
+								
 							</tr>
+							
 							</c:forEach>
 							</c:if>
 						</tbody>
@@ -249,7 +247,11 @@ a{
 				</div>
 			</div>
 
-				<input id="q_no" type="hidden" value="${b.qna_no}">
+		
+			<input id="q_no" name="q_no" type="hidden" value="${b.qna_no}">
+			<input id="b_cate_no" name="b_cate_no" type="hidden" value="${b.b_cate_no}">
+					
+				
 				<input id="board_sort" name="board_sort" value="" type="hidden" style="width:100px;">
 				<div class="xans-element- xans-myshop xans-myshop-boardlistsearch ">
 					<fieldset class="boardSearch">
@@ -271,134 +273,143 @@ a{
 			<!-- 페이징 처리 -->
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
 			
-			<%-- <c:if test="${empty sc }">
-				<c:if test="${pi.currentPage eq 1 }">
-					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
-				</c:if>
-				<c:if test="${pi.currentPage ne 1 }">
-					<c:url var="start" value="mBoard.do">
-						<c:param name="currentPage" value="1"/>
-					</c:url>
-				<a href="${start }" class="first">
-					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
-				</a>
-				</c:if>
-			</c:if> --%>
-			
-			<c:if test="${ !empty sc }">
-				<c:if test="${pi.currentPage eq 1 }">
-					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
-				</c:if>
-				<c:if test="${pi.currentPage ne 1 }">
-					<c:url var="start" value="mBoardsearch.do">
-						<c:param name="currentPage" value="1"/>
-						<c:param name="search_key" value="${sc.search_key }"/>
-                 		<c:param name="search" value="${sc.search }"/>
-					</c:url>
-				<a href="${start }" class="first">
-					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
-				</a>
-				</c:if>
-			</c:if>
-				
-				
-			<c:if test="${empty sc }">
-				<c:if test="${ pi.currentPage eq 1 }">
-					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
+				<c:if test="${empty sc }">
+					<c:if test="${pi.currentPage eq 1 }">
+						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+					</c:if>
+					<c:if test="${pi.currentPage ne 1 }">
+						<c:url var="start" value="mBoard.do">
+							<c:param name="currentPage" value="1"/>
+						</c:url>
+					<a href="${start }" class="first">
+						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+					</a>
+					</c:if>
 				</c:if>
 				
 				<c:if test="${ !empty sc }">
-				<c:url var="before" value="mBoardsearch.do">
-                  <c:param name="currentPage" value="${pi.currentPage - 1 }"/>
-                  <c:param name="search_key" value="${sc.search_key }"/>
-                  <c:param name="search" value="${sc.search }"/>
-                </c:url>
-                  <a href="${before}">
-                  <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
-                  </a> &nbsp;
-                </c:if>
-            </c:if>
-            
-			 <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                 
-		   <c:if test="${ p eq pi.currentPage }">
-                        <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
-                        <b>${ p }</b> &nbsp;&nbsp;</font>
-                     </c:if>
-					
-					<c:if test="${ empty sc }">	
-                     <c:if test="${ p ne pi.currentPage }">
-                        <c:url var="pagination" value="mBoard.do">
-                           <c:param name="currentPage" value="${ p }"/>
-                     </c:url>
-                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
-                     ${ p }</a> &nbsp;
-                  </c:if>
-                  </c:if>
-                  
-                  	 <c:if test="${ !empty sc }">	
-                     <c:if test="${ p ne pi.currentPage }">
-                        <c:url var="pagination" value="mBoardsearch.do">
-                          <c:param name="currentPage" value="${ p }"/>
-		                  <c:param name="search_key" value="${sc.search_key }"/>
-		                  <c:param name="search" value="${sc.search }"/>
-                        </c:url>
-                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
-                     ${ p }</a> &nbsp;
-                  </c:if>
-                  </c:if>
-                  
-                  
-               </c:forEach>
-               
-               
-               <c:if test="${ empty sc }">
-               <c:if test="${ pi.currentPage eq pi.maxPage }">
-					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+					<c:if test="${pi.currentPage eq 1 }">
+						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+					</c:if>
+					<c:if test="${pi.currentPage ne 1 }">
+						<c:url var="start" value="mBoardsearch.do">
+							<c:param name="currentPage" value="1"/>
+							<c:param name="search_key" value="${sc.search_key }"/>
+	                 		<c:param name="search" value="${sc.search }"/>
+						</c:url>
+					<a href="${start }" class="first">
+						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+					</a>
+					</c:if>
 				</c:if>
-				<c:if test="${ pi.currentPage ne pi.maxPage }">
-					<c:url var="after" value="mBoard.do">
-                     <c:param name="currentPage" value="${pi.currentPage +1 }"/>
-                  </c:url>
-                  <a href="${after}">
-               <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
-               </a>
-               </c:if>
+				
+				<c:if test="${empty sc }">
+					<c:if test="${ pi.currentPage eq 1 }">
+						<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
+					</c:if>
+					
+					<c:if test="${ pi.currentPage ne 1 }">
+						<c:url var="before" value="mBoard.do">
+	                  		<c:param name="currentPage" value="${pi.currentPage - 1 }"/>
+	                    </c:url>
+	               	<a href="${before}">
+	                  	<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+	                </a> &nbsp;
+	                </c:if>
+				</c:if>
+					
+				<c:if test="${ !empty sc }">
+					<c:if test="${ pi.currentPage eq 1 }">
+						<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
+					</c:if>
+					
+					<c:if test="${ pi.currentPage ne 1 }">
+						<c:url var="before" value="mBoardsearch.do">
+			                <c:param name="currentPage" value="${pi.currentPage - 1 }"/>
+			                <c:param name="search_key" value="${sc.search_key }"/>
+			                <c:param name="search" value="${sc.search }"/>
+		                </c:url>
+	                <a href="${before}">
+	                	<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+	                </a> &nbsp;
+	       			</c:if>
+	       		</c:if>
+	            
+				 
+				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+			   		<c:if test="${ p eq pi.currentPage }">
+	                        <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
+	                        <b>${ p }</b> &nbsp;&nbsp;</font>
+	                </c:if>
+						
+				 	<c:if test="${ empty sc }">	
+	                     <c:if test="${ p ne pi.currentPage }">
+	                        <c:url var="pagination" value="mBoard.do">
+	                           <c:param name="currentPage" value="${ p }"/>
+	                     	</c:url>
+	                     	<a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+	                     	${ p }</a> &nbsp;
+	                  	 </c:if>
+	                </c:if>
+	                  
+	               	 <c:if test="${ !empty sc }">	
+	                     <c:if test="${ p ne pi.currentPage }">
+	                        <c:url var="pagination" value="mBoardsearch.do">
+		                        <c:param name="currentPage" value="${ p }"/>
+			                    <c:param name="search_key" value="${sc.search_key }"/>
+			                    <c:param name="search" value="${sc.search }"/>
+	                        </c:url>
+	                     	<a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+	                     	${ p }</a> &nbsp;
+	                  	 </c:if>
+	                </c:if>
+	          	</c:forEach>
+	               
+               	<c:if test="${ empty sc }">
+               		<c:if test="${ pi.currentPage eq pi.maxPage }">
+						<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+					</c:if>
+				
+					<c:if test="${ pi.currentPage ne pi.maxPage }">
+						<c:url var="after" value="mBoard.do">
+		                   	<c:param name="currentPage" value="${pi.currentPage +1 }"/>
+	                 	</c:url>
+	                 	<a href="${after}">
+	              			<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+	              		</a>
+	              	</c:if>
                </c:if>
                
                <c:if test="${ !empty sc }">
-               <c:if test="${ pi.currentPage eq pi.maxPage }">
-					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
-				</c:if>
-				<c:if test="${ pi.currentPage ne pi.maxPage }">
-					<c:url var="after" value="mBoardsearch.do">
-                     <c:param name="currentPage" value="${pi.currentPage +1 }"/>
-                     <c:param name="search_key" value="${sc.search_key }"/>
-           		     <c:param name="search" value="${sc.search }"/>
-                  </c:url>
-                  <a href="${after}">
-               <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
-               </a>
+               		<c:if test="${ pi.currentPage eq pi.maxPage }">
+						<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+					</c:if>
+					
+					<c:if test="${ pi.currentPage ne pi.maxPage }">
+						<c:url var="after" value="mBoardsearch.do">
+	                     	<c:param name="currentPage" value="${pi.currentPage +1 }"/>
+	                     	<c:param name="search_key" value="${sc.search_key }"/>
+	           		     	<c:param name="search" value="${sc.search }"/>
+                  		</c:url>
+                  		<a href="${after}">
+               				<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+               			</a>
+             		</c:if>
                </c:if>
-               </c:if>
-               
-               
-               
-               
-               
-               
                
                <c:if test="${empty sc }">
-               <c:if test="${ pi.currentPage eq pi.maxPage }">
-               		<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
-               </c:if>
-               <c:if test="${ pi.currentPage ne pi.maxPage }">
-               		<c:url var="end" value="mBoard.do">
-               			<c:param name="currentPage" value="${pi.maxPage }"/>
-               		</c:url>
-					<a href="${end }" class="last">
-					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
-               </c:if>
+               		<c:if test="${ pi.currentPage eq pi.maxPage }">
+               			<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+               		</c:if>
+               		
+               		<c:if test="${ pi.currentPage ne pi.maxPage }">
+	               		<c:url var="end" value="mBoard.do">
+	               			<c:param name="currentPage" value="${pi.maxPage }"/>
+	               		</c:url>
+						<a href="${end }" class="last">
+							<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+						</a>
+               		</c:if>
                </c:if>
                
                <c:if test="${ !empty sc }">
@@ -406,15 +417,16 @@ a{
 	               		<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
 	               </c:if>
 	               
-               <c:if test="${ pi.currentPage ne pi.maxPage }">
-               		<c:url var="end" value="mBoardsearch.do">
-               			<c:param name="currentPage" value="${pi.maxPage }"/>
-               			<c:param name="search_key" value="${sc.search_key }"/>
-           		     	<c:param name="search" value="${sc.search }"/>	
-               		</c:url>
-					<a href="${end }" class="last">
-					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
-               </c:if>
+	               <c:if test="${ pi.currentPage ne pi.maxPage }">
+	               		<c:url var="end" value="mBoardsearch.do">
+	               			<c:param name="currentPage" value="${pi.maxPage }"/>
+	               			<c:param name="search_key" value="${sc.search_key }"/>
+	           		     	<c:param name="search" value="${sc.search }"/>	
+	               		</c:url>
+						<a href="${end }" class="last">
+							<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+						</a>
+	               </c:if>
                </c:if>
 			</div>
 			
@@ -429,6 +441,7 @@ a{
 
 		</div>
 		<hr class="layout">
+
 	</div>
 
 	<jsp:include page="footer.jsp"/>
@@ -440,6 +453,14 @@ a{
 			 location.href="mBoardsearch.do?search_key="+search_key+"&search="+search;
 		 }
 		 
+		 
+		 /* b_cate_no를 못 가지고옴..*/
+/* 		 function boardmove(bm){
+			 var b_cate_no = $(bm).parent().parent().parent().parent().find('input[name=b_cate_no]').val();
+			 console.log(b_cate_no);
+			 
+		 } */
+		 			 
 	</script>
 	
 
