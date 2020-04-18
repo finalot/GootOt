@@ -62,6 +62,16 @@
 	</resultMap>
 	
 	
+	<resultMap id="AddressResultMap" type="Address">
+		<id property="adNo" column="AD_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="adTitle" column="AD_TITLE"/>
+		<result property="adReceiver" column="AD_RECEIVER"/>
+		<result property="adAddress" column="AD_ADDRESS"/>
+		<result property="adPhone" column="AD_PHONE"/>
+	</resultMap>
+	
+	
 	
 	<select id="PointListCount" resultType="_int">
 		SELECT COUNT(*)
@@ -205,8 +215,49 @@
 	</select>
 	
 	
+	<insert id="mAddressInsert" parameterType="Address">
+		INSERT INTO ADDRESS VALUES
+		(AD_SEQ.NEXTVAL, #{memNo}, #{adTitle},#{adReceiver},#{adAddress},#{adPhone})
+	</insert>
+	
+	<select id="getAddressCount" resultType="_int" parameterType="_int">
+		SELECT COUNT(*)
+		FROM ADDRESS
+		WHERE MEM_NO=#{memNo}
+	
+	</select>
+	
+	<select id="selectAddressList" parameterType="Member" resultMap="AddressResultMap">
+		SELECT *
+		FROM ADDRESS
+		WHERE MEM_NO=#{memNo}
+	
+	</select>
+	
+	<select id="ModifyAddress" parameterType="_int" resultMap="AddressResultMap">
+		SELECT *
+		FROM ADDRESS
+		WHERE AD_NO=#{mAddress}
+	
+	</select>
+	
+	<update id="AddressUpdate" parameterType="Address">
+		UPDATE ADDRESS
+		SET AD_TITLE=#{adTitle}, AD_RECEIVER=#{adReceiver}, AD_ADDRESS=#{adAddress},
+		AD_PHONE=#{adPhone}
+		WHERE AD_NO=#{adNo}
+	</update> 
+	
+	<delete id="AddressDelete" parameterType="java.util.Map">
+		<foreach  item="a" collection="nokArr"  index="index" 
+		      separator=";" open="DECLARE BEGIN" close="; END;" >
+		DELETE
+		FROM ADDRESS
+		WHERE AD_NO=#{a.adNo}
+		</foreach>
+	</delete>
 	
 	
-	
+
 	
 </mapper>

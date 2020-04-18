@@ -12,6 +12,7 @@ import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.dao.MypageDao;
+import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
 
@@ -95,5 +96,35 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public ArrayList<Ord> selectOrderList(PageInfo pi, int memNo) {
 		return mpDao.selectOrderList(pi, memNo);
+	}
+
+	@Override
+	public int mAddressInsert(Address ad) {
+		return mpDao.mAddressInsert(ad);
+	}
+
+	@Override
+	public int getAddressCount(Member m) {
+		return mpDao.getAddressCount(m);
+	}
+
+	@Override
+	public ArrayList<Address> selectAddressList(PageInfo pi, Member m) {
+		return mpDao.selectAddressList(pi,m);
+	}
+
+	@Override
+	public Address ModifyAddress(int mAddress) {
+		return mpDao.ModifyAddress(mAddress);
+	}
+
+	@Override
+	public int AddressUpdate(Address ad) {
+		return mpDao.AddressUpdate(ad);
+	}
+
+	@Override
+	public int AddressDelete(ArrayList<Address> nokArr) {
+		return mpDao.AddressDelete(nokArr);
 	}
 }

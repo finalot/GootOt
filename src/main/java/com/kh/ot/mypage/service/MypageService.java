@@ -7,6 +7,7 @@ import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
 
@@ -115,6 +116,63 @@ public interface MypageService {
 	int getOrderListCount(int memNo);
 
 	ArrayList<Ord> selectOrderList(PageInfo pi, int memNo);
+
+	
+	
+	/**
+	 * @작성일  : 2020. 4. 18.
+	 * @작성자  : 우예진
+	 * @내용    : 배송지 insert
+	 * @param ad
+	 * @return
+	 */
+	int mAddressInsert(Address ad);
+
+	/**
+	 * @작성일  : 2020. 4. 18.
+	 * @작성자  : 우예진
+	 * @내용    : 배송지 페이징처리
+	 * @param m
+	 * @return
+	 */
+	int getAddressCount(Member m);
+
+	/**
+	 * @작성일  : 2020. 4. 18.
+	 * @작성자  : 우예진
+	 * @내용    : 배송지 리스트 뿌려주기
+	 * @param pi
+	 * @param m
+	 * @return
+	 */
+	ArrayList<Address> selectAddressList(PageInfo pi, Member m);
+
+	/**
+	 * @작성일  : 2020. 4. 18.
+	 * @작성자  : 우예진
+	 * @내용    : 배송지 수정
+	 * @param mAddress
+	 * @return
+	 */
+	Address ModifyAddress(int mAddress);
+
+	/**
+	 * @작성일  : 2020. 4. 18.
+	 * @작성자  : 우예진
+	 * @내용    : 배송지 업데이트치기
+	 * @param ad
+	 * @return
+	 */
+	int AddressUpdate(Address ad);
+
+	/**
+	 * @작성일  : 2020. 4. 18.
+	 * @작성자  : 우예진
+	 * @내용    : 배송지 삭제
+	 * @param nokArr
+	 * @return
+	 */
+	int AddressDelete(ArrayList<Address> nokArr);
 
 	
 }
