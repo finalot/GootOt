@@ -17,6 +17,7 @@ import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
+import com.kh.ot.mypage.vo.OrdSearch;
 
 @Repository("mpDao")
 public class MypageDao {
@@ -154,4 +155,18 @@ public class MypageDao {
 		return sqlSession.delete("mypageMapper.AddressDelete",map);
 	}
 
+	public int SearchListCount(OrdSearch os) {
+		return sqlSession.selectOne("mypageMapper.SearchOrdListCount", os);
+	}
+
+	public ArrayList<Ord> selectSearchList(PageInfo pi, OrdSearch os) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectSearchOrdList", os, rowBounds);
+	}
+
+	
+	
+	
 }

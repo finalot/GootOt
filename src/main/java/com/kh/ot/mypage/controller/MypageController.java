@@ -2,6 +2,7 @@ package com.kh.ot.mypage.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletResponse;
@@ -17,14 +18,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
+import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.common.Pagination;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
-import com.kh.ot.cart.vo.Cart;
-import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.mypage.vo.OrdSearch;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -69,6 +70,76 @@ public class MypageController {
 		mv.setViewName("mypage_list");
 		return mv;
 	}
+	
+	
+	
+	@RequestMapping("my_orderlist.do")
+	public ModelAndView MyOrderList(ModelAndView mv, HttpSession session,
+			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage,
+			 String order_status, Date history_start_date, Date history_end_date) {
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		OrdSearch os = new OrdSearch();
+	
+		if(order_status.equals("all")) {
+			os.setOrd_status("all");
+		} else if(order_status.equals("shipped_before")) {
+			os.setOrd_status("입금완료");
+		} else if(order_status.equals("shipped_standby")) {
+			os.setOrd_status("배송준비중");
+		} else if(order_status.equals("shipped_begin")) {
+			os.setOrd_status("배송중");
+		} else if(order_status.equals("shipped_complate")) {
+			os.setOrd_status("배송완료");
+		} else if(order_status.equals("order_cancel")) {
+			os.setOrd_status("취소");
+		} else if(order_status.equals("order_exchange")) {
+			os.setOrd_status("교환");
+		} else if(order_status.equals("order_return")) {
+			os.setOrd_status("반품");
+		}
+		
+		
+		os.setStart_date(history_start_date);
+		os.setEnd_date(history_end_date);
+		
+		os.setMemno(memNo);
+		
+		System.out.println(os);
+		
+		int listCount = mpService.SearchListCount(os);
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = os.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Ord> list = mpService.selectSearchList(pi,os);
+	    
+	    	System.out.println("list : " + list);
+	    	
+	    	mv.addObject("CouponCount", coupon);
+	    	mv.addObject("PointCount", point);
+			mv.addObject("list",list);
+			mv.addObject("pi",pi);
+			mv.addObject("os", os);
+	        mv.setViewName("mypage_list");
+		
+	        return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * @작성일 : 2020. 4. 2.
@@ -301,6 +372,11 @@ public class MypageController {
 		
 		Member m = (Member)session.getAttribute("loginMember");
 		
+		int memNo = m.getMemNo();
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
 		
 		System.out.println(currentPage);
 		
@@ -310,6 +386,8 @@ public class MypageController {
 		
 		ArrayList<Address> adlist = mpService.selectAddressList(pi,m);
 		
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
 		mv.addObject("adlist",adlist);
         mv.addObject("pi",pi);
         mv.setViewName("mypage_address");
@@ -351,8 +429,20 @@ public class MypageController {
 	 * @return String
 	 */
 	@RequestMapping("mAddress_register.do")
-	public String mAddress_register() {
-		return "mypage_address_register";
+	public ModelAndView mAddress_register(ModelAndView mv, HttpSession session) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+		mv.setViewName("mypage_address_register");
+		return mv;
 	}
 	
 	/**
@@ -363,10 +453,24 @@ public class MypageController {
 	 * @return String
 	 */
 	@RequestMapping("mAddress_modify.do")
-	public ModelAndView mAddress_modify(ModelAndView mv, int mAddress) {
+	public ModelAndView mAddress_modify(ModelAndView mv, int mAddress, HttpSession session) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+		
 		
 		Address ad = mpService.ModifyAddress(mAddress);
 		
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
 		mv.addObject("ad",ad);
         mv.setViewName("mypage_address_modify");
 		

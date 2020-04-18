@@ -73,13 +73,13 @@ cursor:pointer;
 	                    </strong>
 	                </li>
                 
-	               <%--  <li class="etc ">
+	                <li class="etc ">
 	                    <strong class="title">COUPON</strong>
 	                    <br>
 	                    <strong class="data">
 	                    	<a href="${mCoupon }">${CouponCount}<span>개</span></a>
 	                    </strong>
-	                </li> --%>
+	                </li> 
 	            </ul>
 			</div>
 		</div>
@@ -122,14 +122,12 @@ cursor:pointer;
         				<table border="1" summary="">
 							<caption>배송 주소록 목록</caption>
             				<colgroup>
-								<col style="width:36px">
 								<col style="width:80px">
-								<col style="width:95px">
-								<col style="width:95px">
-								<col style="width:140px">
-								<col style="width:140px">
+								<col style="width:110px">
+								<col style="width:120px">
+								<col style="width:160px">
 								<col style="width:auto">
-								<col style="width:90px">
+								<col style="width:120px">
 							</colgroup>
 							
 							<thead>
@@ -195,10 +193,7 @@ cursor:pointer;
 				            <a href="mAddress_register.do" class="yg_btn yg_btn1 yg_btn_border_444" alt="배송지 등록">배송지등록</a>
 				        </span>
     				</div>
-				</div>
-	<!-- 		</form> -->
-			
-			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate1">
+    			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate1">
             <!-- <a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first"> -->
 
                <img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
@@ -280,18 +275,29 @@ cursor:pointer;
 
          </div>
 
-			<div class="ec-base-help" align="center">
+			<div class="ec-base-help" >
 			    <h3>배송주소록 유의사항</h3>
-			    <div class="inner" align="center">
+			    <div class="inner">
 			        <ol style="font-size: 13px;">
 			        	<li class="item1">배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</li>
 			            <li class="item2">자동 업데이트를 원하지 않을 경우 주소록 고정 선택을 선택하시면 선택된 주소록은 업데이트 대상에서 제외됩니다.</li>
 			            <li class="item3">기본 배송지는 1개만 저장됩니다. 다른 배송지를 기본 배송지로 설정하시면 기본 배송지가 변경됩니다.</li>
 			        </ol>
 		        </div>
-			</div>
+			</div>	
+    				
+    				
+    				
+    				
+    				
+    				
+    				
+    				
+				</div>
+	<!-- 		</form> -->
+			
+			
 		</div>
-	</div>
 	
  <jsp:include page="footer.jsp"/>
  

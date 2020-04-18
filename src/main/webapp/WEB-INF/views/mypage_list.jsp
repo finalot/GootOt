@@ -102,21 +102,14 @@
     			</ul>
 			</div>
 			
-			<c:url var="mlist" value="my_orderlist.do">
-			<form action="${mlist }" method="GET" id="my_orderlist" name="my_orderlist">
-				<c:param name="order_status" value="${selected }"/>
-				<c:param name="history_start_date" value="${selected }"/>
-				<c:param name="history_end_date" value="${selected }"/>
-				<c:param name="history_end_date" value="${selected }"/>
-				<c:param name="history_end_date" value="${selected }"/>
-				
+			<form action="my_orderlist.do" id="my_orderlist" name="my_orderlist">
 				<div class="xans-element- xans-myshop xans-myshop-orderhistoryhead ">
 					<fieldset class="ec-base-box">
 						<legend>검색기간설정</legend>
       					<div class="stateSelect ">
            					<select id="order_status" name="order_status" class="fSelect">
 								<option value="all">전체 주문처리상태</option>
-								<option value="shipped_before">입금전</option>
+								<option value="shipped_before">입금완료</option>
 								<option value="shipped_standby">배송준비중</option>
 								<option value="shipped_begin">배송중</option>
 								<option value="shipped_complate">배송완료</option>
@@ -154,7 +147,6 @@
 				<input id="term" name="term" value="" type="hidden">
 			</form>
 			
-			</c:url>
 			<div class="xans-element- xans-myshop xans-myshop-orderhistorylistitem ec-base-table typeList">
 				<!--
 	       			 $login_url = /member/login.html
@@ -245,73 +237,168 @@
 
 			<!-- 페이징 처리 -->
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
-				<c:if test="${pi.currentPage eq 1 }">
-					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+			
+				<c:if test="${empty os }">
+					<c:if test="${pi.currentPage eq 1 }">
+						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+					</c:if>
+					<c:if test="${pi.currentPage ne 1 }">
+						<c:url var="start" value="mList.do">
+							<c:param name="currentPage" value="1"/>
+						</c:url>
+					<a href="${start }" class="first">
+						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+					</a>
+					</c:if>
 				</c:if>
-				<c:if test="${pi.currentPage ne 1 }">
-					<c:url var="start" value="mList.do">
-						<c:param name="currentPage" value="1"/>
-					</c:url>
-				<a href="${start }" class="first">
-					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
-				</a>
-				</c:if> 
 				
+				<c:if test="${ !empty os }">
+					<c:if test="${pi.currentPage eq 1 }">
+						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+					</c:if>
+					<c:if test="${pi.currentPage ne 1 }">
+						<c:url var="start" value="my_orderlist.do">
+							<c:param name="currentPage" value="1"/>
+							<c:param name="order_status" value="${param.order_status }"/>
+							<c:param name="history_start_date" value="${os.start_date }"/>
+	                 		<c:param name="history_end_date" value="${os.end_date }"/>
+						</c:url>
+					<a href="${start }" class="first">
+						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+					</a>
+					</c:if>
+				</c:if>
 				
-				<c:if test="${ pi.currentPage eq 1 }">
-					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
+				<c:if test="${empty os }">
+					<c:if test="${ pi.currentPage eq 1 }">
+						<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
+					</c:if>
+					
+					<c:if test="${ pi.currentPage ne 1 }">
+						<c:url var="before" value="mList.do">
+	                  		<c:param name="currentPage" value="${pi.currentPage - 1 }"/>
+	                    </c:url>
+	               	<a href="${before}">
+	                  	<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+	                </a> &nbsp;
+	                </c:if>
 				</c:if>
-				<c:if test="${ pi.currentPage ne 1 }">
-				<c:url var="before" value="mList.do">
-                  <c:param name="currentPage" value="${pi.currentPage - 1 }"/>
-                  </c:url>
-                  <a href="${before}">
-                  <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
-                  </a> &nbsp;
-                 </c:if>
-                  
-				 <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                     <c:if test="${ p eq pi.currentPage }">
-                        <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
-                        <b>${ p }</b> &nbsp;&nbsp;</font>
-                     </c:if>
-
-                     <c:if test="${ p ne pi.currentPage }">
-                        <c:url var="pagination" value="mList.do">
-                           <c:param name="currentPage" value="${ p }"/>
-                     </c:url>
-                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
-                     ${ p }</a> &nbsp;
-                  </c:if>
-               </c:forEach>
-               
-               
-               <c:if test="${ pi.currentPage eq pi.maxPage }">
-					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
-				</c:if>
-				<c:if test="${ pi.currentPage ne pi.maxPage }">
-				<c:url var="after" value="mlist.do">
-                     <c:param name="currentPage" value="${pi.currentPage +1 }"/>
-                  </c:url>
-                  <a href="${after}">
-               <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
-               </a>
+					
+				<c:if test="${ !empty os }">
+					<c:if test="${ pi.currentPage eq 1 }">
+						<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
+					</c:if>
+					
+					<c:if test="${ pi.currentPage ne 1 }">
+						<c:url var="before" value="my_orderlist.do">
+			                <c:param name="currentPage" value="${pi.currentPage - 1 }"/>
+			                <c:param name="order_status" value="${param.order_status }"/>
+							<c:param name="history_start_date" value="${os.start_date }"/>
+	                 		<c:param name="history_end_date" value="${os.end_date }"/>
+		                </c:url>
+	                <a href="${before}">
+	                	<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+	                </a> &nbsp;
+	       			</c:if>
+	       		</c:if>
+	            
+				 
+				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+			   		<c:if test="${ p eq pi.currentPage }">
+	                        <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
+	                        <b>${ p }</b> &nbsp;&nbsp;</font>
+	                </c:if>
+						
+				 	<c:if test="${ empty os }">	
+	                     <c:if test="${ p ne pi.currentPage }">
+	                        <c:url var="pagination" value="mList.do">
+	                           <c:param name="currentPage" value="${ p }"/>
+	                     	</c:url>
+	                     	<a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+	                     	${ p }</a> &nbsp;
+	                  	 </c:if>
+	                </c:if>
+	                  
+	               	 <c:if test="${ !empty os }">	
+	                     <c:if test="${ p ne pi.currentPage }">
+	                        <c:url var="pagination" value="my_orderlist.do">
+		                        <c:param name="currentPage" value="${ p }"/>
+			                    <c:param name="order_status" value="${param.order_status }"/>
+							<c:param name="history_start_date" value="${os.start_date }"/>
+	                 		<c:param name="history_end_date" value="${os.end_date }"/>
+	                        </c:url>
+	                     	<a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+	                     	${ p }</a> &nbsp;
+	                  	 </c:if>
+	                </c:if>
+	          	</c:forEach>
+	               
+               	<c:if test="${ empty os }">
+               		<c:if test="${ pi.currentPage eq pi.maxPage }">
+						<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+					</c:if>
+				
+					<c:if test="${ pi.currentPage ne pi.maxPage }">
+						<c:url var="after" value="mList.do">
+		                   	<c:param name="currentPage" value="${pi.currentPage +1 }"/>
+	                 	</c:url>
+	                 	<a href="${after}">
+	              			<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+	              		</a>
+	              	</c:if>
                </c:if>
                
-               <c:if test="${ pi.currentPage eq pi.maxPage }">
-               		<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+               <c:if test="${ !empty os }">
+               		<c:if test="${ pi.currentPage eq pi.maxPage }">
+						<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+					</c:if>
+					
+					<c:if test="${ pi.currentPage ne pi.maxPage }">
+						<c:url var="after" value="my_orderlist.do">
+	                     	<c:param name="currentPage" value="${pi.currentPage +1 }"/>
+	                     	<c:param name="order_status" value="${param.order_status }"/>
+							<c:param name="history_start_date" value="${os.start_date }"/>
+	                 		<c:param name="history_end_date" value="${os.end_date }"/>
+                  		</c:url>
+                  		<a href="${after}">
+               				<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+               			</a>
+             		</c:if>
                </c:if>
-               <c:if test="${ pi.currentPage ne pi.maxPage }">
-               		<c:url var="end" value="mList.do">
-               			<c:param name="currentPage" value="${pi.maxPage }"/>
-               		</c:url>
-					<a href="${end }" class="last">
-					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
+               
+               <c:if test="${empty os }">
+               		<c:if test="${ pi.currentPage eq pi.maxPage }">
+               			<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+               		</c:if>
+               		
+               		<c:if test="${ pi.currentPage ne pi.maxPage }">
+	               		<c:url var="end" value="mList.do">
+	               			<c:param name="currentPage" value="${pi.maxPage }"/>
+	               		</c:url>
+						<a href="${end }" class="last">
+							<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+						</a>
+               		</c:if>
+               </c:if>
+               
+               <c:if test="${ !empty os }">
+	               <c:if test="${ pi.currentPage eq pi.maxPage }">
+	               		<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+	               </c:if>
+	               
+	               <c:if test="${ pi.currentPage ne pi.maxPage }">
+	               		<c:url var="end" value="my_orderlist.do">
+	               			<c:param name="currentPage" value="${pi.maxPage }"/>
+	               			<c:param name="order_status" value="${param.order_status }"/>
+							<c:param name="history_start_date" value="${os.start_date }"/>
+	                 		<c:param name="history_end_date" value="${os.end_date }"/>
+	               		</c:url>
+						<a href="${end }" class="last">
+							<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+						</a>
+	               </c:if>
                </c:if>
 			</div>
-			
-			
-			
 			
 			
 		</div>

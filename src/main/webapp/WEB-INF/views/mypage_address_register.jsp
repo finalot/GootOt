@@ -62,13 +62,13 @@ input {
 	                    </strong>
 	                </li>
                 
-	             <%--    <li class="etc ">
+	             	<li class="etc ">
 	                    <strong class="title">COUPON</strong>
 	                    <br>
 	                    <strong class="data">
 	                    	<a href="${mCoupon }">${CouponCount}<span>개</span></a>
 	                    </strong>
-	                </li> --%>
+	                </li>
 	            </ul>
 			</div>
 		</div>
@@ -181,7 +181,7 @@ input {
 				</div>
 			</form>
 		
-			<div class="ec-base-help" align="center">
+			<div class="ec-base-help">
 	    		<h3>배송주소록 유의사항</h3>
 				<div class="inner">
         			<ol style="font-size:13px;">
