@@ -220,16 +220,18 @@
 							<ul class="header-cart-wrapitem">
 								<li class="header-cart-item">
 									<div class="header-cart-item-img">
-										<a href ="${cartbutton }"><img src="<c:url value="/resources/images/item-cart-01.jpg"/>" alt="IMG" ></a>
+										<img src="${c.path }${c.image}">
+										<a href ="${cartbutton }">
+								
 									</div>
 								
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
-											<%-- ${c.prdt_name } --%>
+											${c.prdt_name }
 										</a>
 
 										<span class="header-cart-item-info">
-											1 x $19.00
+											${c.prdt_count} x ${c.prdt_price } won
 										</span>
 									</div>
 								</li>
@@ -239,7 +241,10 @@
 							</c:forEach>
 
 							<div class="header-cart-total">
-								Total: $75.00
+							Total :
+								<font id="totalPrice" class="format-money"></font>
+								<!-- Total: $75.00 -->
+								won
 							</div>
 
 							<div class="header-cart-buttons">
