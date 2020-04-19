@@ -237,8 +237,7 @@
                    				<c:if test="${d.up_no == p.upNo && p.downNo==d.down_no }">
                    					<td>${d.down_name }</td>
                    				</c:if>
-              			</c:forEach> --%>                   		
-              			<%-- <td>${p.downNo }</td> --%>
+              			</c:forEach>   --%>                 		
                    		
                    		<td align="center">${p.prdtName }</td>
                    		

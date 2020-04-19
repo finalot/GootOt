@@ -650,5 +650,18 @@ jQuery('.format-money').text(function() {
 });
 </script>
 
+<script>
+<!--카트 총금액 스크립트-->
+$(function() {
+	var totalPrice = 0;
+	
+	  "<c:forEach var ='c' items='${list}'>"
+	  			totalPrice +=Number("${c.prdt_sumprice }")
+	  "</c:forEach>"
+})
+
+
+</script>
+
 </body>
 </html>

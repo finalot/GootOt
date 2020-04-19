@@ -146,4 +146,22 @@ public interface CartService {
 	 */
 	ArrayList<Address> selectAdList(int mem_no);
 
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 선택 배송지 가져오기
+	 * @param adNo
+	 * @return
+	 */
+	Address selectAdOne(int adNo);
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환 
+	 * @내용 	: 회원 구매상품 3% 적립
+	 * @param resultPoint
+	 * @return
+	 */
+	int updateMemPoint(Member mpo);
+
 }

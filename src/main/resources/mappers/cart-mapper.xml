@@ -229,7 +229,20 @@
 	   SELECT * FROM
 	   ADDRESS
 	   WHERE MEM_NO = #{mem_no}
+	</select>
 	
+	<select id="selectAdOne"  resultMap="Address2ResultMap" >
+	  SELECT * FROM
+	   ADDRESS
+	   WHERE MEM_NO = #{mem_no}
+	</select>
+
+	<select id="updateMemPoint" parameterType="Member" >
+		UPDATE MEMBER 
+		SET MEM_POINT = (SELECT SUM(MEM_POINT) 
+             FROM MEMBER
+             WHERE MEM_NO=#{mem_no}) + #{mem_point}
+             AND MEM_NO = #{memNo}
 	</select>
 
 

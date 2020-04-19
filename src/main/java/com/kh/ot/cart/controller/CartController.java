@@ -1,5 +1,7 @@
 package com.kh.ot.cart.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
@@ -21,6 +23,8 @@ import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Address;
+
+import net.sf.json.JSONObject;
 
 
 @SessionAttributes("loginMember")
@@ -131,7 +135,8 @@ public class CartController extends HttpServlet {
 
 
 		Member m =(Member)session.getAttribute("loginMember");
-
+		Member mpo = new Member();
+		
 		ArrayList<Ord> olist = new ArrayList<Ord>();
 		ArrayList<Pay> plist = new ArrayList<Pay>();
 		ArrayList<Cart> noArr = new ArrayList<Cart>();
@@ -156,8 +161,9 @@ public class CartController extends HttpServlet {
 
 			olist.add(o);
 		}
-
-
+		
+		int memPoint = 0;
+		
 		for(int i=0;i<sumpriceArr.length;i++) {
 			Pay p = new Pay();
 			if(i==0) {
@@ -173,9 +179,18 @@ public class CartController extends HttpServlet {
 			p.setPay_usedcp(pay_usedcp);
 			p.setPay_point(pay_point);
 			}
-
+			
+			memPoint +=sumpriceArr[i];
+			
 			plist.add(p);
-		}
+			}
+		
+		int resultPoint = (int) (memPoint*0.03);
+		
+		mpo.setMemNo(m.getMemNo());
+		mpo.setMem_point(resultPoint);
+		
+		
 		int updatePrice = 0;
 		for(int i=0;i<sumpriceArr.length;i++) {
 				updatePrice += 	sumpriceArr[i];
@@ -197,7 +212,7 @@ public class CartController extends HttpServlet {
 			int result5 = cService.updateCoupon(pay_usedcp);
 			int result6 = cService.updatePoint(py);
 			int result7 = cService.updateProduct(olist);
-			
+			int result8 = cService.updateMemPoint(mpo);
 			
 			
 			session.setAttribute("olist", "");
@@ -272,6 +287,31 @@ public class CartController extends HttpServlet {
 		return mv;
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 선택 주소록 불러오기
+	 * @param response
+	 * @param adNo
+	 * @throws IOException
+	 */
+	@RequestMapping("selectAdOne.do")
+	public void selectAd(HttpServletResponse response,int adNo) throws IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		
+		Address ad = cService.selectAdOne(adNo);
+		
+		JSONObject job = new JSONObject();
+		
+		job.put("ad", ad);
+		
+		out.print(job);
+		out.flush();
+		out.close();
+	}
 
 
 }

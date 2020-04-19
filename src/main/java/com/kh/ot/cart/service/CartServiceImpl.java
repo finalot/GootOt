@@ -94,4 +94,14 @@ public class CartServiceImpl implements CartService{
 	public ArrayList<Address> selectAdList(int mem_no) {
 		return cDao.selectAdList(mem_no);
 	}
+
+	@Override
+	public Address selectAdOne(int adNo) {
+		return cDao.selectAdOne(adNo);
+	}
+
+	@Override
+	public int updateMemPoint(Member mpo) {
+		return cDao.updateMemPoint(mpo);
+	}
 }
