@@ -277,6 +277,35 @@
 	ORDER BY O.ORD_DATE DESC
 	</select>
 	
-
+	<select id="orderCount1" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'A'
+	</select> 
+	<select id="orderCount2" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'B'
+	</select> 
+	<select id="orderCount3" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'C'
+	</select> 
+	<select id="orderCount4" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'D'
+	</select> 
+	<select id="orderCount5" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'E'
+	</select> 
 	
 </mapper>

@@ -180,6 +180,45 @@ public interface MypageService {
 	int SearchListCount(OrdSearch os);
 
 	ArrayList<Ord> selectSearchList(PageInfo pi, OrdSearch os);
-	
-	
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 마이페이지 배송상태 A
+	 * @param memNo
+	 * @return
+	 */
+	int orderCount1(int memNo);
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 마이페이지 배송상태 B
+	 * @param memNo
+	 * @return
+	 */
+	int orderCount2(int memNo);
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 마이페이지 배송상태 C
+	 * @param memNo
+	 * @return
+	 */
+	int orderCount3(int memNo);
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 마이페이지 배송상태 D
+	 * @param memNo
+	 * @return
+	 */
+	int orderCount4(int memNo);
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 마이페이지 배송상태 E
+	 * @param memNo
+	 * @return
+	 */
+	int orderCount5(int memNo);
 }

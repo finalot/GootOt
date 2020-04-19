@@ -175,20 +175,21 @@
 			        <ul class="order">
 						<li>
 			                <strong>입금완료</strong>
-			                <a href="${delivery_prev }" class="count"><span id="xans_myshop_orderstate_shppied_before_count">0</span></a>
+			                <a href="${delivery_prev }" class="count"><span id="xans_myshop_orderstate_shppied_before_count">${orderCount1}</span></a>
 			            </li>
 			            <li>
 			                <strong>배송준비중</strong>
-			                <a href="${delivery_ready }" class="count"><span id="xans_myshop_orderstate_shppied_standby_count">0</span></a>
+			                <a href="${delivery_ready }" class="count"><span id="xans_myshop_orderstate_shppied_standby_count">${orderCount2}</span></a>
 			            </li>
 			            <li>
 			                <strong>배송중</strong>
-			                <a href="${delivery_ing }" class="count"><span id="xans_myshop_orderstate_shppied_begin_count">0</span></a>
+			                <a href="${delivery_ing }" class="count"><span id="xans_myshop_orderstate_shppied_begin_count">${orderCount3}</span></a>
 			            </li>
 			            <li>
 			                <strong>배송완료</strong>
-			                <a href="${delivery_complete }" class="count"><span id="xans_myshop_orderstate_shppied_complate_count">0</span></a>
+			                <a href="${delivery_complete }" class="count"><span id="xans_myshop_orderstate_shppied_complate_count">${orderCount4}</span></a>
 			            </li>
+			       
 			        </ul>
 			        
 					<ul class="cs">
@@ -205,7 +206,7 @@
 			            <li>
 			                <span class="icoDot"></span>
 			                <strong>반품 : </strong>
-			                <a href="${delivery_return }" class="count"><span id="xans_myshop_orderstate_order_return_count">0</span></a>
+			                <a href="${delivery_return }" class="count"><span id="xans_myshop_orderstate_order_return_count">${orderCount5} </span></a>
 			            </li>
 			        </ul>
 				</div>

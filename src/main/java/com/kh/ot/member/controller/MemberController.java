@@ -99,7 +99,17 @@ public class MemberController extends HttpServlet {
 		
 		int coupon = mpService.CouponListCount(m);
 		int point = mpService.PointListCount(memNo);
-		
+		int orderCount1 = mpService.orderCount1(memNo);
+		int orderCount2 = mpService.orderCount2(memNo);
+		int orderCount3 = mpService.orderCount3(memNo);
+		int orderCount4 = mpService.orderCount4(memNo);
+		int orderCount5 = mpService.orderCount5(memNo);
+
+		mv.addObject("orderCount1", orderCount1);
+		mv.addObject("orderCount2", orderCount2);
+		mv.addObject("orderCount3", orderCount3);
+		mv.addObject("orderCount4", orderCount4);
+		mv.addObject("orderCount5", orderCount5);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
 		
