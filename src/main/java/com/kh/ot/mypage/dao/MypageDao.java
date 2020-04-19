@@ -121,7 +121,7 @@ public class MypageDao {
 	public ArrayList<Ord> selectOrderList(PageInfo pi, int memNo) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
+
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectOrderList", memNo, rowBounds);
 	}
 
@@ -156,12 +156,22 @@ public class MypageDao {
 	}
 
 	public int SearchListCount(OrdSearch os) {
+		
+//		if(os.getOrd_status().equals("E")) {
+//			return sqlSession.selectOne("mypageMapper.SearchOrdcancelListCount", os);
+//		}
+		
 		return sqlSession.selectOne("mypageMapper.SearchOrdListCount", os);
 	}
 
 	public ArrayList<Ord> selectSearchList(PageInfo pi, OrdSearch os) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+//		if(os.getOrd_status().equals("E")) {
+//			return (ArrayList)sqlSession.selectList("mypageMapper.selectSearchcancelOrdList", os, rowBounds);
+//		}
+		
 		
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectSearchOrdList", os, rowBounds);
 	}

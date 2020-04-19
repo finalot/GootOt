@@ -321,7 +321,30 @@
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
 		AND ORD_STATUS = 'E'
-	</select> 
+	</select>
+	
+	<!-- <select id ="SearchOrdcancelListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+		AND ORD_STATUS='E'
+	
+	</select>
+	
+	<select id="selectSearchcancelOrdList" resultMap="ordResultSet">
+		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+		AND ORD_STATUS='E'
+		ORDER BY ORD_DATE DESC
+	</select> -->
+	
 	<!-- <select id="orderCount6" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD

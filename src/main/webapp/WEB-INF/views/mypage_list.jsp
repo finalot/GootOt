@@ -37,7 +37,8 @@ a{
 	<c:url var="mWishlist" value="mWishlist.do"/>
 	<c:url var="mPoint" value="mPoint.do"/>
 	<c:url var="mCoupon" value="mCoupon.do"/>
-
+	<c:url var="mCancelList" value="mCancelList.do"/>
+	
  	<div id="container">
  		<div id="memberInf1">
 			<div class="xans-myshop-bankbook " style="width: 80%;">
@@ -95,7 +96,7 @@ a{
 						<a href="${mList }">주문내역조회 (<span id="xans_myshop_total_orders">${listCount }</span>)</a>
 					</li>
 			        <li class="tab_class_cs">
-			        	<a href="/ot/mypage_list_cancel.jsp">취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">${orderCount5}</span>)</a>
+			        	<a href="${mCancelList }">취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">${orderCount5}</span>)</a>
 					</li>
 			        <!-- <li class="tab_class_old displaynone">
 			        	<a href="/ot/mypage_list_prev.jsp">이전 주문내역 (<span id="xans_myshop_total_orders_old">0</span>)</a>
