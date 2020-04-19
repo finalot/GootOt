@@ -11,6 +11,7 @@ import com.kh.ot.admin.vo.DownCategory;
 import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.member.vo.Member;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.admin.vo.Design;
@@ -185,6 +186,10 @@ public class adminServiceImpl implements adminService{
 
 
 	@Override
+	public ArrayList<Member> selectMember() {
+		return adDao.selectMember();
+
+		
 	public int DesignPrdt(Design d) {
 		return adDao.Designprdt(d);
 	}

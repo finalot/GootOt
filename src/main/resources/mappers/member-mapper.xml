@@ -119,5 +119,9 @@
 		WHERE ID=#{id}
 
 </select> -->
-
+<select id="selectMember" resultMap="memberResultSet">
+	SELECT *
+	FROM MEMBER
+	WHERE MEM_STATUS='N'
+</select>
 </mapper>

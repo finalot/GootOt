@@ -20,6 +20,7 @@ import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.member.vo.Member;
 
 @Repository("adDao")
 public class adminDao {
@@ -291,6 +292,8 @@ public class adminDao {
 	}
 
 
+	public ArrayList<Member> selectMember() {
+		return (ArrayList)sqlSession.selectList("memberMapper.selectMember");
 	/**
 	 * @작성일  : 2020. 4. 19.
 	 * @작성자  : 문태환

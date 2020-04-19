@@ -42,6 +42,7 @@ import com.kh.ot.main.service.MainService;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.member.vo.Member;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -76,9 +77,19 @@ public class menuController {
 		return "admin/best";
 	}
 
+	/**
+	 * @작성일 : 2020. 4. 19.
+	 * @작성자 : 이서현
+	 * @내용 : 회원관리 리스트 뿌리기 
+	 */
 	@RequestMapping("customer.ad")
-	public String customer() {
-		return "admin/customer";
+	public ModelAndView customer(ModelAndView mv) {
+		
+		ArrayList<Member> mlist = adService.selectMember();
+		
+		mv.addObject("mlist", mlist);
+		mv.setViewName("admin/customer");
+		return mv;
 	}
 
 	/**

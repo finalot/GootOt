@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -213,145 +215,34 @@
                     <tr>
                         <th>아이디</th>
                         <th>성명</th>
-                        <th>성별/나이</th>
+                        <th>나이</th>
                         <th>전화번호</th>
                         <th>이메일</th>
                         <th>주소</th>
                         <th>총금액</th>     
-                        <th>등록일</th>                  
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                    	<td>it_seohyun</td>
-                    	<td>이서현</td>
-                    	<td>여/25</td>
-                    	<td>010-1234-5678</td>
-                    	<td>pigplus0304@gmail.com</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>322,000 원 </td>
-                    	<td>2019-03-28</td>
-                    </tr>
-                    <tr>
-                    	<td>it_seohyun</td>
-                    	<td>이서현</td>
-                    	<td>여/25</td>
-                    	<td>010-1234-5678</td>
-                    	<td>pigplus0304@gmail.com</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>322,000 원 </td>
-                    	<td>2019-03-28</td>
-                    </tr>
-                     <tr>
-                    	<td>it_seohyun</td>
-                    	<td>이서현</td>
-                    	<td>여/25</td>
-                    	<td>010-1234-5678</td>
-                    	<td>pigplus0304@gmail.com</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>322,000 원 </td>
-                    	<td>2019-03-28</td>
-                    </tr>
-                     <tr>
-                    	<td>it_seohyun</td>
-                    	<td>이서현</td>
-                    	<td>여/25</td>
-                    	<td>010-1234-5678</td>
-                    	<td>pigplus0304@gmail.com</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>322,000 원 </td>
-                    	<td>2019-03-28</td>
-                    </tr>
-                     <tr>
-                    	<td>it_seohyun</td>
-                    	<td>이서현</td>
-                    	<td>여/25</td>
-                    	<td>010-1234-5678</td>
-                    	<td>pigplus0304@gmail.com</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>322,000 원 </td>
-                    	<td>2019-03-28</td>
-                    </tr>
-                     <tr>
-                    	<td>it_seohyun</td>
-                    	<td>이서현</td>
-                    	<td>여/25</td>
-                    	<td>010-1234-5678</td>
-                    	<td>pigplus0304@gmail.com</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>322,000 원 </td>
-                    	<td>2019-03-28</td>
-                    </tr>
-                     <tr>
-                    	<td>it_seohyun</td>
-                    	<td>이서현</td>
-                    	<td>여/25</td>
-                    	<td>010-1234-5678</td>
-                    	<td>pigplus0304@gmail.com</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>322,000 원 </td>
-                    	<td>2019-03-28</td>
-                    </tr>
-                     <tr>
-                    	<td>it_seohyun</td>
-                    	<td>이서현</td>
-                    	<td>여/25</td>
-                    	<td>010-1234-5678</td>
-                    	<td>pigplus0304@gmail.com</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>322,000 원 </td>
-                    	<td>2019-03-28</td>
-                    </tr>
-                     <tr>
-                    	<td>it_seohyun</td>
-                    	<td>이서현</td>
-                    	<td>여/25</td>
-                    	<td>010-1234-5678</td>
-                    	<td>pigplus0304@gmail.com</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>322,000 원 </td>
-                    	<td>2019-03-28</td>
-                    </tr>
-                     <tr>
-                    	<td>it_seohyun</td>
-                    	<td>이서현</td>
-                    	<td>여/25</td>
-                    	<td>010-1234-5678</td>
-                    	<td>pigplus0304@gmail.com</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>322,000 원 </td>
-                    	<td>2019-03-28</td>
-                    </tr>
-                     <tr>
-                    	<td>it_seohyun</td>
-                    	<td>이서현</td>
-                    	<td>여/25</td>
-                    	<td>010-1234-5678</td>
-                    	<td>pigplus0304@gmail.com</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>322,000 원 </td>
-                    	<td>2019-03-28</td>
-                    </tr>
-                     <tr>
-                    	<td>it_seohyun</td>
-                    	<td>이서현</td>
-                    	<td>여/25</td>
-                    	<td>010-1234-5678</td>
-                    	<td>pigplus0304@gmail.com</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>322,000 원 </td>
-                    	<td>2019-03-28</td>
-                    </tr>
-                     <tr>
-                    	<td>it_seohyun</td>
-                    	<td>이서현</td>
-                    	<td>여/25</td>
-                    	<td>010-1234-5678</td>
-                    	<td>pigplus0304@gmail.com</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>322,000 원 </td>
-                    	<td>2019-03-28</td>
-                    </tr>
+                <tbody align="center">
+                	<c:forEach var="m" items="${mlist }">
+                	<tr>
+                		<td>${m.memId }</td>
+                		<td>${m.memName }</td>
+                		
+                		 <!-- 현재년도 가져오기 -->
+						<c:set var="now" value="<%=new java.util.Date()%>" />
+						<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy" /></c:set>
+						<c:set var="memSsn" value="${m.memSsn }"></c:set>
+						<c:set var="birthResult" value="${fn:substring(memSsn,0,4)}"/>
+						<c:set var = "age" value="${sysYear-birthResult+1}" />
+						
+						<td>${age }</td>
+                		<td>${m.memPhone }</td>
+                		<td>${m.memEmail }</td>
+                		<td>${m.memAddress }</td>
+                		<td>${m.memSumMoney}</td>
+                	</tr>
+                	</c:forEach>
+                   
                </tbody>
             </table>
         </div>
