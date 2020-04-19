@@ -183,4 +183,16 @@ public class adminServiceImpl implements adminService{
 		return adDao.orderUpdate3(ordNo);
 	}
 
+
+	@Override
+	public int DesignPrdt(Design d) {
+		return adDao.Designprdt(d);
+	}
+
+
+	@Override
+	public Design selectPrdtImg() {
+		return adDao.selectPrdtImg();
+	}
+
 }

@@ -289,5 +289,28 @@ public class adminDao {
 	public int orderUpdate4(int ordNo) {
 		return sqlSession.update("adminMapper.orderUpdate4",ordNo);
 	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 상품배너 업데이트
+	 * @param d
+	 * @return
+	 */
+	public int Designprdt(Design d) {
+		return sqlSession.update("adminMapper.Designprdt",d);
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 상품배너 불러오기
+	 * @return
+	 */
+	public Design selectPrdtImg() {
+		return sqlSession.selectOne("adminMapper.selectPrdtImg");
+	}
 	 
 }

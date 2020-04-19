@@ -326,9 +326,11 @@ public class menuController {
 		ArrayList<Design> mainList = adService.selectMainList();
 		Design video = adService.selectVideo();
 		ArrayList<Design> instaList = adService.selectInstaList();
-
+		Design prdtimg = adService.selectPrdtImg();
+		
 		System.out.println(mainList);
 
+		mv.addObject("prdtimg",prdtimg);
 		mv.addObject("mainList", mainList);
 		mv.addObject("video", video);
 		mv.addObject("instaList", instaList);
@@ -681,6 +683,43 @@ public class menuController {
 		return "home";
 
 	}
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 상품배너 등록
+	 * @param prdtcomment
+	 * @param request
+	 * @param session
+	 * @param uploadFile
+	 * @return
+	 */
+	@RequestMapping(value = "DesignPrdt.do", method = RequestMethod.POST)
+	public String DesignPrdt( String prdtcomment, HttpServletRequest request,
+			HttpSession session, @RequestParam(name = "prdtimg", required = false) MultipartFile uploadFile) {
+
+			Design d = new Design();
+
+			if (!uploadFile.getOriginalFilename().equals("")) {
+				// 서버에 업로드
+				// saveFile메소드 : 내가 저장하고자하는 file과 request를 전달하여 서버에 업로드 시키고 그 저장된 파일명을 반환해주는 메소드
+
+				String renameFileName = saveFile(uploadFile, request);
+
+				if (renameFileName != null) {
+					d.setOriFIle(uploadFile.getOriginalFilename());// DB에는 파일명 저장
+					d.setReFile(renameFileName);
+				}
+			}
+			d.setMainComment(prdtcomment);
+		int result = adService.DesignPrdt(d);
+		return "home";
+
+	}
+	
+	
+	
+	
+	
 
 	/**
 	 * @작성일 : 2020. 4. 8.
@@ -1192,7 +1231,7 @@ public class menuController {
 
 		if (p.getUpNo() == 1 && p.getDownNo() == 1) {
 			savePath = root + "\\images/oT/clothing/t_nasi";
-			p.setPrdtImagePath(frontPath + "/clothing/t_nasi/");
+			p.setPrdtImagePath(frontPath +savePath);
 			saveDetailPath = root + "\\images/oT/clothing/t_nasi/detail";
 			p.setPrdtDetailImagePath(frontPath + "/clothing/t_nasi/detail/");
 
@@ -1303,10 +1342,14 @@ public class menuController {
 			p.setPrdtDetailImagePath(frontPath + "/best/best20/detail/");
 		}
 
-		File folder = new File(savePath, saveDetailPath);
+		File folder = new File(savePath);
+		File folder2 = new File( saveDetailPath);
 
 		if (!folder.exists()) {
 			folder.mkdir(); // 폴더가 없다면 생성해주세요
+		}
+		if (!folder2.exists()) {
+			folder2.mkdir(); // 폴더가 없다면 생성해주세요
 		}
 
 		String originFileName = file1.getOriginalFilename();
@@ -1319,7 +1362,7 @@ public class menuController {
 				+ originDetailFileName.substring(originDetailFileName.lastIndexOf(".") + 1);
 
 		String renamePath = folder + "\\" + renameFileName;
-		String renameDetailPath = folder + "\\" + renameDetailName;
+		String renameDetailPath = folder2 + "\\" + renameDetailName;
 
 		try {
 			file1.transferTo(new File(renamePath));
