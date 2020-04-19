@@ -1,5 +1,7 @@
 package com.kh.ot.cart.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
@@ -21,6 +23,8 @@ import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Address;
+
+import net.sf.json.JSONObject;
 
 
 @SessionAttributes("loginMember")
@@ -272,6 +276,31 @@ public class CartController extends HttpServlet {
 		return mv;
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 선택 주소록 불러오기
+	 * @param response
+	 * @param adNo
+	 * @throws IOException
+	 */
+	@RequestMapping("selectAdOne.do")
+	public void selectAd(HttpServletResponse response,int adNo) throws IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		
+		Address ad = cService.selectAdOne(adNo);
+		
+		JSONObject job = new JSONObject();
+		
+		job.put("ad", ad);
+		
+		out.print(job);
+		out.flush();
+		out.close();
+	}
 
 
 }

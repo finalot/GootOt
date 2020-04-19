@@ -229,7 +229,12 @@
 	   SELECT * FROM
 	   ADDRESS
 	   WHERE MEM_NO = #{mem_no}
+	</select>
 	
+	<select id="selectAdOne"  resultMap="Address2ResultMap" >
+	  SELECT * FROM
+	   ADDRESS
+	   WHERE MEM_NO = #{mem_no}
 	</select>
 
 
