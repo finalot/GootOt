@@ -10,7 +10,7 @@ public class OrdSearch extends Pagination{
 	private Date start_date;
 	private Date end_date;
 	private String ord_status;
-	
+
 	public OrdSearch() { }
 
 	public OrdSearch(int memno, Date start_date, Date end_date, String ord_status) {
@@ -58,7 +58,7 @@ public class OrdSearch extends Pagination{
 		return "OrdSearch [memno=" + memno + ", start_date=" + start_date + ", end_date=" + end_date + ", ord_status="
 				+ ord_status + "]";
 	}
-	
-	
-	
+
+
+
 }
