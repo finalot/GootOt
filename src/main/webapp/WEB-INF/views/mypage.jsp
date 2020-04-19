@@ -21,29 +21,27 @@
 <body>
 			<!-- 마이페이지 상세 목록 경로지정 -->
 			<!-- 주문내역(배송관련) 경로지정 -->
-			<c:url var="mList" value="mList.do">
-				<c:param name="mList" value="all"/>
+			<c:url var="mList" value="mList.do"/>
+			<c:url var="deposit_complete" value="my_orderlist.do">
+				<c:param name="order_status" value="deposit_complete"/>
 			</c:url>
-			<c:url var="delivery_prev" value="mList.do">
-				<c:param name="mList" value="prev"/>
+			<c:url var="delivery_ready" value="my_orderlist.do">
+				<c:param name="order_status" value="shipped_standby"/>
 			</c:url>
-			<c:url var="delivery_ready" value="mList.do">
-				<c:param name="mList" value="ready"/>
+			<c:url var="delivery_ing" value="my_orderlist.do">
+				<c:param name="order_status" value="shipped_begin"/>
 			</c:url>
-			<c:url var="delivery_ing" value="mList.do">
-				<c:param name="mList" value="ing"/>
+			<c:url var="delivery_complete" value="my_orderlist.do">
+				<c:param name="order_status" value="shipped_complete"/>
 			</c:url>
-			<c:url var="delivery_complete" value="mList.do">
-				<c:param name="mList" value="complete"/>
+			<c:url var="delivery_cancel" value="my_orderlist.do">
+				<c:param name="order_status" value="order_cancel"/>
 			</c:url>
-			<c:url var="delivery_cancel" value="mList.do">
-				<c:param name="mList" value="cancel"/>
+			<c:url var="delivery_change" value="my_orderlist.do">
+				<c:param name="order_status" value="order_exchange"/>
 			</c:url>
-			<c:url var="delivery_change" value="mList.do">
-				<c:param name="mList" value="change"/>
-			</c:url>
-			<c:url var="delivery_return" value="mList.do">
-				<c:param name="mList" value="return"/>
+			<c:url var="delivery_return" value="my_orderlist.do">
+				<c:param name="order_status" value="order_return"/>
 			</c:url>
 			
 			<c:url var="mWishlist" value="mWishlist.do"/>
@@ -175,37 +173,38 @@
 			        <ul class="order">
 						<li>
 			                <strong>입금완료</strong>
-			                <a href="${delivery_prev }" class="count"><span id="xans_myshop_orderstate_shppied_before_count">0</span></a>
+			                <a href="${deposit_complete }" class="count"><span id="xans_myshop_orderstate_shppied_before_count">${orderCount1}</span></a>
 			            </li>
 			            <li>
 			                <strong>배송준비중</strong>
-			                <a href="${delivery_ready }" class="count"><span id="xans_myshop_orderstate_shppied_standby_count">0</span></a>
+			                <a href="${delivery_ready }" class="count"><span id="xans_myshop_orderstate_shppied_standby_count">${orderCount2}</span></a>
 			            </li>
 			            <li>
 			                <strong>배송중</strong>
-			                <a href="${delivery_ing }" class="count"><span id="xans_myshop_orderstate_shppied_begin_count">0</span></a>
+			                <a href="${delivery_ing }" class="count"><span id="xans_myshop_orderstate_shppied_begin_count">${orderCount3}</span></a>
 			            </li>
 			            <li>
 			                <strong>배송완료</strong>
-			                <a href="${delivery_complete }" class="count"><span id="xans_myshop_orderstate_shppied_complate_count">0</span></a>
+			                <a href="${delivery_complete }" class="count"><span id="xans_myshop_orderstate_shppied_complate_count">${orderCount4}</span></a>
 			            </li>
+			       
 			        </ul>
 			        
 					<ul class="cs">
 						<li>
 			                <span class="icoDot"></span>
 			                <strong>취소 : </strong>
-			                <a href="${delivery_cancel }" class="count"><span id="xans_myshop_orderstate_order_cancel_count">0</span></a>
+			                <a href="${delivery_cancel }" class="count"><span id="xans_myshop_orderstate_order_cancel_count">${orderCount5}</span></a>
 			            </li>
 			            <li>
 			                <span class="icoDot"></span>
 			                <strong>교환 : </strong>
-			                <a href="${delivery_change }" class="count"><span id="xans_myshop_orderstate_order_exchange_count">0</span></a>
+			                <a href="${delivery_change }" class="count"><span id="xans_myshop_orderstate_order_exchange_count">${orderCount6}</span></a>
 			            </li>
 			            <li>
 			                <span class="icoDot"></span>
 			                <strong>반품 : </strong>
-			                <a href="${delivery_return }" class="count"><span id="xans_myshop_orderstate_order_return_count">0</span></a>
+			                <a href="${delivery_return }" class="count"><span id="xans_myshop_orderstate_order_return_count">${orderCount7} </span></a>
 			            </li>
 			        </ul>
 				</div>

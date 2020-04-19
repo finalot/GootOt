@@ -301,7 +301,7 @@ th{
     <form id="VideoForm" action="DesignEdVideo.do" method="POST" enctype="multipart/form-data">
     <table id="design-table">
      	<tr>
-        		<th><span style="color: red">*</span>메인 영상</th>
+        		<th><span style="color: red">*</span>인스타 영상</th>
         		<td>
         			<c:if test="${!empty  video.reFile   }">
         			<div style="display: flex"> FILE 
@@ -329,7 +329,7 @@ th{
    <table id="design-table">
    	
          <tr >
-        	<th rowspan="6" ><span style="color: red">*</span> 메인배너</th>
+        	<th rowspan="6" ><span style="color: red">*</span> 상품배너</th>
         </tr>
         	
         	<c:forEach var="in" items="${instaList}">	
@@ -366,6 +366,39 @@ th{
      <div align="center">
     <button id="InstaBtn" style="width: 90px; height: 30px;border-radius: 10px; background: black;color: white;margin-bottom: 30px"> 배너등록 </button>
     </div>   
+    
+      <form id="prdtForm" action="DesignPrdt.do" method="POST" enctype="multipart/form-data">
+   <table id="design-table">
+   	
+         <tr >
+        	<th rowspan="6" ><span style="color: red">*</span> 메인배너</th>
+        </tr>
+        	
+        		<tr>
+        	<td class="main-design">
+        			<div style="display: flex;margin-top: 3%">
+        			
+        			<c:if test="${empty prdtimg.reFile  }">
+        			FILE <input style="margin-left:2%;margin-right: 3%" type="file" name="prdtimg" class="prdtimg">
+        										<a  style=";margin-left: 3%" class="prdtFile" href='nfdown.ad?path="${prdtimg.reFile}"'>${prdtimg.reFile}</a>
+        			상품 문구 <input style="margin-left:2%; margin-right: 3%; border: 1px solid #333330;" value="${prdtimg.mainComment }" name="prdtcomment" type="text" class="prdtcomment">	   	
+        			</c:if>
+        			
+        				<c:if test="${!empty prdtimg.reFile  }">
+        			FILE <input style="margin-left:2%;margin-right: 3%;display:none" type="file" name="prdtimg" class="prdtimg">
+        						<a style="margin-right: 12%;margin-left: 3%" class="prdtFile" href='nfdown.ad?path="${prdtimg.reFile}"'>${prdtimg.reFile}</a>
+        			상품 문구 <input readonly style="margin-left:2%; margin-right: 3%; border: 1px solid #333330;background: #f3f3f3 " value="${prdtimg.mainComment }" name="prdtcomment" type="text" class="prdtcomment">	   	
+        			 <input  type="button"  value="수정"  class="editBtn" style="margin-left: 3%;height: 30px;width: 90px; background: black; color: white; border-radius: 10px;">
+        			</c:if>
+
+        			</div>
+				  </td>
+				  </tr>
+   			</table>
+       </form>
+     <div align="center">
+    <button id="InstaBtn" style="width: 90px; height: 30px;border-radius: 10px; background: black;color: white;margin-bottom: 30px"> 배너등록 </button>
+    </div>   
    
    
    
@@ -379,12 +412,18 @@ $('.editBtn').click(function(){
 	$(this).parents('td').find('.fildown').css("display","none");
 	$(this).parents('td').find('.main-text').css("background","white").removeAttr('readonly').val(" ");
 	$(this).parents('td').find('.main-link').css("background","white").removeAttr('readonly').val(" ");
+	
 	$(this).parents('td').find('.main-video').css("display","block");
 	$(this).parents('td').find('.mainvideoLink').css("display","none");
+	
 	$(this).parents('td').find('.insta-img').css("display","block");
 	$(this).parents('td').find('.instaFile').css("display","none");
 	$(this).parents('td').find('.insta-text').css("background","white").removeAttr('readonly').val(" ");
 	$(this).parents('td').find('.insta-link').css("background","white").removeAttr('readonly').val(" ");
+	
+	$(this).parents('td').find('.prdtimg').css("display","block");
+	$(this).parents('td').find('.prdtFile').css("display","none");
+	$(this).parents('td').find('.prdtcomment').css("background","white").removeAttr('readonly').val(" ");
 	
 	
 	

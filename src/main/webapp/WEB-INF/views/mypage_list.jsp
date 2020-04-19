@@ -109,10 +109,10 @@
       					<div class="stateSelect ">
            					<select id="order_status" name="order_status" class="fSelect">
 								<option value="all">전체 주문처리상태</option>
-								<option value="shipped_before">입금완료</option>
+								<option value="deposit_complete">입금완료</option>
 								<option value="shipped_standby">배송준비중</option>
 								<option value="shipped_begin">배송중</option>
-								<option value="shipped_complate">배송완료</option>
+								<option value="shipped_complete">배송완료</option>
 								<option value="order_cancel">취소</option>
 								<option value="order_exchange">교환</option>
 								<option value="order_return">반품</option>

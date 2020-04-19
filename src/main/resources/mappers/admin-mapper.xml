@@ -46,6 +46,12 @@
          <result property="mainLink" column="IN_LINK"/>
          <result property="mainComment" column="IN_COMMENT"/>
       </resultMap>
+		
+		  <resultMap type="Design" id="prdtImgResultSet">
+         <result property="reFile" column="OT_EVENTIMG"/>
+         <result property="mainComment" column="OT_EVENT_COMMENT"/>
+      </resultMap>
+
 
 		<resultMap type="Ord" id="OrdreusltMap1">
 			<id property="ord_no" column="ORD_NO"/>
@@ -247,5 +253,16 @@ WHERE O.ORD_STATUS = 'D'
 	SET ORD_STATUS = 'E'
 	WHERE ORD_NO=#{ordNo}
 </update>
+
+<update id="Designprdt" parameterType="Design">
+	UPDATE PRDT_DESIGN 
+	SET OT_EVENTIMG=#{reFile},OT_EVENT_COMMENT=#{mainComment}
+
+</update>
+
+<select id="selectPrdtImg" resultMap="prdtImgResultSet">
+	SELECT * FROM
+	PRDT_DESIGN
+</select>
 
 </mapper>

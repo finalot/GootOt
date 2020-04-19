@@ -213,18 +213,19 @@
 						
 						
 						<span class="header-icons-noti">0</span> 
-<c:url var="cartbutton" value="cartbutton.do"/>
+						<c:url var="cartbutton" value="cartbutton.do"/>
 						<!-- Header cart noti -->
 						<div class="header-cart header-dropdown" style="border-radius:10px;">
+						<c:forEach var="c" items="${list }">
 							<ul class="header-cart-wrapitem">
 								<li class="header-cart-item">
 									<div class="header-cart-item-img">
 										<a href ="${cartbutton }"><img src="<c:url value="/resources/images/item-cart-01.jpg"/>" alt="IMG" ></a>
 									</div>
-
+								
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
-											White Shirt With Pleat Detail Back
+											${c.prdt_name }
 										</a>
 
 										<span class="header-cart-item-info">
@@ -233,38 +234,9 @@
 									</div>
 								</li>
 
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="<c:url value="/resources/images/item-cart-02.jpg"/>" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Converse All Star Hi Black Canvas
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $39.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="<c:url value="/resources/images/item-cart-03.jpg"/>" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Nixon Porter Leather Watch In Tan
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $17.00
-										</span>
-									</div>
-								</li>
+								
 							</ul>
+							</c:forEach>
 
 							<div class="header-cart-total">
 								Total: $75.00
@@ -273,7 +245,7 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="${cartbutton }" class="hov1 s-text1 trans-0-4 yg_btn_141">
+									<a href="${cartbutton }" class="hov1 s-text1 trans-0-4 yg_btn_148">
 										<span id="idMsg3">장바구니</span>
 									</a>
 								</div>

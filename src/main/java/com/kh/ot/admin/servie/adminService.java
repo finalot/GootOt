@@ -234,6 +234,22 @@ public interface adminService{
 	 * @내용 : 회원관리 리스트 
 	 */
 	public ArrayList<Member> selectMember();
+		/**
+		 * @작성일  : 2020. 4. 19.
+		 * @작성자  : 문태환
+		 * @내용 	: 상품배너 등록
+		 * @param d
+		 * @return
+		 */
+		public int DesignPrdt(Design d);
+
+		/**
+		 * @작성일  : 2020. 4. 19.
+		 * @작성자  : 문태환
+		 * @내용 	: 상품배너 블러오기
+		 * @return
+		 */
+		public Design selectPrdtImg();
 
 
 }

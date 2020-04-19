@@ -166,6 +166,64 @@ public class MypageDao {
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectSearchOrdList", os, rowBounds);
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 마이페이지 배송상태값 A
+	 * @param memNo
+	 * @return
+	 */
+	public int orderCount1(int memNo) {
+		return sqlSession.selectOne("mypageMapper.orderCount1",memNo);
+	}
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 마이페이지 배송상태값 B
+	 * @param memNo
+	 * @return
+	 */
+	public int orderCount2(int memNo) {
+		return sqlSession.selectOne("mypageMapper.orderCount2",memNo);
+	}
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 마이페이지 배송상태값 C
+	 * @param memNo
+	 * @return
+	 */
+	public int orderCount3(int memNo) {
+		return sqlSession.selectOne("mypageMapper.orderCount3",memNo);
+	}
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 마이페이지 배송상태값 D
+	 * @param memNo
+	 * @return
+	 */
+	public int orderCount4(int memNo) {
+		return sqlSession.selectOne("mypageMapper.orderCount4",memNo);
+	}
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 마이페이지 배송상태값 E
+	 * @param memNo
+	 * @return
+	 */
+	public int orderCount5(int memNo) {
+		return sqlSession.selectOne("mypageMapper.orderCount5",memNo);
+	}
+
+	public int orderCount6(int memNo) {
+		return sqlSession.selectOne("mypageMapper.orderCount6",memNo);
+	}
+
+	public int orderCount7(int memNo) {
+		return sqlSession.selectOne("mypageMapper.orderCount7",memNo);
+	}
 	
 	
 	

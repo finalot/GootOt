@@ -277,6 +277,47 @@
 	ORDER BY O.ORD_DATE DESC
 	</select>
 	
-
+	<select id="orderCount1" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = '입금완료'
+	</select> 
+	<select id="orderCount2" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = '배송준비중'
+	</select> 
+	<select id="orderCount3" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = '배송중'
+	</select> 
+	<select id="orderCount4" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = '배송완료'
+	</select> 
+	<select id="orderCount5" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = '취소'
+	</select>
+	<select id="orderCount6" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = '교환'
+	</select>
+	<select id="orderCount7" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = '반품'
+	</select> 
 	
 </mapper>

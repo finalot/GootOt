@@ -138,6 +138,45 @@ public class MypageServiceImpl implements MypageService{
 	public ArrayList<Ord> selectSearchList(PageInfo pi, OrdSearch os) {
 		return mpDao.selectSearchList(pi, os);
 	}
+
+	@Override
+	public int orderCount1(int memNo) {
+		return mpDao.orderCount1(memNo);
+	}
+
+	@Override
+	public int orderCount2(int memNo) {
+		return mpDao.orderCount2(memNo);
+
+	}
+
+	@Override
+	public int orderCount3(int memNo) {
+		return mpDao.orderCount3(memNo);
+
+	}
+
+	@Override
+	public int orderCount4(int memNo) {
+		return mpDao.orderCount4(memNo);
+
+	}
+
+	@Override
+	public int orderCount5(int memNo) {
+		return mpDao.orderCount5(memNo);
+
+	}
+
+	@Override
+	public int orderCount6(int memNo) {
+		return mpDao.orderCount6(memNo);
+	}
+
+	@Override
+	public int orderCount7(int memNo) {
+		return mpDao.orderCount7(memNo);
+	}
 	
 	
 }
