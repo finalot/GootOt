@@ -20,6 +20,7 @@ import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.vo.Address;
 
 
 @SessionAttributes("loginMember")
@@ -58,9 +59,12 @@ public class CartController extends HttpServlet {
 
 		ArrayList<Cart> list = cService.selectList(mem_no);
 		ArrayList<Coupon> clist = cService.selectCouponList(mem_no);
+		ArrayList<Address> adlist =cService.selectAdList(mem_no);
+		
 
 		session.setAttribute("list","");
 		session.setAttribute("list", list);
+		mv.addObject("adlist",adlist);
    		mv.addObject("list",list);
    		mv.addObject("clist", clist);
    		mv.setViewName("cart");

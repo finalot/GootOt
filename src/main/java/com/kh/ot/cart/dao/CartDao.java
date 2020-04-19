@@ -13,6 +13,7 @@ import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.vo.Address;
 
 @Repository("cDao")
 public class CartDao {
@@ -179,6 +180,17 @@ public class CartDao {
 		Map<String, Object> map = new HashMap<String, Object>();
 		   map.put("olist", olist);
 		return sqlSession.update("cartMapper.updateProduct",map);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 18.
+	 * @작성자  : 문태환
+	 * @내용    : 카트 배송지 리스트
+	 * @param mem_no
+	 * @return
+	 */
+	public ArrayList<Address> selectAdList(int mem_no) {
+		return (ArrayList)sqlSession.selectList("cartMapper.selectAdList",mem_no);
 	}
 
 }
