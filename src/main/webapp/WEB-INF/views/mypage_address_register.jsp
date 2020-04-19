@@ -62,7 +62,7 @@ input {
 	                    </strong>
 	                </li>
                 
-	                <li class="etc ">
+	             	<li class="etc ">
 	                    <strong class="title">COUPON</strong>
 	                    <br>
 	                    <strong class="data">
@@ -104,22 +104,8 @@ input {
 				-->
 			</div>
 			
-			<form id="frmAddr" name="" action="/exec/front/Myshop/Addr/?mode=Update&amp;ma_idx=843124&amp;return_url=%2Fmyshop%2Faddr%2Flist.html" method="post" target="_self" enctype="multipart/form-data">
-				<input id="__address_addr1" name="__address_addr1" value="" type="hidden">
-				<input id="__city_name" name="__city_name" value="" type="hidden">
-				<input id="__state_name" name="__state_name" value="" type="hidden">
-				<input id="__use_foreign_country_list" name="__use_foreign_country_list" value="F" type="hidden">
-				<input id="__ma_rcv_contry_code" name="__ma_rcv_contry_code" value="ABW" type="hidden">
-				<input id="__country" name="__country" value="" type="hidden">
-				<input id="__province" name="__province" value="" type="hidden">
-				<input id="__city" name="__city" value="" type="hidden">
-				<input id="__district" name="__district" value="" type="hidden">
-				<input id="is_display_phone" name="is_display_phone" value="" type="hidden">
-				<input id="is_display_mobile" name="is_display_mobile" value="T" type="hidden">
-				<input id="sUseCountryNumberFlag" name="sUseCountryNumberFlag" value="T" type="hidden"><div class="xans-element- xans-myshop xans-myshop-addrmodify ">
-				<!--
-        			$return_url = /myshop/addr/list.html
-    			-->
+			<form id="frmAddr" action="mAddress_insert.do">
+				
 				<div class="ec-base-table typeWrite">
        				<table border="1" summary="">
 						<caption>배송 주소록 입력</caption>
@@ -128,14 +114,14 @@ input {
 							<col style="width:auto">
 						</colgroup>
 						
-						<tbody style="font-size:13px;">
+						<tbody style="font-size:12px;">
 							<tr>
 								<th scope="row">배송지명 
 									<img src="/ot/resources/images/req_check.png" alt="필수">
 								</th>
 	                    		<td>
-	                    			<input id="ma_rcv_title" name="ma_rcv_title" fw-filter="isFill&amp;isMaxByte[90]" fw-label="배송지명" fw-msg="" 
-	                    		 	 class="inputTypeText" placeholder="" value="" type="text">
+	                    			<input id="adTitle" name="adTitle"  
+	             					class="inputTypeText" value="" type="text">
 	                   		 	</td>
 	               			</tr>
 							<tr>
@@ -143,8 +129,8 @@ input {
 									<img src="/ot/resources/images/req_check.png" alt="필수">
 								</th>
 			                    <td>
-			                    	<input id="ma_rcv_name" name="ma_rcv_name" fw-filter="isFill&amp;isMaxByte[90]" fw-label="성명" fw-msg="" 
-			                    	 class="ec-member-name" placeholder="" value="" type="text">
+			                    	<input id="adReceiver" name="adReceiver" 
+			                    	 class="ec-member-name" value="" type="text">
 		                    	</td>
 			                </tr>
 							<tr>
@@ -152,60 +138,17 @@ input {
 									<img src="/ot/resources/images/req_check.png" alt="필수">
 								</th>
 	                    		<td>
-	                        		<input id="address_zip1" name="address_zip1" fw-filter="isMin[3]&amp;isMax[8]" fw-label="우편번호" fw-msg=""
-	                        		 class="inputTypeText" placeholder="" readonly="readonly" maxlength="14" value="" type="text">                        
+	                        		<input id="zipCode" name="postcode1"
+	                        		 class="inputTypeText" readonly="readonly" maxlength="14" value="" type="text">                        
 	                        		<a href="#none" onclick="addrSearch();" id="SearchAddress" class="yg_btn_24 yg_btn5" alt="우편번호">우편번호</a>
 	                        		<br>
-			                        <input id="address_addr1" name="address_addr1" fw-filter="" fw-label="주소" fw-msg="" class="inputTypeText" placeholder="" readonly="readonly" value="" type="text"> 기본주소
+			                       <input id="address1" name="address1" class="inputTypeText" readonly="readonly" value="" type="text"> 기본주소
 			                        <br>
-			                        <input id="address_addr2" name="address_addr2" fw-filter="isFill" fw-label="주소" fw-msg="" class="inputTypeText" placeholder="" value="" type="text"> 나머지주소
+			                        <input id="address2" name="address2" class="inputTypeText" value="" type="text"> 나머지주소
 			                        <span class="displaynone">(선택입력가능)</span>
 	                    		</td>
 	               			</tr>
-							<tr>
-								<th scope="row">일반전화 
-									<span class="displaynone">
-										<img src="/ot/resources/images/req_check.png" alt="필수">
-									</span>
-								</th>
-	                   			<td>
-	                   			<select id="ma_rcv_phone1" name="ma_rcv_phone[]" fw-filter="isNumber" fw-label="유선전화" fw-alone="N" fw-msg="">
-									<option value="02">02</option>
-									<option value="031">031</option>
-									<option value="032">032</option>
-									<option value="033">033</option>
-									<option value="041">041</option>
-									<option value="042">042</option>
-									<option value="043">043</option>
-									<option value="044">044</option>
-									<option value="051">051</option>
-									<option value="052">052</option>
-									<option value="053">053</option>
-									<option value="054">054</option>
-									<option value="055">055</option>
-									<option value="061">061</option>
-									<option value="062">062</option>
-									<option value="063">063</option>
-									<option value="064">064</option>
-									<option value="0502">0502</option>
-									<option value="0503">0503</option>
-									<option value="0504">0504</option>
-									<option value="0505">0505</option>
-									<option value="0506">0506</option>
-									<option value="0507">0507</option>
-									<option value="070">070</option>
-									<option value="010">010</option>
-									<option value="011">011</option>
-									<option value="016">016</option>
-									<option value="017">017</option>
-									<option value="018">018</option>
-									<option value="019">019</option>
-									<option value="0508">0508</option>
-								</select>-
-								<input id="ma_rcv_phone2" name="ma_rcv_phone[]" maxlength="4" fw-filter="isNumber" fw-label="유선전화" fw-alone="N" fw-msg="" value="" type="text">-
-								<input id="ma_rcv_phone3" name="ma_rcv_phone[]" maxlength="4" fw-filter="isNumber" fw-label="유선전화" fw-alone="N" fw-msg="" value="" type="text">
-								</td>
-	               			</tr>
+						
 							<tr>
 								<th scope="row">휴대전화 
 								<span class="">
@@ -213,7 +156,7 @@ input {
 								</span>
 								</th>
 	                   			<td>
-	                   			<select id="ma_rcv_mobile_no1" name="ma_rcv_mobile_no[]" fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N" fw-msg="">
+	                   			<select id="mobile1" name="mobile1">
 									<option value="010">010</option>
 									<option value="011">011</option>
 									<option value="016">016</option>
@@ -221,23 +164,18 @@ input {
 									<option value="018">018</option>
 									<option value="019">019</option>
 								</select>-
-								<input id="ma_rcv_mobile_no2" name="ma_rcv_mobile_no[]" maxlength="4" fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N" fw-msg="" value="" type="text">-
-								<input id="ma_rcv_mobile_no3" name="ma_rcv_mobile_no[]" maxlength="4" fw-filter="isNumber&amp;isFill" fw-label="휴대전화" fw-alone="N" fw-msg="" value="" type="text">
+								<input id="mobile2" name="mobile2" maxlength="4" value="" type="text">-
+								<input id="mobile3" name="mobile3" maxlength="4" value="" type="text">
 								</td>
 	               			</tr>
-							<tr class="right">
-								<td colspan="2" style="border-left:1px solid #ddd;">
-									<input id="ma_main_flag0" name="ma_main_flag" fw-filter="" fw-label="기본 배송지로 저장" fw-msg="" value="T" type="checkbox">
-									<label for="ma_main_flag0">기본 배송지로 저장</label>
-								</td>
-            				</tr>
+							
 						</tbody>
 					</table>
 				</div>
 					
 				<div class="ec-base-button">
 	      				<span>
-			            	<a href="#none" class="yg_btn_140 yg_btn5" onclick="myshopAddr.formCheck();" alt="수정">수정</a>
+			            	<a href="#none" class="yg_btn_140 yg_btn5" onclick="addressInsert();" alt="등록">등록</a>
 			            	<a href="mAddress.do" class="yg_btn_140 yg_btn3" alt="취소">취소</a>
 	      				</span>
 				</div>
@@ -258,51 +196,59 @@ input {
 	<jsp:include page="footer.jsp"/>
 	
 <script>
-	function addrSearch() {
-			new daum.Postcode({
-				oncomplete : function(data) {
-					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+function addrSearch() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-					// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-					var fullAddr = ''; // 최종 주소 변수
-					var extraAddr = ''; // 조합형 주소 변수
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var fullAddr = ''; // 최종 주소 변수
+            var extraAddr = ''; // 조합형 주소 변수
 
-					// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-					if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-						fullAddr = data.roadAddress;
+            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                fullAddr = data.roadAddress;
 
-					} else { // 사용자가 지번 주소를 선택했을 경우(J)
-						fullAddr = data.jibunAddress;
-					}
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                fullAddr = data.jibunAddress;
+            }
 
-					// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-					if (data.userSelectedType === 'R') {
-						//법정동명이 있을 경우 추가한다.
-						if (data.bname !== '') {
-							extraAddr += data.bname;
-						}
-						// 건물명이 있을 경우 추가한다.
-						if (data.buildingName !== '') {
-							extraAddr += (extraAddr !== '' ? ', '
-									+ data.buildingName : data.buildingName);
-						}
-						// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-						fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')'
-								: '');
-					}
+            // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+            if(data.userSelectedType === 'R'){
+                //법정동명이 있을 경우 추가한다.
+                if(data.bname !== ''){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있을 경우 추가한다.
+                if(data.buildingName !== ''){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+            }
 
-					// 우편번호와 주소 정보를 해당 필드에 넣는다.
-					$('#address_zip1').val(data.zonecode); //5자리 새우편번호 사용
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            $('#zipCode').val(data.zonecode); //5자리 새우편번호 사용
 
-					$('#address_addr1').val(fullAddr);
+            $('#address1').val(fullAddr);
 
-					// 커서를 상세주소 필드로 이동한다.
-					$('#address_addr2').val('');
-					$('#address_addr2').focus();
-				}
-			}).open();
-		};
+            // 커서를 상세주소 필드로 이동한다.
+            $('#address2').focus();
+        }
+    }).open();
+};
+
+
+
+function addressInsert() {
+	$("#frmAddr").submit();
+}
+
+
+
+
+
 		</script>
 
 </body>

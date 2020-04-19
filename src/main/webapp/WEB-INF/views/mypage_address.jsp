@@ -17,6 +17,18 @@
 th, td {
     border: 0;
 }
+
+.ec-base-paginate1 {
+    margin: 30px auto;
+    text-align: center;
+    line-height: 0;
+    display: table;
+}
+a {
+cursor:pointer;
+}
+ 
+
    </style>   
    
 <jsp:include page="header.jsp"/>	
@@ -67,7 +79,7 @@ th, td {
 	                    <strong class="data">
 	                    	<a href="${mCoupon }">${CouponCount}<span>개</span></a>
 	                    </strong>
-	                </li>
+	                </li> 
 	            </ul>
 			</div>
 		</div>
@@ -103,34 +115,19 @@ th, td {
 			-->
 			</div>
 
-			<form id="frmAddr" name="" action="/exec/front/Myshop/Addr/?mode=Delete&amp;return_url=%2Fmyshop%2Faddr%2Flist.html" method="post" target="_self" enctype="multipart/form-data">
-				<input id="__address_addr1" name="__address_addr1" value="" type="hidden">
-				<input id="__city_name" name="__city_name" value="" type="hidden">
-				<input id="__state_name" name="__state_name" value="" type="hidden">
-				<input id="__use_foreign_country_list" name="__use_foreign_country_list" value="F" type="hidden">
-				<input id="__ma_rcv_contry_code" name="__ma_rcv_contry_code" value="" type="hidden">
-				<input id="__country" name="__country" value="" type="hidden">
-				<input id="__province" name="__province" value="" type="hidden">
-				<input id="__city" name="__city" value="" type="hidden">
-				<input id="__district" name="__district" value="" type="hidden">
-				<input id="is_display_phone" name="is_display_phone" value="" type="hidden">
-				<input id="is_display_mobile" name="is_display_mobile" value="" type="hidden">
-				<input id="sUseCountryNumberFlag" name="sUseCountryNumberFlag" value="T" type="hidden"><div class="xans-element- xans-myshop xans-myshop-addrlist">
-				<!--
-       	 			$return_url = /myshop/addr/list.html
-    			-->
-					<div class="ec-base-table typeList">
+			<!-- <form id="frmAddr" action="mAddress.do"> -->
+		
+    			
+    			<div class="ec-base-table typeList">
         				<table border="1" summary="">
 							<caption>배송 주소록 목록</caption>
             				<colgroup>
-								<col style="width:36px">
 								<col style="width:80px">
-								<col style="width:95px">
-								<col style="width:95px">
-								<col style="width:140px">
-								<col style="width:140px">
+								<col style="width:110px">
+								<col style="width:120px">
+								<col style="width:160px">
 								<col style="width:auto">
-								<col style="width:90px">
+								<col style="width:120px">
 							</colgroup>
 							
 							<thead>
@@ -140,49 +137,44 @@ th, td {
 											<input id="allCheck" onclick="myshopAddr.checkAll(this)" value="" type="checkbox">
 										</span>
 									</th>
-				                    <th scope="col">ADDRESS FIX</th>
+				                   <!--  <th scope="col">ADDRESS FIX</th> -->
 				                    <th scope="col">TITLE</th>
 				                    <th scope="col">NAME</th>
-				                    <th scope="col">PHONE</th>
+				                    <!-- <th scope="col">PHONE</th> -->
 				                    <th scope="col">MOBILE</th>
 				                    <th scope="col">ADDRESS</th>
 				                    <th scope="col">MODIFY</th>
                 				</tr>
                				</thead>
                				
+               				
 							<tbody class=" center">
-							
+							<c:forEach var="ad" items="${adlist}">
 								<c:url var="mAddress_modify" value="mAddress_modify.do">
-									<c:param name="mAddress" value="mAdd1"/>
+									<c:param name="mAddress" value="${ad.adNo }"/>
 								</c:url>
-								
+								<input type="hidden" name="adNo" value="${ad.adNo }">
 								<tr class="xans-record-">
 									<td>
-										<input name="ma_idx[]" value="843124" type="checkbox">
+										<input name="adCheck" id="adCheck" value="843124" type="checkbox">
 									</td>
-                    				<td>
-										<a href="/exec/front/Myshop/Addr/?mode=Fix&amp;ma_idx=843124&amp;ma_fixed_flag=T&amp;return_url=%2Fmyshop%2Faddr%2Flist.html">
-											<span class="displaynone yg_btn_24 yg_btn3" alt="해제">해제</span>
-											<span class=" yg_btn_24 yg_btn5" alt="고정">고정</span>
-										</a>
-										<span class="displaynone">-</span>
-									</td>
+                    				
                     				<td>
 										<img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/ico_addr_default.gif" class="displaynone" alt="기본"> 
-										<span>미지정</span>
+										<span>${ad.adTitle }</span>
 									</td>
-				                    <td><span>홍길동</span></td>
-				                    <td><span>297-</span></td>
-				                    <td><span>010-1234-5678</span></td>
+				                    <td><span>${ad.adReceiver}</span></td>
+				                   
+				                    <td><span>${ad.adPhone }</span></td>
 				                    <td class="left">
-				                    	(<span>12345</span>)
-				                    	<span>서울특별시 강남구 테헤란로</span>
-				                    	<span>KH정보교육원 H클래스</span>
+				                   
+				                    	<span>${ad.adAddress }</span>
 				                    </td>
 				                    <td>	
 				                    	<a href="${mAddress_modify }" class=" yg_btn_24 yg_btn3" alt="수정">수정</a>
 			                    	</td>
                 				</tr>
+                				</c:forEach>
 							</tbody>
 							
 							<tbody class="displaynone">
@@ -194,17 +186,96 @@ th, td {
 					</div>
 					<div class="ec-base-button">
         				<span class="gLeft ">
-            				<a href="#none" class="yg_btn yg_btn4" onclick="myshopAddr.deleteAddress(); return false;" alt="선택 주소록 삭제">선택 주소록 삭제</a>
+            				<a id="AddressDelete" class="yg_btn yg_btn4"alt="선택 주소록 삭제">선택 주소록 삭제</a>
         				</span>
         				
 				        <span class="gRight">
 				            <a href="mAddress_register.do" class="yg_btn yg_btn1 yg_btn_border_444" alt="배송지 등록">배송지등록</a>
 				        </span>
     				</div>
-				</div>
-			</form>
+    			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate1">
+            <!-- <a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first"> -->
 
-			<div class="ec-base-help">
+               <img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+
+
+
+               <c:if test="${empty sc }">
+                  <c:url var="before" value="bad_product_board.do">
+                  <c:param name="currentPage" value="${pi.currentPage -1 }"/>
+                  </c:url>
+                      </c:if>
+					<c:if test="${!empty sc }">
+                  <c:url var="before" value="bp_search.do">
+                  <c:param name="currentPage" value="${pi.currentPage -1 }"/>
+                  <c:param name="search_date" value="${sc.search_date }"/>
+                  <c:param name="search_key" value="${sc.search_key }"/>
+                  <c:param name="search" value="${sc.search }"/>
+                  </c:url>
+                      </c:if>
+                                            
+                  <a href="${before}">
+                  <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+                  </a> &nbsp;
+             
+
+               <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                     <c:if test="${ p eq pi.currentPage }">
+                        <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
+                        <b>${ p }</b> &nbsp;&nbsp;</font>
+                     </c:if>
+					
+					 <c:if test="${empty sc }">	
+                     <c:if test="${ p ne pi.currentPage }">
+                        <c:url var="pagination" value="bad_product_board.do">
+                           <c:param name="currentPage" value="${ p }"/>
+                     </c:url>
+                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+                     ${ p }</a> &nbsp;
+                  </c:if>
+                  </c:if>
+                  
+                  	 <c:if test="${!empty sc }">	
+                     <c:if test="${ p ne pi.currentPage }">
+                        <c:url var="pagination" value="bp_search.do">
+                           <c:param name="currentPage" value="${ p }"/>
+                           <c:param name="search_date" value="${sc.search_date }"/>
+		                  <c:param name="search_key" value="${sc.search_key }"/>
+		                  <c:param name="search" value="${sc.search }"/>
+                     </c:url>
+                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+                     ${ p }</a> &nbsp;
+                  </c:if>
+                  </c:if>
+                  
+                  
+               </c:forEach>
+
+				     <c:if test="${empty sc }">	
+                    <c:url var="after" value="bad_product_board.do">
+                     <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                    </c:url>
+                     </c:if>
+                     
+                  <c:if test="${!empty sc }">
+                  <c:url var="after" value="bp_search.do">
+                  <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                  <c:param name="search_date" value="${sc.search_date }"/>
+                  <c:param name="search_key" value="${sc.search_key }"/>
+                  <c:param name="search" value="${sc.search }"/>
+                  </c:url>
+                      </c:if>
+                  
+                  <a href="${after}">
+               <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+               </a>
+
+
+               <img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+
+         </div>
+
+			<div class="ec-base-help" >
 			    <h3>배송주소록 유의사항</h3>
 			    <div class="inner">
 			        <ol style="font-size: 13px;">
@@ -213,10 +284,68 @@ th, td {
 			            <li class="item3">기본 배송지는 1개만 저장됩니다. 다른 배송지를 기본 배송지로 설정하시면 기본 배송지가 변경됩니다.</li>
 			        </ol>
 		        </div>
-			</div>
+			</div>	
+    				
+    				
+    				
+    				
+    				
+    				
+    				
+    				
+				</div>
+	<!-- 		</form> -->
+			
+			
 		</div>
-	</div>
 	
  <jsp:include page="footer.jsp"/>
+ 
+ <script>
+ <!--선택 주소록 삭제 스크립트-->
+ $('#AddressDelete').click(function() {
+
+	 if(confirm("삭제하시겠습니까?") == true) {
+
+		 var adNokArr = new Array();
+		 var adCheck = document.getElementsByName('adCheck');
+		 var adNo = document.getElementsByName('adNo');
+
+		 var count=0;
+		 for(var i=0;i<adCheck.length;i++){
+			 if(adCheck[i].checked ==true){
+
+				 adNokArr[count] = adNo[i].value
+				 count++;
+			 }
+		 }
+		  console.log(adNokArr);
+
+	/* 	  $("input[name='pro_check']:checked").each(function() {
+			 ca_no.push($(this).attr("data-cartNum"))
+		 }); */
+
+		 $.ajax({
+			url : "AddressDelete.do",
+			traditional : true,
+			data : { 'adNokArr' : adNokArr},
+			success : function(data) {
+				if(data =="ok"){
+				location.href = "mAddress.do";
+				}else{
+					alert('삭제실패')
+				}
+			},error : function(){
+				alert('에러다');
+			}
+		 });
+	 }
+	 
+ });
+ 
+ 
+ 
+ 
+ </script>
 </body>
 </html>

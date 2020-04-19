@@ -40,23 +40,36 @@
 		
 	</resultMap>
 	
-	<!-- 임시 resultmap (적립금) -->
-	<!-- <resultMap id="memberResultSet11" type="Member">
-			<id property="memNo" column="MEM_NO"/>
-			<result property="memId" column="MEM_ID"/>
-			<result property="memPwd" column="MEM_PWD"/>
-			<result property="memName" column="MEM_NAME"/>
-			<result property="memSsn" column="MEM_SSN"/>
-			<result property="memAddress" column="MEM_ADDRESS"/>
-			<result property="memEmail" column="MEM_EMAIL"/>
-			<result property="memPhone" column="MEM_PHONE"/>
-			<result property="memSumMoney" column="MEM_SUMMONEY"/>
-			<result property="memOwner" column="MEM_OWNER"/>
-			<result property="bank" column="BANK"/>
-			<result property="returnBank" column="RETURN_BANK"/>
-			<result property="mem_status" column="MEM_STATUS"/>
-			<result property="mem_point" column="MEM_POINT"/>
-		</resultMap> -->
+	<resultMap id="ordResultSet" type="Ord">
+		<id property="ord_no" column="ORD_NO"/>
+		<result property="ord_detailno" column="ORD_DETAILNO"/>
+		<result property="mem_no" column="MEM_NO"/>
+		<result property="prdt_no" column="PRDT_NO"/>
+		<result property="ord_date" column="ORD_DATE"/>
+		<result property="ord_receiver" column="ORD_RECEIVER"/>
+		<result property="ord_phone" column="ORD_PHONE"/>
+		<result property="ord_address" column="ORD_ADDRESS"/>
+		<result property="ord_message" column="ORD_MESSAGE"/>
+		<result property="ord_status" column="ORD_STATUS"/>
+		<result property="ord_size" column="ORD_SIZE"/>
+		<result property="ord_color" column="ORD_COLOR"/>
+		<result property="ord_count" column="ORD_COUNT"/>
+		<result property="path" column="PRDT_IMAGE_PATH"/>
+		<result property="image" column="PRDT_IMAGE"/>
+		<result property="prdt_name" column="PRDT_NAME"/>
+		<result property="prdt_price" column="PRDT_PRICE"/>
+		<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
+	</resultMap>
+	
+	
+	<resultMap id="AddressResultMap" type="Address">
+		<id property="adNo" column="AD_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="adTitle" column="AD_TITLE"/>
+		<result property="adReceiver" column="AD_RECEIVER"/>
+		<result property="adAddress" column="AD_ADDRESS"/>
+		<result property="adPhone" column="AD_PHONE"/>
+	</resultMap>
 	
 	
 	
@@ -184,4 +197,86 @@
 		</if>
 		ORDER BY QNA_NO DESC
 	</select>
+	
+	<select id="getOrderListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO=#{memNo}
+	
+	</select>
+	
+	<select id="selectOrderList" resultMap="ordResultSet">
+		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		ORDER BY O.ORD_DATE DESC
+	</select>
+	
+	
+	<insert id="mAddressInsert" parameterType="Address">
+		INSERT INTO ADDRESS VALUES
+		(AD_SEQ.NEXTVAL, #{memNo}, #{adTitle},#{adReceiver},#{adAddress},#{adPhone})
+	</insert>
+	
+	<select id="getAddressCount" resultType="_int" parameterType="_int">
+		SELECT COUNT(*)
+		FROM ADDRESS
+		WHERE MEM_NO=#{memNo}
+	
+	</select>
+	
+	<select id="selectAddressList" parameterType="Member" resultMap="AddressResultMap">
+		SELECT *
+		FROM ADDRESS
+		WHERE MEM_NO=#{memNo}
+	
+	</select>
+	
+	<select id="ModifyAddress" parameterType="_int" resultMap="AddressResultMap">
+		SELECT *
+		FROM ADDRESS
+		WHERE AD_NO=#{mAddress}
+	
+	</select>
+	
+	<update id="AddressUpdate" parameterType="Address">
+		UPDATE ADDRESS
+		SET AD_TITLE=#{adTitle}, AD_RECEIVER=#{adReceiver}, AD_ADDRESS=#{adAddress},
+		AD_PHONE=#{adPhone}
+		WHERE AD_NO=#{adNo}
+	</update> 
+	
+	<delete id="AddressDelete" parameterType="java.util.Map">
+		<foreach  item="a" collection="nokArr"  index="index" 
+		      separator=";" open="DECLARE BEGIN" close="; END;" >
+		DELETE
+		FROM ADDRESS
+		WHERE AD_NO=#{a.adNo}
+		</foreach>
+	</delete>
+	
+	<select id ="SearchOrdListCount" resultType="_int">
+	SELECT COUNT(*)
+	FROM ORD O
+	JOIN PRDT P
+	ON (O.PRDT_NO = P.PRDT_NO)
+	WHERE MEM_NO=#{memno}
+	AND ORD_STATUS=#{ord_status}
+	
+	</select>
+	
+	<select id="selectSearchOrdList" resultMap="ordResultSet">
+	SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
+	FROM ORD O
+	JOIN PRDT P
+	ON (O.PRDT_NO = P.PRDT_NO)
+	WHERE MEM_NO=#{memno}
+	AND ORD_STATUS=#{ord_status}
+	ORDER BY O.ORD_DATE DESC
+	</select>
+	
+
+	
 </mapper>

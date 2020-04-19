@@ -28,38 +28,6 @@
          <result property="down_date" column="DOWN_DATE"/>
       </resultMap>
 
-      <!-- <resultMap type="Product" id="ProductInsertResultSet">
-         <id property="prdtNo" column="PRDT_NO"/>
-         <result property="upNo" column="UP_NO"/>
-         <result property="prdtName" column="PRDT_NAME"/>
-         <result property="prdtComment" column="PRDT_COMMENT"/>
-         <result property="prdtPrice" column="PRDT_PRICE"/>
-         <result property="prdtBrand" column="PRDT_BRAND"/>
-         <result property="prdtMake" column="PRDT_MAKE"/>
-         <result property="prdtImage" column="PRDT_IMAGE"/>
-         <result property="prdtDate" column="PRDT_DATE"/>
-         <result property="prdtModifyDate" column="MODIFY_DATE"/>
-         <result property="prdtUser" column="PRDT_USER"/>
-         <result property="downNo" column="DOWN_NO"/>
-         <result property="prdtCode" column="PRDT_CODE"/>
-         <result property="prdtImagePath" column="PRDT_IMAGE_PATH"/>
-         <result property="prdtDetailImage" column="PRDT_DETAIL_IMAGE"/>
-         <result property="prdtDetailImagePath" column="PRDT_DETAIL_IMAGE_PATH"/>
-         <result property="prdtSale" column="PRDT_SALE"/>
-      </resultMap>
-       -->
-<!--       <resultMap type="ProductOption" id="ProductOptionInsertResultSet">
-         <id property="opt_no" column="OPT_NO"/>
-         <result property="prdt_no" column="PRDT_NO"/>
-         <result property="prdt_no" column="OPT_COLOR"/>
-         <result property="prdt_no" column="OPT_SIZE"/>
-         <result property="prdt_no" column="OPT_STOCK"/>
-         <result property="prdt_no" column="OPT_DATE"/>
-         <result property="prdt_no" column="MODIFY_DATE"/>
-         <result property="prdt_no" column="OPT_USER"/>
-         <result property="prdt_no" column="PRDT_CODE"/>
-      </resultMap> -->
-
       <resultMap type="Design" id="MainResultSet">
          <id property = "deNo" column="D_NO"/>
          <result property="mainComment" column="D_COMMENT"/>
@@ -77,8 +45,21 @@
          <result property="reFile" column="IN_REFILE"/>
          <result property="mainLink" column="IN_LINK"/>
          <result property="mainComment" column="IN_COMMENT"/>
-
       </resultMap>
+
+		<resultMap type="Ord" id="OrdreusltMap1">
+			<id property="ord_no" column="ORD_NO"/>
+			<result property="prdt_no" column="PRDT_NO"/>
+			<result property="prdt_name" column="PRDT_NAME"/>
+			<result property="prdt_sumprice" column="PAY_MONEY"/>
+			<result property="ord_receiver" column="ORD_RECEIVER"/>
+			<result property="ord_address" column="ORD_ADDRESS"/>
+			<result property="ord_phone" column="ORD_PHONE"/>
+			<result property="ord_message" column="ORD_MESSAGE"/>
+			<result property="ord_date" column="ORD_DATE"/>
+			<result property="ord_status" column="ORD_STATUS"/>
+		</resultMap>
+	
 
 <insert id="couponInput" parameterType="java.util.Map">
    INSERT INTO COUPON (CP_NO,CP_NAME,CP_DISCOUNT,CP_DATE)
@@ -209,8 +190,62 @@
 		WHERE QNA_NO = #{qna_no}
 </update>
 
+	<select id="selectOderList1" resultMap="OrdreusltMap1">
+		
+SELECT O.ORD_NO,O.PRDT_NO,P.PRDT_NAME,PA.PAY_MONEY,O.ORD_RECEIVER,O.ORD_ADDRESS,O.ORD_PHONE,O.ORD_MESSAGE,O.ORD_DATE,O.ORD_STATUS FROM 
+ORD O
+JOIN PRDT P ON (O.PRDT_NO = P.PRDT_NO)
+JOIN PAY PA ON(O.ORD_NO = PA.ORD_NO)
+WHERE O.ORD_STATUS = 'A'
+	</select>
+
+<update id="orderUpdate1" parameterType="_int">
+	UPDATE ORD
+	SET ORD_STATUS = 'B'
+	WHERE ORD_NO=#{ordNo}
+</update>
+
+	<select id="selectOderList2" resultMap="OrdreusltMap1">
+SELECT O.ORD_NO,O.PRDT_NO,P.PRDT_NAME,PA.PAY_MONEY,O.ORD_RECEIVER,O.ORD_ADDRESS,O.ORD_PHONE,O.ORD_MESSAGE,O.ORD_DATE,O.ORD_STATUS FROM 
+ORD O
+JOIN PRDT P ON (O.PRDT_NO = P.PRDT_NO)
+JOIN PAY PA ON(O.ORD_NO = PA.ORD_NO)
+WHERE O.ORD_STATUS = 'B'
+	</select>
+	
+<update id="orderUpdate2" parameterType="_int">
+	UPDATE ORD
+	SET ORD_STATUS = 'C'
+	WHERE ORD_NO=#{ordNo}
+</update>
+
+	<select id="selectOderList3" resultMap="OrdreusltMap1">
+SELECT O.ORD_NO,O.PRDT_NO,P.PRDT_NAME,PA.PAY_MONEY,O.ORD_RECEIVER,O.ORD_ADDRESS,O.ORD_PHONE,O.ORD_MESSAGE,O.ORD_DATE,O.ORD_STATUS FROM 
+ORD O
+JOIN PRDT P ON (O.PRDT_NO = P.PRDT_NO)
+JOIN PAY PA ON(O.ORD_NO = PA.ORD_NO)
+WHERE O.ORD_STATUS = 'C'
+	</select>
+	
+<update id="orderUpdate3" parameterType="_int">
+	UPDATE ORD
+	SET ORD_STATUS = 'D'
+	WHERE ORD_NO=#{ordNo}
+</update>
 
 
-
+	<select id="selectOderList4" resultMap="OrdreusltMap1">
+SELECT O.ORD_NO,O.PRDT_NO,P.PRDT_NAME,PA.PAY_MONEY,O.ORD_RECEIVER,O.ORD_ADDRESS,O.ORD_PHONE,O.ORD_MESSAGE,O.ORD_DATE,O.ORD_STATUS FROM 
+ORD O
+JOIN PRDT P ON (O.PRDT_NO = P.PRDT_NO)
+JOIN PAY PA ON(O.ORD_NO = PA.ORD_NO)
+WHERE O.ORD_STATUS = 'D'
+	</select>
+	
+<update id="orderUpdate4" parameterType="_int">
+	UPDATE ORD
+	SET ORD_STATUS = 'E'
+	WHERE ORD_NO=#{ordNo}
+</update>
 
 </mapper>

@@ -8,6 +8,7 @@ import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
 
@@ -156,7 +157,75 @@ public interface adminService{
 	 * @내용 : 상품리스트 - 상품삭제 버튼
 	 */
 	public int ProductDelete(int prdtNo);
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 오더리스트 상태값 A
+	 * @return
+	 */
+	public ArrayList<Ord> selectOderList1();
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  :  문태환
+	 * @내용 	: 오더리스트 상태값 A 변경
+	 * @param ordNo
+	 * @return
+	 */
+	public int orderUpdate1(int ordNo);
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 오더리스트 상태값 B
+	 * @return
+	 */
+	public ArrayList<Ord> selectOderList2();
+
+		/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  :  문태환
+	 * @내용 	: 오더리스트 상태값 B 변경
+	 * @param ordNo
+	 * @return
+	 */
+	public int orderUpdate2(int ordNo);
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 오더리스트 상태값 C
+	 * @return
+	 */
+	public ArrayList<Ord> selectOderList3();
+
+		/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  :  문태환
+	 * @내용 	: 오더리스트 상태값 C 변경
+	 * @param ordNo
+	 * @return
+	 */
+	public int orderUpdate3(int ordNo);
 	
+	
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 오더리스트 상태값 D
+	 * @return
+	 */
+	public ArrayList<Ord> selectOderList4();
+
+		/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  :  문태환
+	 * @내용 	: 오더리스트 상태값 D 변경
+	 * @param ordNo
+	 * @return
+	 */
+	public int orderUpdate4(int ordNo);
 
 
 }

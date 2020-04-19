@@ -5,14 +5,17 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.Point;
+import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
+import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.dao.MypageDao;
+import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
+import com.kh.ot.mypage.vo.OrdSearch;
 
 @Service("mpService")
 public class MypageServiceImpl implements MypageService{
@@ -61,7 +64,6 @@ public class MypageServiceImpl implements MypageService{
 
 	}
 
-	
 	@Override
 	public int PointPrice(Member m) {
 		return mpDao.PointPrice(m);
@@ -86,4 +88,56 @@ public class MypageServiceImpl implements MypageService{
 	public ArrayList<MyBoard> selectSearchList(PageInfo pi, SearchCondition sc) {
 		return mpDao.selectSearchList(pi, sc);
 	}
+
+	@Override
+	public int getOrderListCount(int memNo) {
+		return mpDao.getOrderListCount(memNo);
+	}
+
+	@Override
+	public ArrayList<Ord> selectOrderList(PageInfo pi, int memNo) {
+		return mpDao.selectOrderList(pi, memNo);
+	}
+
+	@Override
+	public int mAddressInsert(Address ad) {
+		return mpDao.mAddressInsert(ad);
+	}
+
+	@Override
+	public int getAddressCount(Member m) {
+		return mpDao.getAddressCount(m);
+	}
+
+	@Override
+	public ArrayList<Address> selectAddressList(PageInfo pi, Member m) {
+		return mpDao.selectAddressList(pi,m);
+	}
+
+	@Override
+	public Address ModifyAddress(int mAddress) {
+		return mpDao.ModifyAddress(mAddress);
+	}
+
+	@Override
+	public int AddressUpdate(Address ad) {
+		return mpDao.AddressUpdate(ad);
+	}
+
+	@Override
+	public int AddressDelete(ArrayList<Address> nokArr) {
+		return mpDao.AddressDelete(nokArr);
+	}
+	
+	@Override
+	public int SearchListCount(OrdSearch os) {
+		return mpDao.SearchListCount(os);
+	}
+
+	@Override
+	public ArrayList<Ord> selectSearchList(PageInfo pi, OrdSearch os) {
+		return mpDao.selectSearchList(pi, os);
+	}
+	
+	
 }

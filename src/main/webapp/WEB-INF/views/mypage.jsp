@@ -174,7 +174,7 @@
 				
 			        <ul class="order">
 						<li>
-			                <strong>입금전</strong>
+			                <strong>입금완료</strong>
 			                <a href="${delivery_prev }" class="count"><span id="xans_myshop_orderstate_shppied_before_count">0</span></a>
 			            </li>
 			            <li>

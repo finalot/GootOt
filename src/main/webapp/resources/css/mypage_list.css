@@ -606,16 +606,16 @@ div.ec-base-help ol .item1 {
 }
 
 div.ec-base-help ol .item2 {
-    background-position: -434px -100px;
+    background-position: -384px -200px;
 }
 
 div.ec-base-help ol .item3 {
-    background-position: -384px -200px;
+    background-position: -334px -300px;
 }
 
 div.ec-base-help ol li {
     padding: 0 0 0 25px;
-    background: url(//img.echosting.cafe24.com/skin/base/common/ico_number.png) no-repeat;
+    background: url(//img.echosting.cafe24.com/skin/base/common/ico_number.png) no-repeat; 
 }
 
 div.ec-base-help li {

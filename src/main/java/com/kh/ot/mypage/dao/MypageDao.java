@@ -1,6 +1,8 @@
 package com.kh.ot.mypage.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -10,9 +12,12 @@ import org.springframework.stereotype.Repository;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
+import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
+import com.kh.ot.mypage.vo.OrdSearch;
 
 @Repository("mpDao")
 public class MypageDao {
@@ -98,7 +103,6 @@ public class MypageDao {
 
 	public int SearchListCount(SearchCondition sc) {
 		
-		System.out.println(sc);
 		return sqlSession.selectOne("mypageMapper.SearchListCount", sc);
 	}
 
@@ -110,4 +114,59 @@ public class MypageDao {
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectSearchList", sc, rowBounds);
 	}
 
+	public int getOrderListCount(int memNo) {
+		return sqlSession.selectOne("mypageMapper.getOrderListCount", memNo);
+	}
+
+	public ArrayList<Ord> selectOrderList(PageInfo pi, int memNo) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectOrderList", memNo, rowBounds);
+	}
+
+	public int mAddressInsert(Address ad) {
+		return sqlSession.insert("mypageMapper.mAddressInsert",ad);
+	}
+
+	public int getAddressCount(Member m) {
+		int memNo = m.getMemNo();
+		return sqlSession.selectOne("mypageMapper.getAddressCount",memNo);
+	}
+
+	public ArrayList<Address> selectAddressList(PageInfo pi, Member m) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectAddressList",m,rowBounds);
+	}
+
+	public Address ModifyAddress(int mAddress) {
+		return sqlSession.selectOne("mypageMapper.ModifyAddress",mAddress);
+	}
+
+	public int AddressUpdate(Address ad) {
+		return sqlSession.update("mypageMapper.AddressUpdate",ad);
+	}
+
+	public int AddressDelete(ArrayList<Address> nokArr) {
+		  Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("nokArr", nokArr);
+		return sqlSession.delete("mypageMapper.AddressDelete",map);
+	}
+
+	public int SearchListCount(OrdSearch os) {
+		return sqlSession.selectOne("mypageMapper.SearchOrdListCount", os);
+	}
+
+	public ArrayList<Ord> selectSearchList(PageInfo pi, OrdSearch os) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectSearchOrdList", os, rowBounds);
+	}
+
+	
+	
+	
 }

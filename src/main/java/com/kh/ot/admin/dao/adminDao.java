@@ -17,6 +17,7 @@ import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
 
@@ -197,6 +198,96 @@ public class adminDao {
 	public int ProductDelete(int prdtNo) {
 		return sqlSession.update("productMapper.ProductDelete",prdtNo);
 	}
-	 
+
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	:오더리스트 상태값 A
+	 * @return
+	 */
+	public ArrayList<Ord> selectOderList1() {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectOderList1");
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  :  문태환
+	 * @내용 	: 오더리스트 상태값 A 변경
+	 * @param ordNo
+	 * @return
+	 */
+	public int orderUpdate1(int ordNo) {
+		return sqlSession.update("adminMapper.orderUpdate1",ordNo);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	:오더리스트 상태값 B
+	 * @return
+	 */
+	public ArrayList<Ord> selectOderList2() {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectOderList2");
+	}
+
+
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  :  문태환
+	 * @내용 	: 오더리스트 상태값 B 변경
+	 * @param ordNo
+	 * @return
+	 */
+	public int orderUpdate2(int ordNo) {
+		return sqlSession.update("adminMapper.orderUpdate2",ordNo);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	:오더리스트 상태값 C
+	 * @return
+	 */
+	public ArrayList<Ord> selectOderList3() {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectOderList3");
+	}
+
+
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  :  문태환
+	 * @내용 	: 오더리스트 상태값 C 변경
+	 * @param ordNo
+	 * @return
+	 */
+	public int orderUpdate3(int ordNo) {
+		return sqlSession.update("adminMapper.orderUpdate3",ordNo);
+	}
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	:오더리스트 상태값 D
+	 * @return
+	 */
+	public ArrayList<Ord> selectOderList4() {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectOderList4");
+	}
+
+
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  :  문태환
+	 * @내용 	: 오더리스트 상태값 D 변경
+	 * @param ordNo
+	 * @return
+	 */
+	public int orderUpdate4(int ordNo) {
+		return sqlSession.update("adminMapper.orderUpdate4",ordNo);
+	}
 	 
 }
