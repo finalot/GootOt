@@ -319,7 +319,7 @@ th{
         	<td>
 	       		대(大) : &nbsp;&nbsp;
 	       	
-	       	<select name="upNo" id="bdivide">
+	       	<select name="upNo" id="bdivide" style="width:150px; height:30px;">
 	       		<option value="">선택1(대분류)</option>
 	       		<c:forEach var="up" items="${ulist }">
 	       			<option value="${up.up_no }">${up.up_name }</option>
@@ -331,7 +331,7 @@ th{
                                     
                                     중(中) : &nbsp;&nbsp;
                                     
-            <select name="downNo" id="mdivide">
+            <select name="downNo" id="mdivide" style="width:150px; height:30px;">
 	       		<option value="">선택2(중분류)</option>
 	       	</select>	
 	       	
@@ -705,20 +705,18 @@ th{
 				$('#mdivide').append()
         		var upno=$(this).val();
 				
-        	"<c:forEach var='d' items='${dlist}'>"
+        		"<c:forEach var='d' items='${dlist}'>"
 				
         		if(upno == "${d.up_no}"){
 					$('#mdivide').append('<option value="${d.down_no}">${d.down_name}</option>');
-					
-				}else{
-					$('#mdivide').append('<option>-------</option>')
-				}
+        		}
 				
-        	"</c:forEach>"
+        		"</c:forEach>"
         	
         	
         });
         
+        /* 색깔 DB 색상 뿌리기  */
         $('#color-area').click(function(){
         	
         	"<c:forEach var='pc' items='${pclist}'>"

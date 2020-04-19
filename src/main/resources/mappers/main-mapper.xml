@@ -205,7 +205,6 @@
 		
 		<select id="ProductSelectList" resultMap="productResultSet">
 			SELECT * FROM PRDT
-			WHERE PRDT_STATUS='Y'
 		</select>
 		
 		<update id="ProductDelete" parameterType="_int">
@@ -224,14 +223,14 @@
 		VALUES(DIBS_SEQ.NEXTVAL,#{memNo},#{prdtNo},DEFAULT,NULL,NULL,DEFAULT)
 		</insert>
 		
-	<insert id="ProductInsert" parameterType="Product">
-	INSERT INTO PRDT
-	VALUES (PRODUCT_SEQ.NEXTVAL, #{upNo}, #{prdtName}, #{prdtComment}
-			,#{prdtPrice}, NULL, NULL, #{prdtImage}
-			,SYSDATE, NULL, DEFAULT, #{downNo}, PRODUCT_SEQ.NEXTVAL
-			,#{prdtImagePath}, #{prdtDetailImage},#{prdtDetailImagePath}
-			,#{prdtSale}, DEFAULT, DEFAULT)	 
-	</insert>
+		<insert id="ProductInsert" parameterType="Product">
+		INSERT INTO PRDT
+		VALUES (PRODUCT_SEQ.NEXTVAL, #{upNo}, #{prdtName}, #{prdtComment}
+				,#{prdtPrice}, NULL, NULL, #{prdtImage}
+				,SYSDATE, NULL, DEFAULT, #{downNo}, PRODUCT_SEQ.NEXTVAL
+				,#{prdtImagePath}, #{prdtDetailImage},#{prdtDetailImagePath}
+				,#{prdtSale}, DEFAULT, DEFAULT,DEFAULT)	 
+		</insert>
 
 
 </mapper>
