@@ -220,7 +220,8 @@
 							<ul class="header-cart-wrapitem">
 								<li class="header-cart-item">
 									<div class="header-cart-item-img">
-										<a href ="${cartbutton }"><img src="<c:url value="/resources/images/item-cart-01.jpg"/>" alt="IMG" ></a>
+										<a href ="${cartbutton }">
+										<img src="<c:url value="/resources/images/item-cart-01.jpg"/>" alt="IMG" ></a>
 									</div>
 								
 									<div class="header-cart-item-txt">
