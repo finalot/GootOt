@@ -1026,6 +1026,7 @@ public class menuController {
 	public String ProductInsert(Product p, HttpServletRequest request,
 			@RequestParam(name="thumbnailImg",required=false) MultipartFile file1,
 			@RequestParam(name="descrptionImg",required=false) MultipartFile file2	) {
+		
 		// Product만 있는거
 
 		String root = request.getSession().getServletContext().getRealPath("resources");

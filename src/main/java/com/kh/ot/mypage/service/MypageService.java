@@ -10,6 +10,7 @@ import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
+import com.kh.ot.mypage.vo.OrdSearch;
 
 public interface MypageService {
 
@@ -174,5 +175,11 @@ public interface MypageService {
 	 */
 	int AddressDelete(ArrayList<Address> nokArr);
 
+	
+
+	int SearchListCount(OrdSearch os);
+
+	ArrayList<Ord> selectSearchList(PageInfo pi, OrdSearch os);
+	
 	
 }

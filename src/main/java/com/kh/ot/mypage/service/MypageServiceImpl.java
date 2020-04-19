@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.Point;
+import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Ord;
@@ -15,6 +15,7 @@ import com.kh.ot.mypage.dao.MypageDao;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
+import com.kh.ot.mypage.vo.OrdSearch;
 
 @Service("mpService")
 public class MypageServiceImpl implements MypageService{
@@ -127,4 +128,16 @@ public class MypageServiceImpl implements MypageService{
 	public int AddressDelete(ArrayList<Address> nokArr) {
 		return mpDao.AddressDelete(nokArr);
 	}
+	
+	@Override
+	public int SearchListCount(OrdSearch os) {
+		return mpDao.SearchListCount(os);
+	}
+
+	@Override
+	public ArrayList<Ord> selectSearchList(PageInfo pi, OrdSearch os) {
+		return mpDao.selectSearchList(pi, os);
+	}
+	
+	
 }
