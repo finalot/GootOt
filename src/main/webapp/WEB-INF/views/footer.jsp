@@ -225,7 +225,7 @@
 								
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
-											${c.prdt_name }
+											<%-- ${c.prdt_name } --%>
 										</a>
 
 										<span class="header-cart-item-info">
