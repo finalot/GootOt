@@ -11,6 +11,7 @@ import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.vo.Address;
 
 
 @Service("cService")
@@ -87,5 +88,10 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public int updateProduct(ArrayList<Ord> olist) {
 		return cDao.updateProduct(olist);
+	}
+
+	@Override
+	public ArrayList<Address> selectAdList(int mem_no) {
+		return cDao.selectAdList(mem_no);
 	}
 }

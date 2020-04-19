@@ -508,16 +508,16 @@ margin-right: 3%;
 
                     <select id="new_delivery" name="new_delivery" style="font-size:12px;width: 220px;">
                     <option value="new_delivery1">::: 새로운 배송지를 선택해주세요 :::</option>
-                    <option value="new_delivery2">배송지2</option>
-                    <option value="new_delivery3">배송지3</option>
-                    <option value="new_delivery3">배송지4</option>
-                    <option value="new_delivery3">배송지5</option>
-                    <option value="new_delivery3">배송지6</option>
-                    <option value="new_delivery3">배송지7</option>
-                    <option value="new_delivery3">배송지8</option>
-                    <option value="new_delivery3">배송지9</option>
-                    <option value="new_delivery3">배송지10</option>
+                   	<c:forEach var="ad" items="${adlist }">
+                    <option value="${ad.adNo}">${ad.adTitle}</option>
+                    </c:forEach>
                     </select>
+                    
+                   
+						<a id="delivery_ok"
+						class="more yg_btn_24 yg_btn3" style="top:-1px; cursor: pointer;">적용</a>
+                    
+                    
 
 
 
@@ -658,6 +658,35 @@ margin-right: 3%;
 	<script type="text/javascript" src="/ot/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="/ot/resources/vendor/select2/select2.min.js"></script>
+
+
+<script>
+<!-- 새로운 배송지 적용 스크립트 -->
+$('#delivery_ok').click(function(){
+
+	if($('#delivery').prop('checked') == true){
+		$('#userName-1').val("${ad.adReceiver}")
+		  $('#zipCode-1').val(address[0])
+		  $('#address1-1').val(address[1])
+		  $('#address2-1').val(address[2])
+
+	 $('#mobile2-1').val(phone[1])
+	  $('#mobile3-1').val(phone[2])
+
+	  var firstnum = document.getElementById('mobile1-1');
+
+	  		for(var i=0;  i < 10;i++){
+		 		if(firstnum.children[i].value == phone[0]){
+		       		firstnum.children[i].selected = true;
+	    		}
+		 	}
+		}
+});
+
+
+
+
+</script>
 
 
 
@@ -1209,6 +1238,52 @@ $('.close').click(function(){
 
  });
 
+  $('#new_delivery').click(function(){
+	  
+	  var adNo=$('#new_delivery').val();
+	  
+	  
+	  $.ajax({
+		  url : "cartbutton.do",
+		  data :{adNo : adNo},
+		  success : function(data){
+			    var address =new Array();
+				var phone = new Array();
+				var count=0
+				var count1=0
+			  
+			  "<c:forTokens items='${ad.adAddress}'  delims=','  var='address'>"
+			  	address[count] = "${address}"
+			  	count++;
+			  " </c:forTokens>"
+			  $('#zipCode-1').val(address[0])
+			  $('#address1-1').val(address[1])
+			  $('#address2-1').val(address[2])
+			  //폰번호 잘라서 정보 뿌리기
+			  "<c:forTokens items='${ad.adPhone}'  delims='-'  var='phone'>"
+			  phone[count1] = "${phone}"
+			  count1++;
+			  " </c:forTokens>"
+
+			   $('#mobile2-1').val(phone[1])
+			  $('#mobile3-1').val(phone[2])
+
+
+			 var firstnum = document.getElementById('mobile1-1');
+
+		  		for(var i=0;  i < 10;i++){
+			 		if(firstnum.children[i].value == phone[0]){
+			       		firstnum.children[i].selected = true;
+		    		}
+			 	}
+			  
+		  		console.log("data:"+data);
+		  		console.log("firstnum: " + firstnum);
+		  }
+		  
+	  })
+  })
+  
 </script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>

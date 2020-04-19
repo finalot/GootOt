@@ -177,6 +177,14 @@ public interface MypageService {
 
 	
 
+	/**
+	 * @작성일 : 2020. 4. 19.
+	 * @작성자 : 신경섭
+	 * @내용 : 주문내역 검색
+	 * @param @param os
+	 * @param @return
+	 * @return int
+	 */
 	int SearchListCount(OrdSearch os);
 
 	ArrayList<Ord> selectSearchList(PageInfo pi, OrdSearch os);
@@ -221,4 +229,8 @@ public interface MypageService {
 	 * @return
 	 */
 	int orderCount5(int memNo);
+
+	int orderCount6(int memNo);
+	
+	int orderCount7(int memNo);
 }

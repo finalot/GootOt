@@ -217,6 +217,13 @@ public class MypageDao {
 		return sqlSession.selectOne("mypageMapper.orderCount5",memNo);
 	}
 
+	public int orderCount6(int memNo) {
+		return sqlSession.selectOne("mypageMapper.orderCount6",memNo);
+	}
+
+	public int orderCount7(int memNo) {
+		return sqlSession.selectOne("mypageMapper.orderCount7",memNo);
+	}
 	
 	
 	

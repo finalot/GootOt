@@ -167,6 +167,16 @@ public class MypageServiceImpl implements MypageService{
 		return mpDao.orderCount5(memNo);
 
 	}
+
+	@Override
+	public int orderCount6(int memNo) {
+		return mpDao.orderCount6(memNo);
+	}
+
+	@Override
+	public int orderCount7(int memNo) {
+		return mpDao.orderCount7(memNo);
+	}
 	
 	
 }

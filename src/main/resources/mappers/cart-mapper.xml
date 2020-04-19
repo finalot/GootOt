@@ -79,6 +79,15 @@
 		<result property="mem_status" column="MEM_STATUS"/>
 		<result property="mem_point" column="MEM_POINT"/>
 	</resultMap>
+	
+	<resultMap id="Address2ResultMap" type="Address">
+		<id property="adNo" column="AD_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="adTitle" column="AD_TITLE"/>
+		<result property="adReceiver" column="AD_RECEIVER"/>
+		<result property="adAddress" column="AD_ADDRESS"/>
+		<result property="adPhone" column="AD_PHONE"/>
+	</resultMap>
 
 	<select id="selectList" parameterType="_int" resultMap="cartResultSet">
 	SELECT * 
@@ -215,6 +224,13 @@
 				AND OPT_SIZE = #{o.ord_size}
 		</foreach>
 	</update>
+
+	<select id="selectAdList" resultMap="Address2ResultMap" >
+	   SELECT * FROM
+	   ADDRESS
+	   WHERE MEM_NO = #{mem_no}
+	
+	</select>
 
 
 </mapper>

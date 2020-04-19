@@ -4265,6 +4265,24 @@ font-family: Montserrat-Bold;
     font-family: Nanum Gothic
 }
 
+.yg_btn_148 {
+
+    height: 38px;
+    width: 140px;
+    line-height: 38px;
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-align: center;
+    vertical-align: middle;
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.05);
+    background: #000;
+    color: #fff;
+    border-radius: 0px;
+    font-family: Nanum Gothic;
+}
+}
+
 #idMsg3 {
 	    color: #fff;
     position: relative;
