@@ -142,7 +142,7 @@ a{
 								<c:forEach var="b" items="${list }">
 								
 							<tr class="xans-record-" id="catecheck">
-							
+							<input id="b_cate_no" name="b_cate_no"  class="b_cate_no" type="hidden" value="${b.b_cate_no}">
 								<td>${b.qna_no }</td>
 								<td>
 									<a onclick="boardmove(this); "id="cate">${b.b_cate_name }
@@ -249,7 +249,7 @@ a{
 
 		
 			<input id="q_no" name="q_no" type="hidden" value="${b.qna_no}">
-			<input id="b_cate_no" name="b_cate_no" type="hidden" value="${b.b_cate_no}">
+			
 					
 				
 				<input id="board_sort" name="board_sort" value="" type="hidden" style="width:100px;">
@@ -455,11 +455,13 @@ a{
 		 
 		 
 		 /* b_cate_no를 못 가지고옴..*/
-/* 		 function boardmove(bm){
-			 var b_cate_no = $(bm).parent().parent().parent().parent().find('input[name=b_cate_no]').val();
+ 		 function boardmove(bm){
+			 
+ 			var b_cate_no=$(bm).parents('tr').find('.b_cate_no').val();
+			// var b_cate_no = $(bm).parent().parent().parent().parent().find('input[name=b_cate_no]').val();
 			 console.log(b_cate_no);
 			 
-		 } */
+		 } 
 		 			 
 	</script>
 	
