@@ -12,6 +12,7 @@ import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.board.vo.Board;
+import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.admin.vo.Design;
 
 @Service("adService")
@@ -137,5 +138,49 @@ public class adminServiceImpl implements adminService{
 	}
 
 
+	@Override
+	public ArrayList<Ord> selectOderList1() {
+		return adDao.selectOderList1();
+	}
+
+
+	@Override
+	public int orderUpdate1(int ordNo) {
+		return adDao.orderUpdate1(ordNo);
+	}
+
+
+	@Override
+	public ArrayList<Ord> selectOderList2() {
+		return adDao.selectOderList2();
+	}
+
+
+	@Override
+	public int orderUpdate2(int ordNo) {
+		return adDao.orderUpdate2(ordNo);
+	}
+
+	@Override
+	public ArrayList<Ord> selectOderList3() {
+		return adDao.selectOderList3();
+	}
+
+
+	@Override
+	public int orderUpdate3(int ordNo) {
+		return adDao.orderUpdate3(ordNo);
+	}
+	
+	@Override
+	public ArrayList<Ord> selectOderList4() {
+		return adDao.selectOderList3();
+	}
+
+
+	@Override
+	public int orderUpdate4(int ordNo) {
+		return adDao.orderUpdate3(ordNo);
+	}
 
 }

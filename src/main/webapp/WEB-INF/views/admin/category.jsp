@@ -80,7 +80,6 @@
                                 </li>
                             </ul>
                         </li>
-                        
                          <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-truck"></i>주문 </a>
@@ -97,7 +96,6 @@
                                  <li>
                                 	<a href="order_4.ad">배송완료 관리</a>
                                 </li>
-                                
                             </ul>
                         </li>
                         

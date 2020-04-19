@@ -36,6 +36,7 @@ import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.board.service.BoardService;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.common.Pagination;
 import com.kh.ot.main.service.MainService;
 import com.kh.ot.main.vo.Product;
@@ -80,25 +81,172 @@ public class menuController {
 		return "admin/customer";
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  :  문태환 
+	 * @내용 	: 오더리스트 상태값 A 리스트
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("order.ad")
-	public String order() {
-		return "admin/order";
+	public ModelAndView order(ModelAndView mv) {
+		
+		ArrayList<Ord> odlist = adService.selectOderList1();
+		
+		
+		mv.addObject("odlist",odlist);
+		mv.setViewName("admin/order");
+		return mv;
 	}
-
+	
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환 
+	 * @내용 	: 오더리스트 A 상태값 변경
+	 * @param response
+	 * @param ordNo
+	 * @throws IOException
+	 */
+	@RequestMapping("orderUpdate1.ad")
+	public void orderUpdate1(HttpServletResponse response , int ordNo) throws IOException {
+		
+		PrintWriter out  = response.getWriter();
+		
+		int result = adService.orderUpdate1(ordNo);
+		
+		if(result > 0) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+		
+	}
+	
+	
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환 
+	 * @내용 	: 오더리스트 상태값 B
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("order_2.ad")
-	public String order_2() {
-		return "admin/order_2";
+	public ModelAndView order2(ModelAndView mv) {
+		
+		ArrayList<Ord> odlist = adService.selectOderList2();
+		
+		
+		mv.addObject("odlist",odlist);
+		mv.setViewName("admin/order_2");
+		return mv;
+	}
+	
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환 
+	 * @내용 	: 오더리스트 B 상태값 변경
+	 * @param response
+	 * @param ordNo
+	 * @throws IOException
+	 */
+	@RequestMapping("orderUpdate2.ad")
+	public void orderUpdate2(HttpServletResponse response , int ordNo) throws IOException {
+		
+		PrintWriter out  = response.getWriter();
+		
+		int result = adService.orderUpdate2(ordNo);
+		
+		if(result > 0) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+		
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환 
+	 * @내용 	: 오더리스트 상태값 C
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("order_3.ad")
-	public String order_3() {
-		return "admin/order_3";
+	public ModelAndView order3(ModelAndView mv) {
+		
+		ArrayList<Ord> odlist = adService.selectOderList3();
+		
+		
+		mv.addObject("odlist",odlist);
+		mv.setViewName("admin/order_3");
+		return mv;
 	}
-
+	
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환 
+	 * @내용 	: 오더리스트 C 상태값 변경
+	 * @param response
+	 * @param ordNo
+	 * @throws IOException
+	 */
+	@RequestMapping("orderUpdate3.ad")
+	public void orderUpdate3(HttpServletResponse response , int ordNo) throws IOException {
+		
+		PrintWriter out  = response.getWriter();
+		
+		int result = adService.orderUpdate3(ordNo);
+		
+		if(result > 0) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+	}
+	
+	
+	
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환 
+	 * @내용 	: 오더리스트 상태값 D
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("order_4.ad")
-	public String order_4() {
-		return "admin/order_4";
+	public ModelAndView order4(ModelAndView mv) {
+		
+		ArrayList<Ord> odlist = adService.selectOderList4();
+		
+		
+		mv.addObject("odlist",odlist);
+		mv.setViewName("admin/order_4");
+		return mv;
 	}
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환 
+	 * @내용 	: 오더리스트 D 상태값 변경
+	 * @param response
+	 * @param ordNo
+	 * @throws IOException
+	 */
+	@RequestMapping("orderUpdate4.ad")
+	public void orderUpdate4(HttpServletResponse response , int ordNo) throws IOException {
+		
+		PrintWriter out  = response.getWriter();
+		
+		int result = adService.orderUpdate4(ordNo);
+		
+		if(result > 0) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+	}
+	
+	
+	
 
 	@RequestMapping("category.ad")
 	public String category() {

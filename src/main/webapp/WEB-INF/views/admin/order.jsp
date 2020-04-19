@@ -227,162 +227,35 @@
             <table id="example" class="table table-striped table-bordered second" style="width:100%; text-align:center;">
                 <thead>
                     <tr>
-                       <th>주문번호</th>
-                       <th>상품명</th>
-                       <th>주문 상태</th>
-                       <th>주문 금액</th>
-                       <th>배송지</th>
-                       <th>주문일</th>
-                       <th>도착예정일</th>          
-                       <th>확인</th>
+                       <th style="width:5%">주문번호</th>
+                       <th style="width:5%">상품번호</th>
+                       <th style="width:15%">상품명</th>
+                       <th style="width:15%">주문 금액</th>
+                       <th style="width:15%">수령인</th>
+                       <th style="width:15%">주문일</th>
+                       <th style="width:5%">확인</th>
                     </tr>
                </thead>
                <tbody>
+               <c:forEach var="o" items="${ odlist}">
                		<tr>
-                    	<td>123111</td>
-                    	<td>아주 멋진 골지나시 외 1....</td>
-                    	<td class="one">주문확인</td>
-                    	<td>12,000 원</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>2020-03-28</td>
-                    	<td>2020-04-01</td>
+                    	<td>${o.ord_no }</td>
+                    	<td>${o.prdt_no }</td>
+                    	<td >${o.prdt_name }</td>
+                    	<td>${o.prdt_sumprice } 원</td>
+                    	<td ><p class="conment-line">${o.ord_receiver }</p>
+                    	<p class="conment-content">
+                    		배송지   ${o.ord_address }<br>
+						   	연락처   ${o.ord_phone }<br>
+					    배송메세지  ${o.ord_message }                   			
+                    	</p>	
+                    	</td>
+                    	<td>${o.ord_date }</td>
                     	<td>
                        		<button type="button" class="btn btn-danger" style="margin-left:1%;">주문확인</button>
                        	</td>
                     </tr>
-                    <tr>
-                    	<td>123111</td>
-                    	<td>아주 멋진 골지나시 외 1....</td>
-                    	<td class="one">주문확인</td>
-                    	<td>12,000 원</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>2020-03-28</td>
-                    	<td>2020-04-01</td>
-                    	<td>
-                       		<button type="button" class="btn btn-danger" style="margin-left:1%;">주문확인</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                    	<td>123111</td>
-                    	<td>아주 멋진 골지나시 외 1....</td>
-                    	<td class="one">주문확인</td>
-                    	<td>12,000 원</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>2020-03-28</td>
-                    	<td>2020-04-01</td>
-                    	<td>
-                       		<button type="button" class="btn btn-danger" style="margin-left:1%;">주문확인</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                    	<td>123111</td>
-                    	<td>아주 멋진 골지나시 외 1....</td>
-                    	<td class="one">주문확인</td>
-                    	<td>12,000 원</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>2020-03-28</td>
-                    	<td>2020-04-01</td>
-                    	<td>
-                       		<button type="button" class="btn btn-danger" style="margin-left:1%;">주문확인</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                    	<td>123111</td>
-                    	<td>아주 멋진 골지나시 외 1....</td>
-                    	<td class="one">주문확인</td>
-                    	<td>12,000 원</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>2020-03-28</td>
-                    	<td>2020-04-01</td>
-                    	<td>
-                       		<button type="button" class="btn btn-danger" style="margin-left:1%;">주문확인</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                    	<td>123111</td>
-                    	<td>아주 멋진 골지나시 외 1....</td>
-                    	<td class="one">주문확인</td>
-                    	<td>12,000 원</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>2020-03-28</td>
-                    	<td>2020-04-01</td>
-                    	<td>
-                       		<button type="button" class="btn btn-danger" style="margin-left:1%;">주문확인</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                    	<td>123111</td>
-                    	<td>아주 멋진 골지나시 외 1....</td>
-                    	<td class="one">주문확인</td>
-                    	<td>12,000 원</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>2020-03-28</td>
-                    	<td>2020-04-01</td>
-                    	<td>
-                       		<button type="button" class="btn btn-danger" style="margin-left:1%;">주문확인</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                    	<td>123111</td>
-                    	<td>아주 멋진 골지나시 외 1....</td>
-                    	<td class="one">주문확인</td>
-                    	<td>12,000 원</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>2020-03-28</td>
-                    	<td>2020-04-01</td>
-                    	<td>
-                       		<button type="button" class="btn btn-danger" style="margin-left:1%;">주문확인</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                    	<td>123111</td>
-                    	<td>아주 멋진 골지나시 외 1....</td>
-                    	<td class="one">주문확인</td>
-                    	<td>12,000 원</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>2020-03-28</td>
-                    	<td>2020-04-01</td>
-                    	<td>
-                       		<button type="button" class="btn btn-danger" style="margin-left:1%;">주문확인</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                    	<td>123111</td>
-                    	<td>아주 멋진 골지나시 외 1....</td>
-                    	<td class="one">주문확인</td>
-                    	<td>12,000 원</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>2020-03-28</td>
-                    	<td>2020-04-01</td>
-                    	<td>
-                       		<button type="button" class="btn btn-danger" style="margin-left:1%;">주문확인</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                    	<td>123111</td>
-                    	<td>아주 멋진 골지나시 외 1....</td>
-                    	<td class="one">주문확인</td>
-                    	<td>12,000 원</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>2020-03-28</td>
-                    	<td>2020-04-01</td>
-                    	<td>
-                       		<button type="button" class="btn btn-danger" style="margin-left:1%;">주문확인</button>
-                       	</td>
-                    </tr>
-                    <tr>
-                    	<td>123111</td>
-                    	<td>아주 멋진 골지나시 외 1....</td>
-                    	<td class="one">주문확인</td>
-                    	<td>12,000 원</td>
-                    	<td>경기도 시흥시 인선길53 123동 456호</td>
-                    	<td>2020-03-28</td>
-                    	<td>2020-04-01</td>
-                    	<td>
-                       		<button type="button" class="btn btn-danger" style="margin-left:1%;">주문확인</button>
-                       	</td>
-                    </tr>
-                    
+                    </c:forEach>
                </tbody>
             </table>
         </div>
@@ -435,5 +308,37 @@
     <script src="/ot/resources/avendor/chartjs/Chart.bundle.min.js"></script>
     <script src="/ot/resources/avendor/select2/select2.min.js"></script>
       <script src="/ot/resources/ajs/main.js"></script>
+        <script>
+      $(".conment-content").slideUp();
+      
+		$('.conment-line').click(function(){
+		$(this).next('.conment-content').slideToggle(500,function(){
+        });
+	})	
+	
+	// 상태값 업데이트
+	$(".btn-danger").click(function(){
+		var ordNo = $(this).parents('tr').children('td').eq(0).text();
+		var ordRemove = $(this).parents('tr')
+		if(confirm("주문확인 하시겠습니까?") == true){
+			$.ajax({
+				url : "orderUpdate1.ad",
+				data : {ordNo : ordNo},
+				success : function(data){
+					if(data == "ok"){
+						alert('주문확인!');
+						ordRemove.remove('tr')
+					}else{
+						alert('주문확인 실패');
+					}
+				},error: function(){
+					alert('주문확인 실패')
+				}
+			})
+		}		
+		})
+	
+	
+    </script>
 </body>
 </html>

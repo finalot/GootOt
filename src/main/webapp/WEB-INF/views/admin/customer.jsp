@@ -88,8 +88,7 @@
                                 </li>
                             </ul>
                         </li>
-                        
-                         <li class="has-sub">
+                          <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-truck"></i>주문 </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
