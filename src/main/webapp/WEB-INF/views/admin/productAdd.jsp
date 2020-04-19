@@ -319,7 +319,7 @@ th{
         	<td>
 	       		대(大) : &nbsp;&nbsp;
 	       	
-	       	<select name="upNo" id="bdivide">
+	       	<select name="upNo" id="bdivide" style="width:150px; height:30px;">
 	       		<option value="">선택1(대분류)</option>
 	       		<c:forEach var="up" items="${ulist }">
 	       			<option value="${up.up_no }">${up.up_name }</option>
@@ -331,7 +331,7 @@ th{
                                     
                                     중(中) : &nbsp;&nbsp;
                                     
-            <select name="downNo" id="mdivide">
+            <select name="downNo" id="mdivide" style="width:150px; height:30px;">
 	       		<option value="">선택2(중분류)</option>
 	       	</select>	
 	       	
@@ -361,16 +361,16 @@ th{
         	<td>
         		<div id="titleImgArea">
         		<!-- input file에 accept에 저장할 경로 미리 설정할 수 있다.  -->
-			<img id="titleImg" width="177px" height="200">
+			<img id="titleImg" width="177px" height="200px" style="width:180px; height:200px;">
 			</div>
-			<div class="fileArea" id="fileArea">
+			<div class="fileArea" id="fileArea" >
 		      				<input type="file" id="thumbnailImg1" 
 		      				name="thumbnailImg" onchange="loadImg(this, 1);" />
 		     			 </div>
         	</td>
         	<td>
-        		<input type="hidden" name="prdtImagePath">
-        		<input type="hidden" name="prdtDetailImagePath">
+        		<!-- <input type="hidden" name="prdtImagePath">
+        		<input type="hidden" name="prdtDetailImagePath"> -->
         	</td>
         </tr>
         <tr>
@@ -705,20 +705,18 @@ th{
 				$('#mdivide').append()
         		var upno=$(this).val();
 				
-        	"<c:forEach var='d' items='${dlist}'>"
+        		"<c:forEach var='d' items='${dlist}'>"
 				
         		if(upno == "${d.up_no}"){
 					$('#mdivide').append('<option value="${d.down_no}">${d.down_name}</option>');
-					
-				}else{
-					$('#mdivide').append('<option>-------</option>')
-				}
+        		}
 				
-        	"</c:forEach>"
+        		"</c:forEach>"
         	
         	
         });
         
+        /* 색깔 DB 색상 뿌리기  */
         $('#color-area').click(function(){
         	
         	"<c:forEach var='pc' items='${pclist}'>"

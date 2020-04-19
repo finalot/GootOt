@@ -275,7 +275,11 @@ public class menuController {
 	@RequestMapping("productList.ad")
 	public ModelAndView productList(ModelAndView mv) {
 		ArrayList<Product> plist = adService.ProductSelectList();
-
+		ArrayList<UpCategory> ulist = adService.UpCategorySelect();
+		ArrayList<DownCategory> dlist = adService.DownCategorySelect();
+		
+		mv.addObject("ulist", ulist);
+		mv.addObject("dlist", dlist);
 		mv.addObject("plist", plist);
 		mv.setViewName("admin/productList");
 		return mv;
