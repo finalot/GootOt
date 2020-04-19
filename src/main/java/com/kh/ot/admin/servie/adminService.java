@@ -11,6 +11,7 @@ import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.member.vo.Member;
 
 public interface adminService{
 
@@ -226,6 +227,13 @@ public interface adminService{
 	 * @return
 	 */
 	public int orderUpdate4(int ordNo);
+
+	/**
+	 * @작성일 : 2020. 4. 19.
+	 * @작성자 : 이서현
+	 * @내용 : 회원관리 리스트 
+	 */
+	public ArrayList<Member> selectMember();
 
 
 }
