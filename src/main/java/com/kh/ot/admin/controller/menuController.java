@@ -310,9 +310,9 @@ public class menuController {
 
 		if (!clist.isEmpty()) {
 			mv.addObject("clist", clist);
-			mv.setViewName("admin/eventAdd");
+			mv.setViewName("admin/coupon");
 		} else {
-			mv.setViewName("admin/eventAdd");
+			mv.setViewName("admin/coupon");
 			System.out.println("리스트 비었다 확인");
 		}
 

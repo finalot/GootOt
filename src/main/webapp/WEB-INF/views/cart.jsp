@@ -688,12 +688,10 @@ $('#delivery_ok').click(function(){
 					       		firstnum.children[i].selected = true;
 				    		}
 					 	}
-				  		var delivery = document.getElementById('delivery');
-				  		delivery.checked = false;
-				  		delivery.value = "off";
+				  	
 				  		
 				},error : function(){
-					alert('에러다')
+					alert('배송지를 선택해 주세요')
 				}
 			}); 
 });
