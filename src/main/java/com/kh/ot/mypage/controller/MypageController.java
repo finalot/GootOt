@@ -53,6 +53,12 @@ public class MypageController {
 		
 		int point = mpService.PointListCount(memNo);
 		
+		int orderCount1 = mpService.orderCount1(memNo);
+		int orderCount2 = mpService.orderCount2(memNo);
+		int orderCount3 = mpService.orderCount3(memNo);
+		int orderCount4 = mpService.orderCount4(memNo);
+		int orderCount5 = mpService.orderCount5(memNo);
+		
 		int listCount = mpService.getOrderListCount(memNo);
 		
 		System.out.println("listCount : " + listCount);
@@ -63,6 +69,12 @@ public class MypageController {
 		
 		System.out.println("list : " + list);
 
+		mv.addObject("orderCount1", orderCount1);
+		mv.addObject("orderCount2", orderCount2);
+		mv.addObject("orderCount3", orderCount3);
+		mv.addObject("orderCount4", orderCount4);
+		mv.addObject("orderCount5", orderCount5);
+		mv.addObject("listCount", listCount);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
    		mv.addObject("list",list);
@@ -85,26 +97,27 @@ public class MypageController {
 		
 		int point = mpService.PointListCount(memNo);
 		
+		int orderCount1 = mpService.orderCount1(memNo);
+		int orderCount2 = mpService.orderCount2(memNo);
+		int orderCount3 = mpService.orderCount3(memNo);
+		int orderCount4 = mpService.orderCount4(memNo);
+		int orderCount5 = mpService.orderCount5(memNo);
+		
 		OrdSearch os = new OrdSearch();
 	
 		if(order_status.equals("all")) {
 			os.setOrd_status("all");
 		} else if(order_status.equals("deposit_complete")) {
-			os.setOrd_status("입금완료");
+			os.setOrd_status("A");
 		} else if(order_status.equals("shipped_standby")) {
-			os.setOrd_status("배송준비중");
+			os.setOrd_status("B");
 		} else if(order_status.equals("shipped_begin")) {
-			os.setOrd_status("배송중");
+			os.setOrd_status("C");
 		} else if(order_status.equals("shipped_complete")) {
-			os.setOrd_status("배송완료");
-		} else if(order_status.equals("order_cancel")) {
-			os.setOrd_status("취소");
-		} else if(order_status.equals("order_exchange")) {
-			os.setOrd_status("교환");
+			os.setOrd_status("D");
 		} else if(order_status.equals("order_return")) {
-			os.setOrd_status("반품");
-		}
-		
+			os.setOrd_status("E");
+		} 
 		
 		os.setStart_date(history_start_date);
 		os.setEnd_date(history_end_date);
@@ -125,6 +138,12 @@ public class MypageController {
 	    	
 	    	mv.addObject("CouponCount", coupon);
 	    	mv.addObject("PointCount", point);
+	    	mv.addObject("orderCount1", orderCount1);
+			mv.addObject("orderCount2", orderCount2);
+			mv.addObject("orderCount3", orderCount3);
+			mv.addObject("orderCount4", orderCount4);
+			mv.addObject("orderCount5", orderCount5);
+	    	mv.addObject("listCount", listCount);
 			mv.addObject("list",list);
 			mv.addObject("pi",pi);
 			mv.addObject("os", os);
@@ -133,18 +152,9 @@ public class MypageController {
 	        return mv;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 : 신경섭
-	 * @내용 : 마이페이지 관심상품 이동
 	 * @param @return
 	 * @return String
 	 */

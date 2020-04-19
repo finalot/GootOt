@@ -230,7 +230,7 @@ public interface MypageService {
 	 */
 	int orderCount5(int memNo);
 
-	int orderCount6(int memNo);
-	
-	int orderCount7(int memNo);
+//	int orderCount6(int memNo);
+//	
+//	int orderCount7(int memNo);
 }

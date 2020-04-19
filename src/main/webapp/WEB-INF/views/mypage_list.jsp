@@ -9,12 +9,13 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>oT.</title>
-<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!--    <link rel="stylesheet" href="/ot/resources/css/Login_style.css"> -->
-   <link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
-   <link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
-   <link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
-   
+    <link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+    <link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
+    <link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
+
+	<jsp:include page="header.jsp"/>	
+
+
 <style>
 .ec-base-paginate1 img {
     vertical-align: none !important;
@@ -25,12 +26,12 @@
     line-height: 0;
     display: table;
 }
+a{
+	cursor : pointer;
+}
 </style>
+
    
-   
-   
-   
-	<jsp:include page="header.jsp"/>	
 </head>
 <body>
 	<c:url var="mWishlist" value="mWishlist.do"/>
@@ -91,10 +92,10 @@
 			<div class="xans-element- xans-myshop xans-myshop-orderhistorytab ec-base-tab tab_style ">
 				<ul class="menu">
 					<li class="tab_class selected">
-						<a href="${mList }">주문내역조회 (<span id="xans_myshop_total_orders">0</span>)</a>
+						<a href="${mList }">주문내역조회 (<span id="xans_myshop_total_orders">${listCount }</span>)</a>
 					</li>
 			        <li class="tab_class_cs">
-			        	<a href="/ot/mypage_list_cancel.jsp">취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">0</span>)</a>
+			        	<a href="/ot/mypage_list_cancel.jsp">취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">${orderCount5}</span>)</a>
 					</li>
 			        <!-- <li class="tab_class_old displaynone">
 			        	<a href="/ot/mypage_list_prev.jsp">이전 주문내역 (<span id="xans_myshop_total_orders_old">0</span>)</a>
@@ -120,31 +121,34 @@
 						</div>
 						
 				        <span class="period">
-				            <a href="#none" class="btnNormal" days="00">
-				            <img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1_on.gif" alt="오늘"></a>
-				            <a href="#none" class="btnNormal" days="07">
-				            <img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2_on.gif" alt="1주일"></a>
-				            <a href="#none" class="btnNormal" days="30">
-				            <img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3_on.gif" alt="1개월"></a>
-				            <a href="#none" class="btnNormal" days="90">
-				            <img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4_on.gif" alt="3개월"></a>
-				            <a href="#none" class="btnNormal" days="180">
-				            <img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5_on.gif" alt="6개월"></a>
+				            <a href="#none" id="d-day0" class="btnNormal" days="00" value="0">
+				            	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1_on.gif" alt="오늘"></a>
+				            <a href="#none"  id="d-day7"class="btnNormal" days="07">
+				            	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2_on.gif" alt="1주일"></a>
+				            <a href="#none"  id="d-day30" class="btnNormal" days="30">
+				            	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3_on.gif" alt="1개월"></a>
+				            <a href="#none"  id="d-day90" class="btnNormal" days="90">
+				            	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4_on.gif" alt="3개월"></a>
+				            <a href="#none"  id="d-day180" class="btnNormal" days="180">
+				            	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5_on.gif" alt="6개월"></a>
 				        </span>
 				        
-        				<input id="history_start_date" name="history_start_date" class="fText hasDatepicker" readonly="readonly" size="10" value="2019-12-15" type="text"><button type="button" class="ui-datepicker-trigger"><img src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif" alt="..." title="..."></button> ~ 
-        				<input id="history_end_date" name="history_end_date" class="fText hasDatepicker" readonly="readonly" size="10" value="2020-03-14" type="text"><button type="button" class="ui-datepicker-trigger"><img src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif" alt="..." title="..."></button>        
+        				<input id="history_start_date" name="history_start_date" class="fText hasDatepicker" type="date">
+        				 ~ 
+        				<input id="history_end_date" name="history_end_date" class="fText hasDatepicker" type="date">
+        				        
         				<input alt="조회" id="order_search_btn" type="image" src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/btn_search.gif">    
        				</fieldset>
+       				
+       				    
+       				
+       				
        				
 					<ul>
 						<li>기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
 						<li>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
 	   			    </ul>
 				</div>
-				
-				<input id="mode" name="mode" value="" type="hidden">
-				<input id="term" name="term" value="" type="hidden">
 			</form>
 			
 			<div class="xans-element- xans-myshop xans-myshop-orderhistorylistitem ec-base-table typeList">
@@ -185,6 +189,7 @@
 					<c:forEach var="o" items="${list }">
 					<tbody class="center ">
 						<tr class="xans-record-">
+						<input id="prdt_no" class="prdt_no" name="prdt_no" type="hidden" value="${o.prdt_no}"/>
 							<td class="number ">
                     			${o.ord_date }                   
                     		<p>
@@ -196,11 +201,11 @@
 		                    <a href="return.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="반품신청">반품신청</a>
                				</td>
                				
-			                <td class="thumb"><a href="/product/detail.html?product_no=9017&amp;cate_no=25">
+			                <td class="thumb"><a onclick="productmove(this)">
 			                	<img src="${o.path }${o.image }" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></a>
 		                	</td>
 			                <td class="product left top">
-                    			<a href="/product/detail.html?product_no=9017&amp;cate_no=25">${o.prdt_name }</a>
+                    			<a onclick="productmove(this)">${o.prdt_name }</a>
                     			<div class="option ">[옵션: ${o.ord_color}]</div>
                    				<p class="gBlank5 displaynone">무이자할부 상품</p>
                 			</td>
@@ -209,7 +214,23 @@
                 				<div class="displaynone"></div>
 							</td>
                 			<td class="state">
-                   				<p style="font-size:13px;">${o.ord_status}</p>
+                   				<p style="font-size:13px;">
+                   				<c:if test="${o.ord_status == 'A' }">
+                   					입금확인
+                   				</c:if>
+                   				<c:if test="${o.ord_status == 'B' }">
+                   					배송준비중
+                   				</c:if>
+                   				<c:if test="${o.ord_status == 'C' }">
+                   					배송중
+                   				</c:if>
+                   				<c:if test="${o.ord_status == 'D' }">
+                   					배송완료
+                   				</c:if>
+                   				<c:if test="${o.ord_status == 'E' }">
+                   					반품
+                   				</c:if>
+                   				</p>
 								<p class="displaynone" style="font-size:13px;">
 									<a href="#" target="_self"></a>
 								</p>
@@ -217,9 +238,9 @@
 									<a href="#none" class="line" onclick="">[]</a>
 								</p>
 								<a href="#" class="displaynone yg_btn_80 yg_btn1 crema-new-review-link crema-applied" data-cafe24-product-link="?board_no=4&amp;product_no=9017&amp;order_id=20200314-0004984" alt="구매후기">구매후기</a>
-								<a href="#none" class="displaynone" onclick="OrderHistory.withdraw('C','20200314-0004984|9017|000J|3263477','F', 'F') yg_btn_80 yg_btn3" alt="취소철회">취소철회</a>
+								<!-- <a href="#none" class="displaynone" onclick="OrderHistory.withdraw('C','20200314-0004984|9017|000J|3263477','F', 'F') yg_btn_80 yg_btn3" alt="취소철회">취소철회</a>
 								<a href="#none" class="displaynone" onclick="OrderHistory.withdraw('E','20200314-0004984|9017|000J|3263477','F', 'F') yg_btn_80 yg_btn3" alt="교환철회">교환철회</a>
-								<a href="#none" class="displaynone" onclick="OrderHistory.withdraw('R','20200314-0004984|9017|000J|3263477','F', 'F') yg_btn_80 yg_btn3" alt="반품철회">반품철회</a>
+								<a href="#none" class="displaynone" onclick="OrderHistory.withdraw('R','20200314-0004984|9017|000J|3263477','F', 'F') yg_btn_80 yg_btn3" alt="반품철회">반품철회</a> -->
                 			</td>
                 			<td>
 			                    <p class="displaynone"><a href="#none" class="line" onclick="OrderHistory.getDetailInfo('?product_no=9017&amp;cate_no=25&amp;order_id=20200314-0004984&amp;ord_item_code=20200314-0004984-01');">[상세정보]</a></p>
@@ -406,5 +427,85 @@
 	</div>
 	
  <jsp:include page="footer.jsp"/>
+ 
+ <script>
+ function productmove(pm){
+	 var prdt_no = $(pm).parents('tr').find('.prdt_no').val();
+	 
+	 console.log(prdt_no);
+	 
+/*
+       상품 상세정보 경로 설정 해야함 
+	location.href=""+prdt_no;
+ */
+	
+ }
+ </script>
+ 
+ <script>
+  				  
+		document.getElementById('history_end_date').value = new Date().toISOString().substring(0, 10);
+		
+		var startday = document.getElementById('history_end_date').value;
+		
+		startday = startday.split("-"); // 2019, 04, 19
+		
+		var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) - 180));
+		
+		var s_day = start.toISOString().substr(0, 10);
+
+		$('#history_start_date').val(s_day);
+
+		$('#d-day0').click(function() {
+					var day = 1;
+
+					var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) + day));
+
+					var s_day = start.toISOString().substr(0, 10);
+
+					$('#history_start_date').val(s_day);
+				});
+
+		$('#d-day7').click(function() {
+					var day = 7;
+
+					var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) - day));
+
+					var s_day = start.toISOString().substr(0, 10);
+
+					$('#history_start_date').val(s_day);
+				});
+
+		$('#d-day30').click(function() {
+					var day = 30;
+
+					var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) - day));
+
+					var s_day = start.toISOString().substr(0, 10);
+
+					$('#history_start_date').val(s_day);
+				});
+
+		$('#d-day90').click(function() {
+					var day = 90;
+
+					var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) - day));
+
+					var s_day = start.toISOString().substr(0, 10);
+
+					$('#history_start_date').val(s_day);
+				});
+
+		$('#d-day180').click(function() {
+					var day = 180;
+
+					var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) - day));
+
+					var s_day = start.toISOString().substr(0, 10);
+
+					$('#history_start_date').val(s_day);
+				});
+	</script>
+ 
 </body>
 </html>

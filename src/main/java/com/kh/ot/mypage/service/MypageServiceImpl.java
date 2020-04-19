@@ -131,11 +131,13 @@ public class MypageServiceImpl implements MypageService{
 	
 	@Override
 	public int SearchListCount(OrdSearch os) {
+		
 		return mpDao.SearchListCount(os);
 	}
 
 	@Override
 	public ArrayList<Ord> selectSearchList(PageInfo pi, OrdSearch os) {
+		
 		return mpDao.selectSearchList(pi, os);
 	}
 
@@ -168,15 +170,15 @@ public class MypageServiceImpl implements MypageService{
 
 	}
 
-	@Override
-	public int orderCount6(int memNo) {
-		return mpDao.orderCount6(memNo);
-	}
-
-	@Override
-	public int orderCount7(int memNo) {
-		return mpDao.orderCount7(memNo);
-	}
+//	@Override
+//	public int orderCount6(int memNo) {
+//		return mpDao.orderCount6(memNo);
+//	}
+//
+//	@Override
+//	public int orderCount7(int memNo) {
+//		return mpDao.orderCount7(memNo);
+//	}
 	
 	
 }
