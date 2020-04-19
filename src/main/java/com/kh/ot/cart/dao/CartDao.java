@@ -204,4 +204,15 @@ public class CartDao {
 		return sqlSession.selectOne("cartMapper.selectAdOne",adNo);
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 구매상품 3% 적립
+	 * @param resultPoint
+	 * @return
+	 */
+	public int updateMemPoint(Member mpo) {
+		return sqlSession.update("cartMapper.updateMemPoint",mpo);
+	}
+
 }

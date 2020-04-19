@@ -135,7 +135,8 @@ public class CartController extends HttpServlet {
 
 
 		Member m =(Member)session.getAttribute("loginMember");
-
+		Member mpo = new Member();
+		
 		ArrayList<Ord> olist = new ArrayList<Ord>();
 		ArrayList<Pay> plist = new ArrayList<Pay>();
 		ArrayList<Cart> noArr = new ArrayList<Cart>();
@@ -160,8 +161,9 @@ public class CartController extends HttpServlet {
 
 			olist.add(o);
 		}
-
-
+		
+		int memPoint = 0;
+		
 		for(int i=0;i<sumpriceArr.length;i++) {
 			Pay p = new Pay();
 			if(i==0) {
@@ -177,9 +179,18 @@ public class CartController extends HttpServlet {
 			p.setPay_usedcp(pay_usedcp);
 			p.setPay_point(pay_point);
 			}
-
+			
+			memPoint +=sumpriceArr[i];
+			
 			plist.add(p);
-		}
+			}
+		
+		int resultPoint = (int) (memPoint*0.03);
+		
+		mpo.setMemNo(m.getMemNo());
+		mpo.setMem_point(resultPoint);
+		
+		
 		int updatePrice = 0;
 		for(int i=0;i<sumpriceArr.length;i++) {
 				updatePrice += 	sumpriceArr[i];
@@ -201,7 +212,7 @@ public class CartController extends HttpServlet {
 			int result5 = cService.updateCoupon(pay_usedcp);
 			int result6 = cService.updatePoint(py);
 			int result7 = cService.updateProduct(olist);
-			
+			int result8 = cService.updateMemPoint(mpo);
 			
 			
 			session.setAttribute("olist", "");
