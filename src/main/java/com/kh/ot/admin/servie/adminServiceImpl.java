@@ -189,7 +189,9 @@ public class adminServiceImpl implements adminService{
 	public ArrayList<Member> selectMember() {
 		return adDao.selectMember();
 
-		
+	}
+	
+	@Override
 	public int DesignPrdt(Design d) {
 		return adDao.Designprdt(d);
 	}

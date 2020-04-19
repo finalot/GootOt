@@ -294,6 +294,7 @@ public class adminDao {
 
 	public ArrayList<Member> selectMember() {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectMember");
+	}
 	/**
 	 * @작성일  : 2020. 4. 19.
 	 * @작성자  : 문태환
@@ -315,5 +316,4 @@ public class adminDao {
 	public Design selectPrdtImg() {
 		return sqlSession.selectOne("adminMapper.selectPrdtImg");
 	}
-	 
 }

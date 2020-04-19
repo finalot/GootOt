@@ -659,7 +659,7 @@ margin-right: 3%;
 <!-- 새로운 배송지 적용 스크립트 -->
 $('#delivery_ok').click(function(){
 
-			var adNo =	$('#new_delivery').val();
+			var adNo =$('#new_delivery').val();
 			
 			$.ajax({
 				url: "selectAdOne.do",
@@ -688,6 +688,10 @@ $('#delivery_ok').click(function(){
 					       		firstnum.children[i].selected = true;
 				    		}
 					 	}
+				  		var delivery = document.getElementById('delivery');
+				  		delivery.checked = false;
+				  		delivery.value = "off";
+				  		
 				},error : function(){
 					alert('에러다')
 				}
@@ -803,13 +807,15 @@ $('#delivery_ok').click(function(){
 
 <!-- 주소관련 스크립트 -->
 <script>
+
+$(function(){
+	
 	console.log($('#pro-price').text())
 
 	var address =new Array();
 	var phone = new Array();
 	var count=0
 	var count1=0
-	$(function(){
 	//주소 잘라서 정보 뿌리기
 	  "<c:forTokens items='${sessionScope.loginMember.memAddress}'  delims=','  var='address'>"
 	  	address[count] = "${address}"
@@ -835,8 +841,43 @@ $('#delivery_ok').click(function(){
 	       		firstnum.children[i].selected = true;
     		}
 	 	}
-	});
+});
 
+$('#delivery').click(function(){
+	
+	console.log($('#pro-price').text())
+
+	var address =new Array();
+	var phone = new Array();
+	var count=0
+	var count1=0
+	$('#userName-1').val("${sessionScope.loginMember.memName}");
+	//주소 잘라서 정보 뿌리기
+	  "<c:forTokens items='${sessionScope.loginMember.memAddress}'  delims=','  var='address'>"
+	  	address[count] = "${address}"
+	  	count++;
+	  " </c:forTokens>"
+	  $('#zipCode-1').val(address[0])
+	  $('#address1-1').val(address[1])
+	  $('#address2-1').val(address[2])
+	  //폰번호 잘라서 정보 뿌리기
+	  "<c:forTokens items='${sessionScope.loginMember.memPhone}'  delims='-'  var='phone'>"
+	  phone[count1] = "${phone}"
+	  count1++;
+	  " </c:forTokens>"
+
+	   $('#mobile2-1').val(phone[1])
+	  $('#mobile3-1').val(phone[2])
+
+
+	 var firstnum = document.getElementById('mobile1-1');
+
+  		for(var i=0;  i < 10;i++){
+	 		if(firstnum.children[i].value == phone[0]){
+	       		firstnum.children[i].selected = true;
+    		}
+	 	}
+});
 
 	</script>
 <!-- 주소관련 스크립트 -->
@@ -1217,49 +1258,6 @@ $('.close').click(function(){
 
  });
 
- /*  $('#new_delivery').click(function(){
-	  
-	  var adNo=$('#new_delivery').val();
-	  
-	  
-	  $.ajax({
-		  url : "cartbutton.do",
-		  data :{adNo : adNo},
-		  success : function(data){
-			    var address =new Array();
-				var phone = new Array();
-				var count=0
-				var count1=0
-			  
-			  "<c:forTokens items='${ad.adAddress}'  delims=','  var='address'>"
-			  	address[count] = "${address}"
-			  	count++;
-			  " </c:forTokens>"
-			  $('#zipCode-1').val(address[0])
-			  $('#address1-1').val(address[1])
-			  $('#address2-1').val(address[2])
-			  //폰번호 잘라서 정보 뿌리기
-			  "<c:forTokens items='${ad.adPhone}'  delims='-'  var='phone'>"
-			  phone[count1] = "${phone}"
-			  count1++;
-			  " </c:forTokens>"
-
-			   $('#mobile2-1').val(phone[1])
-			  $('#mobile3-1').val(phone[2])
-
-
-			 var firstnum = document.getElementById('mobile1-1');
-
-		  		for(var i=0;  i < 10;i++){
-			 		if(firstnum.children[i].value == phone[0]){
-			       		firstnum.children[i].selected = true;
-		    		}
-			 	}
-		  		console.log("data:"+data);
-		  		console.log("firstnum: " + firstnum);
-		  }
-	  }) 
-  })*/
   
 </script>
 <!--===============================================================================================-->
