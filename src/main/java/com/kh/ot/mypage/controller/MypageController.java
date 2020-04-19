@@ -89,13 +89,13 @@ public class MypageController {
 	
 		if(order_status.equals("all")) {
 			os.setOrd_status("all");
-		} else if(order_status.equals("shipped_before")) {
+		} else if(order_status.equals("deposit_complete")) {
 			os.setOrd_status("입금완료");
 		} else if(order_status.equals("shipped_standby")) {
 			os.setOrd_status("배송준비중");
 		} else if(order_status.equals("shipped_begin")) {
 			os.setOrd_status("배송중");
-		} else if(order_status.equals("shipped_complate")) {
+		} else if(order_status.equals("shipped_complete")) {
 			os.setOrd_status("배송완료");
 		} else if(order_status.equals("order_cancel")) {
 			os.setOrd_status("취소");
