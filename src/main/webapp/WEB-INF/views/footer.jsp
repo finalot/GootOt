@@ -220,8 +220,9 @@
 							<ul class="header-cart-wrapitem">
 								<li class="header-cart-item">
 									<div class="header-cart-item-img">
+										<img src="${c.path }${c.image}">
 										<a href ="${cartbutton }">
-										<img src="<c:url value="/resources/images/item-cart-01.jpg"/>" alt="IMG" ></a>
+								
 									</div>
 								
 									<div class="header-cart-item-txt">
@@ -230,7 +231,7 @@
 										</a>
 
 										<span class="header-cart-item-info">
-											1 x $19.00
+											${c.prdt_count} x ${c.prdt_price } won
 										</span>
 									</div>
 								</li>
@@ -240,7 +241,10 @@
 							</c:forEach>
 
 							<div class="header-cart-total">
-								Total: $75.00
+							Total :
+								<font id="totalPrice" class="format-money"></font>
+								<!-- Total: $75.00 -->
+								won
 							</div>
 
 							<div class="header-cart-buttons">
@@ -644,6 +648,19 @@ jQuery('.format-money').text(function() {
         jQuery(this).text().format()
     );	
 });
+</script>
+
+<script>
+<!--카트 총금액 스크립트-->
+$(function() {
+	var totalPrice = 0;
+	
+	  "<c:forEach var ='c' items='${list}'>"
+	  			totalPrice +=Number("${c.prdt_sumprice }")
+	  "</c:forEach>"
+})
+
+
 </script>
 
 </body>
