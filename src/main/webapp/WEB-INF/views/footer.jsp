@@ -203,28 +203,28 @@
 
 		
 		<button class="header-icon1 js-show-header-dropdown" style="width:88%;height:12%;background:snow;margin-top:-650%;border-radius:10%;" >
-			
-					<div class="header-wrapicon2 m-r-13" style="width:75%;height:75%;">
+					
+				<div class="header-wrapicon2 m-r-13" style="width:75%;height:75%;">
 						<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-02.png"/>" onmouseover="this.src='/ot/resources/images/icons/icon-header-02-2.png'"
 						onmouseout="this.src='/ot/resources/images/icons/icon-header-02.png'" class="header-icon1 js-show-header-dropdown" alt="ICON" >
 						
 						<!-- <img src="기본 이미지 주소" onmouseover="this.src='마우스 오버 상태의 이미지 주소'" 
 						onmouseout="this.src='기본 이미지 주소'"> -->
 						
-						
-						<span class="header-icons-noti">0</span> 
+					
+						<span class="header-icons-noti" id="p_count"></span> 
 						<c:url var="cartbutton" value="cartbutton.do"/>
 						<!-- Header cart noti -->
+						<%-- <c:forEach var="c" items="${list }"> --%>
 						<div class="header-cart header-dropdown" style="border-radius:10px;">
-						<c:forEach var="c" items="${list }">
 							<ul class="header-cart-wrapitem">
-								<li class="header-cart-item">
+								<c:forEach var="c" items="${list }">
+								<li name="p_count" class="header-cart-item">
 									<div class="header-cart-item-img">
-										<img src="${c.path }${c.image}">
 										<a href ="${cartbutton }">
-								
+										<img src="${c.path }${c.image}"/></a>
 									</div>
-								
+
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
 											${c.prdt_name }
@@ -235,16 +235,11 @@
 										</span>
 									</div>
 								</li>
-
-								
+								</c:forEach>
 							</ul>
-							</c:forEach>
 
-							<div class="header-cart-total">
-							Total :
-								<font id="totalPrice" class="format-money"></font>
-								<!-- Total: $75.00 -->
-								won
+							<div id="prdtPrice" class="header-cart-total">
+								Total: $75.00
 							</div>
 
 							<div class="header-cart-buttons">
@@ -263,7 +258,9 @@
 								</div>
 							</div>
 						</div>
+						
 					</div>
+					
 		</button>
 	
 		<c:url var="loginView" value="loginView.do"/>		
@@ -409,6 +406,25 @@
 <!--===============================================================================================-->
 	<script src="http://localhost:82/socket.io/socket.io.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	<!-- 리모콘 장바구니 -->
+	<script>
+	$(function(){
+		
+	var p_count = document.getElementsByName('p_count');
+	$('#p_count').text(p_count.length);		
+	});
+	
+	var sumPrice = 0;
+	
+	"<c:forEach var='c' items='${list }'>"
+		
+	sumPrice += (Number("${c.prdt_count}") * Number("${c.prdt_price }"));
+	"</c:forEach>"
+	
+	$('#prdtPrice').text(sumPrice+" Won");
+	
+	</script>
+	
 	<script>
 	$(document).ready(function(){
 		
@@ -651,14 +667,7 @@ jQuery('.format-money').text(function() {
 </script>
 
 <script>
-<!--카트 총금액 스크립트-->
-$(function() {
-	var totalPrice = 0;
-	
-	  "<c:forEach var ='c' items='${list}'>"
-	  			totalPrice +=Number("${c.prdt_sumprice }")
-	  "</c:forEach>"
-})
+
 
 
 </script>

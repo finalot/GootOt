@@ -234,7 +234,7 @@
 	<select id="selectAdOne"  resultMap="Address2ResultMap" >
 	  SELECT * FROM
 	   ADDRESS
-	   WHERE MEM_NO = #{mem_no}
+	   WHERE AD_NO = #{adNo}
 	</select>
 
 	<select id="updateMemPoint" parameterType="Member" >

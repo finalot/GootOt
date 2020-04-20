@@ -301,9 +301,9 @@ public class CartController extends HttpServlet {
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		
+		System.out.println("adno : " + adNo);
 		Address ad = cService.selectAdOne(adNo);
-		
+		System.out.println("Ad:" +ad);
 		JSONObject job = new JSONObject();
 		
 		job.put("ad", ad);
