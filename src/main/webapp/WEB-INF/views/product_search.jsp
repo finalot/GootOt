@@ -89,11 +89,7 @@
 						</div>
 
 					</div>
-					
-					
-<c:url var="product_detail" value="product_detail.do">
-	<c:param name="product_detail" value="p1" />
-</c:url>
+
 
 
 
@@ -186,7 +182,9 @@
 										${p.prdtName }
 
 									</a>
-
+<c:url var="product_detail" value="product_detail.do">
+	<c:param name="product_detail" value="${p.prdtNo }" />
+</c:url>
 									<span class="block2-price m-text6 p-r-5">
 									<c:if test="${p.prdtSale ne 0 }">
 	<small><font class="format-money" style="text-decoration:line-through">${ p.prdtPrice}</font>-><font class="format-money">${ p.prdtPrice-((p.prdtPrice/100)*p.prdtSale)}</font> won</small>&nbsp;&nbsp;

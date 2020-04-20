@@ -48,6 +48,12 @@
 			<result property="prdtNo" column="PRDT_NO"/>
 		</resultMap> 
 		
+		<resultMap type="productbenner" id="PBResultSet">
+			<id property = "pbImg" column="OT_EVENTIMG"/>
+			<result property = "pbImgPath" column="OT_EVENTIMG_PATH"/>
+			<result property="pbComment" column="OT_EVENT_COMMENT"/>
+		</resultMap> 
+		
 	 <resultMap type="MaindownCategory" id="MaindownCategoryResultSet">
 			<id property = "downNo" column="DOWN_NO"/>
 			<result property="upNo" column="UP_NO"/>
@@ -76,6 +82,13 @@
 	  	WHERE PRDT_NO LIKE #{product2}||'%'
 	  	AND PRDT_STATUS = 'Y'
 		</select>
+		
+		<select id="getSearchListCount" parameterType="String" resultType="_int">
+	  	SELECT COUNT(*)
+	  	FROM PRDT
+	  	WHERE PRDT_NAME LIKE '%'||#{search}||'%'
+	  	AND PRDT_STATUS = 'Y'
+		</select>
   
 		<select id="selectProduct1" parameterType="_int" resultMap="productResultSet">
 		SELECT *
@@ -89,6 +102,14 @@
 		SELECT *
 		FROM PRDT
 		WHERE PRDT_NO LIKE #{product2}||'%'
+		AND PRDT_STATUS = 'Y'
+		ORDER BY PRDT_NO DESC
+		</select>
+		
+		<select id="selectSearchProduct" parameterType="String" resultMap="productResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NAME LIKE '%'||#{search}||'%'
 		AND PRDT_STATUS = 'Y'
 		ORDER BY PRDT_NO DESC
 		</select>
@@ -107,6 +128,14 @@
 		GROUP BY PRDT_NO, OPT_COLOR
 		</select>
 		
+		<select id="selectSearchProductOption" parameterType="String" resultMap="product_optResultSet">
+		SELECT P.PRDT_NO PRDT_NO, PO.OPT_COLOR OPT_COLOR
+		FROM PRDT P
+        JOIN PRDT_OPT PO ON(P.PRDT_NO = PO.PRDT_NO)
+		WHERE P.PRDT_NAME LIKE '%'||#{search}||'%'
+		GROUP BY P.PRDT_NO, PO.OPT_COLOR
+		</select>
+		
 		<select id="selectProductColor1" parameterType="_int" resultMap="product_colorResultSet">
 		SELECT *
 		FROM P_COLOR
@@ -119,6 +148,11 @@
 		
 		</select>
 		
+<select id="selectPB" resultMap="PBResultSet">
+		SELECT *
+		FROM PRDT_DESIGN
+		
+		</select>
 	
   <select id="selectCategory1" parameterType="_int" resultMap="MaindownCategoryResultSet">
 		SELECT *

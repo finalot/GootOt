@@ -581,7 +581,7 @@
 	function wish(arguments){
 	
 			
-			var nameProduct = $('.block2-btn-addcart').parent().parent().parent().find('.block2-name').html();
+			var nameProduct = $('#'+arguments+'a').parent().parent().parent().find('.block2-name').html();
 			var productId = arguments;
 				if("${loginMember.memId}"==""){
 					alert('로그인후 이용해주세요');

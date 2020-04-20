@@ -5,6 +5,7 @@ public class productbenner {
 	private String pbImg;
 	private String pbImgPath;
 	private String pbComment;
+	
 	public String getPbComment() {
 		return pbComment;
 	}
