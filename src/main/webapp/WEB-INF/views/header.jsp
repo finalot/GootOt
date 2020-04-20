@@ -506,7 +506,6 @@ font-size: 9px !important;
 							dataType:"json",
 							async: false,
 							success:function(data){
-								console.log(data);
 								
 								for(var i in data){
 									

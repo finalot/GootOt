@@ -58,6 +58,14 @@ public class MainServiceImpl implements MainService {
 		return mainDao.selectOptionList(product_detail);
 	}
 	@Override
+	public ArrayList<Product_opt> selectOptionList22(int product_detail) {
+		return mainDao.selectOptionList22(product_detail);
+	}
+	@Override
+	public ArrayList<Product_opt> selectOptionList33(int product_detail) {
+		return mainDao.selectOptionList33(product_detail);
+	}
+	@Override
 	public ArrayList<Product_color> selectColorList1() {
 		return mainDao.selectColorList1();
 	}

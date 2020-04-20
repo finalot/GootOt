@@ -48,6 +48,8 @@ public interface MainService {
 	 * @return
 	 */
 	ArrayList<Product_opt> selectOptionList(int product_detail);
+	ArrayList<Product_opt> selectOptionList22(int product_detail);
+	ArrayList<Product_opt> selectOptionList33(int product_detail);
 	ArrayList<Product_opt> selectOptionList1(int product1);
 	ArrayList<Product_opt> selectOptionList2(int product2);
 

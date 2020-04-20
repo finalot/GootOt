@@ -652,7 +652,8 @@ $(function(){
 				<div class="p-t-33 p-b-60" 
 					style="margin-left: -10%;margin-top:-20px; height: 300px; overflow-y: scroll;">
 					
-					
+					<%String prNo = request.getParameter("product_detail"); %>
+				<input type="hidden" id="prNo_val"value="<%=prNo %>">
 					
 					
 					<!-- 셀렉트시작 -->
@@ -670,10 +671,9 @@ $(function(){
 								style="padding-top: 10px; background-color: white; line-height: 20px; color: #555555; padding-left: 22px; right: 10px; height: 45px; display: block; border: 1px solid #e6e6e6; border-radius: 2px; overflow: hidden; width: 79%;">
 								<select id="select1" style="border:none;background:none;outline: 0;width:98%;" name="size" >
 									<option>--------</option>
-									<option>XS</option>
-									<option>S</option>
-									<option>M</option>
-									<option>L</option>
+									<c:forEach var="poo" items="${ polist2 }">
+									<option>${poo.size}</option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -687,22 +687,22 @@ $(function(){
 
 								<select id="select2" style="border:none;background:none;outline: 0;width:98%;hover:black;" name="color">
 									<option>--------</option>
-									<option>블랙</option>
-									<option>그레이</option>
-									<option>그린</option>
-									<option>네온옐로우</option>
+									<c:forEach var="poo" items="${ polist }">
+									<option>${poo.optColor}</option>
+									</c:forEach>
 								</select><div/>
 
-								<div
-									style="width: 17px; height: 17px; background: black; float: left; border: 1px solid black;"></div>
-								<div
-									style="width: 17px; height: 17px; background: gray; margin-left: 3px; float: left; border: 1px solid black;"></div>
-								<div
-									style="width: 17px; height: 17px; background: #39761F; margin-left: 3px; float: left; border: 1px solid black;"></div>
-								<div
-									style="width: 17px; height: 17px; background: #E4F650; margin-left: 3px; float: left; border: 1px solid black;"></div>
-								<div
-									style="width: 17px; height: 17px; background: none; margin-left: 3px;"></div>
+								<c:forEach var="po" items="${ polist }">
+
+										<c:forEach var="pc" items="${ pclist }">
+
+										<c:if test="${ po.optColor eq pc.pcName }">
+										<div style="width:14px;height:14px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
+										</c:if>
+
+										</c:forEach>
+
+								</c:forEach>
 							</div>
 						
 					</div>
@@ -719,63 +719,60 @@ $(function(){
 				</div>
 <script>
     var count = 2;
-    
+    var prNo = $('#prNo_val').val();
 function option1Add(){
+	$.ajax({
+		url:"detailSelect.do",
+		data:{product_detail:prNo},
+		dataType:"json",
+		success:function(data){
+			
+			const str = 
+			   	 '<div id="select'+count+'oo" class="selectItem">'+
+			   	 '+<div style="display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; -ms-align-items: center; align-items: center;">'+
+										'<div'+
+										'style="font-family: Montserrat-Regular; font-size: 15px; color: #666666; line-height: 1.8; width: 21%; text-align: center;">'+count+'.Size</div>'+
+										'<div'+ 
+											'style="padding-top: 10px; background-color: white; line-height: 20px; color: #555555; padding-left: 22px; right: 10px; height: 45px; display: block; border: 1px solid #e6e6e6; border-radius: 2px; overflow: hidden; width: 79%;">'+
+											'<select id="select1" style="border:none;background:none;outline: 0;width:98%;" name="size" >'+												
+											'<option>--------</option>'+
+												'for(var i in data){'+
+												'<option>`+data[i].size+`</option>'+
+												'}'+
+											'</select>'+
+										'</div>'+
+									'</div>'+
+									'<div style="height: 3px;"></div>'+
+									'<div style="display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; -ms-align-items: center; align-items: center;">'+
+										'<div'+
+										'style="font-family: Montserrat-Regular; font-size: 15px; color: #666666; line-height: 1.8; width: 21%; text-align: center;">'+count+'.Color</div>'+
+										'<div'+
+											'style="padding-top: 10px; background-color: white; line-height: 20px; color: #555555; padding-left: 22px; right: 10px; height: 57px; display: block; border: 1px solid #e6e6e6; border-radius: 2px; overflow: hidden; width: 79%;">'+
+
+											'<select id="select2" style="border:none;background:none;outline: 0;width:98%;hover:black;" name="color">'+
+												'<option>--------</option>'+
+												'<option>--------</option>'+
+											'</select><div/>'+
+											'<div'
+											'style="width: 17px; height: 17px; background: black; float: left; border: 1px solid black;"></div>'+
+											'<div style="width: 17px; height: 17px; background: gray; margin-left: 3px; float: left; border: 1px solid black;"></div>'+
+											'<div style="width: 17px; height: 17px; background: #39761F; margin-left: 3px; float: left; border: 1px solid black;"></div>'+
+											'<div style="width: 17px; height: 17px; background: #E4F650; margin-left: 3px; float: left; border: 1px solid black;"></div>'+
+											'<div style="width: 17px; height: 17px; background: none; margin-left: 3px;"></div>'+
+										'</div>'+
+									'</div>'+
+									'</div>'+
+			'<br id="select'+count+'a">';
+		
+$("#select1o").append(str); 
+count++;
+	},error:function(){
+			alert("select불러오기 실패데스네");
+		}
+	})
     
-    const str = 
-   	 `
-    <!-- 셀렉2 -->
-    	<div id="select`+count+`oo" class="selectItem">
-						<div
-							style="display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; -ms-align-items: center; align-items: center;">
-							<div
-								style="font-family: Montserrat-Regular; font-size: 15px; color: #666666; line-height: 1.8; width: 21%; text-align: center;">`+count+`.Size</div>
-
-							<div 
-								style="padding-top: 10px; background-color: white; line-height: 20px; color: #555555; padding-left: 22px; right: 10px; height: 45px; display: block; border: 1px solid #e6e6e6; border-radius: 2px; overflow: hidden; width: 79%;">
-								<select id="select1" style="border:none;background:none;outline: 0;width:98%;" name="size" >
-									<option mouseover="background:black">--------</option>
-									<option>XS</option>
-									<option>S</option>
-									<option>M</option>
-									<option>L</option>
-								</select>
-							</div>
-						</div>
-						<div style="height: 3px;"></div>
-						<div style="display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; -ms-align-items: center; align-items: center;">
-							<div
-								style="font-family: Montserrat-Regular; font-size: 15px; color: #666666; line-height: 1.8; width: 21%; text-align: center;">`+count+`.Color</div>
-
-							<div
-								style="padding-top: 10px; background-color: white; line-height: 20px; color: #555555; padding-left: 22px; right: 10px; height: 57px; display: block; border: 1px solid #e6e6e6; border-radius: 2px; overflow: hidden; width: 79%;">
-
-								<select id="select2" style="border:none;background:none;outline: 0;width:98%;hover:black;" name="color">
-									<option>--------</option>
-									<option>블랙</option>
-									<option>그레이</option>
-									<option>그린</option>
-									<option>네온옐로우</option>
-								</select><div/>
-
-								<div
-									style="width: 17px; height: 17px; background: black; float: left; border: 1px solid black;"></div>
-								<div
-									style="width: 17px; height: 17px; background: gray; margin-left: 3px; float: left; border: 1px solid black;"></div>
-								<div
-									style="width: 17px; height: 17px; background: #39761F; margin-left: 3px; float: left; border: 1px solid black;"></div>
-								<div
-									style="width: 17px; height: 17px; background: #E4F650; margin-left: 3px; float: left; border: 1px solid black;"></div>
-								<div
-									style="width: 17px; height: 17px; background: none; margin-left: 3px;"></div>
-							</div>
-						</div>
-						<!-- 셀렉2 -->
-						</div>
-<br id="select`+count+`a">`;
+    
 	
-    $("#select1o").append(str); 
-    count++;
     
 }
 

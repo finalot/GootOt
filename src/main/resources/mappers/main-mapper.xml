@@ -128,9 +128,22 @@
 		</select>
 		
 		<select id="selectProductOption" parameterType="_int" resultMap="product_optResultSet">
-		SELECT *
+		SELECT OPT_COLOR
 		FROM PRDT_OPT
 		WHERE PRDT_NO = #{product_detail}
+		GROUP BY OPT_COLOR
+		</select>
+		<select id="selectProductOption22" parameterType="_int" resultMap="product_optResultSet">
+		SELECT OPT_SIZE
+		FROM PRDT_OPT
+		WHERE PRDT_NO = #{product_detail}
+		GROUP BY OPT_SIZE
+		</select>
+		<select id="selectProductOption33" parameterType="_int" resultMap="product_optResultSet">
+		SELECT OPT_SIZE,OPT_COLOR
+		FROM PRDT_OPT
+		WHERE PRDT_NO = #{product_detail}
+		GROUP BY OPT_SIZE,OPT_COLOR
 		</select>
 		
 		<select id="selectProductOption2" parameterType="_int" resultMap="product_optResultSet">

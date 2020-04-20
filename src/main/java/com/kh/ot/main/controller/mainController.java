@@ -179,15 +179,51 @@ public class mainController {
 		
 		ArrayList<Product> pdlist = mainService.selectDetailList(product_detail);
 		ArrayList<Product_opt> polist = mainService.selectOptionList(product_detail);
-		
+		ArrayList<Product_opt> polist2 = mainService.selectOptionList22(product_detail);
+		ArrayList<Product_color> pclist = mainService.selectColorList2();
 		mv.addObject("pdlist", pdlist);
 		mv.addObject("polist", polist);
+		mv.addObject("polist2", polist2);
+		mv.addObject("pclist", pclist);
 		
 		mv.setViewName("productDetail");
 
 		return mv;
 		
 	}
+	
+	/**
+	 * 이대윤 디테일 셀렉트 에이작스
+	 * 
+	 */
+	@RequestMapping("detailSelect.do")
+	public void detailSelect1(HttpServletResponse response,int product_detail) throws JsonIOException, IOException {
+
+		ArrayList<Product_opt> polist3 = mainService.selectOptionList33(product_detail);
+//		ArrayList<Product_opt> polist2 = mainService.selectOptionList22(product_detail);
+
+		response.setContentType("application/json; charset=utf-8");
+		Gson gson = new Gson();
+
+		gson.toJson(polist3, response.getWriter());
+
+	}
+	/*
+	 * @RequestMapping("detailSelect2.do") public void
+	 * detailSelect2(HttpServletResponse response) throws JsonIOException,
+	 * IOException {
+	 * 
+	 * // ArrayList<Product_opt> polist =
+	 * mainService.selectOptionList(product_detail); ArrayList<Product_opt> polist2
+	 * = mainService.selectOptionList22(product_detail);
+	 * 
+	 * response.setContentType("application/json; charset=utf-8"); Gson gson = new
+	 * Gson();
+	 * 
+	 * gson.toJson(polist2, response.getWriter());
+	 * 
+	 * }
+	 */
 
 	/**
 	 * @작성일 : 2020. 4. 2.
