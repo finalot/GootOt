@@ -368,13 +368,16 @@ th{
 		      				name="thumbnailImg" onchange="loadImg(this, 1);" />
 		     			 </div>
         	</td>
+        	
+        </tr>
+        <tr>
+        	<th> 상세 설명</th>
         	<td>
-        		<!-- <input type="hidden" name="prdtImagePath">
-        		<input type="hidden" name="prdtDetailImagePath"> -->
+        		<textarea id="prdtComment" cols="100" rows="3" style="overflow-y:scroll" placeholder="상세설명을 입력해주세요"></textarea>
         	</td>
         </tr>
         <tr>
-        	<th><span style="color:red">*</span> 상세설명</th>
+        	<th><span style="color:red">*</span> 상세이미지 </th>
         	<td>
         		<input type="file" id="descrptionImg" name="descrptionImg" style="border:white 1px;">
         	</td>
@@ -386,28 +389,27 @@ th{
         		
         		<c:forEach var="pc" items="${pclist }">
         		<c:if test="${not empty pc.pcRgb}">
-        			<div id="selectColor" style="width:20px;height:20px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
+        			<img id="selectColor" class="s1" style="width:20px;height:20px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;" name="${pc.pcName }" onclick="ctest(this);">
 				</c:if>
         		</c:forEach>
-        		
-        		
         		 <div id="color-area" style="display: block;" >
-                    <div id="color-div" class="col-sm-12 col-md-6">
+                    <div id="	" class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <div class="input-group" style="    width: 105px" >
-                                <input type="text" style=" padding-right: 0%;;padding-left: 36%;"  id="text-color" class="form-control demo" value="#ff0000" />
+                                <input type="text" style=" padding-right: 0%;;padding-left: 36%;"  id="text-color" class="form-control demo" value="ffffff" />
 								
-                                  <span>등록 색상명 </span> <input type="text" id="color-name">
+                                  <span>등록 색상명 </span> <input type="text" id="color-name" >
                             </div>
                         </div>
                     </div>
                     </div>
+                    
          	</td>
         </tr>
         <tr>
         	<th><span style="color:red">*</span>사이즈 설정</th>
         	<td>상의/모자
-        	 <select id="top-select" style="background:rgba(190, 181, 181, 0.24);margin-left: 10px;margin-right: 10px" disabled>
+        	 <select id="top-select" style="background:rgba(190, 181, 181, 0.24);margin-left: 10px;margin-right: 10px">
                        <option></option>
                        <option>FREE</option>
                        <option>XS</option>
@@ -417,7 +419,7 @@ th{
                        <option>XL</option>
                 </select>
 				하의/신발        	
-        		<input id="bottom-select" type="number" style="background:rgba(190, 181, 181, 0.24);border: 1px solid #333330; margin-left: 10px;width: 75px;" readonly>
+        		<input id="bottom-select" type="number" style="background:rgba(190, 181, 181, 0.24);border: 1px solid #333330; margin-left: 10px;width: 75px;">
         	
         	</td>
         </tr>
@@ -437,7 +439,6 @@ th{
     <table style="width: 90%;">
     	<thead>
     		<tr>
-    		<th>상품코드</th>
     		<th>상품명</th>
     		<th>이미지</th>
     		<th>사이즈</th>
@@ -598,39 +599,15 @@ th{
   			var topselect = $('#top-select').val();
   			var bottomselect = $('#bottom-select').val();
   			var imgsrc= $('#titleImg').val();
+  			var name = $('#product_name').val();
+  			
   			if(topselect == null){
   				topselect = "";
   			}
   			if(bottomselect == null){
   				bottomselect = "";
   			}
-  		/*  주완님 코딩  
-  			var count = 0;
-  	       function productOptionAdd(){
-  	           var option1 = $('#Option1').val();
-  	           var option2 = $('#Option2').val();
-  	           var stock = $('#stock').val();
-  	           
-  	           
-  	          $('#product-add-Option').append('<tr>'+
-  	                  '<th scope="row">'+count+'</th>'+
-  	                  '<td id="Option_1_'+count+'" ><input name="Product_OptionVOList['+count+'].option_1" type="text" class="form-control" value="'+option1+'"/></td>'+
-  	                  '<td id="Option_2" ><input name="Product_OptionVOList['+count+'].option_2" type="text" class="form-control" value="'+option2+'"/></td>'+
-  	                  '<td id="op_Stock" ><input id="checkStock" name="Product_OptionVOList['+count+'].op_Stock" type="number" class="form-control" value="'+stock+'" /></td>'+
-  	                  '<td></td>'+
-  	                  '</tr>');
-  	          
-  	          count++;   
-  	          
-  	        <th>상품코드</th>
-    		<th>상품명</th>
-    		<th>이미지</th>
-    		<th>사이즈</th>
-    		<th>색상</th>
-    		<th>수량</th>
-    		<th>삭제</th>
-  	       } */
-  	       
+  			
 	  	     var count = 0;
   	       function productOptionAdd(){
   	    	 var option1 = $('#Option1').val();
@@ -638,8 +615,7 @@ th{
 	         var stock = $('#stock').val();
   	       }
   			$('#product-add-count').append('<tr>'+
-  		    		'<td style="width: 16.3%;">12312312</td>'+
-  		    		'<td>이뿐옷</td>'+
+  		    		'<td>'+ name + '</td>'+
   		    		'<td>'+
   		    		'<div id="titleImgArea">'+
   					'<div id="titleImgArea"><img src="'+src+'" width="100px" height="50"></div>'+
@@ -647,11 +623,8 @@ th{
   		    		'</td>'+
   		    		'<td>'+topselect+bottomselect+'</td>'+
   		    		'<td><div style="display:inline-flex"><div style="width: -webkit-fill-available;">'+colorname+'</div><div style="width:20px;height:15px;margin-left: 10%;;background:'+color+'"></div></div></td>'+
-  		    		'<td><input type="number" min="0" style="border:1px solid #333330;width: 50%">'+
-  		    		'</td>'+
-  		    		'<td>'+
-    				'<button onclick="closeBtn(this)" style="margin-left: 1%;">X</button>'+
-    				'</td>'+
+  		    		'<td><input type="number" min="0" style="border:1px solid #333330;width: 50%">'+'</td>'+
+  		    		'<td>'+'<button onclick="closeBtn(this)" style="margin-left: 1%;">X</button>'+'</td>'+
   		    		'</tr>')
   		});
   		function closeBtn(en){
@@ -693,9 +666,7 @@ th{
         });
     });
   		
-        
-        /* 모든 포커스 삭제하기  */
-        /* $(':focus').blur();   */
+      
         </script>
 		
 		<!-- 카테고리 뿌리기  -->
@@ -712,24 +683,17 @@ th{
         		}
 				
         		"</c:forEach>"
-        	
-        	
         });
         
-        /* 색깔 DB 색상 뿌리기  */
-        $('#color-area').click(function(){
-        	
-        	"<c:forEach var='pc' items='${pclist}'>"
-        	
-        	var result = $('pc.pcRgb').val();
-        	console.log(result);
-        		
-        	"</c:forEach>"
-        }) 
+        /* 색상 뿌리기  */
+		function ctest(en){
+			
+			var result = en.style.background;
+			var colorName = en.name;
+			document.getElementById("text-color").value = result;
+			$("#color-name").val(colorName);
+		}
         
-        
-        
-     
         </script>
 
      <!-- Bootstrap JS-->
