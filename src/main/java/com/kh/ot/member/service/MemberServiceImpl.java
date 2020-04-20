@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.ot.member.dao.MemberDao;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.vo.CouponMem;
 
 
 @Service("mService")
@@ -83,6 +84,39 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int deleteMember(Member m) {
 		return mDao.deleteMember(m);
+	}
+
+	/*
+	 * @Override public ArrayList<CouponMem> selectCmlist(Member m) { return
+	 * mDao.selectCmlist(m); }
+	 */
+
+	@Override
+	public int insertRateCp(CouponMem com) {
+		return mDao.insertRateCp(com);
+	}
+
+	@Override
+	public int cpCount1(Member m) {
+		return mDao.cpCount1(m);
+	}
+
+	@Override
+	public int cpCount2(Member m) {
+		return mDao.cpCount2(m);
+
+	}
+
+	@Override
+	public int cpCount3(Member m) {
+		return mDao.cpCount3(m);
+
+	}
+
+	@Override
+	public int cpCount4(Member m) {
+		return mDao.cpCount4(m);
+
 	}
 
 

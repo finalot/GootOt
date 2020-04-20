@@ -265,4 +265,14 @@ WHERE O.ORD_STATUS = 'D'
 	PRDT_DESIGN
 </select>
 
+
+<select id="couponUpdate" parameterType="java.util.Map">
+<foreach  item="c" collection="cplist"  index="index"
+     separator=";" open="DECLARE BEGIN" close="; END;" >
+	UPDATE COUPON
+	SET CP_DISCOUNT = #{c.cpDiscount}
+	WHERE CP_NO = #{c.cpNo}
+</foreach>
+</select>
+
 </mapper>

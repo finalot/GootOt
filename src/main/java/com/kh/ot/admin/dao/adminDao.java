@@ -316,4 +316,18 @@ public class adminDao {
 	public Design selectPrdtImg() {
 		return sqlSession.selectOne("adminMapper.selectPrdtImg");
 	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 쿠폰 업데이트
+	 * @param cp
+	 * @return
+	 */
+	public int couponUpdate(ArrayList<Coupon> cplist) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("cplist", cplist);
+		return sqlSession.update("adminMapper.couponUpdate",map);
+	}
 }
