@@ -24,5 +24,16 @@ public class ReviewDao {
 	public ArrayList<Review> selectReviewList() {
 		return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList");
 	}
+
+	/**
+	 * @작성일  : 2020. 4. 21.
+	 * @작성자  : 우예진
+	 * @내용    : review 모달 디테일 리스트 뿌려주기
+	 * @param rvNo
+	 * @return
+	 */
+	public Review selectReviewDetail(int rv_no) {
+		return sqlSession.selectOne("reviewMapper.selectReviewDetail",rv_no);
+	}
 	
 }

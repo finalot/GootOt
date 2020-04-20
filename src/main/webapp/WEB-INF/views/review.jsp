@@ -1208,23 +1208,21 @@
 											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
 											<div
 												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
+												<img class="" id="pImage" width="33"
 													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
+													src="${r.prdtPath }${r.prdtImg}"
 													style="padding-right: 3%; opacity: 1; float: left;">
 
 											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info" >
-												<div
-													class="reviews_index_gallery_review__product_info_title">
+											<div class="reviews_index_gallery_review__review_product_info" >
+												<div class="reviews_index_gallery_review__product_info_title" id="prDetail">
 													<!-- MODAL 창에 뜨는 DETAIL 상품명 -->
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks" >
+													
+												</div>
+											<div class="reviews_index_gallery_review__product_info_feedbacks" >
 	<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
 													<span class="reviews_index_gallery_review__reviews_count" style="color:gray;">
-													<small>이대*</small>
+													<small id="memName"></small>
 													</span>
 												</div>
 											</div>
@@ -1234,16 +1232,17 @@
                           	<small>이 리뷰를 <strong style="color:black;">2</strong>명이 좋아합니다.</small>
                         </div><hr>
                          <div style="color:gray; border:2px dotted lightgray; font-size:16px;">
-                          	선택한 옵션 <br> <small>color : <strong style="color:black;">그레이</strong></small><br>
-                          				<small>size : <strong style="color:black;">M</strong></small>	
+                          	선택한 옵션 <br> <small>color : <strong style="color:black;" id="rColor"></strong></small><br>
+                          				<small>size : <strong style="color:black;" id="rSize"></strong></small>	
                         </div><hr>
                         <div id="innercoment">
-                            <div class="coments" style="font-size:12px;text-align:left;padding:10px;letter-spacing: 1px;">이런 기본템일수록 핏을 되게 중요하게 생각하는데 이거는 진짜 핏 장난 아닙니다 후후
-					편하게 입는 꾸안꾸룩 좋아하는데 맨투맨이나 기본 티셔츠에 입어도 편해보이면서 예뻐요! 출근 복장이 자유로운 편이라 자주 입을 것 같습니다ㅎㅎ</div><br>
+                            <div class="coments" style="font-size:12px;text-align:left;padding:10px;letter-spacing: 1px;" id="rInfo">
+                            <!-- 리뷰내용 -->
+                            </div><br>
               
                            
                         </div>
-                         <div style="color:lightgray;font-size:12px;float:right;">2020-03-30</div>
+                         <div style="color:lightgray;font-size:12px;float:right;" id="rDate2"></div>
                         <div><hr>
                             <div style="margin-top:-4px;">
                             <font style="font-size:15px;color:gray;">이  리뷰가</font> &nbsp;
@@ -1915,11 +1914,33 @@
 	<!--============================================리뷰모달===================================================-->
 	<script>
 	
+	<!--리뷰 모달 디테일 스크립트-->
 	$('.review1').on('click',function modalOpen(){
 		
 		 var rv_no = $(this).find('.rv_no').val();
 		
 		 console.log(rv_no);
+		 
+		 
+		 $.ajax({
+			 url:"reviewDetail.do",
+			 dataType:"json",
+			 data : {rv_no : rv_no},
+			 success : function(r){
+				 console.log(r)
+				 $('#prDetail').text(r.r.prdtName);
+				 $('#memName').text(r.r.memName);
+				 $('#rColor').text(r.r.rvColor);
+				 $('#rSize').text(r.r.rvSize);
+				 $('#rInfo').text(r.r.rvInfo);
+				 $('#rDate2').text(r.r.rvDate2);
+				 $('#pImage').text(r.r.prdtPath);
+				 $('#pImage').text(r.r.prdtImage);
+				 console.log(r.r.prdtName);
+			 },error : function(){
+					alert('리뷰에러')
+			}
+		 });
 		
 		
 		

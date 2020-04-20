@@ -1,5 +1,6 @@
 package com.kh.ot.review.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -15,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.ot.review.service.ReviewService;
 import com.kh.ot.review.vo.Review;
+
+import net.sf.json.JSONObject;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -52,14 +55,27 @@ public class ReviewController extends HttpServlet {
 		 * @내용    : 리뷰 디테일 창
 		 * @param mv
 		 * @return
+		 * @throws IOException 
 		 */
 		@RequestMapping("reviewDetail.do")
-		public void reviewDetail(HttpServletResponse response) {
+		public void reviewDetail(HttpServletResponse response,int rv_no) throws IOException {
 			
+			response.setContentType("application/json; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			
-			ArrayList<Review> rdlist = rService.selectReviewDetailList();
-			System.out.println("rdlist : " + rdlist);
+			System.out.println("rvNo: " + rv_no);
+			Review r = rService.selectReviewDetail(rv_no);
+			
+			System.out.println("r:" +r);
+			
+			JSONObject job = new JSONObject();
+			
+			job.put("r", r);
+			
+			out.print(job);
+			out.flush();
+			out.close();
+			
 			
 			
 		}

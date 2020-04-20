@@ -19,4 +19,9 @@ public class ReviewServiceImpl implements ReviewService{
 		return rDao.selectReviewList();
 	}
 
+	@Override
+	public Review selectReviewDetail(int rv_no) {
+		return rDao.selectReviewDetail(rv_no);
+	}
+
 }
