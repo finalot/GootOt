@@ -30,8 +30,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.ot.admin.vo.Point;
 import com.kh.ot.cart.service.CartService;
 import com.kh.ot.cart.vo.Cart;
+import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.member.service.MemberService;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
@@ -186,6 +188,13 @@ public class MemberController extends HttpServlet {
 	  ArrayList<Cart> list = cService.selectList(m.getMemNo());
 		  
 //	  ArrayList<CouponMem> cmlist = mService.selectCmlist(m);
+//	  Point pot = new Point();
+//	  Pay pa = new Pay();	
+//	  pa.setSumprice(2000);
+//	  
+//		pot.setMemno(m.getMemNo());
+//		pot.setPt_price(pa.getSumprice());
+	  
 	  
 	  int cpCount1 = mService.cpCount1(m);	
 	  int cpCount2 = mService.cpCount2(m);	
@@ -470,7 +479,8 @@ public class MemberController extends HttpServlet {
 		System.out.println(postcode1 + ", " + address1 + ", "+ address2);
 		System.out.println(mobile1 + ", " + mobile2 + ", "+ mobile3);
 		System.out.println(birth_year + ", " + birth_month + ", "+ birth_day);
-
+	
+		
 		// System.out.println(bcryptPasswordEncoder.encode(m.getPwd()));
 
 		String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());

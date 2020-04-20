@@ -14,6 +14,7 @@ import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.admin.vo.Design;
 
 @Service("adService")
@@ -206,6 +207,12 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public int couponUpdate(ArrayList<Coupon> cplist) {
 		return adDao.couponUpdate(cplist);
+	}
+
+
+	@Override
+	public Pay selectPay(int ordNo) {
+		return adDao.selectPay(ordNo);
 	}
 
 }

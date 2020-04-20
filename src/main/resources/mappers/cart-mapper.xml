@@ -237,6 +237,7 @@
 	   WHERE AD_NO = #{adNo}
 	</select>
 
+
 	<select id="updateMemPoint" parameterType="Member" >
 		UPDATE MEMBER
 		SET MEM_POINT = (SELECT SUM(MEM_POINT)
@@ -244,6 +245,16 @@
              WHERE MEM_NO=#{mem_no}) + #{mem_point}
              AND MEM_NO = #{memNo}
 	</select>
+	
+	<select id="selectPay" parameterType="_int" resultMap="payResultSet">
+		SELECT * FROM
+		PAY
+		WHERE ORD_NO=#{ordNo}
+	</select>
 
+	<insert id="insertPoint"  parameterType="Point">
+		INSERT INTO POINT VALUES 
+		(#{memno},#{ordno},POINT_SEQ.NEXTVAL,SYSDATE,#{pt_price},#{pt_content},NULL,NULL)
+	</insert>
 
 </mapper>

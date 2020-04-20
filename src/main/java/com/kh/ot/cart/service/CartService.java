@@ -3,6 +3,7 @@ package com.kh.ot.cart.service;
 import java.util.ArrayList;
 
 import com.kh.ot.admin.vo.Coupon;
+import com.kh.ot.admin.vo.Point;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
@@ -163,5 +164,14 @@ public interface CartService {
 	 * @return
 	 */
 	int updateMemPoint(Member mpo);
+
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환
+	 * @내용 	: 상품구매 확정시 포인트 적립
+	 * @param pot
+	 * @return
+	 */
+	int insertPoint(Point pot);
 
 }

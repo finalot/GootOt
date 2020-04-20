@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.ot.admin.vo.Coupon;
+import com.kh.ot.admin.vo.Point;
 import com.kh.ot.cart.dao.CartDao;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
@@ -103,5 +104,10 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public int updateMemPoint(Member mpo) {
 		return cDao.updateMemPoint(mpo);
+	}
+
+	@Override
+	public int insertPoint(Point pot) {
+		return cDao.insertPoint(pot);
 	}
 }

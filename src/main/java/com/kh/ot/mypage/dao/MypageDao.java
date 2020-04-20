@@ -83,9 +83,9 @@ public class MypageDao {
 		
 		int memNo = m.getMemNo();
 		
-		int pointSet = sqlSession.selectOne("mypageMapper.selectPoint",memNo);
+		//int pointSet = sqlSession.selectOne("mypageMapper.selectPoint",memNo);
 		
-		m.setMem_point(pointSet);
+		//m.setMem_point(pointSet);
 		 
 		return sqlSession.update("mypageMapper.updatePoint", m);
 	}

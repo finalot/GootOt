@@ -334,7 +334,7 @@ public class MypageController {
 		
 		int memNo = m.getMemNo();
 		
-		int result = mpService.PointPrice(m); // 
+		//int result = mpService.PointPrice(m); // 
 		
 		int coupon = mpService.CouponListCount(m); // 사용 가능한 쿠폰 카운팅
 		

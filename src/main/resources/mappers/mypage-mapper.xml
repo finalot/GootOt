@@ -138,15 +138,17 @@
 		ORDER BY CPMEM_NO DESC
 	</select>
 	
-	<select id="selectPoint" resultType="_int">
+<!-- 	<select id="selectPoint" resultType="_int">
 		SELECT SUM(DECODE(POINT_PART,'적립',1*POINT_PRICE,'사용',-1*POINT_PRICE)) AS PointSum 
 		FROM POINT
 		WHERE MEM_NO=#{memNo}
 	</select> 
-	
+	 -->
 	<update id="updatePoint" parameterType="Member">
 		UPDATE MEMBER
-		SET MEM_POINT=#{mem_point}
+		SET MEM_POINT=(SELECT SUM(DECODE(POINT_PART,'적립',1*POINT_PRICE,'사용',-1*POINT_PRICE)) AS PointSum 
+		FROM POINT
+		WHERE MEM_NO=#{memNo}) + #{mem_point}
 		WHERE MEM_NO=#{memNo}
 	</update>
 	
