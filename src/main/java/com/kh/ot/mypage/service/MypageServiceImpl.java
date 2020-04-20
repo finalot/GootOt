@@ -170,6 +170,26 @@ public class MypageServiceImpl implements MypageService{
 
 	}
 
+	@Override
+	public int getCancelListCount(int memNo) {
+		return mpDao.getCancelListCount(memNo);
+	}
+
+	@Override
+	public ArrayList<Ord> selectCancelList(PageInfo pi, int memNo) {
+		return mpDao.selectCancelList(pi, memNo);
+	}
+
+	@Override
+	public int getSearchCancelCount(OrdSearch os) {
+		return mpDao.getSearchCancelCount(os);
+	}
+
+	@Override
+	public ArrayList<Ord> selectSearchCancelList(PageInfo pi, OrdSearch os) {
+		return mpDao.selectSearchCancelList(pi, os);
+	}
+
 //	@Override
 //	public int orderCount6(int memNo) {
 //		return mpDao.orderCount6(memNo);

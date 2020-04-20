@@ -230,6 +230,15 @@ public interface MypageService {
 	 */
 	int orderCount5(int memNo);
 
+	int getCancelListCount(int memNo);
+
+	ArrayList<Ord> selectCancelList(PageInfo pi, int memNo);
+	
+
+	int getSearchCancelCount(OrdSearch os);
+
+	ArrayList<Ord> selectSearchCancelList(PageInfo pi, OrdSearch os);
+
 //	int orderCount6(int memNo);
 //	
 //	int orderCount7(int memNo);
