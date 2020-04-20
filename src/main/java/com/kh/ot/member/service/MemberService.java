@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.vo.CouponMem;
 
 public interface MemberService {
 
@@ -123,6 +124,57 @@ public interface MemberService {
 	 * @return int
 	 */
 	public int deleteMember(Member m);
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 쿠폰맴버 리스트 가져오기
+	 * @param m
+	 * @return
+	 */
+//	public ArrayList<CouponMem> selectCmlist(Member m);
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 등급별 쿠폰발급
+	 * @param com
+	 * @return
+	 */
+	public int insertRateCp(CouponMem com);
+
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환  
+	 * @내용 	: 등급별 쿠폰 발급 중복 제거
+	 * @param m
+	 * @return
+	 */
+	public int cpCount1(Member m);
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환  
+	 * @내용 	: 등급별 쿠폰 발급 중복 제거
+	 * @param m
+	 * @return
+	 */
+	public int cpCount2(Member m);
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환  
+	 * @내용 	: 등급별 쿠폰 발급 중복 제거
+	 * @param m
+	 * @return
+	 */
+	public int cpCount3(Member m);
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환  
+	 * @내용 	: 등급별 쿠폰 발급 중복 제거
+	 * @param m
+	 * @return
+	 */
+	public int cpCount4(Member m);
 
 	
 }

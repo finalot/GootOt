@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.vo.CouponMem;
 
 
 @Repository("mDao")
@@ -132,6 +133,56 @@ public class MemberDao {
 
 	public int deleteMember(Member m) {
 		return sqlSession.update("memberMapper.deleteMember",m);
+	}
+
+	/*
+	 * public ArrayList<CouponMem> selectCmlist(Member m) { return
+	 * (ArrayList)sqlSession.selectList("memberMapper.selectCmlist",m); }
+	 */
+
+	public int insertRateCp(CouponMem com) {
+		return sqlSession.insert("memberMapper.insertRateCp",com);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환
+	 * @내용 	: 등급별 쿠폰발급 중복검사
+	 * @param m
+	 * @return
+	 */
+	public int cpCount1(Member m) {
+		return sqlSession.selectOne("memberMapper.cpCount1",m);
+	}
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환
+	 * @내용 	: 등급별 쿠폰발급 중복검사
+	 * @param m
+	 * @return
+	 */
+	public int cpCount2(Member m) {
+		return sqlSession.selectOne("memberMapper.cpCount2",m);
+	}
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환
+	 * @내용 	: 등급별 쿠폰발급 중복검사
+	 * @param m
+	 * @return
+	 */
+	public int cpCount3(Member m) {
+		return sqlSession.selectOne("memberMapper.cpCount3",m);
+	}
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환
+	 * @내용 	: 등급별 쿠폰발급 중복검사
+	 * @param m
+	 * @return
+	 */
+	public int cpCount4(Member m) {
+		return sqlSession.selectOne("memberMapper.cpCount4",m);
 	}
 
 
