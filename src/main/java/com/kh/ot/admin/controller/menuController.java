@@ -360,7 +360,9 @@ public class menuController {
 		Coupon cp = new Coupon();
 		cp.setCpNo(cpNo[i]);
 		cp.setCpDiscount(cpDiscount[i]);
+		
 		cplist.add(cp);
+		
 		}
 		
 		int result = adService.couponUpdate(cplist);

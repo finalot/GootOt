@@ -187,14 +187,17 @@ a{
 						<c:param name="product_detail" value="p1"/>
 					</c:url>           			
 					
-					<c:forEach var="o" items="${list }">
+				
 					<tbody class="center ">
+				<c:forEach var="o" items="${list }">
 						<tr class="xans-record-">
+						<input  class="ordNo" name="ordNo" type="hidden" value="${o.ord_no }"/>
 						<input id="prdt_no" class="prdt_no" name="prdt_no" type="hidden" value="${o.prdt_no}"/>
 							<td class="number ">
                     			${o.ord_date }                   
                     		<p>
-                    			<a href="${product_detail }" class="line">[${o.ord_no }]</a>
+                    			<a href="${product_detail }" class="lineordNo" name="">${o.ord_no}</a>
+                    		
                    			</p>
 		                    <a href="#none" class="displaynone yg_btn_80 yg_btn3" onclick="OrderHistory.orderCancel('20200314-0004984')" alt="주문취소">주문취소</a>
 		                    <a href="cancel.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="취소신청">취소신청</a>
@@ -243,16 +246,19 @@ a{
 								<a href="#none" class="displaynone" onclick="OrderHistory.withdraw('E','20200314-0004984|9017|000J|3263477','F', 'F') yg_btn_80 yg_btn3" alt="교환철회">교환철회</a>
 								<a href="#none" class="displaynone" onclick="OrderHistory.withdraw('R','20200314-0004984|9017|000J|3263477','F', 'F') yg_btn_80 yg_btn3" alt="반품철회">반품철회</a> -->
                 			</td>
+                			<c:if test="${o.ord_status == 'D' }">
                 			<td>
-			                    <p class="displaynone"><a href="#none" class="line" onclick="OrderHistory.getDetailInfo('?product_no=9017&amp;cate_no=25&amp;order_id=20200314-0004984&amp;ord_item_code=20200314-0004984-01');">[상세정보]</a></p>
+			                   <a href="#none" class="line returnOrd"  id="returnOrd">[반품신청]</a>
+                			</td>
+                			</c:if>
+                		<c:if test="${o.ord_status != 'D' }">
+                			<td>
 			                    <p class="">-</p>
                 			</td>
-            			</tr>
+                			</c:if>
+            				</tr>
+            				</c:forEach>
 					</tbody>
-					</c:forEach>
-					
-					
-					
 				</table>
 				<p class="message displaynone">주문 내역이 없습니다.</p>
 			</div>
@@ -428,6 +434,15 @@ a{
 	</div>
 	
  <jsp:include page="footer.jsp"/>
+ 
+ <script>
+$('.returnOrd').click(function(){
+	var ordNo= $(this).parents('.xans-record-').find('input[name=ordNo]').val();
+	console.log(ordNo);
+})
+ 
+ </script>
+ 
  
  <script>
  function productmove(pm){
