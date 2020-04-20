@@ -306,6 +306,8 @@ public class MypageController {
 		
 		System.out.println(memNo);
 		
+		
+		
 		int coupon = mpService.CouponListCount(m);
 		
 		int point = mpService.PointListCount(memNo);

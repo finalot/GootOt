@@ -9,6 +9,7 @@ public class WishList {
 	private int prdt_price;
 	private int prdt_sumprice;
 	private String prdt_name;
+	
 	public WishList() {
 		super();
 		// TODO Auto-generated constructor stub
