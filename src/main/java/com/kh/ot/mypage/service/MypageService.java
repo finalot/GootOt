@@ -267,12 +267,14 @@ public interface MypageService {
 //	int orderCount6(int memNo);
 //
 //	int orderCount7(int memNo);
-	 * @작성일 : 2020. 4. 20.
-	 * @작성자 : 신경섭
-	 * @내용 : 마이페이지 위시리스트
-	 * @param memNo
-	 * @return
-	 */
+	
+	/* / **
+	 	 * @작성일 : 2020. 4. 20.
+		 * @작성자 : 신경섭
+		 * @내용 : 마이페이지 위시리스트
+		 * @param memNo
+		 * @return
+		 */
 	int getWishListCount(int memNo);
 
 	ArrayList<DIBS> selectWishList(PageInfo pi, int memNo);

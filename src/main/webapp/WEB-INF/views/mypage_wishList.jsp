@@ -427,8 +427,10 @@
 	<script>
 		function optionchange(oc){
 			var dibsno = $(oc).parents('ul').parents('td').parents('tr').find('.dibsno').val();
+			
+			
 			console.log(dibsno);
-			$('.optiondetail').css('display', 'block'); 
+			$(oc).parents('ul').find('.optiondetail').css('display', 'block'); 
 		}
 	/* */
 		$('#optionchange').click(function() {

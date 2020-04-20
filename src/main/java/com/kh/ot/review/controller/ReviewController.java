@@ -1,5 +1,6 @@
 package com.kh.ot.review.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -52,14 +53,15 @@ public class ReviewController extends HttpServlet {
 		 * @내용    : 리뷰 디테일 창
 		 * @param mv
 		 * @return
+		 * @throws IOException 
 		 */
 		@RequestMapping("reviewDetail.do")
-		public void reviewDetail(HttpServletResponse response) {
+		public void reviewDetail(HttpServletResponse response) throws IOException {
 			
 			PrintWriter out = response.getWriter();
 			
-			ArrayList<Review> rdlist = rService.selectReviewDetailList();
-			System.out.println("rdlist : " + rdlist);
+		//	ArrayList<Review> rdlist = rService.selectReviewDetailList();
+			//System.out.println("rdlist : " + rdlist);
 			
 			
 		}
