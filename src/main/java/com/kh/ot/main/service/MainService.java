@@ -13,6 +13,7 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.main.vo.Wish;
+import com.kh.ot.main.vo.productbenner;
 
 public interface MainService {
 	
@@ -85,6 +86,14 @@ public interface MainService {
 	int insertWish(Wish w);
 
 	ArrayList<Wish> selectWish(int memNo);
+
+	int getSearchListCount(String search);
+
+	ArrayList<Product> selectSearchList(MainPageInfo mainPi, String search);
+
+	ArrayList<Product_opt> selectOptionSearchList(String search);
+
+	ArrayList<productbenner> selectPB();
 
 
 }

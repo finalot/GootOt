@@ -18,6 +18,7 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.main.vo.Wish;
+import com.kh.ot.main.vo.productbenner;
 
 @Repository("mainDao")
 public class MainDao {
@@ -148,6 +149,26 @@ public class MainDao {
 
 	public ArrayList<Wish> selectWish(int memNo) {
 		return (ArrayList)sqlSession.selectList("productMapper.selectWish",memNo);
+	}
+
+	public int getSearchListCount(String search) {
+		return sqlSession.selectOne("productMapper.getSearchListCount",search);
+	}
+
+	public ArrayList<Product> selectSearchList(MainPageInfo mainPi, String search) {
+		
+		int offset=(mainPi.getCurrentPage() - 1) * mainPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("productMapper.selectSearchProduct",search,rowBounds);
+	}
+
+	public ArrayList<Product_opt> selectOptionSearchList(String search) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectSearchProductOption",search);
+	}
+
+	public ArrayList<productbenner> selectPB() {
+		return (ArrayList)sqlSession.selectList("productMapper.selectPB");
 	}
 
 
