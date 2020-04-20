@@ -5,16 +5,7 @@
   
 <mapper namespace="mypageMapper">
 
-<resultMap id="WishResultMap" type="Wishlist">
-      <id property="wishno" column="WISH_NO"/>
-      <result property="memno" column="MEM_NO"/>
-      <result property="prdt_no" column="PRDT_NO"/>
-      <result property="prdt_count" column="PRDT_COUNT"/>
-      <result property="prdt_size" column="PRDT_SIZE"/>
-      <result property="prdt_price" column="PRDT_PRICE"/>
-      <result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
-      <result property="prdt_name" column="PRDT_NAME"/>
-   </resultMap>
+
 
 	<resultMap id="PointResultSet" type="Point">
 		<id property="ptno" column="POINT_NO"/>

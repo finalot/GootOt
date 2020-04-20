@@ -577,11 +577,20 @@
 										<font class="format-money">${ pdd.prdtPrice}</font> 
 										</c:if>
 
+
+
 				</span>WON <br> point(1%)&nbsp;:&nbsp;&nbsp; <span class="m-text17">
-					<small>${ pdd.prdtPrice/100}</small>
+					<small id="pointArea"></small>
 				</span>p
 				<hr>
+<script>
+var result = Math.floor(${ pdd.prdtPrice/100});
+$(function(){
+	$('#pointArea').text(result)
+})
 
+
+</script>
 				<p class="s-text8 p-t-10">${pdd.prdtComment }
 				</p>
 				
@@ -864,11 +873,11 @@ function optionDel(){
 	<c:param name="productInfo" value="nasi" />  
 </c:url>
 				<div class="wrap-dropdown-content bo7 p-t-15 p-b-14 modalcss">
-
+<c:forEach var="pd1" items="${pdlist }">
 					<!-- Trigger/Open The Modal -->
 					<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-						id="myBtn1" style="width: 40%; float: left;"><small>Review(98)</small></button>
-						
+						id="myBtn1" style="width: 40%; float: left;"><small>Review(${pd1.prdtReview})</small></button>
+						</c:forEach>
 					<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
 						onclick="qna();" style="position: relative; left: 10%; width: 40%;"><small>Q&A(3)</small></button>
 						
@@ -2748,21 +2757,11 @@ function qna(){
 	left: 8.4%;
 }
 </style>
+<c:forEach var="pddd" items="${pdlist }">
 	<img class="detail_pic"
-		src="/ot/resources/images/oT/clothing/t_nasi/detail/basic_crop_color_nasi/basic_crop_color_nasi_1.jpg"
+		src="${pddd.prdtDetailImagePath }${pddd.prdtDetailImage }"
 		alt="IMG-PRODUCT" width="1000" height="auto">
-	<img class="detail_pic"
-		src="/ot/resources/images/oT/clothing/t_nasi/detail/basic_crop_color_nasi/basic_crop_color_nasi_3.jpg"
-		alt="IMG-PRODUCT" width="1000" height="auto">
-	<img class="detail_pic"
-		src="/ot/resources/images/oT/clothing/t_nasi/detail/basic_crop_color_nasi/basic_crop_color_nasi_2.jpg"
-		alt="IMG-PRODUCT" width="1000" height="auto">
-	<img class="detail_pic"
-		src="/ot/resources/images/oT/clothing/t_nasi/detail/basic_crop_color_nasi/basic_crop_color_nasi_5.jpg"
-		alt="IMG-PRODUCT" width="1000" height="auto">
-	<img class="detail_pic"
-		src="/ot/resources/images/oT/clothing/t_nasi/detail/basic_crop_color_nasi/basic_crop_color_nasi_4.jpg"
-		alt="IMG-PRODUCT" width="1000" height="auto">
+	</c:forEach>
 <!-- 디테일 사진 부분 끝-->
 <div id="washing_tip"></div>
 <br><br>
