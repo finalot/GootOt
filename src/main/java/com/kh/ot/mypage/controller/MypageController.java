@@ -85,6 +85,19 @@ public class MypageController {
 	
 	
 	
+	
+	/**
+	 * @작성일 : 2020. 4. 20.
+	 * @작성자 : 신경섭
+	 * @내용 : 마이페이지 주문내역 - 검색
+	 * @param mv
+	 * @param session
+	 * @param currentPage
+	 * @param order_status
+	 * @param history_start_date
+	 * @param history_end_date
+	 * @return
+	 */
 	@RequestMapping("my_orderlist.do")
 	public ModelAndView MyOrderList(ModelAndView mv, HttpSession session,
 			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage,
@@ -152,62 +165,128 @@ public class MypageController {
 	        return mv;
 	}
 	
-//	@RequestMapping("mCancelList.do")
-//	public ModelAndView mCancelList(ModelAndView mv, HttpSession session,
-//			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
-//			, String order_status, Date history_start_date, Date history_end_date) {
-//		
-//		Member m = (Member)session.getAttribute("loginMember");
-//		
-//		OrdSearch os = new OrdSearch();
-//		
-//		int memNo = m.getMemNo();
-//		
-//		int coupon = mpService.CouponListCount(m);
-//		
-//		int point = mpService.PointListCount(memNo);
-//		
-//		int orderCount1 = mpService.orderCount1(memNo);
-//		int orderCount2 = mpService.orderCount2(memNo);
-//		int orderCount3 = mpService.orderCount3(memNo);
-//		int orderCount4 = mpService.orderCount4(memNo);
-//		int orderCount5 = mpService.orderCount5(memNo);
-//		
-//		os.setMemno(memNo);
-//		os.setOrd_status("E");
-//		
-//		os.setStart_date(history_start_date);
-//		os.setEnd_date(history_end_date);
-//		
-//		
-//		System.out.println(os);
-//		
-//		int listCount = mpService.SearchListCount(os);
-//		
-//		System.out.println("listCount : " + listCount);
-//		
-//		PageInfo pi = os.getPageInfo(currentPage, listCount);
-//		
-//		ArrayList<Ord> list = mpService.selectSearchList(pi,os);
-//	    
-//    	System.out.println("list : " + list);
-//		
-//
-//		mv.addObject("orderCount1", orderCount1);
-//		mv.addObject("orderCount2", orderCount2);
-//		mv.addObject("orderCount3", orderCount3);
-//		mv.addObject("orderCount4", orderCount4);
-//		mv.addObject("orderCount5", orderCount5);
-//		mv.addObject("listCount", listCount);
-//		mv.addObject("CouponCount", coupon);
-//		mv.addObject("PointCount", point);
-//   		mv.addObject("list",list);
-//   		mv.addObject("pi", pi);
-//   		mv.addObject("os", os);
-//		mv.setViewName("mypage_list_cancel");
-//		
-//		return mv;
-//	}
+	/**
+	 * @작성일 : 2020. 4. 20.
+	 * @작성자 : 신경섭
+	 * @내용 : 마이페이지 반품주문내역 이동
+	 * @param mv
+	 * @param session
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("mCancel.do")
+	public ModelAndView mCancel(ModelAndView mv, HttpSession session,
+			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		int orderCount1 = mpService.orderCount1(memNo);
+		int orderCount2 = mpService.orderCount2(memNo);
+		int orderCount3 = mpService.orderCount3(memNo);
+		int orderCount4 = mpService.orderCount4(memNo);
+		int orderCount5 = mpService.orderCount5(memNo);
+		
+		int listCount = mpService.getCancelListCount(memNo);
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Ord> list = mpService.selectCancelList(pi, memNo);
+		
+		System.out.println("list : " + list);
+
+		mv.addObject("orderCount1", orderCount1);
+		mv.addObject("orderCount2", orderCount2);
+		mv.addObject("orderCount3", orderCount3);
+		mv.addObject("orderCount4", orderCount4);
+		mv.addObject("orderCount5", orderCount5);
+		mv.addObject("listCount", listCount);
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+   		mv.addObject("list",list);
+   		mv.addObject("pi", pi);
+		mv.setViewName("mypage_list_cancel");
+		return mv;
+	}
+	
+	
+	
+	
+	/**
+	 * @작성일 : 2020. 4. 20.
+	 * @작성자 : 신경섭
+	 * @내용 : 마이페이지 반품 주문내역 - 검색
+	 * @param mv
+	 * @param session
+	 * @param currentPage
+	 * @param order_status
+	 * @param history_start_date
+	 * @param history_end_date
+	 * @return
+	 */
+	@RequestMapping("mSearchCancelList.do")
+	public ModelAndView mCancelList(ModelAndView mv, HttpSession session,
+			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
+			, String order_status, Date history_start_date, Date history_end_date) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		OrdSearch os = new OrdSearch();
+		
+		int memNo = m.getMemNo();
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		int orderCount1 = mpService.orderCount1(memNo);
+		int orderCount2 = mpService.orderCount2(memNo);
+		int orderCount3 = mpService.orderCount3(memNo);
+		int orderCount4 = mpService.orderCount4(memNo);
+		int orderCount5 = mpService.orderCount5(memNo);
+		
+		os.setMemno(memNo);
+		os.setOrd_status("E");
+		
+		os.setStart_date(history_start_date);
+		os.setEnd_date(history_end_date);
+		
+		
+		System.out.println(os);
+		
+		int listCount = mpService.getSearchCancelCount(os);
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = os.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Ord> list = mpService.selectSearchCancelList(pi,os);
+	    
+    	System.out.println("list : " + list);
+		
+
+		mv.addObject("orderCount1", orderCount1);
+		mv.addObject("orderCount2", orderCount2);
+		mv.addObject("orderCount3", orderCount3);
+		mv.addObject("orderCount4", orderCount4);
+		mv.addObject("orderCount5", orderCount5);
+		mv.addObject("listCount", listCount);
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+   		mv.addObject("list",list);
+   		mv.addObject("pi", pi);
+   		mv.addObject("os", os);
+		mv.setViewName("mypage_list_cancel");
+		
+		return mv;
+	}
 
 	
 	

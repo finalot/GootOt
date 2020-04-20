@@ -38,7 +38,7 @@ a{
 	<c:url var="mWishlist" value="mWishlist.do"/>
 	<c:url var="mPoint" value="mPoint.do"/>
 	<c:url var="mCoupon" value="mCoupon.do"/>
-	<c:url var="mCancelList" value="mCancelList.do"/>
+	<c:url var="mCancelList" value="mCancel.do"/>
 	
  	<div id="container">
  		<div id="memberInf1">
@@ -104,7 +104,7 @@ a{
 						<a href="${mList }">주문내역조회 (<span id="xans_myshop_total_orders">${orderCount1 + orderCount2 + orderCount3 + orderCount4 + orderCount5 }</span>)</a>
 					</li>
 			        <li class="tab_class_cs selected">
-			        	<a href="${mCancelList }">취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">${listCount }</span>)</a>
+			        	<a href="${mCancel }">취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">${listCount }</span>)</a>
 					</li>
 			        <!-- <li class="tab_class_old displaynone">
 			        	<a href="/ot/mypage_list_prev.jsp">이전 주문내역 (<span id="xans_myshop_total_orders_old">0</span>)</a>
@@ -119,7 +119,7 @@ a{
 			
 			
 			
-			<form method="GET" id="OrderHistoryForm" name="OrderHistoryForm">
+			<form action="mSearchCancelList.do" id="mSearchCancelList" name="mSearchCancelList">
 				<div class="xans-element- xans-myshop xans-myshop-orderhistoryhead ">
 					<fieldset class="ec-base-box">
 						<legend>검색기간설정</legend>
@@ -256,7 +256,7 @@ a{
 						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
 					</c:if>
 					<c:if test="${pi.currentPage ne 1 }">
-						<c:url var="start" value="mCancelList.do">
+						<c:url var="start" value="mCancel.do">
 							<c:param name="currentPage" value="1"/>
 						</c:url>
 					<a href="${start }" class="first">
@@ -270,7 +270,7 @@ a{
 						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
 					</c:if>
 					<c:if test="${pi.currentPage ne 1 }">
-						<c:url var="start" value="my_orderlist.do">
+						<c:url var="start" value="mSearchCancelList.do">
 							<c:param name="currentPage" value="1"/>
 							<c:param name="order_status" value="${param.order_status }"/>
 							<c:param name="history_start_date" value="${os.start_date }"/>
@@ -288,7 +288,7 @@ a{
 					</c:if>
 					
 					<c:if test="${ pi.currentPage ne 1 }">
-						<c:url var="before" value="mCancelList.do">
+						<c:url var="before" value="mCancel.do">
 	                  		<c:param name="currentPage" value="${pi.currentPage - 1 }"/>
 	                    </c:url>
 	               	<a href="${before}">
@@ -303,7 +303,7 @@ a{
 					</c:if>
 					
 					<c:if test="${ pi.currentPage ne 1 }">
-						<c:url var="before" value="my_orderlist.do">
+						<c:url var="before" value="mSearchCancelList.do">
 			                <c:param name="currentPage" value="${pi.currentPage - 1 }"/>
 			                <c:param name="order_status" value="${param.order_status }"/>
 							<c:param name="history_start_date" value="${os.start_date }"/>
@@ -324,7 +324,7 @@ a{
 						
 				 	<c:if test="${ empty os }">	
 	                     <c:if test="${ p ne pi.currentPage }">
-	                        <c:url var="pagination" value="mCancelList.do">
+	                        <c:url var="pagination" value="mCancel.do">
 	                           <c:param name="currentPage" value="${ p }"/>
 	                     	</c:url>
 	                     	<a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
@@ -334,7 +334,7 @@ a{
 	                  
 	               	 <c:if test="${ !empty os }">	
 	                     <c:if test="${ p ne pi.currentPage }">
-	                        <c:url var="pagination" value="my_orderlist.do">
+	                        <c:url var="pagination" value="mSearchCancelList.do">
 		                        <c:param name="currentPage" value="${ p }"/>
 			                    <c:param name="order_status" value="${param.order_status }"/>
 							<c:param name="history_start_date" value="${os.start_date }"/>
@@ -352,7 +352,7 @@ a{
 					</c:if>
 				
 					<c:if test="${ pi.currentPage ne pi.maxPage }">
-						<c:url var="after" value="mCancelList.do">
+						<c:url var="after" value="mCancel.do">
 		                   	<c:param name="currentPage" value="${pi.currentPage +1 }"/>
 	                 	</c:url>
 	                 	<a href="${after}">
@@ -367,7 +367,7 @@ a{
 					</c:if>
 					
 					<c:if test="${ pi.currentPage ne pi.maxPage }">
-						<c:url var="after" value="my_orderlist.do">
+						<c:url var="after" value="mSearchCancelList.do">
 	                     	<c:param name="currentPage" value="${pi.currentPage +1 }"/>
 	                     	<c:param name="order_status" value="${param.order_status }"/>
 							<c:param name="history_start_date" value="${os.start_date }"/>
@@ -385,7 +385,7 @@ a{
                		</c:if>
                		
                		<c:if test="${ pi.currentPage ne pi.maxPage }">
-	               		<c:url var="end" value="mCancelList.do">
+	               		<c:url var="end" value="mCancel.do">
 	               			<c:param name="currentPage" value="${pi.maxPage }"/>
 	               		</c:url>
 						<a href="${end }" class="last">
@@ -400,7 +400,7 @@ a{
 	               </c:if>
 	               
 	               <c:if test="${ pi.currentPage ne pi.maxPage }">
-	               		<c:url var="end" value="my_orderlist.do">
+	               		<c:url var="end" value="mSearchCancelList.do">
 	               			<c:param name="currentPage" value="${pi.maxPage }"/>
 	               			<c:param name="order_status" value="${param.order_status }"/>
 							<c:param name="history_start_date" value="${os.start_date }"/>

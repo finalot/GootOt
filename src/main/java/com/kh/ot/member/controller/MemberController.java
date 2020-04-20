@@ -30,6 +30,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.ot.cart.service.CartService;
+import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.member.service.MemberService;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
@@ -56,6 +58,9 @@ public class MemberController extends HttpServlet {
 	
 	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	   private CartService cService;
 
 //	암호화용
 	@Autowired
@@ -177,6 +182,9 @@ public class MemberController extends HttpServlet {
 	  String msg = "";
 	  PrintWriter out = response.getWriter();
 	  Member m = mService.loginMember(id, pwd);
+	  
+	  ArrayList<Cart> list = cService.selectList(m.getMemNo());
+		  
 //	  ArrayList<CouponMem> cmlist = mService.selectCmlist(m);
 	  
 	  int cpCount1 = mService.cpCount1(m);	
