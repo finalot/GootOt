@@ -133,7 +133,7 @@
 		FROM COUPON C
 		JOIN COUPON_MEM CM
 		ON (C.CP_NO = CM.CP_NO)
-		WHERE QNA_WRITER=#{qna_writer} AND QNA_WRITER='admin'
+		WHERE MEM_NO=#{memNo}
 		AND CP_USING='Y'
 		ORDER BY CPMEM_NO DESC
 	</select>
@@ -323,7 +323,25 @@
 		AND ORD_STATUS = 'E'
 	</select>
 	
-	<!-- <select id ="SearchOrdcancelListCount" resultType="_int">
+	<select id="getCancelListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO=#{memNo}
+		AND ORD_STATUS='E'
+	</select>
+	
+	<select id="selectCancelList" resultMap="ordResultSet">
+		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		AND ORD_STATUS='E'
+		ORDER BY O.ORD_DATE DESC
+	
+	</select>
+	
+	<select id="getSearchCancelCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM ORD O
 		JOIN PRDT P
@@ -331,19 +349,18 @@
 		WHERE MEM_NO=#{memno}
 		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
 		AND ORD_STATUS='E'
-	
 	</select>
 	
-	<select id="selectSearchcancelOrdList" resultMap="ordResultSet">
+	<select id="selectSearchCancelList" resultMap="ordResultSet">
 		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
 		FROM ORD O
 		JOIN PRDT P
 		ON (O.PRDT_NO = P.PRDT_NO)
 		WHERE MEM_NO=#{memno}
-		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+		AND ORD_DATE BETWEEN #{start_date} AND #{end_date} 
 		AND ORD_STATUS='E'
-		ORDER BY ORD_DATE DESC
-	</select> -->
+	</select>
+	
 	
 	<!-- <select id="orderCount6" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)

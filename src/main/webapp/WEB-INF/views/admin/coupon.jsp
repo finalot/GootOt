@@ -91,8 +91,6 @@ label{
 
 }
 td{
-    padding: 13px 11px 12px !important;
-       border:1px solid #d9dadc;
           font-weight:normal;
           height: 100px
 }
@@ -120,6 +118,13 @@ margin-top: 1%;
 .cpDelete{
 	font-weight: bold;
 }
+th{
+text-align: center !important;
+}
+.couponPrice{
+	border: 1px solid black
+}
+
 </style>
 
 </head>
@@ -272,31 +277,37 @@ margin-top: 1%;
         <div class="container" style="margin-left: 6%">
             <div class="row">
                 <div class="col-md-12" >
-                    <h1 class="title-4"> 
-                     &nbsp; &nbsp; &nbsp; 쿠폰&nbsp;/&nbsp;이벤트 등록
-                    </h1>
                     <hr class="line-seprate">
                 </div>
             </div>
         </div>
     </section>
     <!-- END WELCOME-->
-    <form action="eventInsert.ad" id="eventInsert">
-    <table id="addlist" style="border: 1px dotted; background: white;">
-        <tr>
-        <td colspan="2" style="background:#dfe3e6;; margin-bottom: 2%;padding-bottom: 2%;"><h3 style="color: black;;margin-left: 5%;"> 이벤트 상세내용</h3></td>
-        </tr>
-        
+    <form action="couponUpdate.ad" id="eventInsert"  align="center">
+    <div >
+    <table   style="    margin-left: 25px;;border:none;margin-top: 30px;" >
+    	<tr style="text-align: center">
+    		<th style="font-size: 20px">쿠폰명</th>
+    		<th style="font-size: 20px">쿠폰가격</th>
+    	</tr>	
+    	<c:forEach var="c" items="${clist }">
+    	<tr>
+    		<input type="hidden" name="cpNo" value="${c.cpNo }">
+    		<td style="font-size: 18px" name="cpName"><span style="color:red; margin-right: 10px">*</span>${c.cpName }</td>
+    		<td><input name="cpDiscount" style=" padding-left: 7px;margin-left: 38px;" class="couponPrice" type="number" min="0" step="1000" value="${c.cpDiscount }"></td>
+    	</tr>
+    	</c:forEach>
     </table>
+    </div>
 
     <div style="height: 130px;">
             <div align="center">
                 <button id="eventInsertBtn" style="background: black;
                 color: white;
-                font-size: 20px;
+                font-size: 15px;
                 padding: 10px;
-                height: 65px;
-                width: 135px;
+                height: 45px;
+                width: 110px;
                 border-radius: 10px;
                 ">등록</button>
             </div>
@@ -305,168 +316,12 @@ margin-top: 1%;
     </div>
      <div class="page-wrapper">
     </div>
-           <div id="coupon_div">
-                 
-                    <div align="right" style="background: black;"><button id="coupon_close" style="color: white;margin-right: 1%;">X</button></div>
-                  <div style="border-bottom: 1px solid; display: flex; margin-left: 2%;margin-right: 2%;">
-                	<p style="margin-left: 4%;margin-top: 4%;font-size: 25px;font-weight: bold;">쿠폰</p><button id="coupon-plus"> + </button>   
-                </div>
-                <div align="center" style="height: 70%;width: 96%;overflow: auto;">
-		<table  id="coupon-table" style="margin-top: 3%;font-size: 20px;overflow: scroll;">
-			<thead>
-						<tr style="background: black;color: white;">
-							<th style="padding-left: 100px;border-right: 1px solid;">쿠폰명</th>
-							<th style="padding-left: 105px;">쿠폰가격</th>
-							<th></th>
-						</tr>
-				</thead>
-				<tbody class="cpBody">
-				<c:forEach var="c" items="${clist}">
-						<tr>
-							<td><input class="cpName" type="text" value="${c.cpName }"></td>
-							<td><input class="cpDiscount" type="text" value="${c.cpDiscount }"></td>
-							<td><button class="cpDelete" onclick="cpClose(this)">삭제</button></td>
-						</tr>
-				</c:forEach>
-					</tbody>
-				</table>
-				</div> 
-				 <div align="center"><button id="coupon_input">쿠폰등록</button></div>
-               </div>
+      
     <script>
     
     $('#eventInsertBtn').click(function(){
     	$('#eventInsert').submit();
     })
-    
-    
-    
-        $('#coupon_open').click(function(){
-               $('#coupon_div').css('display','block'); 
-        });
-        $('#coupon_close').click(function(){
-            $('#coupon_div').css('display','none');
-        });
-        
-    	$('#coupon-plus').click(function(){
-    		$('.cpBody').append('<tr>'+
-					'<td><input name="cpName" class="cpName" type="text"></td>'+
-					'<td><input name="cpDiscount" class="cpDiscount" type="text"></td>'+
-					'<td><button style="font-weight:blod" class="cpDelete" onclick="cpClose(this)">삭제</button></td>'+
-					'</tr>');
-    	});
-    	function cpClose(en){
-    		
-    		if(confirm("삭제하시겠습니까?") ==true){
-    		 var cpName = $(en).parents('tr').children('td').eq(0).children().val();
-    			$.ajax({
-    				url:"couponDelete.ad",
-    				data :{cpName : cpName},
-    				success:function(data){
-    					if(data =="ok"){
-    						$(en).parents('tr').remove('tr');
-    					}else{
-    						alert('없다');
-    					}
-    				},error:function(){
-    					alert('에러다');
-    				}
-    			});
-    		}
-    	};
-        
-        var cpNameArr = Array();
-        var cpDisArr = Array();
- 		var cpName = document.getElementsByName('cpName');
- 		var cpDiscount = document.getElementsByName('cpDiscount');
-    
-        $('#coupon_input').click(function(){
-        	
-           for(var i=0; i<cpName.length;i++){
-        	   console.log(cpName[i].value);
-            	cpNameArr[i] = cpName[i].value;
-            	cpDisArr[i] = cpDiscount[i].value;
-            } 
-           console.log(cpNameArr);
-           console.log(cpDisArr);
-            
-            $.ajax({
-        		url : "couponInput.do",
-        		traditional : true,
-        		data : {'cpName' : cpNameArr ,'cpDiscount': cpDisArr },
-        		success : function(data){
-        			if(data == "ok"){
-        				alert("쿠폰이 등록되었습니다");
-        				location.href="eventAdd.ad";
-        			}else{
-        				alert("쿠폰등록에 실패하였습니다");
-        			}
-        		},error : function(){
-        			alert('쿠폰등록에 실패하였습니다');
-        		}
-        	});
-        
-        });
-    </script>
-    <script>
-        $('.category').click(function(){
-
-        var product = document.getElementById('product');
-        var money = document.getElementById('money');
-        var coupon = document.getElementById('coupon');
-          
-        if(product.checked == true){
-            $('#d_product').removeAttr('readonly').css('background','white').focus();
-        }else if(product.checked == false){
-            $('#d_product').css('background','rgba(190, 181, 181, 0.24)').attr("readonly",true).val('');
-        }
-        if(money.checked == true){
-            $('#d_money').removeAttr('readonly').css('background','white').focus();
-        }else if(money.checked == false){
-            $('#d_money').css('background','rgba(190, 181, 181, 0.24)').attr("readonly",true).val('');
-        }
-        if(coupon.checked ==true){
-            $('#d_coupon').removeAttr('disabled').css('background','white').focus();
-        }else{
-            $('#d_coupon').css('background','rgba(190, 181, 181, 0.24)').attr("disabled",true).val('');
-
-        }
-    });
-    </script>
-    <script>
-        $('.d-day').click(function(){
-            var day = parseInt($('input[name="d-day"]:checked').val());
-
-            var startday = document.getElementById('startday').value;
-                 startday = startday.split("-");
-           var end = new Date((startday[0]),(startday[1]-1),(parseInt(startday[2])+day));
-           
-           var endday = end.toISOString().substr(0,10);
-           
-         $('#endday').val(endday);   
-            
-        });
-        $('#d_coupon').click(function(){
-        	
-	     if($('#d_coupon').val()=='daily'){
-    		 $('#coupon-price').html('쿠폰가 : 3,000원');
-    	}else{
-    		 $('#coupon-price').html('');
-    	}
-        });
-
-    </script>
-    <script type="text/javascript">
-    
-        function readURL(input) {
-        if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-        $('#blah').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-        }
-        }
         </script>
      <!-- Jquery JS-->
      <script src="/ot/resources/avendor/jquery-3.2.1.min.js"></script>

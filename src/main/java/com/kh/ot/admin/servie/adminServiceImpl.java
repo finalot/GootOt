@@ -202,4 +202,10 @@ public class adminServiceImpl implements adminService{
 		return adDao.selectPrdtImg();
 	}
 
+
+	@Override
+	public int couponUpdate(ArrayList<Coupon> cplist) {
+		return adDao.couponUpdate(cplist);
+	}
+
 }

@@ -251,5 +251,14 @@ public interface adminService{
 		 */
 		public Design selectPrdtImg();
 
+		/**
+		 * @작성일  : 2020. 4. 19.
+		 * @작성자  : 문태환
+		 * @내용 	: 쿠폰 업데이트 
+		 * @param cp
+		 * @return
+		 */
+		public int couponUpdate(ArrayList<Coupon> cplist);
+
 
 }

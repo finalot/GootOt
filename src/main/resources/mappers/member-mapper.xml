@@ -27,6 +27,15 @@
 		<result property="tdDate" column="TC_DATE"/>
 	</resultMap>
 
+	<resultMap id="CouponMemResultMap" type="CouponMem">
+		<id property="cpmem_no" column="CPMEM_NO"/>
+		<result property="memno" column="MEM_NO"/>
+		<result property="cpno" column="CP_NO"/>
+		<result property="cpdate" column="CP_DATE"/>
+		<result property="cpusing" column="CP_USING"/>
+		<result property="cp_usedate" column="CP_USE_DATE"/>
+	</resultMap>
+
 
 <select id ="loginMember" parameterType="Member" resultMap="memberResultSet">
 		<!-- SELECT * FROM MEMBER
@@ -111,17 +120,51 @@
 		WHERE MEM_ID=#{memId}
 </update>
 
-<!-- 
- <select id="idCheck" parameterType="String" resultType="_int">
-
-		SELECT COUNT(*)
-		FROM MEMBER
-		WHERE ID=#{id}
-
-</select> -->
 <select id="selectMember" resultMap="memberResultSet">
 	SELECT *
 	FROM MEMBER
 	WHERE MEM_STATUS='N'
 </select>
+
+<!-- <select id="selectCmlist" parameterType="Member" resultMap="CouponMemResultMap">
+	SELECT * FROM
+	COUPON_MEM
+	MEM_NO = #{memNo}
+</select> -->
+
+<select id="cpCount1" parameterType="Member"  resultType="_int">
+	SELECT COUNT(*) FROM
+COUPON_MEM
+WHERE MEM_NO=#{memNo}
+AND CP_NO =2
+</select>
+
+<select id="cpCount2" parameterType="Member"  resultType="_int">
+	SELECT COUNT(*) FROM
+COUPON_MEM
+WHERE MEM_NO=#{memNo}
+AND CP_NO =3
+</select>
+
+<select id="cpCount3" parameterType="Member"  resultType="_int">
+	SELECT COUNT(*) FROM
+COUPON_MEM
+WHERE MEM_NO=#{memNo}
+AND CP_NO =4
+</select>
+
+<select id="cpCount4" parameterType="Member"  resultType="_int">
+	SELECT COUNT(*) FROM
+COUPON_MEM
+WHERE MEM_NO=#{memNo}
+AND CP_NO =5
+</select>
+
+<insert id="insertRateCp" parameterType="CouponMem">
+	INSERT INTO COUPON_MEM
+	VALUES (CPMEM_SEQ.NEXTVAL,#{memno},#{cpno},'N',NULL,SYSDATE)
+</insert>
+
+
+
 </mapper>

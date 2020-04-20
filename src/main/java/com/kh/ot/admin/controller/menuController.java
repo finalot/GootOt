@@ -318,6 +318,31 @@ public class menuController {
 
 		return mv;
 	}
+	
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 쿠폰 업데이트
+	 * @return
+	 */
+	@RequestMapping("couponUpdate.ad")
+	public String couponUpdate(int[] cpNo, int[] cpDiscount ) {
+		
+		ArrayList<Coupon> cplist = new ArrayList<Coupon>();
+		
+		
+		for(int i=0;i<cpNo.length;i++) {
+		Coupon cp = new Coupon();
+		cp.setCpNo(cpNo[i]);
+		cp.setCpDiscount(cpDiscount[i]);
+		cplist.add(cp);
+		}
+		
+		int result = adService.couponUpdate(cplist);
+		
+		
+		return "redirect:eventAdd.ad";
+	}
 
 	@RequestMapping("eventList.ad")
 	public String eventList() {

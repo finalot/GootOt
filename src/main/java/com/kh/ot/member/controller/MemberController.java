@@ -2,6 +2,7 @@ package com.kh.ot.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
@@ -34,6 +35,7 @@ import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.member.service.MemberService;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
+import com.kh.ot.mypage.vo.CouponMem;
 
 /**
  * @author yejin
@@ -183,6 +185,31 @@ public class MemberController extends HttpServlet {
 	  
 	  ArrayList<Cart> list = cService.selectList(m.getMemNo());
 		  
+//	  ArrayList<CouponMem> cmlist = mService.selectCmlist(m);
+	  
+	  int cpCount1 = mService.cpCount1(m);	
+	  int cpCount2 = mService.cpCount2(m);	
+	  int cpCount3 = mService.cpCount3(m);	
+	  int cpCount4 = mService.cpCount4(m);	
+	  
+	  CouponMem com = new CouponMem();
+	  com.setMemno(m.getMemNo());
+	  
+				 if(m.getMemSumMoney() >= 30000  && cpCount1 == 0) {
+					 com.setCpno(2); 
+						int result = mService.insertRateCp(com);  
+				 }else if(m.getMemSumMoney() >= 60000 && cpCount2 ==0) {
+					 com.setCpno(3); 
+						int result = mService.insertRateCp(com);  
+				 }else if(m.getMemSumMoney() >= 90000 && cpCount3==0) {
+					 com.setCpno(4); 
+						int result = mService.insertRateCp(com);  
+				 }else if(m.getMemSumMoney() >= 120000 && cpCount4==0) {
+					 com.setCpno(5); 
+						int result = mService.insertRateCp(com);  
+				 }
+	
+	  
 		if (m != null  && bcryptPasswordEncoder.matches(pwd, m.getMemPwd() )) {
 			
 			  msg = "ok";
