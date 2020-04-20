@@ -257,8 +257,9 @@ public class MypageDao {
 	public ArrayList<WishList> selectWishList(PageInfo pi, int memNo) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
-		return (ArrayList)sqlSession.selectList("mypageMapper.selectWishList", memNo, rowBounds);
+		ArrayList<WishList> list = (ArrayList)sqlSession.selectList("mypageMapper.selectWishList", memNo, rowBounds);
+		System.out.println(list);
+		return list;
 	}
 
 

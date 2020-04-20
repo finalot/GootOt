@@ -1,5 +1,8 @@
 package com.kh.ot.mypage.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class WishList {
 	private int wishno;
 	private int memno;
@@ -9,12 +12,17 @@ public class WishList {
 	private int prdt_price;
 	private int prdt_sumprice;
 	private String prdt_name;
+	private int prdt_price_1;
+	
 	public WishList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
 	public WishList(int wishno, int memno, int prdt_no, int prdt_count, String prdt_size, int prdt_price,
-			int prdt_sumprice, String prdt_name) {
+			int prdt_sumprice, String prdt_name, int prdt_price_1) {
 		super();
 		this.wishno = wishno;
 		this.memno = memno;
@@ -24,6 +32,16 @@ public class WishList {
 		this.prdt_price = prdt_price;
 		this.prdt_sumprice = prdt_sumprice;
 		this.prdt_name = prdt_name;
+		this.prdt_price_1 = prdt_price_1;
+	}
+
+
+
+	public int getPrdt_price_1() {
+		return prdt_price_1;
+	}
+	public void setPrdt_price_1(int prdt_price_1) {
+		this.prdt_price_1 = prdt_price_1;
 	}
 	public int getWishno() {
 		return wishno;
@@ -77,6 +95,7 @@ public class WishList {
 	public String toString() {
 		return "WishList [wishno=" + wishno + ", memno=" + memno + ", prdt_no=" + prdt_no + ", prdt_count=" + prdt_count
 				+ ", prdt_size=" + prdt_size + ", prdt_price=" + prdt_price + ", prdt_sumprice=" + prdt_sumprice
-				+ ", prdt_name=" + prdt_name + "]";
+				+ ", prdt_name=" + prdt_name + ", prdt_price_1=" + prdt_price_1 + "]";
 	}
+	
 }

@@ -82,7 +82,38 @@
 		<result property="adPhone" column="AD_PHONE"/>
 	</resultMap>
 	
+	<resultMap id="WishResultMap" type="Wishlist">
+		<id property="wishno" column="WISH_NO"/>
+		<result property="memno" column="MEM_NO"/>
+		<result property="prdt_no" column="PRDT_NO"/>
+		<result property="prdt_count" column="PRDT_COUNT"/>
+		<result property="prdt_size" column="PRDT_SIZE"/>
+		<result property="prdt_price" column="PRDT_PRICE"/>
+		<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
+		<result property="prdt_name" column="PRDT_NAME"/>
+		<result property="prdt_price_1" column="PRDT_PRICE_1"/>
+	</resultMap>
 	
+	<resultMap type="Product" id="productResultSet">
+			<id property = "prdtNo" column="PRDT_NO"/>
+			<result property="upNo" column="UP_NO"/>
+			<result property="prdtName" column="PRDT_NAME"/>
+			<result property="prdtComment" column="PRDT_COMMENT"/>
+			<result property="prdtPrice" column="PRDT_PRICE"/>
+			<result property="prdtMake" column="PRDT_MAKE"/>
+			<result property="prdtImage" column="PRDT_IMAGE"/>
+			<result property="prdtDate" column="PRDT_DATE"/>
+			<result property="prdtModifyDate" column="PRDT_MODIFY_DATE"/>
+			<result property="downNo" column="DOWN_CATE"/>
+			<result property="prdtCode" column="PRDT_CODE"/>
+			<result property="prdtImagePath" column="PRDT_IMAGE_PATH"/>
+			<result property="prdtDetailImage" column="PRDT_DETAIL_IMAGE"/>
+			<result property="prdtDetailImagePath" column="PRDT_DETAIL_IMAGE_PATH"/>
+			<result property="prdtSale" column="PRDT_SALE"/>
+			<result property="prdtScount" column="PRDT_SCOUNT"/>
+			<result property="prdtReview" column="PRDT_REVIEW"/>
+			<result property="prdtStatus" column="PRDT_STATUS"/>
+	</resultMap>
 	
 	<select id="PointListCount" resultType="_int">
 		SELECT COUNT(*)
@@ -383,14 +414,11 @@
 	</select>
 	
 	<select id="selectWishList" resultMap="WishResultMap">
-	SELECT *
+	 SELECT *
      FROM WISHLIST W
      JOIN PRDT P
      ON (W.PRDT_NO = P.PRDT_NO)
      WHERE MEM_NO=#{memno}
-	
-	
-	
 	</select>
 	<!-- <select id="orderCount6" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
