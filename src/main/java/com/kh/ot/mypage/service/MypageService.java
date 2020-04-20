@@ -9,9 +9,9 @@ import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
-import com.kh.ot.mypage.vo.WishList;
 
 public interface MypageService {
 
@@ -263,6 +263,6 @@ public interface MypageService {
 	 */
 	int getWishListCount(int memNo);
 
-	ArrayList<WishList> selectWishList(PageInfo pi, int memNo);
+	ArrayList<DIBS> selectWishList(PageInfo pi, int memNo);
 
 }

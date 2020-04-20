@@ -33,7 +33,7 @@
 <typeAlias type="com.kh.ot.admin.vo.Point" alias="Point"/>
 <typeAlias type="com.kh.ot.mypage.vo.CouponMem" alias="CouponMem"/>
 <typeAlias type="com.kh.ot.mypage.vo.MyBoard" alias="MyBoard"/>
-<typeAlias type="com.kh.ot.mypage.vo.WishList" alias="Wishlist"/>
+<typeAlias type="com.kh.ot.mypage.vo.DIBS" alias="DIBS"/>
 
 </typeAliases>
 

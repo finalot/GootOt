@@ -16,9 +16,9 @@ import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
-import com.kh.ot.mypage.vo.WishList;
 
 @Repository("mpDao")
 public class MypageDao {
@@ -254,12 +254,10 @@ public class MypageDao {
 		return sqlSession.selectOne("mypageMapper.getWishListCount",memNo);
 	}
 	
-	public ArrayList<WishList> selectWishList(PageInfo pi, int memNo) {
+	public ArrayList<DIBS> selectWishList(PageInfo pi, int memNo) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		ArrayList<WishList> list = (ArrayList)sqlSession.selectList("mypageMapper.selectWishList", memNo, rowBounds);
-		System.out.println(list);
-		return list;
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectWishList", memNo, rowBounds);
 	}
 
 

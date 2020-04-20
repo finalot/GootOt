@@ -117,24 +117,21 @@
           			</thead>
           			
           			<tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
-          				<c:forEach var="w" items="${list }">
+          				<c:forEach var="d" items="${list }">
           				<tr class="xans-record-">
-          				<input type="hidden">
+          				<input type="hidden" class="dibsno" value="${d.dibsno }"/>
 							<td>
 								<input name="wish_idx[]" id="wish_idx_0" enable-order="" reserve-order="N" enable-purchase="1" class="" is-set-product="F" value="658007" type="checkbox">
 							</td>
                				<td class="thumb">
             					<a href="${product_detail }">
-               						<img src="//black-up.kr/web/product/medium/201907/6c62d00576fe97a594f09ef169e4be94.webp" alt=""></a>
+               						<img src="${d.path}${d.image}" alt=""></a>
        						</td>
-							<td class="left"><a
-								href="${product_detail }"
-								style="font-size: 13px;">${w.prdt_name }</a>
-								<ul
-									class="xans-element- xans-myshop xans-myshop-optionall option">
-									<li class="xans-record-"><strong class="displaynone"></strong>
-										<span class="displaynone">(개)</span> <br> 
-										<a href="#none" id="optionchange" class=" yg_btn_80 yg_btn3 optionclose" alt="옵션변경">옵션변경하기</a> <!-- 참고 : 옵션변경 레이어 -->
+							<td class="left"><a href="${product_detail }" style="font-size: 13px;">${d.prdt_name }</a>
+								<ul class="xans-element- xans-myshop xans-myshop-optionall option">
+									<li class="xans-record-">
+										 <br> 
+										<a href="#none" onclick="optionchange(this);" id="optionchange1" class=" yg_btn_80 yg_btn3 optionclose" alt="옵션변경">옵션변경하기</a> <!-- 참고 : 옵션변경 레이어 -->
 
 										<div class="optiondetail" style="display: none;">
 											<div class="optionheader">
@@ -201,9 +198,8 @@
 							</td>
 
 							<td class="price center">
-									<span class="">${w.prdt_price } won</span>
+									<span class=""><fmt:formatNumber value="${d.prdt_price }" pattern="#,###"/> won</span>
 									<br>
-									<span class="displaynone">19000</span>
 								</td>
                 				<td><span class="txtInfo"><img src="/ot/resources/images/point.png" class="icon_img" alt="적립금">3%</span></td>
                 				<td>
@@ -215,7 +211,7 @@
                 				<td>
 								<span class="">2,500 won<br></span>
 								</td>
-                				<td class="price center">${w.prdt_sumprice } won</td>
+                				<td class="price center"><fmt:formatNumber value="${d.prdt_sumprice }" pattern="#,###"/> won</td>
 				                <td class="button">
 				                    <a href="#none" onclick="CAPP_SHOP_NEW_PRODUCT_OPTIONSELECT.selectOptionCommon(10550,  26, 'wishlist', '')" class=" yg_btn_100 yg_btn1 add-to-cart" alt="담기">ADD TO CART</a>
 				                    <!-- <a href="#none" onclick="CAPP_SHOP_NEW_PRODUCT_OPTIONSELECT.selectOptionCommon(10550,  26, 'wishlist', '')" class=" yg_btn_100 yg_btn4 add-to-cart" alt="주문">BUY IT NOW</a> -->
@@ -429,10 +425,15 @@
 
 
 	<script>
-	
+		function optionchange(oc){
+			var dibsno = $(oc).parents('ul').parents('td').parents('tr').find('.dibsno').val();
+			console.log(dibsno);
+			$('.optiondetail').css('display', 'block'); 
+		}
 	/* */
 		$('#optionchange').click(function() {
-			$('.optiondetail').css('display', 'block');
+			/* var dibsno =  */
+			/* $('.optiondetail').css('display', 'block'); */
 		});
 
 		$('.option_close').click(function() {
@@ -465,49 +466,7 @@
        $(this).prev().val(numProduct + 1);
    });
 </script>
-	
-	
-	<script>
-	var count = 2;
-	
-	function optionadd() {
-		const str = 
-			`
-		
-			<div id="option`+count+`o" style=" margin: 5px 0 0 0; border-top: 1px solid #ddd; ">
-		<li>
-			<strong class="optiontype">COLOR</strong> 
-			<select>
-					<option value="블랙">블랙</option>
-					<option value="그레이">그레이</option>
-					<option value="화이트">화이트</option>
-			</select>
-		</li>
-		<li>
-			<strong class="optiontype">SIZE</strong> 
-			<select>
-					<option value="S">S</option>
-					<option value="M">M</option>
-					<option value="L">L</option>
-					<option value="XL">XL</option>
-					<option value="XXL">XXL</option>
 
-			</select>
-		</li>
-		</div>
-		`
-		$('.option_scroll').append(str);
-		count++;
-	}
-
-	function optiondel(){
-		if(count>2){
-		$("#option"+(count-1)+"o").remove();
-		count--;
-	}
-	}
-	
-	</script>
  <%@include file="footer.jsp" %>
 </body>
 </html>

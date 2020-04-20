@@ -13,9 +13,9 @@ import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.dao.MypageDao;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
-import com.kh.ot.mypage.vo.WishList;
 
 @Service("mpService")
 public class MypageServiceImpl implements MypageService{
@@ -196,7 +196,7 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public ArrayList<WishList> selectWishList(PageInfo pi, int memNo) {
+	public ArrayList<DIBS> selectWishList(PageInfo pi, int memNo) {
 		return mpDao.selectWishList(pi, memNo);
 	}
 	

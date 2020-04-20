@@ -24,9 +24,9 @@ import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
-import com.kh.ot.mypage.vo.WishList;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -318,7 +318,7 @@ public class MypageController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<WishList> list = mpService.selectWishList(pi, memNo);
+		ArrayList<DIBS> list = mpService.selectWishList(pi, memNo);
 		
 		System.out.println("list : " + list);
 		
