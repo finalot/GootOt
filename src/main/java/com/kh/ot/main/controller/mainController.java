@@ -26,6 +26,7 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.main.vo.Wish;
+import com.kh.ot.main.vo.productbenner;
 import com.kh.ot.member.vo.Member;
 
 //@SessionAttributes("loginMember")
@@ -50,6 +51,7 @@ public class mainController {
 	public ModelAndView product1(ModelAndView mv, int product1,
 			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
 
+		
 		int listCount = mainService.getListCount1(product1);
 
 		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage, listCount);
@@ -62,7 +64,8 @@ public class mainController {
 		ArrayList<Product_opt> polist = mainService.selectOptionList1(product1);
 
 		ArrayList<Product_color> pclist = mainService.selectColorList1();
-
+		ArrayList<productbenner> pblist = mainService.selectPB();
+		mv.addObject("pblist", pblist);
 		mv.addObject("plist", plist);
 		mv.addObject("dclist", dclist);
 		mv.addObject("uclist", uclist);
@@ -97,7 +100,8 @@ public class mainController {
 		ArrayList<Product_opt> polist = mainService.selectOptionList2(product2);
 
 		ArrayList<Product_color> pclist = mainService.selectColorList2();
-
+		ArrayList<productbenner> pblist = mainService.selectPB();
+		mv.addObject("pblist", pblist);
 		mv.addObject("plist", plist);
 		mv.addObject("dclist", dclist);
 		mv.addObject("uclist", uclist);
@@ -262,7 +266,8 @@ public class mainController {
 		ArrayList<Product_opt> polist = mainService.selectOptionList1(product1);
 
 		ArrayList<Product_color> pclist = mainService.selectColorList1();
-
+		ArrayList<productbenner> pblist = mainService.selectPB();
+		mv.addObject("pblist", pblist);
 		mv.addObject("plist", plist);
 		mv.addObject("dclist", dclist);
 		mv.addObject("uclist", uclist);
@@ -306,7 +311,8 @@ MainSearchCondition msc= new MainSearchCondition();
 		ArrayList<Product_opt> polist = mainService.selectOptionList2(product2);
 
 		ArrayList<Product_color> pclist = mainService.selectColorList2();
-
+		ArrayList<productbenner> pblist = mainService.selectPB();
+		mv.addObject("pblist", pblist);
 		mv.addObject("plist", plist);
 		mv.addObject("dclist", dclist);
 		mv.addObject("uclist", uclist);
@@ -376,4 +382,49 @@ MainSearchCondition msc= new MainSearchCondition();
 		
 		
 	}
+	
+	
+	/**
+	 * @작성일 : 2020. 4. 16.
+	 * @작성자 :이대윤
+	 * @내용 : 프로덕트 검색 불러오기
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("searchProduct.do")
+	public ModelAndView searchProduct(ModelAndView mv, String search,
+			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
+		System.out.println(search);
+		int listCount = mainService.getSearchListCount(search);
+		System.out.println(listCount);
+		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage, listCount);
+
+		ArrayList<Product> plist = mainService.selectSearchList(mainPi, search);
+		/*
+		 * ArrayList<MaindownCategory> dclist = mainService.selectCategoryList1(search);
+		 * ArrayList<MainupCategory> uclist = mainService.selectUpCategoryList1();
+		 */
+
+		ArrayList<Product_opt> polist = mainService.selectOptionSearchList(search);
+
+		ArrayList<Product_color> pclist = mainService.selectColorList1();
+		ArrayList<productbenner> pblist = mainService.selectPB();
+		mv.addObject("pblist", pblist);
+		mv.addObject("plist", plist);
+		/*
+		 * mv.addObject("dclist", dclist); mv.addObject("uclist", uclist);
+		 */
+		mv.addObject("polist", polist);
+		mv.addObject("pclist", pclist);
+		mv.addObject("mainPi", mainPi);
+		
+			mv.setViewName("product_search");
+		
+		
+
+		return mv;
+	}
+
+	
+	
 }
