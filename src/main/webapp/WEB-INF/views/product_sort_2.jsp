@@ -40,7 +40,7 @@
 	<link rel="stylesheet" type="text/css" href="/ot/resources/css/main.css">
 <!--===============================================================================================-->
 </head>
-<body class="animsition">
+<body class="animsition" style="overflow-x:hidden;">
 
 	<!-- Header -->
 	<jsp:include page="header.jsp"/>
