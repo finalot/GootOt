@@ -184,7 +184,7 @@
 
 	<update id="updateCoupon">
 			UPDATE COUPON_MEM SET
-			CP_USING = 'Y'
+			CP_USING = 'Y',CP_USE_DATE=SYSDATE
 			WHERE CPMEM_NO = #{pay_usedcp}
 	</update>
 
