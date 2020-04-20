@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reviewMapper">
+ 	<resultMap type="Review" id="ReviewResultSet">
+			<id property = "rvNo" column="RV_NO"/>
+			<result property="prdtCode" column="PRDT_CODE"/>
+			<result property="memCode" column="MEM_CODE"/>
+			<result property="rvHeight" column="RV_HEIGHT"/>
+			<result property="rvWeight" column="RV_WEIGHT"/>
+			<result property="ordDetailNo" column="ORD_DETAILNO"/>
+			<result property="rvInfo" column="RV_INFO"/>
+			<result property="rvImage" column="RV_IMAGE"/>
+			<result property="rvLike" column="RV_LIKE"/>
+			<result property="rvDate" column="RV_DATE"/>
+			<result property="rvColor" column="RV_COLOR"/>
+			<result property="rvSize" column="RV_SIZE"/>
+			<result property="memName" column="MEM_NAME"/>
+			<result property="prdtName" column="PRDT_NAME"/>
+	</resultMap>
+ 
+ <select id="selectReviewList" parameterType="_int" resultMap="ReviewResultSet">
+	  SELECT RV_NO,RV_INFO,MEM_NAME,RV_DATE,PRDT_NAME
+      FROM REVIEW RE
+      JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+      JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+ </select>
+ 
+ 
+ 
+ 
+ </mapper>

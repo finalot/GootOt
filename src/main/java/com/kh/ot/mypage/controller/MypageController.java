@@ -25,6 +25,7 @@ import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
@@ -292,10 +293,6 @@ public class MypageController {
 		return mv;
 	}
 
-	
-	
-	
-	
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 : 신경섭
@@ -303,19 +300,37 @@ public class MypageController {
 	 * @return String
 	 */
 	@RequestMapping("mWishlist.do") //1
-	public ModelAndView mWishlist(ModelAndView mv,
-									@RequestParam("memNo") int memNo,HttpSession session ) {
+	public ModelAndView mWishlist(ModelAndView mv, 
+								@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage, HttpSession session ) {
+		
 		
 		Member m = (Member)session.getAttribute("loginMember");
-		int Coupon = mpService.CouponListCount(m);
-													// 사용 가능 포인트 셋팅
-													// 찜한 갯수 카운팅
 		
-		mv.addObject("couponcount", Coupon); // 쿠폰 갯수 카운팅
-		//mv.addObject()						// 사용 가능 포인트 셋팅
-												// 찜한 갯수 카운팅
+		int memNo = m.getMemNo();
+		
+		System.out.println(memNo);
 		
 		
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		int listCount = mpService.getWishListCount(memNo);
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<DIBS> list = mpService.selectWishList(pi, memNo);
+		
+		System.out.println("list : " + list);
+		
+		mv.addObject("listCount", listCount);
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+		mv.addObject("list",list);
+   		mv.addObject("pi", pi);										
 		mv.setViewName("mypage_wishList");
 		
 		return mv;
@@ -338,7 +353,7 @@ public class MypageController {
 		
 		int memNo = m.getMemNo();
 		
-		//int result = mpService.PointPrice(m); // 
+		int result = mpService.PointPrice(m); // 
 		
 		int coupon = mpService.CouponListCount(m); // 사용 가능한 쿠폰 카운팅
 		
@@ -559,8 +574,20 @@ public class MypageController {
 	 * @return String
 	 */
 	@RequestMapping("mEdit.do")
-	public String mEdit() {
-		return "mypage_memberEdit";
+	public ModelAndView mEdit(ModelAndView mv, HttpSession session) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+		mv.setViewName("mypage_memberEdit");
+		return mv;
 	}
 	
 	/**

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="mypageMapper">
 
 	<resultMap id="PointResultSet" type="Point">
@@ -26,7 +26,7 @@
 		<result property="cpname" column="CP_NAME"/>
 		<result property="cpdiscount" column="CP_DISCOUNT"/>
 	</resultMap>
-	
+
 	<resultMap id="MyBoardResultSet" type="MyBoard">
 		<id property="qna_no" column="QNA_NO"/>
 		<result property="memno" column="MEM_NO"/>
@@ -37,9 +37,9 @@
 		<result property="qna_title" column="QNA_TITLE"/>
 		<result property="qna_secure" column="QNA_SECURE"/>
 		<result property="qna_chk" column="QNA_CHK"/>
-		
+
 	</resultMap>
-	
+
 	<resultMap id="ordResultSet" type="Ord">
 		<id property="ord_no" column="ORD_NO"/>
 		<result property="ord_detailno" column="ORD_DETAILNO"/>
@@ -60,8 +60,8 @@
 		<result property="prdt_price" column="PRDT_PRICE"/>
 		<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
 	</resultMap>
-	
-	
+
+
 	<resultMap id="AddressResultMap" type="Address">
 		<id property="adNo" column="AD_NO"/>
 		<result property="memNo" column="MEM_NO"/>
@@ -70,27 +70,42 @@
 		<result property="adAddress" column="AD_ADDRESS"/>
 		<result property="adPhone" column="AD_PHONE"/>
 	</resultMap>
-	
-	
-	
+
+	<resultMap id="DIBSResultMap" type="DIBS">
+		<id property="dibsno" column="DIBS_NO"/>
+		<result property="memno" column="MEM_NO"/>
+		<result property="prdt_no" column="PRDT_NO"/>
+		<result property="dibs_count" column="DIBS_COUNT"/>
+		<result property="dibs_size" column="DIBS_SIZE"/>
+		<result property="prdt_color" column="DIBS_COLOR"/>
+		<result property="prdt_name" column="PRDT_NAME"/>
+		<result property="prdt_price" column="PRDT_PRICE"/>
+		<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
+		<result property="path" column="PRDT_IMAGE_PATH"/>
+		<result property="image" column="PRDT_IMAGE"/>
+		<result property="dibs_date" column="DIBS_DATE"/>
+	</resultMap>
+
+
+
 	<select id="PointListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM POINT
 		WHERE MEM_NO=#{memNo}
 	</select>
-	
+
 	<select id="PointselectList" resultMap="PointResultSet">
 		SELECT *
 		FROM POINT
 		WHERE MEM_NO=#{memNo}
 		ORDER BY POINT_NO DESC
 	</select>
-	
+
 	<select id="PointUnavailListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM POINT
 		WHERE MEM_NO=#{memNo}
-		
+
 	</select>
 
 	<select id="PointselectUnavailList" resultMap="PointResultSet">
@@ -99,7 +114,7 @@
 		WHERE MEM_NO=#{memNo}
 		ORDER BY POINT_NO DESC
 	</select>
-	
+
 	<select id="CouponListCount" resultType="_int" parameterType="Member">
 		SELECT COUNT(*)
 		FROM COUPON C
@@ -108,7 +123,7 @@
 		WHERE MEM_NO=#{memNo}
 		AND CP_USING='N'
 	</select>
-	
+
 	<select id="CouponSelectList" resultMap="CouponMemResultSet">
 		SELECT *
 		FROM COUPON C
@@ -118,7 +133,7 @@
 		AND CP_USING='N'
 		ORDER BY CPMEM_NO DESC
 	</select>
-	
+
 	<select id="CompleteCouponListCount" resultType="_int" parameterType="Member">
 		SELECT COUNT(*)
 		FROM COUPON C
@@ -137,21 +152,21 @@
 		AND CP_USING='Y'
 		ORDER BY CPMEM_NO DESC
 	</select>
-	
+
 <!-- 	<select id="selectPoint" resultType="_int">
-		SELECT SUM(DECODE(POINT_PART,'적립',1*POINT_PRICE,'사용',-1*POINT_PRICE)) AS PointSum 
+		SELECT SUM(DECODE(POINT_PART,'적립',1*POINT_PRICE,'사용',-1*POINT_PRICE)) AS PointSum
 		FROM POINT
 		WHERE MEM_NO=#{memNo}
-	</select> 
+	</select>
 	 -->
 	<update id="updatePoint" parameterType="Member">
 		UPDATE MEMBER
-		SET MEM_POINT=(SELECT SUM(DECODE(POINT_PART,'적립',1*POINT_PRICE,'사용',-1*POINT_PRICE)) AS PointSum 
+		SET MEM_POINT=(SELECT SUM(DECODE(POINT_PART,'적립',1*POINT_PRICE,'사용',-1*POINT_PRICE)) AS PointSum
 		FROM POINT
 		WHERE MEM_NO=#{memNo}) + #{mem_point}
 		WHERE MEM_NO=#{memNo}
 	</update>
-	
+
 	<select id="selectBoardListCount" resultType="_int">
 		SELECT COUNT(*)
         FROM QNA Q
@@ -160,7 +175,7 @@
         WHERE MEM_NO=#{memNo}
         ORDER BY QNA_NO DESC
 	</select>
-	
+
 	<select id="selectBoardList" resultMap="MyBoardResultSet">
 		SELECT *
         FROM QNA Q
@@ -169,7 +184,7 @@
         WHERE MEM_NO=#{memno}
         ORDER BY QNA_NO DESC
 	</select>
-	
+
 	<select id="SearchListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM QNA Q
@@ -184,7 +199,7 @@
 		</if>
 		ORDER BY QNA_NO DESC
 	</select>
-	
+
 	<select id="selectSearchList" resultMap="MyBoardResultSet">
 		SELECT *
 		FROM QNA Q
@@ -199,14 +214,14 @@
 		</if>
 		ORDER BY QNA_NO DESC
 	</select>
-	
+
 	<select id="getOrderListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO=#{memNo}
-	
+
 	</select>
-	
+
 	<select id="selectOrderList" resultMap="ordResultSet">
 		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
 		FROM ORD O
@@ -215,50 +230,50 @@
 		WHERE MEM_NO=#{memno}
 		ORDER BY O.ORD_DATE DESC
 	</select>
-	
-	
+
+
 	<insert id="mAddressInsert" parameterType="Address">
 		INSERT INTO ADDRESS VALUES
 		(AD_SEQ.NEXTVAL, #{memNo}, #{adTitle},#{adReceiver},#{adAddress},#{adPhone})
 	</insert>
-	
+
 	<select id="getAddressCount" resultType="_int" parameterType="_int">
 		SELECT COUNT(*)
 		FROM ADDRESS
 		WHERE MEM_NO=#{memNo}
-	
+
 	</select>
-	
+
 	<select id="selectAddressList" parameterType="Member" resultMap="AddressResultMap">
 		SELECT *
 		FROM ADDRESS
 		WHERE MEM_NO=#{memNo}
-	
+
 	</select>
-	
+
 	<select id="ModifyAddress" parameterType="_int" resultMap="AddressResultMap">
 		SELECT *
 		FROM ADDRESS
 		WHERE AD_NO=#{mAddress}
-	
+
 	</select>
-	
+
 	<update id="AddressUpdate" parameterType="Address">
 		UPDATE ADDRESS
 		SET AD_TITLE=#{adTitle}, AD_RECEIVER=#{adReceiver}, AD_ADDRESS=#{adAddress},
 		AD_PHONE=#{adPhone}
 		WHERE AD_NO=#{adNo}
-	</update> 
-	
+	</update>
+
 	<delete id="AddressDelete" parameterType="java.util.Map">
-		<foreach  item="a" collection="nokArr"  index="index" 
+		<foreach  item="a" collection="nokArr"  index="index"
 		      separator=";" open="DECLARE BEGIN" close="; END;" >
 		DELETE
 		FROM ADDRESS
 		WHERE AD_NO=#{a.adNo}
 		</foreach>
 	</delete>
-	
+
 	<select id ="SearchOrdListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM ORD O
@@ -269,14 +284,14 @@
 		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
 		AND (ORD_STATUS='A' OR ORD_STATUS='B' OR ORD_STATUS='C' OR ORD_STATUS='D' OR ORD_STATUS='E')
 		</if>
-		
+
 		<if test="!ord_status.equals('all')">
 		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
 		AND ORD_STATUS=#{ord_status}
 		</if>
-	
+
 	</select>
-	
+
 	<select id="selectSearchOrdList" resultMap="ordResultSet">
 		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
 		FROM ORD O
@@ -284,7 +299,7 @@
 		ON (O.PRDT_NO = P.PRDT_NO)
 		WHERE MEM_NO=#{memno}
 		<if test="ord_status.equals('all')">
-		AND ORD_DATE BETWEEN #{start_date} AND #{end_date} 
+		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
 		AND (ORD_STATUS='A' OR ORD_STATUS='B' OR ORD_STATUS='C' OR ORD_STATUS='D' OR ORD_STATUS='E')
 		</if>
 		<if test="!ord_status.equals('all')">
@@ -293,45 +308,45 @@
 		</if>
 		ORDER BY O.ORD_DATE DESC
 	</select>
-		
+
 	<select id="orderCount1" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
 		AND ORD_STATUS = 'A'
-	</select> 
+	</select>
 	<select id="orderCount2" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
 		AND ORD_STATUS = 'B'
-	</select> 
+	</select>
 	<select id="orderCount3" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
 		AND ORD_STATUS = 'C'
-	</select> 
+	</select>
 	<select id="orderCount4" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
 		AND ORD_STATUS = 'D'
-	</select> 
+	</select>
 	<select id="orderCount5" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
 		AND ORD_STATUS = 'E'
 	</select>
-	
+
 	<select id="getCancelListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO=#{memNo}
 		AND ORD_STATUS='E'
 	</select>
-	
+
 	<select id="selectCancelList" resultMap="ordResultSet">
 		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
 		FROM ORD O
@@ -340,9 +355,9 @@
 		WHERE MEM_NO=#{memno}
 		AND ORD_STATUS='E'
 		ORDER BY O.ORD_DATE DESC
-	
+
 	</select>
-	
+
 	<select id="getSearchCancelCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM ORD O
@@ -352,35 +367,43 @@
 		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
 		AND ORD_STATUS='E'
 	</select>
-	
+
 	<select id="selectSearchCancelList" resultMap="ordResultSet">
 		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
 		FROM ORD O
 		JOIN PRDT P
 		ON (O.PRDT_NO = P.PRDT_NO)
 		WHERE MEM_NO=#{memno}
-		AND ORD_DATE BETWEEN #{start_date} AND #{end_date} 
+		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
 		AND ORD_STATUS='E'
 	</select>
-	
-	
+
+	<select id="getWishListCount" resultType="_int">
+	SELECT COUNT(*)
+     FROM DIBS D
+     JOIN PRDT P
+     ON (D.PRDT_NO = P.PRDT_NO)
+     WHERE MEM_NO=#{memno}
+	</select>
+
 	<insert id="ReturnInsert" parameterType="Return">
 		INSERT INTO RETURN VALUES
 		(RE_SEQ.NEXTVAL,#{memCode},#{ordCode},SYSDATE,#{reName},#{reTitle},#{content},#{reReason},
 		NULL,NULL,NULL,NULL,'N')
 	</insert>
-	
+
 	<!-- <select id="orderCount6" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
 		AND ORD_STATUS = '취소'
+	<select id="selectWishList" resultMap="DIBSResultMap">
+	 SELECT *
+     FROM DIBS D
+     JOIN PRDT P
+     ON (D.PRDT_NO = P.PRDT_NO)
+     WHERE MEM_NO=#{memno}
 	</select>
-	<select id="orderCount7" resultType="_int" parameterType="_int" >
-		SELECT COUNT(*)
-		FROM ORD
-		WHERE MEM_NO = #{memNo}
-		AND ORD_STATUS = '교환'
-	</select> -->
-	
+
+
 </mapper>

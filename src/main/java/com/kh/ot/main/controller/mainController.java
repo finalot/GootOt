@@ -26,6 +26,7 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.main.vo.Wish;
+import com.kh.ot.main.vo.productbenner;
 import com.kh.ot.member.vo.Member;
 
 //@SessionAttributes("loginMember")
@@ -50,6 +51,7 @@ public class mainController {
 	public ModelAndView product1(ModelAndView mv, int product1,
 			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
 
+		
 		int listCount = mainService.getListCount1(product1);
 
 		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage, listCount);
@@ -62,7 +64,8 @@ public class mainController {
 		ArrayList<Product_opt> polist = mainService.selectOptionList1(product1);
 
 		ArrayList<Product_color> pclist = mainService.selectColorList1();
-
+		ArrayList<productbenner> pblist = mainService.selectPB();
+		mv.addObject("pblist", pblist);
 		mv.addObject("plist", plist);
 		mv.addObject("dclist", dclist);
 		mv.addObject("uclist", uclist);
@@ -97,7 +100,8 @@ public class mainController {
 		ArrayList<Product_opt> polist = mainService.selectOptionList2(product2);
 
 		ArrayList<Product_color> pclist = mainService.selectColorList2();
-
+		ArrayList<productbenner> pblist = mainService.selectPB();
+		mv.addObject("pblist", pblist);
 		mv.addObject("plist", plist);
 		mv.addObject("dclist", dclist);
 		mv.addObject("uclist", uclist);
@@ -145,17 +149,7 @@ public class mainController {
 	  }
 	 
 
-	/**
-	 * @작성일 : 2020. 4. 2.
-	 * @작성자 :이대윤
-	 * @내용 : 리뷰 페이지 이동
-	 * @param @return
-	 * @return String
-	 */
-	@RequestMapping("review.do")
-	public String review() {
-		return "review";
-	}
+	
 
 
 	@RequestMapping("todaymain.ad")
@@ -171,9 +165,55 @@ public class mainController {
 	 * @return String
 	 */
 	@RequestMapping("product_detail.do")
-	public String product_detail() {
-		return "productDetail";
+	public ModelAndView product_detail(ModelAndView mv, int product_detail) {
+		
+		ArrayList<Product> pdlist = mainService.selectDetailList(product_detail);
+		ArrayList<Product_opt> polist = mainService.selectOptionList(product_detail);
+		ArrayList<Product_opt> polist2 = mainService.selectOptionList22(product_detail);
+		ArrayList<Product_color> pclist = mainService.selectColorList2();
+		mv.addObject("pdlist", pdlist);
+		mv.addObject("polist", polist);
+		mv.addObject("polist2", polist2);
+		mv.addObject("pclist", pclist);
+		
+		mv.setViewName("productDetail");
+
+		return mv;
+		
 	}
+	
+	/**
+	 * 이대윤 디테일 셀렉트 에이작스
+	 * 
+	 */
+	@RequestMapping("detailSelect.do")
+	public void detailSelect1(HttpServletResponse response,int product_detail) throws JsonIOException, IOException {
+
+		ArrayList<Product_opt> polist3 = mainService.selectOptionList33(product_detail);
+//		ArrayList<Product_opt> polist2 = mainService.selectOptionList22(product_detail);
+
+		response.setContentType("application/json; charset=utf-8");
+		Gson gson = new Gson();
+
+		gson.toJson(polist3, response.getWriter());
+
+	}
+	/*
+	 * @RequestMapping("detailSelect2.do") public void
+	 * detailSelect2(HttpServletResponse response) throws JsonIOException,
+	 * IOException {
+	 * 
+	 * // ArrayList<Product_opt> polist =
+	 * mainService.selectOptionList(product_detail); ArrayList<Product_opt> polist2
+	 * = mainService.selectOptionList22(product_detail);
+	 * 
+	 * response.setContentType("application/json; charset=utf-8"); Gson gson = new
+	 * Gson();
+	 * 
+	 * gson.toJson(polist2, response.getWriter());
+	 * 
+	 * }
+	 */
 
 	/**
 	 * @작성일 : 2020. 4. 2.
@@ -262,7 +302,8 @@ public class mainController {
 		ArrayList<Product_opt> polist = mainService.selectOptionList1(product1);
 
 		ArrayList<Product_color> pclist = mainService.selectColorList1();
-
+		ArrayList<productbenner> pblist = mainService.selectPB();
+		mv.addObject("pblist", pblist);
 		mv.addObject("plist", plist);
 		mv.addObject("dclist", dclist);
 		mv.addObject("uclist", uclist);
@@ -306,7 +347,8 @@ MainSearchCondition msc= new MainSearchCondition();
 		ArrayList<Product_opt> polist = mainService.selectOptionList2(product2);
 
 		ArrayList<Product_color> pclist = mainService.selectColorList2();
-
+		ArrayList<productbenner> pblist = mainService.selectPB();
+		mv.addObject("pblist", pblist);
 		mv.addObject("plist", plist);
 		mv.addObject("dclist", dclist);
 		mv.addObject("uclist", uclist);
@@ -376,4 +418,49 @@ MainSearchCondition msc= new MainSearchCondition();
 		
 		
 	}
+	
+	
+	/**
+	 * @작성일 : 2020. 4. 16.
+	 * @작성자 :이대윤
+	 * @내용 : 프로덕트 검색 불러오기
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("searchProduct.do")
+	public ModelAndView searchProduct(ModelAndView mv, String search,
+			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
+		System.out.println(search);
+		int listCount = mainService.getSearchListCount(search);
+		System.out.println(listCount);
+		MainPageInfo mainPi = MainPagination.getPageInfo(currentPage, listCount);
+
+		ArrayList<Product> plist = mainService.selectSearchList(mainPi, search);
+		/*
+		 * ArrayList<MaindownCategory> dclist = mainService.selectCategoryList1(search);
+		 * ArrayList<MainupCategory> uclist = mainService.selectUpCategoryList1();
+		 */
+
+		ArrayList<Product_opt> polist = mainService.selectOptionSearchList(search);
+
+		ArrayList<Product_color> pclist = mainService.selectColorList1();
+		ArrayList<productbenner> pblist = mainService.selectPB();
+		mv.addObject("pblist", pblist);
+		mv.addObject("plist", plist);
+		/*
+		 * mv.addObject("dclist", dclist); mv.addObject("uclist", uclist);
+		 */
+		mv.addObject("polist", polist);
+		mv.addObject("pclist", pclist);
+		mv.addObject("mainPi", mainPi);
+		
+			mv.setViewName("product_search");
+		
+		
+
+		return mv;
+	}
+
+	
+	
 }

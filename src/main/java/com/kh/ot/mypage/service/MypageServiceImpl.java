@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.ot.admin.vo.Point;
-import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Ord;
@@ -14,6 +13,7 @@ import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.dao.MypageDao;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
@@ -38,7 +38,7 @@ public class MypageServiceImpl implements MypageService{
 	public int PointUnavailListCount(int memNo) {
 		return mpDao.PointUnavailListCount(memNo);
 	}
-	
+
 	@Override
 	public ArrayList<Point> PointselectUnavailList(int memNo, PageInfo pi) {
 		return mpDao.PointselectUnavailList(memNo, pi);
@@ -129,16 +129,16 @@ public class MypageServiceImpl implements MypageService{
 	public int AddressDelete(ArrayList<Address> nokArr) {
 		return mpDao.AddressDelete(nokArr);
 	}
-	
+
 	@Override
 	public int SearchListCount(OrdSearch os) {
-		
+
 		return mpDao.SearchListCount(os);
 	}
 
 	@Override
 	public ArrayList<Ord> selectSearchList(PageInfo pi, OrdSearch os) {
-		
+
 		return mpDao.selectSearchList(pi, os);
 	}
 
@@ -205,6 +205,14 @@ public class MypageServiceImpl implements MypageService{
 //	public int orderCount7(int memNo) {
 //		return mpDao.orderCount7(memNo);
 //	}
-	
-	
+	public int getWishListCount(int memNo) {
+		return mpDao.getWishListCount(memNo);
+	}
+
+	@Override
+	public ArrayList<DIBS> selectWishList(PageInfo pi, int memNo) {
+		return mpDao.selectWishList(pi, memNo);
+	}
+
+
 }

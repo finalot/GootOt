@@ -461,6 +461,24 @@
                 height: 25px;
                 width: 230px;
             }
+            
+            .ec-base-paginate1 a {
+    		display: inline-block;
+		    float: none;
+			}
+
+			.ec-base-paginate1 img {
+   			 vertical-align: none !important;
+			}
+			.ec-base-paginate1 {
+			   margin: 30px auto;
+   			   text-align: center;
+               line-height: 0;
+               display: table;
+			}
+		a{
+			cursor:pointer;
+		}
 </style>
 <title>review</title>
 <meta charset="UTF-8">
@@ -603,7 +621,7 @@
 									height="auto" style="margin-left:1%;">
 									
 									<br><br>
-									<div class="products_reviews_form__title" style="float:left;font-size:17px;">
+									<div class="products_reviews_form__title" style="float:left;font-size:12px;">
       <strong>REVIEW</strong><span class="divider">|</span><span class="weak">문의글 혹은 악의적인 비방글은 무통보 삭제된다는 점 유의해주세요^^</span>
       
     </div>
@@ -1181,6 +1199,7 @@
             
                </div>
  <button class="close1" onclick="modalclose();"style="position: relative;right: 365px;bottom: 37px;color:ivory;">&times;</button>
+ 					<!-- 모달창 시작점 -->
                     <div id="coments"style="margin-top:-3px;overflow-y:scroll;" >
                     
 								<br>
@@ -1199,6 +1218,7 @@
 												class="reviews_index_gallery_review__review_product_info" >
 												<div
 													class="reviews_index_gallery_review__product_info_title">
+													<!-- MODAL 창에 뜨는 DETAIL 상품명 -->
 													(BLACK UP) 호딘 트레이닝 팬츠</div>
 												<div
 													class="reviews_index_gallery_review__product_info_feedbacks" >
@@ -1219,8 +1239,8 @@
                         </div><hr>
                         <div id="innercoment">
                             <div class="coments" style="font-size:12px;text-align:left;padding:10px;letter-spacing: 1px;">이런 기본템일수록 핏을 되게 중요하게 생각하는데 이거는 진짜 핏 장난 아닙니다 후후
-편하게 입는 꾸안꾸룩 좋아하는데 맨투맨이나 기본 티셔츠에 입어도 편해보이면서 예뻐요! 출근 복장이 자유로운 편이라 자주 입을 것 같습니다ㅎㅎ</div><br>
-                            
+					편하게 입는 꾸안꾸룩 좋아하는데 맨투맨이나 기본 티셔츠에 입어도 편해보이면서 예뻐요! 출근 복장이 자유로운 편이라 자주 입을 것 같습니다ㅎㅎ</div><br>
+              
                            
                         </div>
                          <div style="color:lightgray;font-size:12px;float:right;">2020-03-30</div>
@@ -1258,7 +1278,7 @@
                         
                         </div>
                     </div>
-                            
+                       <!-- 모달창 끝나는 점 -->     
                 </div>
                 </div>
                 <!-- modal끝!!!!!!!!!!!!!!!!!!!!!!!! -->
@@ -1271,10 +1291,13 @@
 									<!-- 리뷰1줄 시작 -->
 									
 									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review" id="review1"
+									<!-- foreach문 시작점 -->
+									<c:forEach var="r" items="${rlist }">
+									<li class="reviews_index_gallery_review review1"
 										style="-webkit-box-shadow: 0 4px 6px -6px #222;
   -moz-box-shadow: 0 4px 6px -6px #222;
   box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
+  <input type="hidden" class="rv_no" value="${r.rvNo }">
 										<div class="photo_review_thumbnail js-link-fullscreen-popup"
 											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
 											<div class="photo_review_thumbnail__thumbnail_container">
@@ -1303,17 +1326,19 @@
 												<div style="margin-top: 2%; border-radius: 2%;"
 													class="photo_review_thumbnail__review_title js-translate-review-message">
 
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
+													${r.rvInfo }</div>
 												<br>
 												<div style="margin-top: -2%; color: gray;"
 													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
 													<div class="photo_review_thumbnail__author_name"
 														style="float: left;">
-														<strong>이채*</strong>
+														<!-- 작성자 -->
+														<strong>${r.memName }</strong>
 													</div>
 
 													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
+														style="position: relative; left: 5%;">${r.rvDate }</div>
+														<!-- 내가 리뷰 작성한 내용 -->
 													<hr>
 												</div>
 											</div>
@@ -1334,7 +1359,8 @@
 												class="reviews_index_gallery_review__review_product_info">
 												<div
 													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
+													<!-- 내가 구매한 상품명 -->
+													${r.prdtName }</div>
 												<div
 													class="reviews_index_gallery_review__product_info_feedbacks">
 													<span class="reviews_index_gallery_review__reviews_count"
@@ -1348,1511 +1374,99 @@
 											</div>
 										</div>
 									</li>
+									</c:forEach>
+									<!-- foreach문 마감줄 -->
 									<!-- 리뷰1 끝 -->
 									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									<li class="reviews_index_gallery_review"
-										style="-webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 375px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했어요! 키가 큰편....</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<strong>이채*</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">2020. 03. 18</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-												</div>
-											</div>
-										</div>
-									</li>
-									<!-- 리뷰1 끝 -->
-									
-									
-									
-									
-									<!-- 리뷰 1줄 끝-->
-									
-									
-									
-
-								</ul>
+									</ul>
 							</div>
 	 
 					</div><br><br><br>
-<div style="position:relative;left:-46.8%;padding-top:2%;">
-<Strong>1</Strong>&nbsp;&nbsp;...&nbsp;
-<a style="border-radius:5px; border:1px solid black;background:black;color:white;">&nbsp;<Strong>6</Strong>&nbsp;</a>&nbsp;&nbsp;
-<a><Strong>7</Strong></a>&nbsp;&nbsp;
-<a><Strong>8</Strong></a>&nbsp;&nbsp;
-<a><Strong>9</Strong></a>&nbsp;&nbsp;
-<a><Strong>10</Strong></a>&nbsp;&nbsp;
-&nbsp;...&nbsp;&nbsp;<Strong>13</Strong>
-</div>
+					
+					<!-- 페이징 처리 할 부분 -->
+					<div style="position:relative;left:-46.8%;padding-top:2%;">
+					 <div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate1">
+            <!-- <a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first"> -->
+
+               <img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+
+
+					<c:if test="${empty sc }">
+                  <c:url var="before" value="review.do">
+                  <c:param name="currentPage" value="${pi.currentPage -1 }"/>
+                  </c:url>
+                      </c:if>
+					<c:if test="${!empty sc }">
+                  <c:url var="before" value="pb_search.do">
+                  <c:param name="currentPage" value="${pi.currentPage -1 }"/>
+                  <c:param name="search_date" value="${sc.search_date }"/>
+                  <c:param name="search_key" value="${sc.search_key }"/>
+                  <c:param name="search" value="${sc.search }"/>
+                  </c:url>
+                      </c:if>
+                                            
+                  <a href="${before}">
+                  <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+                  </a> &nbsp;
+             
+
+               <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                 
+		   <c:if test="${ p eq pi.currentPage }">
+                        <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
+                        <b>${ p }</b> &nbsp;&nbsp;</font>
+                     </c:if>
+					
+					 <c:if test="${empty sc }">	
+                     <c:if test="${ p ne pi.currentPage }">
+                        <c:url var="pagination" value="review.do">
+                           <c:param name="currentPage" value="${ p }"/>
+                     </c:url>
+                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+                     ${ p }</a> &nbsp;
+                  </c:if>
+                  </c:if>
+                  
+                  	 <c:if test="${!empty sc }">	
+                     <c:if test="${ p ne pi.currentPage }">
+                        <c:url var="pagination" value="pb_search.do">
+                           <c:param name="currentPage" value="${ p }"/>
+                           <c:param name="search_date" value="${sc.search_date }"/>
+		                  <c:param name="search_key" value="${sc.search_key }"/>
+		                  <c:param name="search" value="${sc.search }"/>
+                     </c:url>
+                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+                     ${ p }</a> &nbsp;
+                  </c:if>
+                  </c:if>
+                  
+                  
+               </c:forEach>
+
+				     <c:if test="${empty sc }">	
+                    <c:url var="after" value="review.do">
+                     <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                    </c:url>
+                     </c:if>
+                     
+                  <c:if test="${!empty sc }">
+                  <c:url var="after" value="pb_search.do">
+                  <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                  <c:param name="search_date" value="${sc.search_date }"/>
+                  <c:param name="search_key" value="${sc.search_key }"/>
+                  <c:param name="search" value="${sc.search }"/>
+                  </c:url>
+                      </c:if>
+                  
+                  <a href="${after}">
+               <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+               </a>
+
+
+               <img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+
+         </div>
+					</div>
 
 				</div>
 				
@@ -3301,7 +1915,14 @@
 	<!--============================================리뷰모달===================================================-->
 	<script>
 	
-	$('#review1').on('click',function modalOpen(){
+	$('.review1').on('click',function modalOpen(){
+		
+		 var rv_no = $(this).find('.rv_no').val();
+		
+		 console.log(rv_no);
+		
+		
+		
         var ulr = $(this).attr("src");
         $("#modalimg").attr("src", ulr);            
         $('#modal').show();

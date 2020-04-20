@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
     <link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
 
-	<jsp:include page="header.jsp"/>	
+	<jsp:include page="header.jsp"/>
 
 
 <style>
@@ -31,14 +31,14 @@ a{
 }
 </style>
 
-   
+
 </head>
 <body>
 	<c:url var="mWishlist" value="mWishlist.do"/>
 	<c:url var="mPoint" value="mPoint.do"/>
 	<c:url var="mCoupon" value="mCoupon.do"/>
 	<c:url var="mCancel" value="mCancel.do"/>
-	
+
  	<div id="container">
  		<div id="memberInf1">
 			<div class="xans-myshop-bankbook " style="width: 80%;">
@@ -46,14 +46,14 @@ a{
     				<strong>
     					<span><span class="xans-member- var-name">${loginMember.memName }</span></span>
     				</strong>
- 					님은 현재 
+ 					님은 현재
 					<strong>
 						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">MEMBER</span>
 						<span class="myshop_benefit_ship_free_message"></span>
 					</strong>
   					입니다.
 				</p>
-		
+
 				<ul style="float: right;width: 350px; height: 60px;margin-right: 100px;margin-top: -34px;">
 					<li class="xans-layout-shoppinginfo ">
 						<strong class="title">WISH</strong>
@@ -64,7 +64,7 @@ a{
 							</a>
 						</strong>
 					</li>
-				
+
                		<li>
 	                    <strong class="title">POINT</strong>
 	                    <br>
@@ -73,7 +73,7 @@ a{
 	                    	<fmt:formatNumber value="${loginMember.mem_point }" pattern="#,###"/>원</a>
 	                    </strong>
 	                </li>
-                
+
 	                <li class="etc ">
 	                    <strong class="title">COUPON</strong>
 	                    <br>
@@ -84,7 +84,7 @@ a{
 	            </ul>
 			</div>
 		</div>
-		
+
         <div id="contents">
 			<div class="titleArea">
     			<h2>ORDER LIST</h2>
@@ -103,7 +103,7 @@ a{
 		        	</li> -->
     			</ul>
 			</div>
-			
+
 			<form action="my_orderlist.do" id="my_orderlist" name="my_orderlist">
 				<div class="xans-element- xans-myshop xans-myshop-orderhistoryhead ">
 					<fieldset class="ec-base-box">
@@ -118,9 +118,9 @@ a{
 								<option value="order_cancel">취소</option>
 								<option value="order_exchange">교환</option>
 								<option value="order_return">반품</option>
-							</select>       
+							</select>
 						</div>
-						
+
 				        <span class="period">
 				            <a href="#none" id="d-day0" class="btnNormal" days="00" value="0">
 				            	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1_on.gif" alt="오늘"></a>
@@ -133,25 +133,25 @@ a{
 				            <a href="#none"  id="d-day180" class="btnNormal" days="180">
 				            	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5_on.gif" alt="6개월"></a>
 				        </span>
-				        
+
         				<input id="history_start_date" name="history_start_date" class="fText hasDatepicker" type="date">
-        				 ~ 
+        				 ~
         				<input id="history_end_date" name="history_end_date" class="fText hasDatepicker" type="date">
-        				        
-        				<input alt="조회" id="order_search_btn" type="image" src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/btn_search.gif">    
+
+        				<input alt="조회" id="order_search_btn" type="image" src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/btn_search.gif">
        				</fieldset>
-       				
-       				    
-       				
-       				
-       				
+
+
+
+
+
 					<ul>
 						<li>기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
 						<li>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
 	   			    </ul>
 				</div>
 			</form>
-			
+
 			<div class="xans-element- xans-myshop xans-myshop-orderhistorylistitem ec-base-table typeList">
 				<!--
 	       			 $login_url = /member/login.html
@@ -159,7 +159,7 @@ a{
 				<div class="title">
         			<h3 style="margin:0;">주문 상품 정보</h3>
     			</div>
-    			
+
 				<table border="1" summary="">
         			<colgroup>
 						<col style="width:135px;">
@@ -170,7 +170,7 @@ a{
 						<col style="width:130px;">
 						<col style="width:130px;">
 					</colgroup>
-					
+
 					<thead>
 						<tr>
 							<th scope="col" style="line-height:1em">ORDER DATE<br>[ORDER NO]</th>
@@ -185,26 +185,23 @@ a{
 
 					<c:url var="product_detail" value="product_detail.do">
 						<c:param name="product_detail" value="p1"/>
-					</c:url>           			
-					
-				
+					</c:url>
+
+					<c:forEach var="o" items="${list }">
 					<tbody class="center ">
-				<c:forEach var="o" items="${list }">
 						<tr class="xans-record-">
-						<input  class="ordNo" name="ordNo" type="hidden" value="${o.ord_no }"/>
 						<input id="prdt_no" class="prdt_no" name="prdt_no" type="hidden" value="${o.prdt_no}"/>
 							<td class="number ">
-                    			${o.ord_date }                   
+                    			${o.ord_date }
                     		<p>
-                    			<a href="${product_detail }" class="lineordNo" name="">${o.ord_no}</a>
-                    		
+                    			<a href="${product_detail }" class="line">[${o.ord_no }]</a>
                    			</p>
 		                    <a href="#none" class="displaynone yg_btn_80 yg_btn3" onclick="OrderHistory.orderCancel('20200314-0004984')" alt="주문취소">주문취소</a>
 		                    <a href="cancel.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="취소신청">취소신청</a>
 		                    <a href="exchange.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="교환신청">교환신청</a>
 		                    <a href="return.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="반품신청">반품신청</a>
                				</td>
-               				
+
 			                <td class="thumb"><a onclick="productmove(this)">
 			                	<img src="${o.path }${o.image }" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></a>
 		                	</td>
@@ -234,7 +231,7 @@ a{
                    				<c:if test="${o.ord_status == 'E' }">
                    					반품
                    				</c:if>
-                   				
+
                    				</p>
 								<p class="displaynone" style="font-size:13px;">
 									<a href="#" target="_self"></a>
@@ -247,26 +244,23 @@ a{
 								<a href="#none" class="displaynone" onclick="OrderHistory.withdraw('E','20200314-0004984|9017|000J|3263477','F', 'F') yg_btn_80 yg_btn3" alt="교환철회">교환철회</a>
 								<a href="#none" class="displaynone" onclick="OrderHistory.withdraw('R','20200314-0004984|9017|000J|3263477','F', 'F') yg_btn_80 yg_btn3" alt="반품철회">반품철회</a> -->
                 			</td>
-                			<c:if test="${o.ord_status == 'D' }">
                 			<td>
-			                   <a href="#none" class="line returnOrd"  id="returnOrd">[반품신청]</a>
-                			</td>
-                			</c:if>
-                		<c:if test="${o.ord_status != 'D' }">
-                			<td>
+			                    <p class="displaynone"><a href="#none" class="line" onclick="OrderHistory.getDetailInfo('?product_no=9017&amp;cate_no=25&amp;order_id=20200314-0004984&amp;ord_item_code=20200314-0004984-01');">[상세정보]</a></p>
 			                    <p class="">-</p>
                 			</td>
-                			</c:if>
-            				</tr>
-            				</c:forEach>
+            			</tr>
 					</tbody>
+					</c:forEach>
+
+
+
 				</table>
 				<p class="message displaynone">주문 내역이 없습니다.</p>
 			</div>
 
 			<!-- 페이징 처리 -->
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
-			
+
 				<c:if test="${empty os }">
 					<c:if test="${pi.currentPage eq 1 }">
 						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
@@ -280,7 +274,7 @@ a{
 					</a>
 					</c:if>
 				</c:if>
-				
+
 				<c:if test="${ !empty os }">
 					<c:if test="${pi.currentPage eq 1 }">
 						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
@@ -297,12 +291,12 @@ a{
 					</a>
 					</c:if>
 				</c:if>
-				
+
 				<c:if test="${empty os }">
 					<c:if test="${ pi.currentPage eq 1 }">
 						<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
 					</c:if>
-					
+
 					<c:if test="${ pi.currentPage ne 1 }">
 						<c:url var="before" value="mList.do">
 	                  		<c:param name="currentPage" value="${pi.currentPage - 1 }"/>
@@ -312,12 +306,12 @@ a{
 	                </a> &nbsp;
 	                </c:if>
 				</c:if>
-					
+
 				<c:if test="${ !empty os }">
 					<c:if test="${ pi.currentPage eq 1 }">
 						<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
 					</c:if>
-					
+
 					<c:if test="${ pi.currentPage ne 1 }">
 						<c:url var="before" value="my_orderlist.do">
 			                <c:param name="currentPage" value="${pi.currentPage - 1 }"/>
@@ -330,15 +324,15 @@ a{
 	                </a> &nbsp;
 	       			</c:if>
 	       		</c:if>
-	            
-				 
+
+
 				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 			   		<c:if test="${ p eq pi.currentPage }">
 	                        <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
 	                        <b>${ p }</b> &nbsp;&nbsp;</font>
 	                </c:if>
-						
-				 	<c:if test="${ empty os }">	
+
+				 	<c:if test="${ empty os }">
 	                     <c:if test="${ p ne pi.currentPage }">
 	                        <c:url var="pagination" value="mList.do">
 	                           <c:param name="currentPage" value="${ p }"/>
@@ -347,8 +341,8 @@ a{
 	                     	${ p }</a> &nbsp;
 	                  	 </c:if>
 	                </c:if>
-	                  
-	               	 <c:if test="${ !empty os }">	
+
+	               	 <c:if test="${ !empty os }">
 	                     <c:if test="${ p ne pi.currentPage }">
 	                        <c:url var="pagination" value="my_orderlist.do">
 		                        <c:param name="currentPage" value="${ p }"/>
@@ -361,12 +355,12 @@ a{
 	                  	 </c:if>
 	                </c:if>
 	          	</c:forEach>
-	               
+
                	<c:if test="${ empty os }">
                		<c:if test="${ pi.currentPage eq pi.maxPage }">
 						<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
 					</c:if>
-				
+
 					<c:if test="${ pi.currentPage ne pi.maxPage }">
 						<c:url var="after" value="mList.do">
 		                   	<c:param name="currentPage" value="${pi.currentPage +1 }"/>
@@ -376,12 +370,12 @@ a{
 	              		</a>
 	              	</c:if>
                </c:if>
-               
+
                <c:if test="${ !empty os }">
                		<c:if test="${ pi.currentPage eq pi.maxPage }">
 						<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
 					</c:if>
-					
+
 					<c:if test="${ pi.currentPage ne pi.maxPage }">
 						<c:url var="after" value="my_orderlist.do">
 	                     	<c:param name="currentPage" value="${pi.currentPage +1 }"/>
@@ -394,12 +388,12 @@ a{
                			</a>
              		</c:if>
                </c:if>
-               
+
                <c:if test="${empty os }">
                		<c:if test="${ pi.currentPage eq pi.maxPage }">
                			<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
                		</c:if>
-               		
+
                		<c:if test="${ pi.currentPage ne pi.maxPage }">
 	               		<c:url var="end" value="mList.do">
 	               			<c:param name="currentPage" value="${pi.maxPage }"/>
@@ -409,12 +403,12 @@ a{
 						</a>
                		</c:if>
                </c:if>
-               
+
                <c:if test="${ !empty os }">
 	               <c:if test="${ pi.currentPage eq pi.maxPage }">
 	               		<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
 	               </c:if>
-	               
+
 	               <c:if test="${ pi.currentPage ne pi.maxPage }">
 	               		<c:url var="end" value="my_orderlist.do">
 	               			<c:param name="currentPage" value="${pi.maxPage }"/>
@@ -428,50 +422,50 @@ a{
 	               </c:if>
                </c:if>
 			</div>
-			
-			
+
+
 		</div>
 		<hr class="layout">
 	</div>
-	
+
  <jsp:include page="footer.jsp"/>
- 
+
  <script>
 $('.returnOrd').click(function(){
 	var ordNo= $(this).parents('.xans-record-').find('input[name=ordNo]').val();
-			
+
 			location.href="MypageReturn.do?ordNo="+ordNo;
-			
+
 	console.log(ordNo);
 })
- 
+
  </script>
- 
- 
+
+
  <script>
  function productmove(pm){
 	 var prdt_no = $(pm).parents('tr').find('.prdt_no').val();
-	 
+
 	 console.log(prdt_no);
-	 
+
 /*
-       상품 상세정보 경로 설정 해야함 
+       상품 상세정보 경로 설정 해야함
 	location.href=""+prdt_no;
  */
-	
+
  }
  </script>
- 
+
  <script>
-  				  
+
 		document.getElementById('history_end_date').value = new Date().toISOString().substring(0, 10);
-		
+
 		var startday = document.getElementById('history_end_date').value;
-		
+
 		startday = startday.split("-"); // 2019, 04, 19
-		
+
 		var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) - 180));
-		
+
 		var s_day = start.toISOString().substr(0, 10);
 
 		$('#history_start_date').val(s_day);
@@ -526,6 +520,6 @@ $('.returnOrd').click(function(){
 					$('#history_start_date').val(s_day);
 				});
 	</script>
- 
+
 </body>
 </html>
