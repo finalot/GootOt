@@ -18,6 +18,7 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.main.vo.Wish;
+import com.kh.ot.main.vo.productbenner;
 
 @Repository("mainDao")
 public class MainDao {
@@ -35,6 +36,16 @@ public class MainDao {
 	 */
 	public ArrayList<Product_opt> selectOptionList1(int product1){
 		return (ArrayList)sqlSession.selectList("productMapper.selectProductOption1",product1);
+	}
+	
+	public ArrayList<Product_opt> selectOptionList(int product_detail){
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductOption",product_detail);
+	}
+	public ArrayList<Product_opt> selectOptionList22(int product_detail){
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductOption22",product_detail);
+	}
+	public ArrayList<Product_opt> selectOptionList33(int product_detail){
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductOption33",product_detail);
 	}
 	
 	public ArrayList<Product_color> selectColorList1(){
@@ -148,6 +159,30 @@ public class MainDao {
 
 	public ArrayList<Wish> selectWish(int memNo) {
 		return (ArrayList)sqlSession.selectList("productMapper.selectWish",memNo);
+	}
+
+	public int getSearchListCount(String search) {
+		return sqlSession.selectOne("productMapper.getSearchListCount",search);
+	}
+
+	public ArrayList<Product> selectSearchList(MainPageInfo mainPi, String search) {
+		
+		int offset=(mainPi.getCurrentPage() - 1) * mainPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("productMapper.selectSearchProduct",search,rowBounds);
+	}
+
+	public ArrayList<Product_opt> selectOptionSearchList(String search) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectSearchProductOption",search);
+	}
+
+	public ArrayList<productbenner> selectPB() {
+		return (ArrayList)sqlSession.selectList("productMapper.selectPB");
+	}
+
+	public ArrayList<Product> selectDetailList(int product_detail) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductDetail",product_detail);
 	}
 
 

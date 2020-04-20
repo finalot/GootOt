@@ -11,6 +11,7 @@ import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
+import com.kh.ot.mypage.vo.WishList;
 
 public interface MypageService {
 
@@ -230,16 +231,38 @@ public interface MypageService {
 	 */
 	int orderCount5(int memNo);
 
+	/**
+	 * @작성일 : 2020. 4. 20.
+	 * @작성자 : 신경섭
+	 * @내용 : 마이페이지 반품주문내역
+	 * @param memNo
+	 * @return
+	 */
 	int getCancelListCount(int memNo);
 
 	ArrayList<Ord> selectCancelList(PageInfo pi, int memNo);
 	
 
+	/**
+	 * @작성일 : 2020. 4. 20.
+	 * @작성자 : 신경섭
+	 * @내용 : 마이페이지 반품주문내역 검색
+	 * @param os
+	 * @return
+	 */
 	int getSearchCancelCount(OrdSearch os);
 
 	ArrayList<Ord> selectSearchCancelList(PageInfo pi, OrdSearch os);
 
-//	int orderCount6(int memNo);
-//	
-//	int orderCount7(int memNo);
+	/**
+	 * @작성일 : 2020. 4. 20.
+	 * @작성자 : 신경섭
+	 * @내용 : 마이페이지 위시리스트
+	 * @param memNo
+	 * @return
+	 */
+	int getWishListCount(int memNo);
+
+	ArrayList<WishList> selectWishList(PageInfo pi, int memNo);
+
 }

@@ -194,17 +194,17 @@
 						<li>
 			                <span class="icoDot"></span>
 			                <strong>취소 : </strong>
-			                <a href="${delivery_cancel }" class="count"><span id="xans_myshop_orderstate_order_cancel_count">${orderCount5}</span></a>
+			                <a href="${delivery_cancel }" class="count"><span id="xans_myshop_orderstate_order_cancel_count"></span></a>
 			            </li>
 			            <li>
 			                <span class="icoDot"></span>
 			                <strong>교환 : </strong>
-			                <a href="${delivery_change }" class="count"><span id="xans_myshop_orderstate_order_exchange_count">${orderCount6}</span></a>
+			                <a href="${delivery_change }" class="count"><span id="xans_myshop_orderstate_order_exchange_count"></span></a>
 			            </li>
 			            <li>
 			                <span class="icoDot"></span>
 			                <strong>반품 : </strong>
-			                <a href="${delivery_return }" class="count"><span id="xans_myshop_orderstate_order_return_count">${orderCount7} </span></a>
+			                <a href="${delivery_return }" class="count"><span id="xans_myshop_orderstate_order_return_count">${orderCount5} </span></a>
 			            </li>
 			        </ul>
 				</div>

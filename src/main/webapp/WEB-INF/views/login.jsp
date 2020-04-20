@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>oT.</title>
-	<link rel="icon" type="image/png" href="<c:url value="/resources/images/icons/favicon.png"/>">
+	<link rel="icon" type="image/png" href="ot/resources/images/icons/favicon.png"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/ot/resources/css/Login_bootstrap.min.css">
     <!-- style CSS -->
@@ -42,7 +42,7 @@
                                     <div class="creat_account d-flex align-items-center">
                                         <input type="checkbox" id="f-option" name="selector">
                                         <label for="f-option">Remember me</label>
-                                    </div>
+                                    </div><br><br>
                                       <a href="#layer2"  id="loginBtn"  class="btn_3">
                                         log in
                                     </a> 
