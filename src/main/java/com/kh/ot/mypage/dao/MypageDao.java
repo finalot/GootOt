@@ -18,6 +18,7 @@ import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
+import com.kh.ot.mypage.vo.WishList;
 
 @Repository("mpDao")
 public class MypageDao {
@@ -83,9 +84,9 @@ public class MypageDao {
 		
 		int memNo = m.getMemNo();
 		
-		//int pointSet = sqlSession.selectOne("mypageMapper.selectPoint",memNo);
+		int pointSet = sqlSession.selectOne("mypageMapper.selectPoint",memNo);
 		
-		//m.setMem_point(pointSet);
+		m.setMem_point(pointSet);
 		 
 		return sqlSession.update("mypageMapper.updatePoint", m);
 	}
@@ -248,6 +249,18 @@ public class MypageDao {
 		
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectSearchCancelList", os, rowBounds);
 	}
+
+	public int getWishListCount(int memNo) {
+		return sqlSession.selectOne("mypageMapper.getWishListCount",memNo);
+	}
+	
+	public ArrayList<WishList> selectWishList(PageInfo pi, int memNo) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectWishList", memNo, rowBounds);
+	}
+
 
 	
 	

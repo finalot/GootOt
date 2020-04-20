@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.ot.admin.vo.Point;
-import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Ord;
@@ -16,6 +15,7 @@ import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
+import com.kh.ot.mypage.vo.WishList;
 
 @Service("mpService")
 public class MypageServiceImpl implements MypageService{
@@ -190,15 +190,15 @@ public class MypageServiceImpl implements MypageService{
 		return mpDao.selectSearchCancelList(pi, os);
 	}
 
-//	@Override
-//	public int orderCount6(int memNo) {
-//		return mpDao.orderCount6(memNo);
-//	}
-//
-//	@Override
-//	public int orderCount7(int memNo) {
-//		return mpDao.orderCount7(memNo);
-//	}
+	@Override
+	public int getWishListCount(int memNo) {
+		return mpDao.getWishListCount(memNo);
+	}
+
+	@Override
+	public ArrayList<WishList> selectWishList(PageInfo pi, int memNo) {
+		return mpDao.selectWishList(pi, memNo);
+	}
 	
 	
 }

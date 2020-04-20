@@ -363,7 +363,24 @@
 		AND ORD_STATUS='E'
 	</select>
 	
+	<select id="getWishListCount" resultType="_int">
+	SELECT COUNT(*)
+     FROM WISHLIST W
+     JOIN PRDT P
+     ON (W.PRDT_NO = P.PRDT_NO)
+     WHERE MEM_NO=#{memno}
+	</select>
 	
+	<select id="selectWishList" resultMap="WishResultMap">
+	SELECT *
+     FROM WISHLIST W
+     JOIN PRDT P
+     ON (W.PRDT_NO = P.PRDT_NO)
+     WHERE MEM_NO=#{memno}
+	
+	
+	
+	</select>
 	<!-- <select id="orderCount6" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
