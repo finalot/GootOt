@@ -46,14 +46,16 @@
 	<jsp:include page="header.jsp"/>
 
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(/ot/resources/images/heading-pages-02.jpg);">
+	<c:forEach var="pb" items="${pblist }">
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(${pb.pbImgPath}${pb.pbImg});">
 		<h2 class="l-text2 t-center">
-			OT.CLOTHING
+			
 		</h2>
 		<p class="m-text13 t-center">
-			New Arrivals oT. Collection 2020
+			${pb.pbComment }
 		</p>
 	</section>
+	</c:forEach>
 
 	<!-- Content page -->
 	<section class="bgwhite p-t-55 p-b-65">
@@ -68,7 +70,7 @@
 						<ul class="p-b-54">
 					 <c:forEach var="dc" items="${ dclist }">
 							<li class="p-t-4">
-								<a href="http://moon1:8888/ot/product2.do?product2=${dc.upNo }${dc.downNo }" class="s-text13 active1">
+								<a href="http://localhost:8888/ot/product2.do?product2=${dc.upNo }${dc.downNo }" class="s-text13 active1">
 									<small>${dc.downName}</small>
 								</a>
 							</li>
@@ -108,9 +110,6 @@
 					</div>
 					
 						
-<c:url var="product_detail" value="product_detail.do">
-	<c:param name="product_detail" value="p1" />
-</c:url>
 
 
 
@@ -125,12 +124,9 @@
 									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
 									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
+										
 
-										<div id="${p.prdtNo }" class="block2-btn-addcart w-size1 trans-0-4">
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
 											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
@@ -146,12 +142,9 @@
 										<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
 									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
+										
 
-										<div id="${p.prdtNo }" class="block2-btn-addcart w-size1 trans-0-4">
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
 											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
@@ -169,12 +162,9 @@
 									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
 									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
+									
 
-										<div id="${p.prdtNo }" class="block2-btn-addcart w-size1 trans-0-4">
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
 											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
@@ -211,7 +201,9 @@
 										${p.prdtName }
 
 									</a>
-
+<c:url var="product_detail" value="product_detail.do">
+	<c:param name="product_detail" value="${p.prdtNo }" />
+</c:url>
 									<span class="block2-price m-text6 p-r-5">
 									<c:if test="${p.prdtSale ne 0 }">
 	<small><font class="format-money" style="text-decoration:line-through">${ p.prdtPrice}</font>-><font class="format-money">${ p.prdtPrice-((p.prdtPrice/100)*p.prdtSale)}</font> won</small>&nbsp;&nbsp;
@@ -323,7 +315,7 @@
                   <c:param name="sort" value="3"/>
                   <c:param name="currentPage" value="${mainPi.currentPage -1 }"/>
                   </c:url>
-                  <a href="http://moon1:8888/ot/${before}">
+                  <a href="http://localhost:8888/ot/${before}">
                   <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
                   </a> &nbsp;
 					</c:if>
@@ -337,7 +329,7 @@
                         <c:url var="pagination" value="sort2.do">
                            <c:param name="currentPage" value="${ p }"/>
                      </c:url>
-                     <a href="http://moon1:8888/ot/sort2.do?product2=<%=downPage %>&sort=3&currentPage=${p }" class="item-pagination flex-c-m trans-0-4">
+                     <a href="http://localhost:8888/ot/sort2.do?product2=<%=downPage %>&sort=3&currentPage=${p }" class="item-pagination flex-c-m trans-0-4">
                      ${ p }</a>
                   </c:if>
                </c:forEach>
@@ -348,7 +340,7 @@
                		 <c:param name="sort" value="3"/>
                      <c:param name="currentPage" value="${mainPi.currentPage +1 }"/>
                   </c:url>
-                  <a href="http://moon1:8888/ot/${after}">
+                  <a href="http://localhost:8888/ot/${after}">
                <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
                </a>
                   </c:if>
