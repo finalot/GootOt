@@ -218,24 +218,24 @@
 						<%-- <c:forEach var="c" items="${list }"> --%>
 						<div class="header-cart header-dropdown" style="border-radius:10px;">
 							<ul class="header-cart-wrapitem">
-								<c:forEach var="c" items="${list }">
+								<%-- <c:forEach var="c" items="${list }"> --%>
 								<li name="p_count" class="header-cart-item">
 									<div class="header-cart-item-img">
 										<a href ="${cartbutton }">
-										<img src="${c.path }${c.image}"/></a>
+										<%-- <img src="${c.path }${c.image}"/> --%></a>
 									</div>
 
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
-											${c.prdt_name }
+											<%-- ${c.prdt_name } --%>
 										</a>
 
 										<span class="header-cart-item-info">
-											${c.prdt_count} x ${c.prdt_price } won
+											<%-- ${c.prdt_count} x ${c.prdt_price } won --%>
 										</span>
 									</div>
 								</li>
-								</c:forEach>
+								<%-- </c:forEach> --%>
 							</ul>
 
 							<div id="prdtPrice" class="header-cart-total">
@@ -407,23 +407,7 @@
 	<script src="http://moon1:82/socket.io/socket.io.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 	<!-- 리모콘 장바구니 -->
-	<script>
-	$(function(){
-		
-	var p_count = document.getElementsByName('p_count');
-	$('#p_count').text(p_count.length);		
-	});
 	
-	var sumPrice = 0;
-	
-	"<c:forEach var='c' items='${list }'>"
-		
-	sumPrice += (Number("${c.prdt_count}") * Number("${c.prdt_price }"));
-	"</c:forEach>"
-	
-	$('#prdtPrice').text(sumPrice+" Won");
-	
-	</script>
 	
 	<script>
 	$(document).ready(function(){
