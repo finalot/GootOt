@@ -525,7 +525,7 @@
 	<jsp:include page="header.jsp"/>
 
 	<!-- breadcrumb -->
-	<div class="bread-crumb bgwhite flex-w p-l-52 p-r-15 p-t-30 p-l-15-sm">
+	<!-- <div class="bread-crumb bgwhite flex-w p-l-52 p-r-15 p-t-30 p-l-15-sm">
 		<a href="index.html" class="s-text16"> Home <i
 			class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
 		</a> <a href="product.jsp" class="s-text16"> clothing <i
@@ -533,8 +533,10 @@
 		</a> <a href="product.jsp" class="s-text16"> 티셔츠/나시 <i
 			class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
 		</a> <span class="s-text17"> [B-BASIC] 베이직 크롭 컬러나시 </span>
-	</div>
+	</div> -->
 <br>
+
+
 	<!-- Product Detail -->
 	<div class="container bgwhite p-t-35 p-b-80" style="padding-bottom:0px;padding-left:0px;padding-right:0px;width:1500px;">
 		<div class="flex-w flex-sb">
@@ -543,9 +545,11 @@
 					<div class="wrap-slick3-dots"></div>
 
 					<div class="wrap-pic-w">
+					<c:forEach var="pd" items="${pdlist }">
 						<img
-							src="/ot/resources/images/oT/clothing/t_nasi/basic_crop_color_nasi/basic_crop_color_nasi.webp"
+							src="${pd.prdtImagePath }${pd.prdtImage }"
 							alt="IMG-PRODUCT">
+							</c:forEach>
 					</div>
 
 					<!-- <div class="item-slick3" data-thumb="images/thumb-item-02.jpg">
@@ -562,25 +566,34 @@
 				</div>
 			</div>
 			<div class="w-size14 p-t-30 respon5" style="margin-top:-3%">
-
-				<h4 class="product-detail-name m-text16 p-b-13">[B-BASIC] 베이직
-					크롭 컬러나시</h4>
+<c:forEach var="pdd" items="${pdlist }">
+				<h4 class="product-detail-name m-text16 p-b-13">${pdd.prdtName }</h4>
 
 				price&nbsp;:&nbsp;&nbsp; <span class="m-text17 format-money">
-					<small>7000</small>
+					<c:if test="${pdd.prdtSale ne 0 }">
+	<font class="format-money" style="text-decoration:line-through">${ pdd.prdtPrice}</font>-><font class="format-money">${ pdd.prdtPrice-((pdd.prdtPrice/100)*pdd.prdtSale)}</font>
+										</c:if>
+										<c:if test="${pdd.prdtSale eq 0 }">
+										<font class="format-money">${ pdd.prdtPrice}</font> 
+										</c:if>
 
 				</span>WON <br> point(1%)&nbsp;:&nbsp;&nbsp; <span class="m-text17">
-					<small>70</small>
+					<small>${ pdd.prdtPrice/100}</small>
 				</span>p
 				<hr>
 
-				<p class="s-text8 p-t-10">핏한 착용감과 세련된 색감으로 간편히 입을 수 있는 크롭 나시입니다.
+				<p class="s-text8 p-t-10">${pdd.prdtComment }
 				</p>
 				
 				<hr>
 				
 				<span class="m-text17" ><small>total</small>&nbsp;:&nbsp;&nbsp;
-						<font id="total" class="format-money">7000</font>&nbsp;<small>WON</small>
+						<font id="total" class="format-money"><c:if test="${pdd.prdtSale ne 0 }">
+										${ pdd.prdtPrice-((pdd.prdtPrice/100)*pdd.prdtSale)}
+										</c:if>
+										<c:if test="${pdd.prdtSale eq 0 }">
+										${ pdd.prdtPrice}
+										</c:if></font>&nbsp;<small>WON</small>
 					</span> <br>
 					<div class="flex-r-m flex-w p-t-10" style="margin-left:-39%;">
 						<div class="w-size16 flex-m flex-w">
@@ -600,8 +613,16 @@
 
 							</div>
 							<!-- 토탈계산을 위한 프로덕트 price -->
-							<input class="num-price" type="hidden" value="7000">
-
+							
+							<c:if test="${pdd.prdtSale ne 0 }">
+							<input class="num-price" type="hidden" value="${ pdd.prdtPrice-((pdd.prdtPrice/100)*pdd.prdtSale)}">
+							</c:if>
+							<c:if test="${pdd.prdtSale eq 0 }">
+							<input class="num-price" type="hidden" value="${ pdd.prdtPrice}">
+							</c:if>
+							
+							
+</c:forEach>
 							<div
 								class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10"
 								style="width:18%;height:50px;margin-left: 12%">
@@ -627,7 +648,8 @@
 					
 					<!-- 셀렉트시작 -->
 					
-					<div id="select1o">
+					<div id="select1o" class="selectArea">
+					<div id="select`+count+`oo" class="selectItem">
 					<!-- 셀렉 -->
     	
 						<div
@@ -677,6 +699,7 @@
 					</div>
 					
 						</div>
+						</div>
 						<!-- 셀렉 -->
 						<br>
 					<!-- 셀렉트끝 -->
@@ -693,7 +716,7 @@ function option1Add(){
     const str = 
    	 `
     <!-- 셀렉2 -->
-    	<div id="select`+count+`o">
+    	<div id="select`+count+`oo" class="selectItem">
 						<div
 							style="display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; -ms-align-items: center; align-items: center;">
 							<div
@@ -750,7 +773,7 @@ function option1Add(){
 
 function optionDel(){
 	if(count>2){
-    $("#select"+(count-1)+"o").remove();
+    $("#select"+(count-1)+"oo").remove();
     $("#select"+(count-1)+"a").remove();
     count--;}
 }
@@ -3471,23 +3494,7 @@ function qna(){
 	<script type="text/javascript"
 		src="vendor/sweetalert/sweetalert.min.js"></script>
 	<script type="text/javascript">
-		$('.block2-btn-addcart').each(
-				function() {
-					var nameProduct = $(this).parent().parent().parent().find(
-							'.block2-name').html();
-					$(this).on('click', function() {
-						swal(nameProduct, "관심상품에 등록되었습니다 !", "success");
-					});
-				});
-
-		$('.block2-btn-addwishlist').each(
-				function() {
-					var nameProduct = $(this).parent().parent().parent().find(
-							'.block2-name').html();
-					$(this).on('click', function() {
-						swal(nameProduct, "Like 되었습니다 !", "success");
-					});
-				});
+		
 
 		$('.btn-addcart-product-detail').each(function() {
 			var nameProduct = $('.product-detail-name').html();

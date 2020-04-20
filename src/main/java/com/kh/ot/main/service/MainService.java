@@ -47,6 +47,7 @@ public interface MainService {
 	 * @param product1
 	 * @return
 	 */
+	ArrayList<Product_opt> selectOptionList(int product_detail);
 	ArrayList<Product_opt> selectOptionList1(int product1);
 	ArrayList<Product_opt> selectOptionList2(int product2);
 
@@ -94,6 +95,8 @@ public interface MainService {
 	ArrayList<Product_opt> selectOptionSearchList(String search);
 
 	ArrayList<productbenner> selectPB();
+
+	ArrayList<Product> selectDetailList(int product_detail);
 
 
 }

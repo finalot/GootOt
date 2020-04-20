@@ -191,15 +191,14 @@
 
 								</c:forEach>
 									</span>
-
+<c:url var="product_detail" value="product_detail.do">
+	<c:param name="product_detail" value="${p.prdtNo }" />
+</c:url>
 									<br>
 									<a href="${product_detail }" id="${p.prdtNo }"class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
 										${p.prdtName }
 
 									</a>
-<c:url var="product_detail" value="product_detail.do">
-	<c:param name="product_detail" value="${p.prdtNo }" />
-</c:url>
 									<span class="block2-price m-text6 p-r-5">
 									<c:if test="${p.prdtSale ne 0 }">
 	<small><font class="format-money" style="text-decoration:line-through">${ p.prdtPrice}</font>-><font class="format-money">${ p.prdtPrice-((p.prdtPrice/100)*p.prdtSale)}</font> won</small>&nbsp;&nbsp;

@@ -98,6 +98,12 @@
 		ORDER BY PRDT_NO DESC
 		</select>
 		
+		<select id="selectProductDetail" parameterType="_int" resultMap="productResultSet">
+		SELECT *
+		FROM PRDT
+		WHERE PRDT_NO = #{product_detail}
+		</select>
+		
 		<select id="selectProduct2" parameterType="_int" resultMap="productResultSet">
 		SELECT *
 		FROM PRDT
@@ -119,6 +125,12 @@
 		FROM PRDT_OPT
 		WHERE PRDT_NO LIKE #{product1}||'%'
 		GROUP BY PRDT_NO, OPT_COLOR
+		</select>
+		
+		<select id="selectProductOption" parameterType="_int" resultMap="product_optResultSet">
+		SELECT *
+		FROM PRDT_OPT
+		WHERE PRDT_NO = #{product_detail}
 		</select>
 		
 		<select id="selectProductOption2" parameterType="_int" resultMap="product_optResultSet">

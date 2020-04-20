@@ -54,6 +54,10 @@ public class MainServiceImpl implements MainService {
 		return mainDao.selectOptionList1(product1);
 	}
 	@Override
+	public ArrayList<Product_opt> selectOptionList(int product_detail) {
+		return mainDao.selectOptionList(product_detail);
+	}
+	@Override
 	public ArrayList<Product_color> selectColorList1() {
 		return mainDao.selectColorList1();
 	}
@@ -123,6 +127,10 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public ArrayList<productbenner> selectPB() {
 		return mainDao.selectPB();
+	}
+	@Override
+	public ArrayList<Product> selectDetailList(int product_detail) {
+		return mainDao.selectDetailList(product_detail);
 	}
 
 	

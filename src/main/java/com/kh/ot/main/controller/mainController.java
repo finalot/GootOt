@@ -175,8 +175,18 @@ public class mainController {
 	 * @return String
 	 */
 	@RequestMapping("product_detail.do")
-	public String product_detail() {
-		return "productDetail";
+	public ModelAndView product_detail(ModelAndView mv, int product_detail) {
+		
+		ArrayList<Product> pdlist = mainService.selectDetailList(product_detail);
+		ArrayList<Product_opt> polist = mainService.selectOptionList(product_detail);
+		
+		mv.addObject("pdlist", pdlist);
+		mv.addObject("polist", polist);
+		
+		mv.setViewName("productDetail");
+
+		return mv;
+		
 	}
 
 	/**
