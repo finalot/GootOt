@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.ot.admin.servie.adminService;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
@@ -24,9 +25,10 @@ import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
-import com.kh.ot.mypage.vo.WishList;
+import com.kh.ot.mypage.vo.Return;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -35,6 +37,8 @@ public class MypageController {
 	@Autowired
 	private MypageService mpService;
 	
+	@Autowired
+	private adminService adService;
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 : 신경섭
@@ -318,7 +322,7 @@ public class MypageController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<WishList> list = mpService.selectWishList(pi, memNo);
+		ArrayList<DIBS> list = mpService.selectWishList(pi, memNo);
 		
 		System.out.println("list : " + list);
 		
@@ -832,7 +836,45 @@ public class MypageController {
 		} else {
 			return null;
 		}
+	}
+	
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환
+	 * @내용 	: 마이페이지 반품신청 이동
+	 * @param mv
+	 * @param ordNo
+	 * @return
+	 */
+	@RequestMapping("MypageReturn.do")
+	public ModelAndView MypageReturn(ModelAndView mv,int ordNo) {
 		
+		mv.addObject("ordNo",ordNo);
+		mv.setViewName("mypage_return_write");
+		return mv;
+	}
+	
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환
+	 * @내용 	: 반품신청 인설트
+	 * @param r
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("ReturnInsert.do")
+	public String ReturnInsert(Return r,HttpSession session) {
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		r.setMemCode(m.getMemNo());
+		int ordNo = r.getOrdCode();
+		System.out.println(ordNo);
+		int result = mpService.ReturnInsert(r);
+		
+		int result2 = adService.orderUpdate4(ordNo);
+
+		return "redirect:mList.do";
+	
 	}
 }
 	

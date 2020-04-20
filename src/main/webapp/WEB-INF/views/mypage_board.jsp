@@ -247,18 +247,12 @@ a{
 					</table>
 				</div>
 			</div>
-
-		
-			
-			
-					
-				
 				<input id="board_sort" name="board_sort" value="" type="hidden" style="width:100px;">
 				<div class="xans-element- xans-myshop xans-myshop-boardlistsearch ">
 					<fieldset class="boardSearch">
 						<legend>게시물 검색</legend>
 						
-						<form action="mBoardsearch.do">
+					<form action="mBoardsearch.do">
 						<p style="font-size:12px;">
 							<select id="search_key" name="search_key" style="width:80px;">
 								<option value="title">제목</option>
