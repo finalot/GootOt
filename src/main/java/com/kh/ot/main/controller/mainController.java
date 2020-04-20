@@ -149,17 +149,7 @@ public class mainController {
 	  }
 	 
 
-	/**
-	 * @작성일 : 2020. 4. 2.
-	 * @작성자 :이대윤
-	 * @내용 : 리뷰 페이지 이동
-	 * @param @return
-	 * @return String
-	 */
-	@RequestMapping("review.do")
-	public String review() {
-		return "review";
-	}
+	
 
 
 	@RequestMapping("todaymain.ad")
