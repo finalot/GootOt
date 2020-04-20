@@ -391,13 +391,6 @@
 		(RE_SEQ.NEXTVAL,#{memCode},#{ordCode},SYSDATE,#{reName},#{reTitle},#{content},#{reReason},
 		NULL,NULL,NULL,NULL,'N')
 	</insert>
-
-	<select id="orderCount6" resultType="_int" parameterType="_int" >
-		SELECT COUNT(*)
-		FROM ORD
-		WHERE MEM_NO = #{memNo}
-		AND ORD_STATUS = '취소'
-		</select>
 		
 	<select id="selectWishList" resultMap="DIBSResultMap">
 	 SELECT *
