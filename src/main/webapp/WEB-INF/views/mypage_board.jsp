@@ -142,7 +142,8 @@ a{
 								<c:forEach var="b" items="${list }">
 								
 							<tr class="xans-record-" id="catecheck">
-							<input id="b_cate_no" name="b_cate_no"  class="b_cate_no" type="hidden" value="${b.b_cate_no}">
+							<input id="b_cate_no" name="b_cate_no"  class="b_cate_no" type="hidden" value="${b.b_cate_no}"/>
+							<input id="q_no" name="q_no" class="q_no" type="hidden" value="${b.qna_no}"/>
 								<td>${b.qna_no }</td>
 								<td>
 									<a onclick="boardmove(this); "id="cate">${b.b_cate_name }
@@ -165,7 +166,7 @@ a{
                              				</c:if>
                              				
                              				<c:if test="${b.qna_chk  == 'Y'}">
-                                 				<a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
+                                 				<a id="idMsg10" style="color:#555555;" onclick="prdtDetail(this)">
                                  					${b.qna_title }
                                 				</a> 
                                  				<img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image">
@@ -175,7 +176,7 @@ a{
                              	
                              			<c:if test="${b.qna_secure=='F'}">
                             		 		<c:if test="${b.qna_chk  == 'N'}">
-                                 				<a id="idMsg10" style="color:#555555;"onclick="prdtDetail2(this)">
+                                 				<a id="idMsg10" style="color:#555555;" onclick="prdtDetail2(this)">
                                  					${b.qna_title }
                                					</a> 
                                 				<img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image">
@@ -248,7 +249,7 @@ a{
 			</div>
 
 		
-			<input id="q_no" name="q_no" type="hidden" value="${b.qna_no}">
+			
 			
 					
 				
@@ -458,11 +459,38 @@ a{
  		 function boardmove(bm){
 			 
  			var b_cate_no=$(bm).parents('tr').find('.b_cate_no').val();
-			// var b_cate_no = $(bm).parent().parent().parent().parent().find('input[name=b_cate_no]').val();
-			 console.log(b_cate_no);
+ 			
+ 			console.log(b_cate_no);
+ 			
+ 			if(b_cate_no == 1){
+ 				location.href="product_board.do";
+ 			} else if(b_cate_no == 2) {
+ 				location.href="delivery_board.do";
+ 			} else if(b_cate_no == 3) {
+ 				location.href="delivery_cancel.do";
+ 			} else if(b_cate_no == 4) {
+ 				location.href="product_change.do";
+ 			} else if(b_cate_no == 5) {
+ 				location.href="bank_insert_board.do";
+ 			} else if(b_cate_no == 6) {
+ 				location.href="bad_product_board.do";
+ 			}
+			
+		 }
+		 
+		 function prdtDetail(pd) {
+			 var q_no = $(pd).parents('tr').find('.q_no').val();
+			 console.log(q_no);
 			 
-		 } 
+			 location.href="product_board_detailView.do?qna_no="+q_no;
+		 }
 		 			 
+		 function prdtDetail2(pd) {
+			 var q_no = $(pd).parents('tr').find('.q_no').val();
+			 console.log(q_no);
+			 
+			 location.href="product_board_detail.do?qna_no="+q_no;
+		 }
 	</script>
 	
 

@@ -680,7 +680,6 @@ $('#delivery_ok').click(function(){
 					  
 					  $('#mobile2-1').val(phoneArr[1]);
 					  $('#mobile3-1').val(phoneArr[2]);
-					  
 					  var firstnum = document.getElementById('mobile1-1');
 
 				  		for(var i=0;  i < 10;i++){

@@ -258,66 +258,104 @@
 	</delete>
 	
 	<select id ="SearchOrdListCount" resultType="_int">
-	SELECT COUNT(*)
-	FROM ORD O
-	JOIN PRDT P
-	ON (O.PRDT_NO = P.PRDT_NO)
-	WHERE MEM_NO=#{memno}
-	AND ORD_STATUS=#{ord_status}
+		SELECT COUNT(*)
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		<if test="ord_status.equals('all')">
+		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+		AND (ORD_STATUS='A' OR ORD_STATUS='B' OR ORD_STATUS='C' OR ORD_STATUS='D' OR ORD_STATUS='E')
+		</if>
+		
+		<if test="!ord_status.equals('all')">
+		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+		AND ORD_STATUS=#{ord_status}
+		</if>
 	
 	</select>
 	
 	<select id="selectSearchOrdList" resultMap="ordResultSet">
-	SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
-	FROM ORD O
-	JOIN PRDT P
-	ON (O.PRDT_NO = P.PRDT_NO)
-	WHERE MEM_NO=#{memno}
-	AND ORD_STATUS=#{ord_status}
-	ORDER BY O.ORD_DATE DESC
+		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		<if test="ord_status.equals('all')">
+		AND ORD_DATE BETWEEN #{start_date} AND #{end_date} 
+		AND (ORD_STATUS='A' OR ORD_STATUS='B' OR ORD_STATUS='C' OR ORD_STATUS='D' OR ORD_STATUS='E')
+		</if>
+		<if test="!ord_status.equals('all')">
+		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+		AND ORD_STATUS=#{ord_status}
+		</if>
+		ORDER BY O.ORD_DATE DESC
 	</select>
-	
+		
 	<select id="orderCount1" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
-		AND ORD_STATUS = '입금완료'
+		AND ORD_STATUS = 'A'
 	</select> 
 	<select id="orderCount2" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
-		AND ORD_STATUS = '배송준비중'
+		AND ORD_STATUS = 'B'
 	</select> 
 	<select id="orderCount3" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
-		AND ORD_STATUS = '배송중'
+		AND ORD_STATUS = 'C'
 	</select> 
 	<select id="orderCount4" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
-		AND ORD_STATUS = '배송완료'
+		AND ORD_STATUS = 'D'
 	</select> 
 	<select id="orderCount5" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
-		AND ORD_STATUS = '취소'
+		AND ORD_STATUS = 'E'
 	</select>
-	<select id="orderCount6" resultType="_int" parameterType="_int" >
+	
+	<!-- <select id ="SearchOrdcancelListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+		AND ORD_STATUS='E'
+	
+	</select>
+	
+	<select id="selectSearchcancelOrdList" resultMap="ordResultSet">
+		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+		AND ORD_STATUS='E'
+		ORDER BY ORD_DATE DESC
+	</select> -->
+	
+	<!-- <select id="orderCount6" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
-		AND ORD_STATUS = '교환'
+		AND ORD_STATUS = '취소'
 	</select>
 	<select id="orderCount7" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
-		AND ORD_STATUS = '반품'
-	</select> 
+		AND ORD_STATUS = '교환'
+	</select> -->
 	
 </mapper>

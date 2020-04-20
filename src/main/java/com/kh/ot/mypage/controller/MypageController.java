@@ -53,6 +53,12 @@ public class MypageController {
 		
 		int point = mpService.PointListCount(memNo);
 		
+		int orderCount1 = mpService.orderCount1(memNo);
+		int orderCount2 = mpService.orderCount2(memNo);
+		int orderCount3 = mpService.orderCount3(memNo);
+		int orderCount4 = mpService.orderCount4(memNo);
+		int orderCount5 = mpService.orderCount5(memNo);
+		
 		int listCount = mpService.getOrderListCount(memNo);
 		
 		System.out.println("listCount : " + listCount);
@@ -63,6 +69,12 @@ public class MypageController {
 		
 		System.out.println("list : " + list);
 
+		mv.addObject("orderCount1", orderCount1);
+		mv.addObject("orderCount2", orderCount2);
+		mv.addObject("orderCount3", orderCount3);
+		mv.addObject("orderCount4", orderCount4);
+		mv.addObject("orderCount5", orderCount5);
+		mv.addObject("listCount", listCount);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
    		mv.addObject("list",list);
@@ -85,26 +97,27 @@ public class MypageController {
 		
 		int point = mpService.PointListCount(memNo);
 		
+		int orderCount1 = mpService.orderCount1(memNo);
+		int orderCount2 = mpService.orderCount2(memNo);
+		int orderCount3 = mpService.orderCount3(memNo);
+		int orderCount4 = mpService.orderCount4(memNo);
+		int orderCount5 = mpService.orderCount5(memNo);
+		
 		OrdSearch os = new OrdSearch();
 	
 		if(order_status.equals("all")) {
 			os.setOrd_status("all");
 		} else if(order_status.equals("deposit_complete")) {
-			os.setOrd_status("입금완료");
+			os.setOrd_status("A");
 		} else if(order_status.equals("shipped_standby")) {
-			os.setOrd_status("배송준비중");
+			os.setOrd_status("B");
 		} else if(order_status.equals("shipped_begin")) {
-			os.setOrd_status("배송중");
+			os.setOrd_status("C");
 		} else if(order_status.equals("shipped_complete")) {
-			os.setOrd_status("배송완료");
-		} else if(order_status.equals("order_cancel")) {
-			os.setOrd_status("취소");
-		} else if(order_status.equals("order_exchange")) {
-			os.setOrd_status("교환");
+			os.setOrd_status("D");
 		} else if(order_status.equals("order_return")) {
-			os.setOrd_status("반품");
-		}
-		
+			os.setOrd_status("E");
+		} 
 		
 		os.setStart_date(history_start_date);
 		os.setEnd_date(history_end_date);
@@ -125,6 +138,12 @@ public class MypageController {
 	    	
 	    	mv.addObject("CouponCount", coupon);
 	    	mv.addObject("PointCount", point);
+	    	mv.addObject("orderCount1", orderCount1);
+			mv.addObject("orderCount2", orderCount2);
+			mv.addObject("orderCount3", orderCount3);
+			mv.addObject("orderCount4", orderCount4);
+			mv.addObject("orderCount5", orderCount5);
+	    	mv.addObject("listCount", listCount);
 			mv.addObject("list",list);
 			mv.addObject("pi",pi);
 			mv.addObject("os", os);
@@ -133,10 +152,63 @@ public class MypageController {
 	        return mv;
 	}
 	
-	
-	
-	
-	
+//	@RequestMapping("mCancelList.do")
+//	public ModelAndView mCancelList(ModelAndView mv, HttpSession session,
+//			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
+//			, String order_status, Date history_start_date, Date history_end_date) {
+//		
+//		Member m = (Member)session.getAttribute("loginMember");
+//		
+//		OrdSearch os = new OrdSearch();
+//		
+//		int memNo = m.getMemNo();
+//		
+//		int coupon = mpService.CouponListCount(m);
+//		
+//		int point = mpService.PointListCount(memNo);
+//		
+//		int orderCount1 = mpService.orderCount1(memNo);
+//		int orderCount2 = mpService.orderCount2(memNo);
+//		int orderCount3 = mpService.orderCount3(memNo);
+//		int orderCount4 = mpService.orderCount4(memNo);
+//		int orderCount5 = mpService.orderCount5(memNo);
+//		
+//		os.setMemno(memNo);
+//		os.setOrd_status("E");
+//		
+//		os.setStart_date(history_start_date);
+//		os.setEnd_date(history_end_date);
+//		
+//		
+//		System.out.println(os);
+//		
+//		int listCount = mpService.SearchListCount(os);
+//		
+//		System.out.println("listCount : " + listCount);
+//		
+//		PageInfo pi = os.getPageInfo(currentPage, listCount);
+//		
+//		ArrayList<Ord> list = mpService.selectSearchList(pi,os);
+//	    
+//    	System.out.println("list : " + list);
+//		
+//
+//		mv.addObject("orderCount1", orderCount1);
+//		mv.addObject("orderCount2", orderCount2);
+//		mv.addObject("orderCount3", orderCount3);
+//		mv.addObject("orderCount4", orderCount4);
+//		mv.addObject("orderCount5", orderCount5);
+//		mv.addObject("listCount", listCount);
+//		mv.addObject("CouponCount", coupon);
+//		mv.addObject("PointCount", point);
+//   		mv.addObject("list",list);
+//   		mv.addObject("pi", pi);
+//   		mv.addObject("os", os);
+//		mv.setViewName("mypage_list_cancel");
+//		
+//		return mv;
+//	}
+
 	
 	
 	
@@ -144,7 +216,6 @@ public class MypageController {
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 : 신경섭
-	 * @내용 : 마이페이지 관심상품 이동
 	 * @param @return
 	 * @return String
 	 */
@@ -557,42 +628,7 @@ public class MypageController {
 	public String mBoard_view() {
 		return "mypage_board_view";
 	}
-	
-	/**
-	 * @작성일 : 2020. 4. 4.
-	 * @작성자 : 신경섭
-	 * @내용 : 내가 쓴 게시글 관리자 답변 뷰
-	 * @param @return
-	 * @return String
-	 */
-	@RequestMapping("mBoard_adminreply.do")
-	public String mBoard_adminreply() {
-		return "mypage_board_adminreply";
-	}
-	
-	/**
-	 * @작성일 : 2020. 4. 4.
-	 * @작성자 : 내가 쓴 게시글 사용자 수정 뷰
-	 * @내용 : 
-	 * @param @return
-	 * @return String
-	 */
-	@RequestMapping("mBoard_modify.do")
-	public String mBoard_modify() {
-		return "mypage_board_modify";
-	}
-	
-	/**
-	 * @작성일 : 2020. 4. 4.
-	 * @작성자 : 신경섭
-	 * @내용 : 내가 쓴 게시글 관리자 답변 수정 뷰
-	 * @param @return
-	 * @return String
-	 */
-	@RequestMapping("mBoard_adminmodify.do")
-	public String mBoard_Adminmodify() {
-		return "mypage_board_adminmodify";
-	}
+
 	
 	/**
 	 * @작성일 : 2020. 4. 17.
