@@ -203,42 +203,42 @@
 
 		
 		<button class="header-icon1 js-show-header-dropdown" style="width:88%;height:12%;background:snow;margin-top:-650%;border-radius:10%;" >
-			
-					<div class="header-wrapicon2 m-r-13" style="width:75%;height:75%;">
+					
+				<div class="header-wrapicon2 m-r-13" style="width:75%;height:75%;">
 						<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-02.png"/>" onmouseover="this.src='/ot/resources/images/icons/icon-header-02-2.png'"
 						onmouseout="this.src='/ot/resources/images/icons/icon-header-02.png'" class="header-icon1 js-show-header-dropdown" alt="ICON" >
 						
 						<!-- <img src="기본 이미지 주소" onmouseover="this.src='마우스 오버 상태의 이미지 주소'" 
 						onmouseout="this.src='기본 이미지 주소'"> -->
 						
-						
-						<span class="header-icons-noti">0</span> 
+					
+						<span class="header-icons-noti" id="p_count"></span> 
 						<c:url var="cartbutton" value="cartbutton.do"/>
 						<!-- Header cart noti -->
+						<%-- <c:forEach var="c" items="${list }"> --%>
 						<div class="header-cart header-dropdown" style="border-radius:10px;">
-						<c:forEach var="c" items="${list }">
 							<ul class="header-cart-wrapitem">
-								<li class="header-cart-item">
+								<%-- <c:forEach var="c" items="${list }"> --%>
+								<li name="p_count" class="header-cart-item">
 									<div class="header-cart-item-img">
-										<a href ="${cartbutton }"><img src="<c:url value="/resources/images/item-cart-01.jpg"/>" alt="IMG" ></a>
+										<a href ="${cartbutton }">
+										<%-- <img src="${c.path }${c.image}"/> --%></a>
 									</div>
-								
+
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
-											${c.prdt_name }
+											<%-- ${c.prdt_name } --%>
 										</a>
 
 										<span class="header-cart-item-info">
-											1 x $19.00
+											<%-- ${c.prdt_count} x ${c.prdt_price } won --%>
 										</span>
 									</div>
 								</li>
-
-								
+								<%-- </c:forEach> --%>
 							</ul>
-							</c:forEach>
 
-							<div class="header-cart-total">
+							<div id="prdtPrice" class="header-cart-total">
 								Total: $75.00
 							</div>
 
@@ -258,7 +258,9 @@
 								</div>
 							</div>
 						</div>
+						
 					</div>
+					
 		</button>
 	
 		<c:url var="loginView" value="loginView.do"/>		
@@ -402,12 +404,15 @@
 	<input type="hidden" id="chat-test" value="문태환">
 	
 <!--===============================================================================================-->
-	<script src="http://localhost:82/socket.io/socket.io.js"></script>
+	<script src="http://moon1:82/socket.io/socket.io.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	<!-- 리모콘 장바구니 -->
+	
+	
 	<script>
 	$(document).ready(function(){
 		
-		var socket = io("http://localhost:82");
+		var socket = io("http://192.168.110.18:82");
 	
 		if("${ !empty sessionScope.loginMember}" && "${loginMember.memId}" !='') {
 			socket.emit("login_member", {id:"${loginMember.memId}"})
@@ -489,7 +494,7 @@
 		
 			   $('#chat_container').css('display','block');
 			   
-				var socket = io("http://localhost:82");
+				var socket = io("http://moon1:82");
 			   
 			       userId = "${loginMember.memId}";
 				//클릭한 아이디 서버로 보내기
@@ -643,6 +648,12 @@ jQuery('.format-money').text(function() {
         jQuery(this).text().format()
     );	
 });
+</script>
+
+<script>
+
+
+
 </script>
 
 </body>

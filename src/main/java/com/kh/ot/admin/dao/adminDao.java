@@ -18,6 +18,7 @@ import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
@@ -316,5 +317,30 @@ public class adminDao {
 	public Design selectPrdtImg() {
 		return sqlSession.selectOne("adminMapper.selectPrdtImg");
 	}
-	 
+
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 쿠폰 업데이트
+	 * @param cp
+	 * @return
+	 */
+	public int couponUpdate(ArrayList<Coupon> cplist) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("cplist", cplist);
+		return sqlSession.update("adminMapper.couponUpdate",map);
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  :  문태환 
+	 * @내용 	: 회원 적립급 지급
+	 * @param ordNo
+	 * @return
+	 */
+	public Pay selectPay(int ordNo) {
+		return sqlSession.selectOne("cartMapper.selectPay",ordNo);
+	}
 }

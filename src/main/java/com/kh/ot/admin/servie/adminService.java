@@ -9,6 +9,7 @@ import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
@@ -250,6 +251,24 @@ public interface adminService{
 		 * @return
 		 */
 		public Design selectPrdtImg();
+
+		/**
+		 * @작성일  : 2020. 4. 19.
+		 * @작성자  : 문태환
+		 * @내용 	: 쿠폰 업데이트 
+		 * @param cp
+		 * @return
+		 */
+		public int couponUpdate(ArrayList<Coupon> cplist);
+
+		/**
+		 * @작성일  : 2020. 4. 20.
+		 * @작성자  : 문태환 
+		 * @내용 	: 회원 포인트 적립
+		 * @param ordNo
+		 * @return
+		 */
+		public Pay selectPay(int ordNo);
 
 
 }

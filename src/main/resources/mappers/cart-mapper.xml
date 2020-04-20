@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="cartMapper">
 	<resultMap type="Cart" id="cartResultSet">
 			<id property = "ca_no" column="CA_NO"/>
@@ -16,17 +16,17 @@
 			<result property="path" column="PRDT_IMAGE_PATH"/>
 			<result property="image" column="PRDT_IMAGE"/>
 			<result property="prdt_name" column="PRDT_NAME"/>
-			
+
 	</resultMap>
 
-	
+
 	<resultMap type="Coupon" id="couponMemResultSet">
 		<id property="cpmem_no" column="CPMEM_NO"/>
 		<result property ="cpName" column="CP_NAME"/>
 		<result property="cpDiscount" column="CP_DISCOUNT"/>
 	</resultMap>
-	
-	
+
+
 	<resultMap type="Ord" id="ordResultSet">
 		<id property="ord_no" column="ORD_NO"/>
 		<result property="ord_detailno" column="ORD_DETAILNO"/>
@@ -46,10 +46,10 @@
 		<result property="prdt_name" column="PRDT_NAME"/>
 		<result property="prdt_price" column="PRDT_PRICE"/>
 		<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
-		
-	
+
+
 	</resultMap>
-	
+
 	<resultMap type="Pay" id="payResultSet">
 		<id property="ord_no" column="ORD_NO"/>
 		<result property="mem_no" column="MEM_NO"/>
@@ -60,8 +60,8 @@
 		<result property="pay_point" column="PAY_POINT"/>
 		<result property="pay_yn" column="PAY_YN"/>
 	</resultMap>
-	
-	
+
+
 
 	<resultMap id="memResultSet" type="Member">
 		<id property="memNo" column="MEM_NO"/>
@@ -79,7 +79,7 @@
 		<result property="mem_status" column="MEM_STATUS"/>
 		<result property="mem_point" column="MEM_POINT"/>
 	</resultMap>
-	
+
 	<resultMap id="Address2ResultMap" type="Address">
 		<id property="adNo" column="AD_NO"/>
 		<result property="memNo" column="MEM_NO"/>
@@ -90,7 +90,7 @@
 	</resultMap>
 
 	<select id="selectList" parameterType="_int" resultMap="cartResultSet">
-	SELECT * 
+	SELECT *
 	FROM CRT C
 	JOIN PRDT P ON (C.PRDT_NO = P.PRDT_NO)
 	WHERE C.MEM_NO = #{mem_no}
@@ -103,11 +103,11 @@
 	JOIN COUPON C ON (CM.CP_NO=C.CP_NO)
 	WHERE CM.MEM_NO = #{mem_no}
 	AND CM.CP_USING = 'N'
-	
+
 	</select>
-	
+
 	<delete id="deleteCart" parameterType="java.util.Map">
-		<foreach  item="c" collection="noArr"  index="index" 
+		<foreach  item="c" collection="noArr"  index="index"
 		      separator=";" open="DECLARE BEGIN" close="; END;" >
 			DELETE FROM CRT
 			WHERE CA_NO = #{c.ca_no}
@@ -115,32 +115,32 @@
 
 	<!-- 	DELETE FROM CRT
 		<where>
-		 <foreach collection="noArr" item="noArr" open="" close="" separator="OR">		
+		 <foreach collection="noArr" item="noArr" open="" close="" separator="OR">
 		  (CA_NO = #{noArr.ca_no})
 		  </foreach>
 		</where> -->
 	</delete>
 
 	<insert id="cartInsert">
-		<foreach  item="o" collection="olist"  index="index" 
+		<foreach  item="o" collection="olist"  index="index"
       separator=";" open="DECLARE BEGIN" close="; END;" >
-		INSERT INTO  ORD 
+		INSERT INTO  ORD
 	 	VALUES(ORD_SEQ.NEXTVAL,NULL,#{o.mem_no},#{o.prdt_no},SYSDATE,
 	 					#{o.ord_receiver},#{o.ord_phone},#{o.ord_address},#{o.ord_message},
 	 					'A',#{o.ord_size},#{o.ord_color},#{o.ord_count})
 		</foreach>
 	</insert>
-	
+
 	<select id="selectOrderList" parameterType="_int" resultMap="ordResultSet">
 	SELECT *
 	FROM ORD O
 	JOIN PRDT P ON (O.PRDT_NO = P.PRDT_NO)
-	WHERE O.MEM_NO = #{mem_no} 
+	WHERE O.MEM_NO = #{mem_no}
 	AND O.ORD_STATUS = 'A'
-	
+
 	</select>
 	<insert id="payInsert">
-		<foreach  item="p" collection="plist"  index="index" 
+		<foreach  item="p" collection="plist"  index="index"
       separator=";" open="DECLARE BEGIN" close="; END;" >
 		INSERT INTO  PAY
 	 	VALUES(PAY_SEQ.NEXTVAL,#{p.mem_no},#{p.sumprice},#{p.pay_category},SYSDATE,
@@ -151,14 +151,14 @@
 
 	<select id="selectPayList" parameterType="java.util.Map" resultMap="payResultSet">
 		SELECT *
-		FROM ORD O 
+		FROM ORD O
 		JOIN PAY PA ON (O.ORD_NO = PA.ORD_NO)
 		WHERE O.MEM_NO = #{mem_no}
 		AND O.PRDT_NO IN
 		 <foreach item="p" index="index" collection="list"
                       open="(" separator="," close=")">
              			   #{p.prdt_no}
-        </foreach>  
+        </foreach>
 		AND O.ORD_STATUS = 'A'
 
 	</select>
@@ -170,38 +170,38 @@
 		 <foreach item="o" index="index" collection="olist"
                       open="(" separator="," close=")">
              			   #{o.prdt_no}
-        </foreach>  
-	
+        </foreach>
+
 	</select>
-	
+
 	<update id="updatePrice">
-		UPDATE MEMBER SET 
-		MEM_SUMMONEY = (SELECT SUM(MEM_SUMMONEY) 
+		UPDATE MEMBER SET
+		MEM_SUMMONEY = (SELECT SUM(MEM_SUMMONEY)
                 FROM MEMBER
                 WHERE MEM_NO=#{mem_no}) + #{prdt_sumprice}
-		WHERE MEM_NO=#{mem_no} 
+		WHERE MEM_NO=#{mem_no}
 	</update>
 
 	<update id="updateCoupon">
 			UPDATE COUPON_MEM SET
-			CP_USING = 'Y'
+			CP_USING = 'Y',CP_USE_DATE=SYSDATE
 			WHERE CPMEM_NO = #{pay_usedcp}
 	</update>
 
 	<update id="updatePoint">
-			UPDATE MEMBER SET 
-			MEM_POINT = (SELECT SUM(MEM_POINT) 
+			UPDATE MEMBER SET
+			MEM_POINT = (SELECT SUM(MEM_POINT)
              FROM MEMBER
              WHERE MEM_NO=#{mem_no}) - #{pay_point}
-			WHERE MEM_NO=#{mem_no} 
+			WHERE MEM_NO=#{mem_no}
 	</update>
 	<select id="selectMember" parameterType="Member" resultMap="memResultSet">
 		SELECT * FROM
 		MEMBER
 		WHERE MEM_NO = #{memNo}
-	
+
 	</select>
-		
+
 	<select id="countCoupon" parameterType="Member" resultType="_int" >
 		SELECT count(*) FROM
 		MEMBER M
@@ -209,16 +209,16 @@
 		WHERE M.MEM_NO = #{memNo}
 		AND CM.CP_USING='N'
 	</select>
-	
+
 	<update id="updateProduct" parameterType="java.util.Map">
-		<foreach  item="o" collection="olist"  index="index" 
+		<foreach  item="o" collection="olist"  index="index"
       	 separator=";" open="DECLARE BEGIN" close="; END;" >
-				UPDATE PRDT_OPT SET 
+				UPDATE PRDT_OPT SET
 				OPT_STOCK = (SELECT SUM(OPT_STOCK)
 										FROM PRDT_OPT
 										WHERE PRDT_NO = #{o.prdt_no}
 										AND 	OPT_COLOR = #{o.ord_color}
-										AND OPT_SIZE = #{o.ord_size}) - #{o.ord_count} 
+										AND OPT_SIZE = #{o.ord_size}) - #{o.ord_count}
             	WHERE PRDT_NO = #{o.prdt_no}
 				AND 	OPT_COLOR = #{o.ord_color}
 				AND OPT_SIZE = #{o.ord_size}
@@ -229,8 +229,32 @@
 	   SELECT * FROM
 	   ADDRESS
 	   WHERE MEM_NO = #{mem_no}
-	
 	</select>
 
+	<select id="selectAdOne"  resultMap="Address2ResultMap" >
+	  SELECT * FROM
+	   ADDRESS
+	   WHERE AD_NO = #{adNo}
+	</select>
+
+
+	<select id="updateMemPoint" parameterType="Member" >
+		UPDATE MEMBER
+		SET MEM_POINT = (SELECT SUM(MEM_POINT)
+             FROM MEMBER
+             WHERE MEM_NO=#{mem_no}) + #{mem_point}
+             AND MEM_NO = #{memNo}
+	</select>
+	
+	<select id="selectPay" parameterType="_int" resultMap="payResultSet">
+		SELECT * FROM
+		PAY
+		WHERE ORD_NO=#{ordNo}
+	</select>
+
+	<insert id="insertPoint"  parameterType="Point">
+		INSERT INTO POINT VALUES 
+		(#{memno},#{ordno},POINT_SEQ.NEXTVAL,SYSDATE,#{pt_price},#{pt_content},NULL,NULL)
+	</insert>
 
 </mapper>

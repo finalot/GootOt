@@ -32,11 +32,14 @@ import com.kh.ot.admin.servie.adminService;
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.Design;
 import com.kh.ot.admin.vo.DownCategory;
+import com.kh.ot.admin.vo.Point;
 import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.board.service.BoardService;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.cart.service.CartService;
 import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.common.Pagination;
 import com.kh.ot.main.service.MainService;
 import com.kh.ot.main.vo.Product;
@@ -57,6 +60,8 @@ public class menuController {
 	@Autowired
 	private MainService mainService;
 
+	@Autowired
+	   private CartService cService;
 	/**
 	 * @작성일 : 2020. 4. 4.
 	 * @작성자 : 이서현
@@ -202,11 +207,31 @@ public class menuController {
 	 * @throws IOException
 	 */
 	@RequestMapping("orderUpdate3.ad")
-	public void orderUpdate3(HttpServletResponse response , int ordNo) throws IOException {
+	public void orderUpdate3(HttpSession session,HttpServletResponse response , int ordNo) throws IOException {
 		
 		PrintWriter out  = response.getWriter();
 		
 		int result = adService.orderUpdate3(ordNo);
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		Member mpo = new Member();
+		Pay pa = adService.selectPay(ordNo);
+		Point pot = new Point();
+		
+		pot.setMemno(m.getMemNo());
+		pot.setOrdno(ordNo);
+		pot.setPt_price(pa.getSumprice());
+		pot.setPt_content("상품구입");
+		
+		
+		mpo.setMemNo(m.getMemNo());
+		mpo.setMem_point(pa.getSumprice());
+		
+		
+		
+		int result2 = cService.updateMemPoint(mpo);
+		int result3 = cService.insertPoint(pot);
+		
 		
 		if(result > 0) {
 			out.print("ok");
@@ -310,13 +335,40 @@ public class menuController {
 
 		if (!clist.isEmpty()) {
 			mv.addObject("clist", clist);
-			mv.setViewName("admin/eventAdd");
+			mv.setViewName("admin/coupon");
 		} else {
-			mv.setViewName("admin/eventAdd");
+			mv.setViewName("admin/coupon");
 			System.out.println("리스트 비었다 확인");
 		}
 
 		return mv;
+	}
+	
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 쿠폰 업데이트
+	 * @return
+	 */
+	@RequestMapping("couponUpdate.ad")
+	public String couponUpdate(int[] cpNo, int[] cpDiscount ) {
+		
+		ArrayList<Coupon> cplist = new ArrayList<Coupon>();
+		
+		
+		for(int i=0;i<cpNo.length;i++) {
+		Coupon cp = new Coupon();
+		cp.setCpNo(cpNo[i]);
+		cp.setCpDiscount(cpDiscount[i]);
+		
+		cplist.add(cp);
+		
+		}
+		
+		int result = adService.couponUpdate(cplist);
+		
+		
+		return "redirect:eventAdd.ad";
 	}
 
 	@RequestMapping("eventList.ad")

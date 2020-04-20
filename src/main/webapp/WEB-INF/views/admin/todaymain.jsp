@@ -114,20 +114,10 @@
                                 </li>
                             </ul>
                         </li>
-                        
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fa fa-bullhorn"></i>이벤트&nbsp;/&nbsp;쿠폰</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="eventAdd.ad">이벤트/쿠폰 등록</a>
+                                    <a href="eventAdd.ad">
+                                     <i class="fa fa-bullhorn">&nbsp; &nbsp; 쿠폰 </i></a>
                                 </li>
-                                <li>
-                                    <a href="eventList.ad">이벤트/쿠폰 관리</a>
-                                </li>
-                            </ul>
-                        </li>
-                        
                         
                         <li>
                             <a class="js-arrow" href="productReturn_list.ad">

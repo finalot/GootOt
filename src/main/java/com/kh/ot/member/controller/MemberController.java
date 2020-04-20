@@ -2,6 +2,7 @@ package com.kh.ot.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
@@ -29,9 +30,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.ot.admin.vo.Point;
+import com.kh.ot.cart.service.CartService;
+import com.kh.ot.cart.vo.Cart;
+import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.member.service.MemberService;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
+import com.kh.ot.mypage.vo.CouponMem;
 
 /**
  * @author yejin
@@ -54,6 +60,9 @@ public class MemberController extends HttpServlet {
 	
 	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	   private CartService cService;
 
 //	암호화용
 	@Autowired
@@ -104,16 +113,16 @@ public class MemberController extends HttpServlet {
 		int orderCount3 = mpService.orderCount3(memNo);
 		int orderCount4 = mpService.orderCount4(memNo);
 		int orderCount5 = mpService.orderCount5(memNo);
-		int orderCount6 = mpService.orderCount6(memNo);
-		int orderCount7 = mpService.orderCount7(memNo);
+//		int orderCount6 = mpService.orderCount6(memNo);
+//		int orderCount7 = mpService.orderCount7(memNo);
 
 		mv.addObject("orderCount1", orderCount1);
 		mv.addObject("orderCount2", orderCount2);
 		mv.addObject("orderCount3", orderCount3);
 		mv.addObject("orderCount4", orderCount4);
 		mv.addObject("orderCount5", orderCount5);
-		mv.addObject("orderCount6", orderCount6);
-		mv.addObject("orderCount7", orderCount7);
+//		mv.addObject("orderCount6", orderCount6);
+//		mv.addObject("orderCount7", orderCount7);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
 		
@@ -174,8 +183,42 @@ public class MemberController extends HttpServlet {
 
 	  String msg = "";
 	  PrintWriter out = response.getWriter();
-		  Member m = mService.loginMember(id, pwd);
+	  Member m = mService.loginMember(id, pwd);
+	  
+	  ArrayList<Cart> list = cService.selectList(m.getMemNo());
 		  
+//	  ArrayList<CouponMem> cmlist = mService.selectCmlist(m);
+//	  Point pot = new Point();
+//	  Pay pa = new Pay();	
+//	  pa.setSumprice(2000);
+//	  
+//		pot.setMemno(m.getMemNo());
+//		pot.setPt_price(pa.getSumprice());
+	  
+	  
+	  int cpCount1 = mService.cpCount1(m);	
+	  int cpCount2 = mService.cpCount2(m);	
+	  int cpCount3 = mService.cpCount3(m);	
+	  int cpCount4 = mService.cpCount4(m);	
+	  
+	  CouponMem com = new CouponMem();
+	  com.setMemno(m.getMemNo());
+	  
+				 if(m.getMemSumMoney() >= 30000  && cpCount1 == 0) {
+					 com.setCpno(2); 
+						int result = mService.insertRateCp(com);  
+				 }else if(m.getMemSumMoney() >= 60000 && cpCount2 ==0) {
+					 com.setCpno(3); 
+						int result = mService.insertRateCp(com);  
+				 }else if(m.getMemSumMoney() >= 90000 && cpCount3==0) {
+					 com.setCpno(4); 
+						int result = mService.insertRateCp(com);  
+				 }else if(m.getMemSumMoney() >= 120000 && cpCount4==0) {
+					 com.setCpno(5); 
+						int result = mService.insertRateCp(com);  
+				 }
+	
+	  
 		if (m != null  && bcryptPasswordEncoder.matches(pwd, m.getMemPwd() )) {
 			
 			  msg = "ok";
@@ -436,7 +479,8 @@ public class MemberController extends HttpServlet {
 		System.out.println(postcode1 + ", " + address1 + ", "+ address2);
 		System.out.println(mobile1 + ", " + mobile2 + ", "+ mobile3);
 		System.out.println(birth_year + ", " + birth_month + ", "+ birth_day);
-
+	
+		
 		// System.out.println(bcryptPasswordEncoder.encode(m.getPwd()));
 
 		String encPwd = bcryptPasswordEncoder.encode(m.getMemPwd());

@@ -139,7 +139,17 @@
                     	</thead>
                     
 						<tbody class=" center">
-						
+							<tr class="xans-record-">
+										<td></td>
+										<td>회원가입</td>
+				                        <td>
+				                        	<fmt:formatNumber value="2000" pattern="#,###"/>
+			                        	</td>
+				                        <td>
+				                        <a href="/myshop/order/detail.html?order_id="></a>
+				                        </td>
+				                        <td>회원가입 감사쿠폰</td>
+				                    </tr>
 						<c:if test="${ !empty list }">
 							<c:forEach var="pt" items="${list }">
 									<tr class="xans-record-">
@@ -158,9 +168,9 @@
 						</tbody>
 					</table>
 					
-						<c:if test="${ empty list }">
+						<%-- <c:if test="${ empty list }">
 							<p class="message ">적립금 내역이 없습니다.</p>
-						</c:if>
+						</c:if> --%>
 	        	</div>
 			</div>
 			

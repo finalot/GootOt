@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.ot.admin.vo.Coupon;
+import com.kh.ot.admin.vo.Point;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
@@ -191,6 +192,39 @@ public class CartDao {
 	 */
 	public ArrayList<Address> selectAdList(int mem_no) {
 		return (ArrayList)sqlSession.selectList("cartMapper.selectAdList",mem_no);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  :  문태환
+	 * @내용 	:선택 배송지 가져오기
+	 * @param adNo
+	 * @return
+	 */
+	public Address selectAdOne(int adNo) {
+		return sqlSession.selectOne("cartMapper.selectAdOne",adNo);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 구매상품 3% 적립
+	 * @param resultPoint
+	 * @return
+	 */
+	public int updateMemPoint(Member mpo) {
+		return sqlSession.update("cartMapper.updateMemPoint",mpo);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환
+	 * @내용 	: 구매확정시 포인트 적립
+	 * @param pot
+	 * @return
+	 */
+	public int insertPoint(Point pot) {
+		return sqlSession.insert("cartMapper.insertPoint",pot);
 	}
 
 }

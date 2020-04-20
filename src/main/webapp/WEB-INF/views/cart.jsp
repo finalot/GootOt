@@ -491,9 +491,9 @@ margin-right: 3%;
    </p>
 	<div style="display:flex;margin-top: 3%;">
 
- <form  name="inputForm" action="cartInsert.do" class="cartInsert"
+  <div  name="inputForm"  class="cartInsert"
 			    style="width: 100%;margin-right: 3%;margin-left:-4%; margin-top:2%;">
-        <table class="jointype3" style="height: 100%;width: 109%;">
+       <table class="jointype3" style="height: 100%;width: 109%;">
         <tbody>
            <tr>
                 <th style="border-top:1px solid #ddd;">
@@ -514,13 +514,8 @@ margin-right: 3%;
                     </select>
                     
                    
-						<a id="delivery_ok"
-						class="more yg_btn_24 yg_btn3" style="top:-1px; cursor: pointer;">적용</a>
-                    
-                    
-
-
-
+						<button id="delivery_ok"
+						class="more yg_btn_24 yg_btn3" style="top:-1px; cursor: pointer;">적용</button>
 
                 </td>
                 </tr>
@@ -583,7 +578,7 @@ margin-right: 3%;
 			</tbody>
 		</table>
 		<input type="hidden" id="pay_usedcp" name="pay_usedcp" value="">
-	</form>
+ 	</div> 
 	</div>
 	</section>
 	</c:if>
@@ -664,27 +659,41 @@ margin-right: 3%;
 <!-- 새로운 배송지 적용 스크립트 -->
 $('#delivery_ok').click(function(){
 
-	if($('#delivery').prop('checked') == true){
-		$('#userName-1').val("${ad.adReceiver}")
-		  $('#zipCode-1').val(address[0])
-		  $('#address1-1').val(address[1])
-		  $('#address2-1').val(address[2])
+			var adNo =$('#new_delivery').val();
+			
+			$.ajax({
+				url: "selectAdOne.do",
+				dataType:"json",
+				data : {adNo : adNo},
+				success : function(ad){
+					console.log(ad)
+					$('#userName-1').val(ad.ad.adReceiver);
+					var address = ad.ad.adAddress;
+					var addressArr = address.split(",");				
+					
+					var phone = ad.ad.adPhone
+					var phoneArr = phone.split("-");
+					
+					  $('#zipCode-1').val(addressArr[0]);
+					  $('#address1-1').val(addressArr[1]);
+					  $('#address2-1').val(addressArr[2]);
+					  
+					  $('#mobile2-1').val(phoneArr[1]);
+					  $('#mobile3-1').val(phoneArr[2]);
+					  var firstnum = document.getElementById('mobile1-1');
 
-	 $('#mobile2-1').val(phone[1])
-	  $('#mobile3-1').val(phone[2])
-
-	  var firstnum = document.getElementById('mobile1-1');
-
-	  		for(var i=0;  i < 10;i++){
-		 		if(firstnum.children[i].value == phone[0]){
-		       		firstnum.children[i].selected = true;
-	    		}
-		 	}
-		}
+				  		for(var i=0;  i < 10;i++){
+					 		if(firstnum.children[i].value == phoneArr[0]){
+					       		firstnum.children[i].selected = true;
+				    		}
+					 	}
+				  	
+				  		
+				},error : function(){
+					alert('배송지를 선택해 주세요')
+				}
+			}); 
 });
-
-
-
 
 </script>
 
@@ -795,13 +804,15 @@ $('#delivery_ok').click(function(){
 
 <!-- 주소관련 스크립트 -->
 <script>
+
+$(function(){
+	
 	console.log($('#pro-price').text())
 
 	var address =new Array();
 	var phone = new Array();
 	var count=0
 	var count1=0
-	$(function(){
 	//주소 잘라서 정보 뿌리기
 	  "<c:forTokens items='${sessionScope.loginMember.memAddress}'  delims=','  var='address'>"
 	  	address[count] = "${address}"
@@ -827,27 +838,42 @@ $('#delivery_ok').click(function(){
 	       		firstnum.children[i].selected = true;
     		}
 	 	}
-	});
+});
 
 $('#delivery').click(function(){
+	
+	console.log($('#pro-price').text())
 
-	if($('#delivery').prop('checked') == true){
-		$('#userName-1').val("${sessionScope.loginMember.memName}")
-		  $('#zipCode-1').val(address[0])
-		  $('#address1-1').val(address[1])
-		  $('#address2-1').val(address[2])
+	var address =new Array();
+	var phone = new Array();
+	var count=0
+	var count1=0
+	$('#userName-1').val("${sessionScope.loginMember.memName}");
+	//주소 잘라서 정보 뿌리기
+	  "<c:forTokens items='${sessionScope.loginMember.memAddress}'  delims=','  var='address'>"
+	  	address[count] = "${address}"
+	  	count++;
+	  " </c:forTokens>"
+	  $('#zipCode-1').val(address[0])
+	  $('#address1-1').val(address[1])
+	  $('#address2-1').val(address[2])
+	  //폰번호 잘라서 정보 뿌리기
+	  "<c:forTokens items='${sessionScope.loginMember.memPhone}'  delims='-'  var='phone'>"
+	  phone[count1] = "${phone}"
+	  count1++;
+	  " </c:forTokens>"
 
-	 $('#mobile2-1').val(phone[1])
+	   $('#mobile2-1').val(phone[1])
 	  $('#mobile3-1').val(phone[2])
 
-	  var firstnum = document.getElementById('mobile1-1');
 
-	  		for(var i=0;  i < 10;i++){
-		 		if(firstnum.children[i].value == phone[0]){
-		       		firstnum.children[i].selected = true;
-	    		}
-		 	}
-		}
+	 var firstnum = document.getElementById('mobile1-1');
+
+  		for(var i=0;  i < 10;i++){
+	 		if(firstnum.children[i].value == phone[0]){
+	       		firstnum.children[i].selected = true;
+    		}
+	 	}
 });
 
 	</script>
@@ -932,9 +958,6 @@ $('#delivery').click(function(){
 						 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
 						 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price+"&canoArr="+checkArr;					
 				}
-				 
-				 
- 
 	});
  	
 		
@@ -1160,8 +1183,6 @@ $('#delivery').click(function(){
 			    });
 
 
-
-
 	</script>
 			<script>
 
@@ -1189,8 +1210,6 @@ $('#delivery').click(function(){
 });
 
 
-
-
 $('.close').click(function(){
 	$('#orderdetail').css('display','none');
 })
@@ -1199,8 +1218,6 @@ $('.close').click(function(){
 </script>
 
 <script>
-<!-- 선택상품삭제 스크립트 -->
-
 
   $("#delete_product").click(function() {
 
@@ -1238,51 +1255,6 @@ $('.close').click(function(){
 
  });
 
-  $('#new_delivery').click(function(){
-	  
-	  var adNo=$('#new_delivery').val();
-	  
-	  
-	  $.ajax({
-		  url : "cartbutton.do",
-		  data :{adNo : adNo},
-		  success : function(data){
-			    var address =new Array();
-				var phone = new Array();
-				var count=0
-				var count1=0
-			  
-			  "<c:forTokens items='${ad.adAddress}'  delims=','  var='address'>"
-			  	address[count] = "${address}"
-			  	count++;
-			  " </c:forTokens>"
-			  $('#zipCode-1').val(address[0])
-			  $('#address1-1').val(address[1])
-			  $('#address2-1').val(address[2])
-			  //폰번호 잘라서 정보 뿌리기
-			  "<c:forTokens items='${ad.adPhone}'  delims='-'  var='phone'>"
-			  phone[count1] = "${phone}"
-			  count1++;
-			  " </c:forTokens>"
-
-			   $('#mobile2-1').val(phone[1])
-			  $('#mobile3-1').val(phone[2])
-
-
-			 var firstnum = document.getElementById('mobile1-1');
-
-		  		for(var i=0;  i < 10;i++){
-			 		if(firstnum.children[i].value == phone[0]){
-			       		firstnum.children[i].selected = true;
-		    		}
-			 	}
-			  
-		  		console.log("data:"+data);
-		  		console.log("firstnum: " + firstnum);
-		  }
-		  
-	  })
-  })
   
 </script>
 <!--===============================================================================================-->

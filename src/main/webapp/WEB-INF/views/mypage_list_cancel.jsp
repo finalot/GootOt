@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,18 +9,37 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <title>oT.</title>
-<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!--    <link rel="stylesheet" href="/ot/resources/css/Login_style.css"> -->
-   <link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
-   <link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
-   <link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
+    <link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
+    <link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
+    <link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
+
 	<jsp:include page="header.jsp"/>	
+
+
+<style>
+.ec-base-paginate1 img {
+    vertical-align: none !important;
+}
+.ec-base-paginate1 {
+    margin: 30px auto;
+    text-align: center;
+    line-height: 0;
+    display: table;
+}
+a{
+	cursor : pointer;
+}
+</style>
+
+   
 </head>
 <body>
+	<c:url var="mList" value="mList.do"/>
 	<c:url var="mWishlist" value="mWishlist.do"/>
 	<c:url var="mPoint" value="mPoint.do"/>
 	<c:url var="mCoupon" value="mCoupon.do"/>
-
+	<c:url var="mCancelList" value="mCancel.do"/>
+	
  	<div id="container">
  		<div id="memberInf1">
 			<div class="xans-myshop-bankbook " style="width: 80%;">
@@ -69,25 +87,6 @@
 		</div>
 		
         <div id="contents">
-			<div class="mypage_top_outer">
-			 <!-- <div module="myshop_bankbook">        
-			        <ul>
-			            <li module="Layout_shoppingInfo">
-			                <strong class="title"><a href="/myshop/wish_list.html">WISH</a></strong>
-			                <strong class="data {$use_interest_prd|display}"><a href="/myshop/wish_list.html">{$interest_prd_cnt}</a></strong>
-			            </li>
-			            <li>
-			                <strong class="title"><a href="/myshop/mileage/historyList.html">POINT</a></strong>
-			                <strong class="data"><a href="/myshop/mileage/historyList.html">{$avail_mileage}</a></strong>
-			            </li>
-			            <li class="etc {$display_coupon|display}">
-			                <strong class="title"><a href="/myshop/coupon/coupon.html">COUPON</a></strong>
-			                <strong class="data"><a href="/myshop/coupon/coupon.html">{$coupon_cnt}<span>개</span></a></strong>
-			                <a href="/myshop/coupon/coupon.html"></a>
-			            </li>
-			        </ul>
-			    </div> -->
-			</div>
 
 			<div class="titleArea">
     			<h2>ORDER LIST</h2>
@@ -102,33 +101,47 @@
 			<div class="xans-element- xans-myshop xans-myshop-orderhistorytab ec-base-tab tab_style ">
 				<ul class="menu">
 					<li class="tab_class">
-						<a href="/ot/mypage_list.jsp">주문내역조회 (<span id="xans_myshop_total_orders">0</span>)</a>
+						<a href="${mList }">주문내역조회 (<span id="xans_myshop_total_orders">${orderCount1 + orderCount2 + orderCount3 + orderCount4 + orderCount5 }</span>)</a>
 					</li>
 			        <li class="tab_class_cs selected">
-			        	<a href="/ot/mypage_list_cancel.jsp">취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">0</span>)</a>
+			        	<a href="${mCancel }">취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">${listCount }</span>)</a>
 					</li>
-			        <li class="tab_class_old displaynone">
+			        <!-- <li class="tab_class_old displaynone">
 			        	<a href="/ot/mypage_list_prev.jsp">이전 주문내역 (<span id="xans_myshop_total_orders_old">0</span>)</a>
-		        	</li>
+		        	</li> -->
     			</ul>
 			</div>
 			
-			<form method="GET" id="OrderHistoryForm" name="OrderHistoryForm">
+			
+			
+			
+			
+			
+			
+			
+			<form action="mSearchCancelList.do" id="mSearchCancelList" name="mSearchCancelList">
 				<div class="xans-element- xans-myshop xans-myshop-orderhistoryhead ">
 					<fieldset class="ec-base-box">
 						<legend>검색기간설정</legend>
    
 						
 				        <span class="period">
-				            <a href="#none" class="btnNormal" days="00"><img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1_on.gif" alt="오늘"></a>
-				            <a href="#none" class="btnNormal" days="07"><img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2_on.gif" alt="1주일"></a>
-				            <a href="#none" class="btnNormal" days="30"><img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3_on.gif" alt="1개월"></a>
-				            <a href="#none" class="btnNormal" days="90"><img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4_on.gif" alt="3개월"></a>
-				            <a href="#none" class="btnNormal" days="180"><img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5_on.gif" alt="6개월"></a>
+				            <a href="#none" id="d-day0" class="btnNormal" days="00" value="0">
+				            	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1_on.gif" alt="오늘"></a>
+				            <a href="#none"  id="d-day7"class="btnNormal" days="07">
+				            	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2_on.gif" alt="1주일"></a>
+				            <a href="#none"  id="d-day30" class="btnNormal" days="30">
+				            	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3_on.gif" alt="1개월"></a>
+				            <a href="#none"  id="d-day90" class="btnNormal" days="90">
+				            	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4_on.gif" alt="3개월"></a>
+				            <a href="#none"  id="d-day180" class="btnNormal" days="180">
+				            	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5.gif" offimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5.gif" onimage="//img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5_on.gif" alt="6개월"></a>
 				        </span>
 				        
-        				<input id="history_start_date" name="history_start_date" class="fText hasDatepicker" readonly="readonly" size="10" value="2019-12-15" type="text"><button type="button" class="ui-datepicker-trigger"><img src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif" alt="..." title="..."></button> ~ 
-        				<input id="history_end_date" name="history_end_date" class="fText hasDatepicker" readonly="readonly" size="10" value="2020-03-14" type="text"><button type="button" class="ui-datepicker-trigger"><img src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif" alt="..." title="..."></button>        
+        				<input id="history_start_date" name="history_start_date" class="fText hasDatepicker" type="date">
+        				 ~ 
+        				<input id="history_end_date" name="history_end_date" class="fText hasDatepicker" type="date">
+        				        
         				<input alt="조회" id="order_search_btn" type="image" src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/btn_search.gif">    
        				</fieldset>
        				
@@ -173,67 +186,315 @@
             			</tr>
            			</thead>
            			
-					<!-- <tbody class="center displaynone">
-						<tr class="">
-							<td class="number displaynone">
-                                 <p><a href="detail.html" class="line">[]</a></p>
-			                     <a href="#none" class="displaynone yg_btn_80 yg_btn3" onclick="" alt="주문취소">주문취소</a>
-			                     <a href="cancel.html" class="displaynone button yg_btn_80 yg_btn3" alt="취소신청">취소신청</a>
-			                     <a href="exchange.html" class="displaynone button yg_btn_80 yg_btn3" alt="교환신청">교환신청</a>
-			                     <a href="return.html" class="displaynone button yg_btn_80 yg_btn3" alt="반품신청">반품신청</a>
-			                </td>
-			                <td class="thumb"><a href="/product/detail.html"><img src="//img.echosting.cafe24.com/thumb/img_product_small.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></a></td>
+					<c:url var="product_detail" value="product_detail.do">
+						<c:param name="product_detail" value="p1"/>
+					</c:url>           			
+					
+					<c:forEach var="o" items="${list }">
+					<tbody class="center ">
+						<tr class="xans-record-">
+						<input id="prdt_no" class="prdt_no" name="prdt_no" type="hidden" value="${o.prdt_no}"/>
+							<td class="number ">
+                    			${o.ord_date }                   
+                    		<p>
+                    			<a href="${product_detail }" class="line">[${o.ord_no }]</a>
+                   			</p>
+		                    <a href="#none" class="displaynone yg_btn_80 yg_btn3" onclick="OrderHistory.orderCancel('20200314-0004984')" alt="주문취소">주문취소</a>
+		                    <a href="cancel.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="취소신청">취소신청</a>
+		                    <a href="exchange.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="교환신청">교환신청</a>
+		                    <a href="return.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="반품신청">반품신청</a>
+               				</td>
+               				
+			                <td class="thumb"><a onclick="productmove(this)">
+			                	<img src="${o.path }${o.image }" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></a>
+		                	</td>
 			                <td class="product left top">
-					             <a href="/product/detail.html"></a>
-					             	<div class="option displaynone"></div>
-				                    <ul class="xans-element- xans-myshop xans-myshop-optionset option">
-				                    	<li class=""> (개)</li>
-									</ul>
-									<p class="gBlank5 displaynone">무이자할부 상품</p>
-					        </td>
-			                <td></td>
-			                <td><div class="displaynone"></div>
+                    			<a onclick="productmove(this)">${o.prdt_name }</a>
+                    			<div class="option ">[옵션: ${o.ord_color}]</div>
+                   				<p class="gBlank5 displaynone">무이자할부 상품</p>
+                			</td>
+                			<td>${o.ord_count}</td>
+                			<td><fmt:formatNumber value="${o.prdt_sumprice}" pattern="#,###"/>won
+                				<div class="displaynone"></div>
 							</td>
-			                <td class="state">
-			                    <p></p>
-			                    <p class="displaynone"><a href="" target=""></a></p>
-			                    <p class="displaynone"><a href="#none" class="line" onclick="">[]</a></p>
-			                    <a href="#" class="displaynone yg_btn_80 yg_btn1 crema-new-review-link crema-applied" data-cafe24-product-link="" alt="구매후기">구매후기</a>
-			                    <a href="#none" class="displaynone" onclick=" yg_btn_80 yg_btn3" alt="취소철회">취소철회</a>
-			                    <a href="#none" class="displaynone" onclick=" yg_btn_80 yg_btn3" alt="교환철회">교환철회</a>
-			                    <a href="#none" class="displaynone" onclick=" yg_btn_80 yg_btn3" alt="반품철회">반품철회</a>
-			                </td>
-			                <td>
-			                    <p class="displaynone"><a href="#none" class="line" onclick="">[상세정보]</a></p>
-			                    <p class="displaynone">-</p>
-			                </td>
-			            </tr>
-					</tbody> -->
+                			<td class="state">
+                   				<p style="font-size:13px;">
+                   				<c:if test="${o.ord_status == 'E' }">
+                   					반품
+                   				</c:if>
+                   				</p>
+								<p class="displaynone" style="font-size:13px;">
+									<a href="#" target="_self"></a>
+								</p>
+								<p class="displaynone">
+									<a href="#none" class="line" onclick="">[]</a>
+								</p>
+								<a href="#" class="displaynone yg_btn_80 yg_btn1 crema-new-review-link crema-applied" data-cafe24-product-link="?board_no=4&amp;product_no=9017&amp;order_id=20200314-0004984" alt="구매후기">구매후기</a>
+								<!-- <a href="#none" class="displaynone" onclick="OrderHistory.withdraw('C','20200314-0004984|9017|000J|3263477','F', 'F') yg_btn_80 yg_btn3" alt="취소철회">취소철회</a>
+								<a href="#none" class="displaynone" onclick="OrderHistory.withdraw('E','20200314-0004984|9017|000J|3263477','F', 'F') yg_btn_80 yg_btn3" alt="교환철회">교환철회</a>
+								<a href="#none" class="displaynone" onclick="OrderHistory.withdraw('R','20200314-0004984|9017|000J|3263477','F', 'F') yg_btn_80 yg_btn3" alt="반품철회">반품철회</a> -->
+                			</td>
+                			<td>
+			                    <p class="displaynone"><a href="#none" class="line" onclick="OrderHistory.getDetailInfo('?product_no=9017&amp;cate_no=25&amp;order_id=20200314-0004984&amp;ord_item_code=20200314-0004984-01');">[상세정보]</a></p>
+			                    <p class="">-</p>
+                			</td>
+            			</tr>
+					</tbody>
+					</c:forEach>
+					
+					
+					
 				</table>
-				<p class="message ">주문 내역이 없습니다.</p>
+				<p class="message displaynone">주문 내역이 없습니다.</p>
 			</div>
 
-			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate">
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first">
-					<img src="/ot/resources/css/btn_page_first.gif" alt="첫 페이지"></a>
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/resources/css/btn_page_prev.gif" alt="이전 페이지"></a>
+			<!-- 페이징 처리 -->
+			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
+			
+				<c:if test="${empty os }">
+					<c:if test="${pi.currentPage eq 1 }">
+						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+					</c:if>
+					<c:if test="${pi.currentPage ne 1 }">
+						<c:url var="start" value="mCancel.do">
+							<c:param name="currentPage" value="1"/>
+						</c:url>
+					<a href="${start }" class="first">
+						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+					</a>
+					</c:if>
+				</c:if>
+				
+				<c:if test="${ !empty os }">
+					<c:if test="${pi.currentPage eq 1 }">
+						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+					</c:if>
+					<c:if test="${pi.currentPage ne 1 }">
+						<c:url var="start" value="mSearchCancelList.do">
+							<c:param name="currentPage" value="1"/>
+							<c:param name="order_status" value="${param.order_status }"/>
+							<c:param name="history_start_date" value="${os.start_date }"/>
+	                 		<c:param name="history_end_date" value="${os.end_date }"/>
+						</c:url>
+					<a href="${start }" class="first">
+						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+					</a>
+					</c:if>
+				</c:if>
+				
+				<c:if test="${empty os }">
+					<c:if test="${ pi.currentPage eq 1 }">
+						<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
+					</c:if>
 					
-					<ol>
-						<li class="xans-record-">
-							<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="this">1</a>
-						</li>
-       				</ol>
-       				
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/resources/css/btn_page_next.gif" alt="다음 페이지"></a>
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="last">
-					<img src="/ot/resources/css/btn_page_last.gif" alt="마지막 페이지"></a>
+					<c:if test="${ pi.currentPage ne 1 }">
+						<c:url var="before" value="mCancel.do">
+	                  		<c:param name="currentPage" value="${pi.currentPage - 1 }"/>
+	                    </c:url>
+	               	<a href="${before}">
+	                  	<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+	                </a> &nbsp;
+	                </c:if>
+				</c:if>
+					
+				<c:if test="${ !empty os }">
+					<c:if test="${ pi.currentPage eq 1 }">
+						<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
+					</c:if>
+					
+					<c:if test="${ pi.currentPage ne 1 }">
+						<c:url var="before" value="mSearchCancelList.do">
+			                <c:param name="currentPage" value="${pi.currentPage - 1 }"/>
+			                <c:param name="order_status" value="${param.order_status }"/>
+							<c:param name="history_start_date" value="${os.start_date }"/>
+	                 		<c:param name="history_end_date" value="${os.end_date }"/>
+		                </c:url>
+	                <a href="${before}">
+	                	<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+	                </a> &nbsp;
+	       			</c:if>
+	       		</c:if>
+	            
+				 
+				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+			   		<c:if test="${ p eq pi.currentPage }">
+	                        <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
+	                        <b>${ p }</b> &nbsp;&nbsp;</font>
+	                </c:if>
+						
+				 	<c:if test="${ empty os }">	
+	                     <c:if test="${ p ne pi.currentPage }">
+	                        <c:url var="pagination" value="mCancel.do">
+	                           <c:param name="currentPage" value="${ p }"/>
+	                     	</c:url>
+	                     	<a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+	                     	${ p }</a> &nbsp;
+	                  	 </c:if>
+	                </c:if>
+	                  
+	               	 <c:if test="${ !empty os }">	
+	                     <c:if test="${ p ne pi.currentPage }">
+	                        <c:url var="pagination" value="mSearchCancelList.do">
+		                        <c:param name="currentPage" value="${ p }"/>
+			                    <c:param name="order_status" value="${param.order_status }"/>
+							<c:param name="history_start_date" value="${os.start_date }"/>
+	                 		<c:param name="history_end_date" value="${os.end_date }"/>
+	                        </c:url>
+	                     	<a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+	                     	${ p }</a> &nbsp;
+	                  	 </c:if>
+	                </c:if>
+	          	</c:forEach>
+	               
+               	<c:if test="${ empty os }">
+               		<c:if test="${ pi.currentPage eq pi.maxPage }">
+						<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+					</c:if>
+				
+					<c:if test="${ pi.currentPage ne pi.maxPage }">
+						<c:url var="after" value="mCancel.do">
+		                   	<c:param name="currentPage" value="${pi.currentPage +1 }"/>
+	                 	</c:url>
+	                 	<a href="${after}">
+	              			<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+	              		</a>
+	              	</c:if>
+               </c:if>
+               
+               <c:if test="${ !empty os }">
+               		<c:if test="${ pi.currentPage eq pi.maxPage }">
+						<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+					</c:if>
+					
+					<c:if test="${ pi.currentPage ne pi.maxPage }">
+						<c:url var="after" value="mSearchCancelList.do">
+	                     	<c:param name="currentPage" value="${pi.currentPage +1 }"/>
+	                     	<c:param name="order_status" value="${param.order_status }"/>
+							<c:param name="history_start_date" value="${os.start_date }"/>
+	                 		<c:param name="history_end_date" value="${os.end_date }"/>
+                  		</c:url>
+                  		<a href="${after}">
+               				<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+               			</a>
+             		</c:if>
+               </c:if>
+               
+               <c:if test="${empty os }">
+               		<c:if test="${ pi.currentPage eq pi.maxPage }">
+               			<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+               		</c:if>
+               		
+               		<c:if test="${ pi.currentPage ne pi.maxPage }">
+	               		<c:url var="end" value="mCancel.do">
+	               			<c:param name="currentPage" value="${pi.maxPage }"/>
+	               		</c:url>
+						<a href="${end }" class="last">
+							<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+						</a>
+               		</c:if>
+               </c:if>
+               
+               <c:if test="${ !empty os }">
+	               <c:if test="${ pi.currentPage eq pi.maxPage }">
+	               		<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+	               </c:if>
+	               
+	               <c:if test="${ pi.currentPage ne pi.maxPage }">
+	               		<c:url var="end" value="mSearchCancelList.do">
+	               			<c:param name="currentPage" value="${pi.maxPage }"/>
+	               			<c:param name="order_status" value="${param.order_status }"/>
+							<c:param name="history_start_date" value="${os.start_date }"/>
+	                 		<c:param name="history_end_date" value="${os.end_date }"/>
+	               		</c:url>
+						<a href="${end }" class="last">
+							<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+						</a>
+	               </c:if>
+               </c:if>
 			</div>
+			
+			
 		</div>
 		<hr class="layout">
 	</div>
 	
  <jsp:include page="footer.jsp"/>
-</body>
-</html>
+ 
+ <script>
+ function productmove(pm){
+	 var prdt_no = $(pm).parents('tr').find('.prdt_no').val();
+	 
+	 console.log(prdt_no);
+	 
+/*
+       상품 상세정보 경로 설정 해야함 
+	location.href=""+prdt_no;
+ */
+	
+ }
+ </script>
+ 
+ <script>
+  				  
+		document.getElementById('history_end_date').value = new Date().toISOString().substring(0, 10);
+		
+		var startday = document.getElementById('history_end_date').value;
+		
+		startday = startday.split("-"); // 2019, 04, 19
+		
+		var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) - 180));
+		
+		var s_day = start.toISOString().substr(0, 10);
+
+		$('#history_start_date').val(s_day);
+
+		$('#d-day0').click(function() {
+					var day = 1;
+
+					var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) + day));
+
+					var s_day = start.toISOString().substr(0, 10);
+
+					$('#history_start_date').val(s_day);
+				});
+
+		$('#d-day7').click(function() {
+					var day = 7;
+
+					var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) - day));
+
+					var s_day = start.toISOString().substr(0, 10);
+
+					$('#history_start_date').val(s_day);
+				});
+
+		$('#d-day30').click(function() {
+					var day = 30;
+
+					var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) - day));
+
+					var s_day = start.toISOString().substr(0, 10);
+
+					$('#history_start_date').val(s_day);
+				});
+
+		$('#d-day90').click(function() {
+					var day = 90;
+
+					var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) - day));
+
+					var s_day = start.toISOString().substr(0, 10);
+
+					$('#history_start_date').val(s_day);
+				});
+
+		$('#d-day180').click(function() {
+					var day = 180;
+
+					var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) - day));
+
+					var s_day = start.toISOString().substr(0, 10);
+
+					$('#history_start_date').val(s_day);
+				});
+	</script>

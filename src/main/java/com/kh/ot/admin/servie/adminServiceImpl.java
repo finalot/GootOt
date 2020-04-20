@@ -14,6 +14,7 @@ import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.admin.vo.Design;
 
 @Service("adService")
@@ -101,19 +102,19 @@ public class adminServiceImpl implements adminService{
 		return adDao.DownCategoryDelete(downCategory);
 	}
 
-	@Override public int ProductInsert(Product p) { 
+	@Override public int ProductInsert(Product p) {
 		/*
 		 *  주완님이 도와준 코딩
 		 * int result=0; int presult = adDao.ProductInsert(p);
-		 * 
+		 *
 		 * int poresult = 0; int prdtNo =p.getPrdtNo();
-		 * 
+		 *
 		 * if(presult>0) { poresult=adDao.ProductOptionInsert(po, prdtNo); result
 		 * =presult * poresult; } return result;
 		 */
 		return adDao.ProductInsert(p);
 	}
-	 
+
 
 	@Override
 	public ArrayList<Board> selectList(int b_cate_no) {
@@ -172,7 +173,7 @@ public class adminServiceImpl implements adminService{
 	public int orderUpdate3(int ordNo) {
 		return adDao.orderUpdate3(ordNo);
 	}
-	
+
 	@Override
 	public ArrayList<Ord> selectOderList4() {
 		return adDao.selectOderList3();
@@ -188,8 +189,10 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public ArrayList<Member> selectMember() {
 		return adDao.selectMember();
+
 	}
-		
+
+	@Override
 	public int DesignPrdt(Design d) {
 		return adDao.Designprdt(d);
 	}
@@ -198,6 +201,18 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public Design selectPrdtImg() {
 		return adDao.selectPrdtImg();
+	}
+
+
+	@Override
+	public int couponUpdate(ArrayList<Coupon> cplist) {
+		return adDao.couponUpdate(cplist);
+	}
+
+
+	@Override
+	public Pay selectPay(int ordNo) {
+		return adDao.selectPay(ordNo);
 	}
 
 }

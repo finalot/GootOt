@@ -3,6 +3,7 @@ package com.kh.ot.cart.service;
 import java.util.ArrayList;
 
 import com.kh.ot.admin.vo.Coupon;
+import com.kh.ot.admin.vo.Point;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
@@ -145,5 +146,32 @@ public interface CartService {
 	 * @return
 	 */
 	ArrayList<Address> selectAdList(int mem_no);
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환
+	 * @내용 	: 선택 배송지 가져오기
+	 * @param adNo
+	 * @return
+	 */
+	Address selectAdOne(int adNo);
+
+	/**
+	 * @작성일  : 2020. 4. 19.
+	 * @작성자  : 문태환 
+	 * @내용 	: 회원 구매상품 3% 적립
+	 * @param resultPoint
+	 * @return
+	 */
+	int updateMemPoint(Member mpo);
+
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환
+	 * @내용 	: 상품구매 확정시 포인트 적립
+	 * @param pot
+	 * @return
+	 */
+	int insertPoint(Point pot);
 
 }
