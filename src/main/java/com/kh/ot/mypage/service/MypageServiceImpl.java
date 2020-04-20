@@ -16,6 +16,7 @@ import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
+import com.kh.ot.mypage.vo.Return;
 
 @Service("mpService")
 public class MypageServiceImpl implements MypageService{
@@ -188,6 +189,11 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public ArrayList<Ord> selectSearchCancelList(PageInfo pi, OrdSearch os) {
 		return mpDao.selectSearchCancelList(pi, os);
+	}
+
+	@Override
+	public int ReturnInsert(Return r) {
+		return mpDao.ReturnInsert(r);
 	}
 
 //	@Override

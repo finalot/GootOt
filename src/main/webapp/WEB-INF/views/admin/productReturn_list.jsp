@@ -206,9 +206,9 @@
             <table id="example" class="table table-striped table-bordered second" style="width:100%">
                 <thead>
                     <tr>
-                        <th style="width: 10%">게시글번호</th>
-                        <th style="width: 40%;">제목</th>
-                        <th>유형</th>
+                        <th >게시글번호</th>
+                        <th >상품번호</th>
+                        <th style="width: 25%" >제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
                         <th>답변여부</th>
@@ -223,84 +223,12 @@
                         <td>2020-02-02</td>
                         <td class="process">반품완료</td>
                     </tr>
-                    <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>교환</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                     <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>반품</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                    <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>교환</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                     <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>반품</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                    <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>교환</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                   <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>반품</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                    <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>교환</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                     <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>반품</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                    <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>교환</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                     
                 </tbody>
                 <tfoot>
                    <tr>
-                        <th>게시글번호</th>
-                        <th>제목</th>
+                       <th >게시글번호</th>
+                        <th >상품번호</th>
+                        <th >제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
                         <th>답변여부</th>
@@ -366,7 +294,7 @@
      <script src="/ot/resources/avendor/circle-progress/circle-progress.min.js"></script>
      <script src="/ot/resources/avendor/perfect-scrollbar/perfect-scrollbar.js"></script>
      <script src="/ot/resources/avendor/chartjs/Chart.bundle.min.js"></script>
-     <script src="/ot/resources/avendor/select2/select2.min.js">
+     <script src="/ot/resources/avendor/select2/select2.min.js"></script>
       <script src="/ot/resources/ajs/main.js"></script>
 </body>
 </html>

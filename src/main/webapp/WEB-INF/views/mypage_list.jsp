@@ -234,6 +234,7 @@ a{
                    				<c:if test="${o.ord_status == 'E' }">
                    					반품
                    				</c:if>
+                   				
                    				</p>
 								<p class="displaynone" style="font-size:13px;">
 									<a href="#" target="_self"></a>
@@ -438,6 +439,9 @@ a{
  <script>
 $('.returnOrd').click(function(){
 	var ordNo= $(this).parents('.xans-record-').find('input[name=ordNo]').val();
+			
+			location.href="MypageReturn.do?ordNo="+ordNo;
+			
 	console.log(ordNo);
 })
  

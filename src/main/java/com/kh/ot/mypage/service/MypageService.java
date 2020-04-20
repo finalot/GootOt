@@ -11,6 +11,7 @@ import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
+import com.kh.ot.mypage.vo.Return;
 
 public interface MypageService {
 
@@ -238,6 +239,15 @@ public interface MypageService {
 	int getSearchCancelCount(OrdSearch os);
 
 	ArrayList<Ord> selectSearchCancelList(PageInfo pi, OrdSearch os);
+
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환 
+	 * @내용 	: 반품신청 인설트
+	 * @param r
+	 * @return
+	 */
+	int ReturnInsert(Return r);
 
 //	int orderCount6(int memNo);
 //	

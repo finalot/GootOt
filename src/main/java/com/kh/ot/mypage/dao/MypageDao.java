@@ -18,6 +18,7 @@ import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
+import com.kh.ot.mypage.vo.Return;
 
 @Repository("mpDao")
 public class MypageDao {
@@ -247,6 +248,17 @@ public class MypageDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectSearchCancelList", os, rowBounds);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환 
+	 * @내용 	: 반품하기 인설트
+	 * @param r
+	 * @return
+	 */
+	public int ReturnInsert(Return r) {
+		return sqlSession.insert("mypageMapper.ReturnInsert",r);
 	}
 
 	

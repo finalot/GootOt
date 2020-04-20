@@ -350,19 +350,13 @@
                <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
                </a>
                   </c:if>
-               
-               
 					</div>
-					
 			</div>
 		</div>
 	</section>
 
-
 	<!-- Footer -->
 	<jsp:include page="footer.jsp"/>
-
-
 
 	<!-- Back to top -->
 	<div class="btn-back-to-top bg0-hov" id="myBtn">
