@@ -571,14 +571,21 @@ public class menuController {
 		return "admin/QnA_delivery_detail";
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 21.
+	 * @작성자  : 문태환 
+	 * @내용 	: 반품 게시판 리스트 뿌리
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("productReturn_list.ad")
 	public ModelAndView productReturn_list(ModelAndView mv) {
 		
-		//ArrayList<Return> rlist = adService.productReturnlist();
+		ArrayList<Return> rlist = adService.productReturnlist();
 		
 		
-		//mv.addObject("rlist",rlist);
-		mv.setViewName("productReturn_list");
+		mv.addObject("rlist",rlist);
+		mv.setViewName("admin/productReturn_list");
 		
 		return mv;
 	}
@@ -1455,6 +1462,32 @@ public class menuController {
 			return "redirect:productAdd.ad";
 		}
 	}
+	
+	/**
+	 * @작성일  : 2020. 4. 21.
+	 * @작성자  : 문태환 
+	 * @내용 	: 반품화면 디테일
+	 * @param mv
+	 * @param reNo
+	 * @return
+	 */
+	@RequestMapping("ReturnDetail.do")
+	public ModelAndView ReturnDetail(ModelAndView mv,int reNo) {
+		System.out.println(reNo);
+		Return re = new Return();
+		
+		re.setReNo(reNo);
+		
+		re = adService.ReturnDetail(re);	
+		
+		System.out.println(re);
+		
+		mv.addObject("re", re);
+		mv.setViewName("admin/productReturn");
+		return mv;
+				
+	}
+	
 
 	/* *//**
 			 * @작성일 : 2020. 4. 16.

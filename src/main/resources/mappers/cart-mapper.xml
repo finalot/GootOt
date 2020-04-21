@@ -6,7 +6,7 @@
 <mapper namespace="cartMapper">
 	<resultMap type="Cart" id="cartResultSet">
 			<id property = "ca_no" column="CA_NO"/>
-			<result property="mem_no" column="MEM_NO"/>
+			<result property="memNo" column="MEM_NO"/>
 			<result property="prdt_no" column="PRDT_NO"/>
 			<result property="prdt_price" column="PRDT_PRICE"/>
 			<result property="prdt_count" column="PRDT_COUNT"/>
@@ -30,7 +30,7 @@
 	<resultMap type="Ord" id="ordResultSet">
 		<id property="ord_no" column="ORD_NO"/>
 		<result property="ord_detailno" column="ORD_DETAILNO"/>
-		<result property="mem_no" column="MEM_NO"/>
+		<result property="memNo" column="MEM_NO"/>
 		<result property="prdt_no" column="PRDT_NO"/>
 		<result property="ord_date" column="ORD_DATE"/>
 		<result property="ord_receiver" column="ORD_RECEIVER"/>
@@ -52,7 +52,7 @@
 
 	<resultMap type="Pay" id="payResultSet">
 		<id property="ord_no" column="ORD_NO"/>
-		<result property="mem_no" column="MEM_NO"/>
+		<result property="memNo" column="MEM_NO"/>
 		<result property="sumprice" column="PAY_MONEY"/>
 		<result property="pay_category" column="PAY_CATEGORY"/>
 		<result property="pay_date" column="PAY_DATE"/>
@@ -125,7 +125,7 @@
 		<foreach  item="o" collection="olist"  index="index"
       separator=";" open="DECLARE BEGIN" close="; END;" >
 		INSERT INTO  ORD
-	 	VALUES(ORD_SEQ.NEXTVAL,NULL,#{o.mem_no},#{o.prdt_no},SYSDATE,
+	 	VALUES(ORD_SEQ.NEXTVAL,NULL,#{o.memNo},#{o.prdt_no},SYSDATE,
 	 					#{o.ord_receiver},#{o.ord_phone},#{o.ord_address},#{o.ord_message},
 	 					'A',#{o.ord_size},#{o.ord_color},#{o.ord_count})
 		</foreach>
@@ -139,11 +139,11 @@
 	AND O.ORD_STATUS = 'A'
 
 	</select>
-	<insert id="payInsert">
+	<insert id="payInsert" parameterType="Pay">
 		<foreach  item="p" collection="plist"  index="index"
       separator=";" open="DECLARE BEGIN" close="; END;" >
 		INSERT INTO  PAY
-	 	VALUES(PAY_SEQ.NEXTVAL,#{p.mem_no},#{p.sumprice},#{p.pay_category},SYSDATE,
+	 	VALUES(PAY_SEQ.NEXTVAL,#{p.memNo},#{p.sumprice},#{p.pay_category},SYSDATE,
 						#{p.pay_usedcp},#{p.pay_point},'N')
 		</foreach>
 	</insert>
@@ -153,7 +153,7 @@
 		SELECT *
 		FROM ORD O
 		JOIN PAY PA ON (O.ORD_NO = PA.ORD_NO)
-		WHERE O.MEM_NO = #{mem_no}
+		WHERE O.MEM_NO = #{memNo}
 		AND O.PRDT_NO IN
 		 <foreach item="p" index="index" collection="list"
                       open="(" separator="," close=")">
@@ -178,8 +178,8 @@
 		UPDATE MEMBER SET
 		MEM_SUMMONEY = (SELECT SUM(MEM_SUMMONEY)
                 FROM MEMBER
-                WHERE MEM_NO=#{mem_no}) + #{prdt_sumprice}
-		WHERE MEM_NO=#{mem_no}
+                WHERE MEM_NO=#{memNo}) + #{prdt_sumprice}
+		WHERE MEM_NO=#{memNo}
 	</update>
 
 	<update id="updateCoupon">
@@ -192,8 +192,8 @@
 			UPDATE MEMBER SET
 			MEM_POINT = (SELECT SUM(MEM_POINT)
              FROM MEMBER
-             WHERE MEM_NO=#{mem_no}) - #{pay_point}
-			WHERE MEM_NO=#{mem_no}
+             WHERE MEM_NO=#{memNo}) - #{pay_point}
+			WHERE MEM_NO=#{memNo}
 	</update>
 	<select id="selectMember" parameterType="Member" resultMap="memResultSet">
 		SELECT * FROM
@@ -228,7 +228,7 @@
 	<select id="selectAdList" resultMap="Address2ResultMap" >
 	   SELECT * FROM
 	   ADDRESS
-	   WHERE MEM_NO = #{mem_no}
+	   WHERE MEM_NO = #{memNo}
 	</select>
 
 	<select id="selectAdOne"  resultMap="Address2ResultMap" >
@@ -242,8 +242,8 @@
 		UPDATE MEMBER
 		SET MEM_POINT = (SELECT SUM(MEM_POINT)
              FROM MEMBER
-             WHERE MEM_NO=#{mem_no}) + #{mem_point}
-             AND MEM_NO = #{memNo}
+             WHERE MEM_NO=#{memNo}) + #{mem_point}
+             WHERE MEM_NO = #{memNo}
 	</select>
 	
 	<select id="selectPay" parameterType="_int" resultMap="payResultSet">

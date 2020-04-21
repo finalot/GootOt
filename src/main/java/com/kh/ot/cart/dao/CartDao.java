@@ -190,8 +190,8 @@ public class CartDao {
 	 * @param mem_no
 	 * @return
 	 */
-	public ArrayList<Address> selectAdList(int mem_no) {
-		return (ArrayList)sqlSession.selectList("cartMapper.selectAdList",mem_no);
+	public ArrayList<Address> selectAdList(int memNo) {
+		return (ArrayList)sqlSession.selectList("cartMapper.selectAdList",memNo);
 	}
 
 	/**

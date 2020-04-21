@@ -13,6 +13,7 @@ import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.vo.Return;
 
 public interface adminService{
 
@@ -269,6 +270,23 @@ public interface adminService{
 		 * @return
 		 */
 		public Pay selectPay(int ordNo);
+
+		/**
+		 * @작성일  : 2020. 4. 21.
+		 * @작성자  :  문태환
+		 * @내용 	: 반품 게시판 리스트 뿌리기
+		 * @return
+		 */
+		public ArrayList<Return> productReturnlist();
+
+		/**
+		 * @작성일  : 2020. 4. 21.
+		 * @작성자  : 문태환
+		 * @내용 	: 반품화면 디테일
+		 * @param reNo
+		 * @return
+		 */
+		public Return ReturnDetail(Return re);
 
 
 }

@@ -22,6 +22,7 @@ import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.vo.Return;
 
 @Repository("adDao")
 public class adminDao {
@@ -341,5 +342,28 @@ public class adminDao {
 	 */
 	public Pay selectPay(int ordNo) {
 		return sqlSession.selectOne("cartMapper.selectPay",ordNo);
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 21.
+	 * @작성자  : 문태환
+	 * @내용 	: 반품 리스트 뿌리기
+	 * @return
+	 */
+	public ArrayList<Return> productReturnlist() {
+		return (ArrayList)sqlSession.selectList("adminMapper.productReturnlist");
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 21.
+	 * @작성자  : 문태환
+	 * @내용 	: 어드민 반품 디테일
+	 * @param reNo
+	 * @return
+	 */
+	public Return ReturnDetai(Return re) {
+		return sqlSession.selectOne("adminMapper.ReturnDetail",re);
 	}
 }
