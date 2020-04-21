@@ -483,7 +483,7 @@ MainSearchCondition msc= new MainSearchCondition();
 		
 		for(int i =0; i<colorArr.length;i++) {
 			Cart c = new Cart();
-			c.setMem_no(memNo);
+			c.setMemNo(memNo);
 			c.setPrdt_no(prdtNo);
 			c.setPrdt_price(prdtPrice);
 			c.setPrdt_count(1);

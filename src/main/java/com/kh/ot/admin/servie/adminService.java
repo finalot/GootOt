@@ -287,7 +287,7 @@ public interface adminService{
 		 * @return
 		 */
 		public Return ReturnDetail(Return re);
-		 * @작성일 : 2020. 4. 20.
+		 /* @작성일 : 2020. 4. 20.
 		 * @작성자 : 이서현
 		 * @내용 : 옵션추가에서 prdtNo 가지고오기
 		 */

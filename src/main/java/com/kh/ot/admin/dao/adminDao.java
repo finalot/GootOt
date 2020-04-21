@@ -365,10 +365,7 @@ public class adminDao {
 	 */
 	public Return ReturnDetai(Return re) {
 		return sqlSession.selectOne("adminMapper.ReturnDetail",re);
-	 * @작성일 : 2020. 4. 20.
-	 * @작성자 : 이서현
-	 * @내용 : 상품번호 가져오기
-	 */
+	}
 	public Product selectPrdtNo() {
 		return sqlSession.selectOne("productMapper.selectPrdtNo");
 	}
