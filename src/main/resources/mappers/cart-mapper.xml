@@ -144,7 +144,7 @@
       separator=";" open="DECLARE BEGIN" close="; END;" >
 		INSERT INTO  PAY
 	 	VALUES(PAY_SEQ.NEXTVAL,#{p.memNo},#{p.sumprice},#{p.pay_category},SYSDATE,
-						#{p.pay_usedcp},#{p.pay_point},'N')
+						#{p.pay_usedcp},#{p.pay_point},'Y')
 		</foreach>
 	</insert>
 
@@ -256,5 +256,17 @@
 		INSERT INTO POINT VALUES 
 		(#{memno},#{ordno},POINT_SEQ.NEXTVAL,SYSDATE,#{pt_price},#{pt_content},NULL,NULL)
 	</insert>
+	
+	<select id="selectCartList" parameterType="java.util.Map" resultMap="cartResultSet" >
+			SELECT *
+			FROM CRT C
+			JOIN PRDT P ON (C.PRDT_NO = P.PRDT_NO)
+			WHERE C.CA_NO IN
+		 <foreach item="ca" index="index" collection="cartList"
+                      open="(" separator="," close=")">
+             			   #{ca.ca_no}
+        </foreach>
+	
+	</select>
 
 </mapper>

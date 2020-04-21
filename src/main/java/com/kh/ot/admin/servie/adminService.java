@@ -286,7 +286,9 @@ public interface adminService{
 		 * @param reNo
 		 * @return
 		 */
-		public Return ReturnDetail(Return re);
+		  public Return ReturnDetail(Return re);
+		 
+	    /*
 		 * @작성일 : 2020. 4. 20.
 		 * @작성자 : 이서현
 		 * @내용 : 옵션추가에서 prdtNo 가지고오기
@@ -299,6 +301,33 @@ public interface adminService{
 		 * @내용 : 옵션 추가
 		 */
 		public int insertPotList(ArrayList<Product_opt> poArr);
+
+		/**
+		 * @작성일  : 2020. 4. 22.
+		 * @작성자  : 문태환
+		 * @내용 	: 반품결제 취소
+		 * @param cpmemNo
+		 * @return
+		 */
+		public int calcellCoupon(int cpmemNo);
+
+		/**
+		 * @작성일  : 2020. 4. 22.
+		 * @작성자  : 문태환
+		 * @내용 	: 페이 테이블 결제 취소
+		 * @param ordCode
+		 * @return
+		 */
+		public int cancellPay(int ordCode);
+
+		/**
+		 * @작성일  : 2020. 4. 22.
+		 * @작성자  : 문태환
+		 * @내용 	: 사용포인트 반환
+		 * @param m
+		 * @return
+		 */
+		public int cancellPoint(Member m);
 
 
 }

@@ -104,14 +104,14 @@ margin-bottom:3%;
 span{
 color: red;
 }
-#pay-calcel{
+/* #pay-calcel{
 	margin-left: 3%;
 	background: black;
 	color: white;
 	width: 65px;
 	height: 20px;
 	border-radius: 10px
-}
+} */
 .yg_btn_30{
     background: #f4f4f4;
     color: #444!important;
@@ -483,11 +483,19 @@ color: red;
   		<tr>
   			<th><span>*</span> 쿠폰/적립금 </th>
   			<td> (${re.cpName })${re.cpDiscount }원/${re.payPoint }원</td>
+  				<input type="hidden" id="cpmemNo" value="${re.cpmemNo }">
   		</tr>
   		<tr>
   			<th><span>*</span> 실구매가(반환금액)</th>
   			<td>${re.payMoney}원
-  				<button id="pay-calcel">결제취소</button>
+  			<c:if test="${re.payYn == 'Y' }">
+  				<span style="color: blue" id="pay-calcel">결제취소</span>
+  			</c:if>
+  				
+  			<c:if test="${re.payYn == 'N' }">
+  				<span style="color: red" id="pay-calcel">결제취소완료</span>
+  			</c:if>
+  				
   				
   			</td>
   		</tr>
@@ -556,9 +564,35 @@ $('#return-ok').click(function(){
 });
 $('#pay-calcel').click(function(){
 	
-	confirm('취소 하시겠습니까?')
+	if(confirm('취소 하시겠습니까?') ==true){
+		var cpmemNo = $('#cpmemNo').val();
+		var ordCode = "${re.ordCode}";
+		var point = "${re.payPoint }";
+		var memCode = "${re.memCode}";
+		$.ajax({
+				url:"cancellPay.ad",
+				data : {cpmemNo:cpmemNo,ordCode:ordCode,point:point,memCode:memCode},
+				success:function(data){
+					if(data == "ok"){
+						$('#pay-calcel').css("color","red")
+						$('#pay-calcel').text("결제취소완료");
+					}else{
+						
+					}
+				},error:function(){
+					alert('에러다');			
+				}
+		});
+		
+		
+		
+		
+	}
 })
 
 </script>
+
+
+
 </body>
 </html>

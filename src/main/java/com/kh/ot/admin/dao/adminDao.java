@@ -365,7 +365,10 @@ public class adminDao {
 	 */
 	public Return ReturnDetai(Return re) {
 		return sqlSession.selectOne("adminMapper.ReturnDetail",re);
-	 * @작성일 : 2020. 4. 20.
+	}
+	
+	/**	
+	* @작성일 : 2020. 4. 20.
 	 * @작성자 : 이서현
 	 * @내용 : 상품번호 가져오기
 	 */
@@ -382,5 +385,41 @@ public class adminDao {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("poArr", poArr);
 		return sqlSession.insert("productMapper.insertPotList",map);
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 문태환 
+	 * @내용 	: 반품 결제취소
+	 * @param cpmemNo
+	 * @return
+	 */
+	public int calcellCoupon(int cpmemNo) {
+		return sqlSession.update("adminMapper.calcellCoupon",cpmemNo);
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 문태환
+	 * @내용 	: 페이 테이블 결제취소
+	 * @param ordCode
+	 * @return
+	 */
+	public int cancellPay(int ordCode) {
+		return sqlSession.update("adminMapper.cancellPay",ordCode);
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 문태환 
+	 * @내용 	: 포인트 반환
+	 * @param m
+	 * @return
+	 */
+	public int cancellPoint(Member m) {
+		return sqlSession.update("adminMapper.cancellPoint",m);
 	}
 }

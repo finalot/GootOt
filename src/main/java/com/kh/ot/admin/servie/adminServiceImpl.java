@@ -177,7 +177,7 @@ public class adminServiceImpl implements adminService{
 
 	@Override
 	public ArrayList<Ord> selectOderList4() {
-		return adDao.selectOderList3();
+		return adDao.selectOderList4();
 	}
 
 
@@ -235,5 +235,23 @@ public class adminServiceImpl implements adminService{
 	public int insertPotList(ArrayList<Product_opt> poArr) {
 		return adDao.insertPotList(poArr);
 	}
+
+
+		@Override
+		public int calcellCoupon(int cpmemNo) {
+			return adDao.calcellCoupon(cpmemNo);
+		}
+
+
+		@Override
+		public int cancellPay(int ordCode) {
+			return adDao.cancellPay(ordCode);
+		}
+
+
+		@Override
+		public int cancellPoint(Member m) {
+			return adDao.cancellPoint(m);
+		}
 
 }

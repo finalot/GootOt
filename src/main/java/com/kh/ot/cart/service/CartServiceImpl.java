@@ -110,4 +110,9 @@ public class CartServiceImpl implements CartService{
 	public int insertPoint(Point pot) {
 		return cDao.insertPoint(pot);
 	}
+
+	@Override
+	public ArrayList<Cart> selectCartList(ArrayList<Cart> cartList) {
+		return cDao.selectCartList(cartList);
+	}
 }
