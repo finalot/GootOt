@@ -215,4 +215,16 @@ public class adminServiceImpl implements adminService{
 		return adDao.selectPay(ordNo);
 	}
 
+
+	@Override
+	public Product selectPrdtNo() {
+		return adDao.selectPrdtNo();
+	}
+
+
+	@Override
+	public int insertPotList(ArrayList<Product_opt> poArr) {
+		return adDao.insertPotList(poArr);
+	}
+
 }

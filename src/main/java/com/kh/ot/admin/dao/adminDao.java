@@ -343,4 +343,25 @@ public class adminDao {
 	public Pay selectPay(int ordNo) {
 		return sqlSession.selectOne("cartMapper.selectPay",ordNo);
 	}
+
+
+	/**
+	 * @작성일 : 2020. 4. 20.
+	 * @작성자 : 이서현
+	 * @내용 : 상품번호 가져오기
+	 */
+	public Product selectPrdtNo() {
+		return sqlSession.selectOne("productMapper.selectPrdtNo");
+	}
+
+	/**
+	 * @작성일 : 2020. 4. 20.
+	 * @작성자 : 이서현
+	 * @내용 : 옵션등록 
+	 */
+	public int insertPotList(ArrayList<Product_opt> poArr) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("poArr", poArr);
+		return sqlSession.insert("productMapper.insertPotList",map);
+	}
 }

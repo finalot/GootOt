@@ -120,7 +120,7 @@
 		</select>
 		
 	
-  <select id="selectCategory1" parameterType="_int" resultMap="MaindownCategoryResultSet">
+  		<select id="selectCategory1" parameterType="_int" resultMap="MaindownCategoryResultSet">
 		SELECT *
 		FROM DOWN_CATE
 		WHERE UP_NO = #{product1}
@@ -231,6 +231,26 @@
 				,#{prdtImagePath}, #{prdtDetailImage},#{prdtDetailImagePath}
 				,#{prdtSale}, DEFAULT, DEFAULT,DEFAULT)	 
 		</insert>
-
+		
+		<select id="selectPrdtNo" resultMap="productResultSet">
+			SELECT *
+			FROM (SELECT *
+            	  FROM PRDT
+             	  ORDER BY PRDT_DATE DESC)
+			WHERE ROWNUM=1
+		</select>
+		
+		<insert id="insertPotList" parameterType="java.util.Map">
+			INSERT INTO PRDT_OPT (OPT_NO,PRDT_NO, OPT_COLOR, OPT_SIZE, OPT_STOCK)
+			SELECT OPT_SEQ.NEXTVAL, A.*FROM(
+			<foreach collection="poArr" item="po"  separator="UNION ALL" >
+			SELECT #{po.PrdtNo} as PRDT_NO,
+				   #{po.optColor} as OPT_COLOR,
+				   #{po.size} as OPT_SIZE,
+				   #{po.stock} as OPT_STOCK
+			FROM DUAL
+			</foreach>) A
+		</insert>
+		
 
 </mapper>

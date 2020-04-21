@@ -85,7 +85,7 @@ public class menuController {
 	/**
 	 * @작성일 : 2020. 4. 19.
 	 * @작성자 : 이서현
-	 * @내용 : 회원관리 리스트 뿌리기 
+	 * @내용 : 회원관리 리스트
 	 */
 	@RequestMapping("customer.ad")
 	public ModelAndView customer(ModelAndView mv) {
@@ -308,6 +308,11 @@ public class menuController {
 		return mv;
 	}
 
+	/**
+	 * @작성일 : 2020. 4. 19.
+	 * @작성자 : 이서현
+	 * @내용 : 상품리스트  리스트
+	 */
 	@RequestMapping("productList.ad")
 	public ModelAndView productList(ModelAndView mv) {
 		ArrayList<Product> plist = adService.ProductSelectList();
@@ -318,6 +323,24 @@ public class menuController {
 		mv.addObject("dlist", dlist);
 		mv.addObject("plist", plist);
 		mv.setViewName("admin/productList");
+		return mv;
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 21.
+	 * @작성자 : 이서현
+	 * @내용 : 상품리스트디테일 리스트 
+	 */
+	@RequestMapping("productListDetail.ad")
+	public ModelAndView productListDetail(ModelAndView mv) {
+		
+		ArrayList<Product> plist = adService.ProductSelectList();
+		ArrayList<UpCategory> ulist = adService.UpCategorySelect();
+		ArrayList<DownCategory> dlist = adService.DownCategorySelect();
+		//여기야 여기 ! 
+		mv.addObject("plist",plist);
+		mv.setViewName("admin/productListDetail");
+		
 		return mv;
 	}
 
@@ -550,10 +573,6 @@ public class menuController {
 		return "admin/customerDetail";
 	}
 
-	@RequestMapping("productListDetail.ad")
-	public String productListDetail() {
-		return "admin/productListDetail";
-	}
 
 	@RequestMapping("QnA_bank_detail.ad")
 	public String QnA_bank_detail() {
@@ -1278,25 +1297,21 @@ public class menuController {
 	 */
 	@RequestMapping(value="ProductInsert.ad" ,method=RequestMethod.POST)
 	public String ProductInsert(Product p, HttpServletRequest request,
-			String[] sizeArr, int[] stockArr,
+			String[] size, int[] stock , String[] optColor,
 			@RequestParam(name="thumbnailImg",required=false) MultipartFile file1,
 			@RequestParam(name="descrptionImg",required=false) MultipartFile file2	) {
 		
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		
-		System.out.println(file1);
-		System.out.println(file2);
-		
-		String savePath = "";
-		String saveDetailPath = "";
-		String frontPath = "/ot/resources/images/oT";
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			
+			System.out.println(file1);
+			System.out.println(file2);
+			
+			String savePath = "";
+			String saveDetailPath = "";
+			String frontPath = "/ot/resources/images/oT";
 		
 		//상품 옵션 추가
 		ArrayList<Product_opt> poArr = new ArrayList<Product_opt>();
-		
-		
-		
-		
 		
 		if (p.getUpNo() == 1 && p.getDownNo() == 1) {
 			savePath = root + "\\images/oT/clothing/t_nasi";
@@ -1447,10 +1462,26 @@ public class menuController {
 		int result = adService.ProductInsert(p);
 
 		if (result > 0) {
-			return "redirect:productList.ad";
-		} else {
-			System.out.println("에러");
-			return "redirect:productAdd.ad";
+			Product pd = adService.selectPrdtNo();
+			
+			for(int i=0;i<stock.length;i++) {
+				Product_opt pot = new Product_opt();
+				
+				pot.setSize(size[i]);
+				pot.setStock(stock[i]);
+				pot.setPrdtNo(pd.getPrdtNo());
+				pot.setOptColor(optColor[i]);
+			
+				poArr.add(pot);
+			}
+			
+			
+			int result2 = adService.insertPotList(poArr);
+			
+				return "redirect:productList.ad";
+			} else {
+				System.out.println("에러");
+				return "redirect:productAdd.ad";
 		}
 	}
 

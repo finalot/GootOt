@@ -270,5 +270,19 @@ public interface adminService{
 		 */
 		public Pay selectPay(int ordNo);
 
+		/**
+		 * @작성일 : 2020. 4. 20.
+		 * @작성자 : 이서현
+		 * @내용 : 옵션추가에서 prdtNo 가지고오기 
+		 */
+		public Product selectPrdtNo();
+
+		/**
+		 * @작성일 : 2020. 4. 20.
+		 * @작성자 : 이서현
+		 * @내용 : 옵션 추가 
+		 */
+		public int insertPotList(ArrayList<Product_opt> poArr);
+
 
 }
