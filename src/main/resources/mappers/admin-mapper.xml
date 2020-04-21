@@ -65,14 +65,58 @@
 			<result property="ord_date" column="ORD_DATE"/>
 			<result property="ord_status" column="ORD_STATUS"/>
 		</resultMap>
+		
+	<resultMap type="Return" id="ReturnResultMap">
+			<id property="reNo" column="RE_NO"/>
+			<result property="memCode" column="MEM_CODE"/>
+			<result property="ordCode" column="ORD_CODE"/>
+			<result property="qnaDate" column="QNA_DATE"/>
+			<result property="reTitle" column="RE_TITLE"/>
+			<result property="reName" column="RE_NAME"/>
+			<result property="content" column="RE_CONTENT"/>
+			<result property="reReason" column="RE_REASON"/>
+			<result property="reCheck" column="RE_CHECK"/>
+			<result property="reReal" column="RE_REAL"/>
+			<result property="reDate" column="RE_DATE"/>
+			<result property="reMent" column="RE_MENT"/>
+			<result property="reStatus" column="RE_STATUS"/>
+	</resultMap>
 	
-
+	<resultMap type="Return" id="ReturnResultMap2">
+			<id property="reNo" column="RE_NO"/>
+			<result property="qnaDate" column="QNA_DATE"/>
+			<result property="reName" column="RE_NAME"/>
+			<result property="reTitle" column="RE_TITLE"/>
+			<result property="content" column="RE_CONTENT"/>
+			<result property="ordCode" column="ORD_CODE"/>
+			<result property="reReason" column="RE_REASON"/>
+			<result property="reCheck" column="RE_CHECK"/>
+			<result property="reReal" column="RE_REAL"/>
+			<result property="reMent" column="RE_MENT"/>
+			<result property="memPhone" column="MEM_PHONE"/>
+			<result property="memId" column="MEM_ID"/>
+			<result property="memEmail" column="MEM_EMAIL"/>
+			<result property="memAddress" column="ORD_ADDRESS"/>
+			<result property="memReceiver" column="ORD_RECEIVER"/>
+			<result property="prdtNo" column="PRDT_NO"/>
+			<result property="ordSize" column="ORD_SIZE"/>
+			<result property="ordColor" column="ORD_COLOR"/>
+			<result property="ordDate" column="ORD_DATE"/>
+			<result property="prdtName" column="PRDT_NAME"/>
+			<result property="prdtPrice" column="PRDT_PRICE"/>
+			<result property="payPoint" column="PAY_POINT"/>
+			<result property="payMoney" column="PAY_MONEY"/>
+			<result property="payCategory" column="PAY_CATEGORY"/>
+			<result property="cpDiscount" column="CP_DISCOUNT"/>
+			<result property="cpName" column="CP_NAME"/>
+	</resultMap>
+	
 <insert id="couponInput" parameterType="java.util.Map">
    INSERT INTO COUPON (CP_NO,CP_NAME,CP_DISCOUNT,CP_DATE)
    SELECT COU_SEQ.NEXTVAL, A.*FROM(
 <foreach collection="clist" item="c"  separator="UNION ALL" >
    SELECT #{c.cpName} as CP_NAME,
-             #{c.cpDiscount} as    CP_DISCOUNT,
+             #{c.cpDiscount} as  CP_DISCOUNT,
              SYSDATE as CP_DATE
    FROM DUAL
    </foreach>) A
@@ -274,5 +318,28 @@ WHERE O.ORD_STATUS = 'D'
 	WHERE CP_NO = #{c.cpNo}
 </foreach>
 </select>
+
+<select id="productReturnlist" resultMap="ReturnResultMap">
+	SELECT*FROM
+	RETURN
+</select>
+
+<select id="ReturnDetail"  parameterType="Return" resultMap="ReturnResultMap2">
+	SELECT RE.RE_NO,RE.QNA_DATE,RE.RE_NAME,RE.RE_TITLE,RE.RE_CONTENT,RE.ORD_CODE,
+	RE.RE_REASON,RE.RE_CHECK,RE.RE_REAL,RE.RE_MENT,
+	M.MEM_PHONE,M.MEM_ID,M.MEM_EMAIL,
+	O.ORD_ADDRESS,O.ORD_RECEIVER,O.PRDT_NO,O.ORD_SIZE,O.ORD_COLOR,O.ORD_DATE,
+	P.PRDT_NAME,P.PRDT_PRICE,PA.PAY_POINT,PA.PAY_MONEY,PA.PAY_CATEGORY,
+	CP.CP_DISCOUNT,CP.CP_NAME
+	FROM RETURN RE
+	JOIN MEMBER M ON (RE.MEM_CODE = M.MEM_NO)
+	JOIN ORD O ON (RE.ORD_CODE = O.ORD_NO)
+	JOIN PRDT P ON (O.PRDT_NO = P.PRDT_NO)
+	JOIN PAY PA ON (O.ORD_NO = PA.ORD_NO)
+	JOIN COUPON CP ON (PA.PAY_USEDCP = CP.CP_NO)
+	JOIN COUPON_MEM CPM ON (CP.CP_NO =CPM.CP_NO)
+	WHERE RE_NO=#{reNo}
+</select>
+
 
 </mapper>

@@ -6,17 +6,19 @@ import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
-import com.kh.ot.mypage.vo.WishList;
+import com.kh.ot.mypage.vo.Return;
 
 public interface MypageService {
 
 	/**
-	 * @param memNo 
+	 * @param memNo
 	 * @작성일 : 2020. 4. 12.
 	 * @작성자 : 신경섭
 	 * @내용 : 사용가능한 적립금 조회
@@ -26,7 +28,7 @@ public interface MypageService {
 	int PointListCount(int memNo);
 
 	ArrayList<Point> PointSelectList(int memNo, PageInfo pi);
-	
+
 	/**
 	 * @작성일 : 2020. 4. 13.
 	 * @작성자 : 신경섭
@@ -39,9 +41,9 @@ public interface MypageService {
 
 	ArrayList<Point> PointselectUnavailList(int memNo, PageInfo pi);
 
-	
+
 	/**
-	 * @param memNo 
+	 * @param memNo
 	 * @작성일 : 2020. 4. 13.
 	 * @작성자 : 신경섭
 	 * @내용 : 사용가능한 쿠폰 조회
@@ -50,9 +52,9 @@ public interface MypageService {
 	 */
 
 	int CouponListCount(Member m);
-	
+
 	ArrayList<CouponMem> CouponSelectList(int memNo, PageInfo pi);
-	
+
 	/**
 	 * @작성일 : 2020. 4. 13.
 	 * @작성자 : 신경섭
@@ -60,12 +62,12 @@ public interface MypageService {
 	 * @param @return
 	 * @return int
 	 */
-	
+
 	int CompleteCouponListCount(Member m);
 
 	ArrayList<CouponMem> CompleteCouponSelectList(int memNo, PageInfo pi);
-	
-	
+
+
 
 	/**
 	 * @작성일 : 2020. 4. 14.
@@ -78,7 +80,7 @@ public interface MypageService {
 	int PointPrice(Member m);
 
 
-	
+
 	/**
 	 * @작성일 : 2020. 4. 16.
 	 * @작성자 : 신경섭
@@ -91,9 +93,9 @@ public interface MypageService {
 	int getListCount(int memNo);
 
 	ArrayList<MyBoard> selectList(PageInfo pi, int memNo);
-	
-	
-	
+
+
+
 
 	/**
 	 * @작성일 : 2020. 4. 16.
@@ -119,8 +121,8 @@ public interface MypageService {
 
 	ArrayList<Ord> selectOrderList(PageInfo pi, int memNo);
 
-	
-	
+
+
 	/**
 	 * @작성일  : 2020. 4. 18.
 	 * @작성자  : 우예진
@@ -176,7 +178,7 @@ public interface MypageService {
 	 */
 	int AddressDelete(ArrayList<Address> nokArr);
 
-	
+
 
 	/**
 	 * @작성일 : 2020. 4. 19.
@@ -241,7 +243,7 @@ public interface MypageService {
 	int getCancelListCount(int memNo);
 
 	ArrayList<Ord> selectCancelList(PageInfo pi, int memNo);
-	
+
 
 	/**
 	 * @작성일 : 2020. 4. 20.
@@ -255,14 +257,29 @@ public interface MypageService {
 	ArrayList<Ord> selectSearchCancelList(PageInfo pi, OrdSearch os);
 
 	/**
-	 * @작성일 : 2020. 4. 20.
-	 * @작성자 : 신경섭
-	 * @내용 : 마이페이지 위시리스트
-	 * @param memNo
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환
+	 * @내용 	: 반품신청 인설트
+	 * @param r
 	 * @return
 	 */
+	int ReturnInsert(Return r);
+
+//	int orderCount6(int memNo);
+//
+//	int orderCount7(int memNo);
+	
+	/* / **
+	 	 * @작성일 : 2020. 4. 20.
+		 * @작성자 : 신경섭
+		 * @내용 : 마이페이지 위시리스트
+		 * @param memNo
+		 * @return
+		 */
 	int getWishListCount(int memNo);
 
-	ArrayList<WishList> selectWishList(PageInfo pi, int memNo);
+	ArrayList<DIBS> selectWishList(PageInfo pi, int memNo);
+
+	ArrayList<Product_opt> selectOptionList(int prdt_no);
 
 }

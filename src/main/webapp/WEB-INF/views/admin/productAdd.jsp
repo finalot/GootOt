@@ -143,7 +143,78 @@ th{
 
 </head>
 <body class="animsition" style="background: rgb(243, 243, 243);">
-
+	<script>
+		$(function(){
+			$('#productInsertBtn').on("click",function(){
+	
+			var bdivide =document.getElementById("bdivide");
+			var mdivide =document.getElementById("mdivide");
+			var product_name =document.getElementById("product_name");
+			var product_price=document.getElementById("product_price");
+			var product_sale=document.getElementById("product_sale");
+			var thumbnailImg1 = document.getElementById("thumbnailImg1").src;
+			var descrptionImg = document.getElementById("descrptionImg").src;
+			var selectColor=document.getElementById("selectColor");
+			var top_select=document.getElementById("top-select");
+			var bottom_select=document.getElementById("bottom-select");
+			/* var stock=document.getElementById("stock").value; */
+		
+		
+			if(mdivide.value =="" || bdivide.value ==""){
+				alert("카테고리를 입력해주세요 ")
+				bdivide.focus();
+				return false;
+			}
+			if(product_name.value==""){
+				alert("상품명 입력해주세요 ")
+				product_name.focus();
+				return false;
+			}
+			if(product_price.value=="" || product_sale.value==""){
+				alert("가격정보를 입력해주세요 ")
+				product_price.focus();
+				return false;
+			}
+			if(thumbnailImg1.src=="" || descrptionImg.src==""){
+				alert("이미지를 입력해주세요 ")
+				return false;
+			}
+			if(selectColor.value==""){
+				alert("색상정보를 입력해주세요 ")
+				selectColor.focus();
+				return false;
+			}
+			
+			$('#ProductInsert').attr("action","ProductInsert.ad");
+			document.getElementById('ProductInsert').submit();
+			
+			
+		});
+		});
+	
+	function test1(){
+		var mtext = document.getElementById("mdivide_value");
+		var moption = document.getElementById("mdivide");
+		
+		mtext.value= moption.options[moption.selectedIndex].value;
+		
+		console.log(mtext);
+		console.log(moption);
+	}
+	
+	// 사진 게시판 미리보기 기능 지원 스크립트
+	$(function(){
+		$('#fileArea').hide();
+		
+		$('#titleImgArea').click(() => {
+			$('#thumbnailImg1').click();
+		});
+	});
+	
+	
+	
+  		
+	</script>
     
     
     <jsp:include page="a_header.jsp"/>
@@ -308,7 +379,7 @@ th{
     
 	<!-- <from action="ProductInsert.ad" method="post" id="productInsert"> -->
     <!-- 이벤트 내용 -->
-   <form action="ProductInsert.ad" method="post" id="ProductInsert"enctype="multipart/form-data">
+   <form  method="post" id="ProductInsert" class="ProductInsert" enctype="multipart/form-data" onsubmit="return false">
    <table id="addlist" style="border: 1px dotted; background: white; font-size:13pt;">
         <tr colspan="2">
         	<td colspan="2" style="background:#dfe3e6; margin-bottom: 2%;padding-bottom: 2%;">
@@ -368,17 +439,21 @@ th{
 		      				name="thumbnailImg" onchange="loadImg(this, 1);" />
 		     			 </div>
         	</td>
+        	
+        </tr>
+        <tr>
+        	<th> 상세 설명</th>
         	<td>
-        		<!-- <input type="hidden" name="prdtImagePath">
-        		<input type="hidden" name="prdtDetailImagePath"> -->
+        		<textarea id="prdtComment" name="prdtComment" cols="100" rows="3" style="overflow-y:scroll" placeholder="상세설명을 입력해주세요"></textarea>
         	</td>
         </tr>
         <tr>
-        	<th><span style="color:red">*</span> 상세설명</th>
+        	<th><span style="color:red">*</span> 상세이미지 </th>
         	<td>
         		<input type="file" id="descrptionImg" name="descrptionImg" style="border:white 1px;">
         	</td>
         </tr>
+       
         <tr>
         	<th><span style="color:red">*</span> 색상설정</th>
         	<td>
@@ -386,28 +461,26 @@ th{
         		
         		<c:forEach var="pc" items="${pclist }">
         		<c:if test="${not empty pc.pcRgb}">
-        			<div id="selectColor" style="width:20px;height:20px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
+        			<img id="selectColor" class="s1" style="width:20px;height:20px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;" name="${pc.pcName }" onclick="ctest(this);">
 				</c:if>
         		</c:forEach>
-        		
-        		
         		 <div id="color-area" style="display: block;" >
-                    <div id="color-div" class="col-sm-12 col-md-6">
+                    <div id="	" class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <div class="input-group" style="    width: 105px" >
-                                <input type="text" style=" padding-right: 0%;;padding-left: 36%;"  id="text-color" class="form-control demo" value="#ff0000" />
-								
-                                  <span>등록 색상명 </span> <input type="text" id="color-name">
+                                <input type="text" style=" padding-right: 0%;;padding-left: 36%;"  id="text-color" class="form-control demo" value="ffffff"/> <!-- name="optColor" -->
+                                  <span>등록 색상명 </span> <input type="text" id="color-name"  >
                             </div>
                         </div>
                     </div>
                     </div>
+                    
          	</td>
         </tr>
         <tr>
         	<th><span style="color:red">*</span>사이즈 설정</th>
         	<td>상의/모자
-        	 <select id="top-select" style="background:rgba(190, 181, 181, 0.24);margin-left: 10px;margin-right: 10px" disabled>
+        	 <select id="top-select" style="background:rgba(190, 181, 181, 0.24);margin-left: 10px;margin-right: 10px">
                        <option></option>
                        <option>FREE</option>
                        <option>XS</option>
@@ -417,17 +490,17 @@ th{
                        <option>XL</option>
                 </select>
 				하의/신발        	
-        		<input id="bottom-select" type="number" style="background:rgba(190, 181, 181, 0.24);border: 1px solid #333330; margin-left: 10px;width: 75px;" readonly>
+        		<input id="bottom-select" name="size" type="number" style="background:rgba(190, 181, 181, 0.24);border: 1px solid #333330; margin-left: 10px;width: 75px;">
         	
         	</td>
         </tr>
     </table>
-    </form>
+    
     
 
   <div style="height: 130px;">
-          <div align="center" style="margin-bottom:3%">
-    <button id="product-info-add" style="width: 100px; height: 40px;border-radius: 10px;;background: black; color: white">상품추가</button>
+    <div align="center" style="margin-bottom:3%">
+    <div id="product-info-add" style="width: 100px; cursor:pointer; height: 40px;border-radius: 10px;;background: black; color: white; font-size:22px;">상품추가</div>
     </div>
     </div>
     <div style="border: 1px solid #dfe3e6;margin-left: 5%;margin-right: 5%;padding-left: 1%;">
@@ -437,7 +510,6 @@ th{
     <table style="width: 90%;">
     	<thead>
     		<tr>
-    		<th>상품코드</th>
     		<th>상품명</th>
     		<th>이미지</th>
     		<th>사이즈</th>
@@ -466,51 +538,83 @@ th{
             width: 135px;
             border-radius: 10px;">
             <b>등록</b></button>
-           <!--  <a style="background: black; color: white; font-size: 20px; padding: 10px; height: 65px; width: 135px; border-radius: 10px; align:center;"
-            	onclick="productOptionAdd();"></a> -->
         </div>
     </div>
    
     
 <div class="page-wrapper">
 </div>
-
+</form>
 	<!-- 옵션설정 select -->
+	
 	<script>
-	
-	$('#productInsertBtn').click(function(){
-		$('#ProductInsert').submit();
+	/* 이미지 미리보기  */
+	function loadImg(value, num){
 		
-		if(('#bdivide')==null){
-			alert("대분류 선택해주세요")
-			return false;
+		if(value.files && value.files[0])  {
+			
+			var reader = new FileReader();
+			
+			reader.onload = function(e){
+				switch(num) {
+				case 1 : $('#titleImg').attr('src', e.target.result);
+					break;
+				
+				}
+			}
+			reader.readAsDataURL(value.files[0]);
 		}
-		if(('#mdivide')==null){
-			alert('중분류 선택해주세요 ');
-			return false;
-		}
-		if(('#product_name')==""){
-			alert('상품명 입력해주세요')
-			return false;
-		}
-		
-		
-		
-		return true;
-		
-	})
-	
-	function test1(){
-		var mtext = document.getElementById("mdivide_value");
-		var moption = document.getElementById("mdivide");
-		
-		mtext.value= moption.options[moption.selectedIndex].value;
-		
-		console.log(mtext);
-		console.log(moption);
 	}
-	</script>
-	<script>
+
+	
+	$('#product-info-add').click(function(){
+			var src = $('#titleImg').attr('src')
+			var colorname=$('#color-name').val();
+			var color = $('.minicolors-swatch-color').css('background-color');
+			var topselect = $('#top-select').val();
+			var bottomselect = $('#bottom-select').val();
+			var imgsrc= $('#titleImg').val();
+			var name = $('#product_name').val();
+			
+			if(topselect == null){
+				topselect = "";
+			}
+			if(bottomselect == null){
+				bottomselect = "";
+			}
+		
+			
+  	     var count = 0;
+	       function productOptionAdd(){
+	    	 var option1 = $('#Option1').val();
+         var option2 = $('#Option2').val();
+         var stock = $('#stock').val();
+	       }
+	       
+	       
+			$('#product-add-count').append('<tr>'+
+		    		'<td>'+ name + '</td>'+
+		    		'<td>'+
+		    		'<div id="titleImgArea">'+
+					'<div id="titleImgArea"><img src="'+src+'" width="100px" height="50"></div>'+
+					'</div>'+
+		    		'</td>'+
+		    		//사이즈 
+		    		'<td><input type="text" name="size"align="center" value="'+ topselect + bottomselect + 
+		    		'"</td>'+
+		    		//색상 optColor
+		    		'<td><div style="display:inline-flex"><div style="width: -webkit-fill-available;"><input type="text" name="optColor" value="'+colorname+'"></div><div style="width:20px;height:15px;margin-left: 10%;;background:'+color+'"></div></div></td>'+
+		    		//재고수 
+		    		'<td><input type="number" id="stock" name="stock" min="0" style="border:1px solid #333330;width: 50%">'+'</td>'+
+		    		'<td>'+'<button onclick="closeBtn(this)" style="margin-left: 1%;">X</button>'+'</td>'+
+		    		'</tr>')
+		});
+		
+		function closeBtn(en){
+			$(en).parents('tr').remove('tr');
+		}
+	
+	
 	$('#select-category').click(function(){
 		
 		if($('#select-category').val()=='a' ||$('#select-category').val()=='b'){
@@ -564,99 +668,7 @@ th{
 
   <script>
   
-	// 사진 게시판 미리보기 기능 지원 스크립트
-	$(function(){
-		$('#fileArea').hide();
-		
-		$('#titleImgArea').click(() => {
-			$('#thumbnailImg1').click();
-		});
-	});
 	
-	
-	function loadImg(value, num){
-		
-		if(value.files && value.files[0])  {
-			
-			var reader = new FileReader();
-			
-			reader.onload = function(e){
-				switch(num) {
-				case 1 : $('#titleImg').attr('src', e.target.result);
-					break;
-				
-				}
-			}
-			reader.readAsDataURL(value.files[0]);
-		}
-	}
-
-  		$('#product-info-add').click(function(){
-  			var src = $('#titleImg').attr('src')
-  			var colorname=$('#color-name').val();
-  			var color = $('.minicolors-swatch-color').css('background-color');
-  			var topselect = $('#top-select').val();
-  			var bottomselect = $('#bottom-select').val();
-  			var imgsrc= $('#titleImg').val();
-  			if(topselect == null){
-  				topselect = "";
-  			}
-  			if(bottomselect == null){
-  				bottomselect = "";
-  			}
-  		/*  주완님 코딩  
-  			var count = 0;
-  	       function productOptionAdd(){
-  	           var option1 = $('#Option1').val();
-  	           var option2 = $('#Option2').val();
-  	           var stock = $('#stock').val();
-  	           
-  	           
-  	          $('#product-add-Option').append('<tr>'+
-  	                  '<th scope="row">'+count+'</th>'+
-  	                  '<td id="Option_1_'+count+'" ><input name="Product_OptionVOList['+count+'].option_1" type="text" class="form-control" value="'+option1+'"/></td>'+
-  	                  '<td id="Option_2" ><input name="Product_OptionVOList['+count+'].option_2" type="text" class="form-control" value="'+option2+'"/></td>'+
-  	                  '<td id="op_Stock" ><input id="checkStock" name="Product_OptionVOList['+count+'].op_Stock" type="number" class="form-control" value="'+stock+'" /></td>'+
-  	                  '<td></td>'+
-  	                  '</tr>');
-  	          
-  	          count++;   
-  	          
-  	        <th>상품코드</th>
-    		<th>상품명</th>
-    		<th>이미지</th>
-    		<th>사이즈</th>
-    		<th>색상</th>
-    		<th>수량</th>
-    		<th>삭제</th>
-  	       } */
-  	       
-	  	     var count = 0;
-  	       function productOptionAdd(){
-  	    	 var option1 = $('#Option1').val();
-	         var option2 = $('#Option2').val();
-	         var stock = $('#stock').val();
-  	       }
-  			$('#product-add-count').append('<tr>'+
-  		    		'<td style="width: 16.3%;">12312312</td>'+
-  		    		'<td>이뿐옷</td>'+
-  		    		'<td>'+
-  		    		'<div id="titleImgArea">'+
-  					'<div id="titleImgArea"><img src="'+src+'" width="100px" height="50"></div>'+
-  					'</div>'+
-  		    		'</td>'+
-  		    		'<td>'+topselect+bottomselect+'</td>'+
-  		    		'<td><div style="display:inline-flex"><div style="width: -webkit-fill-available;">'+colorname+'</div><div style="width:20px;height:15px;margin-left: 10%;;background:'+color+'"></div></div></td>'+
-  		    		'<td><input type="number" min="0" style="border:1px solid #333330;width: 50%">'+
-  		    		'</td>'+
-  		    		'<td>'+
-    				'<button onclick="closeBtn(this)" style="margin-left: 1%;">X</button>'+
-    				'</td>'+
-  		    		'</tr>')
-  		});
-  		function closeBtn(en){
-  			$(en).parents('tr').remove('tr');
-  		}
   
         $('#color_add').click(function(){
             $('#line').before(
@@ -691,11 +703,9 @@ th{
             });
     
         });
-    });
+    
   		
-        
-        /* 모든 포커스 삭제하기  */
-        /* $(':focus').blur();   */
+      
         </script>
 		
 		<!-- 카테고리 뿌리기  -->
@@ -712,24 +722,17 @@ th{
         		}
 				
         		"</c:forEach>"
-        	
-        	
         });
         
-        /* 색깔 DB 색상 뿌리기  */
-        $('#color-area').click(function(){
-        	
-        	"<c:forEach var='pc' items='${pclist}'>"
-        	
-        	var result = $('pc.pcRgb').val();
-        	console.log(result);
-        		
-        	"</c:forEach>"
-        }) 
+        /* 색상 뿌리기  */
+		function ctest(en){
+			
+			var result = en.style.background;
+			var colorName = en.name;
+			document.getElementById("text-color").value = result;
+			$("#color-name").val(colorName);
+		}
         
-        
-        
-     
         </script>
 
      <!-- Bootstrap JS-->

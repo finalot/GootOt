@@ -149,7 +149,7 @@ public class CartController extends HttpServlet {
 
 		for(int i=0;i<prdtArr.length;i++) {
 			Ord o = new Ord();
-			o.setMem_no(m.getMemNo());
+			o.setMemNo(m.getMemNo());
 			o.setPrdt_no(prdtArr[i]);
 			o.setOrd_receiver(ord_receiver);
 			o.setOrd_phone(ord_phone);
@@ -167,13 +167,13 @@ public class CartController extends HttpServlet {
 		for(int i=0;i<sumpriceArr.length;i++) {
 			Pay p = new Pay();
 			if(i==0) {
-			p.setMem_no(m.getMemNo());
+			p.setMemNo(m.getMemNo());
 			p.setSumprice(sumpriceArr[i]+2500-pay_point-coupon_price);
 			p.setPay_category(pay_category);
 			p.setPay_usedcp(pay_usedcp);
 			p.setPay_point(pay_point);
 			}else {
-			p.setMem_no(m.getMemNo());
+			p.setMemNo(m.getMemNo());
 			p.setSumprice(sumpriceArr[i]);
 			p.setPay_category(pay_category);
 			p.setPay_usedcp(pay_usedcp);
@@ -196,11 +196,11 @@ public class CartController extends HttpServlet {
 				updatePrice += 	sumpriceArr[i];
 		}
 		Cart ct = new Cart();
-		ct.setMem_no(m.getMemNo());
+		ct.setMemNo(m.getMemNo());
 		ct.setPrdt_sumprice(updatePrice);
 		
 		Pay py = new Pay();
-		py.setMem_no(m.getMemNo());
+		py.setMemNo(m.getMemNo());
 		py.setPay_point(pay_point);
 
 		

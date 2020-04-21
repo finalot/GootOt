@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Ord {
 	private int ord_no; //주문번호
 	private int ord_detailno; // 주문 상세번호
-	private int mem_no; //회원번호
+	private int memNo; //회원번호
 	private int prdt_no;  // 상품번호
 	private Date ord_date; // 구매날짜
 	private String ord_receiver; // 수령인
@@ -28,14 +28,14 @@ public class Ord {
 	}
 
 
-	public Ord(int ord_no, int ord_detailno, int mem_no, int prdt_no, Date ord_date, String ord_receiver,
+	public Ord(int ord_no, int ord_detailno, int memNo, int prdt_no, Date ord_date, String ord_receiver,
 			String ord_phone, String ord_address, String ord_message, String ord_status, String ord_size,
 			String ord_color, int ord_count, String path, String image, String prdt_name, int prdt_price,
 			int prdt_sumprice) {
 		super();
 		this.ord_no = ord_no;
 		this.ord_detailno = ord_detailno;
-		this.mem_no = mem_no;
+		this.memNo = memNo;
 		this.prdt_no = prdt_no;
 		this.ord_date = ord_date;
 		this.ord_receiver = ord_receiver;
@@ -74,13 +74,13 @@ public class Ord {
 	}
 
 
-	public int getMem_no() {
-		return mem_no;
+	public int getMemNo() {
+		return memNo;
 	}
 
 
-	public void setMem_no(int mem_no) {
-		this.mem_no = mem_no;
+	public void setMemNo(int memNo) {
+		this.memNo = memNo;
 	}
 
 
@@ -236,15 +236,15 @@ public class Ord {
 
 	@Override
 	public String toString() {
-		return "Ord [ord_no=" + ord_no + ", ord_detailno=" + ord_detailno + ", mem_no=" + mem_no + ", prdt_no="
-				+ prdt_no + ", ord_date=" + ord_date + ", ord_receiver=" + ord_receiver + ", ord_phone=" + ord_phone
+		return "Ord [ord_no=" + ord_no + ", ord_detailno=" + ord_detailno + ", memNo=" + memNo + ", prdt_no=" + prdt_no
+				+ ", ord_date=" + ord_date + ", ord_receiver=" + ord_receiver + ", ord_phone=" + ord_phone
 				+ ", ord_address=" + ord_address + ", ord_message=" + ord_message + ", ord_status=" + ord_status
 				+ ", ord_size=" + ord_size + ", ord_color=" + ord_color + ", ord_count=" + ord_count + ", path=" + path
 				+ ", image=" + image + ", prdt_name=" + prdt_name + ", prdt_price=" + prdt_price + ", prdt_sumprice="
 				+ prdt_sumprice + "]";
 	}
 
-	
+
 
 	
 	

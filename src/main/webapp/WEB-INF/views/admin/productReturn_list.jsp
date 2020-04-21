@@ -206,101 +206,36 @@
             <table id="example" class="table table-striped table-bordered second" style="width:100%">
                 <thead>
                     <tr>
-                        <th style="width: 10%">게시글번호</th>
-                        <th style="width: 40%;">제목</th>
-                        <th>유형</th>
+                        <th  style="width: 10%" >게시글번호</th>
+                        <th  style="width: 10%"  >주문번호</th>
+                        <th style="width: 25%" >제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
                         <th>답변여부</th>
                     </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="r" items="${rlist }">
                     <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>반품</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
+                        <td>${r.reNo}</td>
+                        <td>${r.ordCode }</td>
+                        <td>${r.reTitle }</td>
+                        <td>${r.reName}</td>
+                        <td>${r.qnaDate }</td>
+                        <c:if test="${r.reStatus  == 'Y'}">
                         <td class="process">반품완료</td>
+                        </c:if>
+                        <c:if test="${r.reStatus  == 'N'}">
+                        <td class="denied">반품신청</td>
+                        </c:if>
                     </tr>
-                    <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>교환</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                     <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>반품</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                    <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>교환</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                     <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>반품</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                    <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>교환</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                   <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>반품</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                    <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>교환</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                     <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>반품</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                    <tr>
-                        <td>300</td>
-                        <td>반품해줘</td>
-                        <td>교환</td>
-                        <td>문태환</td>
-                        <td>2020-02-02</td>
-                        <td class="process">반품완료</td>
-                    </tr>
-                     
+                  </c:forEach>
                 </tbody>
                 <tfoot>
                    <tr>
-                        <th>게시글번호</th>
-                        <th>제목</th>
+                       <th >게시글번호</th>
+                        <th >상품번호</th>
+                        <th >제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
                         <th>답변여부</th>
@@ -316,18 +251,6 @@
 </div>
 	
 	
-	<!-- // td(class=next) 클릭시 페이지 이동 -->
-	<script>
-     $("td").click(function(){
-    	 location.href='productListDetail.ad';
-  	 <%-- var userId = $(this).parent().find('input').val();
-  	 
-  	 console.log("선택한 유저 ID : "+userId);
-  	 
-     location.href="<%= request.getContextPath() %>/sone.rp?userId=" + userId; --%>
-    }); 
-    </script>
-
     <script src="/ot/resources/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="/ot/resources/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/ot/resources/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
@@ -366,7 +289,18 @@
      <script src="/ot/resources/avendor/circle-progress/circle-progress.min.js"></script>
      <script src="/ot/resources/avendor/perfect-scrollbar/perfect-scrollbar.js"></script>
      <script src="/ot/resources/avendor/chartjs/Chart.bundle.min.js"></script>
-     <script src="/ot/resources/avendor/select2/select2.min.js">
+     <script src="/ot/resources/avendor/select2/select2.min.js"></script>
       <script src="/ot/resources/ajs/main.js"></script>
+      <script>
+      
+      $('#example td').click(function(){
+    	var  reNo = $(this).parents('tr').children('td').eq(0).text();
+
+      	location.href="ReturnDetail.do?reNo="+reNo;
+      
+      });
+      </script>
+      
+      
 </body>
 </html>

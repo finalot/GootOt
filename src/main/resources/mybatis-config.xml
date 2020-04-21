@@ -17,6 +17,9 @@
 <typeAlias type="com.kh.ot.cart.vo.Cart" alias="Cart"/>
 <typeAlias type="com.kh.ot.cart.vo.Ord" alias="Ord"/>
 <typeAlias type="com.kh.ot.cart.vo.Pay" alias="Pay"/>
+<typeAlias type="com.kh.ot.review.vo.Review" alias="Review"/>
+<typeAlias type="com.kh.ot.review.vo.Like_Heart" alias="Like_Heart"/>
+<typeAlias type="com.kh.ot.review.vo.ReviewReply" alias="ReviewReply"/>
 <typeAlias type="com.kh.ot.main.vo.productbenner" alias="productbenner"/>
 <typeAlias type="com.kh.ot.mypage.vo.Address" alias="Address"/>
  <typeAlias type="com.kh.ot.main.vo.MainSearchCondition" alias="MainSearchCondition"/>
@@ -33,7 +36,8 @@
 <typeAlias type="com.kh.ot.admin.vo.Point" alias="Point"/>
 <typeAlias type="com.kh.ot.mypage.vo.CouponMem" alias="CouponMem"/>
 <typeAlias type="com.kh.ot.mypage.vo.MyBoard" alias="MyBoard"/>
-<typeAlias type="com.kh.ot.mypage.vo.WishList" alias="Wishlist"/>
+<typeAlias type="com.kh.ot.mypage.vo.Return" alias="Return"/>
+<typeAlias type="com.kh.ot.mypage.vo.DIBS" alias="DIBS"/>
 
 </typeAliases>
 
@@ -47,6 +51,7 @@
 <mapper resource="mappers/admin-mapper.xml"/>
 <mapper resource="mappers/mypage-mapper.xml"/>
 <mapper resource="mappers/cart-mapper.xml"/>
+ <mapper resource="mappers/review-mapper.xml"/>
 </mappers>
 
 
