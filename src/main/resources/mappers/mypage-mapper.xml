@@ -77,13 +77,15 @@
 		<result property="prdt_no" column="PRDT_NO"/>
 		<result property="dibs_count" column="DIBS_COUNT"/>
 		<result property="dibs_size" column="DIBS_SIZE"/>
-		<result property="prdt_color" column="DIBS_COLOR"/>
+		<result property="dibs_color" column="DIBS_COLOR"/>
 		<result property="prdt_name" column="PRDT_NAME"/>
 		<result property="prdt_price" column="PRDT_PRICE"/>
 		<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
 		<result property="path" column="PRDT_IMAGE_PATH"/>
 		<result property="image" column="PRDT_IMAGE"/>
 		<result property="dibs_date" column="DIBS_DATE"/>
+		<result property="prdt_color" column="OPT_COLOR"/>
+		<result property="prdt_size" column="OPT_SIZE"/>
 	</resultMap>
 
 
@@ -391,13 +393,6 @@
 		(RE_SEQ.NEXTVAL,#{memCode},#{ordCode},SYSDATE,#{reName},#{reTitle},#{content},#{reReason},
 		NULL,NULL,SYSDATE,NULL,'N')
 	</insert>
-
-	<select id="orderCount6" resultType="_int" parameterType="_int" >
-		SELECT COUNT(*)
-		FROM ORD
-		WHERE MEM_NO = #{memNo}
-		AND ORD_STATUS = '취소'
-		</select>
 		
 	<select id="selectWishList" resultMap="DIBSResultMap">
 	 SELECT *
@@ -407,5 +402,11 @@
      WHERE MEM_NO=#{memno}
 	</select>
 
-
+	<select id="selectOptionList" resultMap="DIBSResultMap">
+	 SELECT OPT_COLOR
+	 FROM PRDT_OPT
+	 WHERE PRDT_NO=#{prdt_no}
+	 GROUP BY OPT_COLOR
+	
+	</select>
 </mapper>

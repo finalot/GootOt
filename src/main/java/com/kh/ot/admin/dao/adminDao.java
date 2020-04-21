@@ -58,7 +58,7 @@ public class adminDao {
 
 	/**
 	 * @작성일  : 2020. 4. 8.
-	 * @작성자  :문태환 
+	 * @작성자  :문태환
 	 * @내용 	:쿠폰삭제
 	 * @param cpName
 	 * @return
@@ -97,12 +97,12 @@ public class adminDao {
 		return sqlSession.update("adminMapper.UpCategoryDelete",up_no);
 	}
 
-	
+
 	public int DownCategoryDelete(DownCategory downCategory) {
 		return sqlSession.update("adminMapper.DownCategoryDelete",downCategory);
 	}
-	
-	
+
+
 	/*
 	 * @작성일  : 2020. 4. 8.
 	 * @작성자  : 문태환
@@ -119,7 +119,7 @@ public class adminDao {
 
 	/**
 	 * @작성일  : 2020. 4. 9.
-	 * @작성자  : 문태환 
+	 * @작성자  : 문태환
 	 * @내용 	 : 메인동영상 등록
 	 * @param d
 	 * @return
@@ -172,20 +172,20 @@ public class adminDao {
 	public int QnA_ProductUpdate(Board b) {
 		return sqlSession.update("adminMapper.QnA_ProductUpdate",b);
 	}
-	
+
 	/**
 	 * @작성일 : 2020. 4. 12.
 	 * @작성자 : 이서현
 	 * @내용 : 상품만 등록
 	 */
-	
-	public int ProductInsert(Product p) { 
-		return sqlSession.insert("productMapper.ProductInsert",p); 
+
+	public int ProductInsert(Product p) {
+		return sqlSession.insert("productMapper.ProductInsert",p);
 	}
-	
+
 	/*
 	 * public int ProductOptionInsert(Product_opt po,int prdtNo) {
-	 * 
+	 *
 	 * int result =0; List<Product_opt> polist = po.getOptionVOList();
 	 * for(Product_opt Option : polist) { Option.setPrdtNo(prdtNo);
 	 * result=sqlSession.insert("adminMapper.ProductOptionInsert",Option); } return
@@ -335,7 +335,7 @@ public class adminDao {
 
 	/**
 	 * @작성일  : 2020. 4. 20.
-	 * @작성자  :  문태환 
+	 * @작성자  :  문태환
 	 * @내용 	: 회원 적립급 지급
 	 * @param ordNo
 	 * @return
@@ -365,5 +365,22 @@ public class adminDao {
 	 */
 	public Return ReturnDetai(Return re) {
 		return sqlSession.selectOne("adminMapper.ReturnDetail",re);
+	 * @작성일 : 2020. 4. 20.
+	 * @작성자 : 이서현
+	 * @내용 : 상품번호 가져오기
+	 */
+	public Product selectPrdtNo() {
+		return sqlSession.selectOne("productMapper.selectPrdtNo");
+	}
+
+	/**
+	 * @작성일 : 2020. 4. 20.
+	 * @작성자 : 이서현
+	 * @내용 : 옵션등록
+	 */
+	public int insertPotList(ArrayList<Product_opt> poArr) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("poArr", poArr);
+		return sqlSession.insert("productMapper.insertPotList",map);
 	}
 }

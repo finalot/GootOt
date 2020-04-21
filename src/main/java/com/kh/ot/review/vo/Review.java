@@ -17,6 +17,9 @@ public class Review {
 	private String rvSize; // 선택한 사이즈 
 	private String memName; // 회원이름
 	private String prdtName; // 상품이름
+	private String rvDate2; // 리뷰등록날짜2
+	private String prdtImg; // 상품이미지
+	private String prdtPath; // 상품경로 
 	
 	public Review() {}
 
@@ -149,6 +152,37 @@ public class Review {
 
 	public void setPrdtName(String prdtName) {
 		this.prdtName = prdtName;
+	}
+	
+	
+
+	public String getRvDate2() {
+		return rvDate2;
+	}
+
+	public void setRvDate2(String rvDate2) {
+		this.rvDate2 = rvDate2;
+	}
+	
+	
+	
+
+	public String getPrdtImg() {
+		return prdtImg;
+	}
+
+	public void setPrdtImg(String prdtImg) {
+		this.prdtImg = prdtImg;
+	}
+	
+	
+
+	public String getPrdtPath() {
+		return prdtPath;
+	}
+
+	public void setPrdtPath(String prdtPath) {
+		this.prdtPath = prdtPath;
 	}
 
 	@Override

@@ -13,6 +13,7 @@ import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
@@ -269,6 +270,10 @@ public class MypageDao {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectWishList", memNo, rowBounds);
+	}
+
+	public ArrayList<Product_opt> selectOptionList(int prdt_no) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectOptionList", prdt_no);
 	}
 
 

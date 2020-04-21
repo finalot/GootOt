@@ -116,7 +116,7 @@
    SELECT COU_SEQ.NEXTVAL, A.*FROM(
 <foreach collection="clist" item="c"  separator="UNION ALL" >
    SELECT #{c.cpName} as CP_NAME,
-             #{c.cpDiscount} as    CP_DISCOUNT,
+             #{c.cpDiscount} as  CP_DISCOUNT,
              SYSDATE as CP_DATE
    FROM DUAL
    </foreach>) A

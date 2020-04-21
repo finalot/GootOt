@@ -18,6 +18,7 @@
 <typeAlias type="com.kh.ot.cart.vo.Ord" alias="Ord"/>
 <typeAlias type="com.kh.ot.cart.vo.Pay" alias="Pay"/>
 <typeAlias type="com.kh.ot.review.vo.Review" alias="Review"/>
+<typeAlias type="com.kh.ot.review.vo.Like_Heart" alias="Like_Heart"/>
 <typeAlias type="com.kh.ot.review.vo.ReviewReply" alias="ReviewReply"/>
 <typeAlias type="com.kh.ot.main.vo.productbenner" alias="productbenner"/>
 <typeAlias type="com.kh.ot.mypage.vo.Address" alias="Address"/>

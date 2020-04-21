@@ -29,6 +29,8 @@
 a{
 	cursor : pointer;
 }
+
+
 </style>
 
    
@@ -202,7 +204,6 @@ a{
 		                    <a href="#none" class="displaynone yg_btn_80 yg_btn3" onclick="OrderHistory.orderCancel('20200314-0004984')" alt="주문취소">주문취소</a>
 		                    <a href="cancel.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="취소신청">취소신청</a>
 		                    <a href="exchange.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="교환신청">교환신청</a>
-		                    <a href="return.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="반품신청">반품신청</a>
                				</td>
                				
 			                <td class="thumb"><a onclick="productmove(this)">
@@ -249,7 +250,8 @@ a{
                 			</td>
                 			<c:if test="${o.ord_status == 'D' }">
                 			<td>
-			                   <a href="#none" class="line returnOrd"  id="returnOrd">[반품신청]</a>
+			                   <a href="#none" class="returnOrd button yg_btn_80 yg_btn3" id="returnOrd">반품신청</a>
+		                    <!-- <a href="#none" class="displaynone button yg_btn_80 yg_btn3" alt="반품신청">반품신청</a> -->
                 			</td>
                 			</c:if>
                 		<c:if test="${o.ord_status != 'D' }">

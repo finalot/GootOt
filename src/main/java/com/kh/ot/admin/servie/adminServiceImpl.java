@@ -220,12 +220,20 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public ArrayList<Return> productReturnlist() {
 		return adDao.productReturnlist();
+}
+@Override
+	public Product selectPrdtNo() {
+		return adDao.selectPrdtNo();
 	}
 
 
 	@Override
 	public Return ReturnDetail(Return re) {
 		return adDao.ReturnDetai(re);
+	}
+		@Override
+	public int insertPotList(ArrayList<Product_opt> poArr) {
+		return adDao.insertPotList(poArr);
 	}
 
 }
