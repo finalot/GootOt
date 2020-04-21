@@ -46,6 +46,7 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.vo.Return;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -267,19 +268,19 @@ public class menuController {
 	 * @param ordNo
 	 * @throws IOException
 	 */
-	@RequestMapping("orderUpdate4.ad")
-	public void orderUpdate4(HttpServletResponse response , int ordNo) throws IOException {
-		
-		PrintWriter out  = response.getWriter();
-		
-		int result = adService.orderUpdate4(ordNo);
-		
-		if(result > 0) {
-			out.print("ok");
-		}else {
-			out.print("fail");
-		}
-	}
+//	@RequestMapping("orderUpdate4.ad")
+//	public void orderUpdate4(HttpServletResponse response , int ordNo) throws IOException {
+//		
+//		PrintWriter out  = response.getWriter();
+//		
+//		int result = adService.orderUpdate4(ordNo);
+//		
+//		if(result > 0) {
+//			out.print("ok");
+//		}else {
+//			out.print("fail");
+//		}
+//	}
 	
 	
 	
@@ -590,8 +591,15 @@ public class menuController {
 	}
 
 	@RequestMapping("productReturn_list.ad")
-	public String productReturn_list() {
-		return "admin/productReturn_list";
+	public ModelAndView productReturn_list(ModelAndView mv) {
+		
+		//ArrayList<Return> rlist = adService.productReturnlist();
+		
+		
+		//mv.addObject("rlist",rlist);
+		mv.setViewName("productReturn_list");
+		
+		return mv;
 	}
 
 	@RequestMapping("review_list.ad")

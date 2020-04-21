@@ -13,11 +13,14 @@ import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
+import com.kh.ot.mypage.vo.Return;
 
 @Repository("mpDao")
 public class MypageDao {
@@ -80,13 +83,13 @@ public class MypageDao {
 	}
 
 	public int PointPrice(Member m) {
-		
+
 		int memNo = m.getMemNo();
-		
-		//int pointSet = sqlSession.selectOne("mypageMapper.selectPoint",memNo);
-		
-		//m.setMem_point(pointSet);
-		 
+
+		int pointSet = sqlSession.selectOne("mypageMapper.selectPoint",memNo);
+
+		m.setMem_point(pointSet);
+
 		return sqlSession.update("mypageMapper.updatePoint", m);
 	}
 
@@ -97,20 +100,20 @@ public class MypageDao {
 	public ArrayList<MyBoard> selectList(PageInfo pi, int memNo) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
+
 		return (ArrayList) sqlSession.selectList("mypageMapper.selectBoardList", memNo, rowBounds);
 	}
 
 	public int SearchListCount(SearchCondition sc) {
-		
+
 		return sqlSession.selectOne("mypageMapper.SearchListCount", sc);
 	}
 
 	public ArrayList<MyBoard> selectSearchList(PageInfo pi, SearchCondition sc) {
-		
+
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
+
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectSearchList", sc, rowBounds);
 	}
 
@@ -137,7 +140,7 @@ public class MypageDao {
 	public ArrayList<Address> selectAddressList(PageInfo pi, Member m) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
+
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectAddressList",m,rowBounds);
 	}
 
@@ -156,14 +159,14 @@ public class MypageDao {
 	}
 
 	public int SearchListCount(OrdSearch os) {
-		
+
 		return sqlSession.selectOne("mypageMapper.SearchOrdListCount", os);
 	}
 
 	public ArrayList<Ord> selectSearchList(PageInfo pi, OrdSearch os) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
+
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectSearchOrdList", os, rowBounds);
 	}
 
@@ -233,22 +236,47 @@ public class MypageDao {
 	public ArrayList<Ord> selectCancelList(PageInfo pi, int memNo) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
+
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectCancelList", memNo, rowBounds);
 	}
-	
+
 	public int getSearchCancelCount(OrdSearch os) {
-		
+
 		return sqlSession.selectOne("mypageMapper.getSearchCancelCount", os);
 	}
 
 	public ArrayList<Ord> selectSearchCancelList(PageInfo pi, OrdSearch os) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
+
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectSearchCancelList", os, rowBounds);
 	}
 
-	
-	
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환
+	 * @내용 	: 반품하기 인설트
+	 * @param r
+	 * @return
+	 */
+	public int ReturnInsert(Return r) {
+		return sqlSession.insert("mypageMapper.ReturnInsert",r);
+	}
+	public int getWishListCount(int memNo) {
+		return sqlSession.selectOne("mypageMapper.getWishListCount",memNo);
+	}
+
+	public ArrayList<DIBS> selectWishList(PageInfo pi, int memNo) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectWishList", memNo, rowBounds);
+	}
+
+	public ArrayList<Product_opt> selectOptionList(int prdt_no) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectOptionList", prdt_no);
+	}
+
+
+
+
 }

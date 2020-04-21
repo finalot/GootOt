@@ -29,6 +29,8 @@
 a{
 	cursor : pointer;
 }
+
+
 </style>
 
    
@@ -202,7 +204,6 @@ a{
 		                    <a href="#none" class="displaynone yg_btn_80 yg_btn3" onclick="OrderHistory.orderCancel('20200314-0004984')" alt="주문취소">주문취소</a>
 		                    <a href="cancel.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="취소신청">취소신청</a>
 		                    <a href="exchange.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="교환신청">교환신청</a>
-		                    <a href="return.html?order_id=20200314-0004984" class="displaynone button yg_btn_80 yg_btn3" alt="반품신청">반품신청</a>
                				</td>
                				
 			                <td class="thumb"><a onclick="productmove(this)">
@@ -234,6 +235,7 @@ a{
                    				<c:if test="${o.ord_status == 'E' }">
                    					반품
                    				</c:if>
+                   				
                    				</p>
 								<p class="displaynone" style="font-size:13px;">
 									<a href="#" target="_self"></a>
@@ -248,7 +250,8 @@ a{
                 			</td>
                 			<c:if test="${o.ord_status == 'D' }">
                 			<td>
-			                   <a href="#none" class="line returnOrd"  id="returnOrd">[반품신청]</a>
+			                   <a href="#none" class="returnOrd button yg_btn_80 yg_btn3" id="returnOrd">반품신청</a>
+		                    <!-- <a href="#none" class="displaynone button yg_btn_80 yg_btn3" alt="반품신청">반품신청</a> -->
                 			</td>
                 			</c:if>
                 		<c:if test="${o.ord_status != 'D' }">
@@ -438,6 +441,9 @@ a{
  <script>
 $('.returnOrd').click(function(){
 	var ordNo= $(this).parents('.xans-record-').find('input[name=ordNo]').val();
+			
+			location.href="MypageReturn.do?ordNo="+ordNo;
+			
 	console.log(ordNo);
 })
  

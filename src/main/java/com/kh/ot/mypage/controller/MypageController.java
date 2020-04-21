@@ -15,17 +15,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.kh.ot.admin.servie.adminService;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.common.Pagination;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
+import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
+import com.kh.ot.mypage.vo.Return;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -34,6 +39,8 @@ public class MypageController {
 	@Autowired
 	private MypageService mpService;
 	
+	@Autowired
+	private adminService adService;
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 : 신경섭
@@ -288,10 +295,6 @@ public class MypageController {
 		return mv;
 	}
 
-	
-	
-	
-	
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 : 신경섭
@@ -299,22 +302,60 @@ public class MypageController {
 	 * @return String
 	 */
 	@RequestMapping("mWishlist.do") //1
-	public ModelAndView mWishlist(ModelAndView mv,
-									@RequestParam("memNo") int memNo,HttpSession session ) {
+	public ModelAndView mWishlist(ModelAndView mv, 
+								@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage, HttpSession session
+								) {
+		
 		
 		Member m = (Member)session.getAttribute("loginMember");
-		int Coupon = mpService.CouponListCount(m);
-													// 사용 가능 포인트 셋팅
-													// 찜한 갯수 카운팅
 		
-		mv.addObject("couponcount", Coupon); // 쿠폰 갯수 카운팅
-		//mv.addObject()						// 사용 가능 포인트 셋팅
-												// 찜한 갯수 카운팅
+		int memNo = m.getMemNo();
 		
+		System.out.println(memNo);
 		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		int listCount = mpService.getWishListCount(memNo);
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<DIBS> list = mpService.selectWishList(pi, memNo);
+		
+		System.out.println("list : " + list);
+		
+		mv.addObject("listCount", listCount);
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+		mv.addObject("list",list);
+   		mv.addObject("pi", pi);										
 		mv.setViewName("mypage_wishList");
 		
 		return mv;
+	}
+	
+	@RequestMapping("optiondetail.do")
+	public void optiondetial(HttpServletResponse response,
+							@RequestParam("prdt_no") int prdt_no) throws IOException {
+		
+		System.out.println("dsadasdasdasdasdsad : " + prdt_no);
+		
+		PrintWriter out = response.getWriter();
+		// 해당 아이디를 가지고 검색 -> 데이터를 객체로 받아서 json으로 전달
+		
+		ArrayList<Product_opt> plist = mpService.selectOptionList(prdt_no);
+		
+		System.out.println("plist : " + plist);
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new Gson();
+		
+		gson.toJson(plist,response.getWriter());
+		
+		
+		
 	}
 	
 	/**
@@ -334,7 +375,7 @@ public class MypageController {
 		
 		int memNo = m.getMemNo();
 		
-		//int result = mpService.PointPrice(m); // 
+		int result = mpService.PointPrice(m); // 
 		
 		int coupon = mpService.CouponListCount(m); // 사용 가능한 쿠폰 카운팅
 		
@@ -555,8 +596,20 @@ public class MypageController {
 	 * @return String
 	 */
 	@RequestMapping("mEdit.do")
-	public String mEdit() {
-		return "mypage_memberEdit";
+	public ModelAndView mEdit(ModelAndView mv, HttpSession session) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+		mv.setViewName("mypage_memberEdit");
+		return mv;
 	}
 	
 	/**
@@ -805,7 +858,45 @@ public class MypageController {
 		} else {
 			return null;
 		}
+	}
+	
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환
+	 * @내용 	: 마이페이지 반품신청 이동
+	 * @param mv
+	 * @param ordNo
+	 * @return
+	 */
+	@RequestMapping("MypageReturn.do")
+	public ModelAndView MypageReturn(ModelAndView mv,int ordNo) {
 		
+		mv.addObject("ordNo",ordNo);
+		mv.setViewName("mypage_return_write");
+		return mv;
+	}
+	
+	/**
+	 * @작성일  : 2020. 4. 20.
+	 * @작성자  : 문태환
+	 * @내용 	: 반품신청 인설트
+	 * @param r
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("ReturnInsert.do")
+	public String ReturnInsert(Return r,HttpSession session) {
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		r.setMemCode(m.getMemNo());
+		int ordNo = r.getOrdCode();
+		System.out.println(ordNo);
+		int result = mpService.ReturnInsert(r);
+		
+		int result2 = adService.orderUpdate4(ordNo);
+
+		return "redirect:mList.do";
+	
 	}
 }
 	

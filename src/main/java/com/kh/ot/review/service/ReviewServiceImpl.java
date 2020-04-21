@@ -1,0 +1,63 @@
+package com.kh.ot.review.service;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kh.ot.review.dao.ReviewDao;
+import com.kh.ot.review.vo.Like_Heart;
+import com.kh.ot.review.vo.Review;
+
+@Service("rService")
+public class ReviewServiceImpl implements ReviewService{
+	
+	@Autowired
+	private ReviewDao rDao;
+
+	@Override
+	public ArrayList<Review> selectReviewList() {
+		return rDao.selectReviewList();
+	}
+
+	@Override
+	public Review selectReviewDetail(int rv_no) {
+		return rDao.selectReviewDetail(rv_no);
+	}
+
+	@Override
+	public int selectLikeCount(Like_Heart lh) {
+		return rDao.selectLikeCount(lh);
+	}
+
+	@Override
+	public int insertLike(Like_Heart lh) {
+		return rDao.insertLike(lh);
+	}
+
+	@Override
+	public Like_Heart selectLike(Like_Heart lh) {
+		return rDao.selectLike(lh);
+	}
+
+	@Override
+	public int updateLikeCheck(Like_Heart lh) {
+		return rDao.updateLikeCheck(lh);
+	}
+
+	@Override
+	public int updateLikeCount(int rv_no) {
+		return rDao.updateLikeCount(rv_no);
+	}
+
+	@Override
+	public int updateLikeCheck2(Like_Heart lh) {
+		return rDao.updateLikeCheck2(lh);
+	}
+
+	@Override
+	public int updateLikeCount2(int rv_no) {
+		return rDao.updateLikeCount2(rv_no);
+	}
+
+}

@@ -182,7 +182,7 @@ public class adminServiceImpl implements adminService{
 
 	@Override
 	public int orderUpdate4(int ordNo) {
-		return adDao.orderUpdate3(ordNo);
+		return adDao.orderUpdate4(ordNo);
 	}
 
 
