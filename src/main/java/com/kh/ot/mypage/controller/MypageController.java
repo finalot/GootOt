@@ -338,7 +338,7 @@ public class MypageController {
 	}
 	
 	@RequestMapping("optiondetail.do")
-	public void optiondetial(HttpServletResponse response,
+	public void optiondetail(HttpServletResponse response,
 							@RequestParam("prdt_no") int prdt_no) throws IOException {
 		
 		System.out.println("dsadasdasdasdasdsad : " + prdt_no);
@@ -347,20 +347,33 @@ public class MypageController {
 		// 해당 아이디를 가지고 검색 -> 데이터를 객체로 받아서 json으로 전달
 		
 		ArrayList<Product_opt> plist1 = mpService.selectOptionList1(prdt_no);
-		ArrayList<Product_opt> plist2 = mpService.selectOptionList2(prdt_no);
 		
 		System.out.println("plist1 : " + plist1);
-		System.out.println("plist2 : " + plist2);
 		
 		
 		response.setContentType("application/json; charset=UTF-8");
 		Gson gson = new Gson();
 		
 		gson.toJson(plist1,response.getWriter());
-		gson.toJson(plist2,response.getWriter());
-		
 		
 	}
+	
+	@RequestMapping("optiondetail2.do")
+	public void optiondetail2(HttpServletResponse response,
+							@RequestParam("prdt_no") int prdt_no) throws IOException {
+	
+		ArrayList<Product_opt> plist2 = mpService.selectOptionList2(prdt_no);
+	
+		System.out.println("plist2 : " + plist2);
+		
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new Gson();
+		
+		gson.toJson(plist2,response.getWriter());
+	
+	}
+	
+		
 	
 	/**
 	 * @작성일 : 2020. 4. 15.

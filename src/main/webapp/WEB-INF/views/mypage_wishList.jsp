@@ -134,6 +134,9 @@
 										 <br> 
 										<a href="#none" onclick="optionchange(this);" id="optionchange1" class=" yg_btn_80 yg_btn3 optionclose" alt="옵션변경">옵션변경하기</a> <!-- 참고 : 옵션변경 레이어 -->
 
+										
+										
+										
 										<div id="detail1" class="optiondetail" style="display: none;">
 											<div class="optionheader">
 												<h3 class="optiontitle">옵션 변경하기</h3>
@@ -141,6 +144,7 @@
 													<img src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif" alt="닫기">
 												</a>
 											</div>
+											
 											<div class="optionbody">
 												<h4>상품옵션</h4>
 												<ul class="ec-base-desc typeDot gLarge rightDD">
@@ -152,7 +156,7 @@
 															<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 														</button>
 
-														<input class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1">
+														<input class="size8 m-text18 t-center num-product" id="quantity" type="number" name="num-product2" value="1">
 					
 														<button class="num-product-up1 color1 flex-c-m size7 bg8 eff2" onclick="optionadd();" style="border-radius:5px;">
 															<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
@@ -178,19 +182,19 @@
 												</ul>
 											</div>
 											<div class="option_btn">
-												<a href="#none" class=" yg_btn yg_btn1"
-													onclick="NewWishlist.modify('add', '0', '10550');" alt="추가">추가</a>
-												<a href="#none" class="yg_btn yg_btn3"
-													onclick="NewWishlist.modify('update', '0', '10550');"
-													alt="변경">변경</a>
+												<a href="#none" class=" yg_btn yg_btn1" onclick="add(this);" alt="추가">추가</a>
+												<a href="#none" class="yg_btn yg_btn3" onclick="NewWishlist.modify(this);" alt="변경">변경</a>
 											</div>
 										</div>
 									</li>
 								</ul>
 							</td>
+				
+				
+
 
 							<td class="price center">
-									<span class=""><fmt:formatNumber value="${d.prdt_price }" pattern="#,###"/> won</span>
+									<span class=""><fmt:formatNumber value="${d.prdt_price * prdt_count }" pattern="#,###"/> won</span>
 									<br>
 								</td>
                 				<td><span class="txtInfo"><img src="/ot/resources/images/point.png" class="icon_img" alt="적립금">3%</span></td>
@@ -214,6 +218,20 @@
 					</tbody>
         		</table>
         		
+        		<script>
+					function add(){
+						var quantity = document.getElementById('quantity').value;
+						var color = document.getElementById('select1').value;
+						var size = document.getElementById('select2').value;
+						console.log(quantity);
+						console.log(color);
+						console.log(size);
+						
+						
+					}
+				
+				
+				</script>
 				<p class="message displaynone">관심상품 내역이 없습니다.</p>
 			</div>
 			
@@ -399,32 +417,48 @@
 	<script>
 		function optionchange(oc){
 			$('.optiondetail').css('display', 'none');
-			
-			var dibsno = $(oc).parents('ul').parents('td').parents('tr').find('.dibsno').val();
-			
-			var prdt_no = $(oc).parents('ul').parents('td').parents('tr').find('.prdt_no').val();
-			
-			console.log($(oc).parents('tr')[0]);
+			$(oc).parents('ul').find('.optiondetail').css('display', 'block');
+		var dibsno = $(oc).parents('ul').parents('td').parents('tr').find('.dibsno').val();
+		var prdt_no = $(oc).parents('ul').parents('td').parents('tr').find('.prdt_no').val();
 			
 			$.ajax({
 				url:"optiondetail.do",
-				data:{prdt_no : prdt_no},
+				data:{prdt_no:prdt_no},
 				dataType:"json",
+				async: false,
 				success:function(data){
 						
 					var color="";
-					var size="";
 					for(var i=0; i<data.length; i++){
 						color +="<option>"+data[i].prdt_color+"</option>";
-						size +="<option>"+data[i].prdt_size+"</option>";
 					}
 					$('#detail1 #detail2 select[id=select1]').html(color);
+					
+					optionchange2(prdt_no);
+				}
+			})
+			
+	
+		}
+		
+		function optionchange2(arguments){
+			/* $('.optiondetail').css('display', 'none'); */
+			console.log("arguments"+arguments);
+			$.ajax({
+				url:"optiondetail2.do",
+				data:{prdt_no:arguments},
+				dataType:"json",
+				async: false,
+				success:function(data){
+						
+					var size="";
+					
+					for(var i=0; i<data.length; i++){
+						size +="<option>"+data[i].prdt_size+"</option>";
+					}
 					$('#detail1 #detail2 select[id=select2]').html(size);
 				}
 			})
-			$(oc).parents('ul').find('.optiondetail').css('display', 'block');
-			console.log(prdt_no);
-			console.log(dibsno);
 			
 		}
 	/* */
