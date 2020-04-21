@@ -112,5 +112,4 @@
  		WHERE RV_NO = #{rvNo}
  	</insert>
  
- 
  </mapper>

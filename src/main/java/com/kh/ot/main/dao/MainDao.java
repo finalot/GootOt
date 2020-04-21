@@ -10,6 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.MainSearchCondition;
 import com.kh.ot.main.vo.MaindownCategory;
@@ -183,6 +184,14 @@ public class MainDao {
 
 	public ArrayList<Product> selectDetailList(int product_detail) {
 		return (ArrayList)sqlSession.selectList("productMapper.selectProductDetail",product_detail);
+	}
+
+	public ArrayList<Product_color> selectColorList3(int product_detail) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductColor3",product_detail);
+	}
+
+	public int insertCart(Cart c) {
+		return sqlSession.insert("productMapper.insertCart",c);
 	}
 
 

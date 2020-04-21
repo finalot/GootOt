@@ -279,14 +279,14 @@
 		alert("판매중지 완료되었습니다. ");
 	}
     
-    <%--  $("td").click(function(){
+     $("td").click(function(){
     	 location.href='productListDetail.ad';
-  	 var userId = $(this).parent().find('input').val();
+  <%-- 	 var userId = $(this).parent().find('input').val();
   	 
   	 console.log("선택한 유저 ID : "+userId);
   	 
      location.href="<%= request.getContextPath() %>/sone.rp?userId=" + userId;
-    });  --%>
+   --%>  }); 
   
      
     </script>

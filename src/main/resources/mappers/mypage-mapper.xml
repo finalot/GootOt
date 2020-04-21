@@ -87,6 +87,8 @@
 		<result property="prdt_color" column="OPT_COLOR"/>
 		<result property="prdt_size" column="OPT_SIZE"/>
 	</resultMap>
+	
+	
 
 
 
@@ -391,7 +393,7 @@
 	<insert id="ReturnInsert" parameterType="Return">
 		INSERT INTO RETURN VALUES
 		(RE_SEQ.NEXTVAL,#{memCode},#{ordCode},SYSDATE,#{reName},#{reTitle},#{content},#{reReason},
-		NULL,NULL,NULL,NULL,'N')
+		NULL,NULL,SYSDATE,NULL,'N')
 	</insert>
 		
 	<select id="selectWishList" resultMap="DIBSResultMap">
@@ -402,11 +404,19 @@
      WHERE MEM_NO=#{memno}
 	</select>
 
-	<select id="selectOptionList" resultMap="DIBSResultMap">
+	<select id="selectOptionList1" resultMap="DIBSResultMap">
 	 SELECT OPT_COLOR
 	 FROM PRDT_OPT
 	 WHERE PRDT_NO=#{prdt_no}
 	 GROUP BY OPT_COLOR
+	</select>
+	
+	<select id="selectOptionList2" resultMap="DIBSResultMap">
+	 SELECT OPT_SIZE
+	 FROM PRDT_OPT
+	 WHERE PRDT_NO=#{prdt_no}
+	 GROUP BY OPT_SIZE
 	
 	</select>
+	
 </mapper>

@@ -86,7 +86,7 @@ public class menuController {
 	/**
 	 * @작성일 : 2020. 4. 19.
 	 * @작성자 : 이서현
-	 * @내용 : 회원관리 리스트 뿌리기 
+	 * @내용 : 회원관리 리스트
 	 */
 	@RequestMapping("customer.ad")
 	public ModelAndView customer(ModelAndView mv) {
@@ -309,6 +309,11 @@ public class menuController {
 		return mv;
 	}
 
+	/**
+	 * @작성일 : 2020. 4. 19.
+	 * @작성자 : 이서현
+	 * @내용 : 상품리스트  리스트
+	 */
 	@RequestMapping("productList.ad")
 	public ModelAndView productList(ModelAndView mv) {
 		ArrayList<Product> plist = adService.ProductSelectList();
@@ -319,6 +324,24 @@ public class menuController {
 		mv.addObject("dlist", dlist);
 		mv.addObject("plist", plist);
 		mv.setViewName("admin/productList");
+		return mv;
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 21.
+	 * @작성자 : 이서현
+	 * @내용 : 상품리스트디테일 리스트 
+	 */
+	@RequestMapping("productListDetail.ad")
+	public ModelAndView productListDetail(ModelAndView mv) {
+		
+		ArrayList<Product> plist = adService.ProductSelectList();
+		ArrayList<UpCategory> ulist = adService.UpCategorySelect();
+		ArrayList<DownCategory> dlist = adService.DownCategorySelect();
+		//여기야 여기 ! 
+		mv.addObject("plist",plist);
+		mv.setViewName("admin/productListDetail");
+		
 		return mv;
 	}
 
@@ -551,10 +574,6 @@ public class menuController {
 		return "admin/customerDetail";
 	}
 
-	@RequestMapping("productListDetail.ad")
-	public String productListDetail() {
-		return "admin/productListDetail";
-	}
 
 	@RequestMapping("QnA_bank_detail.ad")
 	public String QnA_bank_detail() {
@@ -571,14 +590,21 @@ public class menuController {
 		return "admin/QnA_delivery_detail";
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 21.
+	 * @작성자  : 문태환 
+	 * @내용 	: 반품 게시판 리스트 뿌리
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("productReturn_list.ad")
 	public ModelAndView productReturn_list(ModelAndView mv) {
 		
-		//ArrayList<Return> rlist = adService.productReturnlist();
+		ArrayList<Return> rlist = adService.productReturnlist();
 		
 		
-		//mv.addObject("rlist",rlist);
-		mv.setViewName("productReturn_list");
+		mv.addObject("rlist",rlist);
+		mv.setViewName("admin/productReturn_list");
 		
 		return mv;
 	}
@@ -1286,20 +1312,22 @@ public class menuController {
 	 */
 	@RequestMapping(value="ProductInsert.ad" ,method=RequestMethod.POST)
 	public String ProductInsert(Product p, HttpServletRequest request,
+			String[] size, int[] stock , String[] optColor,
 			@RequestParam(name="thumbnailImg",required=false) MultipartFile file1,
 			@RequestParam(name="descrptionImg",required=false) MultipartFile file2	) {
 		
-		// Product만 있는거
-
-		String root = request.getSession().getServletContext().getRealPath("resources");
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			
+			System.out.println(file1);
+			System.out.println(file2);
+			
+			String savePath = "";
+			String saveDetailPath = "";
+			String frontPath = "/ot/resources/images/oT";
 		
-		System.out.println(file1);
-		System.out.println(file2);
+		//상품 옵션 추가
+		ArrayList<Product_opt> poArr = new ArrayList<Product_opt>();
 		
-		String savePath = "";
-		String saveDetailPath = "";
-		String frontPath = "/ot/resources/images/oT";
-
 		if (p.getUpNo() == 1 && p.getDownNo() == 1) {
 			savePath = root + "\\images/oT/clothing/t_nasi";
 			p.setPrdtImagePath(frontPath +savePath);
@@ -1449,146 +1477,55 @@ public class menuController {
 		int result = adService.ProductInsert(p);
 
 		if (result > 0) {
-			return "redirect:productList.ad";
-		} else {
-			System.out.println("에러");
-			return "redirect:productAdd.ad";
+			Product pd = adService.selectPrdtNo();
+			
+			for(int i=0;i<stock.length;i++) {
+				Product_opt pot = new Product_opt();
+				
+				pot.setSize(size[i]);
+				pot.setStock(stock[i]);
+				pot.setPrdtNo(pd.getPrdtNo());
+				pot.setOptColor(optColor[i]);
+			
+				poArr.add(pot);
+			}
+			
+			
+			int result2 = adService.insertPotList(poArr);
+			
+				return "redirect:productList.ad";
+			} else {
+				System.out.println("에러");
+				return "redirect:productAdd.ad";
 		}
 	}
+	
+	/**
+	 * @작성일  : 2020. 4. 21.
+	 * @작성자  : 문태환 
+	 * @내용 	: 반품화면 디테일
+	 * @param mv
+	 * @param reNo
+	 * @return
+	 */
+	@RequestMapping("ReturnDetail.do")
+	public ModelAndView ReturnDetail(ModelAndView mv,int reNo) {
+		System.out.println(reNo);
+		Return re = new Return();
+		
+		re.setReNo(reNo);
+		
+		re = adService.ReturnDetail(re);	
+		
+		System.out.println(re);
+		
+		mv.addObject("re", re);
+		mv.setViewName("admin/productReturn");
+		return mv;
+				
+	}
+	
 
-	/* *//**
-			 * @작성일 : 2020. 4. 16.
-			 * @작성자 : 이서현
-			 * @내용 : 상품 파일 다운로드
-			 *//*
-				 * public String savePrdtFile(MultipartFile file, HttpServletRequest
-				 * request,Product p) { // 저장할 경로 설정et // 웹 서버 contextPath를 불러와서 폴더의 경로
-				 * 찾음(webapp 하위의 resources) String root =
-				 * request.getSession().getServletContext().getRealPath("resources");
-				 * 
-				 * String savePath=""; String saveDetailPath="";
-				 * 
-				 * if(p.getUpNo()==1 && p.getDownNo()== 1) { savePath= root +
-				 * "\\images/oT/clothing/t_nasi";
-				 * p.setPrdtImagePath("\\images/oT/clothing/t_nasi/"); saveDetailPath = root +
-				 * "\\images/oT/clothing/t_nasi/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/clothing/t_nasi/detail/");
-				 * 
-				 * }else if(p.getUpNo()==1 && p.getDownNo()== 2) { savePath= root +
-				 * "\\images/oT/clothing/mantoman";
-				 * p.setPrdtImagePath("\\images/oT/clothing/mantoman/"); saveDetailPath = root +
-				 * "\\images/oT/clothing/mantoman/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/clothing/mantoman/detail/"); }else
-				 * if(p.getUpNo()==1 && p.getDownNo()== 3) { savePath= root +
-				 * "\\images/oT/clothing/hoody";
-				 * p.setPrdtImagePath("\\images/oT/clothing/hoody/"); saveDetailPath = root +
-				 * "\\images/oT/clothing/hoody/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/clothing/hoody/detail/"); }else
-				 * if(p.getUpNo()==1 && p.getDownNo()== 4) { savePath= root +
-				 * "\\images/oT/clothing/pants";
-				 * p.setPrdtImagePath("\\images/oT/clothing/pants/"); saveDetailPath = root +
-				 * "\\images/oT/clothing/pants/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/clothing/pants/detail/"); }else
-				 * if(p.getUpNo()==1 && p.getDownNo()== 5) { savePath= root +
-				 * "\\images/oT/clothing/knit";
-				 * p.setPrdtImagePath("\\images/oT/clothing/knit/"); saveDetailPath = root +
-				 * "\\images/oT/clothing/knit/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/clothing/knit/detail/"); }else
-				 * if(p.getUpNo()==1 && p.getDownNo()== 6) { savePath= root +
-				 * "\\images/oT/clothing/onepiece_skirt";
-				 * p.setPrdtImagePath("\\images/oT/clothing/onepiece_skirt/"); saveDetailPath =
-				 * root + "\\images/oT/clothing/onepiece_skirt/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/clothing/onepiece_skirt/detail/");
-				 * }else if(p.getUpNo()==1 && p.getDownNo()== 7) { savePath= root +
-				 * "\\images/oT/clothing/shirt_blouse";
-				 * p.setPrdtImagePath("\\images/oT/clothing/shirt_blouse/"); saveDetailPath =
-				 * root + "\\images/oT/clothing/shirt_blouse/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/clothing/shirt_blouse/detail/"); }
-				 * 
-				 * else if(p.getUpNo()==2 && p.getDownNo()==1) { savePath= root +
-				 * "\\images/oT/outer/jacket"; p.setPrdtImagePath("\\images/oT/outer/jacket/");
-				 * saveDetailPath = root + "\\images/oT/outer/jacket/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/outer/jacket/detail/"); }else
-				 * if(p.getUpNo()==2 && p.getDownNo()==2) { savePath= root +
-				 * "\\images/oT/outer/coat_jumper";
-				 * p.setPrdtImagePath("\\images/oT/outer/coat_jumper/"); saveDetailPath = root +
-				 * "\\images/oT/outer/coat_jumper/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/outer/coat_jumper/detail/"); }else
-				 * if(p.getUpNo()==2 && p.getDownNo()==3) { savePath= root +
-				 * "\\images/oT/outer/cardigan";
-				 * p.setPrdtImagePath("\\images/oT/outer/cardigan/"); saveDetailPath = root +
-				 * "\\images/oT/outer/cardigan/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/outer/cardigan/detail/"); }
-				 * 
-				 * 
-				 * else if(p.getUpNo()==3 && p.getDownNo()==1) { savePath= root +
-				 * "\\images/oT/shoes/shoes"; p.setPrdtImagePath("\\images/oT/shoes/shoes/");
-				 * saveDetailPath = root + "\\images/oT/shoes/shoes/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/shoes/shoes/detail/"); }
-				 * 
-				 * else if(p.getUpNo()==4 && p.getDownNo()==1) { savePath= root +
-				 * "\\images/oT/acc/belt"; p.setPrdtImagePath("\\images/oT/acc/belt/");
-				 * saveDetailPath = root + "\\images/oT/acc/belt/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/acc/belt/detail/"); }else
-				 * if(p.getUpNo()==4 && p.getDownNo()==2) { savePath= root +
-				 * "\\images/oT/acc/glasses"; p.setPrdtImagePath("\\images/oT/acc/glasses/");
-				 * saveDetailPath = root + "\\images/oT/acc/glasses/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/acc/glasses/detail/"); }else
-				 * if(p.getUpNo()==4 && p.getDownNo()==3) { savePath= root +
-				 * "\\images/oT/acc/hat"; p.setPrdtImagePath("\\images/oT/acc/hat/");
-				 * saveDetailPath = root + "\\images/oT/acc/hat/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/acc/hat/detail/"); }else
-				 * if(p.getUpNo()==4 && p.getDownNo()==4) { savePath= root +
-				 * "\\images/oT/acc/socks"; p.setPrdtImagePath("\\images/oT/acc/socks/");
-				 * saveDetailPath = root + "\\images/oT/acc/socks/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/acc/socks/detail/"); }else
-				 * if(p.getUpNo()==4 && p.getDownNo()==5) { savePath= root +
-				 * "\\images/oT/acc/accessories";
-				 * p.setPrdtImagePath("\\images/oT/acc/accessories/"); saveDetailPath = root +
-				 * "\\images/oT/acc/accessories/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/acc/accessories/detail/"); }else
-				 * if(p.getUpNo()==4 && p.getDownNo()==6) { savePath= root +
-				 * "\\images/oT/acc/etc"; p.setPrdtImagePath("\\images/oT/acc/etc/");
-				 * saveDetailPath = root + "\\images/oT/acc/etc/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/acc/etc/detail/"); }
-				 * 
-				 * else if(p.getUpNo()==5 && p.getDownNo()==1) { //임의로 Event Best20 저장 savePath=
-				 * root + "\\images/oT/event/new5";
-				 * p.setPrdtImagePath("\\images/oT/event/new5/"); saveDetailPath = root +
-				 * "\\images/oT/event/new5/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/event/new5/detail/"); }else
-				 * if(p.getUpNo()==5 && p.getDownNo()==2) { //임의로 Event Best20 저장 savePath= root
-				 * + "\\images/oT/event/sale"; p.setPrdtImagePath("\\images/oT/event/sale/");
-				 * saveDetailPath = root + "\\images/oT/event/sale/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/event/sale/detail/"); }
-				 * 
-				 * else if(p.getUpNo()==6 && p.getDownNo()==1) { savePath= root +
-				 * "\\images/oT/best/best20"; p.setPrdtImagePath("\\images/oT/best/best20/");
-				 * saveDetailPath = root + "\\images/oT/best/best20/detail";
-				 * p.setPrdtDetailImagePath("\\images/oT/best/best20/detail/"); }
-				 * 
-				 * File folder = new File(savePath,saveDetailPath);
-				 * 
-				 * if(!folder.exists()) { folder.mkdir(); // 폴더가 없다면 생성해주세요 }
-				 * 
-				 * String originFileName = file.getOriginalFilename(); String
-				 * originDetailFileName = file.getOriginalFilename();
-				 * 
-				 * SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); String
-				 * renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) +
-				 * "." + originFileName.substring(originFileName.lastIndexOf(".")+1); String
-				 * renameDetailName = sdf.format(new java.sql.Date(System.currentTimeMillis()))
-				 * + "." +
-				 * originDetailFileName.substring(originDetailFileName.lastIndexOf(".")+1);
-				 * 
-				 * String renamePath = folder + "\\" + renameFileName; String renameDetailPath =
-				 * folder + "\\" + renameDetailName;
-				 * 
-				 * 
-				 * try { file.transferTo(new File(renamePath)); file.transferTo(new
-				 * File(renameDetailPath)); } catch (Exception e) {
-				 * 
-				 * System.out.println("파일 전송 에러: " + e.getMessage()); } return paths; }
-				 */
+	
 
 }

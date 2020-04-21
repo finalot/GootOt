@@ -272,8 +272,12 @@ public class MypageDao {
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectWishList", memNo, rowBounds);
 	}
 
-	public ArrayList<Product_opt> selectOptionList(int prdt_no) {
-		return (ArrayList)sqlSession.selectList("mypageMapper.selectOptionList", prdt_no);
+	public ArrayList<Product_opt> selectOptionList1(int prdt_no) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectOptionList1", prdt_no);
+	}
+
+	public ArrayList<Product_opt> selectOptionList2(int prdt_no) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectOptionList2", prdt_no);
 	}
 
 
