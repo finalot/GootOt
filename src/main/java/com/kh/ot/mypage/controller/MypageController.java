@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kh.ot.admin.servie.adminService;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.common.Pagination;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
 import com.kh.ot.mypage.vo.Address;
@@ -301,7 +303,8 @@ public class MypageController {
 	 */
 	@RequestMapping("mWishlist.do") //1
 	public ModelAndView mWishlist(ModelAndView mv, 
-								@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage, HttpSession session ) {
+								@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage, HttpSession session
+								) {
 		
 		
 		Member m = (Member)session.getAttribute("loginMember");
@@ -309,8 +312,6 @@ public class MypageController {
 		int memNo = m.getMemNo();
 		
 		System.out.println(memNo);
-		
-		
 		
 		int coupon = mpService.CouponListCount(m);
 		
@@ -334,6 +335,27 @@ public class MypageController {
 		mv.setViewName("mypage_wishList");
 		
 		return mv;
+	}
+	
+	@RequestMapping("optiondetail.do")
+	public void optiondetial(HttpServletResponse response,
+							@RequestParam("prdt_no") int prdt_no) throws IOException {
+		
+		System.out.println("dsadasdasdasdasdsad : " + prdt_no);
+		
+		PrintWriter out = response.getWriter();
+		// 해당 아이디를 가지고 검색 -> 데이터를 객체로 받아서 json으로 전달
+		
+		ArrayList<Product_opt> plist = mpService.selectOptionList(prdt_no);
+		
+		System.out.println("plist : " + plist);
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new Gson();
+		
+		gson.toJson(plist,response.getWriter());
+		
+		
+		
 	}
 	
 	/**
