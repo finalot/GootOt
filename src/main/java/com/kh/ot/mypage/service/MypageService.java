@@ -6,6 +6,7 @@ import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Ord;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
@@ -278,5 +279,7 @@ public interface MypageService {
 	int getWishListCount(int memNo);
 
 	ArrayList<DIBS> selectWishList(PageInfo pi, int memNo);
+
+	ArrayList<Product_opt> selectOptionList(int prdt_no);
 
 }

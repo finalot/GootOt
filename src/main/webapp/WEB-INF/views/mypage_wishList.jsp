@@ -119,6 +119,7 @@
           			<tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
           				<c:forEach var="d" items="${list }">
           				<tr class="xans-record-">
+          				<input id="prdt_no" name="prdt_no" class="prdt_no" value="${d.prdt_no }" type="hidden"/>
           				<input type="hidden" class="dibsno" value="${d.dibsno }"/>
 							<td>
 								<input name="wish_idx[]" id="wish_idx_0" enable-order="" reserve-order="N" enable-purchase="1" class="" is-set-product="F" value="658007" type="checkbox">
@@ -127,11 +128,15 @@
             					<a href="${product_detail }">
                						<img src="${d.path}${d.image}" alt=""></a>
        						</td>
-							<td class="left"><a href="${product_detail }" style="font-size: 13px;">${d.prdt_name }</a>
+							<td id="test1" class="left"><a href="${product_detail }" style="font-size: 13px;">${d.prdt_name }</a>
 								<ul class="xans-element- xans-myshop xans-myshop-optionall option">
 									<li class="xans-record-">
 										 <br> 
 										<a href="#none" onclick="optionchange(this);" id="optionchange1" class=" yg_btn_80 yg_btn3 optionclose" alt="옵션변경">옵션변경하기</a> <!-- 참고 : 옵션변경 레이어 -->
+
+
+
+
 
 										<div class="optiondetail" style="display: none;">
 											<div class="optionheader">
@@ -147,41 +152,42 @@
 														<strong class="optiontype">QUANTITY</strong>
 														
 														<div class="flex-w bo5 of-hidden w-size17" style="left:24%;">
-									<button class="num-product-down1 color1 flex-c-m size7 bg8 eff2" onclick="optiondel();" style="border-radius:5px;">
-										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-									</button>
+														<button class="num-product-down1 color1 flex-c-m size7 bg8 eff2" onclick="optiondel();" style="border-radius:5px;">
+															<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
+														</button>
 
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1">
-
-									<button class="num-product-up1 color1 flex-c-m size7 bg8 eff2" onclick="optionadd();" style="border-radius:5px;">
-										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-									</button>
-								</div>
+														<input class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1">
+					
+														<button class="num-product-up1 color1 flex-c-m size7 bg8 eff2" onclick="optionadd();" style="border-radius:5px;">
+															<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
+														</button>
+														</div>
+														
 													</li>
-													<div class="option_scroll" style="overflow-y: scroll; position: relative; top: 5px; margin: 5px 0 0 0; height:230px; width:105%;">
+												<div class="option_scroll" style="overflow-y: scroll; position: relative; top: 5px; margin: 5px 0 0 0; height:230px; width:105%;">
 													<div id="option1o" style=" margin: 5px 0 0 0; border-top: 1px solid #ddd; ">
-													<li>
-														<strong class="optiontype">COLOR</strong> 
-														<select>
-																<option value="블랙">블랙</option>
-																<option value="그레이">그레이</option>
-																<option value="화이트">화이트</option>
-														</select>
-													</li>
-													<li>
-														<strong class="optiontype">SIZE</strong> 
-														<select>
-																<option value="S">S</option>
-																<option value="M">M</option>
-																<option value="L">L</option>
-																<option value="XL">XL</option>
-																<option value="XXL">XXL</option>
-	
-														</select>
-													</li>
+														<li>
+															<strong class="optiontype">COLOR</strong> 
+															<select id="select1">
+															
+																
+															</select>
+														</li>
+														
+														<li>
+															<strong class="optiontype">SIZE</strong> 
+															<select id="select2">
+																	<option value="S">S</option>
+																	<option value="M">M</option>
+																	<option value="L">L</option>
+																	<option value="XL">XL</option>
+																	<option value="XXL">XXL</option>
+		
+															</select>
+														</li>
 
 													</div>
-													</div>
+												</div>
 													
 												</ul>
 											</div>
@@ -428,7 +434,21 @@
 		function optionchange(oc){
 			var dibsno = $(oc).parents('ul').parents('td').parents('tr').find('.dibsno').val();
 			
-			
+			var prdt_no = $(oc).parents('ul').parents('td').parents('tr').find('.prdt_no').val();
+			console.log($(oc).parents('tr')[0]);
+			$.ajax({
+				url:"optiondetail.do",
+				data:{prdt_no : prdt_no},
+				dataType:"json",
+				success:function(data){
+					console.log(data[0].prdt_color);
+					
+					
+					$('#select1').append("<option>1</option>");
+					
+				}
+			})
+			console.log(prdt_no);
 			console.log(dibsno);
 			$(oc).parents('ul').find('.optiondetail').css('display', 'block'); 
 		}
