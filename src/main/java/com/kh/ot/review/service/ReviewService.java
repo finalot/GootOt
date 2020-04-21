@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
 
 public interface ReviewService {
 
@@ -86,5 +87,14 @@ public interface ReviewService {
 	 * @return
 	 */
 	int updateLikeCount2(int rv_no);
+
+	/**
+	 * @작성일  : 2020. 4. 21.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰 댓글 등록
+	 * @param rp
+	 * @return
+	 */
+	int insertReply(ReviewReply rp);
 
 }

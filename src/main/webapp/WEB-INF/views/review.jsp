@@ -230,10 +230,15 @@
             }
 
             #comentarea{
-                margin-top: 10px;
             }
 
             #comentinput{
+                width: 245px;
+                height: 25px;
+                float: left;
+            }
+            
+             #rvComment{
                 width: 245px;
                 height: 25px;
                 float: left;
@@ -245,6 +250,8 @@
                 border: 0px;
                 font-size:18px;
             }
+            
+            
 
             #setting{
                 display: none;
@@ -1215,11 +1222,12 @@
 
 											</div>
 											<div class="reviews_index_gallery_review__review_product_info" >
-												<div class="reviews_index_gallery_review__product_info_title" id="prDetail">
+												<div class="reviews_index_gallery_review__product_info_title" id="prDetail"
+												style="padding-top:6px;">
 													<!-- MODAL 창에 뜨는 DETAIL 상품명 -->
 													
 												</div>
-											<div class="reviews_index_gallery_review__product_info_feedbacks" >
+											<div class="reviews_index_gallery_review__product_info_feedbacks" style="margin-top: 3px;">
 	<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
 													<span class="reviews_index_gallery_review__reviews_count" style="color:gray;">
 													<small id="memName"></small>
@@ -1228,10 +1236,11 @@
 											</div>
 										</div>
 										<hr>
-                        <div style="color:gray; border:1px solid lightgray; font-size:16px;">
-                          	<small>이 리뷰를 <strong style="color:black;" ><span id="likeCount"></span></strong >명이 좋아합니다.</small>
+                        <div style="color:gray; border:1px solid lightgray; font-size:15px;">
+                          	<small style="margin-left:-44px;">이 리뷰를 <strong style="color:black;">
+                          	<span id="likeCount"></span></strong >명이 좋아합니다.</small>
                         </div><hr>
-                         <div style="color:gray; border:2px dotted lightgray; font-size:16px;">
+                         <div style="color:gray; border:2px dotted lightgray; font-size:15px;">
                           	선택한 옵션 <br> <small>color : <strong style="color:black;" id="rColor"></strong></small><br>
                           				<small>size : <strong style="color:black;" id="rSize"></strong></small>	
                         </div><hr>
@@ -1255,33 +1264,38 @@
                             </a>         
                             </div>
                         </div><hr>
+                        
+                        <!-- 댓글 forEach 시작점 -->
                         <div id="comentarea">
                         	<div>
-                            <input onkeyPress="reviewReply();" type="text" id="comentinput" placeholder="댓글을 작성해주세요 :)" maxlength="80" style="resize:none; border-radius: 5px 0px 0px 5px; 
+                     
+                       
+                            <input onkeyPress="reviewReply();" type="text" id="rvComment" placeholder="댓글을 작성해주세요 :)" maxlength="80" style="resize:none; /* border-radius: 5px 0px 0px 5px;  */
                             border: 0.5px solid lightgray; background-color: whitesmoke; padding: 2px; height:40px;width:85%;">
                             <button onclick="" id="comentsend" style=" font-size: 15px;
-                             background: white; border: 1px solid lightgray; border-radius:0px 5px 5px 0px; width:50px;height: 40px;position:relative;bottom:2px;">등록</button>
+                             background: white; border: 1px solid lightgray; /* border-radius:0px 5px 5px 0px; */ 
+                             width:50px;height: 40px;position:relative;bottom:2px;">등록</button>
                              </div><br>
                              
-                             <div style="color:gray; border:1px solid lightgray; border-radius:5px; font-size:16px;">
-                          	<small>우왕 이쁘게입으셧네요오~!</small>
-                          	<button style="float:right;">&times;</button><br>
-                          	<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>
-                          	 <div style="color:lightgray;font-size:11px;float:right;"><font>이대*</font>&nbsp;&nbsp;2020-03-31</div></div><br>
+                              <%--   <c:forEach var="rp" items="${rp.rplist }"> --%>
+                                <input type="hidden" id="rv_no3" value=""> 
+                             <div style="color:gray; border:1px solid lightgray; /* border-radius:5px; */ font-size:16px;">
+                          	<small>
+                          	하이하잉ㅇ</small>
+                          	<button style="">&times;</button><br>
+                          	<button style="float:right;font-size:10px;color:#e65540;margin-top:1px;">&nbsp;&nbsp;신고하기</button>
+                          	 <div style="color:lightgray;font-size:11px;float:right;" id="rvDate">
                           	 
-                          	 <div style="color:gray; border:1px solid lightgray; border-radius:5px; font-size:16px;">
-                          	<small>우왕 야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액~!</small>
-                          	<button style="float:right;">&times;</button><br>
-                          	<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>
-                          	 <div style="color:lightgray;font-size:11px;float:right;"><font>박주*</font>&nbsp;&nbsp;2020-03-31</div></div><br>
+                          	 <font>이대*</font>&nbsp;&nbsp;2020-03-31</div>
                           	 
-                          	 <div style="color:gray; border:1px solid lightgray; border-radius:5px; font-size:16px;">
-                          	<small style="margin:5px 5px 5px 5px;">우왕 아주 사고십구만요 이야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액</small>
-                          	<button style="float:right;">&times;</button><br>
-                          	<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>
-                          	 <div style="color:lightgray;font-size:11px;float:right;"><font>이대*</font>&nbsp;&nbsp;2020-03-31</div></div><br>
+                          	 </div>
+                          	 
+                       <%--  </c:forEach> --%>
+                          	 <br>
+                          	 
                         
                         </div>
+                        <!-- 댓글 forEach 끝나는점) -->
                     </div>
                        <!-- 모달창 끝나는 점 -->     
                 </div>
@@ -1919,10 +1933,42 @@
 	
 	
 	<script>
-/* 	$('#nonHeart').bind("click",function() {
-		$('#nonHeart').attr("src","/ot/resources/images/icons/like-check.png")
-	})
-	 */
+		$(function() {
+			getReplyList();
+			
+			//setInterval
+			setInterval(function() {
+				getReplyList();
+			},3000);
+			
+			// 댓글등록
+			
+			$('#comentsend').on("click", function() {
+				var rvComment = $('#rvComment').val();
+				var rv_no3 = $('#rv_no3').val();
+				
+				$.ajax({
+					url:"addReply.do",
+					data : {rvComment : rvComment, rv_no3 : rv_no3},
+					type:"post",
+					success:function(data) {
+						if(data=="success") {
+							getReplyList();
+							
+							$('#rvComment').val("");
+						}
+					},error:function() {
+						console.log("등록실패");
+					}
+				})
+			});
+			
+		});
+		
+		function getReplyList() {
+			var rv_no3 = $('#rv_no3').val();
+		}
+		
 	
 	</script>
 	

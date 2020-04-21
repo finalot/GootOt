@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,6 +23,7 @@ import com.kh.ot.member.vo.Member;
 import com.kh.ot.review.service.ReviewService;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
 
 import net.sf.json.JSONObject;
 
@@ -151,4 +153,40 @@ public class ReviewController extends HttpServlet {
 			
 			
 		}
+//		
+//		@RequestMapping("rList.do")
+//		public void getReplyList(HttpServletResponse response, int rvNo) {
+//			
+//			ArrayList<ReviewReply> rplist = rService.selectReplyList(rvNo);
+//			
+//			response.setContentType("appliction/json; charset=utf-8");
+//			
+//			
+//			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+//			
+//			gson.toJson(rplist,response.getWriter());
+//		}
+		
+		/**
+		 * @작성일  : 2020. 4. 21.
+		 * @작성자  : 우예진
+		 * @내용    : 리뷰 댓글 등록
+		 * @param rp
+		 * @return
+		 */
+		@RequestMapping("addReply.do")
+		@ResponseBody
+		public String addReply(ReviewReply rp) {
+			
+			int result = rService.insertReply(rp);
+			
+			
+			
+			if(result > 0) {
+				return "success";
+			}else {
+				return "fail";
+			}
+		}
+		
 }

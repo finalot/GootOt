@@ -216,9 +216,12 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public ArrayList<Product_opt> selectOptionList(int prdt_no) {
-		return mpDao.selectOptionList(prdt_no);
+	public ArrayList<Product_opt> selectOptionList1(int prdt_no) {
+		return mpDao.selectOptionList1(prdt_no);
 	}
-
+	
+	public ArrayList<Product_opt> selectOptionList2(int prdt_no) {
+		return mpDao.selectOptionList2(prdt_no);
+	}
 
 }

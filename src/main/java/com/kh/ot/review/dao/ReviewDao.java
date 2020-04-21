@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
 
 @Repository("rDao")
 public class ReviewDao {
@@ -111,6 +112,10 @@ public class ReviewDao {
 	 */
 	public int updateLikeCount2(int rv_no) {
 		return sqlSession.update("reviewMapper.updateLikeCount2",rv_no);
+	}
+
+	public int insertReply(ReviewReply rp) {
+		return sqlSession.insert("reviewMapper.insertReply",rp);
 	}
 	
 }

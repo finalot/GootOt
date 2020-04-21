@@ -128,23 +128,23 @@
             					<a href="${product_detail }">
                						<img src="${d.path}${d.image}" alt=""></a>
        						</td>
-							<td id="test1" class="left"><a href="${product_detail }" style="font-size: 13px;">${d.prdt_name }</a>
+							<td class="left"><a href="${product_detail }" style="font-size: 13px;">${d.prdt_name }</a>
 								<ul class="xans-element- xans-myshop xans-myshop-optionall option">
 									<li class="xans-record-">
 										 <br> 
 										<a href="#none" onclick="optionchange(this);" id="optionchange1" class=" yg_btn_80 yg_btn3 optionclose" alt="옵션변경">옵션변경하기</a> <!-- 참고 : 옵션변경 레이어 -->
 
-
-
-
-
-										<div class="optiondetail" style="display: none;">
+										
+										
+										
+										<div id="detail1" class="optiondetail" style="display: none;">
 											<div class="optionheader">
 												<h3 class="optiontitle">옵션 변경하기</h3>
 												<a href="#none" class="option_close" onclick="$('.optionModify').hide();">
 													<img src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif" alt="닫기">
 												</a>
 											</div>
+											
 											<div class="optionbody">
 												<h4>상품옵션</h4>
 												<ul class="ec-base-desc typeDot gLarge rightDD">
@@ -156,7 +156,7 @@
 															<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 														</button>
 
-														<input class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1">
+														<input class="size8 m-text18 t-center num-product" id="quantity" type="number" name="num-product2" value="1">
 					
 														<button class="num-product-up1 color1 flex-c-m size7 bg8 eff2" onclick="optionadd();" style="border-radius:5px;">
 															<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
@@ -164,26 +164,16 @@
 														</div>
 														
 													</li>
-												<div class="option_scroll" style="overflow-y: scroll; position: relative; top: 5px; margin: 5px 0 0 0; height:230px; width:105%;">
+												<div id="detail2" class="option_scroll" style= position: relative; top: 5px; margin: 5px 0 0 0; height:120px; width:105%;">
 													<div id="option1o" style=" margin: 5px 0 0 0; border-top: 1px solid #ddd; ">
 														<li>
 															<strong class="optiontype">COLOR</strong> 
-															<select id="select1">
-															
-																
-															</select>
+															<select id="select1"></select>
 														</li>
 														
 														<li>
 															<strong class="optiontype">SIZE</strong> 
-															<select id="select2">
-																	<option value="S">S</option>
-																	<option value="M">M</option>
-																	<option value="L">L</option>
-																	<option value="XL">XL</option>
-																	<option value="XXL">XXL</option>
-		
-															</select>
+															<select id="select2"></select>
 														</li>
 
 													</div>
@@ -192,19 +182,19 @@
 												</ul>
 											</div>
 											<div class="option_btn">
-												<a href="#none" class=" yg_btn yg_btn1"
-													onclick="NewWishlist.modify('add', '0', '10550');" alt="추가">추가</a>
-												<a href="#none" class="yg_btn yg_btn3"
-													onclick="NewWishlist.modify('update', '0', '10550');"
-													alt="변경">변경</a>
+												<a href="#none" class=" yg_btn yg_btn1" onclick="add(this);" alt="추가">추가</a>
+												<a href="#none" class="yg_btn yg_btn3" onclick="NewWishlist.modify(this);" alt="변경">변경</a>
 											</div>
 										</div>
 									</li>
 								</ul>
 							</td>
+				
+				
+
 
 							<td class="price center">
-									<span class=""><fmt:formatNumber value="${d.prdt_price }" pattern="#,###"/> won</span>
+									<span class=""><fmt:formatNumber value="${d.prdt_price * prdt_count }" pattern="#,###"/> won</span>
 									<br>
 								</td>
                 				<td><span class="txtInfo"><img src="/ot/resources/images/point.png" class="icon_img" alt="적립금">3%</span></td>
@@ -228,6 +218,20 @@
 					</tbody>
         		</table>
         		
+        		<script>
+					function add(){
+						var quantity = document.getElementById('quantity').value;
+						var color = document.getElementById('select1').value;
+						var size = document.getElementById('select2').value;
+						console.log(quantity);
+						console.log(color);
+						console.log(size);
+						
+						
+					}
+				
+				
+				</script>
 				<p class="message displaynone">관심상품 내역이 없습니다.</p>
 			</div>
 			
@@ -267,8 +271,19 @@
 	</div>
 
 
-	<div
-		class="xans-element- xans-product xans-product-optionselectlayer ec-base-layer add-cart">
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="xans-element- xans-product xans-product-optionselectlayer ec-base-layer add-cart">
 		<div class="header">
 			<h1>옵션 확인</h1>
 		</div>
@@ -293,39 +308,7 @@
 					<span>(BLACK UP) 호딘 트레이닝 팬츠</span>
 
 </tr>
-							<!-- <tr
-								class="xans-element- xans-product xans-product-option xans-record-">
-								<th scope="row" style="font-size:12px;">컬러</th>
-								<td><ul option_product_no="9017"
-										option_select_element="ec-option-select-finder"
-										option_sort_no="1" option_type="T" item_listing_type="S"
-										option_title="컬러" product_type="product_option"
-										product_option_area="product_option_9017_0"
-										option_style="preview" ec-dev-id="product_option_id1"
-										ec-dev-name="option1" ec-dev-class="ProductOption0"
-										class="ec-product-button ec-product-preview" required="true">
-										<li class="" option_value="화이트" link_image="" title="화이트"><a
-											href="#none" style="background-color: #ffffff"><span>화이트</span></a></li>
-										<li class="" option_value="블랙" link_image="" title="블랙"><a
-											href="#none" style="background-color: #000000"><span>블랙</span></a></li>
-										<li class="" option_value="카키" link_image="" title="카키"><a
-											href="#none" style="background-color: #567854"><span>카키</span></a></li>
-										<li class="" option_value="블루" link_image="" title="블루"><a
-											href="#none" style="background-color: #301cc7"><span>블루</span></a></li>
-									</ul>
-									<p class="value" style="font-size:12px;">
-										[필수] <span class="ec-shop-front-product-option-desc-trigger"
-											data-option_msg="옵션을 선택해 주세요">옵션을 선택해 주세요</span>
-									</p> <select product_option_area_select="product_option_9017_0"
-									id="product_option_id1" name="option1" option_title="컬러"
-									option_type="T" item_listing_type="S" class="ProductOption0"
-									style="display: none;" required="true"><option
-											value="*">empty</option>
-										<option value="화이트">화이트</option>
-										<option value="블랙">블랙</option>
-										<option value="카키">카키</option>
-										<option value="블루">블루</option></select></td>
-							</tr> -->
+							
 						</tbody>
 					</table>
 				</div>
@@ -351,14 +334,15 @@
 						<tbody class="displaynone">
 							<tr>
 								<td>(BLACK UP) 호딘 트레이닝 팬츠</td>
-								<td><span class="quantity"> <input id="quantity"
-										name="quantity_name" style="" value="0" type="text"> <a
-										href="#none"><img
-											src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_up.gif"
-											alt="수량증가" class="QuantityUp up"></a> <a href="#none"><img
-											src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_down.gif"
-											alt="수량감소" class="QuantityDown down"></a>
-								</span></td>
+								<td>
+									<span class="quantity"> <input id="quantity" name="quantity_name" style="" value="0" type="text"> 
+										<a href="#none">
+											<img src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_up.gif"
+											alt="수량증가" class="QuantityUp up"></a> <a href="#none">
+											<img src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_down.gif"
+												alt="수량감소" class="QuantityDown down"></a>
+									</span>
+								</td>
 								<td class="right"><span class="quantity_price">9000</span>
 									<span class="mileage ">(<img
 										src="/ot/resources/images/point.png"> &nbsp;<span
@@ -432,25 +416,50 @@
 
 	<script>
 		function optionchange(oc){
-			var dibsno = $(oc).parents('ul').parents('td').parents('tr').find('.dibsno').val();
+			$('.optiondetail').css('display', 'none');
+			$(oc).parents('ul').find('.optiondetail').css('display', 'block');
+		var dibsno = $(oc).parents('ul').parents('td').parents('tr').find('.dibsno').val();
+		var prdt_no = $(oc).parents('ul').parents('td').parents('tr').find('.prdt_no').val();
 			
-			var prdt_no = $(oc).parents('ul').parents('td').parents('tr').find('.prdt_no').val();
-			console.log($(oc).parents('tr')[0]);
 			$.ajax({
 				url:"optiondetail.do",
-				data:{prdt_no : prdt_no},
+				data:{prdt_no:prdt_no},
 				dataType:"json",
+				async: false,
 				success:function(data){
-					console.log(data[0].prdt_color);
+						
+					var color="";
+					for(var i=0; i<data.length; i++){
+						color +="<option>"+data[i].prdt_color+"</option>";
+					}
+					$('#detail1 #detail2 select[id=select1]').html(color);
 					
-					
-					$('#select1').append("<option>1</option>");
-					
+					optionchange2(prdt_no);
 				}
 			})
-			console.log(prdt_no);
-			console.log(dibsno);
-			$(oc).parents('ul').find('.optiondetail').css('display', 'block'); 
+			
+	
+		}
+		
+		function optionchange2(arguments){
+			/* $('.optiondetail').css('display', 'none'); */
+			console.log("arguments"+arguments);
+			$.ajax({
+				url:"optiondetail2.do",
+				data:{prdt_no:arguments},
+				dataType:"json",
+				async: false,
+				success:function(data){
+						
+					var size="";
+					
+					for(var i=0; i<data.length; i++){
+						size +="<option>"+data[i].prdt_size+"</option>";
+					}
+					$('#detail1 #detail2 select[id=select2]').html(size);
+				}
+			})
+			
 		}
 	/* */
 		$('#optionchange').click(function() {

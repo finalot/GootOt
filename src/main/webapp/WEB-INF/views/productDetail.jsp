@@ -11,7 +11,32 @@
 <link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
 <link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
 <link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
+<link rel="stylesheet" href="/ot/resources/css/popup.css">
 <style>
+
+.ec-base-table td{
+  border-top: 1px solid #EEE !important;
+}
+.ec-base-table.typeList .center td.left {
+    padding-left: 3px;
+    text-align: left !important;
+ }
+ 
+ .ec-base-paginate1 {
+    margin: 30px auto;
+    text-align: center;
+    line-height: 0;
+    display: table;
+}
+ 
+ 
+.thumb{
+ text-align: left !important;
+	padding-left: 1% !important;
+}
+a{
+	cursor:pointer;
+}
 
             #container{
                 width: 100%;
@@ -625,9 +650,11 @@ $(function(){
 							
 							<c:if test="${pdd.prdtSale ne 0 }">
 							<input class="num-price" type="hidden" value="${ pdd.prdtPrice-((pdd.prdtPrice/100)*pdd.prdtSale)}">
+							<input id="num-price" type="hidden" value="${ pdd.prdtPrice-((pdd.prdtPrice/100)*pdd.prdtSale)}">
 							</c:if>
 							<c:if test="${pdd.prdtSale eq 0 }">
 							<input class="num-price" type="hidden" value="${ pdd.prdtPrice}">
+							<input id="num-price" type="hidden" value="${ pdd.prdtPrice}">
 							</c:if>
 							
 							
@@ -637,7 +664,7 @@ $(function(){
 								style="width:18%;height:50px;margin-left: 12%">
 								<!-- Button -->
 								<button
-									class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+									class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="cartcart();">
 									<small>장바구니 담기</small>
 								</button>
 							</div>
@@ -659,7 +686,7 @@ $(function(){
 					<!-- 셀렉트시작 -->
 					
 					<div id="select1o" class="selectArea">
-					<div id="select`+count+`oo" class="selectItem">
+					<div id="select1oo" class="selectItem">
 					<!-- 셀렉 -->
     	
 						<div
@@ -669,9 +696,9 @@ $(function(){
 
 							<div 
 								style="padding-top: 10px; background-color: white; line-height: 20px; color: #555555; padding-left: 22px; right: 10px; height: 45px; display: block; border: 1px solid #e6e6e6; border-radius: 2px; overflow: hidden; width: 79%;">
-								<select id="select1" style="border:none;background:none;outline: 0;width:98%;" name="size" >
+								<select id="select1_1" style="border:none;background:none;outline: 0;width:98%;" name="size" >
 									<option>--------</option>
-									<c:forEach var="poo" items="${ polist2 }">
+									<c:forEach var="poo" items="${ poolist2 }">
 									<option>${poo.size}</option>
 									</c:forEach>
 								</select>
@@ -685,24 +712,24 @@ $(function(){
 							<div
 								style="padding-top: 10px; background-color: white; line-height: 20px; color: #555555; padding-left: 22px; right: 10px; height: 57px; display: block; border: 1px solid #e6e6e6; border-radius: 2px; overflow: hidden; width: 79%;">
 
-								<select id="select2" style="border:none;background:none;outline: 0;width:98%;hover:black;" name="color">
+								<select id="select1_2" style="border:none;background:none;outline: 0;width:98%;hover:black;" name="color">
 									<option>--------</option>
 									<c:forEach var="poo" items="${ polist }">
 									<option>${poo.optColor}</option>
 									</c:forEach>
 								</select><div/>
 
+										<c:forEach var="pc" items="${ pclist }">
 								<c:forEach var="po" items="${ polist }">
 
-										<c:forEach var="pc" items="${ pclist }">
 
 										<c:if test="${ po.optColor eq pc.pcName }">
 										<div style="width:14px;height:14px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
 										</c:if>
 
-										</c:forEach>
 
 								</c:forEach>
+										</c:forEach>
 							</div>
 						
 					</div>
@@ -725,56 +752,100 @@ function option1Add(){
 		url:"detailSelect.do",
 		data:{product_detail:prNo},
 		dataType:"json",
+		async: false,
 		success:function(data){
-			
 			const str = 
 			   	 '<div id="select'+count+'oo" class="selectItem">'+
-			   	 '+<div style="display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; -ms-align-items: center; align-items: center;">'+
-										'<div'+
+			   	 '<div style="display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; -ms-align-items: center; align-items: center;">'+
+										'<div '+
 										'style="font-family: Montserrat-Regular; font-size: 15px; color: #666666; line-height: 1.8; width: 21%; text-align: center;">'+count+'.Size</div>'+
-										'<div'+ 
+										'<div '+ 
 											'style="padding-top: 10px; background-color: white; line-height: 20px; color: #555555; padding-left: 22px; right: 10px; height: 45px; display: block; border: 1px solid #e6e6e6; border-radius: 2px; overflow: hidden; width: 79%;">'+
-											'<select id="select1" style="border:none;background:none;outline: 0;width:98%;" name="size" >'+												
-											'<option>--------</option>'+
-												'for(var i in data){'+
-												'<option>`+data[i].size+`</option>'+
-												'}'+
+											'<select id="select'+count+'_1" style="border:none;background:none;outline: 0;width:98%;" name="size" >'+												
+											'<option id="select'+count+'_1option">--------</option>'+
 											'</select>'+
 										'</div>'+
 									'</div>'+
 									'<div style="height: 3px;"></div>'+
 									'<div style="display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; -ms-align-items: center; align-items: center;">'+
-										'<div'+
+										'<div '+
 										'style="font-family: Montserrat-Regular; font-size: 15px; color: #666666; line-height: 1.8; width: 21%; text-align: center;">'+count+'.Color</div>'+
-										'<div'+
+										'<div '+
 											'style="padding-top: 10px; background-color: white; line-height: 20px; color: #555555; padding-left: 22px; right: 10px; height: 57px; display: block; border: 1px solid #e6e6e6; border-radius: 2px; overflow: hidden; width: 79%;">'+
 
-											'<select id="select2" style="border:none;background:none;outline: 0;width:98%;hover:black;" name="color">'+
-												'<option>--------</option>'+
-												'<option>--------</option>'+
+											'<select id="select'+count+'_2" style="border:none;background:none;outline: 0;width:98%;hover:black;" name="color">'+
+												'<option id="select'+count+'_2option">--------</option>'+
 											'</select><div/>'+
-											'<div'
-											'style="width: 17px; height: 17px; background: black; float: left; border: 1px solid black;"></div>'+
-											'<div style="width: 17px; height: 17px; background: gray; margin-left: 3px; float: left; border: 1px solid black;"></div>'+
-											'<div style="width: 17px; height: 17px; background: #39761F; margin-left: 3px; float: left; border: 1px solid black;"></div>'+
-											'<div style="width: 17px; height: 17px; background: #E4F650; margin-left: 3px; float: left; border: 1px solid black;"></div>'+
-											'<div style="width: 17px; height: 17px; background: none; margin-left: 3px;"></div>'+
+											'<div id="color'+count+'Box"></div>'+
 										'</div>'+
 									'</div>'+
 									'</div>'+
 			'<br id="select'+count+'a">';
 		
 $("#select1o").append(str); 
-count++;
+
+
+	for(var i in data){
+	
+	$('#select'+count+'_1option').after('<option>'+data[i].size+'</option>');
+	
+	}
+	
+	option2Add();
+	
 	},error:function(){
 			alert("select불러오기 실패데스네");
 		}
 	})
     
-    
+}
+
+
+function option2Add(){
+	$.ajax({
+		url:"detailSelect2.do",
+		data:{product_detail:prNo},
+		dataType:"json",
+		async: false,
+		success:function(data){
 	
+	for(var i in data){
+		
+		$('#select'+count+'_2option').after('<option>'+data[i].optColor+'</option>');
+		
+		}
+	
+	option3Add();
+	},error:function(){
+			alert("select2불러오기 실패데스네");
+		}
+	})
     
 }
+
+
+function option3Add(){
+	$.ajax({
+		url:"detailSelect3.do",
+		data:{product_detail:prNo},
+		dataType:"json",
+		async: false,
+		success:function(data){
+	
+	for(var i in data){
+		
+		$('#color'+count+'Box').append('<div style="width: 14px; height: 14px; background: '+data[i].pcRgb+'; margin-left: 3px; float: left; border: 1px solid gray;"></div>');
+		
+		}
+	count++;
+	},error:function(){
+			alert("select3불러오기 실패데스네");
+		}
+	})
+    
+}
+
+
 
 
 function optionDel(){
@@ -786,9 +857,11 @@ function optionDel(){
 </script>
 
 
+
+
+
 				<div class="p-b-45">
-					<span class="s-text8 m-r-35">oT: n-01</span> <span class="s-text8">Categories:
-						나시</span>
+					<span class="s-text8 m-r-35">oT: 2DY</span>
 				</div>
 
 				<style class="modalcss">
@@ -866,9 +939,7 @@ function optionDel(){
 	*min-height: 0;
 }
 </style>
-<c:url var="buynow" value="buynow.do">
-	<c:param name="productInfo" value="nasi" />  
-</c:url>
+
 				<div class="wrap-dropdown-content bo7 p-t-15 p-b-14 modalcss">
 <c:forEach var="pd1" items="${pdlist }">
 					<!-- Trigger/Open The Modal -->
@@ -884,7 +955,7 @@ function optionDel(){
 						 onclick="washing_tip();" style="width: 40%; float: left;"><small>sizeInfo & wasingTip</small></button>
 						 
 					<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-						onclick="location.href='${buynow}'" style="position: relative; left: 10%; width: 40%;">Buy Now</button>
+						onclick="buynow();" style="position: relative; left: 10%; width: 40%;">Buy Now</button>
 
 <script>
 
@@ -2957,7 +3028,6 @@ function qna(){
 
 
 <!-- Q&A -->
-
 <div id="container">
         <div id="contents" style="margin-top:11.5%;">
 			<div class="mypage_top_outer">
@@ -2999,86 +3069,107 @@ function qna(){
             			</tr>
           			</thead>
 
-					<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center"><!--
-                
-                --><tr style="background-color:#F9F9F9; color:#555555;" class="xans-record-">
-				<td style="font-weight:600;"> 공지</td>
+					<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
+					
+					<tr style="background-color:#F9F9F9; color:#555555;" class="xans-record-">
+					<td style="font-weight:600;"> 공지</td>
                     <td class="displaynone"></td>
                     <td class="subject left txtBreak">
-                        <strong> <a href="/article/배송문의/3001/279655/" style="color:#555555; font-size:14px;">▶ 배송 안내입니다.</a></span></strong>
+                        <strong> <a href="/article/배송문의/3001/279655/" style="color:#555555; font-size:12px;">▶ 배송 안내입니다.</a></span></strong>
                     </td>
-                    <td>홍길동</td>
-                    <td class=""><span class="txtNum">2017-11-09</span></td>
+                    <td>관리자</td>
+                    <td class=""><span class="txtNum">2020-03-09</span></td>
                     <td class="displaynone"><img src="//img.echosting.cafe24.com/skin/base/board/ico_point0.gif" alt="0점"></td>
                 </tr>
 		</tbody>	
-
 				<tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
+          			<c:forEach var="b" items="${ list }">
           				<tr class="xans-record-">
 							<td>
 								<!-- no 공지번호 들어갈 곳 -->
-									<span id="idMsg4">141261</span>
+									<span id="idMsg4">${b.qna_no }</span>
 							</td>
-               				<td class="thumb" >
-               					<!-- subject 내용 들어갈 곳 -->
-            		<c:url var="product_detail_qna_detail" value="product_detail_qna_detail.do">
-						<c:param name="product_detail_qna_detail" value="pdqd1"/>
-					</c:url>
-					<c:url var="product_detail_qna_answer" value="product_detail_qna_detail.do">
-						<c:param name="product_detail_qna_answer" value="pdqa1"/>
-					</c:url>
-                        <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
-                        <a id="idMsg10" style="color:#555555;"href="${product_detail_qna_detail}">
-                        [배송문의]</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
-                    </td>
-               				
-       						</td>
-               				<td class="left">
-                   				<!-- writer 내용들어갈곳 -->
-								<span id="idMsg11">홍길동</span>
-                				<td class="price center"><span id="idMsg4">2020-03-19</span></td>
-				                <td class="button">
-				                  
-				                </td>
-           					</tr>
-					</tbody>
-					
+               			
+                        <!-- 상품명 이름 들어갈 곳 -->
+                         <td class="thumb">
+                        <!--     <span id="prd_name">러트 세미 부츠컷 슬랙스</span> -->
+                           
+                            <div class="ppro">
+                            	<c:if test="${b.qna_secure=='T'}">
+                            <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
+                            		 	<c:if test="${b.qna_chk  == 'N'}">
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
+                                 [답변 전]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+                             			<c:if test="${b.qna_chk  == 'Y'}">
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail(this)">
+                                 [답변 완료]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+                             	</c:if>
+                             	
+                             		<c:if test="${b.qna_secure=='F'}">
+                            		 	<c:if test="${b.qna_chk  == 'N'}">
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail2(this)">
+                                 [답변 전]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+                             			<c:if test="${b.qna_chk  == 'Y'}">
+                                 <a id="idMsg10" style="color:#555555;"onclick="prdtDetail2(this)">
+                                 [답변 완료]</a> 
+                                 <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                             		</c:if>
+								</c:if>                               
+                            </div>
+                         </td>
+                           <td class="left">
+                               <!-- writer 내용들어갈곳 -->
+                        <span id="idMsg11">${b.qna_writer }</span>
+                            <td class="price center"><span id="idMsg4">${b.qna_date }</span></td>
+                            <td class="button">
+
+                            </td>
+                          </tr>
+                          </c:forEach>
+               </tbody>
 					<tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
-          				<tr class="xans-record-">
+          			<!-- 	<tr class="xans-record-">
 							<td>
-								<!-- no 공지번호 들어갈 곳 -->
+								no 공지번호 들어갈 곳
 									<span id="idMsg4">141262</span>
 							</td>
                				<td class="subject left txtBreak">
                         &nbsp;&nbsp;&nbsp;<img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_re.gif" alt="답변" class="ec-common-rwd-image"> 
                         <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_lock.gif" alt="비밀글" class="ec-common-rwd-image"> 
-                        <a id="idMsg10" style="color:#555555;" href="${product_detail_qna_answer}">답변완료:)</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
+                        <a id="idMsg10" style="color:#555555;" href="delivery_board_reply.do">
+                        답변완료 :)</a> <img src="//img0001.echosting.cafe24.com/front/type_b/image/common/icon_new.gif" alt="NEW" class="ec-common-rwd-image"><span class="txtEm"></span>
                     </td>
                				
        						</td>
                				<td class="left">
-                   				<!-- writer 내용들어갈곳 -->
+                   				writer 내용들어갈곳
 								<span id="idMsg11">홍길동</span>
                 				<td class="price center"><span id="idMsg4">2020-03-19</span></td>
 				                <td class="button">
 				                  
 				                </td>
-           					</tr>
+           					</tr> -->
 					</tbody>
 					
         		</table>
         		
 		
 			</div>
-				<c:url var="product_detail_qna_write" value="product_detail_qna_write.do">
-					<c:param name="product_detail_qna_write" value="pdqw1"/>
-				</c:url>
-        <a href="${product_detail_qna_write}" class="hov1 s-text1 trans-0-4 yg_btn_145"style="position: relative;left: 45%;">
+				
+        <!-- 레어어 팝업  --> 
+		<a href="#layer2" id="submitBtn" class="hov1 s-text1 trans-0-4 yg_btn_145">
         <span style="position: relative;top: -2px;">write</span></a>
     			
 			<div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 "><fieldset class="boardSearch">
-<legend>게시물 검색</legend>
-            <p style="width:120%;position:relative;left:-22%"><select id="search_date" name="search_date">
+			<legend>게시물 검색</legend>
+			<form action="de_search.do">
+            <p><select id="search_date" name="search_date">
 				<option value="week">일주일</option>
 				<option value="month">한달</option>
 				<option value="month3">세달</option>
@@ -3088,37 +3179,119 @@ function qna(){
 				<option value="subject">제목</option>
 				<option value="content">내용</option>
 				<option value="writer_name">글쓴이</option>
-				<option value="member_id">아이디</option>
-				<option value="nick_name">별명</option>
-				<option value="product">상품정보</option>
 				</select> 
-		<input id="search" name="search" class="inputTypeText" placeholder="" value="" type="text">
-		<a href="#none" onclick="BOARD.form_submit('boardSearchForm');" class="yg_btn_28 yg_btn318">
-		<span id="idMsg9">SEARCH</span></a></p>
+		<input id="search" name="search" class="inputTypeText" type="text">
+      <a href="#none" onclick="pbSearch();" class="yg_btn_28 yg_btn318">
+      <span id="idMsg9">SEARCH</span></a></p>
+      </form>
        	 </fieldset>
 	</div>
 			
-			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate">
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first">
-					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지"></a>
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"></a>
+			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate1">
+            <!-- <a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first"> -->
+
+               <img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+
+
+				<c:if test="${empty sc }">
+                  <c:url var="before" value="delivery_board.do">
+                  <c:param name="currentPage" value="${pi.currentPage -1 }"/>
+                  </c:url>
+                      </c:if>
+					<c:if test="${!empty sc }">
+                  <c:url var="before" value="de_search.do">
+                  <c:param name="currentPage" value="${pi.currentPage -1 }"/>
+                  <c:param name="search_date" value="${sc.search_date }"/>
+                  <c:param name="search_key" value="${sc.search_key }"/>
+                  <c:param name="search" value="${sc.search }"/>
+                  </c:url>
+                      </c:if>
+                                            
+                  <a href="${before}">
+                  <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+                  </a> &nbsp;
+             
+
+               <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                     <c:if test="${ p eq pi.currentPage }">
+                        <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
+                        <b>${ p }</b> &nbsp;&nbsp;</font>
+                     </c:if>
 					
-					<ol>
-						<li class="xans-record-">
-							<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="this">1</a>
-						</li>
-       				</ol>
-       				
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지"></a>
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="last">
-					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
-			</div>
+					 <c:if test="${empty sc }">	
+                     <c:if test="${ p ne pi.currentPage }">
+                        <c:url var="pagination" value="delivery_board.do">
+                           <c:param name="currentPage" value="${ p }"/>
+                     </c:url>
+                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+                     ${ p }</a> &nbsp;
+                  </c:if>
+                  </c:if>
+                  
+                  	 <c:if test="${!empty sc }">	
+                     <c:if test="${ p ne pi.currentPage }">
+                        <c:url var="pagination" value="de_search.do">
+                           <c:param name="currentPage" value="${ p }"/>
+                           <c:param name="search_date" value="${sc.search_date }"/>
+		                  <c:param name="search_key" value="${sc.search_key }"/>
+		                  <c:param name="search" value="${sc.search }"/>
+                     </c:url>
+                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+                     ${ p }</a> &nbsp;
+                  </c:if>
+                  </c:if>
+                  
+                  
+               </c:forEach>
+
+				     <c:if test="${empty sc }">	
+                    <c:url var="after" value="delivery_board.do">
+                     <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                    </c:url>
+                     </c:if>
+                     
+                  <c:if test="${!empty sc }">
+                  <c:url var="after" value="de_search.do">
+                  <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                  <c:param name="search_date" value="${sc.search_date }"/>
+                  <c:param name="search_key" value="${sc.search_key }"/>
+                  <c:param name="search" value="${sc.search }"/>
+                  </c:url>
+                      </c:if>
+                  
+                  <a href="${after}">
+               <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+               </a>
+
+
+               <img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+
+         </div>
 
         </div>
 		<hr class="layout">
 	</div>
+	
+	  <input id="q_no" type="hidden" value="${b.qna_no}">
+<!-- 레이어 팝업 -->
+  <div class="dim-layer">
+   					 <div class="dimBg"></div>
+    					<div id="layer2" class="pop-layer">
+     					   <div class="pop-container">
+        					    <div class="pop-conts" style="text-align: center">
+          			      <!--content //-->
+              		  <p class="ctxt mb20" id="check_ment"><br></p>
+
+              		  <div class="btn-r">
+                    <a href="#" class="btn-layerClose">Close</a>
+                	</div>
+                <!--// content-->
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="memId" value="${loginMember.memId }">
+	
 <!-- Q&A -->
 
 
@@ -3490,15 +3663,184 @@ function qna(){
 	<script type="text/javascript"
 		src="vendor/sweetalert/sweetalert.min.js"></script>
 	<script type="text/javascript">
+	function cartcart(){
+	var length = $('.selectItem').length;
+	var sizeArr = new Array();
+	var colorArr = new Array();
+	var count = 1;
+	var error = 0;
+	
+	for(var i=0;i<length;i++){
+		sizeArr[i] = $('#select'+count+'_1').val();
+		colorArr[i] = $('#select'+count+'_2').val();
+		count++;
+	}
+	for(var i=0;i<length;i++){
+		if(sizeArr[i] == "--------"||colorArr[i] == "--------"){
+			error++;
+		}
+	}
+	
+	
+	
+	
+	var prdtNo = $('#prNo_val').val();
+	var prdtPrice = $('#num-price').val();
+	var nameProduct = $('.product-detail-name').html();
+			
+	if("${loginMember.memId}"==""){
+				alert('로그인후 이용해주세요');
+				location.href="loginView.do";
+				
+			}else if(error != 0){
+				alert('옵션을 선택하세요.');
+			}else{
+				
+				$.ajax({
+					url:"cartcartInsert.do",
+					traditional : true,
+					data :{'colorArr':colorArr,'sizeArr':sizeArr,'prdtNo':prdtNo,'prdtPrice':prdtPrice},
+					success:function(data){
+						if(data =="ok"){
+							swal(nameProduct, "장바구니에 등록되었습니다 !", "success");
+							count=1;
+						}else if(data == "fail"){
+							swal("다시 시도해주세요.");
+						}
+					}
+				});
+				
+			
+			}
 		
-
-		$('.btn-addcart-product-detail').each(function() {
+	}
+	
+		function buynow(){
+			var length = $('.selectItem').length;
+			var sizeArr = new Array();
+			var colorArr = new Array();
+			var count = 1;
+			var error = 0;
+			
+			for(var i=0;i<length;i++){
+				sizeArr[i] = $('#select'+count+'_1').val();
+				colorArr[i] = $('#select'+count+'_2').val();
+				count++;
+			}
+			for(var i=0;i<length;i++){
+				if(sizeArr[i] == "--------"||colorArr[i] == "--------"){
+					error++;
+				}
+			}
+			
+			
+			
+			
+			var prdtNo = $('#prNo_val').val();
+			var prdtPrice = $('#num-price').val();
 			var nameProduct = $('.product-detail-name').html();
-			$(this).on('click', function() {
-				swal(nameProduct, "장바구니에 등록되었습니다 !", "success");
-			});
-		});
+					
+			if("${loginMember.memId}"==""){
+						alert('로그인후 이용해주세요');
+						location.href="loginView.do";
+						
+					}else if(error != 0){
+						alert('옵션을 선택하세요.');
+					}else{
+						
+						$.ajax({
+							url:"cartcartInsert.do",
+							traditional : true,
+							data :{'colorArr':colorArr,'sizeArr':sizeArr,'prdtNo':prdtNo,'prdtPrice':prdtPrice},
+							success:function(data){
+								if(data =="ok"){
+									location.href="cartbutton.do";
+									count=1;
+								}else if(data == "fail"){
+									swal("다시 시도해주세요.");
+								}
+							}
+						});
+						
+					
+					}
+				
+			}
 	</script>
+	<script>
+ function prdtDetail(en){
+		
+		var q_no = $(en).parents('tr').children('td').eq(0).children('span').text();	 
+
+		 location.href="delivery_board_detailView.do?qna_no="+q_no; 
+		
+	 }
+	 
+	 function prdtDetail2(en){
+			
+			var q_no = $(en).parents('tr').children('td').eq(0).children('span').text();	 
+
+			 location.href='delivery_board_detail.do?qna_no='+q_no; 
+			
+		 }
+	 
+	 function pbSearch() {
+		 var search_key = $('#search_key').val();
+		 var search_date = $('#search_date').val();
+		 var search = $('#search').val();
+		 
+		 location.href="de_search.do?search_key="+search_key+"&search="+search+"&search_date="+search_date;
+	 }
+	 
+	 $('#submitBtn').click(function(e){
+		 e.stopPropagation();
+		 var memId = $('#memId').val();	
+		 var prdtNo = $('#prNo_val').val();
+		 
+		 if("${loginMember.memId}"==""){
+				alert('로그인후 이용해주세요');
+				location.href="loginView.do";
+		 }else{
+			 location.href="delivery_board_write.do";
+		 }
+		 
+	 })
+	 
+	 function layer_popup(el){
+
+     var $el = $(el);        //레이어의 id를 $el 변수에 저장
+     var isDim = $el.prev().hasClass('dimBg');   //dimmed 레이어를 감지하기 위한 boolean 변수
+
+     isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
+
+     var $elWidth = ~~($el.outerWidth()),
+         $elHeight = ~~($el.outerHeight()),
+         docWidth = $(document).width(),
+         docHeight = $(document).height();
+
+     // 화면의 중앙에 레이어를 띄운다.
+     if ($elHeight < docHeight || $elWidth < docWidth) {
+         $el.css({
+             marginTop: -$elHeight /2,
+             marginLeft: -$elWidth/2
+         })
+     } else {
+         $el.css({top: 0, left: 0});
+     }
+
+     $el.find('a.btn-layerClose').click(function(){
+         isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+         return false;
+     });
+
+     $('.layer .dimBg').click(function(){
+         $('.dim-layer').fadeOut();
+         return false;
+     });
+
+ }
+ </script>
+	
 
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>

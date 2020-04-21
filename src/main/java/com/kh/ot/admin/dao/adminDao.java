@@ -366,8 +366,8 @@ public class adminDao {
 	public Return ReturnDetai(Return re) {
 		return sqlSession.selectOne("adminMapper.ReturnDetail",re);
 	}
-	
-	/**	
+
+	/**
 	* @작성일 : 2020. 4. 20.
 	 * @작성자 : 이서현
 	 * @내용 : 상품번호 가져오기
@@ -390,7 +390,7 @@ public class adminDao {
 
 	/**
 	 * @작성일  : 2020. 4. 22.
-	 * @작성자  : 문태환 
+	 * @작성자  : 문태환
 	 * @내용 	: 반품 결제취소
 	 * @param cpmemNo
 	 * @return
@@ -414,7 +414,7 @@ public class adminDao {
 
 	/**
 	 * @작성일  : 2020. 4. 22.
-	 * @작성자  : 문태환 
+	 * @작성자  : 문태환
 	 * @내용 	: 포인트 반환
 	 * @param m
 	 * @return

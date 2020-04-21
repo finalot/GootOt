@@ -94,6 +94,7 @@
 	FROM CRT C
 	JOIN PRDT P ON (C.PRDT_NO = P.PRDT_NO)
 	WHERE C.MEM_NO = #{mem_no}
+	ORDER BY C.CA_NO DESC
 	</select>
 
 
