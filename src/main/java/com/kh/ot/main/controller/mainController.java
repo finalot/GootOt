@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
+import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.common.MainPagination;
 import com.kh.ot.main.service.MainService;
 import com.kh.ot.main.vo.MainPageInfo;
@@ -179,11 +180,11 @@ public class mainController {
 		
 		ArrayList<Product> pdlist = mainService.selectDetailList(product_detail);
 		ArrayList<Product_opt> polist = mainService.selectOptionList(product_detail);
-		ArrayList<Product_opt> polist2 = mainService.selectOptionList22(product_detail);
+		ArrayList<Product_opt> poolist2 = mainService.selectOptionList33(product_detail);
 		ArrayList<Product_color> pclist = mainService.selectColorList2();
 		mv.addObject("pdlist", pdlist);
 		mv.addObject("polist", polist);
-		mv.addObject("polist2", polist2);
+		mv.addObject("poolist2", poolist2);
 		mv.addObject("pclist", pclist);
 		
 		mv.setViewName("productDetail");
@@ -200,7 +201,6 @@ public class mainController {
 	public void detailSelect1(HttpServletResponse response,int product_detail) throws JsonIOException, IOException {
 
 		ArrayList<Product_opt> polist3 = mainService.selectOptionList33(product_detail);
-//		ArrayList<Product_opt> polist2 = mainService.selectOptionList22(product_detail);
 
 		response.setContentType("application/json; charset=utf-8");
 		Gson gson = new Gson();
@@ -208,22 +208,31 @@ public class mainController {
 		gson.toJson(polist3, response.getWriter());
 
 	}
-	/*
-	 * @RequestMapping("detailSelect2.do") public void
-	 * detailSelect2(HttpServletResponse response) throws JsonIOException,
-	 * IOException {
-	 * 
-	 * // ArrayList<Product_opt> polist =
-	 * mainService.selectOptionList(product_detail); ArrayList<Product_opt> polist2
-	 * = mainService.selectOptionList22(product_detail);
-	 * 
-	 * response.setContentType("application/json; charset=utf-8"); Gson gson = new
-	 * Gson();
-	 * 
-	 * gson.toJson(polist2, response.getWriter());
-	 * 
-	 * }
-	 */
+	
+	@RequestMapping("detailSelect2.do")
+	public void detailSelect2(HttpServletResponse response,int product_detail) throws JsonIOException, IOException {
+
+		ArrayList<Product_opt> polist2 = mainService.selectOptionList22(product_detail);
+
+		response.setContentType("application/json; charset=utf-8");
+		Gson gson = new Gson();
+
+		gson.toJson(polist2, response.getWriter());
+
+	}
+	
+	@RequestMapping("detailSelect3.do")
+	public void detailSelect3(HttpServletResponse response,int product_detail) throws JsonIOException, IOException {
+
+		ArrayList<Product_color> pclist = mainService.selectColorList3(product_detail);
+
+		response.setContentType("application/json; charset=utf-8");
+		Gson gson = new Gson();
+
+		gson.toJson(pclist, response.getWriter());
+
+	}
+	 
 
 	/**
 	 * @작성일 : 2020. 4. 2.
@@ -471,6 +480,43 @@ MainSearchCondition msc= new MainSearchCondition();
 		return mv;
 	}
 
+	@RequestMapping("cartcartInsert.do")
+	public void cartInsert(HttpServletResponse response,HttpSession session, String[] colorArr, String[] sizeArr, int prdtNo, int prdtPrice) throws IOException {
+		Member m = new Member();
+		int memNo;
+		m = (Member)session.getAttribute("loginMember");
+		memNo = m.getMemNo();
+		
+		int count = 0;
+		
+		PrintWriter out  = response.getWriter(); 
+		
+		for(int i =0; i<colorArr.length;i++) {
+			Cart c = new Cart();
+			c.setMem_no(memNo);
+			c.setPrdt_no(prdtNo);
+			c.setPrdt_price(prdtPrice);
+			c.setPrdt_count(1);
+			c.setPrdt_sumprice(prdtPrice);
+			c.setPrdt_color(colorArr[i]);
+			c.setPrdt_size(sizeArr[i]);
+			
+			int result = mainService.insertCart(c);
+			
+			if(result>0) {
+				count++;
+				System.out.println("성공"+i);
+			}
+		}
+		
+		if(count>0) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+		
+		
+	}
 	
 	
 }

@@ -10,6 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.main.dao.MainDao;
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.MainSearchCondition;
@@ -88,7 +89,6 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public ArrayList<MaindownCategory> selectCategoryList2(int product2) {
 		int product22 = product2/10;
-		System.out.println(product22);
 		return mainDao.selectCategoryList2(product22);
 	}
 	@Override
@@ -139,6 +139,14 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public ArrayList<Product> selectDetailList(int product_detail) {
 		return mainDao.selectDetailList(product_detail);
+	}
+	@Override
+	public ArrayList<Product_color> selectColorList3(int product_detail) {
+		return mainDao.selectColorList3(product_detail);
+	}
+	@Override
+	public int insertCart(Cart c) {
+		return mainDao.insertCart(c);
 	}
 
 	
