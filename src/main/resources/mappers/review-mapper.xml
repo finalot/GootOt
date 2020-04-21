@@ -24,10 +24,19 @@
 	</resultMap>
 		
 	<resultMap type="Like_Heart" id="LikeResultSet">
-		<id property = "likeNo" column="LIKE_NO"/>
+			<id property = "likeNo" column="LIKE_NO"/>
 			<result property="rvNo" column="RV_NO"/>
 			<result property="memNo" column="MEM_NO"/>
 			<result property="likeCheck" column="LIKE_CHECK"/>
+	</resultMap>
+	
+	
+	<resultMap type="ReviewReply" id="ReviewReplyResultSet">
+		<id property="rvNo" column="RV_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="rvComment" column="RV_COMMENT_INFO"/>
+		<result property="rvDate" column="RV_DATE"/>
+		<result property="rvReport" column="RV_REPORT"/>
 	
 	</resultMap>
 	
@@ -96,6 +105,12 @@
  		WHERE RV_NO = #{rv_no}
  		
  	</update>
+ 	
+ 	<insert id="insertReply" parameterType="ReviewReply">
+ 		INSERT INTO REVIEW_COMMENT
+ 		VALUES (#{rvNo},#{memNo},#{rvComment},#{rvDate},DEFAULT)
+ 		WHERE RV_NO = #{rvNo}
+ 	</insert>
  
  
  </mapper>
