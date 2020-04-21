@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-md-12 form-group p_star" style="padding: 0px;">
                                     <input type="password" class="form-control" id="password" name="password" value=""
-                                        placeholder="Password" style="    padding-left: 4%;height: 45px;">
+                                        onkeyup="enterkey();" placeholder="Password" style="    padding-left: 4%;height: 45px;">
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <div class="creat_account d-flex align-items-center">
@@ -60,6 +60,28 @@
                 </div>
             </div>
         </div>
+        
+        <script>
+        function enterkey() { if (window.event.keyCode == 13) { // 엔터키가 눌렸을 때 실행할 내용 
+        	$href = $(this).attr('href');
+			
+			 
+			  $.ajax({
+				url : "login.do",
+				type:"post",
+				data : {id : $('#name').val(),  pwd : $('#password').val() },
+				success : function(data){
+					if(data == "ok"){
+					     location.href="home.do"
+					}else{
+						 layer_popup($href);
+					  $('#check_ment').html('아이디/비밀번호를 확인 하세요.'); 	
+					}
+				},error : function(){
+					alert('에러다');
+				}
+			});} }
+        </script>
     </section>
     <!--================login_part end =================-->
 

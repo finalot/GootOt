@@ -625,9 +625,11 @@ $(function(){
 							
 							<c:if test="${pdd.prdtSale ne 0 }">
 							<input class="num-price" type="hidden" value="${ pdd.prdtPrice-((pdd.prdtPrice/100)*pdd.prdtSale)}">
+							<input id="num-price" type="hidden" value="${ pdd.prdtPrice-((pdd.prdtPrice/100)*pdd.prdtSale)}">
 							</c:if>
 							<c:if test="${pdd.prdtSale eq 0 }">
 							<input class="num-price" type="hidden" value="${ pdd.prdtPrice}">
+							<input id="num-price" type="hidden" value="${ pdd.prdtPrice}">
 							</c:if>
 							
 							
@@ -637,7 +639,7 @@ $(function(){
 								style="width:18%;height:50px;margin-left: 12%">
 								<!-- Button -->
 								<button
-									class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+									class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="cartcart();">
 									<small>장바구니 담기</small>
 								</button>
 							</div>
@@ -659,7 +661,7 @@ $(function(){
 					<!-- 셀렉트시작 -->
 					
 					<div id="select1o" class="selectArea">
-					<div id="select`+count+`oo" class="selectItem">
+					<div id="select1oo" class="selectItem">
 					<!-- 셀렉 -->
     	
 						<div
@@ -669,9 +671,9 @@ $(function(){
 
 							<div 
 								style="padding-top: 10px; background-color: white; line-height: 20px; color: #555555; padding-left: 22px; right: 10px; height: 45px; display: block; border: 1px solid #e6e6e6; border-radius: 2px; overflow: hidden; width: 79%;">
-								<select id="select1" style="border:none;background:none;outline: 0;width:98%;" name="size" >
+								<select id="select1_1" style="border:none;background:none;outline: 0;width:98%;" name="size" >
 									<option>--------</option>
-									<c:forEach var="poo" items="${ polist2 }">
+									<c:forEach var="poo" items="${ poolist2 }">
 									<option>${poo.size}</option>
 									</c:forEach>
 								</select>
@@ -685,24 +687,24 @@ $(function(){
 							<div
 								style="padding-top: 10px; background-color: white; line-height: 20px; color: #555555; padding-left: 22px; right: 10px; height: 57px; display: block; border: 1px solid #e6e6e6; border-radius: 2px; overflow: hidden; width: 79%;">
 
-								<select id="select2" style="border:none;background:none;outline: 0;width:98%;hover:black;" name="color">
+								<select id="select1_2" style="border:none;background:none;outline: 0;width:98%;hover:black;" name="color">
 									<option>--------</option>
 									<c:forEach var="poo" items="${ polist }">
 									<option>${poo.optColor}</option>
 									</c:forEach>
 								</select><div/>
 
+										<c:forEach var="pc" items="${ pclist }">
 								<c:forEach var="po" items="${ polist }">
 
-										<c:forEach var="pc" items="${ pclist }">
 
 										<c:if test="${ po.optColor eq pc.pcName }">
 										<div style="width:14px;height:14px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
 										</c:if>
 
-										</c:forEach>
 
 								</c:forEach>
+										</c:forEach>
 							</div>
 						
 					</div>
@@ -725,56 +727,100 @@ function option1Add(){
 		url:"detailSelect.do",
 		data:{product_detail:prNo},
 		dataType:"json",
+		async: false,
 		success:function(data){
-			
 			const str = 
 			   	 '<div id="select'+count+'oo" class="selectItem">'+
-			   	 '+<div style="display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; -ms-align-items: center; align-items: center;">'+
-										'<div'+
+			   	 '<div style="display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; -ms-align-items: center; align-items: center;">'+
+										'<div '+
 										'style="font-family: Montserrat-Regular; font-size: 15px; color: #666666; line-height: 1.8; width: 21%; text-align: center;">'+count+'.Size</div>'+
-										'<div'+ 
+										'<div '+ 
 											'style="padding-top: 10px; background-color: white; line-height: 20px; color: #555555; padding-left: 22px; right: 10px; height: 45px; display: block; border: 1px solid #e6e6e6; border-radius: 2px; overflow: hidden; width: 79%;">'+
-											'<select id="select1" style="border:none;background:none;outline: 0;width:98%;" name="size" >'+												
-											'<option>--------</option>'+
-												'for(var i in data){'+
-												'<option>`+data[i].size+`</option>'+
-												'}'+
+											'<select id="select'+count+'_1" style="border:none;background:none;outline: 0;width:98%;" name="size" >'+												
+											'<option id="select'+count+'_1option">--------</option>'+
 											'</select>'+
 										'</div>'+
 									'</div>'+
 									'<div style="height: 3px;"></div>'+
 									'<div style="display: -webkit-box; display: -webkit-flex; display: -moz-box; display: -ms-flexbox; display: flex; -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; -ms-align-items: center; align-items: center;">'+
-										'<div'+
+										'<div '+
 										'style="font-family: Montserrat-Regular; font-size: 15px; color: #666666; line-height: 1.8; width: 21%; text-align: center;">'+count+'.Color</div>'+
-										'<div'+
+										'<div '+
 											'style="padding-top: 10px; background-color: white; line-height: 20px; color: #555555; padding-left: 22px; right: 10px; height: 57px; display: block; border: 1px solid #e6e6e6; border-radius: 2px; overflow: hidden; width: 79%;">'+
 
-											'<select id="select2" style="border:none;background:none;outline: 0;width:98%;hover:black;" name="color">'+
-												'<option>--------</option>'+
-												'<option>--------</option>'+
+											'<select id="select'+count+'_2" style="border:none;background:none;outline: 0;width:98%;hover:black;" name="color">'+
+												'<option id="select'+count+'_2option">--------</option>'+
 											'</select><div/>'+
-											'<div'
-											'style="width: 17px; height: 17px; background: black; float: left; border: 1px solid black;"></div>'+
-											'<div style="width: 17px; height: 17px; background: gray; margin-left: 3px; float: left; border: 1px solid black;"></div>'+
-											'<div style="width: 17px; height: 17px; background: #39761F; margin-left: 3px; float: left; border: 1px solid black;"></div>'+
-											'<div style="width: 17px; height: 17px; background: #E4F650; margin-left: 3px; float: left; border: 1px solid black;"></div>'+
-											'<div style="width: 17px; height: 17px; background: none; margin-left: 3px;"></div>'+
+											'<div id="color'+count+'Box"></div>'+
 										'</div>'+
 									'</div>'+
 									'</div>'+
 			'<br id="select'+count+'a">';
 		
 $("#select1o").append(str); 
-count++;
+
+
+	for(var i in data){
+	
+	$('#select'+count+'_1option').after('<option>'+data[i].size+'</option>');
+	
+	}
+	
+	option2Add();
+	
 	},error:function(){
 			alert("select불러오기 실패데스네");
 		}
 	})
     
-    
+}
+
+
+function option2Add(){
+	$.ajax({
+		url:"detailSelect2.do",
+		data:{product_detail:prNo},
+		dataType:"json",
+		async: false,
+		success:function(data){
 	
+	for(var i in data){
+		
+		$('#select'+count+'_2option').after('<option>'+data[i].optColor+'</option>');
+		
+		}
+	
+	option3Add();
+	},error:function(){
+			alert("select2불러오기 실패데스네");
+		}
+	})
     
 }
+
+
+function option3Add(){
+	$.ajax({
+		url:"detailSelect3.do",
+		data:{product_detail:prNo},
+		dataType:"json",
+		async: false,
+		success:function(data){
+	
+	for(var i in data){
+		
+		$('#color'+count+'Box').append('<div style="width: 14px; height: 14px; background: '+data[i].pcRgb+'; margin-left: 3px; float: left; border: 1px solid gray;"></div>');
+		
+		}
+	count++;
+	},error:function(){
+			alert("select3불러오기 실패데스네");
+		}
+	})
+    
+}
+
+
 
 
 function optionDel(){
@@ -786,9 +832,11 @@ function optionDel(){
 </script>
 
 
+
+
+
 				<div class="p-b-45">
-					<span class="s-text8 m-r-35">oT: n-01</span> <span class="s-text8">Categories:
-						나시</span>
+					<span class="s-text8 m-r-35">oT: 2DY</span>
 				</div>
 
 				<style class="modalcss">
@@ -866,9 +914,7 @@ function optionDel(){
 	*min-height: 0;
 }
 </style>
-<c:url var="buynow" value="buynow.do">
-	<c:param name="productInfo" value="nasi" />  
-</c:url>
+
 				<div class="wrap-dropdown-content bo7 p-t-15 p-b-14 modalcss">
 <c:forEach var="pd1" items="${pdlist }">
 					<!-- Trigger/Open The Modal -->
@@ -884,7 +930,7 @@ function optionDel(){
 						 onclick="washing_tip();" style="width: 40%; float: left;"><small>sizeInfo & wasingTip</small></button>
 						 
 					<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-						onclick="location.href='${buynow}'" style="position: relative; left: 10%; width: 40%;">Buy Now</button>
+						onclick="buynow();" style="position: relative; left: 10%; width: 40%;">Buy Now</button>
 
 <script>
 
@@ -3490,15 +3536,112 @@ function qna(){
 	<script type="text/javascript"
 		src="vendor/sweetalert/sweetalert.min.js"></script>
 	<script type="text/javascript">
+	function cartcart(){
+	var length = $('.selectItem').length;
+	var sizeArr = new Array();
+	var colorArr = new Array();
+	var count = 1;
+	var error = 0;
+	
+	for(var i=0;i<length;i++){
+		sizeArr[i] = $('#select'+count+'_1').val();
+		colorArr[i] = $('#select'+count+'_2').val();
+		count++;
+	}
+	for(var i=0;i<length;i++){
+		if(sizeArr[i] == "--------"||colorArr[i] == "--------"){
+			error++;
+		}
+	}
+	
+	
+	
+	
+	var prdtNo = $('#prNo_val').val();
+	var prdtPrice = $('#num-price').val();
+	var nameProduct = $('.product-detail-name').html();
+			
+	if("${loginMember.memId}"==""){
+				alert('로그인후 이용해주세요');
+				location.href="loginView.do";
+				
+			}else if(error != 0){
+				alert('옵션을 선택하세요.');
+			}else{
+				
+				$.ajax({
+					url:"cartcartInsert.do",
+					traditional : true,
+					data :{'colorArr':colorArr,'sizeArr':sizeArr,'prdtNo':prdtNo,'prdtPrice':prdtPrice},
+					success:function(data){
+						if(data =="ok"){
+							swal(nameProduct, "장바구니에 등록되었습니다 !", "success");
+							count=1;
+						}else if(data == "fail"){
+							swal("다시 시도해주세요.");
+						}
+					}
+				});
+				
+			
+			}
 		
-
-		$('.btn-addcart-product-detail').each(function() {
+	}
+	
+		function buynow(){
+			var length = $('.selectItem').length;
+			var sizeArr = new Array();
+			var colorArr = new Array();
+			var count = 1;
+			var error = 0;
+			
+			for(var i=0;i<length;i++){
+				sizeArr[i] = $('#select'+count+'_1').val();
+				colorArr[i] = $('#select'+count+'_2').val();
+				count++;
+			}
+			for(var i=0;i<length;i++){
+				if(sizeArr[i] == "--------"||colorArr[i] == "--------"){
+					error++;
+				}
+			}
+			
+			
+			
+			
+			var prdtNo = $('#prNo_val').val();
+			var prdtPrice = $('#num-price').val();
 			var nameProduct = $('.product-detail-name').html();
-			$(this).on('click', function() {
-				swal(nameProduct, "장바구니에 등록되었습니다 !", "success");
-			});
-		});
+					
+			if("${loginMember.memId}"==""){
+						alert('로그인후 이용해주세요');
+						location.href="loginView.do";
+						
+					}else if(error != 0){
+						alert('옵션을 선택하세요.');
+					}else{
+						
+						$.ajax({
+							url:"cartcartInsert.do",
+							traditional : true,
+							data :{'colorArr':colorArr,'sizeArr':sizeArr,'prdtNo':prdtNo,'prdtPrice':prdtPrice},
+							success:function(data){
+								if(data =="ok"){
+									location.href="cartbutton.do";
+									count=1;
+								}else if(data == "fail"){
+									swal("다시 시도해주세요.");
+								}
+							}
+						});
+						
+					
+					}
+				
+			}
 	</script>
+	
+	
 
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>

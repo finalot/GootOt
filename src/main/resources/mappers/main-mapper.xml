@@ -134,16 +134,24 @@
 		GROUP BY OPT_COLOR
 		</select>
 		<select id="selectProductOption22" parameterType="_int" resultMap="product_optResultSet">
+		SELECT OPT_COLOR
+		FROM PRDT_OPT
+		WHERE PRDT_NO = #{product_detail}
+		GROUP BY OPT_COLOR
+		</select>
+		<select id="selectProductOption33" parameterType="_int" resultMap="product_optResultSet">
 		SELECT OPT_SIZE
 		FROM PRDT_OPT
 		WHERE PRDT_NO = #{product_detail}
 		GROUP BY OPT_SIZE
 		</select>
-		<select id="selectProductOption33" parameterType="_int" resultMap="product_optResultSet">
-		SELECT OPT_SIZE,OPT_COLOR
-		FROM PRDT_OPT
-		WHERE PRDT_NO = #{product_detail}
-		GROUP BY OPT_SIZE,OPT_COLOR
+		<select id="selectProductColor3" parameterType="_int" resultMap="product_colorResultSet">
+		SELECT PC.PC_RGB PC_RGB
+		FROM PRDT P
+		JOIN PRDT_OPT PO ON (P.PRDT_NO = PO.PRDT_NO)
+		JOIN P_COLOR PC ON (PO.OPT_COLOR = PC.PC_NAME)
+		WHERE P.PRDT_NO = #{product_detail}
+		GROUP BY PC.PC_RGB
 		</select>
 		
 		<select id="selectProductOption2" parameterType="_int" resultMap="product_optResultSet">
@@ -179,7 +187,7 @@
 		
 		</select>
 	
-  <select id="selectCategory1" parameterType="_int" resultMap="MaindownCategoryResultSet">
+  		<select id="selectCategory1" parameterType="_int" resultMap="MaindownCategoryResultSet">
 		SELECT *
 		FROM DOWN_CATE
 		WHERE UP_NO = #{product1}
@@ -290,6 +298,31 @@
 				,#{prdtImagePath}, #{prdtDetailImage},#{prdtDetailImagePath}
 				,#{prdtSale}, DEFAULT, DEFAULT,DEFAULT)	 
 		</insert>
+		
+		<insert id="insertCart" parameterType="Cart">
+		INSERT INTO CRT
+		VALUES (#{memNo},#{prdt_no},#{prdt_price},1,#{prdt_sumprice},#{prdt_color},#{prdt_size},CA_SEQ.NEXTVAL)	 
+		</insert>
 
+		<select id="selectPrdtNo" resultMap="productResultSet">
+			SELECT *
+			FROM (SELECT *
+            	  FROM PRDT
+             	  ORDER BY PRDT_DATE DESC)
+			WHERE ROWNUM=1
+		</select>
+		
+		<insert id="insertPotList" parameterType="java.util.Map">
+			INSERT INTO PRDT_OPT (OPT_NO,PRDT_NO, OPT_COLOR, OPT_SIZE, OPT_STOCK)
+			SELECT OPT_SEQ.NEXTVAL, A.*FROM(
+			<foreach collection="poArr" item="po"  separator="UNION ALL" >
+			SELECT #{po.PrdtNo} as PRDT_NO,
+				   #{po.optColor} as OPT_COLOR,
+				   #{po.size} as OPT_SIZE,
+				   #{po.stock} as OPT_STOCK
+			FROM DUAL
+			</foreach>) A
+		</insert>
+		
 
 </mapper>

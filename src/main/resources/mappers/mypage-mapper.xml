@@ -393,7 +393,7 @@
 	<insert id="ReturnInsert" parameterType="Return">
 		INSERT INTO RETURN VALUES
 		(RE_SEQ.NEXTVAL,#{memCode},#{ordCode},SYSDATE,#{reName},#{reTitle},#{content},#{reReason},
-		NULL,NULL,NULL,NULL,'N')
+		NULL,NULL,SYSDATE,NULL,'N')
 	</insert>
 		
 	<select id="selectWishList" resultMap="DIBSResultMap">

@@ -12,6 +12,7 @@ import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.vo.Return;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
@@ -213,6 +214,26 @@ public class adminServiceImpl implements adminService{
 	@Override
 	public Pay selectPay(int ordNo) {
 		return adDao.selectPay(ordNo);
+	}
+
+
+	@Override
+	public ArrayList<Return> productReturnlist() {
+		return adDao.productReturnlist();
+}
+@Override
+	public Product selectPrdtNo() {
+		return adDao.selectPrdtNo();
+	}
+
+
+	@Override
+	public Return ReturnDetail(Return re) {
+		return adDao.ReturnDetai(re);
+	}
+		@Override
+	public int insertPotList(ArrayList<Product_opt> poArr) {
+		return adDao.insertPotList(poArr);
 	}
 
 }
