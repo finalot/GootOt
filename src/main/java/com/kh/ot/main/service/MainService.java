@@ -5,6 +5,7 @@ package com.kh.ot.main.service;
 
 import java.util.ArrayList;
 
+import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.MainSearchCondition;
@@ -103,6 +104,16 @@ public interface MainService {
 	ArrayList<Product> selectDetailList(int product_detail);
 
 	int insertCart(Cart c);
+
+	/**
+	 * @작성일 : 2020. 4. 22.
+	 * @작성자 :
+	 * @내용 :
+	 * @param @param product_detail
+	 * @param @return
+	 * @return ArrayList<Board>
+	 */
+	ArrayList<Board> selectQnaList(int product);
 
 
 }

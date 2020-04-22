@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<title>배송문의쓰기</title>
+<title>문의쓰기</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
 <link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
@@ -59,7 +59,7 @@
 			</div>
 
 			<div class="titleArea">
-    			<h2>배송 문의</h2>
+    			<h2>문의</h2>
 			</div>
 
 			<div class="xans-element- xans-layout xans-layout-logincheck ">
@@ -91,7 +91,7 @@
 	<tr>
 		<th scope="row">SUBJECT</th>
            <td><select id="subject" name="b_cate_no">
-			<option value="2">[배송문의]</option>
+			<option value="1">[상품문의]</option>
 			</select>  	
 		   </td>
     </tr>

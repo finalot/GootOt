@@ -10,6 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.main.dao.MainDao;
 import com.kh.ot.main.vo.MainPageInfo;
@@ -147,6 +148,10 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public int insertCart(Cart c) {
 		return mainDao.insertCart(c);
+	}
+	@Override
+	public ArrayList<Board> selectQnaList(int product) {
+		return mainDao.selectQnaList(product);
 	}
 
 	

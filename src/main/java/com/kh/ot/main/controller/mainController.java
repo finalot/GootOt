@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
+import com.kh.ot.board.service.BoardService;
+import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.common.MainPagination;
 import com.kh.ot.main.service.MainService;
@@ -168,11 +170,14 @@ public class mainController {
 	@RequestMapping("product_detail.do")
 	public ModelAndView product_detail(ModelAndView mv, int product_detail) {
 		
+		
 		ArrayList<Product> pdlist = mainService.selectDetailList(product_detail);
 		ArrayList<Product_opt> polist = mainService.selectOptionList(product_detail);
 		ArrayList<Product_opt> poolist2 = mainService.selectOptionList33(product_detail);
+		ArrayList<Board> blist = mainService.selectQnaList(product_detail);
 		ArrayList<Product_color> pclist = mainService.selectColorList2();
 		mv.addObject("pdlist", pdlist);
+		mv.addObject("blist", blist);
 		mv.addObject("polist", polist);
 		mv.addObject("poolist2", poolist2);
 		mv.addObject("pclist", pclist);

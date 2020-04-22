@@ -10,6 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.MainSearchCondition;
@@ -192,6 +193,18 @@ public class MainDao {
 
 	public int insertCart(Cart c) {
 		return sqlSession.insert("productMapper.insertCart",c);
+	}
+
+	/**
+	 * @작성일 : 2020. 4. 22.
+	 * @작성자 :
+	 * @내용 :
+	 * @param @param product1
+	 * @param @return
+	 * @return ArrayList<Board>
+	 */
+	public ArrayList<Board> selectQnaList(int product) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectQna",product);
 	}
 
 
