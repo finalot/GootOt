@@ -224,4 +224,14 @@ public class MypageServiceImpl implements MypageService{
 		return mpDao.selectOptionList2(prdt_no);
 	}
 
+	@Override
+	public int insertwishlist(DIBS d) {
+		return mpDao.insertwishlist(d);
+	}
+
+	@Override
+	public DIBS selectonelist() {
+		return mpDao.selectonelist();
+	}
+
 }
