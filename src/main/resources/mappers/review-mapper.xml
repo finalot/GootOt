@@ -120,7 +120,6 @@
    		 FROM REVIEW_COMMENT RVC
          JOIN MEMBER M ON (M.MEM_NO = RVC.MEM_NO)
            WHERE RVC.RV_NO = #{rv_no}
-          AND RVC.RV_REPORT='N'
           ORDER BY RVC.RV_DATE DESC
  	</select>
  	
@@ -129,6 +128,13 @@
  		WHERE RVC_NO = #{rvcNo}
  	
  	</delete>
+ 	
+ 	<update id="WarningReply" parameterType="ReviewReply">
+ 		UPDATE REVIEW_COMMENT
+ 		SET RV_REPORT ='Y'
+ 		WHERE RVC_NO = #{rvcNo}
+ 		
+ 	</update>
  	
  
  </mapper>

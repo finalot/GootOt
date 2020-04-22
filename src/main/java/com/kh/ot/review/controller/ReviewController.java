@@ -267,4 +267,43 @@ public class ReviewController extends HttpServlet {
 			
 		}
 		
+		/**
+		 * @작성일  : 2020. 4. 22.
+		 * @작성자  : 우예진
+		 * @내용    : 리뷰 신고기능
+		 * @param rv_no
+		 * @param rvcNo
+		 * @param response
+		 * @throws IOException 
+		 * @throws JsonIOException 
+		 */
+		@RequestMapping("WarningReply.do") 
+		public void WarningReply(int rv_no, int rvcNo, HttpServletResponse response) throws JsonIOException, IOException {
+			ReviewReply rp = new ReviewReply();
+			
+			rp.setRvcNo(rvcNo);
+			
+			int result = rService.WarningReply(rp);
+			
+			
+			if(result >0) {
+				
+				ArrayList<ReviewReply> rplist = rService.selectReplyList(rv_no);
+				
+				response.setContentType("appliction/json; charset=utf-8");
+				System.out.println("rplist:"+rplist);
+				
+				Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+				
+				Map hmap = new HashMap();
+				hmap.put("rplist", rplist);
+				
+				
+				gson.toJson(hmap,response.getWriter());
+				
+				} else {
+					System.out.println("에러당~");
+				}
+		}
+		
 }

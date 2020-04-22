@@ -76,4 +76,9 @@ public class ReviewServiceImpl implements ReviewService{
 		return rDao.DeleteReply(rp);
 	}
 
+	@Override
+	public int WarningReply(ReviewReply rp) {
+		return rDao.WarningReply(rp);
+	}
+
 }
