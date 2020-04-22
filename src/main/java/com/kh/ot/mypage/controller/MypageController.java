@@ -47,14 +47,12 @@ public class MypageController {
 	private adminService adService;
 	
 	@RequestMapping("insertwishlist.do")
-	public void insertwishlist(HttpServletResponse response, HttpSession session,
-								int prdt_no, int dibs_count, String dibs_size, String dibs_color) throws JsonIOException, IOException {
+	public String insertwishlist(HttpSession session,
+								int dibsno, int prdt_no, int dibs_count, String dibs_size, String dibs_color) {
 		
 		Member m = (Member)session.getAttribute("loginMember");
 		
-		response.setContentType("application/json; charset=UTF-8");
 		
-		DIBS d1 = new DIBS();
 		DIBS d = new DIBS();
 		d.setPrdt_no(prdt_no);
 		d.setDibs_count(dibs_count);
@@ -67,18 +65,26 @@ public class MypageController {
 		
 		
 		if(result > 0) {
-			 d1 = mpService.selectonelist();
+			return "redirect:mWishlist.do";
+		} else {
+			return "";
 		}
-		
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		
-		Map hmap = new HashMap();
-		hmap.put("d1", d1);
+	}
 	
+	@RequestMapping("updatewishlist.do")
+	public String updatewishlist(int dibsno, int dibs_count, String dibs_size, String dibs_color) {
+		DIBS d = new DIBS();
+		d.setDibs_count(dibs_count);
+		d.setDibs_size(dibs_size);
+		d.setDibs_color(dibs_color);
+		d.setDibsno(dibsno);
+		int result = mpService.updatewishlist(d);
 		
-	    
-	    
-	    new Gson().toJson(hmap,response.getWriter());
+		if(result > 0) {
+			return "redirect:mWishlist.do";
+		} else {
+			return "";
+		}
 	}
 	
 	

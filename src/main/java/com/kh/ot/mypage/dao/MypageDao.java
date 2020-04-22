@@ -289,6 +289,10 @@ public class MypageDao {
 		return sqlSession.selectOne("mypageMapper.selectonelist");
 	}
 
+	public int updatewishlist(DIBS d) {
+		return sqlSession.update("mypageMapper.updatewishlist",d);
+	}
+
 
 
 
