@@ -234,4 +234,9 @@ public class MypageServiceImpl implements MypageService{
 		return mpDao.selectonelist();
 	}
 
+	@Override
+	public int updatewishlist(DIBS d) {
+		return mpDao.updatewishlist(d);
+	}
+
 }

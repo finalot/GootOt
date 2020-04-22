@@ -432,7 +432,12 @@
      ON (D.PRDT_NO = P.PRDT_NO)
      where rownum=1
 	
-	
 	</select>
+	
+	<update id="updatewishlist" parameterType="DIBS">
+		UPDATE DIBS
+		SET DIBS_COLOR=#{dibs_color}, DIBS_SIZE=#{dibs_size}, DIBS_COUNT=#{dibs_count}
+		WHERE DIBS_NO=#{dibsno}
+	</update>
 	
 </mapper>

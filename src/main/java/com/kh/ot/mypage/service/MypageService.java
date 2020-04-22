@@ -288,4 +288,6 @@ public interface MypageService {
 
 	DIBS selectonelist();
 
+	int updatewishlist(DIBS d);
+
 }
