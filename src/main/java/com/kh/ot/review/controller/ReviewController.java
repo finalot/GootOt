@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.review.service.ReviewService;
 import com.kh.ot.review.vo.Like_Heart;
@@ -197,18 +198,72 @@ public class ReviewController extends HttpServlet {
 		}
 		
 		
+		/**
+		 * @작성일  : 2020. 4. 22.
+		 * @작성자  : 우예진
+		 * @내용    : 리뷰 댓글 리스트 뿌려주기
+		 * @param response
+		 * @param rv_no
+		 * @throws IOException
+		 */
 		@RequestMapping("rList.do") 
 		public void getReplyList(HttpServletResponse response,int rv_no) throws IOException {
 			
 			ArrayList<ReviewReply> rplist = rService.selectReplyList(rv_no);
 			
 			response.setContentType("appliction/json; charset=utf-8");
-			
+			System.out.println("rplist:"+rplist);
 			
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 			
-			gson.toJson(rplist,response.getWriter());
+			Map hmap = new HashMap();
+			hmap.put("rplist", rplist);
 			
+			
+			gson.toJson(hmap,response.getWriter());
+			
+			
+		}
+		
+		/**
+		 * @작성일  : 2020. 4. 22.
+		 * @작성자  : 우예진
+		 * @내용    : 리뷰 댓글 삭제기능
+		 * @param rvComment
+		 * @param rv_no
+		 * @param session
+		 * @return
+		 * @throws IOException 
+		 * @throws JsonIOException 
+		 */
+		@RequestMapping("DeleteReply.do")
+		public void DeleteReply(int rvcNo, int rv_no, HttpServletResponse response) throws JsonIOException, IOException {
+			
+			ReviewReply rp = new ReviewReply();
+		
+			rp.setRvcNo(rvcNo);
+			
+			int result = rService.DeleteReply(rp);
+			if(result >0) {
+				
+			
+			
+			ArrayList<ReviewReply> rplist = rService.selectReplyList(rv_no);
+			
+			response.setContentType("appliction/json; charset=utf-8");
+			System.out.println("rplist:"+rplist);
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			Map hmap = new HashMap();
+			hmap.put("rplist", rplist);
+			
+			
+			gson.toJson(hmap,response.getWriter());
+			
+			} else {
+				System.out.println("에러당~");
+			}
 			
 		}
 		

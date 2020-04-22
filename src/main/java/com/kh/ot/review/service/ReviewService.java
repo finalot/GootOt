@@ -106,4 +106,13 @@ public interface ReviewService {
 	 */
 	ArrayList<ReviewReply> selectReplyList(int rv_no);
 
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰 댓글 삭제
+	 * @param rp
+	 * @return
+	 */
+	int DeleteReply(ReviewReply rp);
+
 }

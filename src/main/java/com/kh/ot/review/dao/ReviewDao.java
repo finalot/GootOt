@@ -128,5 +128,9 @@ public class ReviewDao {
 	public ArrayList<ReviewReply> selectReplyList(int rv_no) {
 		return (ArrayList)sqlSession.selectList("reviewMapper.selectReplyList",rv_no);
 	}
+
+	public int DeleteReply(ReviewReply rp) {
+		return sqlSession.delete("reviewMapper.DeleteReply",rp);
+	}
 	
 }

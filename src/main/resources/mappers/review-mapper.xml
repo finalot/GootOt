@@ -115,13 +115,20 @@
 
  	</insert>
  	
- 	<select id="selectReplyList" parameterType="_int">
- 		 SELECT RVC.RV_COMMENT_INFO,M.MEM_NAME,RVC.RV_DATE,RVC.RV_REPORT,RVC.RVC_NO
+ 	<select id="selectReplyList" parameterType="_int" resultMap="ReviewReplyResultSet">
+ 		 SELECT RVC.RV_COMMENT_INFO,M.MEM_NAME,RVC.RV_DATE,RVC.RV_REPORT,RVC.RVC_NO,M.MEM_NO
    		 FROM REVIEW_COMMENT RVC
          JOIN MEMBER M ON (M.MEM_NO = RVC.MEM_NO)
            WHERE RVC.RV_NO = #{rv_no}
           AND RVC.RV_REPORT='N'
           ORDER BY RVC.RV_DATE DESC
  	</select>
+ 	
+ 	<delete id ="DeleteReply" parameterType="ReviewReply">
+ 		DELETE FROM REVIEW_COMMENT
+ 		WHERE RVC_NO = #{rvcNo}
+ 	
+ 	</delete>
+ 	
  
  </mapper>
