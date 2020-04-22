@@ -176,7 +176,14 @@ public class ReviewController extends HttpServlet {
 		 */
 		@RequestMapping("addReply.do")
 		@ResponseBody
-		public String addReply(ReviewReply rp) {
+		public String addReply(String rvComment, int rv_no,HttpSession session) {
+			
+			Member m = (Member)session.getAttribute("loginMember");
+			ReviewReply rp = new ReviewReply();
+			rp.setMemNo(m.getMemNo());
+			rp.setRvComment(rvComment);
+		
+			rp.setRvNo(rv_no);
 			
 			int result = rService.insertReply(rp);
 			
@@ -187,6 +194,22 @@ public class ReviewController extends HttpServlet {
 			}else {
 				return "fail";
 			}
+		}
+		
+		
+		@RequestMapping("rList.do") 
+		public void getReplyList(HttpServletResponse response,int rv_no) throws IOException {
+			
+			ArrayList<ReviewReply> rplist = rService.selectReplyList(rv_no);
+			
+			response.setContentType("appliction/json; charset=utf-8");
+			
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			gson.toJson(rplist,response.getWriter());
+			
+			
 		}
 		
 }

@@ -66,4 +66,9 @@ public class ReviewServiceImpl implements ReviewService{
 		return rDao.insertReply(rp);
 	}
 
+	@Override
+	public ArrayList<ReviewReply> selectReplyList(int rv_no) {
+		return rDao.selectReplyList(rv_no);
+	}
+
 }

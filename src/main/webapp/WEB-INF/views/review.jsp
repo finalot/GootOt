@@ -1277,25 +1277,27 @@
                              width:50px;height: 40px;position:relative;bottom:2px;">등록</button>
                              </div><br>
                              
-                              <%--   <c:forEach var="rp" items="${rp.rplist }"> --%>
-                                <input type="hidden" id="rv_no3" value=""> 
-                             <div style="color:gray; border:1px solid lightgray; /* border-radius:5px; */ font-size:16px;">
-                          	<small>
-                          	하이하잉ㅇ</small>
+                             <div style="color:gray; border:1px solid lightgray; border-radius:5px; font-size:16px;">
+                          	<small>우왕 이쁘게입으셧네요오~!</small>
                           	<button style="">&times;</button><br>
-                          	<button style="float:right;font-size:10px;color:#e65540;margin-top:1px;">&nbsp;&nbsp;신고하기</button>
-                          	 <div style="color:lightgray;font-size:11px;float:right;" id="rvDate">
+                          	<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>
+                          	 <div style="color:lightgray;font-size:11px;float:right;"><font>이대*</font>&nbsp;&nbsp;2020-03-31</div></div><br>
                           	 
-                          	 <font>이대*</font>&nbsp;&nbsp;2020-03-31</div>
+                          	 <div style="color:gray; border:1px solid lightgray; border-radius:5px; font-size:16px;">
+                          	<small>우왕 야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액~!</small>
+                          	<button style="">&times;</button><br>
+                          	<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>
+                          	 <div style="color:lightgray;font-size:11px;float:right;"><font>박주*</font>&nbsp;&nbsp;2020-03-31</div></div><br>
                           	 
-                          	 </div>
-                          	 
-                       <%--  </c:forEach> --%>
-                          	 <br>
-                          	 
+                          	 <div style="color:gray; border:1px solid lightgray; border-radius:5px; font-size:16px;">
+                          	<small style="margin:5px 5px 5px 5px;">우왕 아주 사고십구만요 이야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액</small>
+                          	<button style="">&times;</button><br>
+                          	<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>
+                          	 <div style="color:lightgray;font-size:11px;float:right;"><font>이대*</font>&nbsp;&nbsp;2020-03-31</div></div><br>
+                 
                         
                         </div>
-                        <!-- 댓글 forEach 끝나는점) -->
+                       
                     </div>
                        <!-- 모달창 끝나는 점 -->     
                 </div>
@@ -1933,40 +1935,43 @@
 	
 	
 	<script>
-		$(function() {
-			getReplyList();
+		
+		$('#comentsend').on("click", function() {
+			console.log("찍히냐");
+			var rvComment = $('#rvComment').val();
+			 var rv_no = $('#rv_no2').val();
+			 console.log(rv_no);
 			
-			//setInterval
-			setInterval(function() {
-				getReplyList();
-			},3000);
-			
-			// 댓글등록
-			
-			$('#comentsend').on("click", function() {
-				var rvComment = $('#rvComment').val();
-				var rv_no3 = $('#rv_no3').val();
-				
-				$.ajax({
-					url:"addReply.do",
-					data : {rvComment : rvComment, rv_no3 : rv_no3},
-					type:"post",
-					success:function(data) {
-						if(data=="success") {
-							getReplyList();
-							
-							$('#rvComment').val("");
-						}
-					},error:function() {
-						console.log("등록실패");
+			$.ajax({
+				url:"addReply.do",
+				data : {rvComment : rvComment, rv_no : rv_no},
+				success:function(data) {
+					if(data=="success") {
+						getReplyList();
+						
+						$('#rvComment').val("");
 					}
-				})
-			});
-			
+				},error:function() {
+					console.log("등록실패");
+				}
+			})
 		});
 		
 		function getReplyList() {
-			var rv_no3 = $('#rv_no3').val();
+			
+			 var rv_no = $('#rv_no2').val();
+			 
+			//comentarea
+			
+			$.ajax({
+				url:"rList.do",
+				data:{rv_no:rv_no},
+				dataType:"json",
+				success:function(data) {
+					
+				}
+				
+			})
 		}
 		
 	
@@ -1996,6 +2001,26 @@
 				 }
 			 }
 		 }) 
+		 
+		 $.ajax({
+			 
+			url:"rList.do",
+			dataType:"json",
+			data : {rv_no:rv_no},
+			success:function(data) {
+				 for(var i in data) {
+					 $('#comentarea').append('<div style="color:gray; border:1px solid lightgray; border-radius:5px; font-size:16px;">'+
+	                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+	                          	'<button style="">&times;</button><br>'+
+	                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+	                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>'+&nbsp;&nbsp;data.rplist[i].rvDate+'</div></div><br>')
+				 
+				 }
+			}
+			 	
+		 })
+		 
+		 
 		
 	})
 	
