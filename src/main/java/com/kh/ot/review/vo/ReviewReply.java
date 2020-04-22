@@ -8,6 +8,8 @@ public class ReviewReply {
 	private String rvComment; // 리뷰답글내용
 	private Date rvDate; // 리뷰등록날짜
 	private String rvReport; // 리뷰를 등록했는지여부
+	private int rvcNo; // 리뷰 기본키
+	private String memName; //멤버이름
 	
 	public ReviewReply() {}
 
@@ -58,6 +60,26 @@ public class ReviewReply {
 
 	public void setRvReport(String rvReport) {
 		this.rvReport = rvReport;
+	}
+	
+	
+
+	public int getRvcNo() {
+		return rvcNo;
+	}
+
+	public void setRvcNo(int rvcNo) {
+		this.rvcNo = rvcNo;
+	}
+	
+	
+
+	public String getMemName() {
+		return memName;
+	}
+
+	public void setMemName(String memName) {
+		this.memName = memName;
 	}
 
 	@Override

@@ -114,8 +114,19 @@ public class ReviewDao {
 		return sqlSession.update("reviewMapper.updateLikeCount2",rv_no);
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰 등록
+	 * @param rp
+	 * @return
+	 */
 	public int insertReply(ReviewReply rp) {
 		return sqlSession.insert("reviewMapper.insertReply",rp);
+	}
+
+	public ArrayList<ReviewReply> selectReplyList(int rv_no) {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectReplyList",rv_no);
 	}
 	
 }
