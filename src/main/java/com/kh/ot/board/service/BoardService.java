@@ -113,6 +113,17 @@ public interface BoardService{
 	Board passwordCheck(Board b);
 
 
+	/**
+	 * @작성일 : 2020. 4. 22.
+	 * @작성자 :이대윤
+	 * @내용 :보드인서트 (상품번호포함일때)
+	 * @param @param b
+	 * @param @return
+	 * @return int
+	 */
+	int insertBoard1(Board b);
+
+
 
 
 	

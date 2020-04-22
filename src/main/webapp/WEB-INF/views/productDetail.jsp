@@ -3801,7 +3801,7 @@ function qna(){
 				alert('로그인후 이용해주세요');
 				location.href="loginView.do";
 		 }else{
-			 location.href="delivery_board_write.do";
+			 location.href="delivery_board_write1.do?prdtNo="+prdtNo;
 		 }
 		 
 	 })
