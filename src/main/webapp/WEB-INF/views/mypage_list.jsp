@@ -456,10 +456,8 @@ $('.returnOrd').click(function(){
 	 
 	 console.log(prdt_no);
 	 
-/*
-       상품 상세정보 경로 설정 해야함 
-	location.href=""+prdt_no;
- */
+	location.href="product_detail.do?product_detail="+prdt_no;
+ 
 	
  }
  </script>

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.ot.admin.servie.adminService;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
@@ -41,6 +45,58 @@ public class MypageController {
 	
 	@Autowired
 	private adminService adService;
+	
+	@RequestMapping("insertwishlist.do")
+	public String insertwishlist(HttpSession session,
+								int dibsno, int prdt_no, int dibs_count, String dibs_size, String dibs_color) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		
+		DIBS d = new DIBS();
+		d.setPrdt_no(prdt_no);
+		d.setDibs_count(dibs_count);
+		d.setDibs_size(dibs_size);
+		d.setDibs_color(dibs_color);
+		d.setMemno(m.getMemNo());
+		
+		
+		int result = mpService.insertwishlist(d);
+		
+		
+		if(result > 0) {
+			return "redirect:mWishlist.do";
+		} else {
+			return "";
+		}
+	}
+	
+	@RequestMapping("updatewishlist.do")
+	public String updatewishlist(int dibsno, int dibs_count, String dibs_size, String dibs_color) {
+		DIBS d = new DIBS();
+		d.setDibs_count(dibs_count);
+		d.setDibs_size(dibs_size);
+		d.setDibs_color(dibs_color);
+		d.setDibsno(dibsno);
+		int result = mpService.updatewishlist(d);
+		
+		if(result > 0) {
+			return "redirect:mWishlist.do";
+		} else {
+			return "";
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 : 신경섭

@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<title>문의쓰기</title>
+<title>상품 문의 업데이트</title>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!--    <link rel="stylesheet" href="./css/Login_style.css"> -->
 <link rel="stylesheet" href="/ot/resources/css/mypage_list.css">
@@ -33,24 +34,24 @@
     font-size: 13px;
   
     }
+    
+.ec-base-table.typeWrite td {
+    padding: 0px 0px 0px !important;
+}
 
  
 .thumb{
  text-align: left !important;
 	padding-left: 1% !important;
 }
-.ec-base-table.typeWrite td {
-    padding: 0px 0px 0px !important;
-}
 .ec-base-table.typeWrite{
 	border: none;
 }
 
-
 </style>
 <body>
-	<jsp:include page="header.jsp"/>
- 	<%String prdtNo = request.getParameter("prdtNo"); %>
+	<%@include file="header.jsp" %>	
+ 	
 	
     <div id="container">
         <div id="contents" style="margin-top:11.5%;">
@@ -72,8 +73,8 @@
       
         </div>
 </div>
-<form id="boardWriteForm" action="delivery_board_insert.do" method="post" enctype="multipart/form-data">
-		<input type="hidden" id="prdtNo" name="prdtNo" value="<%= prdtNo %>">
+<form id="boardUpdateForm" action="delivery_board_updateView1.do" method="POST" enctype="multipart/form-data">
+	<input type="hidden" name="qna_no" value="${b.qna_no}">
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
             $login_page_url = /member/login.html
@@ -91,24 +92,31 @@
 	<tr>
 		<th scope="row">SUBJECT</th>
            <td><select id="subject" name="b_cate_no">
-			<option value="1">[상품문의]</option>
+			<option value="1">[상품 문의]</option>
 			</select>  	
 		   </td>
     </tr>
     
-	<tr>
+    <tr>
 		<th scope="row">TITLE</th>
-           <td><input type="text" name="qna_title" style="width: 390px;height: 26px;">
+           <td><input type="text" name="qna_title" style="width: 390px;height: 26px;" value="${b.qna_title }">
+           		<input type="hidden" value="${b.content}" id=b_content>	
 		   </td>
     </tr>
+
     
 	<td colspan="2" class="clear">           
             <script type="text/javascript" src="//editor.cafe24.com/js/nneditor.js?c=ko"></script>
-            <style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";		</style>		<script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+            <style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";</style>
+           <script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
+           <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
             <script type="text/javascript">
-                NN.Config.instanceID = "content";
-                NN.Config.value = "▶ 오전에는 입고 작업중으로 오후 2시정도에 문의주시는게 더 정확합니다.<br />\n<br />\n당일 주문건은 재고가 있을 시 당일 배송처리 되고 보통 다음날부터 입고가 되기 때문에 바로 안내가 어렵습니다.<br />\n<br />\n* 배송전 교환/취소시 [배송전 부분취소/변경] 제목선택을 안해주시면 상품교환/주문취소는 당일 처리되지 않습니다 *<br />\n<br />\n비회원으로 문의주실 경우엔 동명이인으로 인해 주문정보와 함께 남겨주셔야 바로 처리 가능합니다.<br />\n<br />\n----------------------------------------------------------------------<br>";
-                NN.Config.toolbarType = "simple";
+            var b_content =$('#b_content').val();
+            NN.Config.instanceID = "content";
+            NN.Config.value = b_content;
+            NN.Config.toolbarType = "simple";
                 
                 
                 
@@ -144,6 +152,8 @@
                 }
 
                 $Editor.push(oNN_content, "content");
+                
+                
             </script>	
             	
 		
@@ -152,25 +162,38 @@
 		<tbody class="">
 			<tr>
 				<th scope="row">FILE 01</th>
-                    <td><input name="uploadFile" type="file"></td>
+                 <td><input type="file" name="reloadFile">
+                 <c:if test="${ !empty b.originalFileName }">
+						<br>현재 업로드한 파일 : 
+						<a href="${ contextPath }/resources/buploadFiles/${ b.renameFileName }" download="${ b.originalFileName }">${ b.originalFileName }</a>
+					</c:if>
+                 </td>
             </tr>
+            
 			
 	</tbody>
 	<tbody>
 			<tr class="">
 				<th scope="row">PASSWORD</th>
-                    <td><input id="qna_password" name="qna_password" value="" type="password"></td>
+                    <td><input id="qna_password" name="qna_password" value="${b.qna_password }" type="password"></td>
             </tr>
-            
+           
 			<tr class="">
 			<th scope="row">SECRET</th>
+			<c:if test="${ b.qna_secure == 'F'}">
+                   <td><input id="secure0" name="qna_secure"  value="F" type="radio" checked="checked">
+                   <label for="secure0">공개글</label>
+				   <input id="secure1" name="qna_secure"  value="T" type="radio">
+				   <label for="secure1">비밀글</label></td>
+			</c:if>
+			<c:if test="${ b.qna_secure == 'T'}">
                    <td><input id="secure0" name="qna_secure"  value="F" type="radio">
                    <label for="secure0">공개글</label>
 				   <input id="secure1" name="qna_secure"  value="T" type="radio" checked="checked">
 				   <label for="secure1">비밀글</label></td>
+			</c:if>
             </tr>
             
-			
             
 		</tbody>
 	</table>
@@ -178,25 +201,32 @@
 		<div class="ec-base-button ">
             <span class="gLeft">
                 <span class="displaynone"><a href="#none" onclick="" class="yg_btn_30 yg_btn4" alt="관리자답변보기">관리자답변보기</a></span>
-                <a href="http://localhost:8888/ot/product_detail.do?product_detail=<%= prdtNo %>#qna" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
+                <button onclick="goList()" class="yg_btn_30 yg_btn4" alt="목록">LIST</button>
             </span>
             <span class="gRight">
-                <button  id="de_insert_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
-                <a href="http://localhost:8888/ot/product_detail.do?product_detail=<%= prdtNo %>#qna" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
+                <button id="update_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
+                
+                <a href="http://localhost:8888/ot/delivery_board_detail1.do?qna_no=${b.qna_no }" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
             </span>
         </div>
 	</div>
-</form>
+	</form>
 </div>
 
 	</div>
-	
+	<input type="hidden" id="prdtNo" value="${b.prdt_code }">
  <%@include file="footer.jsp" %>
- <script>
- 
- $('#de_insert_ok').click(function(){
-		$('#boardWriteForm').submit();
-	});
- </script>
 </body>
+<script>
+function goList(){
+	var prdtNo = $('#prdtNo').val()
+	location.href="http://localhost:8888/ot/product_detail.do?product_detail="+prdtNo+"#qna";
+};
+$('#update_ok').click(function(){
+	$('#boardUpdateForm').submit();
+});
+
+</script>
+
+
 </html>
