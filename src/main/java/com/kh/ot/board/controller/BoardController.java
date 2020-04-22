@@ -574,6 +574,26 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
 		}
 		return mv;
 	}
+   
+   /**
+    * @작성일  : 2020.04.22
+    * @작성자  : 이대윤
+    * @내용    : 배송문의 상세정보 상품용
+    * @return
+    */
+   @RequestMapping("delivery_board_detail1.do")
+   public ModelAndView delivery_board_detail1(ModelAndView mv, int qna_no) {
+		
+		Board b = bService.selectBoard(qna_no);
+		if(b!=null) {
+			mv.addObject("b",b)
+			.setViewName("delivery_board_detail1");
+		} else {
+			mv.addObject("msg","게시글 상세조회 실패")
+			.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 
    
    
@@ -590,6 +610,25 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
 		   
 		   mv.addObject("qna_no", qna_no);
 		   mv.setViewName("delivery_board_password");
+
+		   
+		   return mv; 
+	   }
+	
+	/**
+	 * @작성일  : 2020. 4. 22
+	 * @작성자  : 이대윤
+	 * @내용    : 배송문의 상세 비밀글(비밀글 타고들어갈때) (상품에서)
+	 * @param mv
+	 * @param qna_no
+	 * @return
+	 */
+	@RequestMapping("delivery_board_detailView1")
+	   public ModelAndView delivery_board_detailView1(ModelAndView mv,int qna_no,int prdtNo) {
+		   
+		mv.addObject("prdtNo", prdtNo);
+		   mv.addObject("qna_no", qna_no);
+		   mv.setViewName("delivery_board_password1");
 
 		   
 		   return mv; 
@@ -618,6 +657,21 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
 	}
      return mv;
  }
+   @RequestMapping("delivery_board_update1.do")
+   public ModelAndView delivery_board_update1(ModelAndView mv, int qna_no) {
+	   
+	   
+	   Board b = bService.selectBoard(qna_no);
+	   
+	   if(b!=null) {
+		   mv.addObject("b",b)
+		   .setViewName("delivery_board_update1");
+	   } else {
+		   mv.addObject("msg","게시글 상세조회 실패")
+		   .setViewName("common/errorPage");
+	   }
+	   return mv;
+   }
   
    	/**
    	 * @작성일  : 2020. 4. 13.
@@ -637,6 +691,18 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
 	}
 		
 }
+   @RequestMapping("delivery_board_updateView1.do")
+   public String delivery_board_updateView1(Board b,HttpServletRequest request) {
+	   
+	   int result = bService.UpdatePrBoard(b);
+	   
+	   if(result > 0) {
+		   return "redirect:http://localhost:8888/ot/delivery_board_detail1.do?qna_no="+b.getQna_no();
+	   }else {
+		   return "에러다";
+	   }
+	   
+   }
    
    /**
 	 * @작성일  : 2020. 4. 13
@@ -656,6 +722,16 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
 		return "에러다";
 	}
 }
+	@RequestMapping("delivery_board_delete1.do")
+	public String delivery_board_delete1(int qna_no,int prdtNo, HttpServletRequest request) {
+		int result = bService.deletePrBoard(qna_no);
+		
+		if(result >0) {
+			return "redirect:http://localhost:8888/ot/product_detail.do?product_detail="+prdtNo+"#qna";
+		} else {
+			return "에러다";
+		}
+	}
    
 
    /**
@@ -1647,6 +1723,26 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
 	   
 	   
    }
+@RequestMapping("passwordCheck1.do")
+public void passwordCheck1(HttpServletResponse response,int qna_no, String password) throws IOException {
+	
+	PrintWriter out = response.getWriter();
+	
+	Board b = new Board();
+	
+	b.setQna_no(qna_no);
+	b.setQna_password(password);
+	
+	b = bService.passwordCheck(b);
+	if(b != null) {
+		out.print("ok");
+	}else {
+		out.print("fail");
+	}
+	
+	
+	
+}
    
    
    /**

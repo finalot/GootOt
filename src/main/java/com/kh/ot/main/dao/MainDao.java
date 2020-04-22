@@ -199,7 +199,7 @@ public class MainDao {
 	 * @작성일 : 2020. 4. 22.
 	 * @작성자 :
 	 * @내용 :
-	 * @param @param product1
+	 * @param @param product
 	 * @param @return
 	 * @return ArrayList<Board>
 	 */
