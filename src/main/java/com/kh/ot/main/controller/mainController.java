@@ -509,4 +509,21 @@ MainSearchCondition msc= new MainSearchCondition();
 	}
 	
 	
+	/**
+	    * @작성일  : 2020.04.22
+	    * @작성자  : 이대윤
+	    * @내용    : 배송문의 글쓰기
+	    * @return
+	    */
+	   @RequestMapping("delivery_board_write1.do")
+	   public ModelAndView delivery_board_write(ModelAndView mv, int prdtNo) {
+
+		   mv.addObject("prdtNo", prdtNo);
+		   mv.setViewName("delivery_board_write1");
+		return mv;
+	   }
+	
+	
+	
+	
 }

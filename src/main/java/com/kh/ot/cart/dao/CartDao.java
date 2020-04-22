@@ -227,4 +227,17 @@ public class CartDao {
 		return sqlSession.insert("cartMapper.insertPoint",pot);
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 문태환
+	 * @내용 	: 결제 카트 리스트 불러오기
+	 * @param list
+	 * @return
+	 */
+	public ArrayList<Cart> selectCartList(ArrayList<Cart> cartList) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("cartList", cartList);
+		return (ArrayList)sqlSession.selectList("cartMapper.selectCartList",map);
+	}
+
 }

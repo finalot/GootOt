@@ -174,4 +174,13 @@ public interface CartService {
 	 */
 	int insertPoint(Point pot);
 
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 문태환
+	 * @내용 	: 결제한 카트 리스트 불러오기
+	 * @param list
+	 * @return
+	 */
+	ArrayList<Cart> selectCartList(ArrayList<Cart> list);
+
 }

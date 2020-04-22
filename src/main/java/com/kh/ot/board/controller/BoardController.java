@@ -697,9 +697,11 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
  	*/
    @RequestMapping(value="delivery_board_insert.do",method=RequestMethod.POST)
    	public String delivery_board_insert(Board b,HttpServletRequest request,HttpSession session,
-         @RequestParam(name="uploadFile",required=false) MultipartFile uploadFile) {
-   
-      
+         @RequestParam(name="uploadFile",required=false) MultipartFile uploadFile,int prdtNo) {
+	   int result = 0;
+	   int result2 = 0;
+      int pNo =0;
+      System.out.println("boardInsert:"+prdtNo);
       Member m = (Member)session.getAttribute("loginMember");      
       
       b.setMem_no(m.getMemNo());
@@ -718,15 +720,30 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
          }
          
       }      
-      int result = bService.insertBoard(b);
+      
+      if(prdtNo>0) {
+    	  pNo = prdtNo;
+    	  System.out.println(pNo);
+      }
+      
+      if(pNo==0) {
+    	result = bService.insertBoard(b);
+      }else {
+    	  b.setPrdt_code(pNo);
+    	result2 = bService.insertBoard1(b);
+      }
         
       System.out.println(b);
       
       if(result >0) {
          return "redirect:delivery_board.do";
-      } else {
-         return null;
+      } else if(result2 >0){
+         return "redirect:http://localhost:8888/ot/product_detail.do?product_detail="+prdtNo+"#qna";
+      }else {
+    	  return "오류다";
+    	  
       }
+      
    }
    
 

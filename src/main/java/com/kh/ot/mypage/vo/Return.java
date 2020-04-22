@@ -33,6 +33,8 @@ public class Return {
 	private String payCategory;// 구매수단
 	private int cpDiscount;// 쿠폰가격
 	private String cpName;//쿠폰이름
+	private int cpmemNo;//쿠폰 고유번호
+	private String payYn;// 결제완료여부
 	
 	
 	public Return() {
@@ -54,9 +56,25 @@ public class Return {
 		this.reMent = reMent;
 		this.reStatus = reStatus;
 	}
+	
+	
+	
+	public int getCpmemNo() {
+		return cpmemNo;
+	}
 
-	
-	
+	public void setCpmemNo(int cpmemNo) {
+		this.cpmemNo = cpmemNo;
+	}
+
+	public String getPayYn() {
+		return payYn;
+	}
+
+	public void setPayYn(String payYn) {
+		this.payYn = payYn;
+	}
+
 	public String getOrdSize() {
 		return ordSize;
 	}

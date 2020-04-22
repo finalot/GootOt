@@ -255,6 +255,7 @@ public class menuController {
 		
 		ArrayList<Ord> odlist = adService.selectOderList4();
 		
+		System.out.println("odlist : "+odlist);
 		
 		mv.addObject("odlist",odlist);
 		mv.setViewName("admin/order_4");
@@ -1523,6 +1524,40 @@ public class menuController {
 		mv.setViewName("admin/productReturn");
 		return mv;
 				
+	}
+	
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 문태환 
+	 * @내용 	: 반품 결제취소
+	 * @param response
+	 * @param cpmemNo
+	 * @param ordCode
+	 * @param point
+	 * @param memCode
+	 * @throws IOException
+	 */
+	@RequestMapping("cancellPay.ad")
+	public void cancellPay(HttpServletResponse response,int cpmemNo,int ordCode,int point,int memCode) throws IOException {
+		
+		PrintWriter out = response.getWriter();
+		
+		int result = adService.calcellCoupon(cpmemNo);
+		
+		int result2= adService.cancellPay(ordCode);
+		
+		Member m = new Member();
+		m.setMemNo(memCode);
+		m.setMem_point(point);
+		
+		int result3 = adService.cancellPoint(m);
+		
+		if(result3 > 0) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+		
 	}
 	
 

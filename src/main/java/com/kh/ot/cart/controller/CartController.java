@@ -66,8 +66,8 @@ public class CartController extends HttpServlet {
 		ArrayList<Address> adlist =cService.selectAdList(mem_no);
 		
 
-		session.setAttribute("list","");
-		session.setAttribute("list", list);
+		//session.setAttribute("list","");
+	
 		mv.addObject("adlist",adlist);
    		mv.addObject("list",list);
    		mv.addObject("clist", clist);
@@ -139,12 +139,12 @@ public class CartController extends HttpServlet {
 		
 		ArrayList<Ord> olist = new ArrayList<Ord>();
 		ArrayList<Pay> plist = new ArrayList<Pay>();
-		ArrayList<Cart> noArr = new ArrayList<Cart>();
+		ArrayList<Cart> list = new ArrayList<Cart>();
 
 		for(int i =0; i<canoArr.length;i++) {
 			Cart c = new Cart();
 			c.setCa_no(canoArr[i]);
-			noArr.add(c);
+			list.add(c);
 		}
 
 		for(int i=0;i<prdtArr.length;i++) {
@@ -206,15 +206,16 @@ public class CartController extends HttpServlet {
 		
 		int result = cService.cartInsert(olist);
 		if(result > -2) {
+			ArrayList<Cart> cartList = cService.selectCartList(list);
 			int result2 = cService.payInsert(plist);
-			int result3 =  cService.deleteCart(noArr);
+			int result3 =  cService.deleteCart(list);
 			int result4 = cService.updatePrice(ct);	
 			int result5 = cService.updateCoupon(pay_usedcp);
 			int result6 = cService.updatePoint(py);
 			int result7 = cService.updateProduct(olist);
 			int result8 = cService.updateMemPoint(mpo);
 			
-			
+			session.setAttribute("list", cartList);
 			session.setAttribute("olist", "");
 			session.setAttribute("plist", "");
 			session.setAttribute("olist", olist);
