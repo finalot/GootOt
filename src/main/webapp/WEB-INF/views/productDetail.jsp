@@ -1,3 +1,7 @@
+<%@page import="com.kh.ot.main.service.MainServiceImpl"%>
+<%@page import="com.kh.ot.main.service.MainService"%>
+<%@page import="com.kh.ot.board.vo.Board"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -576,7 +580,12 @@ a{
 							alt="IMG-PRODUCT">
 							</c:forEach>
 					</div>
-
+					
+					<%
+          			int qnaCount =0;%>
+          			<c:forEach var="b" items="${ blist }">
+          			<%qnaCount++; %>
+          			</c:forEach>
 					<!-- <div class="item-slick3" data-thumb="images/thumb-item-02.jpg">
 							<div class="wrap-pic-w">
 								<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
@@ -947,7 +956,7 @@ function optionDel(){
 						id="myBtn1" style="width: 40%; float: left;"><small>Review(${pd1.prdtReview})</small></button>
 						</c:forEach>
 					<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-						onclick="qna();" style="position: relative; left: 10%; width: 40%;"><small>Q&A(3)</small></button>
+						onclick="qna();" style="position: relative; left: 10%; width: 40%;"><small>Q&A(<%=qnaCount %>)</small></button>
 						
 						<br>
 						
@@ -3072,7 +3081,7 @@ function qna(){
 					<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
 					
 					<tr style="background-color:#F9F9F9; color:#555555;" class="xans-record-">
-					<td style="font-weight:600;"> 공지</td>
+					<td style="font-weight :600;"> 공지</td>
                     <td class="displaynone"></td>
                     <td class="subject left txtBreak">
                         <strong> <a href="/article/배송문의/3001/279655/" style="color:#555555; font-size:12px;">▶ 배송 안내입니다.</a></span></strong>
@@ -3083,12 +3092,16 @@ function qna(){
                 </tr>
 		</tbody>	
 				<tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
-          			<c:forEach var="b" items="${ list }">
+          		
+          			
+          			<c:forEach var="b" items="${ blist }">
           				<tr class="xans-record-">
 							<td>
 								<!-- no 공지번호 들어갈 곳 -->
-									<span id="idMsg4">${b.qna_no }</span>
+									<span id="idMsg4"><%=qnaCount %></span>
+									<input type="hidden" value="${b.qna_no }">
 							</td>
+               			<%qnaCount--; %>
                			
                         <!-- 상품명 이름 들어갈 곳 -->
                          <td class="thumb">
@@ -3398,8 +3411,8 @@ function qna(){
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 						<!-- 기본프로덕트블록 샘플 -->
+					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 						<div class="block2">
 							<div class="block2-img wrap-pic-w of-hidden pos-relative">
 								<img
@@ -3769,18 +3782,18 @@ function qna(){
 	</script>
 	<script>
  function prdtDetail(en){
-		
-		var q_no = $(en).parents('tr').children('td').eq(0).children('span').text();	 
+	 var prdtNo = $('#prNo_val').val();
+		var q_no = $(en).parents('tr').children('td').eq(0).children('input').val();	 
 
-		 location.href="delivery_board_detailView.do?qna_no="+q_no; 
+		 location.href="delivery_board_detailView1.do?qna_no="+q_no+"&prdtNo="+prdtNo; 
 		
 	 }
 	 
 	 function prdtDetail2(en){
-			
-			var q_no = $(en).parents('tr').children('td').eq(0).children('span').text();	 
+		 var prdtNo = $('#prNo_val').val();
+			var q_no = $(en).parents('tr').children('td').eq(0).children('input').val();	 
 
-			 location.href='delivery_board_detail.do?qna_no='+q_no; 
+			 location.href='delivery_board_detail1.do?qna_no='+q_no;
 			
 		 }
 	 
