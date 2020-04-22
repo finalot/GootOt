@@ -84,12 +84,18 @@
 			<result property="prdt_code" column="PRDT_CODE"/>
 		</resultMap>
  
-	<select id="selectQna" parameterType="_int" resultMap="boardResultSet1">
+	
+		<select id="selectQnaListCount" parameterType="_int" resultType="_int">
+	  	SELECT COUNT(*)
+	  	FROM QNA
+	  	WHERE PRDT_CODE = #{product_detail}
+		</select>
+		
+	<select id="selectQnaList" parameterType="_int" resultMap="boardResultSet1">
 	  	SELECT *
 	  	FROM QNA
-	  	WHERE PRDT_CODE = #{product}
+	  	WHERE PRDT_CODE = #{product_detail}
 		</select>
-	
 	
 		<select id="getListCount1" parameterType="_int" resultType="_int">
 	  	SELECT COUNT(*)

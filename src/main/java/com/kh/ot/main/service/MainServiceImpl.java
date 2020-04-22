@@ -14,6 +14,7 @@ import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.main.dao.MainDao;
 import com.kh.ot.main.vo.MainPageInfo;
+import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.MainSearchCondition;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
@@ -150,8 +151,12 @@ public class MainServiceImpl implements MainService {
 		return mainDao.insertCart(c);
 	}
 	@Override
-	public ArrayList<Board> selectQnaList(int product) {
-		return mainDao.selectQnaList(product);
+	public int getQnaListCount(int product_detail) {
+		return mainDao.getQnaListCount(product_detail);
+	}
+	@Override
+	public ArrayList<Board> selectQnaList(MainPageInfo2 mainPi2, int product_detail) {
+		return mainDao.selectQnaList(mainPi2,product_detail);
 	}
 
 	

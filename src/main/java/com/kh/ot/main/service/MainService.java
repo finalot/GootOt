@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.main.vo.MainPageInfo;
+import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.MainSearchCondition;
 import com.kh.ot.main.vo.MaindownCategory;
 import com.kh.ot.main.vo.MainupCategory;
@@ -113,7 +114,10 @@ public interface MainService {
 	 * @param @return
 	 * @return ArrayList<Board>
 	 */
-	ArrayList<Board> selectQnaList(int product);
+
+	int getQnaListCount(int product_detail);
+
+	ArrayList<Board> selectQnaList(MainPageInfo2 mainPi2, int product_detail);
 
 
 }
