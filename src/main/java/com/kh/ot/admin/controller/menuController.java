@@ -333,15 +333,28 @@ public class menuController {
 	 * @내용 : 상품리스트디테일 리스트 
 	 */
 	@RequestMapping("productListDetail.ad")
-	public ModelAndView productListDetail(ModelAndView mv) {
+	public ModelAndView productListDetail(ModelAndView mv, int prdtNo) {
 		
-		ArrayList<Product> plist = adService.ProductSelectList();
+//		그냥 뿌려주기 
 		ArrayList<UpCategory> ulist = adService.UpCategorySelect();
 		ArrayList<DownCategory> dlist = adService.DownCategorySelect();
-		//여기야 여기 ! 
-		mv.addObject("plist",plist);
-		mv.setViewName("admin/productListDetail");
+		ArrayList<Product_color> clist = mainService.selectColorList2();
 		
+		
+		Product p = adService.listProductSelectList(prdtNo);
+		ArrayList<Product_opt> oplist = adService.listProductOptSelectList(prdtNo);
+		
+		if(p!=null) {
+			mv.addObject("ulist", ulist);
+			mv.addObject("dlist", dlist);
+			mv.addObject("clist",clist);
+			
+			mv.addObject("p", p).setViewName("admin/productListDetail");
+			 mv.addObject("oplist",oplist).setViewName("admin/productListDetail"); 
+		}else {
+			mv.addObject("msg","상품관리 상세조회 실패").setViewName("common/errorPage");
+		}
+	
 		return mv;
 	}
 
@@ -805,9 +818,6 @@ public class menuController {
 		return "home";
 
 	}
-	
-	
-	
 	
 	
 
@@ -1492,6 +1502,8 @@ public class menuController {
 				return "redirect:productAdd.ad";
 		}
 	}
+	
+	
 
 	
 

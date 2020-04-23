@@ -283,6 +283,26 @@ public interface adminService{
 		 * @내용 : 옵션 추가 
 		 */
 		public int insertPotList(ArrayList<Product_opt> poArr);
+		
+		/**
+		 * @작성일 : 2020. 4. 21.
+		 * @작성자 : 이서현
+		 * @내용 : 상품옵션 리스트
+		 */
+		public ArrayList<Product_opt> ProductOptSelectList();
 
+		/**
+		 * @작성일 : 2020. 4. 22.
+		 * @작성자 : 이서현
+		 * @내용 : 상품관리리스트디테일 (상품)
+		 */
+		public Product listProductSelectList(int prdtNo);
+
+		/**
+		 * @작성일 : 2020. 4. 22.
+		 * @작성자 : 이서현
+		 * @내용 : 상품관리리스트디테일 (상품옵션)
+		 */
+		public ArrayList<Product_opt> listProductOptSelectList(int prdtNo);
 
 }

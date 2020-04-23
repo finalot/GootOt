@@ -311,5 +311,22 @@
 			</foreach>) A
 		</insert>
 		
+		<select id="ProductOptSelectList" resultMap="product_optResultSet">
+			SELECT *
+			FROM PRDT_OPT
+		</select>
+		
+		<select id="listProductSelectList" resultMap="productResultSet">
+			SELECT *
+			FROM PRDT
+			WHERE PRDT_NO=#{prdtNo}
+		</select>
+		
+		<select id="listProductOptSelectList" resultMap="product_optResultSet">
+			SELECT *
+			FROM PRDT_OPT
+			WHERE PRDT_NO=#{prdtNo}
+		</select>
+		
 
 </mapper>

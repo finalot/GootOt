@@ -363,4 +363,20 @@ public class adminDao {
 		map.put("poArr", poArr);
 		return sqlSession.insert("productMapper.insertPotList",map);
 	}
+
+
+	public ArrayList<Product_opt> ProductOptSelectList() {
+		return (ArrayList)sqlSession.selectList("productMapper.ProductOptSelectList");
+	}
+
+
+	public Product listProductSelectList(int prdtNo) {
+		return sqlSession.selectOne("productMapper.listProductSelectList",prdtNo);
+	}
+
+
+	public ArrayList<Product_opt> listProductOptSelectList(int prdtNo) {
+		return (ArrayList)sqlSession.selectList("productMapper.listProductOptSelectList",prdtNo);
+	}
+	
 }

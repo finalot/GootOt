@@ -227,4 +227,22 @@ public class adminServiceImpl implements adminService{
 		return adDao.insertPotList(poArr);
 	}
 
+
+	@Override
+	public ArrayList<Product_opt> ProductOptSelectList() {
+		return adDao.ProductOptSelectList();
+	}
+
+
+	@Override
+	public Product listProductSelectList(int prdtNo) {
+		return adDao.listProductSelectList(prdtNo);
+	}
+
+
+	@Override
+	public ArrayList<Product_opt> listProductOptSelectList(int prdtNo) {
+		return adDao.listProductOptSelectList(prdtNo);
+	}
+
 }
