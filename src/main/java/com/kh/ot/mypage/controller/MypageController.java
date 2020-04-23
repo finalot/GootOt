@@ -47,6 +47,8 @@ public class MypageController {
 								int prdt_no, int dibs_count, String dibs_size, String dibs_color) {
 		
 		System.out.println("dibs_count : " + dibs_count);
+		System.out.println("dibs_size : " + dibs_size);
+		System.out.println("dibs_color : " + dibs_color);
 		Member m = (Member)session.getAttribute("loginMember");
 		
 		
@@ -70,6 +72,9 @@ public class MypageController {
 	
 	@RequestMapping("updatewishlist.do")
 	public String updatewishlist(int dibsno, int dibs_count, String dibs_size, String dibs_color) {
+		
+		System.out.println("dibsno : " + dibsno);
+		
 		DIBS d = new DIBS();
 		d.setDibs_count(dibs_count);
 		d.setDibs_size(dibs_size);
