@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -291,6 +292,20 @@ public class MypageDao {
 
 	public int updatewishlist(DIBS d) {
 		return sqlSession.update("mypageMapper.updatewishlist",d);
+	}
+
+	public int deleteWishlist(ArrayList<DIBS> noArr) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("noArr", noArr);
+		return sqlSession.delete("mypageMapper.deletewishlist", map);
+	}
+
+	public int deletewishAll(int memno) {
+		return sqlSession.delete("mypageMapper.deletewishAll", memno);
+	}
+
+	public int selectDelete(int dibsno) {
+		return sqlSession.delete("mypageMapper.selectDelete",dibsno);
 	}
 
 
