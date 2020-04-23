@@ -182,6 +182,9 @@ public class MainDao {
 	public ArrayList<Product_opt> selectOptionSearchList(String search) {
 		return (ArrayList)sqlSession.selectList("productMapper.selectSearchProductOption",search);
 	}
+	public ArrayList<Product_opt> selectOptionBestList() {
+		return (ArrayList)sqlSession.selectList("productMapper.selectOptionBestList");
+	}
 
 	public ArrayList<productbenner> selectPB() {
 		return (ArrayList)sqlSession.selectList("productMapper.selectPB");
@@ -223,12 +226,29 @@ public class MainDao {
 	}
 
 	public int detailReviewInsert(DetailReview dr) {
-		return sqlSession.selectOne("productMapper.detailReviewInsert",dr);
+		return sqlSession.insert("productMapper.detailReviewInsert",dr);
 	}
 
 	public int getOrdNo(ReviewCheck rc) {
 		return sqlSession.selectOne("productMapper.getOrdNo",rc);
 	}
+
+	public int getRvNo(ReviewCheck rc) {
+		return sqlSession.selectOne("productMapper.getRvNo",rc);
+	}
+
+	public int detailReviewPhotoInsert(DetailReview dr) {
+		return sqlSession.insert("productMapper.detailReviewPhotoInsert",dr);
+	}
+	public int detailReviewPhotoInsert2(DetailReview dr) {
+		return sqlSession.insert("productMapper.detailReviewPhotoInsert2",dr);
+	}
+
+	public int updateReviewCount(DetailReview dr) {
+		return sqlSession.update("productMapper.updateReviewCount",dr);
+	}
+
+	
 
 
 

@@ -2,6 +2,9 @@ package com.kh.ot.review.service;
 
 import java.util.ArrayList;
 
+import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
 import com.kh.ot.review.vo.ReviewReply;
@@ -166,5 +169,11 @@ public interface ReviewService {
 	 * @return
 	 */
 	ArrayList<Review> selectSizeSort(int optionSize);
+
+	ArrayList<Product> getBestList();
+
+	ArrayList<Product_color> selectColorList1();
+
+	ArrayList<Product_opt> selectOptionBestList();
 
 }

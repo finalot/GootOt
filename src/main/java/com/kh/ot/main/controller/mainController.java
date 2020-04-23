@@ -645,10 +645,12 @@ MainSearchCondition msc= new MainSearchCondition();
 		   Map<String,Object> resultMap = new HashMap<String,Object>();
 		   String root = request.getSession().getServletContext().getRealPath("resources");
 		   Member m = (Member)session.getAttribute("loginMember");
+		   System.out.println(m.getMemNo());
 			dr.setMemNo(m.getMemNo());
 		   
 			int count = 0;
 			String rvImage = "";
+			String rvImage2 = "";
 			
 		   for(MultipartFile f : dr.getFile()) {
 			   String timeStamp = new SimpleDateFormat("yyyyMMddhhmmssSSS").format(new Date());
@@ -665,30 +667,48 @@ MainSearchCondition msc= new MainSearchCondition();
 			   if(count==0) {
 				   rvImage=fileName;
 				   count++;
+			   }else if(count==1) {
+				   rvImage2=fileName;
+				   count++;
 			   }
-			   
 			   
 			   
 			   
 		   }
 		   
 		   dr.setFileName(rvImage);
+		   dr.setFileName2(rvImage2);
 		   ReviewCheck rc = new ReviewCheck();
 		   rc.setPrdtNo(dr.getPrdtNo());
 		   rc.setMemNo(dr.getMemNo());
 		   
 		   int ordNo = mainService.getOrdNo(rc);
 		   dr.setOrdNo(ordNo);
+		   System.out.println(dr.toString());
 		   
-		   int result = mainService.detailReviewInsert(dr);
+		   int result= mainService.detailReviewInsert(dr);
 		   
-			if(result>0) {
-				resultMap.put("status","success");
-			}else {
-				resultMap.put("status","fail");
-				resultMap.put("message","리뷰작성 실패,관리자에 문의하세요.");
-			}
-		   
+		  if(result>0) {
+			  
+			  int rvNo = mainService.getRvNo(rc);
+			  dr.setRvNo(rvNo);
+			  int result2= mainService.detailReviewPhotoInsert(dr);
+			  
+			  if(result2>0) {
+				  int result3= mainService.detailReviewPhotoInsert2(dr);
+				  int result4= mainService.updateReviewCount(dr);
+				  if(result3>0) {
+				  resultMap.put("status","success"); }
+			  		}
+			  }
+		  
+		  else {
+			  
+		  resultMap.put("status","fail");
+		  resultMap.put("message","리뷰작성 실패,관리자에 문의하세요."); 
+		  
+		  }
+		 
 		   
 		   return new Gson().toJson(resultMap);
 		   

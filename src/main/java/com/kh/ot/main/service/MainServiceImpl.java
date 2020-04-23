@@ -174,12 +174,28 @@ public class MainServiceImpl implements MainService {
 		return mainDao.detailReviewWriteCheck(rc);
 	}
 	@Override
+	public int getOrdNo(ReviewCheck rc) {
+		return mainDao.getOrdNo(rc);
+	}
+	@Override
 	public int detailReviewInsert(DetailReview dr) {
 		return mainDao.detailReviewInsert(dr);
 	}
 	@Override
-	public int getOrdNo(ReviewCheck rc) {
-		return mainDao.getOrdNo(rc);
+	public int getRvNo(ReviewCheck rc) {
+		return mainDao.getRvNo(rc);
+	}
+	@Override
+	public int detailReviewPhotoInsert(DetailReview dr) {
+		return mainDao.detailReviewPhotoInsert(dr);
+	}
+	@Override
+	public int detailReviewPhotoInsert2(DetailReview dr) {
+		return mainDao.detailReviewPhotoInsert2(dr);
+	}
+	@Override
+	public int updateReviewCount(DetailReview dr) {
+		return mainDao.updateReviewCount(dr);
 	}
 
 	

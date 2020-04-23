@@ -6,6 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
 import com.kh.ot.review.vo.ReviewReply;
@@ -254,4 +257,14 @@ public class ReviewDao {
 		}
 	}
 	
+	
+	public ArrayList<Product> getBestList() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectBestList");
+	}
+	public ArrayList<Product_color> selectColorList1(){
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectProductColor1");
+	}
+	public ArrayList<Product_opt> selectOptionBestList() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectOptionBestList");
+	}
 }

@@ -1000,7 +1000,7 @@ function qna(){
     </div>
     					<button class="flex-c-m bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="reviewOn();" 
 						style="position: relative; left: 55%; width: 7%; height: 20px; font-size: 12px; float:left;background:#c3b798; ">리뷰 작성하기</button>
-							<c:url var="review" value="review.do?Sort=like"/>
+							<c:url var="review" value="review.do?Sort=no"/>
     					<button class="flex-c-m bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="location.href='${review}'"
 						style="position: relative; left: 56%; width: 7%; height: 20px; font-size: 12px; ">리뷰 게시판</button>
     								<hr>
@@ -1121,10 +1121,7 @@ function qna(){
 							}
 							
 						}
-						function reviewOff() {
-							$('#reviewWrite').css("display","none");
-							scrollX.className ='';
-						}
+						
 						
 						function ajaxFileUpload(url, type, dataType, data, success, error){
 							$.ajax({
@@ -1152,12 +1149,20 @@ function qna(){
 						function reviewWrite(){
 							var form = new FormData(document.getElementById('reviewInsertForm'));
 							ajaxFileUpload('detailReviewInsert.do','post','json',form,function(data){
-								reviewOff();
-							},function(error){
-								alert("에러가 발생했습니다. 관리자에게 문의해주세요.");
+								if(data.status =="success"){
+									reviewOff();
+								}else if(data.status =="fail"){
+									swal(data.message);
+								}
+								
 							})
   						}
 						
+						
+						function reviewOff() {
+							$('#reviewWrite').css("display","none");
+							scrollX.className ='';
+						}
 						</script>			
 									
 									

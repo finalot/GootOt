@@ -132,5 +132,12 @@ public interface MainService {
 
 	int getOrdNo(ReviewCheck rc);
 
+	int getRvNo(ReviewCheck rc);
+
+	int detailReviewPhotoInsert(DetailReview dr);
+	int detailReviewPhotoInsert2(DetailReview dr);
+
+	int updateReviewCount(DetailReview dr);
+
 
 }

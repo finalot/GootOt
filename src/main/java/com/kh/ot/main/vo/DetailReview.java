@@ -14,6 +14,32 @@ public class DetailReview {
 	private int prdtNo;
 	private List<MultipartFile> file;
 	private String fileName;
+	private String fileName2;
+	private int rvNo;
+	public int getRvNo() {
+		return rvNo;
+	}
+
+
+
+
+	public void setRvNo(int rvNo) {
+		this.rvNo = rvNo;
+	}
+
+
+
+
+	public String getFileName2() {
+		return fileName2;
+	}
+
+
+
+
+	public void setFileName2(String fileName2) {
+		this.fileName2 = fileName2;
+	}
 	private int ordNo;
 	
 	public int getOrdNo() {
@@ -80,17 +106,20 @@ public class DetailReview {
 
 
 
-	@Override
-	public String toString() {
-		return "DetailReview [rvInfo=" + rvInfo + ", rvHeight=" + rvHeight + ", rvWeight=" + rvWeight + ", rvPoint="
-				+ rvPoint + ", rvColor=" + rvColor + ", rvSize=" + rvSize + ", prdtNo=" + prdtNo + ", file=" + file
-				+ ", memNo=" + memNo + "]";
-	}
-
 
 
 
 	
+
+
+	@Override
+	public String toString() {
+		return "DetailReview [rvInfo=" + rvInfo + ", rvHeight=" + rvHeight + ", rvWeight=" + rvWeight + ", rvPoint="
+				+ rvPoint + ", rvColor=" + rvColor + ", rvSize=" + rvSize + ", prdtNo=" + prdtNo + ", file=" + file
+				+ ", fileName=" + fileName + ", ordNo=" + ordNo + ", memNo=" + memNo + "]";
+	}
+
+
 
 
 	public DetailReview() {
