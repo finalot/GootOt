@@ -178,6 +178,13 @@ public class ReviewDao {
 		return (ArrayList)sqlSession.selectList("reviewMapper.DateSort");
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 우예진
+	 * @내용    : 키 정렬
+	 * @param optionHeight
+	 * @return
+	 */
 	public ArrayList<Review> selectCheckSort(int optionHeight) {
 		
 		if(optionHeight==1) {
@@ -192,6 +199,38 @@ public class ReviewDao {
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort5");			
 		} else {
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort6");			
+		}
+	}
+
+	public ArrayList<Review> selectWeightSort(int optionWeight) {
+		if(optionWeight==7) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort7");
+		} else if(optionWeight==8) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort8");			
+		} else if(optionWeight==9) {			
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort9");
+		} else if(optionWeight==10) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort10");			
+		} else if(optionWeight==11) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort11");			
+		} else {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort12");			
+		}
+	}
+
+	public ArrayList<Review> selectSizeSort(int optionSize) {
+		if(optionSize==13) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort13");
+		} else if(optionSize==14) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort14");			
+		} else if(optionSize==15) {			
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort15");
+		} else if(optionSize==16) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort16");			
+		} else if(optionSize==17) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort17");			
+		} else {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort18");			
 		}
 	}
 	
