@@ -20,6 +20,7 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.main.vo.Wish;
+import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
 import com.kh.ot.main.vo.MaindownCategory;
 import com.kh.ot.main.vo.MainupCategory;
@@ -157,6 +158,14 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public ArrayList<Board> selectQnaList(MainPageInfo2 mainPi2, int product_detail) {
 		return mainDao.selectQnaList(mainPi2,product_detail);
+	}
+	@Override
+	public ArrayList<productWith> selectWithList(int product_detail) {
+		return mainDao.selectWithList(product_detail);
+	}
+	@Override
+	public Product selectDetailListp(int with) {
+		return mainDao.selectDetailListp(with);
 	}
 
 	
