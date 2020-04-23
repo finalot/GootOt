@@ -422,4 +422,16 @@ public class adminDao {
 	public int cancellPoint(Member m) {
 		return sqlSession.update("adminMapper.cancellPoint",m);
 	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 문태환
+	 * @내용 	: 반품 업데이트
+	 * @param r
+	 * @return
+	 */
+	public int ReturnUpdate(Return r) {
+		return sqlSession.update("adminMapper.ReturnUpdate",r);
+	}
 }

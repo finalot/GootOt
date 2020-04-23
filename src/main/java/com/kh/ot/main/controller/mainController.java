@@ -21,6 +21,7 @@ import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.common.MainPagination;
 import com.kh.ot.common.MainPagination2;
 import com.kh.ot.main.service.MainService;
+import com.kh.ot.main.vo.ListCount;
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.MainSearchCondition;
@@ -30,6 +31,7 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.main.vo.Wish;
+import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
 import com.kh.ot.member.vo.Member;
 
@@ -129,17 +131,74 @@ public class mainController {
 			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
 		
 		
+		ListCount lcount = new ListCount();
 		int listCount = mainService.getQnaListCount(product_detail);
 		System.out.println(listCount);
-		mv.addObject("listCount", listCount);
+		
+		lcount.setListCount(listCount);
+		
 		MainPageInfo2 mainPi2 = MainPagination2.getPageInfo(currentPage, listCount);
+		ArrayList<productWith> ppwlist = mainService.selectWithList(product_detail);
+		
+		ArrayList<Product> plist = new ArrayList<>();
+		
+		for(int i =0; i<ppwlist.size();i++){
+			Product pp = new Product();
+			if(ppwlist.get(i).getWith1() != 0) {
+				pp =mainService.selectDetailListp(ppwlist.get(i).getWith1());
+				plist.add(pp);
+				
+				if(ppwlist.get(i).getWith2() != 0) {
+					pp =mainService.selectDetailListp(ppwlist.get(i).getWith2());
+					plist.add(pp);
+				
+					if(ppwlist.get(i).getWith3() != 0) {
+						pp =mainService.selectDetailListp(ppwlist.get(i).getWith3());
+						plist.add(pp);
+					
+						if(ppwlist.get(i).getWith4() != 0) {
+							pp =mainService.selectDetailListp(ppwlist.get(i).getWith4());
+							plist.add(pp);
+						
+							if(ppwlist.get(i).getWith5() != 0) {
+								pp =mainService.selectDetailListp(ppwlist.get(i).getWith5());
+								plist.add(pp);
+							
+								if(ppwlist.get(i).getWith6() != 0) {
+									pp =mainService.selectDetailListp(ppwlist.get(i).getWith6());
+									plist.add(pp);
+								
+									if(ppwlist.get(i).getWith7() != 0) {
+										pp =mainService.selectDetailListp(ppwlist.get(i).getWith7());
+										plist.add(pp);
+									
+										if(ppwlist.get(i).getWith8() != 0) {
+											pp =mainService.selectDetailListp(ppwlist.get(i).getWith8());
+											plist.add(pp);
+										
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			
+			}
+		}
+		
+		
 		
 		ArrayList<Product> pdlist = mainService.selectDetailList(product_detail);
+		
 		ArrayList<Product_opt> polist = mainService.selectOptionList(product_detail);
 		ArrayList<Product_opt> poolist2 = mainService.selectOptionList33(product_detail);
 		ArrayList<Board> blist = mainService.selectQnaList(mainPi2,product_detail);
 		ArrayList<Product_color> pclist = mainService.selectColorList2();
 		
+		
+		mv.addObject("lcount", lcount);
+		mv.addObject("plist", plist);
 		mv.addObject("mainPi2", mainPi2);
 		mv.addObject("pdlist", pdlist);
 		mv.addObject("blist", blist);

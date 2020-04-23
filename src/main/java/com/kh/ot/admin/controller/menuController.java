@@ -1560,6 +1560,40 @@ public class menuController {
 		
 	}
 	
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 문태환
+	 * @내용 	: 반품신청 업데이트
+	 * @param reNo
+	 * @param content
+	 * @param realCheck
+	 * @param reMent
+	 * @param reStatus
+	 * @return
+	 */
+	@RequestMapping("ReturnUpdate.ad")
+	public String ReturnUpdate(int reNo,String content,String realCheck,String reMent,String reStatus,String productCheck) {
+		
+		Return r = new Return();
+		r.setReNo(reNo);
+		r.setContent(content);
+		r.setReCheck(productCheck);
+		r.setReReal(realCheck);
+		r.setReStatus(reStatus);
+		r.setReMent(reMent);
+
+		System.out.println(content);
+		
+		int result = adService.ReturnUpdate(r);
+		
+		if(result > 0) {
+			return "redirect:productReturn_list.ad";
+		}else {
+			return "에러다";
+		}
+		
+	}
+	
 
 	
 

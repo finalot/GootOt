@@ -20,6 +20,7 @@ import com.kh.ot.admin.servie.adminService;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
+import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.common.Pagination;
 import com.kh.ot.main.vo.Product_opt;
@@ -31,6 +32,7 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.mypage.vo.WishArr;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -840,6 +842,37 @@ public class MypageController {
 		}
 	}
 	
+	@RequestMapping("Insertbasket.do")
+	public void Insertbasket(ArrayList<WishArr> wishArr) {
+		System.out.println(wishArr);
+		ArrayList<DIBS> dlist = mpService.selectDlist(wishArr);//product 테이블에서 체크한 항목 가져옴
+		ArrayList<Cart> clist = new ArrayList<Cart>();
+		
+		for(int i=0;i< dlist.size();i++) {
+			Cart c = new Cart();
+			
+			c.setMemNo(dlist.get(i).getMemno());
+			c.setPrdt_no(dlist.get(i).getPrdt_no());
+			c.setPrdt_count(dlist.get(i).getDibs_count());
+			c.setPrdt_color(dlist.get(i).getDibs_color());
+			c.setPrdt_size(dlist.get(i).getDibs_size());
+			c.setPrdt_price(dlist.get(i).getPrdt_price());
+			c.setPrdt_sumprice((dlist.get(i).getDibs_count()*dlist.get(i).getPrdt_price()));
+			
+			clist.add(c);
+		}
+		
+		
+		
+		int result = mpService.insertCartList(clist);
+		
+		
+		
+		
+		
+		
+	}
+	
 	
 	
 	@RequestMapping("AddressDelete.do")
@@ -1017,6 +1050,10 @@ public class MypageController {
 		return "redirect:mList.do";
 	
 	}
+	
+
+	
+	
 }
 	
 	

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
+import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
@@ -18,6 +19,7 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.mypage.vo.WishArr;
 
 @Service("mpService")
 public class MypageServiceImpl implements MypageService{
@@ -252,6 +254,21 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public int selectDelete(int dibsno) {
 		return mpDao.selectDelete(dibsno);
+	}
+
+	@Override
+	public int Insertbasket(ArrayList<DIBS> noArr) {
+		return mpDao.Insertbasket(noArr);
+	}
+
+	@Override
+	public ArrayList<DIBS> selectDlist(ArrayList<WishArr> wishArr) {
+		return mpDao.selectDlist(wishArr);
+	}
+
+	@Override
+	public int insertCartList(ArrayList<Cart> clist) {
+		return mpDao.insertCartList(clist);
 	}
 
 }

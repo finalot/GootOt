@@ -21,6 +21,7 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.main.vo.Wish;
+import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
 
 @Repository("mainDao")
@@ -205,6 +206,14 @@ public class MainDao {
 		RowBounds rowBounds = new RowBounds(offset,mainPi2.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("productMapper.selectQnaList",product_detail,rowBounds);
+	}
+
+	public ArrayList<productWith> selectWithList(int product_detail) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectWithList",product_detail);
+	}
+
+	public Product selectDetailListp(int with) {
+		return sqlSession.selectOne("productMapper.selectDetailListp",with);
 	}
 
 
