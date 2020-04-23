@@ -405,6 +405,16 @@ public class ReviewController extends HttpServlet {
 			gson.toJson(hmap,response.getWriter());
 		}
 		
+		/**
+		 * @작성일  : 2020. 4. 24.
+		 * @작성자  : 우예진
+		 * @내용    : 사이즈 정렬
+		 * @param optionSize
+		 * @param response
+		 * @param session
+		 * @throws JsonIOException
+		 * @throws IOException
+		 */
 		@RequestMapping("SizeSort.do")
 		public void SizeSort(int optionSize, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
 			ArrayList<Review> rlist = new ArrayList<Review>();

@@ -204,6 +204,13 @@ public class ReviewDao {
 		}
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 24.
+	 * @작성자  : 우예진
+	 * @내용    : 몸무게 정렬
+	 * @param optionWeight
+	 * @return
+	 */
 	public ArrayList<Review> selectWeightSort(int optionWeight) {
 		if(optionWeight==7) {
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort7");
@@ -222,6 +229,13 @@ public class ReviewDao {
 		}
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 24.
+	 * @작성자  : 우예진
+	 * @내용    : 사이즈 정렬
+	 * @param optionSize
+	 * @return
+	 */
 	public ArrayList<Review> selectSizeSort(int optionSize) {
 		if(optionSize==13) {
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort13");
