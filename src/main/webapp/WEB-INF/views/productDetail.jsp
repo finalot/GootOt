@@ -1000,7 +1000,7 @@ function qna(){
     </div>
     					<button class="flex-c-m bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="reviewOn();" 
 						style="position: relative; left: 55%; width: 7%; height: 20px; font-size: 12px; float:left;background:#c3b798; ">리뷰 작성하기</button>
-							<c:url var="review" value="review.do"/>
+							<c:url var="review" value="review.do?Sort=like"/>
     					<button class="flex-c-m bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="location.href='${review}'"
 						style="position: relative; left: 56%; width: 7%; height: 20px; font-size: 12px; ">리뷰 게시판</button>
     								<hr>
@@ -3264,7 +3264,7 @@ function qna(){
 			<div class="wrap-slick2">
 				<div class="slick2">
 
-<c:forEach var="pp" items="${plist }">
+<c:forEach var="p" items="${plist }">
 						<!-- 기본프로덕트블록 샘플 -->
 					<div class="item-slick2 p-l-15 p-r-15">
 						<div class="block2">

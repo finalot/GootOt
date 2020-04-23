@@ -147,7 +147,7 @@ public class mainController {
 			if(ppwlist.get(i).getWith1() != 0) {
 				pp =mainService.selectDetailListp(ppwlist.get(i).getWith1());
 				plist.add(pp);
-				
+				System.out.println(pp.getPrdtImagePath());
 				if(ppwlist.get(i).getWith2() != 0) {
 					pp =mainService.selectDetailListp(ppwlist.get(i).getWith2());
 					plist.add(pp);

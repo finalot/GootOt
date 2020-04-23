@@ -140,4 +140,13 @@ public interface ReviewService {
 	 */
 	ArrayList<Review> selectDateSort();
 
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 우예진
+	 * @내용    : 키 정렬
+	 * @param optionHeight
+	 * @return
+	 */
+	ArrayList<Review> selectCheckSort(int optionHeight);
+
 }

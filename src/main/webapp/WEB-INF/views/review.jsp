@@ -965,64 +965,35 @@
               <ul class="review_options_search__values"style="margin-left:30px;">
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="-150" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_0">
+                    <input type="checkbox" name="option_3" id="option_149" value="1" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_0">
                     <label for="review_option_type_3_0">149 cm 이하</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="150-153" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_1">
-                    <label for="review_option_type_3_1">150 - 152 cm</label>
+                    <input type="checkbox" name="option_3" value="2" id="option_150" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_1">
+                    <label for="review_option_type_3_1">150 - 154 cm</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="153-156" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_2">
-                    <label for="review_option_type_3_2">153 - 155 cm</label>
+                    <input type="checkbox" name="option_3" value="3" id="option_155" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_2">
+                    <label for="review_option_type_3_2">155 - 159 cm</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="156-159" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_3">
-                    <label for="review_option_type_3_3">156 - 158 cm</label>
+                    <input type="checkbox" name="option_3" value="4" id="option_160" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_3">
+                    <label for="review_option_type_3_3">160 - 164 cm</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="159-162" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_4">
-                    <label for="review_option_type_3_4">159 - 161 cm</label>
+                    <input type="checkbox" name="option_3" value="5" id="option_165" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_4">
+                    <label for="review_option_type_3_4">165 - 169 cm</label>
+                  </li>
+                  
+                  <li class="review_options_search__value">
+                    <input type="checkbox" name="option_3" value="6" id="option_170" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_4">
+                    <label for="review_option_type_3_5">170 cm 이상</label>
                   </li>
                 
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="162-165" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_5">
-                    <label for="review_option_type_3_5">162 - 164 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="165-168" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_6">
-                    <label for="review_option_type_3_6">165 - 167 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="168-171" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_7">
-                    <label for="review_option_type_3_7">168 - 170 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="171-174" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_8">
-                    <label for="review_option_type_3_8">171 - 173 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="174-177" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_9">
-                    <label for="review_option_type_3_9">174 - 176 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="177-180" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_10">
-                    <label for="review_option_type_3_10">177 - 179 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="180" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_11">
-                    <label for="review_option_type_3_11">180 cm 이상</label>
-                  </li>
                 
               </ul>
             
@@ -1041,74 +1012,36 @@
               <ul class="review_options_search__values"style="margin-left:32px;">
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="-45" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_0">
-                    <label for="review_option_type_4_0">44 kg 이하</label>
+                    <input type="checkbox" name="option_4" value="-39" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_0">
+                    <label for="review_option_type_4_0">39 kg 이하</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="45-48" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_1">
-                    <label for="review_option_type_4_1">45 - 47 kg</label>
+                    <input type="checkbox" name="option_4" value="40-44" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_1">
+                    <label for="review_option_type_4_1">40 - 44 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="48-51" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_2">
-                    <label for="review_option_type_4_2">48 - 50 kg</label>
+                    <input type="checkbox" name="option_4" value="45-49" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_2">
+                    <label for="review_option_type_4_2">45 - 49 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="51-54" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_3">
-                    <label for="review_option_type_4_3">51 - 53 kg</label>
+                    <input type="checkbox" name="option_4" value="50-54" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_3">
+                    <label for="review_option_type_4_3">50 - 54 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="54-57" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_4">
-                    <label for="review_option_type_4_4">54 - 56 kg</label>
+                    <input type="checkbox" name="option_4" value="55-59" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_4">
+                    <label for="review_option_type_4_4">55 - 59 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="57-60" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_5">
-                    <label for="review_option_type_4_5">57 - 59 kg</label>
+                    <input type="checkbox" name="option_4" value="60" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_5">
+                    <label for="review_option_type_4_5">60 kg 이상</label>
                   </li>
                 
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="60-63" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_6">
-                    <label for="review_option_type_4_6">60 - 62 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="63-66" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_7">
-                    <label for="review_option_type_4_7">63 - 65 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="66-69" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_8">
-                    <label for="review_option_type_4_8">66 - 68 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="69-72" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_9">
-                    <label for="review_option_type_4_9">69 - 71 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="72-75" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_10">
-                    <label for="review_option_type_4_10">72 - 74 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="75-78" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_11">
-                    <label for="review_option_type_4_11">75 - 77 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="78-81" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_12">
-                    <label for="review_option_type_4_12">78 - 80 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="81" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_13">
-                    <label for="review_option_type_4_13">81 kg 이상</label>
-                  </li>
+               
                 
               </ul>
             
@@ -2397,7 +2330,74 @@
 		 
 	}
 	</script>
-<!-- 검색용 스크립트 -->
+<!-- 체크박스 스크립트 -->
+	<script>
+	  $(".checkbox-review-option-search").click(function() {
+			var optionHeightArr=document.getElementsByName('option_3');
+			var optionHeight = 0;
+			
+			for(var i=0; i<optionHeightArr.length;i++) {
+				if(optionHeightArr[i].checked==true){
+					optionHeight = optionHeightArr[i].value;
+				}
+			}
+			
+			console.log(optionHeight);
+			
+			$.ajax({
+				url : "checkSort.do",
+				data : { optionHeight : optionHeight},
+				dataType:"json",
+				success : function(data) {
+					 $('#review_list').children('li').remove();
+					 for(var i=0;i<data.rlist.length;i++) {
+						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="-webkit-box-shadow: 0 4px 6px -6px #222;-moz-box-shadow: 0 4px 6px -6px #222; box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 385px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">'+
+										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
+										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
+										  '<div class="photo_review_thumbnail__thumbnail_container">'+
+										  '<ul>'+
+										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
+										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '</li>'+
+										  '</ul>'+
+										  '<div class="photo_review_thumbnail__review_info">'+
+										  '<div class="photo_review_thumbnail__media_count_indicator photo_review_thumbnail__media_count_indicator--total_count_1">'+
+										  '<div class="photo_review_thumbnail__media_count_indicator_dot"></div>'+
+										  '</div></div></div>'+
+										  '<div style="border-radius: 2%; width: 90%; margin-left: 5%;"class="photo_review_thumbnail__review_author_info">'+
+										  '<div style="margin-top: 2%; border-radius: 2%;" class="photo_review_thumbnail__review_title js-translate-review-message">'+
+										  ''+data.rlist[i].rvInfo+'</div>'+
+								          '<br>'+
+										  '<div style="margin-top: -2%; color: gray;"class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">'+
+										  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
+										  '<strong>'+data.rlist[i].memName+'</strong>'+
+										  '</div>'+
+									      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+										  '<hr>'+
+										  '</div>'+
+										  '</div>'+
+										  '</div>'+
+									      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
+										  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
+										  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+										  '</div>'+
+										  '<div class="reviews_index_gallery_review__review_product_info">'+
+										  '<div class="reviews_index_gallery_review__product_info_title">'+
+										  ''+data.rlist[i].prdtName+'</div>'+
+										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
+										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
+										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+								          '</div></div></div></li>')
+					 }
+						},error:function() {
+							alert("에러임에러임");
+					}
+		});
+	  
+	});
+	  </script>
 
 
 	

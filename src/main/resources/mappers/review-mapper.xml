@@ -152,5 +152,68 @@
           JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
           ORDER BY RE.RV_DATE DESC
  	</select>
+ 	
+ 	<select id="selectCheckSort1" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_HEIGHT <= 149
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort2" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_HEIGHT BETWEEN 150 AND 155  
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort3" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_HEIGHT BETWEEN 155 AND 160
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort4" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_HEIGHT BETWEEN 160 AND 165
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort5" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_HEIGHT BETWEEN 165 AND 170
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort6" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_HEIGHT >= 170
+        ]]>
+ 	</select>
+ 	
+ 
+ 	
  
  </mapper>
