@@ -197,8 +197,10 @@ public class ReviewDao {
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort4");			
 		} else if(optionHeight==5) {
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort5");			
-		} else {
+		} else if(optionHeight==6){
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort6");			
+		}else {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList");
 		}
 	}
 
@@ -213,8 +215,10 @@ public class ReviewDao {
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort10");			
 		} else if(optionWeight==11) {
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort11");			
-		} else {
+		} else if(optionWeight==12){
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort12");			
+		}else {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList");
 		}
 	}
 
@@ -229,8 +233,10 @@ public class ReviewDao {
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort16");			
 		} else if(optionSize==17) {
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort17");			
-		} else {
+		} else if(optionSize==18){
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort18");			
+		}else {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList");
 		}
 	}
 	
