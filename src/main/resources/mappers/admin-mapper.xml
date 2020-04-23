@@ -93,6 +93,7 @@
 			<result property="reCheck" column="RE_CHECK"/>
 			<result property="reReal" column="RE_REAL"/>
 			<result property="reMent" column="RE_MENT"/>
+			<result property="reStatus" column="RE_STATUS"/>
 			<result property="memPhone" column="MEM_PHONE"/>
 			<result property="memCode" column="MEM_CODE"/>
 			<result property="memId" column="MEM_ID"/>
@@ -329,7 +330,7 @@ WHERE O.ORD_STATUS = 'D'
 
 <select id="ReturnDetail"  parameterType="Return" resultMap="ReturnResultMap2">
 SELECT RE.RE_NO,RE.QNA_DATE,RE.RE_NAME,RE.RE_TITLE,RE.RE_CONTENT,RE.ORD_CODE,
-	RE.RE_REASON,RE.RE_CHECK,RE.RE_REAL,RE.RE_MENT,
+	RE.RE_REASON,RE.RE_CHECK,RE.RE_REAL,RE.RE_MENT,RE.RE_STATUS,
 	M.MEM_PHONE,M.MEM_ID,M.MEM_EMAIL,RE.MEM_CODE,
 	O.ORD_ADDRESS,O.ORD_RECEIVER,O.PRDT_NO,O.ORD_SIZE,O.ORD_COLOR,O.ORD_DATE,
 	P.PRDT_NAME,P.PRDT_PRICE,PA.PAY_POINT,PA.PAY_MONEY,PA.PAY_CATEGORY,PA.PAY_YN,
@@ -363,6 +364,12 @@ SELECT RE.RE_NO,RE.QNA_DATE,RE.RE_NAME,RE.RE_TITLE,RE.RE_CONTENT,RE.ORD_CODE,
              FROM MEMBER
              WHERE MEM_NO=#{memNo}) - #{mem_point}
 			WHERE MEM_NO=#{memNo}
+</update>
+
+<update id="ReturnUpdate" parameterType="Return">
+	UPDATE RETURN
+	SET RE_CONTENT=#{content},RE_CHECK=#{reCheck},RE_REAL=#{reReal},RE_STATUS=#{reStatus},RE_MENT=#{reMent}
+	WHERE RE_NO=#{reNo}
 </update>
 
 </mapper>

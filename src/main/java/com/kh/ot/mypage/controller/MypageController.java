@@ -971,6 +971,10 @@ public class MypageController {
 		return "redirect:mList.do";
 	
 	}
+	
+
+	
+	
 }
 	
 	

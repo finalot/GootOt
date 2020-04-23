@@ -119,6 +119,7 @@ color: red;
 }
 
 </style>
+
 <body class="animsition" style="background: #f3f3f3;">
 	
 	
@@ -315,11 +316,11 @@ color: red;
       
         </div>
 </div>
-<form id="boardWriteForm" name="" action="/exec/front/Board/write/3001" method="post" target="_self" enctype="multipart/form-data">
-		<input id="board_no" name="board_no" value="3001" type="hidden">
-		<input id="product_no" name="product_no" value="0" type="hidden">
-		<input id="move_write_after" name="move_write_after" type="hidden">
-		<input id="cate_no" name="cate_no" value="" type="hidden">
+<form id="boardWriteForm">
+		<input id="reNo" name="reNo" value="${re.reNo} " type="hidden">
+	<%--<input id="product_no" name="reName" value="${re.reName}" type="hidden"> --%>
+	<%--<input id="move_write_after" name="memPhone" vale="${re.memPhone }" type="hidden"> --%>
+		<%-- <input id="cate_no" name="memId" value="${re.memId }" type="hidden"> --%>
 		<input id="bUsePassword" name="bUsePassword" value="" type="hidden">
 		<input id="order_id" name="order_id" value="" type="hidden">
 		<input id="is_post_checked" name="is_post_checked" value="" type="hidden">
@@ -362,17 +363,17 @@ color: red;
 		<th scope="row">Title</th>
            <td><span>${re.reTitle }</span>
 		   </td>
+		   
     </tr>
-    
-    
 	<td colspan="2" class="clear">           
-	<input type="hidden" value="${re.content }" id="reContent">
+	
+	<input type="hidden" value="${re.content}"  id="reContent">
             <script type="text/javascript" src="//editor.cafe24.com/js/nneditor.js?c=ko"></script>
             <style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";		</style>		<script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
             <script type="text/javascript">
             var reContent = $('#reContent').val();
             NN.Config.instanceID = "content";
-            NN.Config.value = reContent;
+            NN.Config.value =reContent;
             NN.Config.toolbarType = "simple";
                 
                 
@@ -454,20 +455,30 @@ color: red;
   			<tr>
   				<th><span>*</span> 제품수령여부 </th>
   				<td>
-  				<label for="Y" style="margin-right: 2%">수령</label><input style="margin-right: 2%;" type="radio" class="product-check" name="product-check" id="Y"value="Y">
+  				<c:if test="${re.reCheck == 'Y' }">
+  				<label for="Y" style="margin-right: 2%">수령</label><input style="margin-right: 2%;" type="radio" class="product-check" name="product-check" id="Y"value="Y" checked>
   				<label for="N" style="margin-right: 2%">미수령</label><input type="radio" name="product-check" class="product-check" id="N"value="N">
+  				</c:if>
+  				<c:if test="${re.reCheck == 'N' }">
+  				<label for="Y" style="margin-right: 2%">수령</label><input style="margin-right: 2%;" type="radio" class="product-check" name="product-check" id="Y"value="Y" >
+  				<label for="N" style="margin-right: 2%">미수령</label><input type="radio" name="product-check" class="product-check" id="N"value="N" checked>
+  				</c:if>
+  					<c:if test="${empty re.reCheck }">
+  				<label for="Y" style="margin-right: 2%">수령</label><input style="margin-right: 2%;" type="radio" class="product-check" name="product-check" id="Y"value="Y" >
+  				<label for="N" style="margin-right: 2%">미수령</label><input type="radio" name="product-check" class="product-check" id="N"value="N" >
+  				</c:if>
+  				
   				</td>
   			</tr>
   			<tr>
   				<th><span>*</span> 실제품상태 </th>
   				<td>
-  				<select >
+  				<select id="realCheck">
   					<option value="정상">정상</option>
   					<option value="손상">손상</option>
   					<option value="오염">오염</option>
   					<option value="불량">불량</option>
   				</select>
-  				<button style="margin-left:10px;background: black;color: white; border-radius: 10px;width: 90px;height: 30px;">검수등록</button>
   				</td>
   			</tr>
   			
@@ -514,14 +525,24 @@ color: red;
   		</tr>
   		<tr>
   			<th><span>*</span> 반품 승인/반려 메모</th>
-  			<td><input type="text" style="border: 1px solid;margin-right: 10px"><button style="background: black;color: white; border-radius: 10px;width: 90px;height: 30px;">메모저장</button></td>
+  			<td><input id="reMent" type="text"  value="${re.reMent }" style="border: 1px solid;margin-right: 10px"></td>
   		</tr>
   	</table>
   	</div>
   		</div>
   	<div align="right" style="margin-top: 5%;margin-bottom: 5%;margin-right: 5%;">
+  	<c:if test="${re.reStatus =='N'}">
   	<button id="return-ok" style="background: black;color: white; border-radius: 10px;width:90px;height: 30px;margin-right: 2%;">승인</button>
-  	<button style="background: black;color: white; border-radius: 10px;width:90px;height: 30px;">반려</button>
+  	<button id="return-hold" style="background: black;color: white; border-radius: 10px;width:90px;height: 30px;">반려</button>
+  	</c:if>
+  	<c:if test="${re.reStatus =='H'}">
+  	<button id="return-ok" style="background: black;color: white; border-radius: 10px;width:90px;height: 30px;margin-right: 2%;">승인</button>
+  	</c:if>
+  	<c:if test="${re.reStatus =='Y'}">
+  	<button id="return-cancell" style="background: black;color: white; border-radius: 10px;width:90px;height: 30px;margin-right: 2%;">승인취소</button>
+  	</c:if>
+  	
+  	
   	</div>	
 	
     <!-- Jquery JS-->
@@ -551,26 +572,87 @@ color: red;
    <div class="page-wrapper">
 </div>
 <script>
-$('#return-ok').click(function(){
 	
+	console.log("${re.content}");
+	
+var firstnum = document.getElementById('realCheck');
+
+	for(var i=0;  i < 4;i++){
+		if(firstnum.children[i].value == '${re.reReal}'){
+   		firstnum.children[i].selected = true;
+	}
+	}
+	
+
+
+$('#return-ok').click(function(){
 		var productCheckArr = document.getElementsByName('product-check');
-			
+		var 	productCheck = "";
 		for(var i=0;i<productCheckArr.length;i++){
 			if(productCheckArr[i].checked==true){
 				productCheck = productCheckArr[i].value;
 			}
 		}
-			console.log(productCheck);
-		
+	
 	if($('#N').prop('checked')==true){
 		alert('상품 미수령시 반품승인을 할수 없습니다!');
 	}else if($('#Y').prop('checked')==true){
-		alert('제출');
+		var reNo = $('#reNo').val();
+		var content = document.getElementsByName('content').value;
+		var realCheck = $('#realCheck').val();
+		var reMent = $('#reMent').val();
+		var reStatus = "Y";	
+		location.href="ReturnUpdate.ad?reNo="+reNo+"&content="+content[0].value+"&realCheck="+realCheck+"&reMent="+reMent+"&reStatus="+reStatus+"&productCheck="+productCheck;
 	}
+	
+	
 	else if($('.product-check').prop('checked')==false){
 		alert('상품수령 여부를 확인하세요');
 	}
 });
+
+$('#return-cancell').click(function(){
+	var productCheckArr = document.getElementsByName('product-check');
+	var 	productCheck = "";
+	for(var i=0;i<productCheckArr.length;i++){
+		if(productCheckArr[i].checked==true){
+			productCheck = productCheckArr[i].value;
+		}
+	}
+
+
+	var reNo = $('#reNo').val();
+	var content = document.getElementsByName('content')
+	var realCheck = $('#realCheck').val();
+	var reMent = $('#reMent').val();
+	var reStatus = "N";	
+	location.href="ReturnUpdate.ad?reNo="+reNo+"&content="+content[0].value+"&realCheck="+realCheck+"&reMent="+reMent+"&reStatus="+reStatus+"&productCheck="+productCheck;
+
+});
+
+$('#return-hold').click(function(){
+	var productCheckArr = document.getElementsByName('product-check');
+	var 	productCheck = "";
+	for(var i=0;i<productCheckArr.length;i++){
+		if(productCheckArr[i].checked==true){
+			productCheck = productCheckArr[i].value;
+		}
+	}
+
+
+	var reNo = $('#reNo').val();
+	var content = document.getElementsByName('content')
+	var realCheck = $('#realCheck').val();
+	var reMent = $('#reMent').val();
+	var reStatus = "H";	
+	location.href="ReturnUpdate.ad?reNo="+reNo+"&content="+content[0].value+"&realCheck="+realCheck+"&reMent="+reMent+"&reStatus="+reStatus+"&productCheck="+productCheck;
+	
+	
+});
+
+
+
+
 $('#pay-calcel').click(function(){
 	
 	if(confirm('취소 하시겠습니까?') ==true){
@@ -593,12 +675,8 @@ $('#pay-calcel').click(function(){
 				}
 		});
 		
-		
-		
-		
 	}
 })
-
 </script>
 
 

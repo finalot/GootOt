@@ -254,4 +254,10 @@ public class adminServiceImpl implements adminService{
 			return adDao.cancellPoint(m);
 		}
 
+
+		@Override
+		public int ReturnUpdate(Return r) {
+			return adDao.ReturnUpdate(r);
+		}
+
 }

@@ -11,8 +11,8 @@ public class Return {
 	private String reTitle; //작성제목
 	private String reName;//작성자
 	private String content; //작성내용
-	private String reReason; //반품사유
 	private String reCheck; //수령여부
+	private String reReason; //반품사유
 	private String reReal; //실제상태
 	private Date reDate; //반품신청날짜
 	private String reMent; //반품메모
