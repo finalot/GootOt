@@ -91,4 +91,9 @@ public class ReviewServiceImpl implements ReviewService{
 		return rDao.DateSort();
 	}
 
+	@Override
+	public ArrayList<Review> selectCheckSort(int optionHeight) {
+		return rDao.selectCheckSort(optionHeight);
+	}
+
 }

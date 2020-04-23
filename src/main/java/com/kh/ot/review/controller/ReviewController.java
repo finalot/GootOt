@@ -342,10 +342,36 @@ public class ReviewController extends HttpServlet {
 			
 			gson.toJson(hmap,response.getWriter());
 			
-			
-			
-			
 	
+		}
+		
+		/**
+		 * @작성일  : 2020. 4. 23.
+		 * @작성자  : 우예진
+		 * @내용    : 키 체크박스 값
+		 * @return
+		 * @throws IOException 
+		 * @throws JsonIOException 
+		 */
+		@RequestMapping("checkSort.do") 
+		public void checkSort(int optionHeight, HttpServletResponse response,HttpSession session) throws JsonIOException, IOException {
+			
+			ArrayList<Review> rlist = new ArrayList<Review>();
+			
+			
+			rlist = rService.selectCheckSort(optionHeight);
+		
+			response.setContentType("appliction/json; charset=utf-8");
+			
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			Map hmap = new HashMap();
+			hmap.put("rlist", rlist);
+			
+			
+			gson.toJson(hmap,response.getWriter());
+			
 		}
 		
 }

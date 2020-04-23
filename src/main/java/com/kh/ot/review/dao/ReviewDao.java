@@ -177,5 +177,22 @@ public class ReviewDao {
 	public ArrayList<Review> DateSort() {
 		return (ArrayList)sqlSession.selectList("reviewMapper.DateSort");
 	}
+
+	public ArrayList<Review> selectCheckSort(int optionHeight) {
+		
+		if(optionHeight==1) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort1");
+		} else if(optionHeight==2) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort2");			
+		} else if(optionHeight==3) {			
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort3");
+		} else if(optionHeight==4) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort4");			
+		} else if(optionHeight==5) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort5");			
+		} else {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort6");			
+		}
+	}
 	
 }
