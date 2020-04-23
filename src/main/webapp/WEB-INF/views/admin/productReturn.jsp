@@ -553,6 +553,15 @@ color: red;
 <script>
 $('#return-ok').click(function(){
 	
+		var productCheckArr = document.getElementsByName('product-check');
+			
+		for(var i=0;i<productCheckArr.length;i++){
+			if(productCheckArr[i].checked==true){
+				productCheck = productCheckArr[i].value;
+			}
+		}
+			console.log(productCheck);
+		
 	if($('#N').prop('checked')==true){
 		alert('상품 미수령시 반품승인을 할수 없습니다!');
 	}else if($('#Y').prop('checked')==true){

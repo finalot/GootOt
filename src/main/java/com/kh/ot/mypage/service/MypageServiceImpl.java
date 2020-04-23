@@ -239,4 +239,19 @@ public class MypageServiceImpl implements MypageService{
 		return mpDao.updatewishlist(d);
 	}
 
+	@Override
+	public int deleteWishlist(ArrayList<DIBS> noArr) {
+		return mpDao.deleteWishlist(noArr);
+	}
+
+	@Override
+	public int deletewishAll(int memno) {
+		return mpDao.deletewishAll(memno);
+	}
+
+	@Override
+	public int selectDelete(int dibsno) {
+		return mpDao.selectDelete(dibsno);
+	}
+
 }

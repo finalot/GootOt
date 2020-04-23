@@ -290,4 +290,10 @@ public interface MypageService {
 
 	int updatewishlist(DIBS d);
 
+	int deleteWishlist(ArrayList<DIBS> noArr);
+
+	int deletewishAll(int memno);
+
+	int selectDelete(int dibsno);
+
 }

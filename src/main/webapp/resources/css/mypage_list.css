@@ -431,7 +431,7 @@ input[type=radio], input[type=checkbox] {
 
 .xans-myshop-wishlist td div.option, .xans-myshop-wishlist td ul.option > li {
     color: #707070;
-    line-height: 16px;
+    line-height: 10px;
 }
 
 .ec-base-table.typeList .center td.left strong {
