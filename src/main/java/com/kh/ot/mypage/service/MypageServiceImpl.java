@@ -200,15 +200,15 @@ public class MypageServiceImpl implements MypageService{
 		return mpDao.ReturnInsert(r);
 	}
 
-//	@Override
-//	public int orderCount6(int memNo) {
-//		return mpDao.orderCount6(memNo);
-//	}
-//
-//	@Override
-//	public int orderCount7(int memNo) {
-//		return mpDao.orderCount7(memNo);
-//	}
+	@Override
+	public int orderCount6(int memNo) {
+		return mpDao.orderCount6(memNo);
+	}
+
+	@Override
+	public int orderCount7(int memNo) {
+		return mpDao.orderCount7(memNo);
+	}
 	public int getWishListCount(int memNo) {
 		return mpDao.getWishListCount(memNo);
 	}
@@ -255,11 +255,6 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public int selectDelete(int dibsno) {
 		return mpDao.selectDelete(dibsno);
-	}
-
-	@Override
-	public int Insertbasket(ArrayList<DIBS> noArr) {
-		return mpDao.Insertbasket(noArr);
 	}
 
 	@Override

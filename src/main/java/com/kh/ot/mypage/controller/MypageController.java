@@ -878,7 +878,7 @@ public class MypageController {
 		if(result > -2) {
 			int result2 = mpService.deleteDlist(wish);
 			
-			return "redirect:mWishlist.do";
+			return "redirect:cartbutton.do";
 		}
 		return "에러다";
 	}
