@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
+import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
@@ -21,6 +23,7 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.mypage.vo.WishArr;
 
 @Repository("mpDao")
 public class MypageDao {
@@ -291,6 +294,39 @@ public class MypageDao {
 
 	public int updatewishlist(DIBS d) {
 		return sqlSession.update("mypageMapper.updatewishlist",d);
+	}
+
+	public int deleteWishlist(ArrayList<DIBS> noArr) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("noArr", noArr);
+		return sqlSession.delete("mypageMapper.deletewishlist", map);
+	}
+
+	public int deletewishAll(int memno) {
+		return sqlSession.delete("mypageMapper.deletewishAll", memno);
+	}
+
+	public int selectDelete(int dibsno) {
+		return sqlSession.delete("mypageMapper.selectDelete",dibsno);
+	}
+
+	public int Insertbasket(ArrayList<DIBS> noArr) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public ArrayList<DIBS> selectDlist(ArrayList<WishArr> wishArr) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("wishArr", wishArr);
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectDlist",map);
+	}
+
+	public int insertCartList(ArrayList<Cart> clist) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("clist", clist);
+		
+		return sqlSession.insert("mypageMapper.insertCartList",map);
 	}
 
 

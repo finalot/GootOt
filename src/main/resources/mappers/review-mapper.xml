@@ -136,5 +136,21 @@
  		
  	</update>
  	
+ 	<select id="LikeSort" parameterType="_int" resultMap="ReviewResultSet">
+ 		 SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          ORDER BY RE.RV_LIKE DESC
+ 	
+ 	</select>
+ 	
+ 	<select id="DateSort" parameterType="_int" resultMap="ReviewResultSet">
+ 		 SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          ORDER BY RE.RV_DATE DESC
+ 	</select>
  
  </mapper>

@@ -124,4 +124,20 @@ public interface ReviewService {
 	 */
 	int WarningReply(ReviewReply rp);
 
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰 좋아요순 정렬
+	 * @return
+	 */
+	ArrayList<Review> selectLikeSort();
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 리뷰 최신순 정렬
+	 * @내용    :
+	 * @return
+	 */
+	ArrayList<Review> selectDateSort();
+
 }

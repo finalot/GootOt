@@ -80,18 +80,15 @@
 		<result property="dibs_color" column="DIBS_COLOR"/>
 		<result property="prdt_name" column="PRDT_NAME"/>
 		<result property="prdt_price" column="PRDT_PRICE"/>
-		<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
+		<result property="dibs_sumprice" column="DIBS_SUMPRICE"/>
 		<result property="path" column="PRDT_IMAGE_PATH"/>
 		<result property="image" column="PRDT_IMAGE"/>
 		<result property="dibs_date" column="DIBS_DATE"/>
 		<result property="prdt_color" column="OPT_COLOR"/>
 		<result property="prdt_size" column="OPT_SIZE"/>
+		<result property="dibs_price" column="DIBS_PRICE"/>
 	</resultMap>
 	
-	
-
-
-
 	<select id="PointListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM POINT
@@ -397,13 +394,14 @@
 	</insert>
 		
 	<select id="selectWishList" resultMap="DIBSResultMap">
-	 SELECT *
-     FROM DIBS D
-     JOIN PRDT P
-     ON (D.PRDT_NO = P.PRDT_NO)
-     WHERE MEM_NO=#{memno}
+	 SELECT D.*, P.*, (D.DIBS_COUNT*P.PRDT_PRICE) AS DIBS_PRICE, ((D.DIBS_COUNT*P.PRDT_PRICE)+2500) AS DIBS_SUMPRICE
+	    FROM DIBS D
+	    JOIN PRDT P
+	    ON (D.PRDT_NO = P.PRDT_NO)
+	    WHERE MEM_NO=#{memno}
+	    ORDER BY DIBS_NO DESC
 	</select>
-
+	
 	<select id="selectOptionList1" resultMap="DIBSResultMap">
 	 SELECT PRDT_NO, OPT_COLOR
 	 FROM PRDT_OPT
@@ -439,5 +437,54 @@
 		SET DIBS_COLOR=#{dibs_color}, DIBS_SIZE=#{dibs_size}, DIBS_COUNT=#{dibs_count}
 		WHERE DIBS_NO=#{dibsno}
 	</update>
+	
+	<delete id="deletewishlist" parameterType="java.util.Map">
+		<foreach item="d" collection="noArr" index="index"
+				 separator=";" open="DECLARE BEGIN" close="; END;">
+			 DELETE 
+			 FROM DIBS
+			 WHERE DIBS_NO=#{d.dibsno}
+		 </foreach>
+	</delete>
+	
+	<delete id="deletewishAll" parameterType="DIBS">
+		DELETE
+		FROM DIBS
+		WHERE MEM_NO=#{memno}
+	</delete>
+	
+	<delete id="selectDelete" parameterType="DIBS">
+		DELETE
+		FROM DIBS
+		WHERE DIBS_NO=#{dibsno}
+	</delete>
+	
+	<insert id="Insertbasket" parameterType="DIBS">
+	INSERT INTO CRT
+	VALUES(#{memno}, #{prdt_no}, #{dibs_price}, #{dibs_count}, #{dibs_sumprice}, 
+			#{dibs_color}, #{dibs_size}, CA_SEQ.NEXTVAL)
+	</insert>
+	
+	<select id="selectDlist"  parameterType="java.util.Map" resultMap="DIBSResultMap" >
+			SELECT * 
+			FROM DIBS D
+			JOIN PRDT P ON(D.PRDT_NO = P.PRDT_NO)
+			WHERE D.DIBS_NO IN
+		 <foreach item="w" index="index" collection="wishArr"
+	                      open="(" separator="," close=");">
+	             	#{w.dibsno}
+         </foreach>
+	</select>
+	
+	<insert id="insertCartList" parameterType="java.util.Map">
+		<foreach  item="c" collection="clist"  index="index"
+      		separator=";" open="DECLARE BEGIN" close="; END;" >
+			INSERT INTO CRT
+		 	VALUES(#{c.memno}, #{c.prdt_no}, #{c.dibs_price}, #{c.dibs_count}, #{c.dibs_sumprice}, 
+				#{c.dibs_color}, #{c.dibs_size}, CA_SEQ.NEXTVAL)
+		</foreach>
+	</insert>
+	
+	
 	
 </mapper>

@@ -16,6 +16,7 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.main.vo.Wish;
+import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
 
 public interface MainService {
@@ -118,6 +119,10 @@ public interface MainService {
 	int getQnaListCount(int product_detail);
 
 	ArrayList<Board> selectQnaList(MainPageInfo2 mainPi2, int product_detail);
+
+	ArrayList<productWith> selectWithList(int product_detail);
+
+	Product selectDetailListp(int with);
 
 
 }

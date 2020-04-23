@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,12 +16,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonIOException;
 import com.kh.ot.admin.servie.adminService;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
+import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.common.Pagination;
 import com.kh.ot.main.vo.Product_opt;
@@ -35,6 +32,7 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.mypage.vo.WishArr;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -48,8 +46,11 @@ public class MypageController {
 	
 	@RequestMapping("insertwishlist.do")
 	public String insertwishlist(HttpSession session,
-								int dibsno, int prdt_no, int dibs_count, String dibs_size, String dibs_color) {
+								int prdt_no, int dibs_count, String dibs_size, String dibs_color) {
 		
+		System.out.println("dibs_count : " + dibs_count);
+		System.out.println("dibs_size : " + dibs_size);
+		System.out.println("dibs_color : " + dibs_color);
 		Member m = (Member)session.getAttribute("loginMember");
 		
 		
@@ -73,6 +74,9 @@ public class MypageController {
 	
 	@RequestMapping("updatewishlist.do")
 	public String updatewishlist(int dibsno, int dibs_count, String dibs_size, String dibs_color) {
+		
+		System.out.println("dibsno : " + dibsno);
+		
 		DIBS d = new DIBS();
 		d.setDibs_count(dibs_count);
 		d.setDibs_size(dibs_size);
@@ -87,13 +91,18 @@ public class MypageController {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping("selectDelete.do")
+	public void selectDelete(int dibsno, HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
+		
+		int result = mpService.selectDelete(dibsno);
+		
+		if(result > 0) {
+			out.print("ok");
+		} else {
+			out.print("fail");
+		}
+	}
 	
 	
 	
@@ -146,6 +155,19 @@ public class MypageController {
 		return mv;
 	}
 	
+	@RequestMapping("deletewishAll.do")
+	public void deletewishAll(HttpServletResponse response, int memno) throws IOException {
+		
+		PrintWriter out = response.getWriter();
+				
+		int result = mpService.deletewishAll(memno);
+		
+		if(result > 0) {
+			out.print("ok");
+		} else {
+			out.print("fail");
+		}
+	}
 	
 	
 	
@@ -795,6 +817,63 @@ public class MypageController {
 			return null;
 		}
 	}
+	
+	@RequestMapping("wishlistdelete.do")
+	public void WishListDelete(int[] wishArr, HttpServletResponse response, HttpSession session) throws IOException {
+		
+		PrintWriter out  = response.getWriter();
+		
+		ArrayList<DIBS> noArr = new ArrayList<DIBS>();
+		
+		for(int i=0; i<wishArr.length; i++) {
+			DIBS d = new DIBS();
+			d.setDibsno(wishArr[i]);
+			noArr.add(d);
+			System.out.println("dsadasdas : " +d);
+		}
+		
+		int result = mpService.deleteWishlist(noArr);
+		
+		System.out.println(result);
+		if(result > -2) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+	}
+	
+	@RequestMapping("Insertbasket.do")
+	public void Insertbasket(ArrayList<WishArr> wishArr) {
+		System.out.println(wishArr);
+		ArrayList<DIBS> dlist = mpService.selectDlist(wishArr);//product 테이블에서 체크한 항목 가져옴
+		ArrayList<Cart> clist = new ArrayList<Cart>();
+		
+		for(int i=0;i< dlist.size();i++) {
+			Cart c = new Cart();
+			
+			c.setMemNo(dlist.get(i).getMemno());
+			c.setPrdt_no(dlist.get(i).getPrdt_no());
+			c.setPrdt_count(dlist.get(i).getDibs_count());
+			c.setPrdt_color(dlist.get(i).getDibs_color());
+			c.setPrdt_size(dlist.get(i).getDibs_size());
+			c.setPrdt_price(dlist.get(i).getPrdt_price());
+			c.setPrdt_sumprice((dlist.get(i).getDibs_count()*dlist.get(i).getPrdt_price()));
+			
+			clist.add(c);
+		}
+		
+		
+		
+		int result = mpService.insertCartList(clist);
+		
+		
+		
+		
+		
+		
+	}
+	
+	
 	
 	@RequestMapping("AddressDelete.do")
 	public void AddressDelete(int[] adNokArr,HttpServletResponse response,HttpSession session) throws IOException {

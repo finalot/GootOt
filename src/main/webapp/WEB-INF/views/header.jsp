@@ -167,7 +167,9 @@ font-size: 9px !important;
 					<c:url var="todaymain" value="todaymain.ad"/> 
 					
 					<!-- 기타 버튼 경로설정 -->
-					<c:url var="review" value="review.do"/>
+					<c:url var="review" value="review.do">
+					<c:param name="Sort" value="common"/>
+					</c:url>
 					<c:url var="cartbutton" value="cartbutton.do"/>
 					
 					

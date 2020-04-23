@@ -14,7 +14,8 @@ public class DIBS {
 	private String dibs_color;			// 색상
 	private String prdt_name;			// 제품명
 	private int prdt_price;				// 가격
-	private int prdt_sumprice;			// 총합계
+	private int dibs_price;				// 가격
+	private int dibs_sumprice;			// 총합계
 	private String path; 				// 이미지 경로
 	private String image; 				// 이미지
 	private Date dibs_date;
@@ -29,8 +30,8 @@ public class DIBS {
 
 
 	public DIBS(int dibsno, int memno, int prdt_no, int dibs_count, String dibs_size, String dibs_color,
-			String prdt_name, int prdt_price, int prdt_sumprice, String path, String image, Date dibs_date,
-			String prdt_size, String prdt_color) {
+			String prdt_name, int prdt_price, int dibs_price, int dibs_sumprice, String path, String image,
+			Date dibs_date, String prdt_size, String prdt_color) {
 		super();
 		this.dibsno = dibsno;
 		this.memno = memno;
@@ -40,7 +41,8 @@ public class DIBS {
 		this.dibs_color = dibs_color;
 		this.prdt_name = prdt_name;
 		this.prdt_price = prdt_price;
-		this.prdt_sumprice = prdt_sumprice;
+		this.dibs_price = dibs_price;
+		this.dibs_sumprice = dibs_sumprice;
 		this.path = path;
 		this.image = image;
 		this.dibs_date = dibs_date;
@@ -129,13 +131,23 @@ public class DIBS {
 	}
 
 
-	public int getPrdt_sumprice() {
-		return prdt_sumprice;
+	public int getDibs_price() {
+		return dibs_price;
 	}
 
 
-	public void setPrdt_sumprice(int prdt_sumprice) {
-		this.prdt_sumprice = prdt_sumprice;
+	public void setDibs_price(int dibs_price) {
+		this.dibs_price = dibs_price;
+	}
+
+
+	public int getDibs_sumprice() {
+		return dibs_sumprice;
+	}
+
+
+	public void setDibs_sumprice(int dibs_sumprice) {
+		this.dibs_sumprice = dibs_sumprice;
 	}
 
 
@@ -193,8 +205,9 @@ public class DIBS {
 	public String toString() {
 		return "DIBS [dibsno=" + dibsno + ", memno=" + memno + ", prdt_no=" + prdt_no + ", dibs_count=" + dibs_count
 				+ ", dibs_size=" + dibs_size + ", dibs_color=" + dibs_color + ", prdt_name=" + prdt_name
-				+ ", prdt_price=" + prdt_price + ", prdt_sumprice=" + prdt_sumprice + ", path=" + path + ", image="
-				+ image + ", dibs_date=" + dibs_date + ", prdt_size=" + prdt_size + ", prdt_color=" + prdt_color + "]";
+				+ ", prdt_price=" + prdt_price + ", dibs_price=" + dibs_price + ", dibs_sumprice=" + dibs_sumprice
+				+ ", path=" + path + ", image=" + image + ", dibs_date=" + dibs_date + ", prdt_size=" + prdt_size
+				+ ", prdt_color=" + prdt_color + "]";
 	}
-
-	}
+	
+}
