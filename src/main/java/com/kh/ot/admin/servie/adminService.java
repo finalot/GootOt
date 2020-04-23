@@ -342,5 +342,14 @@ public interface adminService{
 		 */
 		public int ReturnUpdate(Return r);
 
+		/**
+		 * @작성일  : 2020. 4. 23.
+		 * @작성자  : 문태환
+		 * @내용 	: 주분테이블 반품상태 업데이트
+		 * @param reNo
+		 * @return
+		 */
+		public int updateOrdf(Return r);
+
 
 }

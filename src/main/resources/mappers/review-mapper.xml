@@ -213,7 +213,129 @@
         ]]>
  	</select>
  	
+ 	
+ 	<select id="selectWeightSort7" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_WEIGHT <=39
+        ]]>
+ 	</select>
  
+ <select id="selectWeightSort8" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_WEIGHT BETWEEN 40 AND 45
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectWeightSort9" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_WEIGHT BETWEEN 45 AND 50
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectWeightSort10" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_WEIGHT BETWEEN 50 AND 55
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectWeightSort11" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_WEIGHT BETWEEN 55 AND 60
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectWeightSort12" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_WEIGHT >= 60
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort13" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_SIZE = 'XS'
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort14" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_SIZE = 'S'
+        ]]>
+ 	</select>
+ 	
+ 	
+ 	<select id="selectSizeSort15" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_SIZE = 'M'
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort16" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_SIZE = 'L'
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort17" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_SIZE = 'XL'
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort18" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE RV_SIZE = 'F'
+        ]]>
+ 	</select>
+ 
+
  	
  
  </mapper>

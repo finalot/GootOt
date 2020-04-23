@@ -183,4 +183,13 @@ public interface CartService {
 	 */
 	ArrayList<Cart> selectCartList(ArrayList<Cart> list);
 
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 문태환
+	 * @내용 	: 결제후 판매 상품 판매량 올리기
+	 * @param olist
+	 * @return
+	 */
+	int updateProductStock(ArrayList<Ord> olist);
+
 }

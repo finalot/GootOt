@@ -240,4 +240,10 @@ public class CartDao {
 		return (ArrayList)sqlSession.selectList("cartMapper.selectCartList",map);
 	}
 
+	public int updateProductStock(ArrayList<Ord> olist) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		   map.put("olist", olist);
+		return  sqlSession.update("cartMapper.updateProductStock",map);
+	}
+
 }

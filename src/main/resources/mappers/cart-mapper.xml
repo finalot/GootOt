@@ -269,5 +269,14 @@
         </foreach>
 	
 	</select>
-
+	
+	<update id="updateProductStock"  parameterType="java.util.Map">
+				<foreach  item="o" collection="olist"  index="index"
+      	 separator=";" open="DECLARE BEGIN" close="; END;" >
+		UPDATE PRDT
+		SET PRDT_SALE = (SELECT SUM(PRDT_SALE) FROM PRDT
+										WHERE PRDT_NO = #{o.prdt_no})+#{o.ord_count}
+		WHERE PRDT_NO = #{o.prdt_no}								
+	</foreach>
+	</update>
 </mapper>

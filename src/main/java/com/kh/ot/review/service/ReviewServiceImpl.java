@@ -96,4 +96,14 @@ public class ReviewServiceImpl implements ReviewService{
 		return rDao.selectCheckSort(optionHeight);
 	}
 
+	@Override
+	public ArrayList<Review> selectWeightSort(int optionWeight) {
+		return rDao.selectWeightSort(optionWeight);
+	}
+
+	@Override
+	public ArrayList<Review> selectSizeSort(int optionSize) {
+		return rDao.selectSizeSort(optionSize);
+	}
+
 }

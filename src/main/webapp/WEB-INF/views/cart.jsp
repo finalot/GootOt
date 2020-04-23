@@ -103,7 +103,7 @@ margin-right: 3%;
 							<td class="column-3"><font id="pro-price" class="format-money">${c.prdt_price }</font> won</td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
-									<input style="margin-left: 22%;" class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
+									<input style="margin-left: 22%;" class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="${c.prdt_count }">
 								</div>
 							</td>
 							<td class="column-6"><img src="/ot/resources/images/icons/icon-point.png" width="15px;height:15px;"

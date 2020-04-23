@@ -72,7 +72,7 @@ a {
   						<br>
 						<strong class="data ">
 							<a href="${mWishlist}">
-									<span id="xans_myshop_interest_prd_cnt">0개</span>
+									<span id="xans_myshop_interest_prd_cnt">${listCount }개</span>
 							</a>
 						</strong>
 					</li>
@@ -253,51 +253,6 @@ a {
     			</span>
 			</div>
 			</c:if>
-			
-			<script>
-				$('#Insertbasket').click(function(){
-					var wishArr = new Array();
-					var wishCheck = document.getElementsByName('wishCheck');		// 체크박스
-					console.log(wishCheck);
-					var dibsno = document.getElementsByName('dibsno');				// 위시리스트 번호
-					
-					var count = 0;
-					
-					for(var i=0; i<wishCheck.length; i++){
-						if(wishCheck[i].checked == true){
-							wishArr[count] = dibsno[i].value
-							count++;
-						}
-							console.log(wishArr);
-							
-							
-					}
-				location.href="Insertbasket.do?wishArr="+wishArr;
-				});
-				
-		/* 		$.ajax({
-				url:"Insertbasket.do",
-				traditional : true,
-				data : { 'wishArr' : wishArr},
-				success : function(data){
-					if(data =="ok"){
-					location.href="cartbutton.do";
-				}else{
-					alert('삭제실패')
-				}
-			},error : function(){
-				alert('에러다');
-			}
-			}); */
-	/* 	}
-	});
-	 */		
-			
-			</script>
-			
-			
-			
-			
 			
 			<!-- 페이징 처리 -->
 			<c:if test="${ !empty list }">
@@ -667,7 +622,7 @@ a {
 			var color = document.getElementsByClassName("select1")[i].value;
 			var size = document.getElementsByClassName("select2")[i].value;
 			location.href="updatewishlist.do?dibsno="+dibsno+"&prdt_no="+prdt_no+"&dibs_count="+quantity+"&dibs_size="+size+"&dibs_color="+color;
-			alert('관심상품에 변경되었습니다.');
+			alert('관심 상품 옵션이 변경되었습니다.');
 		}
 		
 		  var $pro_wish = $('#pro_wish');
@@ -677,6 +632,26 @@ a {
 		        $('input[name="wishCheck"]').prop('checked', checked);
 
 		    });
+		    
+		$('#Insertbasket').click(function(){
+			var wishArr = new Array();
+			var wishCheck = document.getElementsByName('wishCheck');		// 체크박스
+			console.log(wishCheck);
+			var dibsno = document.getElementsByName('dibsno');				// 위시리스트 번호
+			
+			var count = 0;
+			
+			for(var i=0; i<wishCheck.length; i++){
+				if(wishCheck[i].checked == true) {
+					wishArr[count] = dibsno[i].value
+					count++;
+					}
+					console.log(wishArr);
+				}
+			location.href="Insertbasket.do?wishArr="+wishArr;
+			alert('장바구니에 추가되었습니다.');
+		});
+		    
 		
 		$('.option_close').click(function() {
 			$('.optiondetail').css('display', 'none');

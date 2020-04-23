@@ -865,7 +865,7 @@ function optionDel(){
 </script>
 
 
-
+<%String prdtNo = request.getParameter("product_detail").toString(); %>
 
 
 				<div class="p-b-45">
@@ -1012,61 +1012,62 @@ function qna(){
   -moz-box-shadow: 0 4px 6px -6px #222;
   box-shadow: 0 4px 6px -6px #222;padding: 20px 0px 20px 29px; border-width: 1px; border-style: solid; border-color: rgb(218, 218, 218); border-image: initial; height: 22%; background: white; margin-bottom: 3%;">
 
-									<form action="#">
-										<label>키 : <input type="text" placeholder="필수입력"
-											style="width: 80px; align: center; height: 25px; border: 2px solid lightgray; text-align: center; border-radius: 10px;"
-											maxlength="6">&nbsp;<small>cm</small></label>&nbsp;&nbsp;&nbsp;
+	<form id="reviewInsertForm" action="detailReviewInsert.do" enctype="multipart/form-data">
+		<label>키 : <input type="text"  name="rvHeight" placeholder="필수입력"
+			style="width: 80px; align: center; height: 25px; border: 2px solid lightgray; text-align: center; border-radius: 10px;"
+			maxlength="6">&nbsp;<small>cm</small></label>&nbsp;&nbsp;&nbsp;
 
-										<label>몸무게 : <input type="text" placeholder="필수입력"
-											style="width: 80px; height: 25px; border: 2px solid lightgray; text-align: center; border-radius: 10px;"
-											maxlength="6">&nbsp;<small>kg</small></label>&nbsp;&nbsp;&nbsp;
-											
-										<div style="display:inline-block;width: 100px; height: 25px; border: 2px solid lightgray; 
-										text-align: center; border-radius: 10px;font-size:10px;">
-										<input name="gong" type="radio">공개
-										<input name="gong" type="radio">비공개
-										</div>
-										&nbsp;&nbsp;&nbsp;&nbsp;
-										<label>선택한옵션(컬러) : <select style="background: none;width:80px;">
-												<option>------</option>
-												<option>그레이</option>
-												<option>블랙</option>
-												<option>네이비</option>
-												<option>네온옐로우</option>
-										</select> 
-										</label>
-										
-										<label>선택한옵션(사이즈) : <select style="background: none;width:80px;">
-												<option>------</option>
-												<option>XS</option>
-												<option>S</option>
-												<option>M</option>
-												<option>L</option>
-										</select> 
-										</label>
+		<label>몸무게 : <input type="text" name="rvWeight" placeholder="필수입력"
+			style="width: 80px; height: 25px; border: 2px solid lightgray; text-align: center; border-radius: 10px;"
+			maxlength="6">&nbsp;<small>kg</small></label>&nbsp;&nbsp;&nbsp;
+			<small style="color:gray;">*키/몸무게는 비공개입니다.</small>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<label>선택한옵션(컬러) : <select style="background: none;width:80px;" name="rvColor">
+				<option>------</option>
+				<c:forEach var="poo" items="${ polist }">
+									<option>${poo.optColor}</option>
+									</c:forEach>
+		</select> 
+		</label>
+		
+		<label>선택한옵션(사이즈) : <select style="background: none;width:80px;" name="rvSize">
+				<option>------</option>
+				<c:forEach var="poo" items="${ poolist2 }">
+									<option>${poo.size}</option>
+									</c:forEach>
+		</select> 
+		</label>
+		<label>만족도 : <select style="background: none;width:100px;" name="rvPoint">
+				<option value="0">만족도 선택</option>
+				<option value="1">완전별로</option>
+				<option value="2">별로</option>
+				<option value="3">보통</option>
+				<option value="4">만족</option>
+				<option value="5">매우만족</option>
+		</select> 
+		</label>
 
-										<button  onclick="reviewOff();"
-											style="position: relative; float: right; width: 70px; height: 30px; background: black; border-radius: 9%; margin-right: 15px; color: white;">작성
-											취소</button>
-										<button
-											style="position: relative; float: right; width: 70px; height: 30px; background: #c3b798; border-radius: 9%; margin-right: 15px; color: white;">작성
-											완료</button>
+		<input type="button"  onclick="reviewOff();" value="작성 취소"
+			style="cursor:pointer; position: relative; float: right; width: 70px; height: 30px; background: black; border-radius: 9%; margin-right: 15px; color: white;">
+		<input type="button" onclick="reviewWrite();" value="작성 완료"
+			style="cursor:pointer; position: relative; float: right; width: 70px; height: 30px; background: #c3b798; border-radius: 9%; margin-right: 15px; color: white;">
 
-										<br>
-										<br> <input type="file"
-											style="background: #c3b798; border: 2px solid lightgray">&nbsp;<input
-											type="file"
-											style="background: #c3b798; border: 2px solid lightgray">
-										<br>
-										<br>
-										<br> <label>리뷰 내용 <small>(200자 이내)</small><br>
-										<textarea maxlength="200"
-												style="border: 2px solid lightgray; border-image: initial; width: 700%; height: 270px; resize: none; font-size: 15px;"></textarea></label>
-									</form>
+		<br>
+		<br> <input type="file" name="file"
+			style="background: #c3b798; border: 2px solid lightgray">&nbsp;
+			<input type="file" name="file"
+			style="background: #c3b798; border: 2px solid lightgray">
+		<br>
+		<input type="hidden" value="<%=prdtNo%>" name="prdtNo">
+		<br>
+		<br> <label>리뷰 내용 <small>(200자 이내)</small><br>
+		<textarea maxlength="200" name="rvInfo"
+				style="border: 2px solid lightgray; border-image: initial; width: 700%; height: 270px; resize: none; font-size: 15px;"></textarea></label>
+	</form>
 
-								</div>
-								
-								<hr id="scrollX">
+</div>
+
+<hr id="scrollX">
 
 <style>
 .moveOn{
@@ -1085,20 +1086,77 @@ function qna(){
  
 </style>
 
+
+
 								<!-- 리뷰작성 끝 -->
 									
 									
 						<script>
 						var scrollX=document.getElementById('scrollX');
-						
+						var prdtNo = '<%=prdtNo %>';
 						function reviewOn() {
-							$('#reviewWrite').css("display","block");
-							scrollX.className ='moveOn';
+							if("${loginMember.memId}"==""){
+								alert('로그인후 이용해주세요');
+								location.href="loginView.do";
+								
+							}else{
+								
+							$.ajax({
+								url:"DetailReviewWrite.do",
+								data :{
+									prdtNo : prdtNo
+								},
+								dataType : 'json',
+								type : 'get',
+								success:function(data){
+									if(data.status =="success"){
+										$('#reviewWrite').css("display","block");
+										scrollX.className ='moveOn'; 
+									}else{
+										swal(data.message);
+									}
+								}
+							});
+							
+							}
+							
 						}
 						function reviewOff() {
 							$('#reviewWrite').css("display","none");
 							scrollX.className ='';
 						}
+						
+						function ajaxFileUpload(url, type, dataType, data, success, error){
+							$.ajax({
+								url : url,
+								type : type,
+								dataType : dataType,
+								data : data,
+								processData : false,
+								contentType : false,
+								success : success,
+								error : error
+							})
+						}
+						function ajax(url, type, dataType, data, success, error){
+							$.ajax({
+								url : url,
+								type : type,
+								dataType : dataType,
+								data : data,
+								success : success,
+								error : error
+							})
+						}
+						
+						function reviewWrite(){
+							var form = new FormData(document.getElementById('reviewInsertForm'));
+							ajaxFileUpload('detailReviewInsert.do','post','json',form,function(data){
+								reviewOff();
+							},function(error){
+								alert("에러가 발생했습니다. 관리자에게 문의해주세요.");
+							})
+  						}
 						
 						</script>			
 									
@@ -1628,63 +1686,33 @@ function qna(){
               <ul class="review_options_search__values"style="margin-left:10px;">
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="-150" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_0">
+                    <input type="checkbox" name="option_3" id="option_149" value="1" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_0">
                     <label for="review_option_type_3_0">149 cm 이하</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="150-153" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_1">
-                    <label for="review_option_type_3_1">150 - 152 cm</label>
+                    <input type="checkbox" name="option_3" value="2" id="option_150" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_1">
+                    <label for="review_option_type_3_1">150 - 154 cm</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="153-156" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_2">
-                    <label for="review_option_type_3_2">153 - 155 cm</label>
+                    <input type="checkbox" name="option_3" value="3" id="option_155" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_2">
+                    <label for="review_option_type_3_2">155 - 159 cm</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="156-159" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_3">
-                    <label for="review_option_type_3_3">156 - 158 cm</label>
+                    <input type="checkbox" name="option_3" value="4" id="option_160" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_3">
+                    <label for="review_option_type_3_3">160 - 164 cm</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="159-162" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_4">
-                    <label for="review_option_type_3_4">159 - 161 cm</label>
+                    <input type="checkbox" name="option_3" value="5" id="option_165" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_4">
+                    <label for="review_option_type_3_4">165 - 169 cm</label>
                   </li>
-                
+                  
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="162-165" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_5">
-                    <label for="review_option_type_3_5">162 - 164 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="165-168" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_6">
-                    <label for="review_option_type_3_6">165 - 167 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="168-171" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_7">
-                    <label for="review_option_type_3_7">168 - 170 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="171-174" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_8">
-                    <label for="review_option_type_3_8">171 - 173 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="174-177" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_9">
-                    <label for="review_option_type_3_9">174 - 176 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="177-180" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_10">
-                    <label for="review_option_type_3_10">177 - 179 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="180" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_11">
-                    <label for="review_option_type_3_11">180 cm 이상</label>
+                    <input type="checkbox" name="option_3" value="6" id="option_170" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_4">
+                    <label for="review_option_type_3_5">170 cm 이상</label>
                   </li>
                 
               </ul>
@@ -1704,73 +1732,33 @@ function qna(){
               <ul class="review_options_search__values"style="margin-left:11px;">
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="-45" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_0">
-                    <label for="review_option_type_4_0">44 kg 이하</label>
+                    <input type="checkbox" name="option_4" value="-39" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_0">
+                    <label for="review_option_type_4_0">39 kg 이하</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="45-48" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_1">
-                    <label for="review_option_type_4_1">45 - 47 kg</label>
+                    <input type="checkbox" name="option_4" value="40-44" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_1">
+                    <label for="review_option_type_4_1">40 - 44 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="48-51" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_2">
-                    <label for="review_option_type_4_2">48 - 50 kg</label>
+                    <input type="checkbox" name="option_4" value="45-49" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_2">
+                    <label for="review_option_type_4_2">45 - 49 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="51-54" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_3">
-                    <label for="review_option_type_4_3">51 - 53 kg</label>
+                    <input type="checkbox" name="option_4" value="50-54" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_3">
+                    <label for="review_option_type_4_3">50 - 54 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="54-57" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_4">
-                    <label for="review_option_type_4_4">54 - 56 kg</label>
+                    <input type="checkbox" name="option_4" value="55-59" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_4">
+                    <label for="review_option_type_4_4">55 - 59 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="57-60" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_5">
-                    <label for="review_option_type_4_5">57 - 59 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="60-63" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_6">
-                    <label for="review_option_type_4_6">60 - 62 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="63-66" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_7">
-                    <label for="review_option_type_4_7">63 - 65 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="66-69" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_8">
-                    <label for="review_option_type_4_8">66 - 68 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="69-72" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_9">
-                    <label for="review_option_type_4_9">69 - 71 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="72-75" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_10">
-                    <label for="review_option_type_4_10">72 - 74 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="75-78" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_11">
-                    <label for="review_option_type_4_11">75 - 77 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="78-81" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_12">
-                    <label for="review_option_type_4_12">78 - 80 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="81" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_13">
-                    <label for="review_option_type_4_13">81 kg 이상</label>
+                    <input type="checkbox" name="option_4" value="60" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_5">
+                    <label for="review_option_type_4_5">60 kg 이상</label>
                   </li>
                 
               </ul>
@@ -3176,7 +3164,7 @@ function qna(){
 		<a href="#layer2" id="submitBtn" class="hov1 s-text1 trans-0-4 yg_btn_145">
         <span style="position: relative;top: -2px;">write</span></a>
     			
-			<%String prdtNo = request.getParameter("product_detail"); %>
+			
 			
 			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate1">
             <!-- <a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first"> -->

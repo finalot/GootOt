@@ -23,7 +23,6 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
-import com.kh.ot.mypage.vo.WishArr;
 
 @Repository("mpDao")
 public class MypageDao {
@@ -310,12 +309,7 @@ public class MypageDao {
 		return sqlSession.delete("mypageMapper.selectDelete",dibsno);
 	}
 
-	public int Insertbasket(ArrayList<DIBS> noArr) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public ArrayList<DIBS> selectDlist(ArrayList<WishArr> wishArr) {
+	public ArrayList<DIBS> selectDlist(ArrayList<DIBS> wishArr) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("wishArr", wishArr);
 		
@@ -327,6 +321,13 @@ public class MypageDao {
 		map.put("clist", clist);
 		
 		return sqlSession.insert("mypageMapper.insertCartList",map);
+	}
+
+	public int deleteDlist(ArrayList<DIBS> wish) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("wish", wish);
+		
+		return sqlSession.delete("mypageMapper.deleteDlist",map);
 	}
 
 

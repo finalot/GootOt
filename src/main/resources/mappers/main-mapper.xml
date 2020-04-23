@@ -103,6 +103,20 @@
 	  	WHERE PRDT_CODE = #{product_detail}
 		</select>
 		
+		<select id="selectDetailReviewWriteCheck" parameterType="ReviewCheck" resultType="_int">
+	  	SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND PRDT_NO = #{prdtNo}
+		</select>
+		
+		<select id="getOrdNo" parameterType="ReviewCheck" resultType="_int">
+	  	SELECT ORD_DETAILNO
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND PRDT_NO = #{prdtNo}
+		</select>
+		
 	<select id="selectQnaList" parameterType="_int" resultMap="boardResultSet1">
 	  	SELECT *
 	  	FROM QNA
@@ -374,6 +388,11 @@
 				   #{po.stock} as OPT_STOCK
 			FROM DUAL
 			</foreach>) A
+		</insert>
+		
+		<insert id="detailReviewInsert" parameterType="DetailReview">
+			INSERT INTO REVIEW
+			VALUES(RV_SEQ.NEXTVAL,#{prdtNo},#{memNo},#{rvHeight},#{rvWeight},#{ordNo},#{rvInfo},#{fileName},DEFAULT,SYSDATE,#{rvColor},#{rvSize},#{rvPoint})
 		</insert>
 		
 

@@ -321,7 +321,7 @@ color: red;
 	<%--<input id="product_no" name="reName" value="${re.reName}" type="hidden"> --%>
 	<%--<input id="move_write_after" name="memPhone" vale="${re.memPhone }" type="hidden"> --%>
 		<%-- <input id="cate_no" name="memId" value="${re.memId }" type="hidden"> --%>
-		<input id="bUsePassword" name="bUsePassword" value="" type="hidden">
+		<input id="ordCode" name="bUsePassword" value="${re.ordCode} " type="hidden">
 		<input id="order_id" name="order_id" value="" type="hidden">
 		<input id="is_post_checked" name="is_post_checked" value="" type="hidden">
 		<input id="22a52e1f2ba700edbc6c" name="22a52e1f2ba700edbc6c" value="be72b6700c2bb10ea29aac31702af80d" type="hidden">
@@ -598,11 +598,12 @@ $('#return-ok').click(function(){
 		alert('상품 미수령시 반품승인을 할수 없습니다!');
 	}else if($('#Y').prop('checked')==true){
 		var reNo = $('#reNo').val();
+		var ordCode = "${re.ordCode}";	
 		var content = document.getElementsByName('content').value;
 		var realCheck = $('#realCheck').val();
 		var reMent = $('#reMent').val();
 		var reStatus = "Y";	
-		location.href="ReturnUpdate.ad?reNo="+reNo+"&content="+content[0].value+"&realCheck="+realCheck+"&reMent="+reMent+"&reStatus="+reStatus+"&productCheck="+productCheck;
+		location.href="ReturnUpdate.ad?reNo="+reNo+"&content="+content[0].value+"&realCheck="+realCheck+"&reMent="+reMent+"&reStatus="+reStatus+"&productCheck="+productCheck+"&ordCode="+ordCode;
 	}
 	
 	
@@ -623,10 +624,11 @@ $('#return-cancell').click(function(){
 
 	var reNo = $('#reNo').val();
 	var content = document.getElementsByName('content')
+	var ordCode = "${re.ordCode}";	
 	var realCheck = $('#realCheck').val();
 	var reMent = $('#reMent').val();
 	var reStatus = "N";	
-	location.href="ReturnUpdate.ad?reNo="+reNo+"&content="+content[0].value+"&realCheck="+realCheck+"&reMent="+reMent+"&reStatus="+reStatus+"&productCheck="+productCheck;
+	location.href="ReturnUpdate.ad?reNo="+reNo+"&content="+content[0].value+"&realCheck="+realCheck+"&reMent="+reMent+"&reStatus="+reStatus+"&productCheck="+productCheck+"&ordCode="+ordCode;
 
 });
 
@@ -642,10 +644,11 @@ $('#return-hold').click(function(){
 
 	var reNo = $('#reNo').val();
 	var content = document.getElementsByName('content')
+	var ordCode = "${re.ordCode}";	
 	var realCheck = $('#realCheck').val();
 	var reMent = $('#reMent').val();
 	var reStatus = "H";	
-	location.href="ReturnUpdate.ad?reNo="+reNo+"&content="+content[0].value+"&realCheck="+realCheck+"&reMent="+reMent+"&reStatus="+reStatus+"&productCheck="+productCheck;
+	location.href="ReturnUpdate.ad?reNo="+reNo+"&content="+content[0].value+"&realCheck="+realCheck+"&reMent="+reMent+"&reStatus="+reStatus+"&productCheck="+productCheck+"&ordCode="+ordCode;
 	
 	
 });

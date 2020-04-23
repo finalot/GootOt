@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Cart;
+import com.kh.ot.main.vo.DetailReview;
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.MainSearchCondition;
@@ -20,6 +21,7 @@ import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.ReviewCheck;
 import com.kh.ot.main.vo.Wish;
 import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
@@ -214,6 +216,18 @@ public class MainDao {
 
 	public Product selectDetailListp(int with) {
 		return sqlSession.selectOne("productMapper.selectDetailListp",with);
+	}
+
+	public int detailReviewWriteCheck(ReviewCheck rc) {
+		return sqlSession.selectOne("productMapper.selectDetailReviewWriteCheck",rc);
+	}
+
+	public int detailReviewInsert(DetailReview dr) {
+		return sqlSession.selectOne("productMapper.detailReviewInsert",dr);
+	}
+
+	public int getOrdNo(ReviewCheck rc) {
+		return sqlSession.selectOne("productMapper.getOrdNo",rc);
 	}
 
 
