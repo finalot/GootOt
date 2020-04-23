@@ -903,14 +903,15 @@
 									
 						<div id=sortButton>
 									<!-- 카테고리 셀렉트 -->
-									<select style="margin-bottom:3.2%;background:none;outline: 0;width:80px;">
+									<select style="margin-bottom:3.2%;background:none;outline: 0;width:80px;"
+									id="review_category">
 									<option>카테고리</option>
-									<option>Best20</option>
-									<option>Clothing</option>
-									<option>Outer</option>
-									<option>Shoes</option>
-									<option>Acc</option>
-									<option>Event</option>
+									<option value="clothing">Clothing</option>
+									<option value="outer">Outer</option>
+									<option value="shoes">Shoes</option>
+									<option value="acc">Acc</option>
+									<option value="best">Best20</option>
+									<option value="event">Event</option>
 									</select>
 									<!-- 카테고리 셀렉트 -->
 									
@@ -918,9 +919,9 @@
 									
 									<form class="submitSearch" action="#" style="margin-top:-5%;position:relative;left:7%;">
 										<input type="text"  name="search"
-										 style="border: 1px solid lightgray !important; border-radius: 5px; background: none;"
+										 style="border: 1px solid lightgray !important; background: none;"
 											placeholder="Search..">
-										<button type="submit">
+										<button id="searchBtn" >
 											<i class="fa fa-search"></i>
 										</button>
 									</form><br>
@@ -933,13 +934,13 @@
 									&nbsp;|
 									
 								<!-- Button -->
-								<button id="recommandSort"class="bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="review.jsp"
+								<button id="recommandSort"class="bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="#none"
 						style=" width: 4%; height: 20px; font-size: 12px; background:white;color:gray;"><Strong>좋아요순</Strong></button>
 									
 									&nbsp;|
 									
 								<!-- Button -->
-								<button id="newSort"class=" bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="review.jsp"
+								<button id="newSort"class=" bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="#none"
 						style=" width: 4%; height: 20px; font-size: 12px; background:white;color:gray;"><Strong>최신순</Strong></button>
 									
 						<!-- 정렬 부분 버튼 -->
@@ -1288,7 +1289,7 @@
 									
 								<div class="reviews_index__no_data_message">아직 작성한 리뷰가
 									없습니다.</div>
-								<ul class="reviews_index__reviews reviews" style="margin-top:10px;margin-left:-3%;">
+								<ul id="review_list" class="reviews_index__reviews reviews" style="margin-top:10px;margin-left:-3%;">
 								
 								
 									<!-- 리뷰1줄 시작 -->
@@ -1300,16 +1301,16 @@
 										style="-webkit-box-shadow: 0 4px 6px -6px #222;
   -moz-box-shadow: 0 4px 6px -6px #222;
   box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 385px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-  <input type="hidden" class="rv_no" value="${r.rvNo }">
+  <input type="hidden" class="rv_no" value="${r.rvNo }" >
 										<div class="photo_review_thumbnail js-link-fullscreen-popup"
 											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
 											<div class="photo_review_thumbnail__thumbnail_container">
 												<ul>
 													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
+														<a onclick="review1(this)"><img class="js-review-image"
 														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
 														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
+														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>
 													</li>
 												</ul>
 												<div class="photo_review_thumbnail__review_info">
@@ -1368,7 +1369,8 @@
 													class="reviews_index_gallery_review__product_info_feedbacks">
 													<span class="reviews_index_gallery_review__reviews_count"
 														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
+														style="color: black;">1,841</strong></span> <br>
+														<span
 														class="reviews_index_gallery_review__display_score"
 														style="color: #c3b798;">평점<strong
 														style="color: black;">4.9</strong></span>
@@ -2005,6 +2007,136 @@
 	</script>
 	
 	<script>
+	<!-- 좋아요 순으로 정렬 -->
+	$('#recommandSort').click(function() {
+		var like="like";
+		
+		
+		$.ajax({
+			url:"LikeSort.do",
+			data:{Sort : like},
+			dataType:"json",
+			success:function(data) {
+				 $('#review_list').children('li').remove();
+				 for(var i=0;i<data.rlist.length;i++) {
+					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="-webkit-box-shadow: 0 4px 6px -6px #222;-moz-box-shadow: 0 4px 6px -6px #222; box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 385px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">'+
+									  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
+									  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
+									  '<div class="photo_review_thumbnail__thumbnail_container">'+
+									  '<ul>'+
+									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
+									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '</li>'+
+									  '</ul>'+
+									  '<div class="photo_review_thumbnail__review_info">'+
+									  '<div class="photo_review_thumbnail__media_count_indicator photo_review_thumbnail__media_count_indicator--total_count_1">'+
+									  '<div class="photo_review_thumbnail__media_count_indicator_dot"></div>'+
+									  '</div></div></div>'+
+									  '<div style="border-radius: 2%; width: 90%; margin-left: 5%;"class="photo_review_thumbnail__review_author_info">'+
+									  '<div style="margin-top: 2%; border-radius: 2%;" class="photo_review_thumbnail__review_title js-translate-review-message">'+
+									  ''+data.rlist[i].rvInfo+'</div>'+
+							          '<br>'+
+									  '<div style="margin-top: -2%; color: gray;"class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">'+
+									  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
+									  '<strong>'+data.rlist[i].memName+'</strong>'+
+									  '</div>'+
+								      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+									  '<hr>'+
+									  '</div>'+
+									  '</div>'+
+									  '</div>'+
+								      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
+									  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
+									  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+									  '</div>'+
+									  '<div class="reviews_index_gallery_review__review_product_info">'+
+									  '<div class="reviews_index_gallery_review__product_info_title">'+
+									  ''+data.rlist[i].prdtName+'</div>'+
+									  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
+									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
+									  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+							          '+</div></div></div></li>')
+				 }
+					},error:function() {
+						alert("에러임에러임");
+					}
+		
+		
+		})
+		
+	})
+	
+	
+	</script>
+	
+	
+	<script>
+	$('#newSort').click(function() {
+		var date="date";
+		
+		
+		$.ajax({
+			url:"LikeSort.do",
+			data:{Sort : date},
+			dataType:"json",
+			success:function(data) {
+				 $('#review_list').children('li').remove();
+				 for(var i=0;i<data.rlist.length;i++) {
+					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="-webkit-box-shadow: 0 4px 6px -6px #222;-moz-box-shadow: 0 4px 6px -6px #222; box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 385px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">'+
+									  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
+									  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
+									  '<div class="photo_review_thumbnail__thumbnail_container">'+
+									  '<ul>'+
+									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
+									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '</li>'+
+									  '</ul>'+
+									  '<div class="photo_review_thumbnail__review_info">'+
+									  '<div class="photo_review_thumbnail__media_count_indicator photo_review_thumbnail__media_count_indicator--total_count_1">'+
+									  '<div class="photo_review_thumbnail__media_count_indicator_dot"></div>'+
+									  '</div></div></div>'+
+									  '<div style="border-radius: 2%; width: 90%; margin-left: 5%;"class="photo_review_thumbnail__review_author_info">'+
+									  '<div style="margin-top: 2%; border-radius: 2%;" class="photo_review_thumbnail__review_title js-translate-review-message">'+
+									  ''+data.rlist[i].rvInfo+'</div>'+
+							          '<br>'+
+									  '<div style="margin-top: -2%; color: gray;"class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">'+
+									  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
+									  '<strong>'+data.rlist[i].memName+'</strong>'+
+									  '</div>'+
+								      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+									  '<hr>'+
+									  '</div>'+
+									  '</div>'+
+									  '</div>'+
+								      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
+									  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
+									  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+									  '</div>'+
+									  '<div class="reviews_index_gallery_review__review_product_info">'+
+									  '<div class="reviews_index_gallery_review__product_info_title">'+
+									  ''+data.rlist[i].prdtName+'</div>'+
+									  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
+									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
+									  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+							          '</div></div></div></li>')
+				 }
+					},error:function() {
+						alert("에러임에러임");
+					}
+		
+		
+		})
+		
+	})
+	
+	
+	</script>
+	
+	<script>
 	$('#heartClick').click(function() {
 		 var rv_no = $('#rv_no2').val();
 		 var likeCheck = $('#likeCheck').val();
@@ -2044,10 +2176,14 @@
 	<script>
 	
 	<!--리뷰 모달 디테일 스크립트-->
-	$('.review1').on('click',function modalOpen(){
+	function review1(en){
+		 if("${loginMember.memId}"==""){
+			 alert("로그인 후 이용해주세요!");
+		 }else{
+		
 		 $('#comentarea').children('.replyDiv').remove();
 		 $('#comentarea').children('br').remove();
-		 var rv_no = $(this).find('.rv_no').val();
+		 var rv_no = $(en).parents('li').find('.rv_no').val();
 		 $("#rv_no2").val(rv_no);
 		 
 		var rvc_no = $('.rvc_no').val();
@@ -2055,6 +2191,8 @@
 		 var like_img="";
 		 var count = 0;
 		 console.log(rv_no);
+		 
+		 
 		 
 		 
 		 $.ajax({
@@ -2119,6 +2257,7 @@
 				 	
 			 })
 			 
+		
 	
 			 
 			 
@@ -2131,7 +2270,9 @@
         $('#modal').show();
 
         
-    });
+		 }
+    }
+	
 	  
 
       function modalclose(){
@@ -2255,8 +2396,10 @@
 			})
 		 
 	}
-	
 	</script>
+<!-- 검색용 스크립트 -->
+
+
 	
 </body>
 		

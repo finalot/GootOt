@@ -81,4 +81,14 @@ public class ReviewServiceImpl implements ReviewService{
 		return rDao.WarningReply(rp);
 	}
 
+	@Override
+	public ArrayList<Review> selectLikeSort() {
+		return rDao.LikeSort();
+	}
+
+	@Override
+	public ArrayList<Review> selectDateSort() {
+		return rDao.DateSort();
+	}
+
 }

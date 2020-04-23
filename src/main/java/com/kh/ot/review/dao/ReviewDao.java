@@ -157,5 +157,25 @@ public class ReviewDao {
 	public int WarningReply(ReviewReply rp) {
 		return sqlSession.update("reviewMapper.WarningReply",rp);
 	}
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰 좋아요순 정렬
+	 * @return
+	 */
+	public ArrayList<Review> LikeSort() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.LikeSort");
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰 최신순 정렬
+	 * @return
+	 */
+	public ArrayList<Review> DateSort() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.DateSort");
+	}
 	
 }

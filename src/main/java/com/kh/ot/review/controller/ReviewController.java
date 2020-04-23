@@ -44,10 +44,15 @@ public class ReviewController extends HttpServlet {
 		 * @return String
 		 */
 		@RequestMapping("review.do")
-		public ModelAndView review(ModelAndView mv) {
+		public ModelAndView review(ModelAndView mv,String Sort) {
 
-			ArrayList<Review> rlist = rService.selectReviewList();
+			ArrayList<Review> rlist = new ArrayList();
 			
+			if(Sort.equals("like")) {
+				 rlist = rService.selectLikeSort();
+			} else {
+			    rlist = rService.selectReviewList();
+			}
 			System.out.println("rlist : " + rlist);
 		
 			mv.addObject("rlist",rlist);
@@ -304,6 +309,43 @@ public class ReviewController extends HttpServlet {
 				} else {
 					System.out.println("에러당~");
 				}
+		}
+		
+		/**
+		 * @작성일  : 2020. 4. 23.
+		 * @작성자  : 우예진
+		 * @내용    : 최신순/좋아요순 정렬
+		 * @param Sort
+		 * @param response
+		 * @throws JsonIOException
+		 * @throws IOException
+		 */
+		@RequestMapping("LikeSort.do")
+		public void LikeSort(String Sort,HttpServletResponse response) throws JsonIOException, IOException {
+			
+			ArrayList<Review> rlist = new ArrayList();
+			
+			if(Sort.equals("like")) {
+
+				rlist = rService.selectLikeSort();
+			} else if(Sort.equals("date")) {
+				rlist = rService.selectDateSort();
+			}
+			response.setContentType("appliction/json; charset=utf-8");
+			
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			Map hmap = new HashMap();
+			hmap.put("rlist", rlist);
+			
+			
+			gson.toJson(hmap,response.getWriter());
+			
+			
+			
+			
+	
 		}
 		
 }
