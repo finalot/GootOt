@@ -599,7 +599,7 @@ $('#return-ok').click(function(){
 	}else if($('#Y').prop('checked')==true){
 		var reNo = $('#reNo').val();
 		var ordCode = "${re.ordCode}";	
-		var content = document.getElementsByName('content').value;
+		var content = document.getElementsByName('content');
 		var realCheck = $('#realCheck').val();
 		var reMent = $('#reMent').val();
 		var reStatus = "Y";	
@@ -623,7 +623,7 @@ $('#return-cancell').click(function(){
 
 
 	var reNo = $('#reNo').val();
-	var content = document.getElementsByName('content')
+	var content = document.getElementsByName('content');
 	var ordCode = "${re.ordCode}";	
 	var realCheck = $('#realCheck').val();
 	var reMent = $('#reMent').val();
@@ -643,7 +643,7 @@ $('#return-hold').click(function(){
 
 
 	var reNo = $('#reNo').val();
-	var content = document.getElementsByName('content')
+	var content = document.getElementsByName('content');
 	var ordCode = "${re.ordCode}";	
 	var realCheck = $('#realCheck').val();
 	var reMent = $('#reMent').val();

@@ -148,6 +148,8 @@ public class MypageController {
 		mv.addObject("orderCount3", orderCount3);
 		mv.addObject("orderCount4", orderCount4);
 		mv.addObject("orderCount5", orderCount5);
+		mv.addObject("orderCount6", orderCount6);
+		mv.addObject("orderCount7", orderCount7);
 		mv.addObject("listCount", listCount);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
