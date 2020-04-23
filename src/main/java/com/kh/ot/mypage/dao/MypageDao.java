@@ -16,7 +16,6 @@ import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product_opt;
-import com.kh.ot.main.vo.Wish;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
@@ -24,7 +23,6 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
-import com.kh.ot.mypage.vo.WishArr;
 
 @Repository("mpDao")
 public class MypageDao {
@@ -309,11 +307,6 @@ public class MypageDao {
 
 	public int selectDelete(int dibsno) {
 		return sqlSession.delete("mypageMapper.selectDelete",dibsno);
-	}
-
-	public int Insertbasket(ArrayList<DIBS> noArr) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	public ArrayList<DIBS> selectDlist(ArrayList<DIBS> wishArr) {

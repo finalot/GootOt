@@ -268,9 +268,9 @@ public interface MypageService {
 	 */
 	int ReturnInsert(Return r);
 
-//	int orderCount6(int memNo);
-//
-//	int orderCount7(int memNo);
+	int orderCount6(int memNo);
+
+	int orderCount7(int memNo);
 	
 	/* / **
 	 	 * @작성일 : 2020. 4. 20.
@@ -299,8 +299,6 @@ public interface MypageService {
 
 	int selectDelete(int dibsno);
 
-	int Insertbasket(ArrayList<DIBS> noArr);
-
 	ArrayList<DIBS> selectDlist(ArrayList<DIBS> wish);
 
 	int insertCartList(ArrayList<Cart> clist);
@@ -313,5 +311,6 @@ public interface MypageService {
 	 * @return
 	 */
 	int deleteDlist(ArrayList<DIBS> wish);
+
 
 }

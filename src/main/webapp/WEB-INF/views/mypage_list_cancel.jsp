@@ -220,7 +220,13 @@ a{
                 			<td class="state">
                    				<p style="font-size:13px;">
                    				<c:if test="${o.ord_status == 'E' }">
-                   					반품
+                   					반품준비중
+                   				</c:if>
+                   				<c:if test="${o.ord_status == 'F' }">
+                   					반품완료
+                   				</c:if>
+                   				<c:if test="${o.ord_status == 'G' }">
+                   					반품취소
                    				</c:if>
                    				</p>
 								<p class="displaynone" style="font-size:13px;">
