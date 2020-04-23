@@ -115,4 +115,9 @@ public class CartServiceImpl implements CartService{
 	public ArrayList<Cart> selectCartList(ArrayList<Cart> cartList) {
 		return cDao.selectCartList(cartList);
 	}
+
+	@Override
+	public int updateProductStock(ArrayList<Ord> olist) {
+		return cDao.updateProductStock(olist);
+	}
 }

@@ -372,4 +372,18 @@ SELECT RE.RE_NO,RE.QNA_DATE,RE.RE_NAME,RE.RE_TITLE,RE.RE_CONTENT,RE.ORD_CODE,
 	WHERE RE_NO=#{reNo}
 </update>
 
+<update id="updateOrdF" parameterType="Return" >
+	UPDATE ORD
+	SET ORD_STATUS = 'F'
+	WHERE ORD_NO = #{ordCode}
+
+</update>
+
+<update id="updateOrdG" parameterType="Return" >
+	UPDATE ORD
+	SET ORD_STATUS = 'G'
+	WHERE ORD_NO = #{ordCode}
+
+</update>
+
 </mapper>

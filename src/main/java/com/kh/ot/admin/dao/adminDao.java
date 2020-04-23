@@ -434,4 +434,26 @@ public class adminDao {
 	public int ReturnUpdate(Return r) {
 		return sqlSession.update("adminMapper.ReturnUpdate",r);
 	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 문태환
+	 * @내용 	: 주분테이블 반품상태 업데이트
+	 * @param reNo
+	 * @return
+	 */
+	public int updateOrdf(Return r) {
+		
+		if(r.getReStatus() =="Y") {
+			return sqlSession.update("adminMapper.updateOrdF",r);
+		}else if(r.getReStatus() == "H") {
+			return sqlSession.update("adminMapper.updateOrdG",r);
+		}else {
+			return 0;
+		}
+		
+		
+		
+	}
 }
