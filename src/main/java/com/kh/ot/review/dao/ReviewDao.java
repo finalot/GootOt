@@ -6,6 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
 import com.kh.ot.review.vo.ReviewReply;
@@ -204,6 +207,13 @@ public class ReviewDao {
 		}
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 24.
+	 * @작성자  : 우예진
+	 * @내용    : 몸무게 정렬
+	 * @param optionWeight
+	 * @return
+	 */
 	public ArrayList<Review> selectWeightSort(int optionWeight) {
 		if(optionWeight==7) {
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort7");
@@ -222,6 +232,13 @@ public class ReviewDao {
 		}
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 24.
+	 * @작성자  : 우예진
+	 * @내용    : 사이즈 정렬
+	 * @param optionSize
+	 * @return
+	 */
 	public ArrayList<Review> selectSizeSort(int optionSize) {
 		if(optionSize==13) {
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort13");
@@ -240,4 +257,14 @@ public class ReviewDao {
 		}
 	}
 	
+	
+	public ArrayList<Product> getBestList() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectBestList");
+	}
+	public ArrayList<Product_color> selectColorList1(){
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectProductColor1");
+	}
+	public ArrayList<Product_opt> selectOptionBestList() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectOptionBestList");
+	}
 }

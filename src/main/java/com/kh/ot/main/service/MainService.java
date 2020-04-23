@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Cart;
+import com.kh.ot.main.vo.DetailReview;
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.MainSearchCondition;
@@ -15,6 +16,7 @@ import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.ReviewCheck;
 import com.kh.ot.main.vo.Wish;
 import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
@@ -123,6 +125,19 @@ public interface MainService {
 	ArrayList<productWith> selectWithList(int product_detail);
 
 	Product selectDetailListp(int with);
+
+	int detailReviewWriteCheck(ReviewCheck rc);
+
+	int detailReviewInsert(DetailReview dr);
+
+	int getOrdNo(ReviewCheck rc);
+
+	int getRvNo(ReviewCheck rc);
+
+	int detailReviewPhotoInsert(DetailReview dr);
+	int detailReviewPhotoInsert2(DetailReview dr);
+
+	int updateReviewCount(DetailReview dr);
 
 
 }

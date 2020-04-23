@@ -105,7 +105,7 @@ public class MemberController extends HttpServlet {
 								@RequestParam("memNo") int memNo,HttpSession session) {
 
 	   Member m =(Member)session.getAttribute("loginMember");
-		
+	    int wishlist = mpService.getWishListCount(memNo);
 		int coupon = mpService.CouponListCount(m);
 		int point = mpService.PointListCount(memNo);
 		int orderCount1 = mpService.orderCount1(memNo);
@@ -123,6 +123,7 @@ public class MemberController extends HttpServlet {
 		mv.addObject("orderCount5", orderCount5);
 		mv.addObject("orderCount6", orderCount6);
 		mv.addObject("orderCount7", orderCount7);
+		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
 		

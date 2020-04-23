@@ -1489,311 +1489,112 @@
 			<div class="wrap-slick2">
 				<div class="slick2">
 
-					<!-- 뉴프로덕트블록 샘플 -->
-					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								<img
-									src="/ot/resources/images/oT/clothing/t_nasi/basic_crop_color_nasi/basic_crop_color_nasi.webp"
-									alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<span class="block2-price m-text6 p-r-5">
-									<div
-										style="width: 17px; height: 17px; background: black; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: gray; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: #39761F; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: #E4F650; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: #4A87B9; margin-left: 3px; float: left; border: 1px solid black;"></div>
-								</span> <br> <a href="${bi1 }"
-									class="block2-name dis-block s-text3 p-b-5"
-									style="font-size: 12px"> [B-BASIC] 베이직 크롭 컬러나시 </a> <span
-									class="block2-price m-text6 p-r-5"> <small><font
-										class="format-money">7000</font> won</small>&nbsp;&nbsp;<font
-									style="font-size: 9px; color: gray">리뷰 : 100</font>
-								</span>
-							</div>
-						</div>
-					</div>
-					<!-- 세일프로덕트블록 샘플 -->
-					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img
-									src="/ot/resources/images/oT/clothing/t_nasi/numb_lettering_t/numb_lettering_t.webp"
-									alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<span class="block2-price m-text6 p-r-5">
-									<div
-										style="width: 17px; height: 17px; background: white; float: left; border: 1px solid black;"></div>
-								</span> <br> <a href="${bi2 }"
-									class="block2-name dis-block s-text3 p-b-5"
-									style="font-size: 12px"> [B-BASIC] 넘브 레터링 티셔츠 </a> <span
-									class="block2-price m-text6 p-r-5"> <small><font
-										class="format-money">20000</font> won</small>&nbsp;&nbsp;<font
-									style="font-size: 9px; color: gray">리뷰 : 100</font>
-								</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+					<c:forEach var="p" items="${plist }">
 						<!-- 기본프로덕트블록 샘플 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img
-									src="/ot/resources/images/oT/clothing/t_nasi/standard_round_t/standard_round_t.webp"
-									alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<span class="block2-price m-text6 p-r-5">
-									<div
-										style="width: 17px; height: 17px; background: black; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: white; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: gray; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: navy; margin-left: 3px; float: left; border: 1px solid black;"></div>
-								</span> <br> <a href="productDetail.jsp"
-									class="block2-name dis-block s-text3 p-b-5"
-									style="font-size: 12px"> [B-BASIC] 베이직 라운드 반팔티 </a> <span
-									class="block2-price m-text6 p-r-5"> <small><font
-										class="format-money">12000</font> won</small>&nbsp;&nbsp;<font
-									style="font-size: 9px; color: gray">리뷰 : 100</font>
-								</span>
-							</div>
-						</div>
-					</div>
-
 					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
 						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img src="/ot/resources/images/item-07.jpg" alt="IMG-PRODUCT">
+								<c:if test="${61999 gt p.prdtNo and p.prdtNo gt 60000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+								
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
+									<div class="block2-overlay trans-0-4">
+									
 
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
+									</div>
+								</div></c:if>
+									<c:if test="${p.prdtNo gt 62000}">
+									<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
+									
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
+
+									<div class="block2-overlay trans-0-4">
+										
+
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
 									</div>
 								</div>
-							</div>
+									</c:if>
+								
+								
+								<c:if test="${p.prdtNo lt 60000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative">
+								
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Frayed denim
-									shorts </a> <span class="block2-oldprice m-text7 p-r-5">
-									$29.50 </span> <span class="block2-newprice m-text8 p-r-5">
-									$15.90 </span>
-							</div>
-						</div>
-					</div>
+									<div class="block2-overlay trans-0-4">
+										
 
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								<img src="/ot/resources/images/item-02.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
 									</div>
 								</div>
-							</div>
+								</c:if>
+								
 
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Herschel
-									supply co 25l </a> <span class="block2-price m-text6 p-r-5">
-									$75.00 </span>
-							</div>
-						</div>
-					</div>
+								<div class="block2-txt p-t-20">
+									<span class="block2-price m-text6 p-r-5" >
+								<c:forEach var="po" items="${ polist }">
 
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="/ot/resources/images/item-03.jpg" alt="IMG-PRODUCT">
+									<c:if test="${ p.prdtNo eq po.prdtNo }">
 
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+										<c:forEach var="pc" items="${ pclist }">
+
+										<c:if test="${ po.optColor eq pc.pcName }">
+										<div style="width:14px;height:14px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
+										</c:if>
+
+										</c:forEach>
+
+									</c:if>
+
+								</c:forEach>
+									</span>
+
+									<br>
+									
+<c:url var="product_detail" value="product_detail.do">
+	<c:param name="product_detail" value="${p.prdtNo }" />
+</c:url>
+									<a href="${product_detail }" id="${p.prdtNo }"class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
+										${p.prdtName }
+
 									</a>
+									
 
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
+									<span class="block2-price m-text6 p-r-5">
+									<c:if test="${p.prdtSale ne 0 }">
+	<small><font class="format-money" style="text-decoration:line-through">${ p.prdtPrice}</font>-><font class="format-money">${ p.prdtPrice-((p.prdtPrice/100)*p.prdtSale)}</font> won</small>&nbsp;&nbsp;
+										</c:if>
+										<c:if test="${p.prdtSale eq 0 }">
+										<small><font class="format-money">${ p.prdtPrice}</font> won</small>&nbsp;&nbsp;
+										</c:if>
+										
+										<font style="font-size:9px;color:gray">리뷰 : ${p.prdtReview}</font>
+									</span>
 								</div>
 							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Denim jacket
-									blue </a> <span class="block2-price m-text6 p-r-5"> $92.50 </span>
-							</div>
-						</div>
 					</div>
 
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="/ot/resources/images/item-05.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Coach slim
-									easton black </a> <span class="block2-price m-text6 p-r-5">
-									$165.90 </span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img src="/ot/resources/images/item-07.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Frayed denim
-									shorts </a> <span class="block2-oldprice m-text7 p-r-5">
-									$29.50 </span> <span class="block2-newprice m-text8 p-r-5">
-									$15.90 </span>
-							</div>
-						</div>
-					</div>
+				</c:forEach>
 				</div>
 			</div>
 </div>

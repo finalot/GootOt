@@ -180,6 +180,7 @@
 			</div>
 
 			<!-- 페이징 처리 -->
+			<c:if test="${!empty list }">
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
 				<c:if test="${pi.currentPage eq 1 }">
 					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
@@ -245,6 +246,7 @@
 					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
                </c:if>
 			</div>
+			</c:if>
 	
 			<div class="xans-element- xans-myshop xans-myshop-head ec-base-help ">
 				<h3>적립금 안내</h3>

@@ -32,7 +32,6 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
-import com.kh.ot.mypage.vo.WishArr;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -44,68 +43,6 @@ public class MypageController {
 	@Autowired
 	private adminService adService;
 	
-	@RequestMapping("insertwishlist.do")
-	public String insertwishlist(HttpSession session,
-								int prdt_no, int dibs_count, String dibs_size, String dibs_color) {
-		
-		System.out.println("dibs_count : " + dibs_count);
-		System.out.println("dibs_size : " + dibs_size);
-		System.out.println("dibs_color : " + dibs_color);
-		Member m = (Member)session.getAttribute("loginMember");
-		
-		
-		DIBS d = new DIBS();
-		d.setPrdt_no(prdt_no);
-		d.setDibs_count(dibs_count);
-		d.setDibs_size(dibs_size);
-		d.setDibs_color(dibs_color);
-		d.setMemno(m.getMemNo());
-		
-		
-		int result = mpService.insertwishlist(d);
-		
-		
-		if(result > 0) {
-			return "redirect:mWishlist.do";
-		} else {
-			return "";
-		}
-	}
-	
-	@RequestMapping("updatewishlist.do")
-	public String updatewishlist(int dibsno, int dibs_count, String dibs_size, String dibs_color) {
-		
-		System.out.println("dibsno : " + dibsno);
-		
-		DIBS d = new DIBS();
-		d.setDibs_count(dibs_count);
-		d.setDibs_size(dibs_size);
-		d.setDibs_color(dibs_color);
-		d.setDibsno(dibsno);
-		int result = mpService.updatewishlist(d);
-		
-		if(result > 0) {
-			return "redirect:mWishlist.do";
-		} else {
-			return "";
-		}
-	}
-	
-	@RequestMapping("selectDelete.do")
-	public void selectDelete(int dibsno, HttpServletResponse response) throws IOException {
-		PrintWriter out = response.getWriter();
-		
-		int result = mpService.selectDelete(dibsno);
-		
-		if(result > 0) {
-			out.print("ok");
-		} else {
-			out.print("fail");
-		}
-	}
-	
-	
-	
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 : 신경섭
@@ -115,11 +52,14 @@ public class MypageController {
 	 */
 	@RequestMapping("mList.do")
 	public ModelAndView mList(ModelAndView mv, HttpSession session,
-			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
+			, String order_status) {
 		
 		Member m = (Member)session.getAttribute("loginMember");
 		
 		int memNo = m.getMemNo();
+		
+		int wishlist = mpService.getWishListCount(memNo);
 		
 		int coupon = mpService.CouponListCount(m);
 		
@@ -135,6 +75,7 @@ public class MypageController {
 		
 		int listCount = mpService.getOrderListCount(memNo);
 		
+			
 		System.out.println("listCount : " + listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
@@ -151,6 +92,7 @@ public class MypageController {
 		mv.addObject("orderCount6", orderCount6);
 		mv.addObject("orderCount7", orderCount7);
 		mv.addObject("listCount", listCount);
+		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
    		mv.addObject("list",list);
@@ -158,21 +100,6 @@ public class MypageController {
 		mv.setViewName("mypage_list");
 		return mv;
 	}
-	
-	@RequestMapping("deletewishAll.do")
-	public void deletewishAll(HttpServletResponse response, int memno) throws IOException {
-		
-		PrintWriter out = response.getWriter();
-				
-		int result = mpService.deletewishAll(memno);
-		
-		if(result > 0) {
-			out.print("ok");
-		} else {
-			out.print("fail");
-		}
-	}
-	
 	
 	
 	/**
@@ -195,6 +122,8 @@ public class MypageController {
 		
 		int memNo = m.getMemNo();
 		
+		int wishlist = mpService.getWishListCount(memNo);
+		
 		int coupon = mpService.CouponListCount(m);
 		
 		int point = mpService.PointListCount(memNo);
@@ -206,7 +135,6 @@ public class MypageController {
 		int orderCount5 = mpService.orderCount5(memNo);
 		int orderCount6 = mpService.orderCount6(memNo);
 		int orderCount7 = mpService.orderCount7(memNo);
-		
 		
 		OrdSearch os = new OrdSearch();
 	
@@ -220,9 +148,13 @@ public class MypageController {
 			os.setOrd_status("C");
 		} else if(order_status.equals("shipped_complete")) {
 			os.setOrd_status("D");
-		} else if(order_status.equals("order_return")) {
+		} else if(order_status.equals("order_return_ready")) {
 			os.setOrd_status("E");
-		} 
+		} else if(order_status.equals("order_return_complete")) {
+			os.setOrd_status("F");
+		} else if(order_status.equals("order_return_cancel")) {
+			os.setOrd_status("G");
+		}  
 		
 		os.setStart_date(history_start_date);
 		os.setEnd_date(history_end_date);
@@ -241,6 +173,7 @@ public class MypageController {
 	    
 	    	System.out.println("list : " + list);
 	    	
+	    	mv.addObject("WishList", wishlist);
 	    	mv.addObject("CouponCount", coupon);
 	    	mv.addObject("PointCount", point);
 	    	mv.addObject("orderCount1", orderCount1);
@@ -276,6 +209,8 @@ public class MypageController {
 		
 		int memNo = m.getMemNo();
 		
+		int wishlist = mpService.getWishListCount(memNo);
+		
 		int coupon = mpService.CouponListCount(m);
 		
 		int point = mpService.PointListCount(memNo);
@@ -306,6 +241,7 @@ public class MypageController {
 		mv.addObject("orderCount6", orderCount6);
 		mv.addObject("orderCount7", orderCount7);
 		mv.addObject("listCount", listCount);
+		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
    		mv.addObject("list",list);
@@ -313,9 +249,6 @@ public class MypageController {
 		mv.setViewName("mypage_list_cancel");
 		return mv;
 	}
-	
-	
-	
 	
 	/**
 	 * @작성일 : 2020. 4. 20.
@@ -339,6 +272,8 @@ public class MypageController {
 		OrdSearch os = new OrdSearch();
 		
 		int memNo = m.getMemNo();
+		
+		int wishlist = mpService.getWishListCount(memNo);
 		
 		int coupon = mpService.CouponListCount(m);
 		
@@ -380,6 +315,7 @@ public class MypageController {
 		mv.addObject("orderCount6", orderCount6);
 		mv.addObject("orderCount7", orderCount7);
 		mv.addObject("listCount", listCount);
+		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
    		mv.addObject("list",list);
@@ -390,17 +326,20 @@ public class MypageController {
 		return mv;
 	}
 
+	
 	/**
-	 * @작성일 : 2020. 4. 2.
+	 * @작성일 : 2020. 4. 24.
 	 * @작성자 : 신경섭
+	 * @내용 : 위시리스트 내역 출력
+	 * @param @param mv
+	 * @param @param currentPage
+	 * @param @param session
 	 * @param @return
-	 * @return String
+	 * @return ModelAndView
 	 */
-	@RequestMapping("mWishlist.do") //1
+	@RequestMapping("mWishlist.do") 
 	public ModelAndView mWishlist(ModelAndView mv, 
-								@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage, HttpSession session
-								) {
-		
+								@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage, HttpSession session) {
 		
 		Member m = (Member)session.getAttribute("loginMember");
 		
@@ -432,11 +371,20 @@ public class MypageController {
 		return mv;
 	}
 	
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 신경섭
+	 * @내용 : 위시리스트 내의 옵션선택에서 컬러 셀렉트
+	 * @param @param response
+	 * @param @param prdt_no
+	 * @param @throws IOException
+	 * @return void
+	 */
 	@RequestMapping("optiondetail.do")
 	public void optiondetail(HttpServletResponse response,
 							@RequestParam("prdt_no") int prdt_no) throws IOException {
 		
-		System.out.println("dsadasdasdasdasdsad : " + prdt_no);
+		System.out.println("prdt_no : " + prdt_no);
 		
 		PrintWriter out = response.getWriter();
 		// 해당 아이디를 가지고 검색 -> 데이터를 객체로 받아서 json으로 전달
@@ -453,6 +401,15 @@ public class MypageController {
 		
 	}
 	
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 신경섭
+	 * @내용 : 위시리스트 내의 옵션선택에서 사이즈 셀렉트
+	 * @param @param response
+	 * @param @param prdt_no
+	 * @param @throws IOException
+	 * @return void
+	 */
 	@RequestMapping("optiondetail2.do")
 	public void optiondetail2(HttpServletResponse response,
 							@RequestParam("prdt_no") int prdt_no) throws IOException {
@@ -467,8 +424,6 @@ public class MypageController {
 		gson.toJson(plist2,response.getWriter());
 	
 	}
-	
-		
 	
 	/**
 	 * @작성일 : 2020. 4. 15.
@@ -487,6 +442,8 @@ public class MypageController {
 		
 		int memNo = m.getMemNo();
 		
+		int wishlist = mpService.getWishListCount(memNo);
+		
 		int result = mpService.PointPrice(m); // 
 		
 		int coupon = mpService.CouponListCount(m); // 사용 가능한 쿠폰 카운팅
@@ -500,6 +457,7 @@ public class MypageController {
 		
 		ArrayList<Point> list = mpService.PointSelectList(memNo,pi);
 		
+		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount",coupon);
 		mv.addObject("PointCount", listCount);
 		mv.addObject("list", list);
@@ -509,7 +467,7 @@ public class MypageController {
 		return mv;
 	}
 	
-	/**
+	/** ***** 사용안함 *****
 	 * @작성일 : 2020. 4. 15.
 	 * @작성자 : 신경섭
 	 * @내용 : 적립금  - 미사용적립금
@@ -545,7 +503,6 @@ public class MypageController {
 		return mv;
 	}
 	
-	
 	/**
 	 * @작성일 : 2020. 4. 15.
 	 * @작성자 : 신경섭
@@ -554,7 +511,7 @@ public class MypageController {
 	 * @return String
 	 */
 	
-	@RequestMapping("mCoupon.do") // 3
+	@RequestMapping("mCoupon.do")
 	public ModelAndView mCoupon(ModelAndView mv,
 								@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, 
 								HttpSession session) {
@@ -564,6 +521,8 @@ public class MypageController {
 		Member m = (Member)session.getAttribute("loginMember");
 		System.out.println(m);
 		int memNo = m.getMemNo();
+		
+		int wishlist = mpService.getWishListCount(memNo);
 		
 		int listCount = mpService.CouponListCount(m);
 		
@@ -575,6 +534,7 @@ public class MypageController {
 		
 		ArrayList<CouponMem> list = mpService.CouponSelectList(memNo, pi);
 		
+		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", listCount);
 		mv.addObject("PointCount", point);
 		mv.addObject("list", list);
@@ -601,6 +561,8 @@ public class MypageController {
 		
 		int memNo = m.getMemNo();
 		
+		int wishlist = mpService.getWishListCount(memNo);
+		
 		int coupon = mpService.CouponListCount(m);
 		
 		int point = mpService.PointListCount(memNo);
@@ -613,6 +575,7 @@ public class MypageController {
 		
 		ArrayList<CouponMem> list = mpService.CompleteCouponSelectList(memNo,pi);
 		
+		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
 		mv.addObject("list", list);
@@ -640,6 +603,8 @@ public class MypageController {
 		
 		int coupon = mpService.CouponListCount(m);
 		
+		int wishlist = mpService.getWishListCount(memNo);
+		
 		int point = mpService.PointListCount(memNo);
 		
 		int listCount = mpService.getListCount(memNo);
@@ -653,6 +618,7 @@ public class MypageController {
 		
 		System.out.println("list : " + list);
 
+		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
    		mv.addObject("list",list);
@@ -677,6 +643,8 @@ public class MypageController {
 		
 		int memNo = m.getMemNo();
 		
+		int wishlist = mpService.getWishListCount(memNo);
+		
 		int coupon = mpService.CouponListCount(m);
 		
 		int point = mpService.PointListCount(memNo);
@@ -689,13 +657,12 @@ public class MypageController {
 		
 		ArrayList<Address> adlist = mpService.selectAddressList(pi,m);
 		
+		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
 		mv.addObject("adlist",adlist);
         mv.addObject("pi",pi);
         mv.setViewName("mypage_address");
-		
-		
 		
 		return mv;
 	}
@@ -714,10 +681,13 @@ public class MypageController {
 		
 		int memNo = m.getMemNo();
 		
+		int wishlist = mpService.getWishListCount(memNo);
+		
 		int coupon = mpService.CouponListCount(m);
 		
 		int point = mpService.PointListCount(memNo);
 		
+		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
 		mv.setViewName("mypage_memberEdit");
@@ -750,10 +720,13 @@ public class MypageController {
 		
 		int memNo = m.getMemNo();
 		
+		int wishlist = mpService.getWishListCount(memNo);
+		
 		int coupon = mpService.CouponListCount(m);
 		
 		int point = mpService.PointListCount(memNo);
 		
+		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
 		mv.setViewName("mypage_address_register");
@@ -774,6 +747,8 @@ public class MypageController {
 		
 		int memNo = m.getMemNo();
 		
+		int wishlist = mpService.getWishListCount(memNo);
+		
 		int coupon = mpService.CouponListCount(m);
 		
 		int point = mpService.PointListCount(memNo);
@@ -784,6 +759,7 @@ public class MypageController {
 		
 		Address ad = mpService.ModifyAddress(mAddress);
 		
+		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
 		mv.addObject("ad",ad);
@@ -835,70 +811,9 @@ public class MypageController {
 		}
 	}
 	
-	@RequestMapping("wishlistdelete.do")
-	public void WishListDelete(int[] wishArr, HttpServletResponse response, HttpSession session) throws IOException {
-		
-		PrintWriter out  = response.getWriter();
-		
-		ArrayList<DIBS> noArr = new ArrayList<DIBS>();
-		
-		for(int i=0; i<wishArr.length; i++) {
-			DIBS d = new DIBS();
-			d.setDibsno(wishArr[i]);
-			noArr.add(d);
-			System.out.println("dsadasdas : " +d);
-		}
-		
-		int result = mpService.deleteWishlist(noArr);
-		
-		System.out.println(result);
-		if(result > -2) {
-			out.print("ok");
-		}else {
-			out.print("fail");
-		}
-	}
 	
-	@RequestMapping("Insertbasket.do")
-	public String Insertbasket(int[] wishArr)  {
-
-		
-		ArrayList<DIBS> wish = new ArrayList<DIBS>();
-
-		for(int i =0; i<wishArr.length;i++) {
-			DIBS c = new DIBS();
-			c.setDibsno(wishArr[i]);
-			wish.add(c);
-		}
-		
-		ArrayList<DIBS> dlist = mpService.selectDlist(wish);//product 테이블에서 체크한 항목 가져옴
-		System.out.println("dlist"+dlist);
-		ArrayList<Cart> clist = new ArrayList<Cart>();
-		
-		for(int i=0;i< dlist.size();i++) {
-			Cart c = new Cart();
-			
-			c.setMemNo(dlist.get(i).getMemno());
-			c.setPrdt_no(dlist.get(i).getPrdt_no());
-			c.setPrdt_count(dlist.get(i).getDibs_count());
-			c.setPrdt_color(dlist.get(i).getDibs_color());
-			c.setPrdt_size(dlist.get(i).getDibs_size());
-			c.setPrdt_price(dlist.get(i).getPrdt_price());
-			c.setPrdt_sumprice((dlist.get(i).getDibs_count()*dlist.get(i).getPrdt_price()));
-			
-			clist.add(c);
-		}
-		
-		
-		int result = mpService.insertCartList(clist);
-		
-		if(result > -2) {
-			int result2 = mpService.deleteDlist(wish);
-			
-			return "redirect:cartbutton.do";
-		}
-		return "에러다";
-	}
+	
+	
 	
 	
 	
@@ -962,6 +877,8 @@ public class MypageController {
 		
 		int memNo = m.getMemNo();
 		
+		int wishlist = mpService.getWishListCount(memNo);
+		
 		int coupon = mpService.CouponListCount(m);
 		
 		int point = mpService.PointListCount(memNo);
@@ -989,6 +906,7 @@ public class MypageController {
 		
 		System.out.println("list : " + list);
 
+		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
    		mv.addObject("list",list);
@@ -1078,7 +996,201 @@ public class MypageController {
 	
 	}
 	
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 신경섭
+	 * @내용 : 위시리스트 추가
+	 * @param @param session
+	 * @param @param prdt_no
+	 * @param @param dibs_count
+	 * @param @param dibs_size
+	 * @param @param dibs_color
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("insertwishlist.do")
+	public String insertwishlist(HttpSession session,
+								int prdt_no, int dibs_count, String dibs_size, String dibs_color) {
+		
+		System.out.println("dibs_count : " + dibs_count);
+		System.out.println("dibs_size : " + dibs_size);
+		System.out.println("dibs_color : " + dibs_color);
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		
+		DIBS d = new DIBS();
+		d.setPrdt_no(prdt_no);
+		d.setDibs_count(dibs_count);
+		d.setDibs_size(dibs_size);
+		d.setDibs_color(dibs_color);
+		d.setMemno(m.getMemNo());
+		
+		int result = mpService.insertwishlist(d);
+		
+		if(result > 0) {
+			return "redirect:mWishlist.do";
+		} else {
+			return "";
+		}
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 신경섭
+	 * @내용 : 위시리스트 수정
+	 * @param @param dibsno
+	 * @param @param dibs_count
+	 * @param @param dibs_size
+	 * @param @param dibs_color
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("updatewishlist.do")
+	public String updatewishlist(int dibsno, int dibs_count, String dibs_size, String dibs_color) {
+		
+		System.out.println("dibsno : " + dibsno);
+		
+		DIBS d = new DIBS();
+		d.setDibs_count(dibs_count);
+		d.setDibs_size(dibs_size);
+		d.setDibs_color(dibs_color);
+		d.setDibsno(dibsno);
+		int result = mpService.updatewishlist(d);
+		
+		if(result > 0) {
+			return "redirect:mWishlist.do";
+		} else {
+			return "";
+		}
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 신경섭
+	 * @내용 : 위시리스트 게시글내의 삭제버튼
+	 * @param @param dibsno
+	 * @param @param response
+	 * @param @throws IOException
+	 * @return void
+	 */
+	@RequestMapping("selectDelete.do")
+	public void selectDelete(int dibsno, HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
+		
+		int result = mpService.selectDelete(dibsno);
+		
+		if(result > 0) {
+			out.print("ok");
+		} else {
+			out.print("fail");
+		}
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 신경섭
+	 * @내용 : 위시리스트 전체 비우기
+	 * @param @param response
+	 * @param @param memno
+	 * @param @throws IOException
+	 * @return void
+	 */
+	@RequestMapping("deletewishAll.do")
+	public void deletewishAll(HttpServletResponse response, int memno) throws IOException {
+		
+		PrintWriter out = response.getWriter();
+				
+		int result = mpService.deletewishAll(memno);
+		
+		if(result > 0) {
+			out.print("ok");
+		} else {
+			out.print("fail");
+		}
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 신경섭
+	 * @내용 : 위시리스트 체크박스 선택 삭제
+	 * @param @param wishArr
+	 * @param @param response
+	 * @param @param session
+	 * @param @throws IOException
+	 * @return void
+	 */
+	@RequestMapping("wishlistdelete.do")
+	public void WishListDelete(int[] wishArr, HttpServletResponse response, HttpSession session) throws IOException {
+		
+		PrintWriter out  = response.getWriter();
+		
+		ArrayList<DIBS> noArr = new ArrayList<DIBS>();
+		
+		for(int i=0; i<wishArr.length; i++) {
+			DIBS d = new DIBS();
+			d.setDibsno(wishArr[i]);
+			noArr.add(d);
+			System.out.println("dsadasdas : " +d);
+		}
+		
+		int result = mpService.deleteWishlist(noArr);
+		
+		System.out.println(result);
+		if(result > -2) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 문태환
+	 * @내용 : 선택 상품 장바구니 담기
+	 * @param @param wishArr
+	 * @param @return
+	 * @return String
+	 */
+	@RequestMapping("Insertbasket.do")
+	public String Insertbasket(int[] wishArr)  {
 
+		
+		ArrayList<DIBS> wish = new ArrayList<DIBS>();
+
+		for(int i =0; i<wishArr.length;i++) {
+			DIBS c = new DIBS();
+			c.setDibsno(wishArr[i]);
+			wish.add(c);
+		}
+		
+		ArrayList<DIBS> dlist = mpService.selectDlist(wish);//product 테이블에서 체크한 항목 가져옴
+		System.out.println("dlist"+dlist);
+		ArrayList<Cart> clist = new ArrayList<Cart>();
+		
+		for(int i=0;i< dlist.size();i++) {
+			Cart c = new Cart();
+			
+			c.setMemNo(dlist.get(i).getMemno());
+			c.setPrdt_no(dlist.get(i).getPrdt_no());
+			c.setPrdt_count(dlist.get(i).getDibs_count());
+			c.setPrdt_color(dlist.get(i).getDibs_color());
+			c.setPrdt_size(dlist.get(i).getDibs_size());
+			c.setPrdt_price(dlist.get(i).getPrdt_price());
+			c.setPrdt_sumprice((dlist.get(i).getDibs_count()*dlist.get(i).getPrdt_price()));
+			
+			clist.add(c);
+		}
+		
+		
+		int result = mpService.insertCartList(clist);
+		
+		if(result > -2) {
+			int result2 = mpService.deleteDlist(wish);
+			
+			return "redirect:mWishlist.do";
+		}
+		return "에러다";
+	}
 	
 	
 }

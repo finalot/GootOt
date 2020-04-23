@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.review.dao.ReviewDao;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
@@ -104,6 +107,21 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public ArrayList<Review> selectSizeSort(int optionSize) {
 		return rDao.selectSizeSort(optionSize);
+	}
+
+	@Override
+	public ArrayList<Product> getBestList() {
+		return rDao.getBestList();
+	}
+
+	@Override
+	public ArrayList<Product_color> selectColorList1() {
+		return rDao.selectColorList1();
+	}
+
+	@Override
+	public ArrayList<Product_opt> selectOptionBestList() {
+		return rDao.selectOptionBestList();
 	}
 
 }

@@ -61,7 +61,7 @@ a{
   						<br>
 						<strong class="data ">
 							<a href="${mWishlist }">
-									<span id="xans_myshop_interest_prd_cnt">0개</span>
+									<span id="xans_myshop_interest_prd_cnt">${WishList }개</span>
 							</a>
 						</strong>
 					</li>
@@ -111,13 +111,6 @@ a{
 		        	</li> -->
     			</ul>
 			</div>
-			
-			
-			
-			
-			
-			
-			
 			
 			<form action="mSearchCancelList.do" id="mSearchCancelList" name="mSearchCancelList">
 				<div class="xans-element- xans-myshop xans-myshop-orderhistoryhead ">

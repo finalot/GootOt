@@ -20,13 +20,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
+import com.kh.ot.main.dao.MainDao;
+import com.kh.ot.main.service.MainService;
+import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.review.service.ReviewService;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
 import com.kh.ot.review.vo.ReviewReply;
-
-import net.sf.json.JSONObject;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -45,9 +48,11 @@ public class ReviewController extends HttpServlet {
 		 */
 		@RequestMapping("review.do")
 		public ModelAndView review(ModelAndView mv,String Sort) {
-
-			ArrayList<Review> rlist = new ArrayList();
-			
+			MainDao mDao = new MainDao();
+			ArrayList<Review> rlist = new ArrayList<>();
+			ArrayList<Product> plist = rService.getBestList();
+			ArrayList<Product_color> pclist = rService.selectColorList1();
+			ArrayList<Product_opt> polist = rService.selectOptionBestList();
 			if(Sort.equals("like")) {
 				 rlist = rService.selectLikeSort();
 			} else {
@@ -56,6 +61,9 @@ public class ReviewController extends HttpServlet {
 			System.out.println("rlist : " + rlist);
 		
 			mv.addObject("rlist",rlist);
+			mv.addObject("plist",plist);
+			mv.addObject("polist",polist);
+			mv.addObject("pclist",pclist);
 
 			
 			mv.setViewName("review");
@@ -405,6 +413,16 @@ public class ReviewController extends HttpServlet {
 			gson.toJson(hmap,response.getWriter());
 		}
 		
+		/**
+		 * @작성일  : 2020. 4. 24.
+		 * @작성자  : 우예진
+		 * @내용    : 사이즈 정렬
+		 * @param optionSize
+		 * @param response
+		 * @param session
+		 * @throws JsonIOException
+		 * @throws IOException
+		 */
 		@RequestMapping("SizeSort.do")
 		public void SizeSort(int optionSize, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
 			ArrayList<Review> rlist = new ArrayList<Review>();
