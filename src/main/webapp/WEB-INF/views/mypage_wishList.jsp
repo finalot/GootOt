@@ -244,7 +244,7 @@ a {
 				<span class="gLeft">
       				<strong class="text">선택상품을</strong>
        				<a id="WishListDelete" class="yg_btn_24 yg_btn5" alt="삭제하기">삭제하기</a>
-        			<a href="#none" onclick="NewWishlist.basket();" class="yg_btn_24 yg_btn3" alt="장바구니 담기">장바구니 담기</a>
+        			<a id="Insertbasket" class="yg_btn_24 yg_btn3" alt="장바구니 담기">장바구니 담기</a>
     			</span>
 				<span class="gRight">
        				<a href="${order }" onclick="NewWishlist.orderAll();" class="yg_btn_140" alt="전체상품주문">전체상품주문</a>
@@ -253,6 +253,51 @@ a {
     			</span>
 			</div>
 			</c:if>
+			
+			<script>
+				$('#Insertbasket').click(function(){
+					var wishArr = new Array();
+					var wishCheck = document.getElementsByName('wishCheck');		// 체크박스
+					console.log(wishCheck);
+					var dibsno = document.getElementsByName('dibsno');				// 위시리스트 번호
+					
+					var count = 0;
+					
+					for(var i=0; i<wishCheck.length; i++){
+						if(wishCheck[i].checked == true){
+							wishArr[count] = dibsno[i].value
+							count++;
+						}
+							console.log(wishArr);
+							
+							
+					}
+				location.href="Insertbasket.do?wishArr="+wishArr;
+				});
+				
+		/* 		$.ajax({
+				url:"Insertbasket.do",
+				traditional : true,
+				data : { 'wishArr' : wishArr},
+				success : function(data){
+					if(data =="ok"){
+					location.href="cartbutton.do";
+				}else{
+					alert('삭제실패')
+				}
+			},error : function(){
+				alert('에러다');
+			}
+			}); */
+	/* 	}
+	});
+	 */		
+			
+			</script>
+			
+			
+			
+			
 			
 			<!-- 페이징 처리 -->
 			<c:if test="${ !empty list }">

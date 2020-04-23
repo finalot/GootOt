@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
+import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
@@ -14,6 +15,7 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.mypage.vo.WishArr;
 
 public interface MypageService {
 
@@ -295,5 +297,11 @@ public interface MypageService {
 	int deletewishAll(int memno);
 
 	int selectDelete(int dibsno);
+
+	int Insertbasket(ArrayList<DIBS> noArr);
+
+	ArrayList<DIBS> selectDlist(ArrayList<WishArr> wishArr);
+
+	int insertCartList(ArrayList<Cart> clist);
 
 }

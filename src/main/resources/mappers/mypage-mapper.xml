@@ -459,5 +459,32 @@
 		WHERE DIBS_NO=#{dibsno}
 	</delete>
 	
+	<insert id="Insertbasket" parameterType="DIBS">
+	INSERT INTO CRT
+	VALUES(#{memno}, #{prdt_no}, #{dibs_price}, #{dibs_count}, #{dibs_sumprice}, 
+			#{dibs_color}, #{dibs_size}, CA_SEQ.NEXTVAL)
+	</insert>
+	
+	<select id="selectDlist"  parameterType="java.util.Map" resultMap="DIBSResultMap" >
+			SELECT * 
+			FROM DIBS D
+			JOIN PRDT P ON(D.PRDT_NO = P.PRDT_NO)
+			WHERE D.DIBS_NO IN
+		 <foreach item="w" index="index" collection="wishArr"
+	                      open="(" separator="," close=");">
+	             	#{w.dibsno}
+         </foreach>
+	</select>
+	
+	<insert id="insertCartList" parameterType="java.util.Map">
+		<foreach  item="c" collection="clist"  index="index"
+      		separator=";" open="DECLARE BEGIN" close="; END;" >
+			INSERT INTO CRT
+		 	VALUES(#{c.memno}, #{c.prdt_no}, #{c.dibs_price}, #{c.dibs_count}, #{c.dibs_sumprice}, 
+				#{c.dibs_color}, #{c.dibs_size}, CA_SEQ.NEXTVAL)
+		</foreach>
+	</insert>
+	
+	
 	
 </mapper>
