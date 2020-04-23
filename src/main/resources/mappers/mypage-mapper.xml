@@ -340,12 +340,24 @@
 		WHERE MEM_NO = #{memNo}
 		AND ORD_STATUS = 'E'
 	</select>
+	<select id="orderCount6" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'F'
+	</select>
+	<select id="orderCount7" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'G'
+	</select>
 
 	<select id="getCancelListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO=#{memNo}
-		AND ORD_STATUS='E'
+		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
 	</select>
 
 	<select id="selectCancelList" resultMap="ordResultSet">
@@ -354,7 +366,7 @@
 		JOIN PRDT P
 		ON (O.PRDT_NO = P.PRDT_NO)
 		WHERE MEM_NO=#{memno}
-		AND ORD_STATUS='E'
+		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
 		ORDER BY O.ORD_DATE DESC
 
 	</select>
@@ -366,7 +378,7 @@
 		ON (O.PRDT_NO = P.PRDT_NO)
 		WHERE MEM_NO=#{memno}
 		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
-		AND ORD_STATUS='E'
+		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
 	</select>
 
 	<select id="selectSearchCancelList" resultMap="ordResultSet">
@@ -376,7 +388,7 @@
 		ON (O.PRDT_NO = P.PRDT_NO)
 		WHERE MEM_NO=#{memno}
 		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
-		AND ORD_STATUS='E'
+		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
 	</select>
 
 	<select id="getWishListCount" resultType="_int">
@@ -459,19 +471,13 @@
 		WHERE DIBS_NO=#{dibsno}
 	</delete>
 	
-	<insert id="Insertbasket" parameterType="DIBS">
-	INSERT INTO CRT
-	VALUES(#{memno}, #{prdt_no}, #{dibs_price}, #{dibs_count}, #{dibs_sumprice}, 
-			#{dibs_color}, #{dibs_size}, CA_SEQ.NEXTVAL)
-	</insert>
-	
 	<select id="selectDlist"  parameterType="java.util.Map" resultMap="DIBSResultMap" >
 			SELECT * 
 			FROM DIBS D
 			JOIN PRDT P ON(D.PRDT_NO = P.PRDT_NO)
 			WHERE D.DIBS_NO IN
 		 <foreach item="w" index="index" collection="wishArr"
-	                      open="(" separator="," close=");">
+	                      open="(" separator="," close=")">
 	             	#{w.dibsno}
          </foreach>
 	</select>
@@ -480,11 +486,18 @@
 		<foreach  item="c" collection="clist"  index="index"
       		separator=";" open="DECLARE BEGIN" close="; END;" >
 			INSERT INTO CRT
-		 	VALUES(#{c.memno}, #{c.prdt_no}, #{c.dibs_price}, #{c.dibs_count}, #{c.dibs_sumprice}, 
-				#{c.dibs_color}, #{c.dibs_size}, CA_SEQ.NEXTVAL)
+		 	VALUES(#{c.memNo}, #{c.prdt_no}, #{c.prdt_price}, #{c.prdt_count}, #{c.prdt_sumprice}, 
+				#{c.prdt_color}, #{c.prdt_size}, CA_SEQ.NEXTVAL)
 		</foreach>
 	</insert>
-	
+	<delete id="deleteDlist" parameterType="java.util.Map">
+	<foreach item="w" collection="wish" index="index"
+				 separator=";" open="DECLARE BEGIN" close="; END;">
+		DELETE
+		FROM DIBS
+		WHERE DIBS_NO=#{w.dibsno}
+	</foreach>
+	</delete>
 	
 	
 </mapper>

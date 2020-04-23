@@ -1572,7 +1572,7 @@ public class menuController {
 	 * @return
 	 */
 	@RequestMapping("ReturnUpdate.ad")
-	public String ReturnUpdate(int reNo,String content,String realCheck,String reMent,String reStatus,String productCheck) {
+	public String ReturnUpdate(int ordCode,int reNo,String content,String realCheck,String reMent,String reStatus,String productCheck) {
 		
 		Return r = new Return();
 		r.setReNo(reNo);
@@ -1581,8 +1581,9 @@ public class menuController {
 		r.setReReal(realCheck);
 		r.setReStatus(reStatus);
 		r.setReMent(reMent);
-
-		System.out.println(content);
+		r.setOrdCode(ordCode);
+		int  result2 =adService.updateOrdf(r); 
+			
 		
 		int result = adService.ReturnUpdate(r);
 		

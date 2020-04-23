@@ -260,4 +260,10 @@ public class adminServiceImpl implements adminService{
 			return adDao.ReturnUpdate(r);
 		}
 
+
+		@Override
+		public int updateOrdf(Return r) {
+			return adDao.updateOrdf(r);
+		}
+
 }

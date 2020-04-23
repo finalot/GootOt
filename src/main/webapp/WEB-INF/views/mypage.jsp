@@ -40,8 +40,14 @@
 			<c:url var="delivery_change" value="my_orderlist.do">
 				<c:param name="order_status" value="order_exchange"/>
 			</c:url>
-			<c:url var="delivery_return" value="my_orderlist.do">
-				<c:param name="order_status" value="order_return"/>
+			<c:url var="delivery_return_Ing" value="my_orderlist.do">
+				<c:param name="order_status" value="order_return_Ing"/>
+			</c:url>
+			<c:url var="delivery_return_complete" value="my_orderlist.do">
+				<c:param name="order_status" value="order_return_complete"/>
+			</c:url>
+			<c:url var="delivery_return_cancel" value="my_orderlist.do">
+				<c:param name="order_status" value="order_return_cancel"/>
 			</c:url>
 			
 			<c:url var="mWishlist" value="mWishlist.do"/>
@@ -193,18 +199,18 @@
 					<ul class="cs">
 						<li>
 			                <span class="icoDot"></span>
-			                <strong>취소 : </strong>
-			                <a href="${delivery_cancel }" class="count"><span id="xans_myshop_orderstate_order_cancel_count"></span></a>
+			                <strong>반품진행 : </strong>
+			                <a href="${delivery_return_Ing }" class="count"><span id="xans_myshop_orderstate_order_cancel_count">${orderCount5}</span></a>
 			            </li>
 			            <li>
 			                <span class="icoDot"></span>
-			                <strong>교환 : </strong>
-			                <a href="${delivery_change }" class="count"><span id="xans_myshop_orderstate_order_exchange_count"></span></a>
+			                <strong>반품완료 : </strong>
+			                <a href="${delivery_return_complete }" class="count"><span id="xans_myshop_orderstate_order_exchange_count">${orderCount6}</span></a>
 			            </li>
 			            <li>
 			                <span class="icoDot"></span>
-			                <strong>반품 : </strong>
-			                <a href="${delivery_return }" class="count"><span id="xans_myshop_orderstate_order_return_count">${orderCount5} </span></a>
+			                <strong>반품취소 : </strong>
+			                <a href="${delivery_return_cancel }" class="count"><span id="xans_myshop_orderstate_order_return_count">${orderCount7}</span></a>
 			            </li>
 			        </ul>
 				</div>

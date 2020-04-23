@@ -119,7 +119,10 @@ a{
 								<option value="shipped_complete">배송완료</option>
 								<option value="order_cancel">취소</option>
 								<option value="order_exchange">교환</option>
-								<option value="order_return">반품</option>
+								<option value="order_return_Ing">반품준비중</option>
+								<option value="order_return_complete">반품완료</option>
+								<option value="order_return_cancel">반품취소</option>
+								
 							</select>       
 						</div>
 						
@@ -233,7 +236,13 @@ a{
                    					배송완료
                    				</c:if>
                    				<c:if test="${o.ord_status == 'E' }">
-                   					반품
+                   					반품준비중
+                   				</c:if>
+                   				<c:if test="${o.ord_status == 'F' }">
+                   					반품완료
+                   				</c:if>
+                   				<c:if test="${o.ord_status == 'G' }">
+                   					반품취소
                    				</c:if>
                    				
                    				</p>
