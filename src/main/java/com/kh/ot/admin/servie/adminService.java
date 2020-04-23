@@ -288,6 +288,10 @@ public interface adminService{
 		 */
 		  public Return ReturnDetail(Return re);
 
+//	    /*
+//		 *
+//		 */ @작성일 : 2020. 4. 20.
+//		public Return ReturnDetail(Return re);
 
 		 /* @작성일 : 2020. 4. 20.
 		 * @작성자 : 이서현
