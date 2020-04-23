@@ -843,9 +843,19 @@ public class MypageController {
 	}
 	
 	@RequestMapping("Insertbasket.do")
-	public void Insertbasket(ArrayList<WishArr> wishArr) {
-		System.out.println(wishArr);
-		ArrayList<DIBS> dlist = mpService.selectDlist(wishArr);//product 테이블에서 체크한 항목 가져옴
+	public String Insertbasket(int[] wishArr)  {
+
+		
+		ArrayList<DIBS> wish = new ArrayList<DIBS>();
+
+		for(int i =0; i<wishArr.length;i++) {
+			DIBS c = new DIBS();
+			c.setDibsno(wishArr[i]);
+			wish.add(c);
+		}
+		
+		ArrayList<DIBS> dlist = mpService.selectDlist(wish);//product 테이블에서 체크한 항목 가져옴
+		System.out.println("dlist"+dlist);
 		ArrayList<Cart> clist = new ArrayList<Cart>();
 		
 		for(int i=0;i< dlist.size();i++) {
@@ -863,14 +873,14 @@ public class MypageController {
 		}
 		
 		
-		
 		int result = mpService.insertCartList(clist);
 		
-		
-		
-		
-		
-		
+		if(result > -2) {
+			int result2 = mpService.deleteDlist(wish);
+			
+			return "redirect:mWishlist.do";
+		}
+		return "에러다";
 	}
 	
 	

@@ -16,6 +16,7 @@ import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.Wish;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
@@ -315,7 +316,7 @@ public class MypageDao {
 		return 0;
 	}
 
-	public ArrayList<DIBS> selectDlist(ArrayList<WishArr> wishArr) {
+	public ArrayList<DIBS> selectDlist(ArrayList<DIBS> wishArr) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("wishArr", wishArr);
 		
@@ -327,6 +328,13 @@ public class MypageDao {
 		map.put("clist", clist);
 		
 		return sqlSession.insert("mypageMapper.insertCartList",map);
+	}
+
+	public int deleteDlist(ArrayList<DIBS> wish) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("wish", wish);
+		
+		return sqlSession.delete("mypageMapper.deleteDlist",map);
 	}
 
 

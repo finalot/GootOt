@@ -11,6 +11,7 @@ import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.Wish;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.dao.MypageDao;
 import com.kh.ot.mypage.vo.Address;
@@ -262,13 +263,18 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public ArrayList<DIBS> selectDlist(ArrayList<WishArr> wishArr) {
-		return mpDao.selectDlist(wishArr);
+	public ArrayList<DIBS> selectDlist(ArrayList<DIBS>  wish) {
+		return mpDao.selectDlist(wish);
 	}
 
 	@Override
 	public int insertCartList(ArrayList<Cart> clist) {
 		return mpDao.insertCartList(clist);
+	}
+
+	@Override
+	public int deleteDlist(ArrayList<DIBS> wish) {
+		return mpDao.deleteDlist(wish);
 	}
 
 }
