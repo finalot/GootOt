@@ -130,6 +130,8 @@ public class MypageController {
 		int orderCount3 = mpService.orderCount3(memNo);
 		int orderCount4 = mpService.orderCount4(memNo);
 		int orderCount5 = mpService.orderCount5(memNo);
+		int orderCount6 = mpService.orderCount6(memNo);
+		int orderCount7 = mpService.orderCount7(memNo);
 		
 		int listCount = mpService.getOrderListCount(memNo);
 		
@@ -200,6 +202,9 @@ public class MypageController {
 		int orderCount3 = mpService.orderCount3(memNo);
 		int orderCount4 = mpService.orderCount4(memNo);
 		int orderCount5 = mpService.orderCount5(memNo);
+		int orderCount6 = mpService.orderCount6(memNo);
+		int orderCount7 = mpService.orderCount7(memNo);
+		
 		
 		OrdSearch os = new OrdSearch();
 	
@@ -241,6 +246,8 @@ public class MypageController {
 			mv.addObject("orderCount3", orderCount3);
 			mv.addObject("orderCount4", orderCount4);
 			mv.addObject("orderCount5", orderCount5);
+			mv.addObject("orderCount6", orderCount6);
+			mv.addObject("orderCount7", orderCount7);
 	    	mv.addObject("listCount", listCount);
 			mv.addObject("list",list);
 			mv.addObject("pi",pi);
@@ -276,6 +283,8 @@ public class MypageController {
 		int orderCount3 = mpService.orderCount3(memNo);
 		int orderCount4 = mpService.orderCount4(memNo);
 		int orderCount5 = mpService.orderCount5(memNo);
+		int orderCount6 = mpService.orderCount6(memNo);
+		int orderCount7 = mpService.orderCount7(memNo);
 		
 		int listCount = mpService.getCancelListCount(memNo);
 		
@@ -292,6 +301,8 @@ public class MypageController {
 		mv.addObject("orderCount3", orderCount3);
 		mv.addObject("orderCount4", orderCount4);
 		mv.addObject("orderCount5", orderCount5);
+		mv.addObject("orderCount6", orderCount6);
+		mv.addObject("orderCount7", orderCount7);
 		mv.addObject("listCount", listCount);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
@@ -336,6 +347,8 @@ public class MypageController {
 		int orderCount3 = mpService.orderCount3(memNo);
 		int orderCount4 = mpService.orderCount4(memNo);
 		int orderCount5 = mpService.orderCount5(memNo);
+		int orderCount6 = mpService.orderCount6(memNo);
+		int orderCount7 = mpService.orderCount7(memNo);
 		
 		os.setMemno(memNo);
 		os.setOrd_status("E");
@@ -362,6 +375,8 @@ public class MypageController {
 		mv.addObject("orderCount3", orderCount3);
 		mv.addObject("orderCount4", orderCount4);
 		mv.addObject("orderCount5", orderCount5);
+		mv.addObject("orderCount6", orderCount6);
+		mv.addObject("orderCount7", orderCount7);
 		mv.addObject("listCount", listCount);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
