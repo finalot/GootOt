@@ -63,8 +63,7 @@
 }
 </style>
 <body>
-	<%@include file="header.jsp" %>	
- 	
+<jsp:include page="header.jsp"/> 	
 	
     <div id="container">
         <div id="contents" style="margin-top:11.5%;">

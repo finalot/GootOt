@@ -284,4 +284,10 @@ public interface MypageService {
 
 	ArrayList<Product_opt> selectOptionList2(int prdt_no);
 
+	int insertwishlist(DIBS d);
+
+	DIBS selectonelist();
+
+	int updatewishlist(DIBS d);
+
 }

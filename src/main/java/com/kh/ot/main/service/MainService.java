@@ -5,8 +5,10 @@ package com.kh.ot.main.service;
 
 import java.util.ArrayList;
 
+import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.main.vo.MainPageInfo;
+import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.MainSearchCondition;
 import com.kh.ot.main.vo.MaindownCategory;
 import com.kh.ot.main.vo.MainupCategory;
@@ -103,6 +105,19 @@ public interface MainService {
 	ArrayList<Product> selectDetailList(int product_detail);
 
 	int insertCart(Cart c);
+
+	/**
+	 * @작성일 : 2020. 4. 22.
+	 * @작성자 :
+	 * @내용 :
+	 * @param @param product_detail
+	 * @param @return
+	 * @return ArrayList<Board>
+	 */
+
+	int getQnaListCount(int product_detail);
+
+	ArrayList<Board> selectQnaList(MainPageInfo2 mainPi2, int product_detail);
 
 
 }

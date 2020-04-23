@@ -84,11 +84,12 @@ public class MypageDao {
 
 	public int PointPrice(Member m) {
 
-		int memNo = m.getMemNo();
-
-		int pointSet = sqlSession.selectOne("mypageMapper.selectPoint",memNo);
-
-		m.setMem_point(pointSet);
+		/*
+		 * int memNo = m.getMemNo();
+		 * 
+		 * // int pointSet = sqlSession.selectOne("mypageMapper.selectPoint",memNo); //
+		 * m.setMem_point(pointSet);
+		 */
 
 		return sqlSession.update("mypageMapper.updatePoint", m);
 	}
@@ -278,6 +279,18 @@ public class MypageDao {
 
 	public ArrayList<Product_opt> selectOptionList2(int prdt_no) {
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectOptionList2", prdt_no);
+	}
+
+	public int insertwishlist(DIBS d) {
+		return sqlSession.insert("mypageMapper.insertwishlist",d);
+	}
+
+	public DIBS selectonelist() {
+		return sqlSession.selectOne("mypageMapper.selectonelist");
+	}
+
+	public int updatewishlist(DIBS d) {
+		return sqlSession.update("mypageMapper.updatewishlist",d);
 	}
 
 

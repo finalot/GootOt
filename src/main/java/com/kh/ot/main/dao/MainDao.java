@@ -10,8 +10,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.main.vo.MainPageInfo;
+import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.MainSearchCondition;
 import com.kh.ot.main.vo.MaindownCategory;
 import com.kh.ot.main.vo.MainupCategory;
@@ -192,6 +194,17 @@ public class MainDao {
 
 	public int insertCart(Cart c) {
 		return sqlSession.insert("productMapper.insertCart",c);
+	}
+
+	public int getQnaListCount(int product_detail) {
+		return sqlSession.selectOne("productMapper.selectQnaListCount",product_detail);
+	}
+
+	public ArrayList<Board> selectQnaList(MainPageInfo2 mainPi2, int product_detail) {
+		int offset=(mainPi2.getCurrentPage() - 1) * mainPi2.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,mainPi2.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("productMapper.selectQnaList",product_detail,rowBounds);
 	}
 
 

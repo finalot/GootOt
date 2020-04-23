@@ -1267,35 +1267,19 @@
                         
                         <!-- 댓글 forEach 시작점 -->
                         <div id="comentarea">
-                        	<div>
-                     
+                        	<div style="margin-bottom: 14px;">
+                     		  
                        
                             <input onkeyPress="reviewReply();" type="text" id="rvComment" placeholder="댓글을 작성해주세요 :)" maxlength="80" style="resize:none; /* border-radius: 5px 0px 0px 5px;  */
                             border: 0.5px solid lightgray; background-color: whitesmoke; padding: 2px; height:40px;width:85%;">
                             <button onclick="" id="comentsend" style=" font-size: 15px;
                              background: white; border: 1px solid lightgray; /* border-radius:0px 5px 5px 0px; */ 
                              width:50px;height: 40px;position:relative;bottom:2px;">등록</button>
-                             </div><br>
+                             </div>
                              
-                              <%--   <c:forEach var="rp" items="${rp.rplist }"> --%>
-                                <input type="hidden" id="rv_no3" value=""> 
-                             <div style="color:gray; border:1px solid lightgray; /* border-radius:5px; */ font-size:16px;">
-                          	<small>
-                          	하이하잉ㅇ</small>
-                          	<button style="">&times;</button><br>
-                          	<button style="float:right;font-size:10px;color:#e65540;margin-top:1px;">&nbsp;&nbsp;신고하기</button>
-                          	 <div style="color:lightgray;font-size:11px;float:right;" id="rvDate">
-                          	 
-                          	 <font>이대*</font>&nbsp;&nbsp;2020-03-31</div>
-                          	 
-                          	 </div>
-                          	 
-                       <%--  </c:forEach> --%>
-                          	 <br>
-                          	 
-                        
+                           
                         </div>
-                        <!-- 댓글 forEach 끝나는점) -->
+                       
                     </div>
                        <!-- 모달창 끝나는 점 -->     
                 </div>
@@ -1933,40 +1917,88 @@
 	
 	
 	<script>
-		$(function() {
-			getReplyList();
+		
+		$('#comentsend').on("click", function() {
+			var rvComment = $('#rvComment').val();
+			 var rv_no = $('#rv_no2').val();
+			 var rvc_no = $('.rvc_no').val();
+
+			 
 			
-			//setInterval
-			setInterval(function() {
-				getReplyList();
-			},3000);
-			
-			// 댓글등록
-			
-			$('#comentsend').on("click", function() {
-				var rvComment = $('#rvComment').val();
-				var rv_no3 = $('#rv_no3').val();
+		
+			if(rvComment == ""){
+					alert("댓글을 작성해주세요");
+			}else{
+				 $('#comentarea').children('.replyDiv').remove();
+				 $('#comentarea').children('br').remove();
 				
-				$.ajax({
-					url:"addReply.do",
-					data : {rvComment : rvComment, rv_no3 : rv_no3},
-					type:"post",
-					success:function(data) {
-						if(data=="success") {
-							getReplyList();
-							
-							$('#rvComment').val("");
-						}
-					},error:function() {
-						console.log("등록실패");
+		
+			$.ajax({
+				url:"addReply.do",
+				data : {rvComment : rvComment, rv_no : rv_no},
+				success:function(data) {
+					if(data=="success") {
+						//getReplyList();
+						 $.ajax({
+				 
+							url:"rList.do",
+							dataType:"json",
+							data : {rv_no:rv_no},
+							success:function(data) {
+							 console.log(data.rplist[0]);
+								 for(var i=0;i<data.rplist.length;i++) {
+									
+									 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+									 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+									 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+					                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+					                          	'<button style="">&times;</button><br>'+
+					                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+					                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+					                          	 )
+									 }else{
+										 
+					                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+									 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+					                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+					                          	'<button style=""></button><br>'+
+					                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+					                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+					                          	 )         	 
+									 }					                          	 
+								 }
+							},error:function() {
+								alert("에러임에러임");
+							}
+			 })
+						$('#rvComment').val("");
 					}
-				})
-			});
+				},error:function() {
+					console.log("등록실패");
+				}
+			})
 			
-		});
+	
+			 
+			
+				}
+			});
 		
 		function getReplyList() {
-			var rv_no3 = $('#rv_no3').val();
+			
+			 var rv_no = $('#rv_no2').val();
+			 
+			//comentarea
+			
+			$.ajax({
+				url:"rList.do",
+				data:{rv_no:rv_no},
+				dataType:"json",
+				success:function(data) {
+					
+				}
+				
+			})
 		}
 		
 	
@@ -1996,6 +2028,11 @@
 				 }
 			 }
 		 }) 
+		 
+		
+		 
+	
+		 
 		
 	})
 	
@@ -2008,8 +2045,12 @@
 	
 	<!--리뷰 모달 디테일 스크립트-->
 	$('.review1').on('click',function modalOpen(){
+		 $('#comentarea').children('.replyDiv').remove();
+		 $('#comentarea').children('br').remove();
 		 var rv_no = $(this).find('.rv_no').val();
 		 $("#rv_no2").val(rv_no);
+		 
+		var rvc_no = $('.rvc_no').val();
 		 var nonHeart = $('#nonHeart').attr("src");
 		 var like_img="";
 		 var count = 0;
@@ -2043,6 +2084,45 @@
 					alert('리뷰에러')
 			}
 		 });
+		 
+		  $.ajax({
+				 
+				url:"rList.do",
+				dataType:"json",
+				data : {rv_no:rv_no},
+				success:function(data) {
+				 console.log(data.rplist[0]);
+					 for(var i=0;i<data.rplist.length;i++) {
+						
+						 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )
+							 }else{
+								 
+			                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                          	'<button style=""></button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )         	 
+							 }			
+					 }
+				},error:function() {
+					alert("에러임에러임");
+				}
+				 	
+			 })
+			 
+	
+			 
+			 
+		 
 		
 		
 		
@@ -2086,6 +2166,96 @@
           slides[slideIndex-1].style.display = "block";  
           dots[slideIndex-1].className += " active";
       }
+	</script>
+	
+	<script>
+	function DeleteReply(dr) {
+		var rvcNo=$(dr).parents('.replyDiv').find('.rvc_no').val();
+		 var rv_no = $('#rv_no2').val();
+		 $('#comentarea').children('.replyDiv').remove();
+		 $('#comentarea').children('br').remove();
+
+		$.ajax({
+			url:"DeleteReply.do",
+			dataType:"json",
+			data : {rvcNo : rvcNo, rv_no : rv_no},
+			success:function(data) {
+				 console.log(data.rplist[0]);
+				 for(var i=0;i<data.rplist.length;i++) {
+						
+					 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+						 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+		                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+		                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+		                          	 )
+						 }else{
+							 
+		                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+		                          	'<button style=""></button><br>'+
+		                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+		                          	 )         	 
+						 }			
+				 }
+				},error:function() {
+					alert("에러임에러임");
+				}
+			
+		})
+		
+		
+	}
+	
+	</script>
+	
+	<script>
+	function Warning(wa) {
+		var rvcNo=$(wa).parents('.replyDiv').find('.rvc_no').val();
+		
+		 var rv_no = $('#rv_no2').val();
+		 $('#comentarea').children('.replyDiv').remove();
+		 $('#comentarea').children('br').remove();
+		 
+		 $.ajax({
+				url:"WarningReply.do",
+				dataType:"json",
+				data : {rvcNo : rvcNo, rv_no : rv_no},
+				success:function(data) {
+					 console.log(data.rplist[0]);
+					 for(var i=0;i<data.rplist.length;i++) {
+							
+						 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )
+							 }else{
+								 
+			                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                          	'<button style=""></button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )         	 
+							 }			
+					 }
+					},error:function() {
+						alert("에러임에러임");
+					}
+				
+			})
+		 
+	}
+	
 	</script>
 	
 </body>

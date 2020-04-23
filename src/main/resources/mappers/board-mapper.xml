@@ -51,6 +51,13 @@
 				#{qna_password},#{qna_secure},NULL)
 		</insert>
 		
+		<insert id="insertBoard1" parameterType="Board">
+		INSERT INTO QNA
+		VALUES(QNA_SEQ.NEXTVAL, #{b_cate_no},#{mem_no}, #{content}, DEFAULT, SYSDATE,
+				#{qna_writer},#{qna_title},#{originalFileName},#{renameFileName},SYSDATE,
+				#{qna_password},#{qna_secure},#{prdt_code})
+		</insert>
+		
 		<select id="selectBoard" parameterType="_int" resultMap="boardImgResultSet">
 		SELECT *
 		FROM QNA Q

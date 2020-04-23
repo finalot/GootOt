@@ -405,18 +405,39 @@
 	</select>
 
 	<select id="selectOptionList1" resultMap="DIBSResultMap">
-	 SELECT OPT_COLOR
+	 SELECT PRDT_NO, OPT_COLOR
 	 FROM PRDT_OPT
 	 WHERE PRDT_NO=#{prdt_no}
-	 GROUP BY OPT_COLOR
+	 GROUP BY PRDT_NO, OPT_COLOR
 	</select>
 	
 	<select id="selectOptionList2" resultMap="DIBSResultMap">
-	 SELECT OPT_SIZE
+	 SELECT PRDT_NO, OPT_SIZE
 	 FROM PRDT_OPT
 	 WHERE PRDT_NO=#{prdt_no}
-	 GROUP BY OPT_SIZE
+	 GROUP BY PRDT_NO, OPT_SIZE
 	
 	</select>
+	
+	<insert id="insertwishlist" parameterType="DIBS">
+	INSERT INTO DIBS
+	VALUES(DIBS_SEQ.NEXTVAL, #{memno}, #{prdt_no},#{dibs_count},#{dibs_color},#{dibs_size},default )
+	
+	</insert>
+	
+	<select id="selectonelist" resultMap="DIBSResultMap">
+	 SELECT *
+     FROM (select * from dibs order by dibs_no desc) D
+     JOIN PRDT P
+     ON (D.PRDT_NO = P.PRDT_NO)
+     where rownum=1
+	
+	</select>
+	
+	<update id="updatewishlist" parameterType="DIBS">
+		UPDATE DIBS
+		SET DIBS_COLOR=#{dibs_color}, DIBS_SIZE=#{dibs_size}, DIBS_COUNT=#{dibs_count}
+		WHERE DIBS_NO=#{dibsno}
+	</update>
 	
 </mapper>

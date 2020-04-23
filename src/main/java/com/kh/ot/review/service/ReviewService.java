@@ -97,4 +97,31 @@ public interface ReviewService {
 	 */
 	int insertReply(ReviewReply rp);
 
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰  리스트
+	 * @param rv_no
+	 * @return
+	 */
+	ArrayList<ReviewReply> selectReplyList(int rv_no);
+
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰 댓글 삭제
+	 * @param rp
+	 * @return
+	 */
+	int DeleteReply(ReviewReply rp);
+
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰 신고 기능
+	 * @param rp
+	 * @return
+	 */
+	int WarningReply(ReviewReply rp);
+
 }

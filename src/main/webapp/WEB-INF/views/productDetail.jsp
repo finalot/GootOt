@@ -1,3 +1,7 @@
+<%@page import="com.kh.ot.main.service.MainServiceImpl"%>
+<%@page import="com.kh.ot.main.service.MainService"%>
+<%@page import="com.kh.ot.board.vo.Board"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -576,7 +580,11 @@ a{
 							alt="IMG-PRODUCT">
 							</c:forEach>
 					</div>
-
+					
+					<%
+          			String qnaCount1 = request.getParameter("listCount");
+          			int qnaCount = 0;
+          			%>
 					<!-- <div class="item-slick3" data-thumb="images/thumb-item-02.jpg">
 							<div class="wrap-pic-w">
 								<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
@@ -947,7 +955,7 @@ function optionDel(){
 						id="myBtn1" style="width: 40%; float: left;"><small>Review(${pd1.prdtReview})</small></button>
 						</c:forEach>
 					<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-						onclick="qna();" style="position: relative; left: 10%; width: 40%;"><small>Q&A(3)</small></button>
+						onclick="qna();" style="position: relative; left: 10%; width: 40%;"><small>Q&A(<%=qnaCount1 %>)</small></button>
 						
 						<br>
 						
@@ -3023,12 +3031,12 @@ function qna(){
 		</div>
 	</div>
 	<!-- size info 끝 -->
-	<div id="qna"/>
+	<div id="qna"></div>
 <br><br><br>
 
 
 <!-- Q&A -->
-<div id="container">
+<div id="container" >
         <div id="contents" style="margin-top:11.5%;">
 			<div class="mypage_top_outer">
 			 
@@ -3072,7 +3080,7 @@ function qna(){
 					<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
 					
 					<tr style="background-color:#F9F9F9; color:#555555;" class="xans-record-">
-					<td style="font-weight:600;"> 공지</td>
+					<td style="font-weight :600;"> 공지</td>
                     <td class="displaynone"></td>
                     <td class="subject left txtBreak">
                         <strong> <a href="/article/배송문의/3001/279655/" style="color:#555555; font-size:12px;">▶ 배송 안내입니다.</a></span></strong>
@@ -3083,12 +3091,16 @@ function qna(){
                 </tr>
 		</tbody>	
 				<tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
-          			<c:forEach var="b" items="${ list }">
+          		
+          			
+          			<c:forEach var="b" items="${ blist }">
           				<tr class="xans-record-">
 							<td>
 								<!-- no 공지번호 들어갈 곳 -->
-									<span id="idMsg4">${b.qna_no }</span>
+									<span id="idMsg4"><%=qnaCount %></span>
+									<input type="hidden" value="${b.qna_no }">
 							</td>
+               			<%qnaCount--; %>
                			
                         <!-- 상품명 이름 들어갈 곳 -->
                          <td class="thumb">
@@ -3166,105 +3178,51 @@ function qna(){
 		<a href="#layer2" id="submitBtn" class="hov1 s-text1 trans-0-4 yg_btn_145">
         <span style="position: relative;top: -2px;">write</span></a>
     			
-			<div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 "><fieldset class="boardSearch">
-			<legend>게시물 검색</legend>
-			<form action="de_search.do">
-            <p><select id="search_date" name="search_date">
-				<option value="week">일주일</option>
-				<option value="month">한달</option>
-				<option value="month3">세달</option>
-				<option value="all">전체</option>
-				</select> 
-				<select id="search_key" name="search_key">
-				<option value="subject">제목</option>
-				<option value="content">내용</option>
-				<option value="writer_name">글쓴이</option>
-				</select> 
-		<input id="search" name="search" class="inputTypeText" type="text">
-      <a href="#none" onclick="pbSearch();" class="yg_btn_28 yg_btn318">
-      <span id="idMsg9">SEARCH</span></a></p>
-      </form>
-       	 </fieldset>
-	</div>
+			<%String prdtNo = request.getParameter("product_detail"); %>
 			
 			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate1">
             <!-- <a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first"> -->
 
-               <img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
 
-
-				<c:if test="${empty sc }">
-                  <c:url var="before" value="delivery_board.do">
-                  <c:param name="currentPage" value="${pi.currentPage -1 }"/>
+<c:if test="${ mainPi2.currentPage ne 1 }">
+                  <c:url var="before" value="product_detail.do">
+                  <c:param name="product_detail" value="<%=prdtNo %>"/>
+                  <c:param name="currentPage" value="${mainPi2.currentPage -1 }"/>
                   </c:url>
-                      </c:if>
-					<c:if test="${!empty sc }">
-                  <c:url var="before" value="de_search.do">
-                  <c:param name="currentPage" value="${pi.currentPage -1 }"/>
-                  <c:param name="search_date" value="${sc.search_date }"/>
-                  <c:param name="search_key" value="${sc.search_key }"/>
-                  <c:param name="search" value="${sc.search }"/>
-                  </c:url>
-                      </c:if>
                                             
-                  <a href="${before}">
+                  <a href="http://localhost:8888/ot/${before}#qna">
                   <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
                   </a> &nbsp;
-             
+             </c:if>
 
-               <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                     <c:if test="${ p eq pi.currentPage }">
-                        <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
-                        <b>${ p }</b> &nbsp;&nbsp;</font>
+               <c:forEach var="p" begin="${ mainPi2.startPage }" end="${ mainPi2.endPage }">
+                     <c:if test="${ p eq mainPi2.currentPage }">
+                         <a href="#" class="flex-c-m trans-0-4 active-pagination" 
+                         style="display:inline-block;width:20px;height:27px;margin:3px; border:1px solid gray; border-radius:3px;">${ p }</a>
                      </c:if>
 					
-					 <c:if test="${empty sc }">	
-                     <c:if test="${ p ne pi.currentPage }">
-                        <c:url var="pagination" value="delivery_board.do">
-                           <c:param name="currentPage" value="${ p }"/>
-                     </c:url>
-                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
-                     ${ p }</a> &nbsp;
-                  </c:if>
-                  </c:if>
-                  
-                  	 <c:if test="${!empty sc }">	
-                     <c:if test="${ p ne pi.currentPage }">
-                        <c:url var="pagination" value="de_search.do">
-                           <c:param name="currentPage" value="${ p }"/>
-                           <c:param name="search_date" value="${sc.search_date }"/>
-		                  <c:param name="search_key" value="${sc.search_key }"/>
-		                  <c:param name="search" value="${sc.search }"/>
-                     </c:url>
-                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
-                     ${ p }</a> &nbsp;
-                  </c:if>
+                     <c:if test="${ p ne mainPi2.currentPage }">
+                     <a href="http://localhost:8888/ot/product_detail.do?product_detail=<%=prdtNo %>&currentPage=${p }#qna" 
+                     style="display:inline-block; width:20px;height:27px;margin:3px;border:1px solid gray;border-radius:3px;" class="flex-c-m trans-0-4">
+                     ${ p }</a>
                   </c:if>
                   
                   
                </c:forEach>
 
-				     <c:if test="${empty sc }">	
-                    <c:url var="after" value="delivery_board.do">
-                     <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+				 <c:if test="${ mainPi2.currentPage ne mainPi2.maxPage }">
+                    <c:url var="after" value="product_detail.do">
+                    	<c:param name="product_detail" value="<%=prdtNo %>"/>
+                     <c:param name="currentPage" value="${mainPi2.currentPage +1 }"/>
                     </c:url>
-                     </c:if>
-                     
-                  <c:if test="${!empty sc }">
-                  <c:url var="after" value="de_search.do">
-                  <c:param name="currentPage" value="${pi.currentPage +1 }"/>
-                  <c:param name="search_date" value="${sc.search_date }"/>
-                  <c:param name="search_key" value="${sc.search_key }"/>
-                  <c:param name="search" value="${sc.search }"/>
-                  </c:url>
-                      </c:if>
-                  
-                  <a href="${after}">
+                    <a href="http://localhost:8888/ot/${after}#qna">
                <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
                </a>
+                   </c:if>  
+                  
+                  
 
 
-               <img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
 
          </div>
 
@@ -3296,7 +3254,7 @@ function qna(){
 
 
 	<!-- Relate Product -->
-	<section class="relateproduct bgwhite p-t-45 p-b-138" style="position:relative;top:800px;">
+	<section class="relateproduct bgwhite p-t-45 p-b-138" style="position:relative;top:1090px;">
 	
 			<div class="sec-title p-b-60">
 				<h3 class="m-text5 t-center">With Item</h3>
@@ -3398,8 +3356,8 @@ function qna(){
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 						<!-- 기본프로덕트블록 샘플 -->
+					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 						<div class="block2">
 							<div class="block2-img wrap-pic-w of-hidden pos-relative">
 								<img
@@ -3626,7 +3584,7 @@ function qna(){
 	<div id="dropDownSelect1"></div>
 	<div id="dropDownSelect2"></div>
 
-<div style=" width: 160%; margin-left:-30%;position:relative;top:800px;">
+<div style=" width: 160%; margin-left:-30%;position:relative;top:1090px;">
 <!-- Footer -->
 <jsp:include page="footer.jsp"/>
 </div>
@@ -3769,18 +3727,18 @@ function qna(){
 	</script>
 	<script>
  function prdtDetail(en){
-		
-		var q_no = $(en).parents('tr').children('td').eq(0).children('span').text();	 
+	 var prdtNo = $('#prNo_val').val();
+		var q_no = $(en).parents('tr').children('td').eq(0).children('input').val();	 
 
-		 location.href="delivery_board_detailView.do?qna_no="+q_no; 
+		 location.href="delivery_board_detailView1.do?qna_no="+q_no+"&prdtNo="+prdtNo; 
 		
 	 }
 	 
 	 function prdtDetail2(en){
-			
-			var q_no = $(en).parents('tr').children('td').eq(0).children('span').text();	 
+		 var prdtNo = $('#prNo_val').val();
+			var q_no = $(en).parents('tr').children('td').eq(0).children('input').val();	 
 
-			 location.href='delivery_board_detail.do?qna_no='+q_no; 
+			 location.href='delivery_board_detail1.do?qna_no='+q_no;
 			
 		 }
 	 
@@ -3801,7 +3759,7 @@ function qna(){
 				alert('로그인후 이용해주세요');
 				location.href="loginView.do";
 		 }else{
-			 location.href="delivery_board_write.do";
+			 location.href="delivery_board_write1.do?prdtNo="+prdtNo;
 		 }
 		 
 	 })
