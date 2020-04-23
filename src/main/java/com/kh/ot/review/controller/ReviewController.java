@@ -360,6 +360,7 @@ public class ReviewController extends HttpServlet {
 			
 			
 			rlist = rService.selectCheckSort(optionHeight);
+			
 		
 			response.setContentType("appliction/json; charset=utf-8");
 			
@@ -374,4 +375,53 @@ public class ReviewController extends HttpServlet {
 			
 		}
 		
+		/**
+		 * @작성일  : 2020. 4. 23.
+		 * @작성자  : 우예진 
+		 * @내용    : 몸무게 정렬
+		 * @param optionWeight
+		 * @param response
+		 * @param session
+		 * @throws IOException 
+		 * @throws JsonIOException 
+		 */
+		@RequestMapping("WeightSort.do")
+		public void WeightSort(int optionWeight, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
+			ArrayList<Review> rlist = new ArrayList<Review>();
+			
+			
+			rlist = rService.selectWeightSort(optionWeight);
+			
+		
+			response.setContentType("appliction/json; charset=utf-8");
+			
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			Map hmap = new HashMap();
+			hmap.put("rlist", rlist);
+			
+			
+			gson.toJson(hmap,response.getWriter());
+		}
+		
+		@RequestMapping("SizeSort.do")
+		public void SizeSort(int optionSize, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
+			ArrayList<Review> rlist = new ArrayList<Review>();
+			
+			
+			rlist = rService.selectSizeSort(optionSize);
+			
+		
+			response.setContentType("appliction/json; charset=utf-8");
+			
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			Map hmap = new HashMap();
+			hmap.put("rlist", rlist);
+			
+			
+			gson.toJson(hmap,response.getWriter());
+		}
 }

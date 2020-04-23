@@ -149,4 +149,22 @@ public interface ReviewService {
 	 */
 	ArrayList<Review> selectCheckSort(int optionHeight);
 
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 우예진
+	 * @내용    : 몸무게 정렬
+	 * @param optionWeight
+	 * @return
+	 */
+	ArrayList<Review> selectWeightSort(int optionWeight);
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 우예진
+	 * @내용    : 사이즈 정렬
+	 * @param optionSize
+	 * @return
+	 */
+	ArrayList<Review> selectSizeSort(int optionSize);
+
 }
