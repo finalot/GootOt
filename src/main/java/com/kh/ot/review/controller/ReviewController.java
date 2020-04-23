@@ -13,15 +13,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.review.service.ReviewService;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
 
 import net.sf.json.JSONObject;
 
@@ -151,4 +154,156 @@ public class ReviewController extends HttpServlet {
 			
 			
 		}
+//		
+//		@RequestMapping("rList.do")
+//		public void getReplyList(HttpServletResponse response, int rvNo) {
+//			
+//			ArrayList<ReviewReply> rplist = rService.selectReplyList(rvNo);
+//			
+//			response.setContentType("appliction/json; charset=utf-8");
+//			
+//			
+//			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+//			
+//			gson.toJson(rplist,response.getWriter());
+//		}
+		
+		/**
+		 * @작성일  : 2020. 4. 21.
+		 * @작성자  : 우예진
+		 * @내용    : 리뷰 댓글 등록
+		 * @param rp
+		 * @return
+		 */
+		@RequestMapping("addReply.do")
+		@ResponseBody
+		public String addReply(String rvComment, int rv_no,HttpSession session) {
+			
+			Member m = (Member)session.getAttribute("loginMember");
+			ReviewReply rp = new ReviewReply();
+			rp.setMemNo(m.getMemNo());
+			rp.setRvComment(rvComment);
+		
+			rp.setRvNo(rv_no);
+			
+			int result = rService.insertReply(rp);
+			
+			
+			
+			if(result > 0) {
+				return "success";
+			}else {
+				return "fail";
+			}
+		}
+		
+		
+		/**
+		 * @작성일  : 2020. 4. 22.
+		 * @작성자  : 우예진
+		 * @내용    : 리뷰 댓글 리스트 뿌려주기
+		 * @param response
+		 * @param rv_no
+		 * @throws IOException
+		 */
+		@RequestMapping("rList.do") 
+		public void getReplyList(HttpServletResponse response,int rv_no) throws IOException {
+			
+			ArrayList<ReviewReply> rplist = rService.selectReplyList(rv_no);
+			
+			response.setContentType("appliction/json; charset=utf-8");
+			System.out.println("rplist:"+rplist);
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			Map hmap = new HashMap();
+			hmap.put("rplist", rplist);
+			
+			
+			gson.toJson(hmap,response.getWriter());
+			
+			
+		}
+		
+		/**
+		 * @작성일  : 2020. 4. 22.
+		 * @작성자  : 우예진
+		 * @내용    : 리뷰 댓글 삭제기능
+		 * @param rvComment
+		 * @param rv_no
+		 * @param session
+		 * @return
+		 * @throws IOException 
+		 * @throws JsonIOException 
+		 */
+		@RequestMapping("DeleteReply.do")
+		public void DeleteReply(int rvcNo, int rv_no, HttpServletResponse response) throws JsonIOException, IOException {
+			
+			ReviewReply rp = new ReviewReply();
+		
+			rp.setRvcNo(rvcNo);
+			
+			int result = rService.DeleteReply(rp);
+			if(result >0) {
+				
+			
+			
+			ArrayList<ReviewReply> rplist = rService.selectReplyList(rv_no);
+			
+			response.setContentType("appliction/json; charset=utf-8");
+			System.out.println("rplist:"+rplist);
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			Map hmap = new HashMap();
+			hmap.put("rplist", rplist);
+			
+			
+			gson.toJson(hmap,response.getWriter());
+			
+			} else {
+				System.out.println("에러당~");
+			}
+			
+		}
+		
+		/**
+		 * @작성일  : 2020. 4. 22.
+		 * @작성자  : 우예진
+		 * @내용    : 리뷰 신고기능
+		 * @param rv_no
+		 * @param rvcNo
+		 * @param response
+		 * @throws IOException 
+		 * @throws JsonIOException 
+		 */
+		@RequestMapping("WarningReply.do") 
+		public void WarningReply(int rv_no, int rvcNo, HttpServletResponse response) throws JsonIOException, IOException {
+			ReviewReply rp = new ReviewReply();
+			
+			rp.setRvcNo(rvcNo);
+			
+			int result = rService.WarningReply(rp);
+			
+			
+			if(result >0) {
+				
+				ArrayList<ReviewReply> rplist = rService.selectReplyList(rv_no);
+				
+				response.setContentType("appliction/json; charset=utf-8");
+				System.out.println("rplist:"+rplist);
+				
+				Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+				
+				Map hmap = new HashMap();
+				hmap.put("rplist", rplist);
+				
+				
+				gson.toJson(hmap,response.getWriter());
+				
+				} else {
+					System.out.println("에러당~");
+				}
+		}
+		
 }

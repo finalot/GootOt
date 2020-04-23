@@ -338,13 +338,15 @@ a{
 	 $('#submitBtn').click(function(e){
 		 e.stopPropagation();
 		 var memId = $('#memId').val();	
-		 
+		 var prdtNo=0;
 		 if(memId==""){
 			 $('#check_ment').html('<br>로그인후 이용해 주세요!<br>');
 			 var $href = $(this).attr('href');
 			 layer_popup($href);
+			 
 		 }else{
-			 location.href="delivery_board_write.do";
+			 
+			 location.href="delivery_board_write.do?prdtNo="+prdtNo;
 		 }
 		 
 	 })

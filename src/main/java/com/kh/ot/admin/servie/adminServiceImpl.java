@@ -12,6 +12,7 @@ import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.vo.Return;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
@@ -176,7 +177,7 @@ public class adminServiceImpl implements adminService{
 
 	@Override
 	public ArrayList<Ord> selectOderList4() {
-		return adDao.selectOderList3();
+		return adDao.selectOderList4();
 	}
 
 
@@ -217,12 +218,20 @@ public class adminServiceImpl implements adminService{
 
 
 	@Override
+	public ArrayList<Return> productReturnlist() {
+		return adDao.productReturnlist();
+}
+@Override
 	public Product selectPrdtNo() {
 		return adDao.selectPrdtNo();
 	}
 
 
 	@Override
+	public Return ReturnDetail(Return re) {
+		return adDao.ReturnDetai(re);
+	}
+		@Override
 	public int insertPotList(ArrayList<Product_opt> poArr) {
 		return adDao.insertPotList(poArr);
 	}
@@ -244,5 +253,21 @@ public class adminServiceImpl implements adminService{
 	public ArrayList<Product_opt> listProductOptSelectList(int prdtNo) {
 		return adDao.listProductOptSelectList(prdtNo);
 	}
+		@Override
+		public int calcellCoupon(int cpmemNo) {
+			return adDao.calcellCoupon(cpmemNo);
+		}
+
+
+		@Override
+		public int cancellPay(int ordCode) {
+			return adDao.cancellPay(ordCode);
+		}
+
+
+		@Override
+		public int cancellPoint(Member m) {
+			return adDao.cancellPoint(m);
+		}
 
 }

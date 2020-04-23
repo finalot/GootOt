@@ -230,10 +230,15 @@
             }
 
             #comentarea{
-                margin-top: 10px;
             }
 
             #comentinput{
+                width: 245px;
+                height: 25px;
+                float: left;
+            }
+            
+             #rvComment{
                 width: 245px;
                 height: 25px;
                 float: left;
@@ -245,6 +250,8 @@
                 border: 0px;
                 font-size:18px;
             }
+            
+            
 
             #setting{
                 display: none;
@@ -1215,11 +1222,12 @@
 
 											</div>
 											<div class="reviews_index_gallery_review__review_product_info" >
-												<div class="reviews_index_gallery_review__product_info_title" id="prDetail">
+												<div class="reviews_index_gallery_review__product_info_title" id="prDetail"
+												style="padding-top:6px;">
 													<!-- MODAL 창에 뜨는 DETAIL 상품명 -->
 													
 												</div>
-											<div class="reviews_index_gallery_review__product_info_feedbacks" >
+											<div class="reviews_index_gallery_review__product_info_feedbacks" style="margin-top: 3px;">
 	<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
 													<span class="reviews_index_gallery_review__reviews_count" style="color:gray;">
 													<small id="memName"></small>
@@ -1228,10 +1236,11 @@
 											</div>
 										</div>
 										<hr>
-                        <div style="color:gray; border:1px solid lightgray; font-size:16px;">
-                          	<small>이 리뷰를 <strong style="color:black;" ><span id="likeCount"></span></strong >명이 좋아합니다.</small>
+                        <div style="color:gray; border:1px solid lightgray; font-size:15px;">
+                          	<small style="margin-left:-44px;">이 리뷰를 <strong style="color:black;">
+                          	<span id="likeCount"></span></strong >명이 좋아합니다.</small>
                         </div><hr>
-                         <div style="color:gray; border:2px dotted lightgray; font-size:16px;">
+                         <div style="color:gray; border:2px dotted lightgray; font-size:15px;">
                           	선택한 옵션 <br> <small>color : <strong style="color:black;" id="rColor"></strong></small><br>
                           				<small>size : <strong style="color:black;" id="rSize"></strong></small>	
                         </div><hr>
@@ -1255,33 +1264,22 @@
                             </a>         
                             </div>
                         </div><hr>
+                        
+                        <!-- 댓글 forEach 시작점 -->
                         <div id="comentarea">
-                        	<div>
-                            <input onkeyPress="reviewReply();" type="text" id="comentinput" placeholder="댓글을 작성해주세요 :)" maxlength="80" style="resize:none; border-radius: 5px 0px 0px 5px; 
+                        	<div style="margin-bottom: 14px;">
+                     		  
+                       
+                            <input onkeyPress="reviewReply();" type="text" id="rvComment" placeholder="댓글을 작성해주세요 :)" maxlength="80" style="resize:none; /* border-radius: 5px 0px 0px 5px;  */
                             border: 0.5px solid lightgray; background-color: whitesmoke; padding: 2px; height:40px;width:85%;">
                             <button onclick="" id="comentsend" style=" font-size: 15px;
-                             background: white; border: 1px solid lightgray; border-radius:0px 5px 5px 0px; width:50px;height: 40px;position:relative;bottom:2px;">등록</button>
-                             </div><br>
+                             background: white; border: 1px solid lightgray; /* border-radius:0px 5px 5px 0px; */ 
+                             width:50px;height: 40px;position:relative;bottom:2px;">등록</button>
+                             </div>
                              
-                             <div style="color:gray; border:1px solid lightgray; border-radius:5px; font-size:16px;">
-                          	<small>우왕 이쁘게입으셧네요오~!</small>
-                          	<button style="float:right;">&times;</button><br>
-                          	<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>
-                          	 <div style="color:lightgray;font-size:11px;float:right;"><font>이대*</font>&nbsp;&nbsp;2020-03-31</div></div><br>
-                          	 
-                          	 <div style="color:gray; border:1px solid lightgray; border-radius:5px; font-size:16px;">
-                          	<small>우왕 야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액~!</small>
-                          	<button style="float:right;">&times;</button><br>
-                          	<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>
-                          	 <div style="color:lightgray;font-size:11px;float:right;"><font>박주*</font>&nbsp;&nbsp;2020-03-31</div></div><br>
-                          	 
-                          	 <div style="color:gray; border:1px solid lightgray; border-radius:5px; font-size:16px;">
-                          	<small style="margin:5px 5px 5px 5px;">우왕 아주 사고십구만요 이야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액</small>
-                          	<button style="float:right;">&times;</button><br>
-                          	<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>
-                          	 <div style="color:lightgray;font-size:11px;float:right;"><font>이대*</font>&nbsp;&nbsp;2020-03-31</div></div><br>
-                        
+                           
                         </div>
+                       
                     </div>
                        <!-- 모달창 끝나는 점 -->     
                 </div>
@@ -1919,10 +1917,90 @@
 	
 	
 	<script>
-/* 	$('#nonHeart').bind("click",function() {
-		$('#nonHeart').attr("src","/ot/resources/images/icons/like-check.png")
-	})
-	 */
+		
+		$('#comentsend').on("click", function() {
+			var rvComment = $('#rvComment').val();
+			 var rv_no = $('#rv_no2').val();
+			 var rvc_no = $('.rvc_no').val();
+
+			 
+			
+		
+			if(rvComment == ""){
+					alert("댓글을 작성해주세요");
+			}else{
+				 $('#comentarea').children('.replyDiv').remove();
+				 $('#comentarea').children('br').remove();
+				
+		
+			$.ajax({
+				url:"addReply.do",
+				data : {rvComment : rvComment, rv_no : rv_no},
+				success:function(data) {
+					if(data=="success") {
+						//getReplyList();
+						 $.ajax({
+				 
+							url:"rList.do",
+							dataType:"json",
+							data : {rv_no:rv_no},
+							success:function(data) {
+							 console.log(data.rplist[0]);
+								 for(var i=0;i<data.rplist.length;i++) {
+									
+									 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+									 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+									 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+					                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+					                          	'<button style="">&times;</button><br>'+
+					                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+					                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+					                          	 )
+									 }else{
+										 
+					                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+									 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+					                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+					                          	'<button style=""></button><br>'+
+					                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+					                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+					                          	 )         	 
+									 }					                          	 
+								 }
+							},error:function() {
+								alert("에러임에러임");
+							}
+			 })
+						$('#rvComment').val("");
+					}
+				},error:function() {
+					console.log("등록실패");
+				}
+			})
+			
+	
+			 
+			
+				}
+			});
+		
+		function getReplyList() {
+			
+			 var rv_no = $('#rv_no2').val();
+			 
+			//comentarea
+			
+			$.ajax({
+				url:"rList.do",
+				data:{rv_no:rv_no},
+				dataType:"json",
+				success:function(data) {
+					
+				}
+				
+			})
+		}
+		
 	
 	</script>
 	
@@ -1950,6 +2028,11 @@
 				 }
 			 }
 		 }) 
+		 
+		
+		 
+	
+		 
 		
 	})
 	
@@ -1962,8 +2045,12 @@
 	
 	<!--리뷰 모달 디테일 스크립트-->
 	$('.review1').on('click',function modalOpen(){
+		 $('#comentarea').children('.replyDiv').remove();
+		 $('#comentarea').children('br').remove();
 		 var rv_no = $(this).find('.rv_no').val();
 		 $("#rv_no2").val(rv_no);
+		 
+		var rvc_no = $('.rvc_no').val();
 		 var nonHeart = $('#nonHeart').attr("src");
 		 var like_img="";
 		 var count = 0;
@@ -1997,6 +2084,45 @@
 					alert('리뷰에러')
 			}
 		 });
+		 
+		  $.ajax({
+				 
+				url:"rList.do",
+				dataType:"json",
+				data : {rv_no:rv_no},
+				success:function(data) {
+				 console.log(data.rplist[0]);
+					 for(var i=0;i<data.rplist.length;i++) {
+						
+						 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )
+							 }else{
+								 
+			                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                          	'<button style=""></button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )         	 
+							 }			
+					 }
+				},error:function() {
+					alert("에러임에러임");
+				}
+				 	
+			 })
+			 
+	
+			 
+			 
+		 
 		
 		
 		
@@ -2040,6 +2166,96 @@
           slides[slideIndex-1].style.display = "block";  
           dots[slideIndex-1].className += " active";
       }
+	</script>
+	
+	<script>
+	function DeleteReply(dr) {
+		var rvcNo=$(dr).parents('.replyDiv').find('.rvc_no').val();
+		 var rv_no = $('#rv_no2').val();
+		 $('#comentarea').children('.replyDiv').remove();
+		 $('#comentarea').children('br').remove();
+
+		$.ajax({
+			url:"DeleteReply.do",
+			dataType:"json",
+			data : {rvcNo : rvcNo, rv_no : rv_no},
+			success:function(data) {
+				 console.log(data.rplist[0]);
+				 for(var i=0;i<data.rplist.length;i++) {
+						
+					 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+						 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+		                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+		                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+		                          	 )
+						 }else{
+							 
+		                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+		                          	'<button style=""></button><br>'+
+		                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+		                          	 )         	 
+						 }			
+				 }
+				},error:function() {
+					alert("에러임에러임");
+				}
+			
+		})
+		
+		
+	}
+	
+	</script>
+	
+	<script>
+	function Warning(wa) {
+		var rvcNo=$(wa).parents('.replyDiv').find('.rvc_no').val();
+		
+		 var rv_no = $('#rv_no2').val();
+		 $('#comentarea').children('.replyDiv').remove();
+		 $('#comentarea').children('br').remove();
+		 
+		 $.ajax({
+				url:"WarningReply.do",
+				dataType:"json",
+				data : {rvcNo : rvcNo, rv_no : rv_no},
+				success:function(data) {
+					 console.log(data.rplist[0]);
+					 for(var i=0;i<data.rplist.length;i++) {
+							
+						 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )
+							 }else{
+								 
+			                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                          	'<button style=""></button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )         	 
+							 }			
+					 }
+					},error:function() {
+						alert("에러임에러임");
+					}
+				
+			})
+		 
+	}
+	
 	</script>
 	
 </body>

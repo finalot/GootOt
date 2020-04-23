@@ -41,6 +41,64 @@ public class MypageController {
 	
 	@Autowired
 	private adminService adService;
+	
+	@RequestMapping("insertwishlist.do")
+	public String insertwishlist(HttpSession session,
+								int prdt_no, int dibs_count, String dibs_size, String dibs_color) {
+		
+		System.out.println("dibs_count : " + dibs_count);
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		
+		DIBS d = new DIBS();
+		d.setPrdt_no(prdt_no);
+		d.setDibs_count(dibs_count);
+		d.setDibs_size(dibs_size);
+		d.setDibs_color(dibs_color);
+		d.setMemno(m.getMemNo());
+		
+		
+		int result = mpService.insertwishlist(d);
+		
+		
+		if(result > 0) {
+			return "redirect:mWishlist.do";
+		} else {
+			return "";
+		}
+	}
+	
+	@RequestMapping("updatewishlist.do")
+	public String updatewishlist(int dibsno, int dibs_count, String dibs_size, String dibs_color) {
+		DIBS d = new DIBS();
+		d.setDibs_count(dibs_count);
+		d.setDibs_size(dibs_size);
+		d.setDibs_color(dibs_color);
+		d.setDibsno(dibsno);
+		int result = mpService.updatewishlist(d);
+		
+		if(result > 0) {
+			return "redirect:mWishlist.do";
+		} else {
+			return "";
+		}
+	}
+	
+	@RequestMapping("selectDelete.do")
+	public void selectDelete(int dibsno, HttpServletResponse response) throws IOException {
+		PrintWriter out = response.getWriter();
+		
+		int result = mpService.selectDelete(dibsno);
+		
+		if(result > 0) {
+			out.print("ok");
+		} else {
+			out.print("fail");
+		}
+	}
+	
+	
+	
 	/**
 	 * @작성일 : 2020. 4. 2.
 	 * @작성자 : 신경섭
@@ -90,6 +148,19 @@ public class MypageController {
 		return mv;
 	}
 	
+	@RequestMapping("deletewishAll.do")
+	public void deletewishAll(HttpServletResponse response, int memno) throws IOException {
+		
+		PrintWriter out = response.getWriter();
+				
+		int result = mpService.deletewishAll(memno);
+		
+		if(result > 0) {
+			out.print("ok");
+		} else {
+			out.print("fail");
+		}
+	}
 	
 	
 	
@@ -338,7 +409,7 @@ public class MypageController {
 	}
 	
 	@RequestMapping("optiondetail.do")
-	public void optiondetial(HttpServletResponse response,
+	public void optiondetail(HttpServletResponse response,
 							@RequestParam("prdt_no") int prdt_no) throws IOException {
 		
 		System.out.println("dsadasdasdasdasdsad : " + prdt_no);
@@ -346,17 +417,34 @@ public class MypageController {
 		PrintWriter out = response.getWriter();
 		// 해당 아이디를 가지고 검색 -> 데이터를 객체로 받아서 json으로 전달
 		
-		ArrayList<Product_opt> plist = mpService.selectOptionList(prdt_no);
+		ArrayList<Product_opt> plist1 = mpService.selectOptionList1(prdt_no);
 		
-		System.out.println("plist : " + plist);
+		System.out.println("plist1 : " + plist1);
+		
+		
 		response.setContentType("application/json; charset=UTF-8");
 		Gson gson = new Gson();
 		
-		gson.toJson(plist,response.getWriter());
-		
-		
+		gson.toJson(plist1,response.getWriter());
 		
 	}
+	
+	@RequestMapping("optiondetail2.do")
+	public void optiondetail2(HttpServletResponse response,
+							@RequestParam("prdt_no") int prdt_no) throws IOException {
+	
+		ArrayList<Product_opt> plist2 = mpService.selectOptionList2(prdt_no);
+	
+		System.out.println("plist2 : " + plist2);
+		
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new Gson();
+		
+		gson.toJson(plist2,response.getWriter());
+	
+	}
+	
+		
 	
 	/**
 	 * @작성일 : 2020. 4. 15.
@@ -722,6 +810,32 @@ public class MypageController {
 			return null;
 		}
 	}
+	
+	@RequestMapping("wishlistdelete.do")
+	public void WishListDelete(int[] wishArr, HttpServletResponse response, HttpSession session) throws IOException {
+		
+		PrintWriter out  = response.getWriter();
+		
+		ArrayList<DIBS> noArr = new ArrayList<DIBS>();
+		
+		for(int i=0; i<wishArr.length; i++) {
+			DIBS d = new DIBS();
+			d.setDibsno(wishArr[i]);
+			noArr.add(d);
+			System.out.println("dsadasdas : " +d);
+		}
+		
+		int result = mpService.deleteWishlist(noArr);
+		
+		System.out.println(result);
+		if(result > -2) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+	}
+	
+	
 	
 	@RequestMapping("AddressDelete.do")
 	public void AddressDelete(int[] adNokArr,HttpServletResponse response,HttpSession session) throws IOException {

@@ -31,6 +31,11 @@ public class BoardServiceImpl implements BoardService{
 	public int insertBoard(Board b) {
 		return bDao.insertBoard(b);
 	}
+	
+	@Override
+	public int insertBoard1(Board b) {
+		return bDao.insertBoard1(b);
+	}
 
 	@Override
 	public Board selectBoard(int qna_no) {

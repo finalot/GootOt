@@ -43,7 +43,7 @@
 	<resultMap id="ordResultSet" type="Ord">
 		<id property="ord_no" column="ORD_NO"/>
 		<result property="ord_detailno" column="ORD_DETAILNO"/>
-		<result property="mem_no" column="MEM_NO"/>
+		<result property="memNo" column="MEM_NO"/>
 		<result property="prdt_no" column="PRDT_NO"/>
 		<result property="ord_date" column="ORD_DATE"/>
 		<result property="ord_receiver" column="ORD_RECEIVER"/>
@@ -80,16 +80,15 @@
 		<result property="dibs_color" column="DIBS_COLOR"/>
 		<result property="prdt_name" column="PRDT_NAME"/>
 		<result property="prdt_price" column="PRDT_PRICE"/>
-		<result property="prdt_sumprice" column="PRDT_SUMPRICE"/>
+		<result property="dibs_sumprice" column="DIBS_SUMPRICE"/>
 		<result property="path" column="PRDT_IMAGE_PATH"/>
 		<result property="image" column="PRDT_IMAGE"/>
 		<result property="dibs_date" column="DIBS_DATE"/>
 		<result property="prdt_color" column="OPT_COLOR"/>
 		<result property="prdt_size" column="OPT_SIZE"/>
+		<result property="dibs_price" column="DIBS_PRICE"/>
 	</resultMap>
-
-
-
+	
 	<select id="PointListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM POINT
@@ -391,22 +390,74 @@
 	<insert id="ReturnInsert" parameterType="Return">
 		INSERT INTO RETURN VALUES
 		(RE_SEQ.NEXTVAL,#{memCode},#{ordCode},SYSDATE,#{reName},#{reTitle},#{content},#{reReason},
-		NULL,NULL,NULL,NULL,'N')
+		NULL,NULL,SYSDATE,NULL,'N')
 	</insert>
 		
 	<select id="selectWishList" resultMap="DIBSResultMap">
-	 SELECT *
-     FROM DIBS D
-     JOIN PRDT P
-     ON (D.PRDT_NO = P.PRDT_NO)
-     WHERE MEM_NO=#{memno}
+	 SELECT D.*, P.*, (D.DIBS_COUNT*P.PRDT_PRICE) AS DIBS_PRICE, ((D.DIBS_COUNT*P.PRDT_PRICE)+2500) AS DIBS_SUMPRICE
+	    FROM DIBS D
+	    JOIN PRDT P
+	    ON (D.PRDT_NO = P.PRDT_NO)
+	    WHERE MEM_NO=#{memno}
+	    ORDER BY DIBS_NO DESC
 	</select>
-
-	<select id="selectOptionList" resultMap="DIBSResultMap">
-	 SELECT OPT_COLOR
+	
+	<select id="selectOptionList1" resultMap="DIBSResultMap">
+	 SELECT PRDT_NO, OPT_COLOR
 	 FROM PRDT_OPT
 	 WHERE PRDT_NO=#{prdt_no}
-	 GROUP BY OPT_COLOR
+	 GROUP BY PRDT_NO, OPT_COLOR
+	</select>
+	
+	<select id="selectOptionList2" resultMap="DIBSResultMap">
+	 SELECT PRDT_NO, OPT_SIZE
+	 FROM PRDT_OPT
+	 WHERE PRDT_NO=#{prdt_no}
+	 GROUP BY PRDT_NO, OPT_SIZE
 	
 	</select>
+	
+	<insert id="insertwishlist" parameterType="DIBS">
+	INSERT INTO DIBS
+	VALUES(DIBS_SEQ.NEXTVAL, #{memno}, #{prdt_no},#{dibs_count},#{dibs_color},#{dibs_size},default )
+	
+	</insert>
+	
+	<select id="selectonelist" resultMap="DIBSResultMap">
+	 SELECT *
+     FROM (select * from dibs order by dibs_no desc) D
+     JOIN PRDT P
+     ON (D.PRDT_NO = P.PRDT_NO)
+     where rownum=1
+	
+	</select>
+	
+	<update id="updatewishlist" parameterType="DIBS">
+		UPDATE DIBS
+		SET DIBS_COLOR=#{dibs_color}, DIBS_SIZE=#{dibs_size}, DIBS_COUNT=#{dibs_count}
+		WHERE DIBS_NO=#{dibsno}
+	</update>
+	
+	<delete id="deletewishlist" parameterType="java.util.Map">
+		<foreach item="d" collection="noArr" index="index"
+				 separator=";" open="DECLARE BEGIN" close="; END;">
+			 DELETE 
+			 FROM DIBS
+			 WHERE DIBS_NO=#{d.dibsno}
+		 </foreach>
+	</delete>
+	
+	<delete id="deletewishAll" parameterType="DIBS">
+		DELETE
+		FROM DIBS
+		WHERE MEM_NO=#{memno}
+	</delete>
+	
+	<delete id="selectDelete" parameterType="DIBS">
+		DELETE
+		FROM DIBS
+		WHERE DIBS_NO=#{dibsno}
+	</delete>
+	
+	
 </mapper>

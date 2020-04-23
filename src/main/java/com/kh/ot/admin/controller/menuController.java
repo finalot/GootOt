@@ -255,6 +255,7 @@ public class menuController {
 		
 		ArrayList<Ord> odlist = adService.selectOderList4();
 		
+		System.out.println("odlist : "+odlist);
 		
 		mv.addObject("odlist",odlist);
 		mv.setViewName("admin/order_4");
@@ -603,14 +604,21 @@ public class menuController {
 		return "admin/QnA_delivery_detail";
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 21.
+	 * @작성자  : 문태환 
+	 * @내용 	: 반품 게시판 리스트 뿌리
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("productReturn_list.ad")
 	public ModelAndView productReturn_list(ModelAndView mv) {
 		
-		//ArrayList<Return> rlist = adService.productReturnlist();
+		ArrayList<Return> rlist = adService.productReturnlist();
 		
 		
-		//mv.addObject("rlist",rlist);
-		mv.setViewName("productReturn_list");
+		mv.addObject("rlist",rlist);
+		mv.setViewName("admin/productReturn_list");
 		
 		return mv;
 	}
@@ -1503,6 +1511,64 @@ public class menuController {
 		}
 	}
 	
+	/**
+	 * @작성일  : 2020. 4. 21.
+	 * @작성자  : 문태환 
+	 * @내용 	: 반품화면 디테일
+	 * @param mv
+	 * @param reNo
+	 * @return
+	 */
+	@RequestMapping("ReturnDetail.do")
+	public ModelAndView ReturnDetail(ModelAndView mv,int reNo) {
+		System.out.println(reNo);
+		Return re = new Return();
+		
+		re.setReNo(reNo);
+		
+		re = adService.ReturnDetail(re);	
+		
+		System.out.println(re);
+		
+		mv.addObject("re", re);
+		mv.setViewName("admin/productReturn");
+		return mv;
+				
+	}
+	
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 문태환 
+	 * @내용 	: 반품 결제취소
+	 * @param response
+	 * @param cpmemNo
+	 * @param ordCode
+	 * @param point
+	 * @param memCode
+	 * @throws IOException
+	 */
+	@RequestMapping("cancellPay.ad")
+	public void cancellPay(HttpServletResponse response,int cpmemNo,int ordCode,int point,int memCode) throws IOException {
+		
+		PrintWriter out = response.getWriter();
+		
+		int result = adService.calcellCoupon(cpmemNo);
+		
+		int result2= adService.cancellPay(ordCode);
+		
+		Member m = new Member();
+		m.setMemNo(memCode);
+		m.setMem_point(point);
+		
+		int result3 = adService.cancellPoint(m);
+		
+		if(result3 > 0) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+		
+	}
 	
 
 	

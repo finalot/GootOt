@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,11 +85,12 @@ public class MypageDao {
 
 	public int PointPrice(Member m) {
 
-		int memNo = m.getMemNo();
-
-		int pointSet = sqlSession.selectOne("mypageMapper.selectPoint",memNo);
-
-		m.setMem_point(pointSet);
+		/*
+		 * int memNo = m.getMemNo();
+		 * 
+		 * // int pointSet = sqlSession.selectOne("mypageMapper.selectPoint",memNo); //
+		 * m.setMem_point(pointSet);
+		 */
 
 		return sqlSession.update("mypageMapper.updatePoint", m);
 	}
@@ -272,8 +274,38 @@ public class MypageDao {
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectWishList", memNo, rowBounds);
 	}
 
-	public ArrayList<Product_opt> selectOptionList(int prdt_no) {
-		return (ArrayList)sqlSession.selectList("mypageMapper.selectOptionList", prdt_no);
+	public ArrayList<Product_opt> selectOptionList1(int prdt_no) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectOptionList1", prdt_no);
+	}
+
+	public ArrayList<Product_opt> selectOptionList2(int prdt_no) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectOptionList2", prdt_no);
+	}
+
+	public int insertwishlist(DIBS d) {
+		return sqlSession.insert("mypageMapper.insertwishlist",d);
+	}
+
+	public DIBS selectonelist() {
+		return sqlSession.selectOne("mypageMapper.selectonelist");
+	}
+
+	public int updatewishlist(DIBS d) {
+		return sqlSession.update("mypageMapper.updatewishlist",d);
+	}
+
+	public int deleteWishlist(ArrayList<DIBS> noArr) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("noArr", noArr);
+		return sqlSession.delete("mypageMapper.deletewishlist", map);
+	}
+
+	public int deletewishAll(int memno) {
+		return sqlSession.delete("mypageMapper.deletewishAll", memno);
+	}
+
+	public int selectDelete(int dibsno) {
+		return sqlSession.delete("mypageMapper.selectDelete",dibsno);
 	}
 
 

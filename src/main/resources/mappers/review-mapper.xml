@@ -24,10 +24,21 @@
 	</resultMap>
 		
 	<resultMap type="Like_Heart" id="LikeResultSet">
-		<id property = "likeNo" column="LIKE_NO"/>
+			<id property = "likeNo" column="LIKE_NO"/>
 			<result property="rvNo" column="RV_NO"/>
 			<result property="memNo" column="MEM_NO"/>
 			<result property="likeCheck" column="LIKE_CHECK"/>
+	</resultMap>
+	
+	
+	<resultMap type="ReviewReply" id="ReviewReplyResultSet">
+		<id property="rvNo" column="RV_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="rvComment" column="RV_COMMENT_INFO"/>
+		<result property="rvDate" column="RV_DATE"/>
+		<result property="rvReport" column="RV_REPORT"/>
+		<result property="rvcNo" column="RVC_NO"/>
+		<result property="memName" column="MEM_NAME"/>
 	
 	</resultMap>
 	
@@ -36,6 +47,7 @@
       	  FROM REVIEW RE
       	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
           JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+        
  	</select>
  	
  	
@@ -96,6 +108,33 @@
  		WHERE RV_NO = #{rv_no}
  		
  	</update>
- 
+ 	
+ 	<insert id="insertReply" parameterType="ReviewReply">
+ 		INSERT INTO REVIEW_COMMENT
+ 		VALUES (#{rvNo},#{memNo},#{rvComment},SYSDATE,DEFAULT,RVC_SEQ.NEXTVAL)
+
+ 	</insert>
+ 	
+ 	<select id="selectReplyList" parameterType="_int" resultMap="ReviewReplyResultSet">
+ 		 SELECT RVC.RV_COMMENT_INFO,M.MEM_NAME,RVC.RV_DATE,RVC.RV_REPORT,RVC.RVC_NO,M.MEM_NO
+   		 FROM REVIEW_COMMENT RVC
+         JOIN MEMBER M ON (M.MEM_NO = RVC.MEM_NO)
+           WHERE RVC.RV_NO = #{rv_no}
+          ORDER BY RVC.RV_DATE DESC
+ 	</select>
+ 	
+ 	<delete id ="DeleteReply" parameterType="ReviewReply">
+ 		DELETE FROM REVIEW_COMMENT
+ 		WHERE RVC_NO = #{rvcNo}
+ 	
+ 	</delete>
+ 	
+ 	<update id="WarningReply" parameterType="ReviewReply">
+ 		UPDATE REVIEW_COMMENT
+ 		SET RV_REPORT ='Y'
+ 		WHERE RVC_NO = #{rvcNo}
+ 		
+ 	</update>
+ 	
  
  </mapper>

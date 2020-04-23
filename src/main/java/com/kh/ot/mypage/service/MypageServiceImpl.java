@@ -216,9 +216,42 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public ArrayList<Product_opt> selectOptionList(int prdt_no) {
-		return mpDao.selectOptionList(prdt_no);
+	public ArrayList<Product_opt> selectOptionList1(int prdt_no) {
+		return mpDao.selectOptionList1(prdt_no);
+	}
+	
+	public ArrayList<Product_opt> selectOptionList2(int prdt_no) {
+		return mpDao.selectOptionList2(prdt_no);
 	}
 
+	@Override
+	public int insertwishlist(DIBS d) {
+		return mpDao.insertwishlist(d);
+	}
+
+	@Override
+	public DIBS selectonelist() {
+		return mpDao.selectonelist();
+	}
+
+	@Override
+	public int updatewishlist(DIBS d) {
+		return mpDao.updatewishlist(d);
+	}
+
+	@Override
+	public int deleteWishlist(ArrayList<DIBS> noArr) {
+		return mpDao.deleteWishlist(noArr);
+	}
+
+	@Override
+	public int deletewishAll(int memno) {
+		return mpDao.deletewishAll(memno);
+	}
+
+	@Override
+	public int selectDelete(int dibsno) {
+		return mpDao.selectDelete(dibsno);
+	}
 
 }

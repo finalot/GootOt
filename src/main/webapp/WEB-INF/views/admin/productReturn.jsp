@@ -104,14 +104,14 @@ margin-bottom:3%;
 span{
 color: red;
 }
-#pay-calcel{
+/* #pay-calcel{
 	margin-left: 3%;
 	background: black;
 	color: white;
 	width: 65px;
 	height: 20px;
 	border-radius: 10px
-}
+} */
 .yg_btn_30{
     background: #f4f4f4;
     color: #444!important;
@@ -273,27 +273,27 @@ color: red;
   	<table id="member-table">
   		<tr>
   			<th><span>*</span> 주문자 </th>
-  			<td>문태환</td>
+  			<td>${re.reName}</td>
   	    </tr>
   	    <tr>
   			<th><span>*</span> 주문자 번호</th>
-  			<td>010-0101-0101</td>
+  			<td>${re.memPhone }</td>
   	    </tr>
   		<tr>
   			<th><span>*</span> 고객 아이디</th>
-  			<td>moon77</td>
+  			<td>${re.memId }</td>
   		</tr>
   		<tr>
   			<th><span>*</span> 고객 이메일</th>
-  			<td>moon77@kakao.com</td>
+  			<td>${re.memEmail }</td>
   		</tr>
   		<tr>
-  			<th><span>*</span> 주문번호  </th>
-  			<td>12121212  </td>
+  			<th><span>*</span> 수령인  </th>
+  			<td>${re.memReceiver }  </td>
   		</tr>	
   		<tr>
   			<th><span>*</span> 배송지 </th>
- 			<td>성남시 수정구 태평동 5380 501호</td>
+ 			<td>${re.memAddress }</td>
   		</tr>
   	</table>
   	</div>
@@ -350,27 +350,29 @@ color: red;
 		<tbody>
 		<tr>
 		<th scope="row">문의날짜</th>
-           <td><span>2020-02-02</span>	
+           <td><span>${re.qnaDate }</span>	
 		   </td>
     </tr>
 		<tr>
 		<th scope="row">문의고객</th>
-           <td><span>문태환</span>
+           <td><span>${re.reName }</span>
 		   </td>
     </tr>
 	<tr>
-		<th scope="row">SUBJECT</th>
-           <td><span>배송좀 해주세요</span>
+		<th scope="row">Title</th>
+           <td><span>${re.reTitle }</span>
 		   </td>
     </tr>
     
     
 	<td colspan="2" class="clear">           
+	<input type="hidden" value="${re.content }" id="reContent">
             <script type="text/javascript" src="//editor.cafe24.com/js/nneditor.js?c=ko"></script>
             <style type="text/css">@import "http://editor.cafe24.com/css/style.css?ver=r3.4.0.20191127.1";@import "http://editor.cafe24.com/css/styleie8.css?ver=r3.4.0.20191127.1";		</style>		<script type="text/javascript" src="http://editor.cafe24.com/lang/ko.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorUtils.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorRange.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script><script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
             <script type="text/javascript">
+            var reContent = $('#reContent').val();
             NN.Config.instanceID = "content";
-            NN.Config.value = "▶ 교환/반품/불량건교환 상품명을 기재해주셔야 더 정확한 안내 해드릴 수 있습니다.<br />\n<br />\n 배송 후 교환 / 반품 글 남겨주시면 기사님 방문 회수신청 자동으로 처리됩니다.<br />\n(기사님 방문시 경비실이나 전화 연락후 방문 해달라는 메모 등 배송메세지 같이 기재해주시면 메모해서 처리 해드립니다.)<br />\n 타 택배사 이용하실경우 미리 말씀해주셔야 방문 회수신청처리 안해드립니다.<br />\n<br />\n* 배송전 교환/취소시 [배송전 부분취소/변경] 제목선택을 안해주시면 상품교환/주문취소는 당일 처리되지 않습니다 *<br />\n<br />\n비회원으로 문의주실 경우엔 동명이인으로 인해 주문정보와 함께 남겨주셔야 바로 처리 가능합니다.<br />\n<br />\n----------------------------------------------------------------------<br>";
+            NN.Config.value = reContent;
             NN.Config.toolbarType = "simple";
                 
                 
@@ -431,23 +433,23 @@ color: red;
   		<table id="product-table">
   			<tr>
   				<th><span>*</span> 주문번호 </th>
-  				<td>23239239a</td>
+  				<td>${re.ordCode }</td>
   			</tr>
   			<tr>
   				<th><span>*</span> 상품번호 </th>
-  				<td>1232932</td>
+  				<td>${re.prdtNo }</td>
   			</tr>
   			<tr>
   				<th><span>*</span> 구매상품명 </th>
-  				<td>짱이뿐 옷</td>
+  				<td>${re.prdtName }</td>
   			</tr>
   			<tr>
   				<th><span>*</span> 구매상품옵션 </th>
-  				<td>사이즈 : XXL / 색상 : 검정</td>
+  				<td>사이즈 : ${re.ordSize } / 색상 : ${re.ordColor }</td>
   			</tr>
   			<tr>
   				<th><span>*</span> 반품/교환사유 </th>
-  				<td>불량</td>
+  				<td>${re.reReason }</td>
   			</tr>
   			<tr>
   				<th><span>*</span> 제품수령여부 </th>
@@ -476,31 +478,39 @@ color: red;
   	<table id="pay-table">
   		<tr>
   			<th><span>*</span> 상품금액 </th>
-  			<td>30,000원</td>
+  			<td>${re.prdtPrice }원</td>
   		</tr>
   		<tr>
   			<th><span>*</span> 쿠폰/적립금 </th>
-  			<td> 3000원</td>
+  			<td> (${re.cpName })${re.cpDiscount }원/${re.payPoint }원</td>
+  				<input type="hidden" id="cpmemNo" value="${re.cpmemNo }">
   		</tr>
   		<tr>
   			<th><span>*</span> 실구매가(반환금액)</th>
-  			<td>27,000원
-  				<button id="pay-calcel">결제취소</button>
+  			<td>${re.payMoney}원
+  			<c:if test="${re.payYn == 'Y' }">
+  				<span style="color: blue" id="pay-calcel">결제취소</span>
+  			</c:if>
+  				
+  			<c:if test="${re.payYn == 'N' }">
+  				<span style="color: red" id="pay-calcel">결제취소완료</span>
+  			</c:if>
+  				
   				
   			</td>
   		</tr>
   		<tr>
   			<th><span>*</span> 결제일  </th>
-  			<td>2020-03-16</td>
+  			<td>${re.ordDate }</td>
   		</tr>
   		 
   		<tr>
   			<th><span>*</span> 반품 신청일  </th>
-  			<td>2020-03-20</td>
+  			<td>${re.qnaDate}</td>
   		</tr>
   		<tr>
   			<th><span>*</span> 결제 방법  </th>
-  			<td>카드 </td>
+  			<td>${re.payCategory} </td>
   		</tr>
   		<tr>
   			<th><span>*</span> 반품 승인/반려 메모</th>
@@ -543,6 +553,15 @@ color: red;
 <script>
 $('#return-ok').click(function(){
 	
+		var productCheckArr = document.getElementsByName('product-check');
+			
+		for(var i=0;i<productCheckArr.length;i++){
+			if(productCheckArr[i].checked==true){
+				productCheck = productCheckArr[i].value;
+			}
+		}
+			console.log(productCheck);
+		
 	if($('#N').prop('checked')==true){
 		alert('상품 미수령시 반품승인을 할수 없습니다!');
 	}else if($('#Y').prop('checked')==true){
@@ -554,9 +573,35 @@ $('#return-ok').click(function(){
 });
 $('#pay-calcel').click(function(){
 	
-	confirm('취소 하시겠습니까?')
+	if(confirm('취소 하시겠습니까?') ==true){
+		var cpmemNo = $('#cpmemNo').val();
+		var ordCode = "${re.ordCode}";
+		var point = "${re.payPoint }";
+		var memCode = "${re.memCode}";
+		$.ajax({
+				url:"cancellPay.ad",
+				data : {cpmemNo:cpmemNo,ordCode:ordCode,point:point,memCode:memCode},
+				success:function(data){
+					if(data == "ok"){
+						$('#pay-calcel').css("color","red")
+						$('#pay-calcel').text("결제취소완료");
+					}else{
+						
+					}
+				},error:function(){
+					alert('에러다');			
+				}
+		});
+		
+		
+		
+		
+	}
 })
 
 </script>
+
+
+
 </body>
 </html>

@@ -30,6 +30,10 @@ public class BoardDao {
 	public int insertBoard(Board b) {
 		return sqlSession.insert("boardMapper.insertBoard",b);
 	}
+	
+	public int insertBoard1(Board b) {
+		return sqlSession.insert("boardMapper.insertBoard1",b);
+	}
 
 
 	public int getListCount(int b_cate_no) {

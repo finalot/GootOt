@@ -14,7 +14,27 @@
 <link rel="stylesheet" href="/ot/resources/css/mypage_basic.css">
 <link rel="icon" type="image/png" href="/ot/resources/images/icons/favicon.png"/>
 	<jsp:include page="header.jsp"/>	
+<style>
+.ec-base-paginate1 img {
+    vertical-align: none !important;
+}
+.ec-base-paginate1 {
+    margin: 30px auto;
+    text-align: center;
+    line-height: 0;
+    display: table;
+}
+a {
+	cursor : pointer;
+}
+
+</style>	
+	
+	
+	
 </head>
+
+
 
 <body>
 	<c:url var="mWishlist" value="mWishlist.do"/>
@@ -103,7 +123,7 @@
 					<thead>
 						<tr>
 							<th scope="col">
-								<input type="checkbox" onclick="NewWishlist.checkAll(this);">
+								<input type="checkbox" id="pro_wish" >
 							</th>
 			                <th scope="col">IMAGE</th>
 			                <th scope="col">PRODUCT NAME</th>
@@ -115,160 +135,463 @@
 			                <th scope="col">ORDER</th>
             			</tr>
           			</thead>
-          			
           			<tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
           				<c:forEach var="d" items="${list }">
           				<tr class="xans-record-">
+          				<input id="memno" name ="memno" value="${loginMember.memNo }" type="hidden"/>
           				<input id="prdt_no" name="prdt_no" class="prdt_no" value="${d.prdt_no }" type="hidden"/>
-          				<input type="hidden" class="dibsno" value="${d.dibsno }"/>
+          				<input type="hidden" name="dibsno" class="dibsno" value="${d.dibsno }"/>
 							<td>
-								<input name="wish_idx[]" id="wish_idx_0" enable-order="" reserve-order="N" enable-purchase="1" class="" is-set-product="F" value="658007" type="checkbox">
+								<input name="wishCheck" id="wish_idx_0" type="checkbox">
 							</td>
                				<td class="thumb">
             					<a href="${product_detail }">
                						<img src="${d.path}${d.image}" alt=""></a>
        						</td>
-							<td id="test1" class="left"><a href="${product_detail }" style="font-size: 13px;">${d.prdt_name }</a>
+							<td class="left"><a href="${product_detail }" style="font-size: 13px;">${d.prdt_name }</a>
+							<br>
+							<c:if test="${ d.dibs_color ne null or d.dibs_size ne null }">
+							<span id="idMsg7">[옵션 : ${d.dibs_color }/${d.dibs_size }/${d.dibs_count}개]</span>
+							</c:if>
 								<ul class="xans-element- xans-myshop xans-myshop-optionall option">
 									<li class="xans-record-">
 										 <br> 
 										<a href="#none" onclick="optionchange(this);" id="optionchange1" class=" yg_btn_80 yg_btn3 optionclose" alt="옵션변경">옵션변경하기</a> <!-- 참고 : 옵션변경 레이어 -->
-
-
-
-
-
-										<div class="optiondetail" style="display: none;">
+										
+										<div id="detail1" class="optiondetail" style="display: none;">
 											<div class="optionheader">
 												<h3 class="optiontitle">옵션 변경하기</h3>
 												<a href="#none" class="option_close" onclick="$('.optionModify').hide();">
 													<img src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif" alt="닫기">
 												</a>
 											</div>
+											
 											<div class="optionbody">
 												<h4>상품옵션</h4>
 												<ul class="ec-base-desc typeDot gLarge rightDD">
 													<li>
 														<strong class="optiontype">QUANTITY</strong>
-														
 														<div class="flex-w bo5 of-hidden w-size17" style="left:24%;">
-														<button class="num-product-down1 color1 flex-c-m size7 bg8 eff2" onclick="optiondel();" style="border-radius:5px;">
+														<button class="num-product-down1 color1 flex-c-m size7 bg8 eff2"  style="border-radius:5px;">
 															<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 														</button>
-
-														<input class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1">
-					
-														<button class="num-product-up1 color1 flex-c-m size7 bg8 eff2" onclick="optionadd();" style="border-radius:5px;">
+														<input class="size8 m-text18 t-center num-product" id="quantity" type="number" name="num-product2" value="1">
+														<button class="num-product-up1 color1 flex-c-m size7 bg8 eff2"  style="border-radius:5px;">
 															<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
 														</button>
 														</div>
-														
 													</li>
-												<div class="option_scroll" style="overflow-y: scroll; position: relative; top: 5px; margin: 5px 0 0 0; height:230px; width:105%;">
+												<div id="detail2" class="option_scroll" style= position: relative; top: 5px; margin: 5px 0 0 0; height:120px; width:105%;">
 													<div id="option1o" style=" margin: 5px 0 0 0; border-top: 1px solid #ddd; ">
 														<li>
 															<strong class="optiontype">COLOR</strong> 
-															<select id="select1">
-															
-																
-															</select>
+															<select id="select1"></select>
 														</li>
-														
 														<li>
 															<strong class="optiontype">SIZE</strong> 
-															<select id="select2">
-																	<option value="S">S</option>
-																	<option value="M">M</option>
-																	<option value="L">L</option>
-																	<option value="XL">XL</option>
-																	<option value="XXL">XXL</option>
-		
-															</select>
+															<select id="select2"></select>
 														</li>
-
 													</div>
 												</div>
-													
 												</ul>
 											</div>
 											<div class="option_btn">
-												<a href="#none" class=" yg_btn yg_btn1"
-													onclick="NewWishlist.modify('add', '0', '10550');" alt="추가">추가</a>
-												<a href="#none" class="yg_btn yg_btn3"
-													onclick="NewWishlist.modify('update', '0', '10550');"
-													alt="변경">변경</a>
+												<a href="#none" class=" yg_btn yg_btn1" onclick="add(this);" alt="추가">추가</a>
+												<a href="#none" class="yg_btn yg_btn3" onclick="update(this);" alt="변경">변경</a>
 											</div>
 										</div>
 									</li>
 								</ul>
 							</td>
-
 							<td class="price center">
-									<span class=""><fmt:formatNumber value="${d.prdt_price }" pattern="#,###"/> won</span>
+									<span class=""><fmt:formatNumber value="${d.dibs_price }" pattern="#,###"/> won</span>
 									<br>
-								</td>
-                				<td><span class="txtInfo"><img src="/ot/resources/images/point.png" class="icon_img" alt="적립금">3%</span></td>
-                				<td>
-	                				<div class="txtInfo">기본배송
-	                					<div class="">(해외배송가능)
-	                					</div>
-									</div>
-								</td>
-                				<td>
-								<span class="">2,500 won<br></span>
-								</td>
-                				<td class="price center"><fmt:formatNumber value="${d.prdt_sumprice }" pattern="#,###"/> won</td>
-				                <td class="button">
-				                    <a href="#none" onclick="CAPP_SHOP_NEW_PRODUCT_OPTIONSELECT.selectOptionCommon(10550,  26, 'wishlist', '')" class=" yg_btn_100 yg_btn1 add-to-cart" alt="담기">ADD TO CART</a>
-				                    <!-- <a href="#none" onclick="CAPP_SHOP_NEW_PRODUCT_OPTIONSELECT.selectOptionCommon(10550,  26, 'wishlist', '')" class=" yg_btn_100 yg_btn4 add-to-cart" alt="주문">BUY IT NOW</a> -->
-				                    <a href="#none" class="btn_wishlist_del yg_btn_100 yg_btn4" rel="10550||||" alt="삭제">DELETE</a>
-				                </td>
+							</td>
+               				<td><span class="txtInfo"><img src="/ot/resources/images/point.png" class="icon_img" alt="적립금">3%</span></td>
+               				<td>
+                				<div class="txtInfo">기본배송
+                					<div class="">(해외배송가능)
+                					</div>
+								</div>
+							</td>
+               				<td>
+							<span class="">2,500 won<br></span>
+							</td>
+               				<td class="price center"><fmt:formatNumber value="${d.dibs_sumprice }" pattern="#,###"/> won</td>
+               				
+               				<c:if test="${ d.dibs_color ne null or d.dibs_size ne null }">
+			                <td class="button">
+			                    <a href="#none" onclick="CAPP_SHOP_NEW_PRODUCT_OPTIONSELECT.selectOptionCommon(10550,  26, 'wishlist', '')" class=" yg_btn_100 yg_btn1 add-to-cart" alt="담기">ADD TO CART</a>
+			                    <a id="selectDelete" class="btn_wishlist_del yg_btn_100 yg_btn4 selectDelete" alt="삭제">DELETE</a>
+			                </td>
+			                </c:if>
+			                
+			                <c:if test="${ d.dibs_color eq null or d.dibs_size eq null }">
+		                	<td class="button">
+		                		<a id="selectDelete" class="btn_wishlist_del yg_btn_100 yg_btn4 selectDelete" alt="삭제">DELETE</a>
+			                </td>
+			                </c:if>
+				                
            					</tr>
            					</c:forEach>
 					</tbody>
         		</table>
-        		
-				<p class="message displaynone">관심상품 내역이 없습니다.</p>
+				<c:if test="${ empty list }">
+					<p class="message">관심상품 내역이 없습니다.</p>
+				</c:if>
 			</div>
-			
+			<c:if test="${ !empty list }">
 			<div class="xans-element- xans-myshop xans-myshop-wishlistbutton ec-base-button xans-record-">
 				<span class="gLeft">
       				<strong class="text">선택상품을</strong>
-       				<a href="#none" onclick="NewWishlist.deleteSelect();" class="yg_btn_24 yg_btn5" alt="삭제하기">삭제하기</a>
+       				<a id="WishListDelete" class="yg_btn_24 yg_btn5" alt="삭제하기">삭제하기</a>
         			<a href="#none" onclick="NewWishlist.basket();" class="yg_btn_24 yg_btn3" alt="장바구니 담기">장바구니 담기</a>
     			</span>
 				<span class="gRight">
        				<a href="${order }" onclick="NewWishlist.orderAll();" class="yg_btn_140" alt="전체상품주문">전체상품주문</a>
-       	 			<a href="${cart }" onclick="NewWishlist.deleteAll();" class="yg_btn_140 yg_btn4" alt="관심상품 비우기" style="background:#f4f4f4">장바구니 가기</a>
-       	 			<a href="#" onclick="NewWishlist.deleteAll();" class="yg_btn_140 yg_btn4" alt="관심상품 비우기" style="background:#f4f4f4">관심상품 비우기</a>
+       	 			<a href="${cart }" onclick="NewWishlist.deleteAll();" class="yg_btn_140 yg_btn4" alt="장바구니 가기" style="background:#f4f4f4">장바구니 가기</a>
+       	 			<a id="deleteAll" class="yg_btn_140 yg_btn4" alt="관심상품 비우기" style="background:#f4f4f4">전체 비우기</a>
     			</span>
 			</div>
+			</c:if>
 			
-			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate">
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first">
-					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지"></a>
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"></a>
-					
-					<ol>
-						<li class="xans-record-">
-							<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="this">1</a>
-						</li>
-       				</ol>
-       				
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019">
-					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지"></a>
-				<a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="last">
-					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
-			</div>
+			<!-- 페이징 처리 -->
+			<c:if test="${ !empty list }">
+			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
+				<c:if test="${pi.currentPage eq 1 }">
+					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+				</c:if>
+				<c:if test="${pi.currentPage ne 1 }">
+					<c:url var="start" value="mCoupon.do">
+						<c:param name="currentPage" value="1"/>
+					</c:url>
+				<a href="${start }" class="first">
+					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+				</a>
+				</c:if> 
+				
+				<c:if test="${ pi.currentPage eq 1 }">
+					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
+				</c:if>
+				<c:if test="${ pi.currentPage ne 1 }">
+				<c:url var="before" value="mWishlist.do">
+                  <c:param name="currentPage" value="${pi.currentPage - 1 }"/>
+                  </c:url>
+                  <a href="${before}">
+                  <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
+                  </a> &nbsp;
+                 </c:if>
+                  
+				 <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                     <c:if test="${ p eq pi.currentPage }">
+                        <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
+                        <b>${ p }</b> &nbsp;&nbsp;</font>
+                     </c:if>
 
+                     <c:if test="${ p ne pi.currentPage }">
+                        <c:url var="pagination" value="mWishlist.do">
+                           <c:param name="currentPage" value="${ p }"/>
+                     </c:url>
+                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
+                     ${ p }</a> &nbsp;
+                  </c:if>
+               </c:forEach>
+               
+               <c:if test="${ pi.currentPage eq pi.maxPage }">
+					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+				</c:if>
+				<c:if test="${ pi.currentPage ne pi.maxPage }">
+				<c:url var="after" value="mWishlist.do">
+                     <c:param name="currentPage" value="${pi.currentPage +1 }"/>
+                  </c:url>
+                  <a href="${after}">
+               <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+               </a>
+               </c:if>
+               
+               <c:if test="${ pi.currentPage eq pi.maxPage }">
+               		<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+               </c:if>
+               <c:if test="${ pi.currentPage ne pi.maxPage }">
+               		<c:url var="end" value="mWishlist.do">
+               			<c:param name="currentPage" value="${pi.maxPage }"/>
+               		</c:url>
+					<a href="${end }" class="last">
+					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
+               </c:if>
+			</div>
+		</c:if>
+		
         </div>
 		<hr class="layout">
 	</div>
 
+	<script>
+	
+		var prdt_no=0;
+		
+		var dibsno =0;
+		
+		var dibsli="";
+	
+		function optionchange(oc){
+			$('.optiondetail').css('display', 'none');
+			$(oc).parents('ul').find('.optiondetail').css('display', 'block');
+			dibsno = $(oc).parents('ul').parents('td').parents('tr').find('.dibsno').val();
+		    prdt_no = $(oc).parents('ul').parents('td').parents('tr').find('.prdt_no').val();
+		dibsli= $(oc).parents('tr');
+		console.log(dibsli);	
+		
+			$.ajax({
+				url:"optiondetail.do",
+				data:{prdt_no:prdt_no},
+				dataType:"json",
+				async: false,
+				success:function(data){
+						
+					var color="";
+					for(var i=0; i<data.length; i++){
+						color +="<option>"+data[i].prdt_color+"</option>";
+					}
+					$('#detail1 #detail2 select[id=select1]').html(color);
+					
+					optionchange2(prdt_no);
+				}
+			})
+		}
+		
+		function optionchange2(arguments){
+			/* $('.optiondetail').css('display', 'none'); */
+			console.log("arguments"+arguments);
+			$.ajax({
+				url:"optiondetail2.do",
+				data:{prdt_no:arguments},
+				dataType:"json",
+				async: false,
+				success:function(data){
+						
+					var size="";
+					
+					for(var i=0; i<data.length; i++){
+						size +="<option>"+data[i].prdt_size+"</option>";
+					}
+					$('#detail1 #detail2 select[id=select2]').html(size);
+				}
+			})
+			
+		}
+		
+		function add(){
+			var quantity = document.getElementById('quantity').value;
+			var color = document.getElementById('select1').value;
+			var size = document.getElementById('select2').value;
+			console.log(quantity);
+			console.log(color);
+			console.log(size);
+			console.log(prdt_no);
+			console.log(dibsno);
+			
+			/* location.href="insertwishlist.do?prdt_no="+prdt_no+"&dibs_count="+quantity+"&dibs_size="+size+"&dibs_color="+color;
+			alert('관심상품에 추가되었습니다.');
+			 */
+			
+			/* $.ajax({
+				url:"insertwishlist.do",
+				data:{prdt_no : prdt_no, dibs_count : quantity, dibs_size : size, dibs_color : color },
+				dataType:"json",
+				success : function(data){
 
-	<div
-		class="xans-element- xans-product xans-product-optionselectlayer ec-base-layer add-cart">
+					dibsli.after('<tr class="xans-record-">'+
+	          				'<input id="prdt_no" name="prdt_no" class="prdt_no" value='+data.d1.prdt_no+'type="hidden"/>'+
+	              				'<input type="hidden" class="dibsno" value='+data.d1.dibsno+'/>'+
+	    							'<td>'+
+	    								'<input name="wish_idx[]" id="wish_idx_0" enable-order="" reserve-order="N" enable-purchase="1" class="" is-set-product="F" value="658007" type="checkbox">'+
+	    							'</td>'+
+	                   				'<td class="thumb">'+
+	                					'<a href="product_detail.do?product_detail='+data.d1.prdt_no+'">' +
+	                   						'<img name="d1img" src='+data.d1.path+data.d1.image+' alt=""></a>'+
+	           						'</td>'+
+	    							'<td class="left"><a href="product_detail.do?product_detail='+data.d1.prdt_no+'>" style="font-size: 13px;">'+data.d1.prdt_name+'</a>'+
+	    							'<br><span id="idMsg7">[옵션 : '+data.d1.dibs_color+ '/' + data.d1.dibs_size +'/' + data.d1.dibs_count + '개]</span>'+
+	    								'<ul class="xans-element- xans-myshop xans-myshop-optionall option">'+
+	    									'<li class="xans-record-">'+
+	    										 '<br>'+
+	    										'<a href="#none" onclick="optionchange(this);" id="optionchange1" class=" yg_btn_80 yg_btn3 optionclose" alt="옵션변경">옵션변경하기</a> <!-- 참고 : 옵션변경 레이어 -->'+
+	    										'<div id="detail1" class="optiondetail" style="display: none;">'+
+	    											'<div class="optionheader">'+
+	    												'<h3 class="optiontitle">옵션 변경하기</h3>'+
+	    												'<a href="#none" class="option_close" onclick="$(.optionModify).hide();>'+
+	    													'<img src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif" alt="닫기">'+
+	    												'</a>'+
+	    											'</div>'+
+	    											'<div class="optionbody">'+
+	    												'<h4>상품옵션</h4>'+
+	    												'<ul class="ec-base-desc typeDot gLarge rightDD">'+
+	    													'<li>'+
+	    														'<strong class="optiontype">QUANTITY</strong>'+
+	    														'<div class="flex-w bo5 of-hidden w-size17" style="left:24%;">'+
+	    														'<button class="num-product-down1 color1 flex-c-m size7 bg8 eff2"  style="border-radius:5px;">'+
+	    															'<i class="fs-12 fa fa-minus" aria-hidden="true"></i>'+
+	    														'</button>'+
+	    														'<input class="size8 m-text18 t-center num-product" id="quantity" type="number" name="num-product2" value="1">'+
+	    														'<button class="num-product-up1 color1 flex-c-m size7 bg8 eff2"  style="border-radius:5px;">'+
+	    															'<i class="fs-12 fa fa-plus" aria-hidden="true"></i>'+
+	    														'</button>'+
+	    														'</div>'+
+	    													'</li>'+
+	    												'<div id="detail2" class="option_scroll" style= position: relative; top: 5px; margin: 5px 0 0 0; height:120px; width:105%;">'+
+	    													'<div id="option1o" style=" margin: 5px 0 0 0; border-top: 1px solid #ddd; ">'+
+	    														'<li>'+
+	    															'<strong class="optiontype">COLOR</strong>'+
+	    															'<select id="select1"></select>'+
+	    														'</li>'+
+	    														'<li>'+
+	    															'<strong class="optiontype">SIZE</strong>'+
+	    															'<select id="select2"></select>'+
+	    														'</li>'+
+	    													'</div>'+
+	    												'</div>'+
+	    												'</ul>'+
+	    											'</div>'+
+	    											'<div class="option_btn">'+
+	    												'<a href="#none" class=" yg_btn yg_btn1" onclick="add(this);" alt="추가">추가</a>'+
+	    												'<a href="#none" class="yg_btn yg_btn3" onclick="NewWishlist.modify(this);" alt="변경">변경</a>'+
+	    											'</div>'+
+	    										'</div>'+
+	    									'</li>'+
+	    								'</ul>'+
+	    							'</td>'+
+	    							'<td class="price center">'+
+	    									'<span class=""><fmt:formatNumber value='' pattern="#,###"/>'+data.d1.prdt_price+' won</span>'+
+	    									'<br>'+
+	    								'</td>'+
+	                    				'<td><span class="txtInfo"><img src="/ot/resources/images/point.png" class="icon_img" alt="적립금">3%</span></td>'+
+	                    				'<td>'+
+	    	                				'<div class="txtInfo">기본배송'+
+	    	                					'<div class="">(해외배송가능)'+
+	    	                					'</div>'+
+	    									'</div>'+
+	    								'</td>'+
+	                    				'<td>'+
+	    								'<span class="">2,500 won<br></span>'+
+	    								'</td>'+
+	                    				'<td class="price center"><fmt:formatNumber value='' pattern="#,###"/> won</td>'+
+	    				                '<td class="button">'+
+	    				                    '<a href="#none" onclick="" class=" yg_btn_100 yg_btn1 add-to-cart" alt="담기">ADD TO CART</a>'+
+	    				                    '<!-- <a href="#none" onclick="" class=" yg_btn_100 yg_btn4 add-to-cart" alt="주문">BUY IT NOW</a> -->'+
+	    				                    '<a href="#none" class="btn_wishlist_del yg_btn_100 yg_btn4" rel="10550||||" alt="삭제">DELETE</a>'+
+	    				                '</td>'+
+	               					'</tr>');
+					alert("관심상품에 추가되었습니다.");
+					/* $('.optiondetail').css('display', 'none'); 
+				}
+			}) */
+		}
+		
+		function update(){
+			var quantity = document.getElementById('quantity').value;
+			var color = document.getElementById('select1').value;
+			var size = document.getElementById('select2').value;
+			
+			location.href="updatewishlist.do?dibsno="+dibsno+"&prdt_no="+prdt_no+"&dibs_count="+quantity+"&dibs_size="+size+"&dibs_color="+color;
+			alert('관심상품에 변경되었습니다.');
+		}
+		
+		  var $pro_wish = $('#pro_wish');
+		    $pro_wish.change(function () {
+		        var $this = $(this);
+		        var checked = $this.prop('checked');
+		        $('input[name="wishCheck"]').prop('checked', checked);
+
+		    });
+		
+		$('.option_close').click(function() {
+			$('.optiondetail').css('display', 'none');
+		});
+		
+		$('.add-to-cart').click(function(){
+			$('.add-cart').css('display', 'block');
+		});
+		
+		$('.option_close').click(function() {
+			$('.add-cart').css('display', 'none');
+		});
+		
+		
+		$('#deleteAll').click(function(){
+			var memno = $('#memno').val();
+			
+			if(confirm("전체 상품을 삭제하시겠습니까?") == true){
+				
+				$.ajax({
+					url:"deletewishAll.do",
+					data:{memno : memno},
+					success : function(data){
+						if(data == "ok") {
+							location.href="mWishlist.do";
+						}
+					}
+				});
+			}
+		});
+		
+		$('.selectDelete').click(function(){
+			dibsno = $(this).parents('tr').find('.dibsno').val();
+			
+			console.log(dibsno);
+			
+		 	if(confirm("선택 상품을 삭제하시겠습니까?") == true){
+				$.ajax({
+					url:"selectDelete.do",
+					data:{dibsno : dibsno},
+					success : function(data){
+						if(data == "ok") {
+							location.href="mWishlist.do";
+						}
+					}
+				});
+			}
+		});
+		
+		
+		$('#WishListDelete').click(function(){
+			
+			if(confirm("선택 상품을 삭제하시겠습니까?") == true){
+				var wishArr = new Array();
+				var wishCheck = document.getElementsByName('wishCheck');
+				console.log(wishCheck);
+				var dibsno = document.getElementsByName('dibsno');
+				
+				var count = 0;
+				
+				for(var i=0; i<wishCheck.length; i++){
+					if(wishCheck[i].checked == true){
+						wishArr[count] = dibsno[i].value
+						count++;
+					}
+				}
+			console.log(wishArr);
+			
+			$.ajax({
+				url:"wishlistdelete.do",
+				traditional : true,
+				data : { 'wishArr' : wishArr},
+				success : function(data){
+					if(data =="ok"){
+					location.href="mWishlist.do";
+				}else{
+					alert('삭제실패')
+				}
+			},error : function(){
+				alert('에러다');
+			}
+			});
+		}
+	});
+		
+		
+		
+		<%-- <div class="xans-element- xans-product xans-product-optionselectlayer ec-base-layer add-cart">
 		<div class="header">
 			<h1>옵션 확인</h1>
 		</div>
@@ -293,39 +616,7 @@
 					<span>(BLACK UP) 호딘 트레이닝 팬츠</span>
 
 </tr>
-							<!-- <tr
-								class="xans-element- xans-product xans-product-option xans-record-">
-								<th scope="row" style="font-size:12px;">컬러</th>
-								<td><ul option_product_no="9017"
-										option_select_element="ec-option-select-finder"
-										option_sort_no="1" option_type="T" item_listing_type="S"
-										option_title="컬러" product_type="product_option"
-										product_option_area="product_option_9017_0"
-										option_style="preview" ec-dev-id="product_option_id1"
-										ec-dev-name="option1" ec-dev-class="ProductOption0"
-										class="ec-product-button ec-product-preview" required="true">
-										<li class="" option_value="화이트" link_image="" title="화이트"><a
-											href="#none" style="background-color: #ffffff"><span>화이트</span></a></li>
-										<li class="" option_value="블랙" link_image="" title="블랙"><a
-											href="#none" style="background-color: #000000"><span>블랙</span></a></li>
-										<li class="" option_value="카키" link_image="" title="카키"><a
-											href="#none" style="background-color: #567854"><span>카키</span></a></li>
-										<li class="" option_value="블루" link_image="" title="블루"><a
-											href="#none" style="background-color: #301cc7"><span>블루</span></a></li>
-									</ul>
-									<p class="value" style="font-size:12px;">
-										[필수] <span class="ec-shop-front-product-option-desc-trigger"
-											data-option_msg="옵션을 선택해 주세요">옵션을 선택해 주세요</span>
-									</p> <select product_option_area_select="product_option_9017_0"
-									id="product_option_id1" name="option1" option_title="컬러"
-									option_type="T" item_listing_type="S" class="ProductOption0"
-									style="display: none;" required="true"><option
-											value="*">empty</option>
-										<option value="화이트">화이트</option>
-										<option value="블랙">블랙</option>
-										<option value="카키">카키</option>
-										<option value="블루">블루</option></select></td>
-							</tr> -->
+							
 						</tbody>
 					</table>
 				</div>
@@ -351,14 +642,15 @@
 						<tbody class="displaynone">
 							<tr>
 								<td>(BLACK UP) 호딘 트레이닝 팬츠</td>
-								<td><span class="quantity"> <input id="quantity"
-										name="quantity_name" style="" value="0" type="text"> <a
-										href="#none"><img
-											src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_up.gif"
-											alt="수량증가" class="QuantityUp up"></a> <a href="#none"><img
-											src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_down.gif"
-											alt="수량감소" class="QuantityDown down"></a>
-								</span></td>
+								<td>
+									<span class="quantity"> <input id="quantity" name="quantity_name" style="" value="0" type="text"> 
+										<a href="#none">
+											<img src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_up.gif"
+											alt="수량증가" class="QuantityUp up"></a> <a href="#none">
+											<img src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_down.gif"
+												alt="수량감소" class="QuantityDown down"></a>
+									</span>
+								</td>
 								<td class="right"><span class="quantity_price">9000</span>
 									<span class="mileage ">(<img
 										src="/ot/resources/images/point.png"> &nbsp;<span
@@ -427,48 +719,31 @@
 		<a class="option_close" onclick="">
 		<img src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif"
 			alt="닫기"></a>
-	</div>
-
-
-	<script>
-		function optionchange(oc){
-			var dibsno = $(oc).parents('ul').parents('td').parents('tr').find('.dibsno').val();
-			
-			var prdt_no = $(oc).parents('ul').parents('td').parents('tr').find('.prdt_no').val();
-			console.log($(oc).parents('tr')[0]);
-			$.ajax({
-				url:"optiondetail.do",
-				data:{prdt_no : prdt_no},
-				dataType:"json",
-				success:function(data){
-					console.log(data[0].prdt_color);
-					
-					
-					$('#select1').append("<option>1</option>");
-					
-				}
-			})
-			console.log(prdt_no);
-			console.log(dibsno);
-			$(oc).parents('ul').find('.optiondetail').css('display', 'block'); 
-		}
-	/* */
-		$('#optionchange').click(function() {
-			/* var dibsno =  */
-			/* $('.optiondetail').css('display', 'block'); */
-		});
-
-		$('.option_close').click(function() {
-			$('.optiondetail').css('display', 'none');
-		});
+	</div> --%>
 		
-		$('.add-to-cart').click(function(){
-			$('.add-cart').css('display', 'block');
-		});
 		
-		$('.option_close').click(function() {
-			$('.add-cart').css('display', 'none');
-		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	</script>	
 	

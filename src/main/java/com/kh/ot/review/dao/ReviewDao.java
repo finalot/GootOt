@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
 
 @Repository("rDao")
 public class ReviewDao {
@@ -111,6 +112,50 @@ public class ReviewDao {
 	 */
 	public int updateLikeCount2(int rv_no) {
 		return sqlSession.update("reviewMapper.updateLikeCount2",rv_no);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰 등록
+	 * @param rp
+	 * @return
+	 */
+	public int insertReply(ReviewReply rp) {
+		return sqlSession.insert("reviewMapper.insertReply",rp);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 우예진
+	 * @내용    : 댓글 리스트 뿌려주기
+	 * @param rv_no
+	 * @return
+	 */
+	public ArrayList<ReviewReply> selectReplyList(int rv_no) {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectReplyList",rv_no);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 우예진
+	 * @내용    : 댓글삭제
+	 * @param rp
+	 * @return
+	 */
+	public int DeleteReply(ReviewReply rp) {
+		return sqlSession.delete("reviewMapper.DeleteReply",rp);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 22.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰 신고
+	 * @param rp
+	 * @return
+	 */
+	public int WarningReply(ReviewReply rp) {
+		return sqlSession.update("reviewMapper.WarningReply",rp);
 	}
 	
 }

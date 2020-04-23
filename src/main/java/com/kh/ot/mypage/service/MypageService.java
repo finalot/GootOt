@@ -280,6 +280,20 @@ public interface MypageService {
 
 	ArrayList<DIBS> selectWishList(PageInfo pi, int memNo);
 
-	ArrayList<Product_opt> selectOptionList(int prdt_no);
+	ArrayList<Product_opt> selectOptionList1(int prdt_no);
+
+	ArrayList<Product_opt> selectOptionList2(int prdt_no);
+
+	int insertwishlist(DIBS d);
+
+	DIBS selectonelist();
+
+	int updatewishlist(DIBS d);
+
+	int deleteWishlist(ArrayList<DIBS> noArr);
+
+	int deletewishAll(int memno);
+
+	int selectDelete(int dibsno);
 
 }

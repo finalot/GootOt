@@ -13,6 +13,7 @@ import com.kh.ot.cart.vo.Pay;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.mypage.vo.Return;
 
 public interface adminService{
 
@@ -52,9 +53,9 @@ public interface adminService{
 	public int DesignEd(ArrayList<Design> dlist);
 
 	/**
-	 * @param d 
+	 * @param d
 	 * @작성일  : 2020. 4. 9.
-	 * @작성자  : 문태환 
+	 * @작성자  : 문태환
 	 * @내용 	: 메인 비디오 업데이트
 	 * @return
 	 */
@@ -92,12 +93,12 @@ public interface adminService{
 	 * @return
 	 */
 	public ArrayList<Design> selectInstaList();
-	
+
 	/*s*/
 	/**
 	 * @작성일 : 2020. 4. 8.
 	 * @작성자 : 이서현
-	 * @내용 : 대분류,중분류 리스트 
+	 * @내용 : 대분류,중분류 리스트
 	 */
 	ArrayList<UpCategory> UpCategorySelect();
 
@@ -106,7 +107,7 @@ public interface adminService{
 	/**
 	 * @작성일 : 2020. 4. 9.
 	 * @작성자 : 이서현
-	 * @내용 : 카테고리 추가 버튼 
+	 * @내용 : 카테고리 추가 버튼
 	 */
 	public int UpCategoryInsert(String addOption);
 
@@ -120,11 +121,11 @@ public interface adminService{
 	public int UpCategoryDelete(int up_no);
 
 	public int DownCategoryDelete(DownCategory downCategory);
-	
+
 	/**s
 	 * @작성일 : 2020. 4. 9.
 	 * @작성자 : 이서현
-	 * @내용 : 상품 등록 
+	 * @내용 : 상품 등록
 	 */
 	public int ProductInsert(Product p);
 
@@ -139,7 +140,7 @@ public interface adminService{
 
 	/**
 	 * @작성일  : 2020. 4. 13.
-	 * @작성자  : 문태환 
+	 * @작성자  : 문태환
 	 * @내용 	: 어드민 상품문의 업데이트
 	 * @param b
 	 * @return
@@ -149,7 +150,7 @@ public interface adminService{
 	/**
 	 * @작성일 : 2020. 4. 14.
 	 * @작성자 : 이서현
-	 * @내용 : 상품 리스트 뿌리기 
+	 * @내용 : 상품 리스트 뿌리기
 	 */
 	public ArrayList<Product> ProductSelectList();
 
@@ -210,8 +211,8 @@ public interface adminService{
 	 * @return
 	 */
 	public int orderUpdate3(int ordNo);
-	
-	
+
+
 	/**
 	 * @작성일  : 2020. 4. 19.
 	 * @작성자  : 문태환
@@ -232,7 +233,7 @@ public interface adminService{
 	/**
 	 * @작성일 : 2020. 4. 19.
 	 * @작성자 : 이서현
-	 * @내용 : 회원관리 리스트 
+	 * @내용 : 회원관리 리스트
 	 */
 	public ArrayList<Member> selectMember();
 		/**
@@ -255,7 +256,7 @@ public interface adminService{
 		/**
 		 * @작성일  : 2020. 4. 19.
 		 * @작성자  : 문태환
-		 * @내용 	: 쿠폰 업데이트 
+		 * @내용 	: 쿠폰 업데이트
 		 * @param cp
 		 * @return
 		 */
@@ -263,7 +264,7 @@ public interface adminService{
 
 		/**
 		 * @작성일  : 2020. 4. 20.
-		 * @작성자  : 문태환 
+		 * @작성자  : 문태환
 		 * @내용 	: 회원 포인트 적립
 		 * @param ordNo
 		 * @return
@@ -271,16 +272,37 @@ public interface adminService{
 		public Pay selectPay(int ordNo);
 
 		/**
-		 * @작성일 : 2020. 4. 20.
+		 * @작성일  : 2020. 4. 21.
+		 * @작성자  :  문태환
+		 * @내용 	: 반품 게시판 리스트 뿌리기
+		 * @return
+		 */
+		public ArrayList<Return> productReturnlist();
+
+		/**
+		 * @작성일  : 2020. 4. 21.
+		 * @작성자  : 문태환
+		 * @내용 	: 반품화면 디테일
+		 * @param reNo
+		 * @return
+		 */
+		  public Return ReturnDetail(Return re);
+
+//	    /*
+//		 *
+//		 */ @작성일 : 2020. 4. 20.
+//		public Return ReturnDetail(Return re);
+
+		 /* @작성일 : 2020. 4. 20.
 		 * @작성자 : 이서현
-		 * @내용 : 옵션추가에서 prdtNo 가지고오기 
+		 * @내용 : 옵션추가에서 prdtNo 가지고오기
 		 */
 		public Product selectPrdtNo();
 
 		/**
 		 * @작성일 : 2020. 4. 20.
 		 * @작성자 : 이서현
-		 * @내용 : 옵션 추가 
+		 * @내용 : 옵션 추가
 		 */
 		public int insertPotList(ArrayList<Product_opt> poArr);
 		
@@ -304,5 +326,31 @@ public interface adminService{
 		 * @내용 : 상품관리리스트디테일 (상품옵션)
 		 */
 		public ArrayList<Product_opt> listProductOptSelectList(int prdtNo);
+		 * @작성일  : 2020. 4. 22.
+		 * @작성자  : 문태환
+		 * @내용 	: 반품결제 취소
+		 * @param cpmemNo
+		 * @return
+		 */
+		public int calcellCoupon(int cpmemNo);
+
+		/**
+		 * @작성일  : 2020. 4. 22.
+		 * @작성자  : 문태환
+		 * @내용 	: 페이 테이블 결제 취소
+		 * @param ordCode
+		 * @return
+		 */
+		public int cancellPay(int ordCode);
+
+		/**
+		 * @작성일  : 2020. 4. 22.
+		 * @작성자  : 문태환
+		 * @내용 	: 사용포인트 반환
+		 * @param m
+		 * @return
+		 */
+		public int cancellPoint(Member m);
+
 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.ot.review.dao.ReviewDao;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
 
 @Service("rService")
 public class ReviewServiceImpl implements ReviewService{
@@ -58,6 +59,26 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public int updateLikeCount2(int rv_no) {
 		return rDao.updateLikeCount2(rv_no);
+	}
+
+	@Override
+	public int insertReply(ReviewReply rp) {
+		return rDao.insertReply(rp);
+	}
+
+	@Override
+	public ArrayList<ReviewReply> selectReplyList(int rv_no) {
+		return rDao.selectReplyList(rv_no);
+	}
+
+	@Override
+	public int DeleteReply(ReviewReply rp) {
+		return rDao.DeleteReply(rp);
+	}
+
+	@Override
+	public int WarningReply(ReviewReply rp) {
+		return rDao.WarningReply(rp);
 	}
 
 }
