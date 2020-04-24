@@ -55,7 +55,23 @@ a {
     				</strong>
  					님은 현재 
 					<strong>
-						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">MEMBER</span>
+						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">
+							<c:if test="${loginMember.memSumMoney < 30000}">
+								MEMBER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 30000 && loginMember.memSumMoney < 60000}" >
+								IRON
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 60000 && loginMember.memSumMoney < 90000}" >
+								BRONZE
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 90000 && loginMember.memSumMoney < 120000}" >
+								SILVER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 120000}" >
+								GOLD
+							</c:if>
+						</span>
 						<span class="myshop_benefit_ship_free_message"></span>
 					</strong>
   					입니다.
@@ -627,11 +643,7 @@ a {
 			});
 		}
 	});
-		
-		
-	</script>	
-	
-	<script>
+
 								
 	/*[ +/- num product ]
 	   ===========================================================*/
@@ -651,135 +663,3 @@ a {
  <%@include file="footer.jsp" %>
 </body>
 </html>
-
-
-
-<%-- <div class="xans-element- xans-product xans-product-optionselectlayer ec-base-layer add-cart">
-		<div class="header">
-			<h1>옵션 확인</h1>
-		</div>
-		<div class="content">
-			<div class="xans-element- xans-product xans-product-detail inner ">
-				<h2 class="name">
-					<span>ADD TO CART</span>
-				</h2>
-				<div class="productNormal ">
-					<div class="xans-element- xans-product xans-product-image imgArea ">
-						<img src="//black-up.kr/web/product/tiny/201907/28e70275e9da1a542c85a8e8d50160d4.webp" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" class="">
-					</div>
-					<table border="1" summary="">
-						<caption>상품 옵션</caption>
-						<colgroup>
-							<col width="80px">
-							<col width="auto">
-						</colgroup>
-						<tbody
-							class="xans-element- xans-product xans-product-option xans-record-">
-							<tr class="xans-element- xans-product xans-product-option xans-record-">
-					<span>(BLACK UP) 호딘 트레이닝 팬츠</span>
-
-</tr>
-							
-						</tbody>
-					</table>
-				</div>
-				<!-- //참고 -->
-				<!-- 참고 : 뉴상품관리 전용 변수가 포함되어 있습니다. 뉴상품관리 이외의 곳에서 사용하면 일부 변수가 정상동작하지 않을 수 있습니다. -->
-				<div id="totalProducts" class="">
-					<p class="ec-base-help txtWarn txt11 displaynone">수량을 선택해주세요.</p>
-					<p class="ec-base-help txtWarn txt11 ">상품 옵션을 확인해주세요.</p>
-					<table border="0" summary="">
-						<caption>상품 목록</caption>
-						<colgroup>
-							<col style="width: 284px;">
-							<col style="width: 80px;">
-							<col style="width: 110px;">
-						</colgroup>
-						<thead>
-							<tr>
-								<th scope="col">상품명</th>
-								<th scope="col">상품수</th>
-								<th scope="col">가격</th>
-							</tr>
-						</thead>
-						<tbody class="displaynone">
-							<tr>
-								<td>(BLACK UP) 호딘 트레이닝 팬츠</td>
-								<td>
-									<span class="quantity"> <input id="quantity" name="quantity_name" style="" value="0" type="text"> 
-										<a href="#none">
-											<img src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_up.gif"
-											alt="수량증가" class="QuantityUp up"></a> <a href="#none">
-											<img src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_down.gif"
-												alt="수량감소" class="QuantityDown down"></a>
-									</span>
-								</td>
-								<td class="right"><span class="quantity_price">9000</span>
-									<span class="mileage ">(<img
-										src="/ot/resources/images/point.png"> &nbsp;<span
-										class="mileage_price">0</span>)
-								</span></td>
-							</tr>
-						</tbody>
-						<!-- 참고 : 옵션선택 또는 세트상품 선택시 상품이 추가되는 영역입니다. 쇼핑몰 화면에는 아래와 같은 마크업구조로 표시됩니다. 삭제시 기능이 정상동작 하지 않습니다.-->
-						<tbody>
-							<tr class="option_product " data-option-index="1"
-								target-key="9017">
-								<td><input type="hidden" class="option_box_id"
-									id="option_box1_id" value="P0000NIU000Q" name="item_code[]"
-									data-item-add-option="" data-item-reserved="N"
-									data-option-id="'+sOptionId+'">
-								<p class="product" style="font-size:12px;">
-										(BLACK UP) 호딘 트레이닝 팬츠<br> - <span>블랙 / S / 1</span>
-									</p></td>
-<td><span class="quantity" style="width:65px;"><input type="text" id="option_box1_quantity" name="quantity_opt[]" class="quantity_opt eProductQuantityClass" value="1" product-no="9017"><a href="#none" class="up eProductQuantityUpClass" "="" data-target="option_box1_up">
-<img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_up.gif" id="option_box1_up" class="option_box_up" alt="수량증가"></a><a href="#none" class="down eProductQuantityDownClass" data-target="option_box1_down">
-<img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif" id="option_box1_down" class="option_box_down" alt="수량감소"></a></span><a href="#none" class="delete">
-<!-- <img src="//img.echosting.cafe24.com/design/skin/default/product/btn_price_delete.gif" alt="삭제" id="option_box1_del" class="option_box_del"> --></a></td>
-								<td class="right"><span id="option_box1_price"><input type="hidden" class="option_box_price" value="19000" product-no="10550" item_code="P0000PPU000F">
-								<span class="ec-front-product-item-price" code="P0000PPU000F" product-no="10550">19,000 won</span></span><span class="mileage">(<img src="/ot/resources/images/point.png" alt="적립금"> <span id="option_box1_mileage" class="mileage_price" code="P0000PPU000F">100원</span>)</span></td>
-							</tr>
-							<tr class="option_product " data-option-index="1"
-								target-key="9017">
-								<td><input type="hidden" class="option_box_id"
-									id="option_box1_id" value="P0000NIU000Q" name="item_code[]"
-									data-item-add-option="" data-item-reserved="N"
-									data-option-id="'+sOptionId+'">
-								<p class="product" style="font-size:12px;">
-										(BLACK UP) 호딘 트레이닝 팬츠<br> - <span>그레이 / M / 1</span>
-									</p></td>
-<td><span class="quantity" style="width:65px;"><input type="text" id="option_box1_quantity" name="quantity_opt[]" class="quantity_opt eProductQuantityClass" value="1" product-no="9017"><a href="#none" class="up eProductQuantityUpClass" "="" data-target="option_box1_up">
-<img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_up.gif" id="option_box1_up" class="option_box_up" alt="수량증가"></a><a href="#none" class="down eProductQuantityDownClass" data-target="option_box1_down">
-<img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif" id="option_box1_down" class="option_box_down" alt="수량감소"></a></span><a href="#none" class="delete">
-<!-- <img src="//img.echosting.cafe24.com/design/skin/default/product/btn_price_delete.gif" alt="삭제" id="option_box1_del" class="option_box_del"> --></a></td>
-								<td class="right"><span id="option_box1_price"><input type="hidden" class="option_box_price" value="19000" product-no="10550" item_code="P0000PPU000F">
-								<span class="ec-front-product-item-price" code="P0000PPU000F" product-no="10550">19,000 won</span></span><span class="mileage">(<img src="/ot/resources/images/point.png" alt="적립금"> <span id="option_box1_mileage" class="mileage_price" code="P0000PPU000F">100원</span>)</span></td>
-							</tr>
-						</tbody>
-						<!-- //참고 -->
-						<tfoot>
-							<tr>
-								<td colspan="3"><span>총 상품금액</span>(수량) : <span
-									class="total"><span><em>19,000 won</em></span> (0개)</span></td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-				<!-- //참고 -->
-			</div>
-		</div>
-		<div
-			class="xans-element- xans-product xans-product-action ec-base-button ">
-			<a href="${order }" class="first  yg_btn_30"
-				onclick="product_submit(1, '/exec/front/order/basket/', this)"
-				alt="바로구매하기">바로구매하기</a> <a href="#none" class=" yg_btn_30 yg_btn3"
-				onclick="product_submit(2, '/exec/front/order/basket/', this)"
-				alt="장바구니 담기">장바구니 담기</a>
-			<!-- 네이버 체크아웃 구매 버튼 -->
-			<div id="NaverChk_Button"></div>
-			<!-- //네이버 체크아웃 구매 버튼 -->
-		</div>
-		<a class="option_close" onclick="">
-		<img src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif"
-			alt="닫기"></a>
-	</div> --%>
