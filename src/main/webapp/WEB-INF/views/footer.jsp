@@ -412,7 +412,7 @@
 	<script>
 	$(document).ready(function(){
 		
-		var socket = io("http://192.168.110.18:82");
+		var socket = io("http://moon1:82");
 	
 		if("${ !empty sessionScope.loginMember}" && "${loginMember.memId}" !='') {
 			socket.emit("login_member", {id:"${loginMember.memId}"})

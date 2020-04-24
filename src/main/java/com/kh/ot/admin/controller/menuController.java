@@ -914,7 +914,7 @@ public class menuController {
 	@RequestMapping("UpCategorySelect.ad")
 	public void UpCategorySelct(HttpServletResponse response) throws JsonIOException, IOException {
 		ArrayList<UpCategory> ulist = adService.UpCategorySelect();
-
+		System.out.println("ulist : "+ulist);
 		response.setContentType("application/json; charset=utf-8");
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
@@ -948,13 +948,24 @@ public class menuController {
 	 */
 	@RequestMapping("UpCategoryInsert.ad")
 	@ResponseBody
-	public void UpCategoryInsert(HttpServletResponse repsonse, String addOption) throws IOException {
+	public void UpCategoryInsert(HttpServletResponse repsonse, String addOption, int Uple) throws IOException {
 
-		int result = adService.UpCategoryInsert(addOption);
-
+		int result = 0;
+		int result2 = 0; 
+		UpCategory up = new UpCategory();
+		up.setUp_name(addOption);
+		
+		for(int i=1 ;i<=Uple+1;i++) {
+					result = adService.UpCategoryCount(i);
+			if(result == 0) {
+				up.setUp_no(i);
+			   result2 = adService.UpCategoryInsert(up);
+			   break;
+			}
+		}
 		PrintWriter out = repsonse.getWriter();
 
-		if (result > 0) {
+		if (result2 > 0) {
 			out.print("ok");
 		} else {
 			out.print("fail");
@@ -967,16 +978,25 @@ public class menuController {
 	 * @내용 : 중분류 카테고리 추가 버튼
 	 */
 	@RequestMapping("DownCategoryInsert.ad")
-	public void DownCategoryInsert(HttpServletResponse repsonse, String addOption2, int up_no) throws IOException {
+	public void DownCategoryInsert(HttpServletResponse repsonse, String addOption2, int up_no,int dole) throws IOException {
 
 		System.out.println("up_no : " + up_no);
 		System.out.println("addOption2 : " + addOption2);
 		DownCategory dc = new DownCategory();
+		int result = 0;
+		int result2 = 0; 
 		dc.setUp_no(up_no);
 		dc.setDown_name(addOption2);
-
-		int result = adService.DownCategoryInsert(dc);
-
+		
+		for(int i=1 ;i<=dole+1;i++) {
+					dc.setDown_no(i);
+					result = adService.DownCategoryCount(dc);
+			if(result == 0) {
+				dc.setDown_no(i);
+			   result2 = adService.DownCategoryInsert(dc);
+			   break;
+			}
+		}
 		PrintWriter out = repsonse.getWriter();
 
 		if (result > 0) {

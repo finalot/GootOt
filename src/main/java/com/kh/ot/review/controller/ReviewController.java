@@ -22,6 +22,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.ot.main.dao.MainDao;
 import com.kh.ot.main.service.MainService;
+import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
@@ -53,6 +54,9 @@ public class ReviewController extends HttpServlet {
 			ArrayList<Product> plist = rService.getBestList();
 			ArrayList<Product_color> pclist = rService.selectColorList1();
 			ArrayList<Product_opt> polist = rService.selectOptionBestList();
+			ArrayList<MainupCategory> ulist = rService.selectCategoryList();
+			
+			
 			if(Sort.equals("like")) {
 				 rlist = rService.selectLikeSort();
 			} else {
@@ -64,6 +68,8 @@ public class ReviewController extends HttpServlet {
 			mv.addObject("plist",plist);
 			mv.addObject("polist",polist);
 			mv.addObject("pclist",pclist);
+			mv.addObject("ulist",ulist);
+
 
 			
 			mv.setViewName("review");
@@ -322,7 +328,7 @@ public class ReviewController extends HttpServlet {
 		/**
 		 * @작성일  : 2020. 4. 23.
 		 * @작성자  : 우예진
-		 * @내용    : 최신순/좋아요순 정렬
+		 * @내용    : 전체순/최신순/좋아요순 정렬
 		 * @param Sort
 		 * @param response
 		 * @throws JsonIOException
@@ -338,6 +344,8 @@ public class ReviewController extends HttpServlet {
 				rlist = rService.selectLikeSort();
 			} else if(Sort.equals("date")) {
 				rlist = rService.selectDateSort();
+			} else if(Sort.equals("all")) {
+				rlist = rService.selectAllSort();
 			}
 			response.setContentType("appliction/json; charset=utf-8");
 			
@@ -442,4 +450,38 @@ public class ReviewController extends HttpServlet {
 			
 			gson.toJson(hmap,response.getWriter());
 		}
+		
+		/**
+		 * @작성일  : 2020. 4. 24.
+		 * @작성자  : 우예진
+		 * @내용    : 셀렉트박스 카테고리 
+		 * @param upNo
+		 * @param response
+		 * @param session
+		 * @throws IOException 
+		 * @throws JsonIOException 
+		 */
+		@RequestMapping("CategorySelect.do")
+		public void CategorySelect(int upNo, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
+			ArrayList<Review> rlist = new ArrayList<Review>();
+			
+			if(upNo == 0) {
+				 rlist = rService.selectReviewList();
+			} else {
+
+				rlist = rService.selectCategoryReview(upNo);
+			}
+			
+			response.setContentType("appliction/json; charset=utf-8");
+			
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			Map hmap = new HashMap();
+			hmap.put("rlist", rlist);
+			
+			
+			gson.toJson(hmap,response.getWriter());
+		}
+		
 }

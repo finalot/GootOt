@@ -357,12 +357,12 @@ a:cursor{
     </script>
 
     <!-- Main JS-->
-    <script src="http://moon1:82/socket.io/socket.io.js"></script>
+    <script src="http://192.168.20.6:82/socket.io/socket.io.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
 // 소켓 접속시 채팅 회원리스트 불러오기
    $(document).ready(function(){
-	   var socket = io("http://192.168.110.18:82");	
+	   var socket = io("http://192.168.20.6:82");	
 	   
 	   socket.on('chats', function(data){
 		   console.log(data);
@@ -437,7 +437,7 @@ a:cursor{
    function chatBtn(en){
 	   $('#chat_container').css('display','block');
 	   
-		var socket = io("http://moon1:82");
+		var socket = io("http://192.168.20.6:82");
 	   
 	       userId = $(en).text();
 		//클릭한 아이디 서버로 보내기
@@ -480,7 +480,7 @@ a:cursor{
    };
    
    $(document).ready(function(){
-	   var socket = io("http://moon1:82");	
+	   var socket = io("http://192.168.20.6:82");	
 	   
 	   socket.on('send_msg', function(data){
 		   console.log(data)
@@ -507,13 +507,13 @@ a:cursor{
  
 
 /* $(document).ready(function(){
-var socket = io("http://moon1:82");
+var socket = io("http://192.168.20.6:82");
   
 	 
  }); */
  
 $(document).ready(function(){
-	var socket = io("http://moon1:82");
+	var socket = io("http://192.168.20.6:82");
 	
 	
 	 $('#addChat').click(function(){

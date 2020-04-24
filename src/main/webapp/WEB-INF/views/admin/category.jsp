@@ -12,7 +12,7 @@
     <meta name="keywords" content="au theme template">
 
     <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="/ot/resources/aimages/icon/favicon.png"/>
+   <link rel="icon" type="image/png" href="/ot/resources/aimages/icon/favicon.png"/>
 
     <!-- Title Page-->
     <title>oT. ADMIN</title>
@@ -40,11 +40,11 @@
 
 </head>
 <body class="animsition">
-	<div class="page-wrapper">
+   <div class="page-wrapper">
 
       <jsp:include page="a_header.jsp"/>
  <!-- MENU SIDEBAR-->
- 	
+    
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="todayMain.ad">
@@ -88,13 +88,13 @@
                                     <a href="order.ad">주문확인 관리</a>
                                 </li>
                                 <li>
-                                	<a href="order_2.ad">배송대기 관리</a>
+                                   <a href="order_2.ad">배송대기 관리</a>
                                 </li>
                                  <li>
-                                	<a href="order_3.ad">배송중 관리</a>
+                                   <a href="order_3.ad">배송중 관리</a>
                                 </li>
                                  <li>
-                                	<a href="order_4.ad">배송완료 관리</a>
+                                   <a href="order_4.ad">배송완료 관리</a>
                                 </li>
                             </ul>
                         </li>
@@ -103,7 +103,7 @@
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-shopping-cart"></i>상품관리</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            	<li>
+                               <li>
                                     <a href="category.ad">카테고리관리</a>
                                 </li>
                                 <li>
@@ -133,7 +133,7 @@
                             <a class="js-arrow" href="productReturnList.ad">
                         <i class="fa fa-credit-card"></i>교환 &nbsp;/&nbsp;반품</a>
                         </li>
-                 		<li>
+                       <li>
                            <a href="DesignEdit.ad">
                                <i class="fa fa-desktop"></i>디자인</a>
                        </li>
@@ -141,7 +141,7 @@
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-question"></i>Q & A</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            	<li>
+                               <li>
                                     <a href="QnA_Product.ad">상품문의</a>
                                 </li>
                                  <li>
@@ -160,12 +160,12 @@
                                     <a href="QnA_bad_product.ad">상품불량 및 오배송 문의</a>
                                 </li>
                             </ul>
-	                       </li>
-	                    <li class="has-sub">
+                          </li>
+                       <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-pencil-square-o"></i>리뷰</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            	<li>
+                               <li>
                                     <a href="review_list.ad">리뷰관리</a>
                                 </li>
                                 <li>
@@ -173,7 +173,7 @@
                                 </li>
                                 
                             </ul>
-	                  	</li>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -209,24 +209,24 @@
                 <br>
                 
                 <select id="sel" name="sel" style="WIDTH: 50%; HEIGHT: auto; margin-left:30%; margin-top:-5%; font-size:20px;" 
-                			size=13 multiple class="UpCategory">
+                         size=13 multiple class="UpCategory">
                    <option value="">선택</option>
                 </select>
               
-              	<br>
+                 <br>
                 
-            	<input type="text" id="addOption"  style="margin-left:30%; width:50%;"/>
-            	<br><br>
+               <input type="text" id="addOption"  style="margin-left:30%; width:50%;"/>
+               <br><br>
                 <input class="btn btn-primary" type="button" value="추가" id="btnAdd" style="margin-left:40%;"/>
                 <input class="btn btn-danger" type="button" value="삭제" id="btnRemoveLeft" />
-				
+            
             </td>
             <td>
-            	<H2 align="center">중분류</H2>
+               <H2 align="center">중분류</H2>
                <br>
                
                <select id="sel2" name="sel2" style="WIDTH: 50%; HEIGHT: auto; margin-left:25%; margin-top:-5%; font-size:20px;" 
-               	size="13" multiple class="DownCategory">
+                  size="13" multiple class="DownCategory">
                </select>
                 
                 <br>       
@@ -239,16 +239,16 @@
             </td>
         </tr>
     </table>
-	</div>
-	</form>
-	
-	<input type=hidden id="hid">
+   </div>
+   </form>
+   
+   <input type=hidden id="hid">
      </div></div>
      
      <!-- 카테고리 CRUD  -->
      <script>
      function test(val){
-    	 document.getElementById('hid').value=val.value;
+        document.getElementById('hid').value=val.value;
      }
     
      
@@ -258,27 +258,27 @@
       });
       
       setInterval(function(){
-    	  
-    	  UpCategorySelect();
+         
+         UpCategorySelect();
       },4000);
       function UpCategorySelect(){
-    	  
-    	  var upl = document.getElementsByName('uplength').length+1;    	  
+         
+         var upl = document.getElementsByName('uplength').length+1;         
          $.ajax({
             url:"UpCategorySelect.ad",
             success:function(data){
-            		var darr = new Array();
-            		$('#sel').find('option').remove();
-            		for(var i=0;i<data.length;i++){
-            		$('#sel').append('<option name="uplength" onclick="test(this);" value="'+data[i].up_no+'">'+data[i].up_name+'</option>');
-            		
-            		darr.push(data[i].up_no);
-            		sendnum = darr;
+                  var darr = new Array();
+                  $('#sel').find('option').remove();
+                  for(var i=0;i<data.length;i++){
+                  $('#sel').append('<option name="uplength" onclick="test(this);" value="'+data[i].up_no+'">'+data[i].up_name+'</option>');
+                  
+                  darr.push(data[i].up_no);
+                  sendnum = darr;
           
-            		}
-            	},error:function(){
-            		console.log("에러발생");
-            	}
+                  }
+               },error:function(){
+                  console.log("에러발생");
+               }
             });
             }
       
@@ -288,36 +288,37 @@
        });
        
        setInterval(function(){
-     	  DownCategorySelect();
+          DownCategorySelect();
        },4000);
        function DownCategorySelect(){
           $.ajax({
              url:"DownCategorySelect.ad",
              success:function(data){
-            	 var earr = new Array();
-            	 
-             		$('#sel2').find('option').remove();
-             		for(var i=0;i<data.length;i++){
-             			console.log(data[i].up_no);
-             			if(data[i].up_no==document.getElementById('hid').value){
-             				$('#sel2').append('<option value="'+data[i].down_no+'">'+data[i].down_name+'</option>')
-             			}
-             		}
+                var earr = new Array();
+                
+                   $('#sel2').find('option').remove();
+                   for(var i=0;i<data.length;i++){
+                      console.log(data[i].up_no);
+                      if(data[i].up_no==document.getElementById('hid').value){
+                         $('#sel2').append('<option name="downlength" value="'+data[i].down_no+'">'+data[i].down_name+'</option>')
+                      }
+                   }
              },error:function(){
-             	console.log("에러발생");
+                console.log("에러발생");
              }
           });
       }
        
        
       /* 카테고리 추가 버튼  */
-       $('#btnAdd').click(function(){
+     $('#btnAdd').click(function(){
     	   
     	   var addOption  = $('#addOption').val();
-    	   
+    	   var Uple = document.getElementsByName('uplength').length;
+
     	   $.ajax({
     		   url:"UpCategoryInsert.ad",
-    		   data : {addOption:addOption},
+    		   data : {addOption:addOption, Uple :Uple},
     		   success : function(data){
     			   if(data == "ok"){
     				   alert('대분류가 등록되었습니다.');
@@ -327,74 +328,75 @@
     		   },error:function(){
     			   alert("다시 입력해주세요.");
     		   }
-    	   })
-       })
+    	   }); 
+       });
        
         $('#btnAdd2').click(function(){
-        	var up_no  = $('#hid').val();
-    	   var addOption2  = $('#addOption2').val();
-    	   console.log(addOption2);
-    	   $.ajax({
-    		   url:"DownCategoryInsert.ad",
-    		   data : {addOption2:addOption2,up_no:up_no},
-    		   success : function(data){
-    			   if(data == "ok"){
-    				/*  console.log("hid : " +document.getElementById('hid').value); */
-    				 up_no =  document.getElementById('hid').value;
-    				 /* console.log("up_no : " + up_no); */
-    				 alert('중분류가 등록되었습니다. ');
-    				 
-    			   }else{
-    				   alert('다시해')
-    			   }
-    		   },error:function(){
-    			   alert("에러다");
-    		   }
-    	   })
+           var up_no  = $('#hid').val();
+          var addOption2  = $('#addOption2').val();
+          var dole = document.getElementsByName('downlength').length;
+          console.log(addOption2);
+          $.ajax({
+             url:"DownCategoryInsert.ad",
+             data : {addOption2:addOption2,up_no:up_no,dole:dole},
+             success : function(data){
+                if(data == "ok"){
+                /*  console.log("hid : " +document.getElementById('hid').value); */
+                 up_no =  document.getElementById('hid').value;
+                 /* console.log("up_no : " + up_no); */
+                 alert('중분류가 등록되었습니다. ');
+                 
+                }else{
+                   alert('다시해')
+                }
+             },error:function(){
+                alert("에러다");
+             }
+          })
        })
        
-	/*카테고리 삭제 버튼*/
-		$('#btnRemoveLeft').click(function(){
-			var up_no  = $('#hid').val();
-	    	 console.log($('#hid').val());
-	    	 
-	    	   $.ajax({
-	    		   url:"UpCategoryDelete.ad",
-	    		   data : {up_no:up_no},
-	    		   success : function(data){
-	    			   if(data == "ok"){
-	    				   alert('대분류 삭제되었습니다.');
-	    			   }else{
-	    				   alert('대분류 삭제되었습니다.')
-	    			   }
-	    		   },error:function(){
-	    			   alert("대분류가 삭제되었습니다.");
-	    		   }
-	    	   });
-	       });
+   /*카테고리 삭제 버튼*/
+      $('#btnRemoveLeft').click(function(){
+         var up_no  = $('#hid').val();
+           console.log($('#hid').val());
+           
+             $.ajax({
+                url:"UpCategoryDelete.ad",
+                data : {up_no:up_no},
+                success : function(data){
+                   if(data == "ok"){
+                      alert('대분류 삭제되었습니다.');
+                   }else{
+                      alert('대분류 삭제되었습니다.')
+                   }
+                },error:function(){
+                   alert("대분류가 삭제되었습니다.");
+                }
+             });
+          });
       
       
         $('#btnRemoveRight').click(function(){
-			var up_no  = $('#hid').val();
-	    	console.log($('#hid').val());
-	    	 
-	    	var down_no = $('#sel2 option:selected').val();
-	    	consolVAR e.log($('#sel2 option:selected').val());
-	    	
-	    	   $.ajax({
-	    		   url:"DownCategoryDelete.ad",
-	    		   data : {up_no:up_no, down_no:down_no},
-	    		   success : function(data){
-	    			   if(data == "ok"){
-	    				   alert('중분류 삭제되었습니다.');
-	    			   }else{
-	    				   alert('중분류 삭제되었습니다.')
-	    			   }
-	    		   },error:function(){
-	    			   alert("에러발생");
-	    		   }
-	    	   });
-	       });
+         var up_no  = $('#hid').val();
+          console.log($('#hid').val());
+           
+          var down_no = $('#sel2 option:selected').val();
+          console.log($('#sel2 option:selected').val());
+          
+             $.ajax({
+                url:"DownCategoryDelete.ad",
+                data : {up_no:up_no, down_no:down_no},
+                success : function(data){
+                   if(data == "ok"){
+                      alert('중분류 삭제되었습니다.');
+                   }else{
+                      alert('중분류 삭제되었습니다.')
+                   }
+                },error:function(){
+                   alert("에러발생");
+                }
+             });
+          });
        
        
      </script>
@@ -433,7 +435,7 @@
                 alert(values);
             });
  
-            $("#getValue2").on("c	lick",function(){
+            $("#getValue2").on("c   lick",function(){
                 var values = "";
                 $('#sel2 option').each( function() {
                     values= values + "/" + $(this).val();
@@ -488,7 +490,7 @@
             });
         });
  
-	  $(window).load(function(e){
+     $(window).load(function(e){
  
         }); 
     </script> -->

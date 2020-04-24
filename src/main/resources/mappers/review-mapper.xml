@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reviewMapper">
+
  	<resultMap type="Review" id="ReviewResultSet">
 			<id property = "rvNo" column="RV_NO"/>
 			<result property="prdtCode" column="PRDT_CODE"/>
@@ -78,13 +79,19 @@
 			<id property = "pcName" column="PC_NAME"/>
 			<result property="pcRgb" column="PC_RGB"/>
 		</resultMap> 
+		
+		<resultMap type="MainupCategory" id="MainupCategoryResultSet">
+			<id property = "upNo" column="UP_NO"/>
+			<result property="upName" column="UP_NAME"/>
+			<result property="upUsing" column="UP_USING"/>
+		</resultMap>
+		
 	
  	<select id="selectReviewList" parameterType="_int" resultMap="ReviewResultSet">
 		  SELECT RV_NO,RV_INFO,MEM_NAME,RV_DATE,PRDT_NAME,PRDT_IMAGE,PRDT_IMAGE_PATH
       	  FROM REVIEW RE
       	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
           JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
-        
  	</select>
  	
  	
@@ -396,8 +403,30 @@
 		FROM P_COLOR
 		
 		</select>
+		
+		<select id="selectCategoryList" resultMap="MainupCategoryResultSet">
+		SELECT * 
+		FROM UP_CATE
+		</select>
  
+ 		<select id="selectCategoryReview" parameterType="_int" resultMap="ReviewResultSet">
+ 		SELECT RV_NO,RV_INFO,MEM_NAME,RV_DATE,PRDT_NAME,PRDT_IMAGE,PRDT_IMAGE_PATH
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          WHERE PR.UP_NO = #{upNo}
+ 		
+ 		</select>
+ 		
+ 		<select id="selectAllSort" parameterType="_int" resultMap="ReviewResultSet">
+ 			 SELECT RE.RV_NO,RE.RV_INFO,M.MEM_NAME,RE.RV_DATE,PR.PRDT_NAME,PR.PRDT_IMAGE,PR.PRDT_IMAGE_PATH,RE.RV_LIKE
+      	  FROM REVIEW RE
+      	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
+          JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+ 		
+ 		</select> 
+ 		
+ 		
 
- 	
  
  </mapper>

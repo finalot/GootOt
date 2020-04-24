@@ -83,8 +83,8 @@ public class adminDao {
 	}
 
 
-	public int UpCategoryInsert(String addOption) {
-		return sqlSession.insert("adminMapper.UpCategoryInsert",addOption);
+	public int UpCategoryInsert(UpCategory up) {
+		return sqlSession.insert("adminMapper.UpCategoryInsert",up);
 	}
 
 
@@ -453,7 +453,28 @@ public class adminDao {
 			return 0;
 		}
 		
-		
-		
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 24.
+	 * @작성자  : 문태환
+	 * @내용 	: 업 카테고리 카운트
+	 * @param i
+	 * @return
+	 */
+	public int UpCategoryCount(int i) {
+		return sqlSession.selectOne("adminMapper.UpCategoryCount",i);
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 24.
+	 * @작성자  : 문태환  
+	 * @내용 	: 다운 카테고리 카운트
+	 * @param i
+	 * @return
+	 */
+	public int DownCategoryCount(DownCategory dc) {
+		return sqlSession.selectOne("adminMapper.DownCategoryCount",dc);
 	}
 }
