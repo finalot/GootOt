@@ -2,6 +2,7 @@ package com.kh.ot.review.service;
 
 import java.util.ArrayList;
 
+import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
@@ -175,5 +176,30 @@ public interface ReviewService {
 	ArrayList<Product_color> selectColorList1();
 
 	ArrayList<Product_opt> selectOptionBestList();
+
+	/**
+	 * @작성일  : 2020. 4. 24.
+	 * @작성자  : 우예진
+	 * @내용    : 셀렉트박스 카테고리 선택
+	 * @return
+	 */
+	ArrayList<MainupCategory> selectCategoryList();
+
+	/**
+	 * @작성일  : 2020. 4. 24.
+	 * @작성자  : 우예진
+	 * @내용    : 셀렉트박스 리뷰불러오기
+	 * @param upNo
+	 * @return
+	 */
+	ArrayList<Review> selectCategoryReview(int upNo);
+
+	/**
+	 * @작성일  : 2020. 4. 24.
+	 * @작성자  : 우예진
+	 * @내용    : 전체순 정렬
+	 * @return
+	 */
+	ArrayList<Review> selectAllSort();
 
 }

@@ -16,7 +16,6 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
-import com.kh.ot.mypage.vo.WishArr;
 
 public interface MypageService {
 
