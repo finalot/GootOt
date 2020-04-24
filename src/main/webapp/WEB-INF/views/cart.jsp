@@ -886,7 +886,6 @@ $('#delivery').click(function(){
 
 	$('#idMsg3').click(function(){
 		
-		//location.href ="orderResultView.do";
 
 	 	var ord_receiver =$('#userName-1').val();
 		var ord_phone = ($('#mobile1-1').val()+"-"+$('#mobile2-1').val()+"-"+ $('#mobile3-1').val());
@@ -953,15 +952,9 @@ $('#delivery').click(function(){
 						 }
 					 }
 					
-					  location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+
-						 "&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+
-						 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
-						 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price+"&canoArr="+checkArr;					
-				}
-	});
- 	
+				
 		
-		 /*  if($('#pay2').prop('checked') == true){
+		   if($('#pay2').prop('checked') == true){
 			 IMP.init('imp71871253');
 		}else if($('#pay4').prop('checked') == true){
 			IMP.init('imp36292670');
@@ -982,6 +975,11 @@ $('#delivery').click(function(){
 				    buyer_postcode : '123-456'
 				}, function(rsp) {
 				    if ( rsp.success ) {
+				    	
+						  location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+
+							 "&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+
+							 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
+							 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price+"&canoArr="+checkArr;				
 				    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 				    	jQuery.ajax({
 				    		url: "/payments/complete", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
@@ -1002,57 +1000,17 @@ $('#delivery').click(function(){
 
 				    			alert(msg);
 				    			
-				    			var ord_receiver =$('#userName-1').val();
-				    			var ord_phone = ($('#mobile1-1').val()+"-"+$('#mobile2-1').val()+"-"+ $('#mobile3-1').val());
-				    			var ord_address = ($('#zipCode-1').val()+","+$('#address1-1').val()+","+$('#address2-1').val());
-				    			var ord_message = $('#omessage').val();
-				    			
-				    			var pay_usedcp =  $('#pay_usedcp').val();
-				    			var pay_point = $('#point').val(); 
-				    			var pay_category = $('input[name="pay_category"]:checked').val();
-				    			
-				    			var coupon_price = $('#coupon-price').text();
-				    			
-				    		 	var prdtArr = new Array();
-				    		 	var sizeArr = new Array();
-				    		 	var colorArr = new Array();
-				    		 	var countArr = new Array();
-				    			var sumpriceArr = new Array();
-				    			
-				    			
-				    		   var pro_check = document.getElementsByName('pro_check');
-				    		   var prdt_no = document.getElementsByName('prdt_no');
-				    		   var ord_size = document.getElementsByName('ord_size');
-				    		   var ord_color = document.getElementsByName('ord_color');
-				    		   var ord_count = document.getElementsByName('ord_count');
-				    		   
-				    		   var sumprice = document.getElementsByName('sumprice');
-				    		   
-				    		   
-				    					 var count=0;
-				    					 for(var i=0;i<pro_check.length;i++){
-				    						 
-				    						 if(pro_check[i].checked ==true){
-				    							 prdtArr[count] = prdt_no[i].value
-				    							 sizeArr[count] = ord_size[i].value
-				    							 colorArr[count] = ord_color[i].value
-				    							 countArr[count] = ord_count[i].value
-				    							 sumpriceArr[count] = sumprice[i].value;
-				    							 
-				    							 
-				    							 count++;
-				    						
-				    						 }
-				    					 }
-				    				console.log(sumpriceArr);
-				    	  location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+
-				    			 "&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+
-				    			 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
-				    			 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price; 
-	 			    			
+								  location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+
+									 "&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+
+									 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
+									 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price+"&canoArr="+checkArr;				
 				    		
 				    		} else {
-				    		
+				    			
+								  location.href ="cartInsert.do?prdtArr="+prdtArr+"&ord_receiver="+ord_receiver+"&ord_phone="+ord_phone+
+									 "&ord_address="+ord_address+"&ord_message="+ord_message+"&sizeArr="+sizeArr+
+									 "&colorArr="+colorArr+"&countArr="+countArr+"&sumpriceArr="+sumpriceArr+"&pay_category="+pay_category+
+									 "&pay_point="+pay_point+"&pay_usedcp="+pay_usedcp+"&coupon_price="+coupon_price+"&canoArr="+checkArr;				
 				    			//[3] 아직 제대로 결제가 되지 않았습니다.
 				    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 				    		}
@@ -1065,8 +1023,9 @@ $('#delivery').click(function(){
 				        
 				    }
 				});
+				}
 	}); 
- */
+ 
 	</script>
 <!-- 아임포트 결제 API -->
 

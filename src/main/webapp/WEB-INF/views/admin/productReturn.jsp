@@ -304,8 +304,6 @@ color: red;
       
 			<div class="mypage_top_outer">
 			</div>
-
-
 			<div class="xans-element- xans-layout xans-layout-logincheck ">
 			<!--
 			    $url = /member/login.html
@@ -322,21 +320,6 @@ color: red;
 	<%--<input id="move_write_after" name="memPhone" vale="${re.memPhone }" type="hidden"> --%>
 		<%-- <input id="cate_no" name="memId" value="${re.memId }" type="hidden"> --%>
 		<input id="ordCode" name="bUsePassword" value="${re.ordCode} " type="hidden">
-		<input id="order_id" name="order_id" value="" type="hidden">
-		<input id="is_post_checked" name="is_post_checked" value="" type="hidden">
-		<input id="22a52e1f2ba700edbc6c" name="22a52e1f2ba700edbc6c" value="be72b6700c2bb10ea29aac31702af80d" type="hidden">
-		<input id="fix_title_form_0" name="fix_title_form_0" value="[배송문의]" type="hidden">
-		<input id="bulletin_type" name="bulletin_type" value="title" type="hidden">
-		<input id="fix_content_0" name="fix_content_0" value="▶ 배송전 상품교환/주문취소/배송지변경/추가주문 문의시 [배송전 주문취소/변경] 게시판 또는 고객센터(1566-6813)로 오전 11시까지 꼭 요청 해주셔야합니다.<br/>
-		<br />
-		당일 주문건은 재고가 있을 시 당일 배송처리 되고 보통 다음날부터 입고가 되기 때문에 바로 안내가 어렵습니다.<br />
-		<br />
-		* 배송전 교환/취소시 [배송전 부분취소/변경] 제목선택을 안해주시면 상품교환/주문취소는 당일 처리되지 않습니다 *<br />
-		<br />
-		비회원으로 문의주실 경우엔 동명이인으로 인해 주문정보와 함께 남겨주셔야 바로 처리 가능합니다.<br />
-		<br />
-----------------------------------------------------------------------" type="hidden">
-	<input id="fix_add_content" name="fix_add_content" value="" type="hidden">
 	<div class="xans-element- xans-board xans-board-write-1002 xans-board-write xans-board-1002">
 		<!--
             $login_page_url = /member/login.html
@@ -373,7 +356,7 @@ color: red;
             <script type="text/javascript">
             var reContent = $('#reContent').val();
             NN.Config.instanceID = "content";
-            NN.Config.value =reContent;
+            NN.Config.value ="${re.content}";
             NN.Config.toolbarType = "simple";
                 
                 
@@ -573,7 +556,7 @@ color: red;
 </div>
 <script>
 	
-	console.log("${re.content}");
+
 	
 var firstnum = document.getElementById('realCheck');
 
@@ -586,6 +569,7 @@ var firstnum = document.getElementById('realCheck');
 
 
 $('#return-ok').click(function(){
+	console.log("${re.content}");
 		var productCheckArr = document.getElementsByName('product-check');
 		var 	productCheck = "";
 		for(var i=0;i<productCheckArr.length;i++){
@@ -613,6 +597,7 @@ $('#return-ok').click(function(){
 });
 
 $('#return-cancell').click(function(){
+	console.log("${re.content}");
 	var productCheckArr = document.getElementsByName('product-check');
 	var 	productCheck = "";
 	for(var i=0;i<productCheckArr.length;i++){
@@ -633,6 +618,7 @@ $('#return-cancell').click(function(){
 });
 
 $('#return-hold').click(function(){
+	console.log("${re.content}");
 	var productCheckArr = document.getElementsByName('product-check');
 	var 	productCheck = "";
 	for(var i=0;i<productCheckArr.length;i++){
@@ -643,12 +629,13 @@ $('#return-hold').click(function(){
 
 
 	var reNo = $('#reNo').val();
-	var content = document.getElementsByName('content');
+	var content = $('#content_iframe_container').find('body').html();
 	var ordCode = "${re.ordCode}";	
 	var realCheck = $('#realCheck').val();
 	var reMent = $('#reMent').val();
 	var reStatus = "H";	
-	location.href="ReturnUpdate.ad?reNo="+reNo+"&content="+content[0].value+"&realCheck="+realCheck+"&reMent="+reMent+"&reStatus="+reStatus+"&productCheck="+productCheck+"&ordCode="+ordCode;
+	console.log(content);
+//	location.href="ReturnUpdate.ad?reNo="+reNo+"&content="+content+"&realCheck="+realCheck+"&reMent="+reMent+"&reStatus="+reStatus+"&productCheck="+productCheck+"&ordCode="+ordCode;
 	
 	
 });

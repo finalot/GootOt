@@ -150,14 +150,14 @@
    WHERE DOWN_USING='Y'
 </select>
 
-<insert id="UpCategoryInsert" parameterType="String">
+<insert id="UpCategoryInsert" parameterType="UpCategory">
    INSERT INTO UP_CATE (UP_NO, UP_NAME, UP_USING) VALUES
-   (UP_CATE_SEQ.NEXTVAL, #{addOption}, DEFAULT)
+   (#{up_no}, #{up_name}, DEFAULT)
 </insert>
 
 <insert id="DownCategoryInsert" parameterType="DownCategory">
    INSERT INTO DOWN_CATE
-    VALUES (DOWN_CATE_SEQ.NEXTVAL, #{up_no} ,#{down_name}, 'Y',SYSDATE)
+    VALUES (#{down_no}, #{up_no} ,#{down_name}, 'Y',SYSDATE)
 </insert>
 
 <update id="UpCategoryDelete" parameterType="_int">
@@ -383,7 +383,21 @@ SELECT RE.RE_NO,RE.QNA_DATE,RE.RE_NAME,RE.RE_TITLE,RE.RE_CONTENT,RE.ORD_CODE,
 	UPDATE ORD
 	SET ORD_STATUS = 'G'
 	WHERE ORD_NO = #{ordCode}
-
 </update>
+
+<select id="UpCategoryCount" parameterType="_int" resultType="_int" >
+	SELECT COUNT(*)
+	FROM UP_CATE
+	WHERE UP_NO = #{i}
+</select>	
+
+<select id="DownCategoryCount" parameterType="DownCategory" resultType="_int" >
+	SELECT COUNT(*)
+	FROM DOWN_CATE
+	WHERE UP_NO = #{up_no}
+	AND DOWN_NO=#{down_no}
+</select>	
+
+
 
 </mapper>

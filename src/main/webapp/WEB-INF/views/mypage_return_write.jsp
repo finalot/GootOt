@@ -121,7 +121,7 @@
            <script type="text/javascript" src="http://editor.cafe24.com/js/nneditorCore.dev.js?version=r3.4.0.20191127.1" charset="UTF-8"></script>
             <script type="text/javascript">
             NN.Config.instanceID = "content";
-            NN.Config.value = "";
+            NN.Config.value =;
             NN.Config.toolbarType = "simple";
                 
                 

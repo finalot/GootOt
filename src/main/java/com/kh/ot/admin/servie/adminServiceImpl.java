@@ -82,8 +82,8 @@ public class adminServiceImpl implements adminService{
 	}
 
 	@Override
-	public int UpCategoryInsert(String addOption) {
-		return adDao.UpCategoryInsert(addOption);
+	public int UpCategoryInsert(UpCategory up) {
+		return adDao.UpCategoryInsert(up);
 	}
 
 	@Override
@@ -264,6 +264,18 @@ public class adminServiceImpl implements adminService{
 		@Override
 		public int updateOrdf(Return r) {
 			return adDao.updateOrdf(r);
+		}
+
+
+		@Override
+		public int UpCategoryCount(int i) {
+			return adDao.UpCategoryCount(i);
+		}
+
+
+		@Override
+		public int DownCategoryCount(DownCategory dc) {
+			return adDao.DownCategoryCount(dc);
 		}
 
 }
