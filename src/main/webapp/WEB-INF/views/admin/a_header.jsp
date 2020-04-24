@@ -201,7 +201,7 @@ a:cursor{
                             <div class="header-button">
                                 <div class="noti-wrap">
                                 <div>
-                            <button id="chat-icon"><img style="width: 10%;margin-left: 7%;" src="/ot/resources/aimages/icons/chat_icon.png"></button>
+                            <button id="chat-icon"><img style="width: 10%;margin-left: 7%;" src="/ot/resources/images/icons/chat_icon.png"></button>
                                 </div>
                                 <div id="chat-list" class="container bootstrap snippet" style=" display: none">
       <div class=row >

@@ -294,7 +294,7 @@
                   <c:param name="search" value="<%=search %>"/>
                   <c:param name="currentPage" value="${mainPi.currentPage -1 }"/>
                   </c:url>
-                  <a href="http://localhost:8888/ot/${before}">
+                  <a href="http://moon1:8888/ot/${before}">
                   <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
                   </a> &nbsp;
 					</c:if>
@@ -308,7 +308,7 @@
                         <c:url var="pagination" value="searchProduct.do">
                            <c:param name="currentPage" value="${ p }"/>
                      </c:url>
-                     <a href="http://localhost:8888/ot/searchProduct.do?search=<%=search %>&currentPage=${p }" class="item-pagination flex-c-m trans-0-4">
+                     <a href="http://moon1:8888/ot/searchProduct.do?search=<%=search %>&currentPage=${p }" class="item-pagination flex-c-m trans-0-4">
                      ${ p }</a>
                   </c:if>
                </c:forEach>
@@ -318,7 +318,7 @@
                		 <c:param name="search" value="<%=search %>"/>
                      <c:param name="currentPage" value="${mainPi.currentPage +1 }"/>
                   </c:url>
-                  <a href="http://localhost:8888/ot/${after}">
+                  <a href="http://moon1:8888/ot/${after}">
                <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
                </a>
                   </c:if>

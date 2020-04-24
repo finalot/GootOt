@@ -186,7 +186,7 @@ public class MemberController extends HttpServlet {
 	  PrintWriter out = response.getWriter();
 	  Member m = mService.loginMember(id, pwd);
 	  
-	  ArrayList<Cart> list = cService.selectList(m.getMemNo());
+//	  ArrayList<Cart> list = cService.selectList(m.getMemNo());
 		  
 //	  ArrayList<CouponMem> cmlist = mService.selectCmlist(m);
 //	  Point pot = new Point();
@@ -523,11 +523,13 @@ public class MemberController extends HttpServlet {
 	@RequestMapping("insertdailyCheck.do")
 	public String dailyCheck(int memNo,String tdDate) {
 
+		int result = 0;
 
-		int result = mService.dailyCheck(memNo,tdDate);
-
+		int result2 = mService.dailyCheckCount(memNo,tdDate);
+		if(result2 == 0) {
+		 result = mService.dailyCheck(memNo,tdDate);
+		}
 		if(result > 0) {
-
 			return "redirect:dailyCheck.do";
 		}else {
 			System.out.println("에러");
@@ -543,10 +545,13 @@ public class MemberController extends HttpServlet {
 	 * @throws IOException
 	 */
 	@RequestMapping("couponInsert.do")
-	public void couponInsert(int memNo , HttpServletResponse response) throws IOException {
+	public void couponInsert(int memNo ,String today, HttpServletResponse response) throws IOException {
 
-
-		int result = mService.couponInsert(memNo);
+		Member m = new Member();
+		m.setMemNo(memNo);
+		m.setTdDate(today);
+		
+		int result = mService.couponInsert(m);
 
 		  PrintWriter out = response.getWriter();
 

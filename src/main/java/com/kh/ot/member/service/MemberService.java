@@ -74,7 +74,7 @@ public interface MemberService {
 	 * @param memNo
 	 * @return
 	 */
-	public int couponInsert(int memNo);
+	public int couponInsert(Member m);
 	
 
 	/**
@@ -175,6 +175,16 @@ public interface MemberService {
 	 * @return
 	 */
 	public int cpCount4(Member m);
+
+	/**
+	 * @작성일  : 2020. 4. 24.
+	 * @작성자  :  문태환 
+	 * @내용 	: 쿠폰중복 발급 방지
+	 * @param memNo
+	 * @param tdDate
+	 * @return
+	 */
+	public int dailyCheckCount(int memNo, String tdDate);
 
 	
 }

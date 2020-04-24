@@ -112,7 +112,7 @@ window.onload=function(){
 $('#take-coupon').click(function(){
 	$.ajax({
 		url:"couponInsert.do",
-		data : {memNo : memNo},
+		data : {memNo : memNo,today:today},
 		success:function(data){
 			if(data == "ok"){
 				alert('쿠폰이 지급되었습니다. 쿠폰함을 확인해 주세요');
