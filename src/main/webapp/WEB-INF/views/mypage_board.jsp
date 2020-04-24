@@ -283,7 +283,7 @@ a{
 
 			<!-- 페이징 처리 -->
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
-			
+			<c:if test="${ !empty list }">
 				<c:if test="${empty sc }">
 					<c:if test="${pi.currentPage eq 1 }">
 						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
@@ -438,6 +438,7 @@ a{
 							<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
 						</a>
 	               </c:if>
+               </c:if>
                </c:if>
 			</div>
 			
