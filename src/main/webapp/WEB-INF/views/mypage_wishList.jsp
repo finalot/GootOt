@@ -158,6 +158,9 @@ a {
           				<input id="memno" name ="memno" value="${loginMember.memNo }" type="hidden"/>
           				<input id="prdt_no" name="prdt_no" class="prdt_no" value="${d.prdt_no }" type="hidden"/>
           				<input type="hidden" name="dibsno" class="dibsno" value="${d.dibsno }"/>
+          				<input type="hidden" name="dibs_color" class="dibsno" value="${d.dibs_color }"/>
+          				<input type="hidden" name="dibs_size" class="dibsno" value="${d.dibs_size }"/>
+          				<input type="hidden" name="dibs_count" class="dibsno" value="${d.dibs_count }"/>
 							<td>
 								<input name="wishCheck" id="wish_idx_0" type="checkbox">
 							</td>
@@ -408,10 +411,12 @@ a {
 			console.log(prdt_no);
 			console.log(dibsno);
 			
+
+			
 			location.href="insertwishlist.do?prdt_no="+prdt_no+"&dibs_count="+quantity+"&dibs_size="+size+"&dibs_color="+color;
 			alert('관심상품에 추가되었습니다.');
 			 
-			
+			}
 			/* $.ajax({
 				url:"insertwishlist.do",
 				data:{prdt_no : prdt_no, dibs_count : quantity, dibs_size : size, dibs_color : color },
@@ -503,7 +508,6 @@ a {
 					/* $('.optiondetail').css('display', 'none'); 
 				}
 			}) */
-		}
 		
 		function update(A, i){
 			var quantity = document.getElementsByName("num-product2")[i].value;
@@ -511,6 +515,7 @@ a {
 			var size = document.getElementsByClassName("select2")[i].value;
 			location.href="updatewishlist.do?dibsno="+dibsno+"&prdt_no="+prdt_no+"&dibs_count="+quantity+"&dibs_size="+size+"&dibs_color="+color;
 			alert('관심 상품 옵션이 변경되었습니다.');
+			
 		}
 		
 		  var $pro_wish = $('#pro_wish');
@@ -523,23 +528,62 @@ a {
 		    
 		$('#Insertbasket').click(function(){
 			var wishArr = new Array();
+			var colorArr = new Array();
+			var countArr = new Array();
+			var sizeArr = new Array();
 			var wishCheck = document.getElementsByName('wishCheck');		// 체크박스
+			var dibs_color = document.getElementsByName('dibs_color');		// 체크박스
+			var dibs_size = document.getElementsByName('dibs_size');		// 체크박스
+			var dibs_count = document.getElementsByName('dibs_count');		// 체크박스
+			
+			
+			
 			console.log(wishCheck);
 			var dibsno = document.getElementsByName('dibsno'); // 위시리스트 번호
 			var count = 0;
 			for(var i=0; i<wishCheck.length; i++){
 				if(wishCheck[i].checked == true) {
 					wishArr[count] = dibsno[i].value
+					colorArr[count] =  dibs_color[i].value
+					countArr[count] =  dibs_size[i].value
+					sizeArr[count] =  dibs_count[i].value
 					count++;
 					}
 				}
-					console.log(wishArr);
 			if(count == 0) {
-				alert("상품을 선택해주세요.");
-			} else {
+				alert("상품을 선택해주세요.");	
+			}
+		
+		var colorCount = 0;
+		var sizeCount = 0;
+		var countCount=0;
+			
+		for(var i=0; i<wishArr.length;i++){
+			if(countArr[i] == ""){
+				countCount++;
+			}
+		}
+		for(var i=0; i<wishArr.length;i++){
+			if(colorArr[i] == ""){
+				colorCount++;
+			}
+		}		for(var i=0; i<wishArr.length;i++){
+			if(sizeArr[i] == ""){
+				sizeCount++;
+			}
+		}
+		
+			if(countCount > 0){
+				alert('수량을 확인해 주세요');
+			}else if(countCount > 0 ){
+				alert('색상을 선택해 주세요')
+			}else if(sizeCount > 0){
+				alert('사이즈를 선택해 주세요')
+			}else{
 			alert('장바구니에 추가되었습니다.');
 			/* location.href="Insertbasket.do?wishArr="+wishArr; */
 			}
+			
 		});
 		    
 		
