@@ -100,7 +100,7 @@ a:cursor{
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="
-                        adminmain.html">
+                        index.jsp">
                             <img src="/ot/resources/aimages/icon/ot.png" alt="OT" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">

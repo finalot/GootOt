@@ -217,83 +217,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="p" items="${plist }" varStatus="status">
                    <tr>
-                   		<td>1</td>
-                   		<td>골지 나시</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
+                   		<td>${status.count}</td>
+                   		<td>${p.prdtName }</td>
+                   		<td>${p. prdtPrice}-${p.prdtSale }</td>
+                   		<td>냠냠냠</td>
+                   		<td>${p.prdtScount}</td>
                    </tr>
-                   <tr>
-                   		<td>2</td>
-                   		<td>샘플 나시</td>
-                   		<td>12,000</td>
-                   		<td>4</td>
-                   		<td>120</td>
-                   </tr>
-                   <tr>
-                   		<td>3</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>4</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>5</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>6</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>7</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>8</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>9</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>10</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>11</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
+                </c:forEach>
+                </tbody>
             </table>
         </div>
         </div>
@@ -307,7 +240,7 @@
 	<!-- // td(class=next) 클릭시 페이지 이동 -->
 	<script>
      $("td").click(function(){
-    	 location.href='../productDetail.ad';
+    	 location.href='../productDetail.do';
   	 <%-- var userId = $(this).parent().find('input').val();
   	 
   	 console.log("선택한 유저 ID : "+userId);

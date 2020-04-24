@@ -45,7 +45,7 @@
  	
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="todayMain.ad">
+                <a href="index.jsp">
                     <img src="/ot/resources/aimages/icon/ot.png" alt="OT" style="max-height: 35px;"/>
                 </a>
             </div>

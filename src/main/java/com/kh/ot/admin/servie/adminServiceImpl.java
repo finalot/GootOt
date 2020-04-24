@@ -270,4 +270,25 @@ public class adminServiceImpl implements adminService{
 			return adDao.cancellPoint(m);
 		}
 
+
+		@Override
+		public Member selectOneMember(int memNo) {
+			return adDao.selectOneMember(memNo);
+		}
+
+
+		@Override
+		public ArrayList<Ord> selectOrder(int memNo) {
+			return adDao.selectOrder(memNo);
+		}
+
+
+		@Override
+		public ArrayList<Product> ProductSelectListBest() {
+			return adDao.ProductSelectListBest();
+		}
+
+
+		
+
 }

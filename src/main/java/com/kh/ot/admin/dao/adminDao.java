@@ -388,16 +388,31 @@ public class adminDao {
 	}
 
 
+	/**
+	 * @작성일 : 2020. 4. 23.
+	 * @작성자 : 이서현
+	 * @내용 : 옵션 리스트 뿌리기 
+	 */
 	public ArrayList<Product_opt> ProductOptSelectList() {
 		return (ArrayList)sqlSession.selectList("productMapper.ProductOptSelectList");
 	}
 
 
+	/**
+	 * @작성일 : 2020. 4. 23.
+	 * @작성자 : 이서현
+	 * @내용 : 상품리스트디테일 상품
+	 */
 	public Product listProductSelectList(int prdtNo) {
 		return sqlSession.selectOne("productMapper.listProductSelectList",prdtNo);
 	}
 
 
+	/**
+	 * @작성일 : 2020. 4. 23.
+	 * @작성자 : 이서현
+	 * @내용 : 상품리스트 디테일 상품옵션 
+	 */
 	public ArrayList<Product_opt> listProductOptSelectList(int prdtNo) {
 		return (ArrayList)sqlSession.selectList("productMapper.listProductOptSelectList",prdtNo);
 	}
@@ -436,4 +451,30 @@ public class adminDao {
 	public int cancellPoint(Member m) {
 		return sqlSession.update("adminMapper.cancellPoint",m);
 	}
+
+
+	/**
+	 * @작성일 : 2020. 4. 23.
+	 * @작성자 : 이서현
+	 * @내용 : 고객 디테일 화면 리스트 
+	 */
+	public Member selectOneMember(int memNo) {
+		return sqlSession.selectOne("memberMapper.selectOneMember",memNo);
+	}
+
+
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 이서현
+	 * @내용 : 주문 목록 리스트
+	 */
+	public ArrayList<Ord> selectOrder(int memNo) {
+		return (ArrayList)sqlSession.selectList("cartMapper.selectOrder",memNo);
+	}
+
+
+	public ArrayList<Product> ProductSelectListBest() {
+		return (ArrayList)sqlSession.selectList("productMapper.ProductSelectListBest");
+	}
+	
 }

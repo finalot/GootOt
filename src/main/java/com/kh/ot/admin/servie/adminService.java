@@ -326,11 +326,11 @@ public interface adminService{
 		 * @내용 : 상품관리리스트디테일 (상품옵션)
 		 */
 		public ArrayList<Product_opt> listProductOptSelectList(int prdtNo);
-		 * @작성일  : 2020. 4. 22.
-		 * @작성자  : 문태환
-		 * @내용 	: 반품결제 취소
-		 * @param cpmemNo
-		 * @return
+		
+		/**
+		 * @작성일 : 2020. 4. 23.
+		 * @작성자 : 문태환
+		 * @내용 : 반품결제 취소
 		 */
 		public int calcellCoupon(int cpmemNo);
 
@@ -351,6 +351,28 @@ public interface adminService{
 		 * @return
 		 */
 		public int cancellPoint(Member m);
+
+		/**
+		 * @작성일 : 2020. 4. 23.
+		 * @작성자 : 이서현
+		 * @내용 : 디테일 회원 리스트 
+		 */
+		public Member selectOneMember(int memNo);
+
+		/**
+		 * @param memNo 
+		 * @작성일 : 2020. 4. 23.
+		 * @작성자 : 이서현
+		 * @내용 : 주문목록 뿌리기 
+		 */
+		public ArrayList<Ord> selectOrder(int memNo);
+
+		/**
+		 * @작성일 : 2020. 4. 24.
+		 * @작성자 : 이서현
+		 * @내용 : 상품순위 리스트
+		 */
+		public ArrayList<Product> ProductSelectListBest();
 
 
 }

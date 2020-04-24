@@ -78,9 +78,18 @@ public class menuController {
 		return "admin/todaychart";
 	}
 
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 이서현
+	 * @내용 : 상품순위 리스트
+	 */
 	@RequestMapping("best.ad")
-	public String best() {
-		return "admin/best";
+	public ModelAndView best(ModelAndView mv) {
+		ArrayList<Product> plist = adService.ProductSelectListBest();
+		
+		mv.addObject("plist",plist);
+		mv.setViewName("admin/best");
+		return mv;
 	}
 
 	/**
@@ -95,6 +104,30 @@ public class menuController {
 		
 		mv.addObject("mlist", mlist);
 		mv.setViewName("admin/customer");
+		return mv;
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 23.
+	 * @작성자 : 이서현
+	 * @내용 : 회원관리 리스트 디테일
+	 */
+	@RequestMapping("customerDetail.ad")
+	public ModelAndView customerDetail(ModelAndView mv, int memNo) {
+		
+		Member m = adService.selectOneMember(memNo);
+		ArrayList<Ord> olist = adService.selectOrder(memNo);
+		ArrayList<Product> plist = adService.ProductSelectList();
+		
+		if(m!=null) {
+			mv.addObject("plist",plist);
+			mv.addObject("m",m).setViewName("admin/customerDetail");
+			mv.addObject("olist",olist).setViewName("admin/customerDetail");
+			
+		}else {
+			mv.addObject("msg","상품관리 상세조회 실패").setViewName("common/errorPage");
+		}
+		
 		return mv;
 	}
 
@@ -582,12 +615,6 @@ public class menuController {
 	public String status() {
 		return "admin/status";
 	}
-
-	@RequestMapping("customerDetail.ad")
-	public String customerDetail() {
-		return "admin/customerDetail";
-	}
-
 
 	@RequestMapping("QnA_bank_detail.ad")
 	public String QnA_bank_detail() {
@@ -1570,7 +1597,42 @@ public class menuController {
 		
 	}
 	
-
 	
-
+	/**
+	 * @작성일 : 2020. 4. 23.
+	 * @작성자 : 이서현
+	 * @내용 : 상품 업데이트 
+	 */
+	
+	/*
+	 * @RequestMapping(value="ProductUpdate.ad" ,method=RequestMethod.POST) public
+	 * String ProductUpdate(HttpServletRequest request, Product p, String[] size,
+	 * int[] stock,String[] optColor,
+	 * 
+	 * @RequestParam(name="thumbnailImg",required=false) MultipartFile file1,
+	 * 
+	 * @RequestParam(name="descrptionImg",required=false) MultipartFile file2 ) {
+	 * 
+	 * 
+	 * p.setPrdtImage(renameFileName); p.setPrdtDetailImage(renameDetailName);
+	 * ArrayList<Product_opt> oplist = new ArrayList<Product_opt>();
+	 * 
+	 * for(int i=0; i<stock.length-1; i++) { Product p = new Product();
+	 * if(!file1.getOriginalFilename().equals("")) {
+	 * 
+	 * String renameFileName = saveFile(file1, request);
+	 * 
+	 * if (file1 != null) {
+	 * 
+	 * d.setDeNo(no[i]); d.setMainComment(mainComment[i]);
+	 * d.setMainLink(mainLink[i]);
+	 * d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
+	 * d.setReFile(renameFileName); dlist.add(d); } pot.setSize(size[i]);
+	 * pot.setStock(stock[i]); pot.setPrdtNo(pd.getPrdtNo());
+	 * pot.setOptColor(optColor[i]);
+	 * 
+	 * }}}
+	 */
+	 
+	 
 }
