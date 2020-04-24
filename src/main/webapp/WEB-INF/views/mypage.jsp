@@ -34,14 +34,14 @@
 			<c:url var="delivery_complete" value="my_orderlist.do">
 				<c:param name="order_status" value="shipped_complete"/>
 			</c:url>
-			<c:url var="delivery_cancel" value="my_orderlist.do">
-				<c:param name="order_status" value="order_cancel"/>
+			<c:url var="delivery_return_ready" value="my_orderlist.do">
+				<c:param name="order_status" value="order_return_ready"/>
 			</c:url>
-			<c:url var="delivery_change" value="my_orderlist.do">
-				<c:param name="order_status" value="order_exchange"/>
+			<c:url var="delivery_return_complete" value="my_orderlist.do">
+				<c:param name="order_status" value="order_return_complete"/>
 			</c:url>
-			<c:url var="delivery_return" value="my_orderlist.do">
-				<c:param name="order_status" value="order_return"/>
+			<c:url var="delivery_return_cancel" value="my_orderlist.do">
+				<c:param name="order_status" value="order_return_cancel"/>
 			</c:url>
 			
 			<c:url var="mWishlist" value="mWishlist.do"/>
@@ -72,7 +72,7 @@
   						<br>
 						<strong class="data ">
 							<a href="${mWishlist }">
-									<span id="xans_myshop_interest_prd_cnt">0개</span>
+									<span id="xans_myshop_interest_prd_cnt">${WishList }개</span>
 							</a>
 						</strong>
 					</li>
@@ -153,14 +153,6 @@
 			        <a href="${mEdit }">회원 정보 수정</a>
 			    </div>
 			    
-		<!--    <div class="shopMain consult displaynone">
-		       		 <h3><a href="/board/consult/list.html"><strong>consult</strong>1:1 맞춤상담</a></h3>
-		       		 <p><a href="/board/consult/list.html">고객님의 궁금하신 문의사항에 대하여 1:1맞춤상담 내용을 확인하실 수 있습니다.</a></p>
-		    	</div>
-		   	    <div module="Myshop_InquiryDash" class="shopMain inquiry">
-		        <h3><a href="/board/inquiry/list.html"><strong>Inquiry</strong>대량구매 문의 관리</a></h3>
-		        <p><a href="/board/inquiry/list.html">요청한 대량구매문의 내역을 확인하고 관리하실 수 있습니다.</a></p>
-		    	</div> -->
 			</div>
 		
 			<div class="xans-element- xans-myshop xans-myshop-orderstate ">
@@ -193,18 +185,18 @@
 					<ul class="cs">
 						<li>
 			                <span class="icoDot"></span>
-			                <strong>취소 : </strong>
-			                <a href="${delivery_cancel }" class="count"><span id="xans_myshop_orderstate_order_cancel_count"></span></a>
+			                <strong>반품진행 : </strong>
+			                <a href="${delivery_return_ready }" class="count"><span id="xans_myshop_orderstate_order_cancel_count">${orderCount5}</span></a>
 			            </li>
 			            <li>
 			                <span class="icoDot"></span>
-			                <strong>교환 : </strong>
-			                <a href="${delivery_change }" class="count"><span id="xans_myshop_orderstate_order_exchange_count"></span></a>
+			                <strong>반품완료 : </strong>
+			                <a href="${delivery_return_complete }" class="count"><span id="xans_myshop_orderstate_order_exchange_count">${orderCount6}</span></a>
 			            </li>
 			            <li>
 			                <span class="icoDot"></span>
-			                <strong>반품 : </strong>
-			                <a href="${delivery_return }" class="count"><span id="xans_myshop_orderstate_order_return_count">${orderCount5} </span></a>
+			                <strong>반품취소 : </strong>
+			                <a href="${delivery_return_cancel }" class="count"><span id="xans_myshop_orderstate_order_return_count">${orderCount7}</span></a>
 			            </li>
 			        </ul>
 				</div>

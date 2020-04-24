@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
+import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
@@ -306,6 +307,27 @@ public class MypageDao {
 
 	public int selectDelete(int dibsno) {
 		return sqlSession.delete("mypageMapper.selectDelete",dibsno);
+	}
+
+	public ArrayList<DIBS> selectDlist(ArrayList<DIBS> wishArr) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("wishArr", wishArr);
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectDlist",map);
+	}
+
+	public int insertCartList(ArrayList<Cart> clist) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("clist", clist);
+		
+		return sqlSession.insert("mypageMapper.insertCartList",map);
+	}
+
+	public int deleteDlist(ArrayList<DIBS> wish) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("wish", wish);
+		
+		return sqlSession.delete("mypageMapper.deleteDlist",map);
 	}
 
 

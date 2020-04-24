@@ -13,13 +13,16 @@ import org.springframework.stereotype.Service;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.main.dao.MainDao;
+import com.kh.ot.main.vo.DetailReview;
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.MainSearchCondition;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.ReviewCheck;
 import com.kh.ot.main.vo.Wish;
+import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
 import com.kh.ot.main.vo.MaindownCategory;
 import com.kh.ot.main.vo.MainupCategory;
@@ -157,6 +160,42 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public ArrayList<Board> selectQnaList(MainPageInfo2 mainPi2, int product_detail) {
 		return mainDao.selectQnaList(mainPi2,product_detail);
+	}
+	@Override
+	public ArrayList<productWith> selectWithList(int product_detail) {
+		return mainDao.selectWithList(product_detail);
+	}
+	@Override
+	public Product selectDetailListp(int with) {
+		return mainDao.selectDetailListp(with);
+	}
+	@Override
+	public int detailReviewWriteCheck(ReviewCheck rc) {
+		return mainDao.detailReviewWriteCheck(rc);
+	}
+	@Override
+	public int getOrdNo(ReviewCheck rc) {
+		return mainDao.getOrdNo(rc);
+	}
+	@Override
+	public int detailReviewInsert(DetailReview dr) {
+		return mainDao.detailReviewInsert(dr);
+	}
+	@Override
+	public int getRvNo(ReviewCheck rc) {
+		return mainDao.getRvNo(rc);
+	}
+	@Override
+	public int detailReviewPhotoInsert(DetailReview dr) {
+		return mainDao.detailReviewPhotoInsert(dr);
+	}
+	@Override
+	public int detailReviewPhotoInsert2(DetailReview dr) {
+		return mainDao.detailReviewPhotoInsert2(dr);
+	}
+	@Override
+	public int updateReviewCount(DetailReview dr) {
+		return mainDao.updateReviewCount(dr);
 	}
 
 	

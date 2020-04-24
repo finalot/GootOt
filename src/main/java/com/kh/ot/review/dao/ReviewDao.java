@@ -6,6 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
 import com.kh.ot.review.vo.ReviewReply;
@@ -157,5 +160,111 @@ public class ReviewDao {
 	public int WarningReply(ReviewReply rp) {
 		return sqlSession.update("reviewMapper.WarningReply",rp);
 	}
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰 좋아요순 정렬
+	 * @return
+	 */
+	public ArrayList<Review> LikeSort() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.LikeSort");
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰 최신순 정렬
+	 * @return
+	 */
+	public ArrayList<Review> DateSort() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.DateSort");
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 우예진
+	 * @내용    : 키 정렬
+	 * @param optionHeight
+	 * @return
+	 */
+	public ArrayList<Review> selectCheckSort(int optionHeight) {
+		
+		if(optionHeight==1) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort1");
+		} else if(optionHeight==2) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort2");			
+		} else if(optionHeight==3) {			
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort3");
+		} else if(optionHeight==4) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort4");			
+		} else if(optionHeight==5) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort5");			
+		} else if(optionHeight==6){
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort6");			
+		}else {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList");
+		}
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 24.
+	 * @작성자  : 우예진
+	 * @내용    : 몸무게 정렬
+	 * @param optionWeight
+	 * @return
+	 */
+	public ArrayList<Review> selectWeightSort(int optionWeight) {
+		if(optionWeight==7) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort7");
+		} else if(optionWeight==8) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort8");			
+		} else if(optionWeight==9) {			
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort9");
+		} else if(optionWeight==10) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort10");			
+		} else if(optionWeight==11) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort11");			
+		} else if(optionWeight==12){
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort12");			
+		}else {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList");
+		}
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 24.
+	 * @작성자  : 우예진
+	 * @내용    : 사이즈 정렬
+	 * @param optionSize
+	 * @return
+	 */
+	public ArrayList<Review> selectSizeSort(int optionSize) {
+		if(optionSize==13) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort13");
+		} else if(optionSize==14) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort14");			
+		} else if(optionSize==15) {			
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort15");
+		} else if(optionSize==16) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort16");			
+		} else if(optionSize==17) {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort17");			
+		} else if(optionSize==18){
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort18");			
+		}else {
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList");
+		}
+	}
 	
+	
+	public ArrayList<Product> getBestList() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectBestList");
+	}
+	public ArrayList<Product_color> selectColorList1(){
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectProductColor1");
+	}
+	public ArrayList<Product_opt> selectOptionBestList() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectOptionBestList");
+	}
 }

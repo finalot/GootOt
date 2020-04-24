@@ -13,10 +13,13 @@
 <!-- typeAliases -->
 <typeAliases>
 <typeAlias type="com.kh.ot.member.vo.Member" alias="Member"/>
+<typeAlias type="com.kh.ot.main.vo.productWith" alias="productWith"/>
 <typeAlias type="com.kh.ot.board.vo.Board" alias="Board"/>
 <typeAlias type="com.kh.ot.cart.vo.Cart" alias="Cart"/>
 <typeAlias type="com.kh.ot.cart.vo.Ord" alias="Ord"/>
 <typeAlias type="com.kh.ot.cart.vo.Pay" alias="Pay"/>
+<typeAlias type="com.kh.ot.main.vo.DetailReview" alias="DetailReview"/>
+<typeAlias type="com.kh.ot.main.vo.ReviewCheck" alias="ReviewCheck"/>
 <typeAlias type="com.kh.ot.review.vo.Review" alias="Review"/>
 <typeAlias type="com.kh.ot.review.vo.Like_Heart" alias="Like_Heart"/>
 <typeAlias type="com.kh.ot.review.vo.ReviewReply" alias="ReviewReply"/>

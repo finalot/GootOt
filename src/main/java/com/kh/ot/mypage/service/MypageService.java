@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
+import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.Wish;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
@@ -14,6 +16,7 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.mypage.vo.WishArr;
 
 public interface MypageService {
 
@@ -265,9 +268,9 @@ public interface MypageService {
 	 */
 	int ReturnInsert(Return r);
 
-//	int orderCount6(int memNo);
-//
-//	int orderCount7(int memNo);
+	int orderCount6(int memNo);
+
+	int orderCount7(int memNo);
 	
 	/* / **
 	 	 * @작성일 : 2020. 4. 20.
@@ -295,5 +298,19 @@ public interface MypageService {
 	int deletewishAll(int memno);
 
 	int selectDelete(int dibsno);
+
+	ArrayList<DIBS> selectDlist(ArrayList<DIBS> wish);
+
+	int insertCartList(ArrayList<Cart> clist);
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  :  문태환
+	 * @내용 	: 장바구니 담기후 제거
+	 * @param wish
+	 * @return
+	 */
+	int deleteDlist(ArrayList<DIBS> wish);
+
 
 }

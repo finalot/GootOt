@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import com.kh.ot.admin.vo.Point;
 import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.board.vo.SearchCondition;
+import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.Wish;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.dao.MypageDao;
 import com.kh.ot.mypage.vo.Address;
@@ -18,6 +20,7 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.mypage.vo.WishArr;
 
 @Service("mpService")
 public class MypageServiceImpl implements MypageService{
@@ -197,15 +200,15 @@ public class MypageServiceImpl implements MypageService{
 		return mpDao.ReturnInsert(r);
 	}
 
-//	@Override
-//	public int orderCount6(int memNo) {
-//		return mpDao.orderCount6(memNo);
-//	}
-//
-//	@Override
-//	public int orderCount7(int memNo) {
-//		return mpDao.orderCount7(memNo);
-//	}
+	@Override
+	public int orderCount6(int memNo) {
+		return mpDao.orderCount6(memNo);
+	}
+
+	@Override
+	public int orderCount7(int memNo) {
+		return mpDao.orderCount7(memNo);
+	}
 	public int getWishListCount(int memNo) {
 		return mpDao.getWishListCount(memNo);
 	}
@@ -252,6 +255,21 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public int selectDelete(int dibsno) {
 		return mpDao.selectDelete(dibsno);
+	}
+
+	@Override
+	public ArrayList<DIBS> selectDlist(ArrayList<DIBS>  wish) {
+		return mpDao.selectDlist(wish);
+	}
+
+	@Override
+	public int insertCartList(ArrayList<Cart> clist) {
+		return mpDao.insertCartList(clist);
+	}
+
+	@Override
+	public int deleteDlist(ArrayList<DIBS> wish) {
+		return mpDao.deleteDlist(wish);
 	}
 
 }

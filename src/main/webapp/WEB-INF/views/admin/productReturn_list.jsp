@@ -37,6 +37,9 @@
 	td.denied {
     color: #fa4251;
 	}
+	td.hold {
+    color: black;
+	}
     </style>
     
     
@@ -227,6 +230,9 @@
                         </c:if>
                         <c:if test="${r.reStatus  == 'N'}">
                         <td class="denied">반품신청</td>
+                        </c:if>
+                        <c:if test="${r.reStatus  == 'H'}">
+                        <td class="hold">반품취소</td>
                         </c:if>
                     </tr>
                   </c:forEach>

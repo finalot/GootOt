@@ -1,9 +1,16 @@
 package com.kh.ot.main.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -21,6 +29,8 @@ import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.common.MainPagination;
 import com.kh.ot.common.MainPagination2;
 import com.kh.ot.main.service.MainService;
+import com.kh.ot.main.vo.DetailReview;
+import com.kh.ot.main.vo.ListCount;
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.MainSearchCondition;
@@ -29,7 +39,9 @@ import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.ReviewCheck;
 import com.kh.ot.main.vo.Wish;
+import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
 import com.kh.ot.member.vo.Member;
 
@@ -129,17 +141,74 @@ public class mainController {
 			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
 		
 		
+		ListCount lcount = new ListCount();
 		int listCount = mainService.getQnaListCount(product_detail);
 		System.out.println(listCount);
-		mv.addObject("listCount", listCount);
+		
+		lcount.setListCount(listCount);
+		
 		MainPageInfo2 mainPi2 = MainPagination2.getPageInfo(currentPage, listCount);
+		ArrayList<productWith> ppwlist = mainService.selectWithList(product_detail);
+		
+		ArrayList<Product> plist = new ArrayList<>();
+		
+		for(int i =0; i<ppwlist.size();i++){
+			Product pp = new Product();
+			if(ppwlist.get(i).getWith1() != 0) {
+				pp =mainService.selectDetailListp(ppwlist.get(i).getWith1());
+				plist.add(pp);
+				System.out.println(pp.getPrdtImagePath());
+				if(ppwlist.get(i).getWith2() != 0) {
+					pp =mainService.selectDetailListp(ppwlist.get(i).getWith2());
+					plist.add(pp);
+				
+					if(ppwlist.get(i).getWith3() != 0) {
+						pp =mainService.selectDetailListp(ppwlist.get(i).getWith3());
+						plist.add(pp);
+					
+						if(ppwlist.get(i).getWith4() != 0) {
+							pp =mainService.selectDetailListp(ppwlist.get(i).getWith4());
+							plist.add(pp);
+						
+							if(ppwlist.get(i).getWith5() != 0) {
+								pp =mainService.selectDetailListp(ppwlist.get(i).getWith5());
+								plist.add(pp);
+							
+								if(ppwlist.get(i).getWith6() != 0) {
+									pp =mainService.selectDetailListp(ppwlist.get(i).getWith6());
+									plist.add(pp);
+								
+									if(ppwlist.get(i).getWith7() != 0) {
+										pp =mainService.selectDetailListp(ppwlist.get(i).getWith7());
+										plist.add(pp);
+									
+										if(ppwlist.get(i).getWith8() != 0) {
+											pp =mainService.selectDetailListp(ppwlist.get(i).getWith8());
+											plist.add(pp);
+										
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			
+			}
+		}
+		
+		
 		
 		ArrayList<Product> pdlist = mainService.selectDetailList(product_detail);
+		
 		ArrayList<Product_opt> polist = mainService.selectOptionList(product_detail);
 		ArrayList<Product_opt> poolist2 = mainService.selectOptionList33(product_detail);
 		ArrayList<Board> blist = mainService.selectQnaList(mainPi2,product_detail);
 		ArrayList<Product_color> pclist = mainService.selectColorList2();
 		
+		
+		mv.addObject("lcount", lcount);
+		mv.addObject("plist", plist);
 		mv.addObject("mainPi2", mainPi2);
 		mv.addObject("pdlist", pdlist);
 		mv.addObject("blist", blist);
@@ -525,6 +594,36 @@ MainSearchCondition msc= new MainSearchCondition();
 	}
 	
 	
+	
+	
+	@RequestMapping("DetailReviewWrite.do")
+	@ResponseBody
+	public String detailReviewWriteCheck(HttpSession session, int prdtNo) throws IOException {
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		ReviewCheck rc = new ReviewCheck();
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		rc.setMemNo(m.getMemNo());
+		rc.setPrdtNo(prdtNo);
+		
+		
+		int result = mainService.detailReviewWriteCheck(rc);
+			
+		if(result>0) {
+			resultMap.put("status","success");
+		}else {
+			resultMap.put("status","fail");
+			resultMap.put("message","리뷰작성은 주문 후 가능합니다.");
+		}
+
+		return new Gson().toJson(resultMap);
+	}
+	
+	
+	
+	
+	
+	
 	/**
 	    * @작성일  : 2020.04.22
 	    * @작성자  : 이대윤
@@ -540,6 +639,79 @@ MainSearchCondition msc= new MainSearchCondition();
 	   }
 	
 	
-	
+	   @RequestMapping(value = "detailReviewInsert.do")
+	   @ResponseBody
+	   public String detailReviewInsert(HttpServletRequest request,HttpSession session,DetailReview dr) throws Exception {
+		   Map<String,Object> resultMap = new HashMap<String,Object>();
+		   String root = request.getSession().getServletContext().getRealPath("resources");
+		   Member m = (Member)session.getAttribute("loginMember");
+		   System.out.println(m.getMemNo());
+			dr.setMemNo(m.getMemNo());
+		   
+			int count = 0;
+			String rvImage = "";
+			String rvImage2 = "";
+			
+		   for(MultipartFile f : dr.getFile()) {
+			   String timeStamp = new SimpleDateFormat("yyyyMMddhhmmssSSS").format(new Date());
+			   String fileName = root+"\\images\\oT\\detailReviewPhoto\\"+timeStamp+f.getOriginalFilename();
+			   String savePath = root+"\\images\\oT\\detailReviewPhoto\\";
+			   File folder = new File(savePath);
+				
+				if(!folder.exists()) {
+					folder.mkdir();
+				}
+			   File file = new File(fileName);
+			   f.transferTo(file);
+			   
+			   if(count==0) {
+				   rvImage=fileName;
+				   count++;
+			   }else if(count==1) {
+				   rvImage2=fileName;
+				   count++;
+			   }
+			   
+			   
+			   
+		   }
+		   
+		   dr.setFileName(rvImage);
+		   dr.setFileName2(rvImage2);
+		   ReviewCheck rc = new ReviewCheck();
+		   rc.setPrdtNo(dr.getPrdtNo());
+		   rc.setMemNo(dr.getMemNo());
+		   
+		   int ordNo = mainService.getOrdNo(rc);
+		   dr.setOrdNo(ordNo);
+		   System.out.println(dr.toString());
+		   
+		   int result= mainService.detailReviewInsert(dr);
+		   
+		  if(result>0) {
+			  
+			  int rvNo = mainService.getRvNo(rc);
+			  dr.setRvNo(rvNo);
+			  int result2= mainService.detailReviewPhotoInsert(dr);
+			  
+			  if(result2>0) {
+				  int result3= mainService.detailReviewPhotoInsert2(dr);
+				  int result4= mainService.updateReviewCount(dr);
+				  if(result3>0) {
+				  resultMap.put("status","success"); }
+			  		}
+			  }
+		  
+		  else {
+			  
+		  resultMap.put("status","fail");
+		  resultMap.put("message","리뷰작성 실패,관리자에 문의하세요."); 
+		  
+		  }
+		 
+		   
+		   return new Gson().toJson(resultMap);
+		   
+	   }
 	
 }

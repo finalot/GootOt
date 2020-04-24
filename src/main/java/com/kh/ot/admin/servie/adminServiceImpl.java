@@ -276,6 +276,10 @@ public class adminServiceImpl implements adminService{
 			return adDao.selectOneMember(memNo);
 		}
 
+		public int ReturnUpdate(Return r) {
+			return adDao.ReturnUpdate(r);
+		}
+
 
 		@Override
 		public ArrayList<Ord> selectOrder(int memNo) {
@@ -288,7 +292,8 @@ public class adminServiceImpl implements adminService{
 			return adDao.ProductSelectListBest();
 		}
 
-
-		
+		public int updateOrdf(Return r) {
+			return adDao.updateOrdf(r);
+		}
 
 }

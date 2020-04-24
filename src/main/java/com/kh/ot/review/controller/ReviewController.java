@@ -20,13 +20,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
+import com.kh.ot.main.dao.MainDao;
+import com.kh.ot.main.service.MainService;
+import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.review.service.ReviewService;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
 import com.kh.ot.review.vo.ReviewReply;
-
-import net.sf.json.JSONObject;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -44,13 +47,23 @@ public class ReviewController extends HttpServlet {
 		 * @return String
 		 */
 		@RequestMapping("review.do")
-		public ModelAndView review(ModelAndView mv) {
-
-			ArrayList<Review> rlist = rService.selectReviewList();
-			
+		public ModelAndView review(ModelAndView mv,String Sort) {
+			MainDao mDao = new MainDao();
+			ArrayList<Review> rlist = new ArrayList<>();
+			ArrayList<Product> plist = rService.getBestList();
+			ArrayList<Product_color> pclist = rService.selectColorList1();
+			ArrayList<Product_opt> polist = rService.selectOptionBestList();
+			if(Sort.equals("like")) {
+				 rlist = rService.selectLikeSort();
+			} else {
+			    rlist = rService.selectReviewList();
+			}
 			System.out.println("rlist : " + rlist);
 		
 			mv.addObject("rlist",rlist);
+			mv.addObject("plist",plist);
+			mv.addObject("polist",polist);
+			mv.addObject("pclist",pclist);
 
 			
 			mv.setViewName("review");
@@ -306,4 +319,127 @@ public class ReviewController extends HttpServlet {
 				}
 		}
 		
+		/**
+		 * @작성일  : 2020. 4. 23.
+		 * @작성자  : 우예진
+		 * @내용    : 최신순/좋아요순 정렬
+		 * @param Sort
+		 * @param response
+		 * @throws JsonIOException
+		 * @throws IOException
+		 */
+		@RequestMapping("LikeSort.do")
+		public void LikeSort(String Sort,HttpServletResponse response) throws JsonIOException, IOException {
+			
+			ArrayList<Review> rlist = new ArrayList();
+			
+			if(Sort.equals("like")) {
+
+				rlist = rService.selectLikeSort();
+			} else if(Sort.equals("date")) {
+				rlist = rService.selectDateSort();
+			}
+			response.setContentType("appliction/json; charset=utf-8");
+			
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			Map hmap = new HashMap();
+			hmap.put("rlist", rlist);
+			
+			
+			gson.toJson(hmap,response.getWriter());
+			
+	
+		}
+		
+		/**
+		 * @작성일  : 2020. 4. 23.
+		 * @작성자  : 우예진
+		 * @내용    : 키 체크박스 값
+		 * @return
+		 * @throws IOException 
+		 * @throws JsonIOException 
+		 */
+		@RequestMapping("checkSort.do") 
+		public void checkSort(int optionHeight, HttpServletResponse response,HttpSession session) throws JsonIOException, IOException {
+			
+			ArrayList<Review> rlist = new ArrayList<Review>();
+			
+			
+			rlist = rService.selectCheckSort(optionHeight);
+			
+		
+			response.setContentType("appliction/json; charset=utf-8");
+			
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			Map hmap = new HashMap();
+			hmap.put("rlist", rlist);
+			
+			
+			gson.toJson(hmap,response.getWriter());
+			
+		}
+		
+		/**
+		 * @작성일  : 2020. 4. 23.
+		 * @작성자  : 우예진 
+		 * @내용    : 몸무게 정렬
+		 * @param optionWeight
+		 * @param response
+		 * @param session
+		 * @throws IOException 
+		 * @throws JsonIOException 
+		 */
+		@RequestMapping("WeightSort.do")
+		public void WeightSort(int optionWeight, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
+			ArrayList<Review> rlist = new ArrayList<Review>();
+			
+			
+			rlist = rService.selectWeightSort(optionWeight);
+			
+		
+			response.setContentType("appliction/json; charset=utf-8");
+			
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			Map hmap = new HashMap();
+			hmap.put("rlist", rlist);
+			
+			
+			gson.toJson(hmap,response.getWriter());
+		}
+		
+		/**
+		 * @작성일  : 2020. 4. 24.
+		 * @작성자  : 우예진
+		 * @내용    : 사이즈 정렬
+		 * @param optionSize
+		 * @param response
+		 * @param session
+		 * @throws JsonIOException
+		 * @throws IOException
+		 */
+		@RequestMapping("SizeSort.do")
+		public void SizeSort(int optionSize, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
+			ArrayList<Review> rlist = new ArrayList<Review>();
+			
+			
+			rlist = rService.selectSizeSort(optionSize);
+			
+		
+			response.setContentType("appliction/json; charset=utf-8");
+			
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			Map hmap = new HashMap();
+			hmap.put("rlist", rlist);
+			
+			
+			gson.toJson(hmap,response.getWriter());
+		}
 }

@@ -89,12 +89,14 @@
 		<result property="dibs_price" column="DIBS_PRICE"/>
 	</resultMap>
 	
+	<!-- 페이징을 위한 포인트 내역 갯수 출력 -->
 	<select id="PointListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM POINT
 		WHERE MEM_NO=#{memNo}
 	</select>
 
+	<!-- 포인트 내역 출력 -->
 	<select id="PointselectList" resultMap="PointResultSet">
 		SELECT *
 		FROM POINT
@@ -106,7 +108,6 @@
 		SELECT COUNT(*)
 		FROM POINT
 		WHERE MEM_NO=#{memNo}
-
 	</select>
 
 	<select id="PointselectUnavailList" resultMap="PointResultSet">
@@ -216,13 +217,45 @@
 		ORDER BY QNA_NO DESC
 	</select>
 
+
+
+
+
+
 	<select id="getOrderListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO=#{memNo}
-
+		ORDER BY ORD_DATE DESC
 	</select>
 
+	<!-- 내가 쓴 게시글 검색기능 카운트  -->
+	<select id ="SearchOrdListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+		<if test="start_date == null or end_date == null">
+			<if test="!ord_status.equals('all')">
+				AND ORD_STATUS=#{ord_status}
+			</if>
+		</if>
+		
+		<if test="start_date != null and end_date != null">
+			<if test="ord_status.equals('all')">
+			AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+			AND (ORD_STATUS='A' OR ORD_STATUS='B' OR ORD_STATUS='C' OR ORD_STATUS='D' OR ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
+			</if>
+
+			<if test="!ord_status.equals('all')">
+			AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+			AND ORD_STATUS=#{ord_status}
+			</if>
+		</if>
+	</select>
+
+	<!-- 내가 쓴 게시글 검색기능 리스트 -->
 	<select id="selectOrderList" resultMap="ordResultSet">
 		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
 		FROM ORD O
@@ -232,6 +265,32 @@
 		ORDER BY O.ORD_DATE DESC
 	</select>
 
+
+	<select id="selectSearchOrdList" resultMap="ordResultSet">
+		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
+		FROM ORD O
+		JOIN PRDT P
+		ON (O.PRDT_NO = P.PRDT_NO)
+		WHERE MEM_NO=#{memno}
+				<if test="start_date == null or end_date == null">
+			<if test="!ord_status.equals('all')">
+				AND ORD_STATUS=#{ord_status}
+			</if>
+		</if>
+		
+		<if test="start_date != null and end_date != null">
+			<if test="ord_status.equals('all')">
+			AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+			AND (ORD_STATUS='A' OR ORD_STATUS='B' OR ORD_STATUS='C' OR ORD_STATUS='D' OR ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
+			</if>
+
+			<if test="!ord_status.equals('all')">
+			AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
+			AND ORD_STATUS=#{ord_status}
+			</if>
+		</if>
+		ORDER BY O.ORD_DATE DESC
+	</select>
 
 	<insert id="mAddressInsert" parameterType="Address">
 		INSERT INTO ADDRESS VALUES
@@ -275,40 +334,9 @@
 		</foreach>
 	</delete>
 
-	<select id ="SearchOrdListCount" resultType="_int">
-		SELECT COUNT(*)
-		FROM ORD O
-		JOIN PRDT P
-		ON (O.PRDT_NO = P.PRDT_NO)
-		WHERE MEM_NO=#{memno}
-		<if test="ord_status.equals('all')">
-		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
-		AND (ORD_STATUS='A' OR ORD_STATUS='B' OR ORD_STATUS='C' OR ORD_STATUS='D' OR ORD_STATUS='E')
-		</if>
 
-		<if test="!ord_status.equals('all')">
-		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
-		AND ORD_STATUS=#{ord_status}
-		</if>
 
-	</select>
 
-	<select id="selectSearchOrdList" resultMap="ordResultSet">
-		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
-		FROM ORD O
-		JOIN PRDT P
-		ON (O.PRDT_NO = P.PRDT_NO)
-		WHERE MEM_NO=#{memno}
-		<if test="ord_status.equals('all')">
-		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
-		AND (ORD_STATUS='A' OR ORD_STATUS='B' OR ORD_STATUS='C' OR ORD_STATUS='D' OR ORD_STATUS='E')
-		</if>
-		<if test="!ord_status.equals('all')">
-		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
-		AND ORD_STATUS=#{ord_status}
-		</if>
-		ORDER BY O.ORD_DATE DESC
-	</select>
 
 	<select id="orderCount1" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
@@ -340,12 +368,24 @@
 		WHERE MEM_NO = #{memNo}
 		AND ORD_STATUS = 'E'
 	</select>
+	<select id="orderCount6" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'F'
+	</select>
+	<select id="orderCount7" resultType="_int" parameterType="_int" >
+		SELECT COUNT(*)
+		FROM ORD
+		WHERE MEM_NO = #{memNo}
+		AND ORD_STATUS = 'G'
+	</select>
 
 	<select id="getCancelListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO=#{memNo}
-		AND ORD_STATUS='E'
+		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
 	</select>
 
 	<select id="selectCancelList" resultMap="ordResultSet">
@@ -354,7 +394,7 @@
 		JOIN PRDT P
 		ON (O.PRDT_NO = P.PRDT_NO)
 		WHERE MEM_NO=#{memno}
-		AND ORD_STATUS='E'
+		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
 		ORDER BY O.ORD_DATE DESC
 
 	</select>
@@ -366,7 +406,7 @@
 		ON (O.PRDT_NO = P.PRDT_NO)
 		WHERE MEM_NO=#{memno}
 		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
-		AND ORD_STATUS='E'
+		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
 	</select>
 
 	<select id="selectSearchCancelList" resultMap="ordResultSet">
@@ -376,7 +416,7 @@
 		ON (O.PRDT_NO = P.PRDT_NO)
 		WHERE MEM_NO=#{memno}
 		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
-		AND ORD_STATUS='E'
+		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
 	</select>
 
 	<select id="getWishListCount" resultType="_int">
@@ -457,6 +497,34 @@
 		DELETE
 		FROM DIBS
 		WHERE DIBS_NO=#{dibsno}
+	</delete>
+	
+	<select id="selectDlist"  parameterType="java.util.Map" resultMap="DIBSResultMap" >
+			SELECT * 
+			FROM DIBS D
+			JOIN PRDT P ON(D.PRDT_NO = P.PRDT_NO)
+			WHERE D.DIBS_NO IN
+		 <foreach item="w" index="index" collection="wishArr"
+	                      open="(" separator="," close=")">
+	             	#{w.dibsno}
+         </foreach>
+	</select>
+	
+	<insert id="insertCartList" parameterType="java.util.Map">
+		<foreach  item="c" collection="clist"  index="index"
+      		separator=";" open="DECLARE BEGIN" close="; END;" >
+			INSERT INTO CRT
+		 	VALUES(#{c.memNo}, #{c.prdt_no}, #{c.prdt_price}, #{c.prdt_count}, #{c.prdt_sumprice}, 
+				#{c.prdt_color}, #{c.prdt_size}, CA_SEQ.NEXTVAL)
+		</foreach>
+	</insert>
+	<delete id="deleteDlist" parameterType="java.util.Map">
+	<foreach item="w" collection="wish" index="index"
+				 separator=";" open="DECLARE BEGIN" close="; END;">
+		DELETE
+		FROM DIBS
+		WHERE DIBS_NO=#{w.dibsno}
+	</foreach>
 	</delete>
 	
 	

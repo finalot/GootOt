@@ -2,6 +2,9 @@ package com.kh.ot.review.service;
 
 import java.util.ArrayList;
 
+import com.kh.ot.main.vo.Product;
+import com.kh.ot.main.vo.Product_color;
+import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
 import com.kh.ot.review.vo.ReviewReply;
@@ -123,5 +126,54 @@ public interface ReviewService {
 	 * @return
 	 */
 	int WarningReply(ReviewReply rp);
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰 좋아요순 정렬
+	 * @return
+	 */
+	ArrayList<Review> selectLikeSort();
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 리뷰 최신순 정렬
+	 * @내용    :
+	 * @return
+	 */
+	ArrayList<Review> selectDateSort();
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 우예진
+	 * @내용    : 키 정렬
+	 * @param optionHeight
+	 * @return
+	 */
+	ArrayList<Review> selectCheckSort(int optionHeight);
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 우예진
+	 * @내용    : 몸무게 정렬
+	 * @param optionWeight
+	 * @return
+	 */
+	ArrayList<Review> selectWeightSort(int optionWeight);
+
+	/**
+	 * @작성일  : 2020. 4. 23.
+	 * @작성자  : 우예진
+	 * @내용    : 사이즈 정렬
+	 * @param optionSize
+	 * @return
+	 */
+	ArrayList<Review> selectSizeSort(int optionSize);
+
+	ArrayList<Product> getBestList();
+
+	ArrayList<Product_color> selectColorList1();
+
+	ArrayList<Product_opt> selectOptionBestList();
 
 }

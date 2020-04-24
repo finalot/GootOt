@@ -1,3 +1,4 @@
+<%@page import="com.kh.ot.main.vo.ListCount"%>
 <%@page import="com.kh.ot.main.service.MainServiceImpl"%>
 <%@page import="com.kh.ot.main.service.MainService"%>
 <%@page import="com.kh.ot.board.vo.Board"%>
@@ -582,7 +583,6 @@ a{
 					</div>
 					
 					<%
-          			String qnaCount1 = request.getParameter("listCount");
           			int qnaCount = 0;
           			%>
 					<!-- <div class="item-slick3" data-thumb="images/thumb-item-02.jpg">
@@ -865,7 +865,7 @@ function optionDel(){
 </script>
 
 
-
+<%String prdtNo = request.getParameter("product_detail").toString(); %>
 
 
 				<div class="p-b-45">
@@ -955,7 +955,7 @@ function optionDel(){
 						id="myBtn1" style="width: 40%; float: left;"><small>Review(${pd1.prdtReview})</small></button>
 						</c:forEach>
 					<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-						onclick="qna();" style="position: relative; left: 10%; width: 40%;"><small>Q&A(<%=qnaCount1 %>)</small></button>
+						onclick="qna();" style="position: relative; left: 10%; width: 40%;"><small>Q&A(${lcount.listCount })</small></button>
 						
 						<br>
 						
@@ -1000,7 +1000,7 @@ function qna(){
     </div>
     					<button class="flex-c-m bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="reviewOn();" 
 						style="position: relative; left: 55%; width: 7%; height: 20px; font-size: 12px; float:left;background:#c3b798; ">리뷰 작성하기</button>
-							<c:url var="review" value="review.do"/>
+							<c:url var="review" value="review.do?Sort=no"/>
     					<button class="flex-c-m bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="location.href='${review}'"
 						style="position: relative; left: 56%; width: 7%; height: 20px; font-size: 12px; ">리뷰 게시판</button>
     								<hr>
@@ -1012,61 +1012,62 @@ function qna(){
   -moz-box-shadow: 0 4px 6px -6px #222;
   box-shadow: 0 4px 6px -6px #222;padding: 20px 0px 20px 29px; border-width: 1px; border-style: solid; border-color: rgb(218, 218, 218); border-image: initial; height: 22%; background: white; margin-bottom: 3%;">
 
-									<form action="#">
-										<label>키 : <input type="text" placeholder="필수입력"
-											style="width: 80px; align: center; height: 25px; border: 2px solid lightgray; text-align: center; border-radius: 10px;"
-											maxlength="6">&nbsp;<small>cm</small></label>&nbsp;&nbsp;&nbsp;
+	<form id="reviewInsertForm" action="detailReviewInsert.do" enctype="multipart/form-data">
+		<label>키 : <input type="text"  name="rvHeight" placeholder="필수입력"
+			style="width: 80px; align: center; height: 25px; border: 2px solid lightgray; text-align: center; border-radius: 10px;"
+			maxlength="6">&nbsp;<small>cm</small></label>&nbsp;&nbsp;&nbsp;
 
-										<label>몸무게 : <input type="text" placeholder="필수입력"
-											style="width: 80px; height: 25px; border: 2px solid lightgray; text-align: center; border-radius: 10px;"
-											maxlength="6">&nbsp;<small>kg</small></label>&nbsp;&nbsp;&nbsp;
-											
-										<div style="display:inline-block;width: 100px; height: 25px; border: 2px solid lightgray; 
-										text-align: center; border-radius: 10px;font-size:10px;">
-										<input name="gong" type="radio">공개
-										<input name="gong" type="radio">비공개
-										</div>
-										&nbsp;&nbsp;&nbsp;&nbsp;
-										<label>선택한옵션(컬러) : <select style="background: none;width:80px;">
-												<option>------</option>
-												<option>그레이</option>
-												<option>블랙</option>
-												<option>네이비</option>
-												<option>네온옐로우</option>
-										</select> 
-										</label>
-										
-										<label>선택한옵션(사이즈) : <select style="background: none;width:80px;">
-												<option>------</option>
-												<option>XS</option>
-												<option>S</option>
-												<option>M</option>
-												<option>L</option>
-										</select> 
-										</label>
+		<label>몸무게 : <input type="text" name="rvWeight" placeholder="필수입력"
+			style="width: 80px; height: 25px; border: 2px solid lightgray; text-align: center; border-radius: 10px;"
+			maxlength="6">&nbsp;<small>kg</small></label>&nbsp;&nbsp;&nbsp;
+			<small style="color:gray;">*키/몸무게는 비공개입니다.</small>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<label>선택한옵션(컬러) : <select style="background: none;width:80px;" name="rvColor">
+				<option>------</option>
+				<c:forEach var="poo" items="${ polist }">
+									<option>${poo.optColor}</option>
+									</c:forEach>
+		</select> 
+		</label>
+		
+		<label>선택한옵션(사이즈) : <select style="background: none;width:80px;" name="rvSize">
+				<option>------</option>
+				<c:forEach var="poo" items="${ poolist2 }">
+									<option>${poo.size}</option>
+									</c:forEach>
+		</select> 
+		</label>
+		<label>만족도 : <select style="background: none;width:100px;" name="rvPoint">
+				<option value="0">만족도 선택</option>
+				<option value="1">완전별로</option>
+				<option value="2">별로</option>
+				<option value="3">보통</option>
+				<option value="4">만족</option>
+				<option value="5">매우만족</option>
+		</select> 
+		</label>
 
-										<button  onclick="reviewOff();"
-											style="position: relative; float: right; width: 70px; height: 30px; background: black; border-radius: 9%; margin-right: 15px; color: white;">작성
-											취소</button>
-										<button
-											style="position: relative; float: right; width: 70px; height: 30px; background: #c3b798; border-radius: 9%; margin-right: 15px; color: white;">작성
-											완료</button>
+		<input type="button"  onclick="reviewOff();" value="작성 취소"
+			style="cursor:pointer; position: relative; float: right; width: 70px; height: 30px; background: black; border-radius: 9%; margin-right: 15px; color: white;">
+		<input type="button" onclick="reviewWrite();" value="작성 완료"
+			style="cursor:pointer; position: relative; float: right; width: 70px; height: 30px; background: #c3b798; border-radius: 9%; margin-right: 15px; color: white;">
 
-										<br>
-										<br> <input type="file"
-											style="background: #c3b798; border: 2px solid lightgray">&nbsp;<input
-											type="file"
-											style="background: #c3b798; border: 2px solid lightgray">
-										<br>
-										<br>
-										<br> <label>리뷰 내용 <small>(200자 이내)</small><br>
-										<textarea maxlength="200"
-												style="border: 2px solid lightgray; border-image: initial; width: 700%; height: 270px; resize: none; font-size: 15px;"></textarea></label>
-									</form>
+		<br>
+		<br> <input type="file" name="file"
+			style="background: #c3b798; border: 2px solid lightgray">&nbsp;
+			<input type="file" name="file"
+			style="background: #c3b798; border: 2px solid lightgray">
+		<br>
+		<input type="hidden" value="<%=prdtNo%>" name="prdtNo">
+		<br>
+		<br> <label>리뷰 내용 <small>(200자 이내)</small><br>
+		<textarea maxlength="200" name="rvInfo"
+				style="border: 2px solid lightgray; border-image: initial; width: 700%; height: 270px; resize: none; font-size: 15px;"></textarea></label>
+	</form>
 
-								</div>
-								
-								<hr id="scrollX">
+</div>
+
+<hr id="scrollX">
 
 <style>
 .moveOn{
@@ -1085,21 +1086,83 @@ function qna(){
  
 </style>
 
+
+
 								<!-- 리뷰작성 끝 -->
 									
 									
 						<script>
 						var scrollX=document.getElementById('scrollX');
-						
+						var prdtNo = '<%=prdtNo %>';
 						function reviewOn() {
-							$('#reviewWrite').css("display","block");
-							scrollX.className ='moveOn';
+							if("${loginMember.memId}"==""){
+								alert('로그인후 이용해주세요');
+								location.href="loginView.do";
+								
+							}else{
+								
+							$.ajax({
+								url:"DetailReviewWrite.do",
+								data :{
+									prdtNo : prdtNo
+								},
+								dataType : 'json',
+								type : 'get',
+								success:function(data){
+									if(data.status =="success"){
+										$('#reviewWrite').css("display","block");
+										scrollX.className ='moveOn'; 
+									}else{
+										swal(data.message);
+									}
+								}
+							});
+							
+							}
+							
 						}
+						
+						
+						function ajaxFileUpload(url, type, dataType, data, success, error){
+							$.ajax({
+								url : url,
+								type : type,
+								dataType : dataType,
+								data : data,
+								processData : false,
+								contentType : false,
+								success : success,
+								error : error
+							})
+						}
+						function ajax(url, type, dataType, data, success, error){
+							$.ajax({
+								url : url,
+								type : type,
+								dataType : dataType,
+								data : data,
+								success : success,
+								error : error
+							})
+						}
+						
+						function reviewWrite(){
+							var form = new FormData(document.getElementById('reviewInsertForm'));
+							ajaxFileUpload('detailReviewInsert.do','post','json',form,function(data){
+								if(data.status =="success"){
+									reviewOff();
+								}else if(data.status =="fail"){
+									swal(data.message);
+								}
+								
+							})
+  						}
+						
+						
 						function reviewOff() {
 							$('#reviewWrite').css("display","none");
 							scrollX.className ='';
 						}
-						
 						</script>			
 									
 									
@@ -1628,63 +1691,33 @@ function qna(){
               <ul class="review_options_search__values"style="margin-left:10px;">
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="-150" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_0">
+                    <input type="checkbox" name="option_3" id="option_149" value="1" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_0">
                     <label for="review_option_type_3_0">149 cm 이하</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="150-153" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_1">
-                    <label for="review_option_type_3_1">150 - 152 cm</label>
+                    <input type="checkbox" name="option_3" value="2" id="option_150" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_1">
+                    <label for="review_option_type_3_1">150 - 154 cm</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="153-156" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_2">
-                    <label for="review_option_type_3_2">153 - 155 cm</label>
+                    <input type="checkbox" name="option_3" value="3" id="option_155" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_2">
+                    <label for="review_option_type_3_2">155 - 159 cm</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="156-159" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_3">
-                    <label for="review_option_type_3_3">156 - 158 cm</label>
+                    <input type="checkbox" name="option_3" value="4" id="option_160" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_3">
+                    <label for="review_option_type_3_3">160 - 164 cm</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="159-162" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_4">
-                    <label for="review_option_type_3_4">159 - 161 cm</label>
+                    <input type="checkbox" name="option_3" value="5" id="option_165" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_4">
+                    <label for="review_option_type_3_4">165 - 169 cm</label>
                   </li>
-                
+                  
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="162-165" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_5">
-                    <label for="review_option_type_3_5">162 - 164 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="165-168" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_6">
-                    <label for="review_option_type_3_6">165 - 167 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="168-171" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_7">
-                    <label for="review_option_type_3_7">168 - 170 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="171-174" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_8">
-                    <label for="review_option_type_3_8">171 - 173 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="174-177" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_9">
-                    <label for="review_option_type_3_9">174 - 176 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="177-180" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_10">
-                    <label for="review_option_type_3_10">177 - 179 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="180" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_11">
-                    <label for="review_option_type_3_11">180 cm 이상</label>
+                    <input type="checkbox" name="option_3" value="6" id="option_170" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_4">
+                    <label for="review_option_type_3_5">170 cm 이상</label>
                   </li>
                 
               </ul>
@@ -1704,73 +1737,33 @@ function qna(){
               <ul class="review_options_search__values"style="margin-left:11px;">
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="-45" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_0">
-                    <label for="review_option_type_4_0">44 kg 이하</label>
+                    <input type="checkbox" name="option_4" value="-39" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_0">
+                    <label for="review_option_type_4_0">39 kg 이하</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="45-48" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_1">
-                    <label for="review_option_type_4_1">45 - 47 kg</label>
+                    <input type="checkbox" name="option_4" value="40-44" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_1">
+                    <label for="review_option_type_4_1">40 - 44 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="48-51" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_2">
-                    <label for="review_option_type_4_2">48 - 50 kg</label>
+                    <input type="checkbox" name="option_4" value="45-49" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_2">
+                    <label for="review_option_type_4_2">45 - 49 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="51-54" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_3">
-                    <label for="review_option_type_4_3">51 - 53 kg</label>
+                    <input type="checkbox" name="option_4" value="50-54" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_3">
+                    <label for="review_option_type_4_3">50 - 54 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="54-57" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_4">
-                    <label for="review_option_type_4_4">54 - 56 kg</label>
+                    <input type="checkbox" name="option_4" value="55-59" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_4">
+                    <label for="review_option_type_4_4">55 - 59 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="57-60" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_5">
-                    <label for="review_option_type_4_5">57 - 59 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="60-63" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_6">
-                    <label for="review_option_type_4_6">60 - 62 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="63-66" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_7">
-                    <label for="review_option_type_4_7">63 - 65 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="66-69" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_8">
-                    <label for="review_option_type_4_8">66 - 68 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="69-72" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_9">
-                    <label for="review_option_type_4_9">69 - 71 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="72-75" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_10">
-                    <label for="review_option_type_4_10">72 - 74 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="75-78" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_11">
-                    <label for="review_option_type_4_11">75 - 77 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="78-81" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_12">
-                    <label for="review_option_type_4_12">78 - 80 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="81" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_13">
-                    <label for="review_option_type_4_13">81 kg 이상</label>
+                    <input type="checkbox" name="option_4" value="60" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_5">
+                    <label for="review_option_type_4_5">60 kg 이상</label>
                   </li>
                 
               </ul>
@@ -3091,17 +3084,15 @@ function qna(){
                 </tr>
 		</tbody>	
 				<tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
-          		
+          		<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
           			
           			<c:forEach var="b" items="${ blist }">
           				<tr class="xans-record-">
 							<td>
 								<!-- no 공지번호 들어갈 곳 -->
-									<span id="idMsg4"><%=qnaCount %></span>
+									<span id="idMsg44" name="QnaNum">${b.qna_no }</span>
 									<input type="hidden" value="${b.qna_no }">
 							</td>
-               			<%qnaCount--; %>
-               			
                         <!-- 상품명 이름 들어갈 곳 -->
                          <td class="thumb">
                         <!--     <span id="prd_name">러트 세미 부츠컷 슬랙스</span> -->
@@ -3178,7 +3169,7 @@ function qna(){
 		<a href="#layer2" id="submitBtn" class="hov1 s-text1 trans-0-4 yg_btn_145">
         <span style="position: relative;top: -2px;">write</span></a>
     			
-			<%String prdtNo = request.getParameter("product_detail"); %>
+			
 			
 			<div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate1">
             <!-- <a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first"> -->
@@ -3266,311 +3257,113 @@ function qna(){
 			<div class="wrap-slick2">
 				<div class="slick2">
 
-					<!-- 뉴프로덕트블록 샘플 -->
-					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								<img
-									src="/ot/resources/images/oT/clothing/t_nasi/basic_crop_color_nasi/basic_crop_color_nasi.webp"
-									alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<span class="block2-price m-text6 p-r-5">
-									<div
-										style="width: 17px; height: 17px; background: black; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: gray; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: #39761F; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: #E4F650; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: #4A87B9; margin-left: 3px; float: left; border: 1px solid black;"></div>
-								</span> <br> <a href="${product_detail}"
-									class="block2-name dis-block s-text3 p-b-5"
-									style="font-size: 12px"> [B-BASIC] 베이직 크롭 컬러나시 </a> <span
-									class="block2-price m-text6 p-r-5"> <small><font
-										class="format-money">7000</font> won</small>&nbsp;&nbsp;<font
-									style="font-size: 9px; color: gray">리뷰 : 100</font>
-								</span>
-							</div>
-						</div>
-					</div>
-					<!-- 세일프로덕트블록 샘플 -->
-					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img
-									src="/ot/resources/images/oT/clothing/t_nasi/numb_lettering_t/numb_lettering_t.webp"
-									alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<span class="block2-price m-text6 p-r-5">
-									<div
-										style="width: 17px; height: 17px; background: white; float: left; border: 1px solid black;"></div>
-								</span> <br> <a href="productDetail.jsp"
-									class="block2-name dis-block s-text3 p-b-5"
-									style="font-size: 12px"> [B-BASIC] 넘브 레터링 티셔츠 </a> <span
-									class="block2-price m-text6 p-r-5"> <small><font
-										class="format-money">20000</font> won</small>&nbsp;&nbsp;<font
-									style="font-size: 9px; color: gray">리뷰 : 100</font>
-								</span>
-							</div>
-						</div>
-					</div>
+<c:forEach var="p" items="${plist }">
 						<!-- 기본프로덕트블록 샘플 -->
-					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img
-									src="/ot/resources/images/oT/clothing/t_nasi/standard_round_t/standard_round_t.webp"
-									alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<span class="block2-price m-text6 p-r-5">
-									<div
-										style="width: 17px; height: 17px; background: black; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: white; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: gray; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: navy; margin-left: 3px; float: left; border: 1px solid black;"></div>
-								</span> <br> <a href="productDetail.jsp"
-									class="block2-name dis-block s-text3 p-b-5"
-									style="font-size: 12px"> [B-BASIC] 베이직 라운드 반팔티 </a> <span
-									class="block2-price m-text6 p-r-5"> <small><font
-										class="format-money">12000</font> won</small>&nbsp;&nbsp;<font
-									style="font-size: 9px; color: gray">리뷰 : 100</font>
-								</span>
-							</div>
-						</div>
-					</div>
-
 					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
 						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img src="/ot/resources/images/item-07.jpg" alt="IMG-PRODUCT">
+								<c:if test="${61999 gt p.prdtNo and p.prdtNo gt 60000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+								
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
+									<div class="block2-overlay trans-0-4">
+									
 
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
+									</div>
+								</div></c:if>
+									<c:if test="${p.prdtNo gt 62000}">
+									<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
+									
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
+
+									<div class="block2-overlay trans-0-4">
+										
+
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
 									</div>
 								</div>
-							</div>
+									</c:if>
+								
+								
+								<c:if test="${p.prdtNo lt 60000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative">
+								
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Frayed denim
-									shorts </a> <span class="block2-oldprice m-text7 p-r-5">
-									$29.50 </span> <span class="block2-newprice m-text8 p-r-5">
-									$15.90 </span>
-							</div>
-						</div>
-					</div>
+									<div class="block2-overlay trans-0-4">
+										
 
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								<img src="/ot/resources/images/item-02.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
 									</div>
 								</div>
-							</div>
+								</c:if>
+								
 
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Herschel
-									supply co 25l </a> <span class="block2-price m-text6 p-r-5">
-									$75.00 </span>
-							</div>
-						</div>
-					</div>
+								<div class="block2-txt p-t-20">
+									<span class="block2-price m-text6 p-r-5" >
+								<c:forEach var="po" items="${ polist }">
 
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="/ot/resources/images/item-03.jpg" alt="IMG-PRODUCT">
+									<c:if test="${ p.prdtNo eq po.prdtNo }">
 
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+										<c:forEach var="pc" items="${ pclist }">
+
+										<c:if test="${ po.optColor eq pc.pcName }">
+										<div style="width:14px;height:14px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
+										</c:if>
+
+										</c:forEach>
+
+									</c:if>
+
+								</c:forEach>
+									</span>
+
+									<br>
+									
+<c:url var="product_detail" value="product_detail.do">
+	<c:param name="product_detail" value="${p.prdtNo }" />
+</c:url>
+									<a href="${product_detail }" id="${p.prdtNo }"class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
+										${p.prdtName }
+
 									</a>
+									
 
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
+									<span class="block2-price m-text6 p-r-5">
+									<c:if test="${p.prdtSale ne 0 }">
+	<small><font class="format-money" style="text-decoration:line-through">${ p.prdtPrice}</font>-><font class="format-money">${ p.prdtPrice-((p.prdtPrice/100)*p.prdtSale)}</font> won</small>&nbsp;&nbsp;
+										</c:if>
+										<c:if test="${p.prdtSale eq 0 }">
+										<small><font class="format-money">${ p.prdtPrice}</font> won</small>&nbsp;&nbsp;
+										</c:if>
+										
+										<font style="font-size:9px;color:gray">리뷰 : ${p.prdtReview}</font>
+									</span>
 								</div>
 							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Denim jacket
-									blue </a> <span class="block2-price m-text6 p-r-5"> $92.50 </span>
-							</div>
-						</div>
 					</div>
 
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="/ot/resources/images/item-05.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Coach slim
-									easton black </a> <span class="block2-price m-text6 p-r-5">
-									$165.90 </span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img src="/ot/resources/images/item-07.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Frayed denim
-									shorts </a> <span class="block2-oldprice m-text7 p-r-5">
-									$29.50 </span> <span class="block2-newprice m-text8 p-r-5">
-									$15.90 </span>
-							</div>
-						</div>
-					</div>
+				</c:forEach>	
+					
 				</div>
 			
 </div>

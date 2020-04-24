@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Cart;
+import com.kh.ot.main.vo.DetailReview;
 import com.kh.ot.main.vo.MainPageInfo;
 import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.MainSearchCondition;
@@ -20,7 +21,9 @@ import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.ReviewCheck;
 import com.kh.ot.main.vo.Wish;
+import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
 
 @Repository("mainDao")
@@ -179,6 +182,9 @@ public class MainDao {
 	public ArrayList<Product_opt> selectOptionSearchList(String search) {
 		return (ArrayList)sqlSession.selectList("productMapper.selectSearchProductOption",search);
 	}
+	public ArrayList<Product_opt> selectOptionBestList() {
+		return (ArrayList)sqlSession.selectList("productMapper.selectOptionBestList");
+	}
 
 	public ArrayList<productbenner> selectPB() {
 		return (ArrayList)sqlSession.selectList("productMapper.selectPB");
@@ -206,6 +212,43 @@ public class MainDao {
 		
 		return (ArrayList)sqlSession.selectList("productMapper.selectQnaList",product_detail,rowBounds);
 	}
+
+	public ArrayList<productWith> selectWithList(int product_detail) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectWithList",product_detail);
+	}
+
+	public Product selectDetailListp(int with) {
+		return sqlSession.selectOne("productMapper.selectDetailListp",with);
+	}
+
+	public int detailReviewWriteCheck(ReviewCheck rc) {
+		return sqlSession.selectOne("productMapper.selectDetailReviewWriteCheck",rc);
+	}
+
+	public int detailReviewInsert(DetailReview dr) {
+		return sqlSession.insert("productMapper.detailReviewInsert",dr);
+	}
+
+	public int getOrdNo(ReviewCheck rc) {
+		return sqlSession.selectOne("productMapper.getOrdNo",rc);
+	}
+
+	public int getRvNo(ReviewCheck rc) {
+		return sqlSession.selectOne("productMapper.getRvNo",rc);
+	}
+
+	public int detailReviewPhotoInsert(DetailReview dr) {
+		return sqlSession.insert("productMapper.detailReviewPhotoInsert",dr);
+	}
+	public int detailReviewPhotoInsert2(DetailReview dr) {
+		return sqlSession.insert("productMapper.detailReviewPhotoInsert2",dr);
+	}
+
+	public int updateReviewCount(DetailReview dr) {
+		return sqlSession.update("productMapper.updateReviewCount",dr);
+	}
+
+	
 
 
 

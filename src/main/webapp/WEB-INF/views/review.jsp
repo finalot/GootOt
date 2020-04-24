@@ -903,14 +903,15 @@
 									
 						<div id=sortButton>
 									<!-- 카테고리 셀렉트 -->
-									<select style="margin-bottom:3.2%;background:none;outline: 0;width:80px;">
+									<select style="margin-bottom:3.2%;background:none;outline: 0;width:80px;"
+									id="review_category">
 									<option>카테고리</option>
-									<option>Best20</option>
-									<option>Clothing</option>
-									<option>Outer</option>
-									<option>Shoes</option>
-									<option>Acc</option>
-									<option>Event</option>
+									<option value="clothing">Clothing</option>
+									<option value="outer">Outer</option>
+									<option value="shoes">Shoes</option>
+									<option value="acc">Acc</option>
+									<option value="best">Best20</option>
+									<option value="event">Event</option>
 									</select>
 									<!-- 카테고리 셀렉트 -->
 									
@@ -918,9 +919,9 @@
 									
 									<form class="submitSearch" action="#" style="margin-top:-5%;position:relative;left:7%;">
 										<input type="text"  name="search"
-										 style="border: 1px solid lightgray !important; border-radius: 5px; background: none;"
+										 style="border: 1px solid lightgray !important; background: none;"
 											placeholder="Search..">
-										<button type="submit">
+										<button id="searchBtn" >
 											<i class="fa fa-search"></i>
 										</button>
 									</form><br>
@@ -933,13 +934,13 @@
 									&nbsp;|
 									
 								<!-- Button -->
-								<button id="recommandSort"class="bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="review.jsp"
+								<button id="recommandSort"class="bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="#none"
 						style=" width: 4%; height: 20px; font-size: 12px; background:white;color:gray;"><Strong>좋아요순</Strong></button>
 									
 									&nbsp;|
 									
 								<!-- Button -->
-								<button id="newSort"class=" bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="review.jsp"
+								<button id="newSort"class=" bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="#none"
 						style=" width: 4%; height: 20px; font-size: 12px; background:white;color:gray;"><Strong>최신순</Strong></button>
 									
 						<!-- 정렬 부분 버튼 -->
@@ -964,64 +965,35 @@
               <ul class="review_options_search__values"style="margin-left:30px;">
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="-150" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_0">
+                    <input type="checkbox" name="option_3" id="option_149" value="1" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_0">
                     <label for="review_option_type_3_0">149 cm 이하</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="150-153" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_1">
-                    <label for="review_option_type_3_1">150 - 152 cm</label>
+                    <input type="checkbox" name="option_3" value="2" id="option_150" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_1">
+                    <label for="review_option_type_3_1">150 - 154 cm</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="153-156" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_2">
-                    <label for="review_option_type_3_2">153 - 155 cm</label>
+                    <input type="checkbox" name="option_3" value="3" id="option_155" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_2">
+                    <label for="review_option_type_3_2">155 - 159 cm</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="156-159" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_3">
-                    <label for="review_option_type_3_3">156 - 158 cm</label>
+                    <input type="checkbox" name="option_3" value="4" id="option_160" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_3">
+                    <label for="review_option_type_3_3">160 - 164 cm</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="159-162" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_4">
-                    <label for="review_option_type_3_4">159 - 161 cm</label>
+                    <input type="checkbox" name="option_3" value="5" id="option_165" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_4">
+                    <label for="review_option_type_3_4">165 - 169 cm</label>
+                  </li>
+                  
+                  <li class="review_options_search__value">
+                    <input type="checkbox" name="option_3" value="6" id="option_170" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_4">
+                    <label for="review_option_type_3_5">170 cm 이상</label>
                   </li>
                 
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="162-165" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_5">
-                    <label for="review_option_type_3_5">162 - 164 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="165-168" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_6">
-                    <label for="review_option_type_3_6">165 - 167 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="168-171" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_7">
-                    <label for="review_option_type_3_7">168 - 170 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="171-174" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_8">
-                    <label for="review_option_type_3_8">171 - 173 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="174-177" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_9">
-                    <label for="review_option_type_3_9">174 - 176 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="177-180" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_10">
-                    <label for="review_option_type_3_10">177 - 179 cm</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_3" value="180" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_11">
-                    <label for="review_option_type_3_11">180 cm 이상</label>
-                  </li>
                 
               </ul>
             
@@ -1040,74 +1012,36 @@
               <ul class="review_options_search__values"style="margin-left:32px;">
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="-45" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_0">
-                    <label for="review_option_type_4_0">44 kg 이하</label>
+                    <input type="checkbox" name="option_4" value="7" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_0">
+                    <label for="review_option_type_4_0">39 kg 이하</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="45-48" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_1">
-                    <label for="review_option_type_4_1">45 - 47 kg</label>
+                    <input type="checkbox" name="option_4" value="8" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_1">
+                    <label for="review_option_type_4_1">40 - 44 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="48-51" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_2">
-                    <label for="review_option_type_4_2">48 - 50 kg</label>
+                    <input type="checkbox" name="option_4" value="9" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_2">
+                    <label for="review_option_type_4_2">45 - 49 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="51-54" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_3">
-                    <label for="review_option_type_4_3">51 - 53 kg</label>
+                    <input type="checkbox" name="option_4" value="10" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_3">
+                    <label for="review_option_type_4_3">50 - 54 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="54-57" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_4">
-                    <label for="review_option_type_4_4">54 - 56 kg</label>
+                    <input type="checkbox" name="option_4" value="11" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_4">
+                    <label for="review_option_type_4_4">55 - 59 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="57-60" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_5">
-                    <label for="review_option_type_4_5">57 - 59 kg</label>
+                    <input type="checkbox" name="option_4" value="12" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_5">
+                    <label for="review_option_type_4_5">60 kg 이상</label>
                   </li>
                 
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="60-63" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_6">
-                    <label for="review_option_type_4_6">60 - 62 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="63-66" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_7">
-                    <label for="review_option_type_4_7">63 - 65 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="66-69" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_8">
-                    <label for="review_option_type_4_8">66 - 68 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="69-72" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_9">
-                    <label for="review_option_type_4_9">69 - 71 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="72-75" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_10">
-                    <label for="review_option_type_4_10">72 - 74 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="75-78" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_11">
-                    <label for="review_option_type_4_11">75 - 77 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="78-81" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_12">
-                    <label for="review_option_type_4_12">78 - 80 kg</label>
-                  </li>
-                
-                  <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="81" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_13">
-                    <label for="review_option_type_4_13">81 kg 이상</label>
-                  </li>
+               
                 
               </ul>
             
@@ -1126,28 +1060,33 @@
               <ul class="review_options_search__values"style="margin-left:46px;">
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_5" value="XS" class="checkbox-review-option-search" style="border:none;" id="review_option_type_5_0">
+                    <input type="checkbox" name="option_5" value="13" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_0">
                     <label for="review_option_type_5_0">XS</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_5" value="S" class="checkbox-review-option-search" style="border:none;" id="review_option_type_5_1">
+                    <input type="checkbox" name="option_5" value="14" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_1">
                     <label for="review_option_type_5_1">S</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_5" value="M" class="checkbox-review-option-search" style="border:none;" id="review_option_type_5_2">
+                    <input type="checkbox" name="option_5" value="15" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_2">
                     <label for="review_option_type_5_2">M</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_5" value="L" class="checkbox-review-option-search" style="border:none;" id="review_option_type_5_3">
+                    <input type="checkbox" name="option_5" value="16" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_3">
                     <label for="review_option_type_5_3">L</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_5" value="XL" class="checkbox-review-option-search" style="border:none;" id="review_option_type_5_4">
+                    <input type="checkbox" name="option_5" value="17" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_4">
                     <label for="review_option_type_5_4">XL</label>
+                  </li>
+                  
+                  <li class="review_options_search__value">
+                    <input type="checkbox" name="option_5" value="18" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_4">
+                    <label for="review_option_type_5_4">F</label>
                   </li>
                 
               </ul>
@@ -1288,7 +1227,7 @@
 									
 								<div class="reviews_index__no_data_message">아직 작성한 리뷰가
 									없습니다.</div>
-								<ul class="reviews_index__reviews reviews" style="margin-top:10px;margin-left:-3%;">
+								<ul id="review_list" class="reviews_index__reviews reviews" style="margin-top:10px;margin-left:-3%;">
 								
 								
 									<!-- 리뷰1줄 시작 -->
@@ -1300,16 +1239,16 @@
 										style="-webkit-box-shadow: 0 4px 6px -6px #222;
   -moz-box-shadow: 0 4px 6px -6px #222;
   box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 385px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">
-  <input type="hidden" class="rv_no" value="${r.rvNo }">
+  <input type="hidden" class="rv_no" value="${r.rvNo }" >
 										<div class="photo_review_thumbnail js-link-fullscreen-popup"
 											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
 											<div class="photo_review_thumbnail__thumbnail_container">
 												<ul>
 													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<img class="js-review-image"
+														<a onclick="review1(this)"><img class="js-review-image"
 														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
 														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
+														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>
 													</li>
 												</ul>
 												<div class="photo_review_thumbnail__review_info">
@@ -1368,7 +1307,8 @@
 													class="reviews_index_gallery_review__product_info_feedbacks">
 													<span class="reviews_index_gallery_review__reviews_count"
 														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <span
+														style="color: black;">1,841</strong></span> <br>
+														<span
 														class="reviews_index_gallery_review__display_score"
 														style="color: #c3b798;">평점<strong
 														style="color: black;">4.9</strong></span>
@@ -1549,311 +1489,112 @@
 			<div class="wrap-slick2">
 				<div class="slick2">
 
-					<!-- 뉴프로덕트블록 샘플 -->
-					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								<img
-									src="/ot/resources/images/oT/clothing/t_nasi/basic_crop_color_nasi/basic_crop_color_nasi.webp"
-									alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<span class="block2-price m-text6 p-r-5">
-									<div
-										style="width: 17px; height: 17px; background: black; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: gray; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: #39761F; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: #E4F650; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: #4A87B9; margin-left: 3px; float: left; border: 1px solid black;"></div>
-								</span> <br> <a href="${bi1 }"
-									class="block2-name dis-block s-text3 p-b-5"
-									style="font-size: 12px"> [B-BASIC] 베이직 크롭 컬러나시 </a> <span
-									class="block2-price m-text6 p-r-5"> <small><font
-										class="format-money">7000</font> won</small>&nbsp;&nbsp;<font
-									style="font-size: 9px; color: gray">리뷰 : 100</font>
-								</span>
-							</div>
-						</div>
-					</div>
-					<!-- 세일프로덕트블록 샘플 -->
-					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img
-									src="/ot/resources/images/oT/clothing/t_nasi/numb_lettering_t/numb_lettering_t.webp"
-									alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<span class="block2-price m-text6 p-r-5">
-									<div
-										style="width: 17px; height: 17px; background: white; float: left; border: 1px solid black;"></div>
-								</span> <br> <a href="${bi2 }"
-									class="block2-name dis-block s-text3 p-b-5"
-									style="font-size: 12px"> [B-BASIC] 넘브 레터링 티셔츠 </a> <span
-									class="block2-price m-text6 p-r-5"> <small><font
-										class="format-money">20000</font> won</small>&nbsp;&nbsp;<font
-									style="font-size: 9px; color: gray">리뷰 : 100</font>
-								</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+					<c:forEach var="p" items="${plist }">
 						<!-- 기본프로덕트블록 샘플 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img
-									src="/ot/resources/images/oT/clothing/t_nasi/standard_round_t/standard_round_t.webp"
-									alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<span class="block2-price m-text6 p-r-5">
-									<div
-										style="width: 17px; height: 17px; background: black; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: white; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: gray; margin-left: 3px; float: left; border: 1px solid black;"></div>
-									<div
-										style="width: 17px; height: 17px; background: navy; margin-left: 3px; float: left; border: 1px solid black;"></div>
-								</span> <br> <a href="productDetail.jsp"
-									class="block2-name dis-block s-text3 p-b-5"
-									style="font-size: 12px"> [B-BASIC] 베이직 라운드 반팔티 </a> <span
-									class="block2-price m-text6 p-r-5"> <small><font
-										class="format-money">12000</font> won</small>&nbsp;&nbsp;<font
-									style="font-size: 9px; color: gray">리뷰 : 100</font>
-								</span>
-							</div>
-						</div>
-					</div>
-
 					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
 						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img src="/ot/resources/images/item-07.jpg" alt="IMG-PRODUCT">
+								<c:if test="${61999 gt p.prdtNo and p.prdtNo gt 60000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+								
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
+									<div class="block2-overlay trans-0-4">
+									
 
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
+									</div>
+								</div></c:if>
+									<c:if test="${p.prdtNo gt 62000}">
+									<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
+									
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
+
+									<div class="block2-overlay trans-0-4">
+										
+
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
 									</div>
 								</div>
-							</div>
+									</c:if>
+								
+								
+								<c:if test="${p.prdtNo lt 60000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative">
+								
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Frayed denim
-									shorts </a> <span class="block2-oldprice m-text7 p-r-5">
-									$29.50 </span> <span class="block2-newprice m-text8 p-r-5">
-									$15.90 </span>
-							</div>
-						</div>
-					</div>
+									<div class="block2-overlay trans-0-4">
+										
 
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								<img src="/ot/resources/images/item-02.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
 									</div>
 								</div>
-							</div>
+								</c:if>
+								
 
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Herschel
-									supply co 25l </a> <span class="block2-price m-text6 p-r-5">
-									$75.00 </span>
-							</div>
-						</div>
-					</div>
+								<div class="block2-txt p-t-20">
+									<span class="block2-price m-text6 p-r-5" >
+								<c:forEach var="po" items="${ polist }">
 
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="/ot/resources/images/item-03.jpg" alt="IMG-PRODUCT">
+									<c:if test="${ p.prdtNo eq po.prdtNo }">
 
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+										<c:forEach var="pc" items="${ pclist }">
+
+										<c:if test="${ po.optColor eq pc.pcName }">
+										<div style="width:14px;height:14px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
+										</c:if>
+
+										</c:forEach>
+
+									</c:if>
+
+								</c:forEach>
+									</span>
+
+									<br>
+									
+<c:url var="product_detail" value="product_detail.do">
+	<c:param name="product_detail" value="${p.prdtNo }" />
+</c:url>
+									<a href="${product_detail }" id="${p.prdtNo }"class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
+										${p.prdtName }
+
 									</a>
+									
 
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
+									<span class="block2-price m-text6 p-r-5">
+									<c:if test="${p.prdtSale ne 0 }">
+	<small><font class="format-money" style="text-decoration:line-through">${ p.prdtPrice}</font>-><font class="format-money">${ p.prdtPrice-((p.prdtPrice/100)*p.prdtSale)}</font> won</small>&nbsp;&nbsp;
+										</c:if>
+										<c:if test="${p.prdtSale eq 0 }">
+										<small><font class="format-money">${ p.prdtPrice}</font> won</small>&nbsp;&nbsp;
+										</c:if>
+										
+										<font style="font-size:9px;color:gray">리뷰 : ${p.prdtReview}</font>
+									</span>
 								</div>
 							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Denim jacket
-									blue </a> <span class="block2-price m-text6 p-r-5"> $92.50 </span>
-							</div>
-						</div>
 					</div>
 
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="/ot/resources/images/item-05.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Coach slim
-									easton black </a> <span class="block2-price m-text6 p-r-5">
-									$165.90 </span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div
-								class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img src="/ot/resources/images/item-07.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#"
-										class="block2-btn-addwishlist hov-pointer trans-0-4"> <i
-										class="icon-wishlist icon_heart_alt" aria-hidden="true"></i> <i
-										class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button
-											class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width: 60%; margin-left: 20%">
-											<small>관심상품 담기</small>
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html"
-									class="block2-name dis-block s-text3 p-b-5"> Frayed denim
-									shorts </a> <span class="block2-oldprice m-text7 p-r-5">
-									$29.50 </span> <span class="block2-newprice m-text8 p-r-5">
-									$15.90 </span>
-							</div>
-						</div>
-					</div>
+				</c:forEach>
 				</div>
 			</div>
 </div>
@@ -2005,6 +1746,136 @@
 	</script>
 	
 	<script>
+	<!-- 좋아요 순으로 정렬 -->
+	$('#recommandSort').click(function() {
+		var like="like";
+		
+		
+		$.ajax({
+			url:"LikeSort.do",
+			data:{Sort : like},
+			dataType:"json",
+			success:function(data) {
+				 $('#review_list').children('li').remove();
+				 for(var i=0;i<data.rlist.length;i++) {
+					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="-webkit-box-shadow: 0 4px 6px -6px #222;-moz-box-shadow: 0 4px 6px -6px #222; box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 385px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">'+
+									  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
+									  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
+									  '<div class="photo_review_thumbnail__thumbnail_container">'+
+									  '<ul>'+
+									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
+									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '</li>'+
+									  '</ul>'+
+									  '<div class="photo_review_thumbnail__review_info">'+
+									  '<div class="photo_review_thumbnail__media_count_indicator photo_review_thumbnail__media_count_indicator--total_count_1">'+
+									  '<div class="photo_review_thumbnail__media_count_indicator_dot"></div>'+
+									  '</div></div></div>'+
+									  '<div style="border-radius: 2%; width: 90%; margin-left: 5%;"class="photo_review_thumbnail__review_author_info">'+
+									  '<div style="margin-top: 2%; border-radius: 2%;" class="photo_review_thumbnail__review_title js-translate-review-message">'+
+									  ''+data.rlist[i].rvInfo+'</div>'+
+							          '<br>'+
+									  '<div style="margin-top: -2%; color: gray;"class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">'+
+									  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
+									  '<strong>'+data.rlist[i].memName+'</strong>'+
+									  '</div>'+
+								      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+									  '<hr>'+
+									  '</div>'+
+									  '</div>'+
+									  '</div>'+
+								      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
+									  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
+									  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+									  '</div>'+
+									  '<div class="reviews_index_gallery_review__review_product_info">'+
+									  '<div class="reviews_index_gallery_review__product_info_title">'+
+									  ''+data.rlist[i].prdtName+'</div>'+
+									  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
+									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
+									  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+							          '+</div></div></div></li>')
+				 }
+					},error:function() {
+						alert("에러임에러임");
+					}
+		
+		
+		})
+		
+	})
+	
+	
+	</script>
+	
+	
+	<script>
+	$('#newSort').click(function() {
+		var date="date";
+		
+		
+		$.ajax({
+			url:"LikeSort.do",
+			data:{Sort : date},
+			dataType:"json",
+			success:function(data) {
+				 $('#review_list').children('li').remove();
+				 for(var i=0;i<data.rlist.length;i++) {
+					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="-webkit-box-shadow: 0 4px 6px -6px #222;-moz-box-shadow: 0 4px 6px -6px #222; box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 385px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">'+
+									  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
+									  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
+									  '<div class="photo_review_thumbnail__thumbnail_container">'+
+									  '<ul>'+
+									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
+									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '</li>'+
+									  '</ul>'+
+									  '<div class="photo_review_thumbnail__review_info">'+
+									  '<div class="photo_review_thumbnail__media_count_indicator photo_review_thumbnail__media_count_indicator--total_count_1">'+
+									  '<div class="photo_review_thumbnail__media_count_indicator_dot"></div>'+
+									  '</div></div></div>'+
+									  '<div style="border-radius: 2%; width: 90%; margin-left: 5%;"class="photo_review_thumbnail__review_author_info">'+
+									  '<div style="margin-top: 2%; border-radius: 2%;" class="photo_review_thumbnail__review_title js-translate-review-message">'+
+									  ''+data.rlist[i].rvInfo+'</div>'+
+							          '<br>'+
+									  '<div style="margin-top: -2%; color: gray;"class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">'+
+									  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
+									  '<strong>'+data.rlist[i].memName+'</strong>'+
+									  '</div>'+
+								      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+									  '<hr>'+
+									  '</div>'+
+									  '</div>'+
+									  '</div>'+
+								      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
+									  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
+									  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+									  '</div>'+
+									  '<div class="reviews_index_gallery_review__review_product_info">'+
+									  '<div class="reviews_index_gallery_review__product_info_title">'+
+									  ''+data.rlist[i].prdtName+'</div>'+
+									  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
+									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
+									  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+							          '</div></div></div></li>')
+				 }
+					},error:function() {
+						alert("에러임에러임");
+					}
+		
+		
+		})
+		
+	})
+	
+	
+	</script>
+	
+	<script>
 	$('#heartClick').click(function() {
 		 var rv_no = $('#rv_no2').val();
 		 var likeCheck = $('#likeCheck').val();
@@ -2044,10 +1915,14 @@
 	<script>
 	
 	<!--리뷰 모달 디테일 스크립트-->
-	$('.review1').on('click',function modalOpen(){
+	function review1(en){
+		 if("${loginMember.memId}"==""){
+			 alert("로그인 후 이용해주세요!");
+		 }else{
+		
 		 $('#comentarea').children('.replyDiv').remove();
 		 $('#comentarea').children('br').remove();
-		 var rv_no = $(this).find('.rv_no').val();
+		 var rv_no = $(en).parents('li').find('.rv_no').val();
 		 $("#rv_no2").val(rv_no);
 		 
 		var rvc_no = $('.rvc_no').val();
@@ -2055,6 +1930,8 @@
 		 var like_img="";
 		 var count = 0;
 		 console.log(rv_no);
+		 
+		 
 		 
 		 
 		 $.ajax({
@@ -2119,6 +1996,7 @@
 				 	
 			 })
 			 
+		
 	
 			 
 			 
@@ -2131,7 +2009,9 @@
         $('#modal').show();
 
         
-    });
+		 }
+    }
+	
 	  
 
       function modalclose(){
@@ -2255,8 +2135,230 @@
 			})
 		 
 	}
-	
 	</script>
+<!-- 키 정렬  스크립트 -->
+	<script>
+	  $(".checkbox-review-option-search").click(function() {
+			var optionHeightArr=document.getElementsByName('option_3');
+			var optionHeight = 0;
+			
+			for(var i=0; i<optionHeightArr.length;i++) {
+				if(optionHeightArr[i].checked==true){
+					optionHeight = optionHeightArr[i].value;
+				}
+			}
+			console.log(optionHeight);
+			
+		
+			
+			$.ajax({
+				url : "checkSort.do",
+				data : { optionHeight : optionHeight},
+				dataType:"json",
+				success : function(data) {
+					 $('#review_list').children('li').remove();
+					 for(var i=0;i<data.rlist.length;i++) {
+						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="-webkit-box-shadow: 0 4px 6px -6px #222;-moz-box-shadow: 0 4px 6px -6px #222; box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 385px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">'+
+										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
+										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
+										  '<div class="photo_review_thumbnail__thumbnail_container">'+
+										  '<ul>'+
+										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
+										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '</li>'+
+										  '</ul>'+
+										  '<div class="photo_review_thumbnail__review_info">'+
+										  '<div class="photo_review_thumbnail__media_count_indicator photo_review_thumbnail__media_count_indicator--total_count_1">'+
+										  '<div class="photo_review_thumbnail__media_count_indicator_dot"></div>'+
+										  '</div></div></div>'+
+										  '<div style="border-radius: 2%; width: 90%; margin-left: 5%;"class="photo_review_thumbnail__review_author_info">'+
+										  '<div style="margin-top: 2%; border-radius: 2%;" class="photo_review_thumbnail__review_title js-translate-review-message">'+
+										  ''+data.rlist[i].rvInfo+'</div>'+
+								          '<br>'+
+										  '<div style="margin-top: -2%; color: gray;"class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">'+
+										  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
+										  '<strong>'+data.rlist[i].memName+'</strong>'+
+										  '</div>'+
+									      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+										  '<hr>'+
+										  '</div>'+
+										  '</div>'+
+										  '</div>'+
+									      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
+										  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
+										  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+										  '</div>'+
+										  '<div class="reviews_index_gallery_review__review_product_info">'+
+										  '<div class="reviews_index_gallery_review__product_info_title">'+
+										  ''+data.rlist[i].prdtName+'</div>'+
+										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
+										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
+										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+								          '</div></div></div></li>')
+					 }
+						},error:function() {
+							alert("에러임에러임");
+					}
+		});
+			
+		
+			
+			
+	  
+	  
+	});
+	  </script>
+	  
+	  <script>
+	  <!--몸무게 정렬 스크립트-->
+	  $(".checkbox-review-option-search2").click(function() {
+
+			var optionWeightArr = document.getElementsByName('option_4');
+			var optionWeight = 0;
+		
+	
+			
+			for(var i=0; i<optionWeightArr.length;i++) {
+				if(optionWeightArr[i].checked==true){
+					optionWeight = optionWeightArr[i].value;
+				}
+			}
+			
+			console.log(optionWeight);
+			
+			$.ajax({
+				url : "WeightSort.do",
+				data : { optionWeight : optionWeight},
+				dataType:"json",
+				success : function(data) {
+					 $('#review_list').children('li').remove();
+					 for(var i=0;i<data.rlist.length;i++) {
+						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="-webkit-box-shadow: 0 4px 6px -6px #222;-moz-box-shadow: 0 4px 6px -6px #222; box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 385px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">'+
+										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
+										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
+										  '<div class="photo_review_thumbnail__thumbnail_container">'+
+										  '<ul>'+
+										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
+										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '</li>'+
+										  '</ul>'+
+										  '<div class="photo_review_thumbnail__review_info">'+
+										  '<div class="photo_review_thumbnail__media_count_indicator photo_review_thumbnail__media_count_indicator--total_count_1">'+
+										  '<div class="photo_review_thumbnail__media_count_indicator_dot"></div>'+
+										  '</div></div></div>'+
+										  '<div style="border-radius: 2%; width: 90%; margin-left: 5%;"class="photo_review_thumbnail__review_author_info">'+
+										  '<div style="margin-top: 2%; border-radius: 2%;" class="photo_review_thumbnail__review_title js-translate-review-message">'+
+										  ''+data.rlist[i].rvInfo+'</div>'+
+								          '<br>'+
+										  '<div style="margin-top: -2%; color: gray;"class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">'+
+										  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
+										  '<strong>'+data.rlist[i].memName+'</strong>'+
+										  '</div>'+
+									      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+										  '<hr>'+
+										  '</div>'+
+										  '</div>'+
+										  '</div>'+
+									      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
+										  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
+										  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+										  '</div>'+
+										  '<div class="reviews_index_gallery_review__review_product_info">'+
+										  '<div class="reviews_index_gallery_review__product_info_title">'+
+										  ''+data.rlist[i].prdtName+'</div>'+
+										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
+										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
+										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+								          '</div></div></div></li>')
+					 }
+						},error:function() {
+							alert("에러임에러임");
+					}
+		});
+			
+			
+	  });
+	  
+	  </script>
+
+
+	  <script>
+	  <!-- 사이즈 정렬 스크립트 -->
+	  
+	  $(".checkbox-review-option-search3").click(function() {
+			
+			var optionSizeArr = document.getElementsByName('option_5');
+			var optionSize = 0;
+			
+			
+			for(var i=0; i<optionSizeArr.length;i++) {
+				if(optionSizeArr[i].checked==true){
+					optionSize = optionSizeArr[i].value;
+				}
+			}
+			
+			console.log(optionSize);
+			
+
+			$.ajax({
+				url : "SizeSort.do",
+				data : { optionSize : optionSize},
+				dataType:"json",
+				success : function(data) {
+					 $('#review_list').children('li').remove();
+					 for(var i=0;i<data.rlist.length;i++) {
+						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="-webkit-box-shadow: 0 4px 6px -6px #222;-moz-box-shadow: 0 4px 6px -6px #222; box-shadow: 0 4px 6px -6px #222;width: 15.5%; height: 385px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-right: 1.8%;">'+
+										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
+										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
+										  '<div class="photo_review_thumbnail__thumbnail_container">'+
+										  '<ul>'+
+										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
+										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '</li>'+
+										  '</ul>'+
+										  '<div class="photo_review_thumbnail__review_info">'+
+										  '<div class="photo_review_thumbnail__media_count_indicator photo_review_thumbnail__media_count_indicator--total_count_1">'+
+										  '<div class="photo_review_thumbnail__media_count_indicator_dot"></div>'+
+										  '</div></div></div>'+
+										  '<div style="border-radius: 2%; width: 90%; margin-left: 5%;"class="photo_review_thumbnail__review_author_info">'+
+										  '<div style="margin-top: 2%; border-radius: 2%;" class="photo_review_thumbnail__review_title js-translate-review-message">'+
+										  ''+data.rlist[i].rvInfo+'</div>'+
+								          '<br>'+
+										  '<div style="margin-top: -2%; color: gray;"class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">'+
+										  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
+										  '<strong>'+data.rlist[i].memName+'</strong>'+
+										  '</div>'+
+									      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+										  '<hr>'+
+										  '</div>'+
+										  '</div>'+
+										  '</div>'+
+									      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
+										  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
+										  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+										  '</div>'+
+										  '<div class="reviews_index_gallery_review__review_product_info">'+
+										  '<div class="reviews_index_gallery_review__product_info_title">'+
+										  ''+data.rlist[i].prdtName+'</div>'+
+										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
+										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
+										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+								          '</div></div></div></li>')
+					 }
+						},error:function() {
+							alert("에러임에러임");
+					}
+		});
+	  });
+	  
+	  </script>
+
 	
 </body>
 		

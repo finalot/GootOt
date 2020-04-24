@@ -61,7 +61,7 @@
   						<br>
 						<strong class="data ">
 							<a href="${mWishlist }">
-									<span id="xans_myshop_interest_prd_cnt">0개</span>
+									<span id="xans_myshop_interest_prd_cnt">${WishList }개</span>
 							</a>
 						</strong>
 					</li>
@@ -102,12 +102,6 @@
 					<li class="selected">
 						<a href="${mPoint }">포인트 내역 보기</a>
 					</li>
-<!-- 		            <li>
-		            	<a href="/ot/mypage_unavailpoint.jsp">미가용적립내역보기</a>
-	            	</li> -->
-		            <li>	
-		            	<a href="${mUnavailpoint }">미가용 포인트 내역 보기</a>
-	            	</li>
         		</ul>
 			</div>
 
@@ -164,6 +158,7 @@
 	        	</div>
 			</div>
 			
+			<c:if test="${ !empty list }">
 			<!-- 페이징 처리 -->
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
 				<c:if test="${pi.currentPage eq 1 }">
@@ -230,7 +225,8 @@
 					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
                </c:if>
 			</div>
-	
+			</c:if>
+			
 			<div class="xans-element- xans-myshop xans-myshop-head ec-base-help ">
 				<h3>적립금 안내</h3>
 				<div class="inner">

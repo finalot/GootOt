@@ -373,6 +373,23 @@ public interface adminService{
 		 * @내용 : 상품순위 리스트
 		 */
 		public ArrayList<Product> ProductSelectListBest();
+		
+		 * @작성일  : 2020. 4. 23.
+		 * @작성자  : 문태환
+		 * @내용 	: 반품 업데이트
+		 * @param r
+		 * @return
+		 */
+		public int ReturnUpdate(Return r);
+
+		/**
+		 * @작성일  : 2020. 4. 23.
+		 * @작성자  : 문태환
+		 * @내용 	: 주분테이블 반품상태 업데이트
+		 * @param reNo
+		 * @return
+		 */
+		public int updateOrdf(Return r);
 
 
 }

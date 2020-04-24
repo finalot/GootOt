@@ -62,7 +62,7 @@ a{
   						<br>
 						<strong class="data ">
 							<a href="${mWishlist }">
-									<span id="xans_myshop_interest_prd_cnt">0개</span>
+									<span id="xans_myshop_interest_prd_cnt">${WishList }개</span>
 							</a>
 						</strong>
 					</li>
@@ -98,7 +98,7 @@ a{
 						<a href="${mList }">주문내역조회 (<span id="xans_myshop_total_orders">${listCount }</span>)</a>
 					</li>
 			        <li class="tab_class_cs">
-			        	<a href="${mCancel }">취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">${orderCount5}</span>)</a>
+			        	<a href="${mCancel }">(반품)진행/취소/완료 내역 (<span id="xans_myshop_total_orders_cs">${orderCount5+orderCount6+orderCount7 }</span>)</a>
 					</li>
 			        <!-- <li class="tab_class_old displaynone">
 			        	<a href="/ot/mypage_list_prev.jsp">이전 주문내역 (<span id="xans_myshop_total_orders_old">0</span>)</a>
@@ -119,7 +119,10 @@ a{
 								<option value="shipped_complete">배송완료</option>
 								<option value="order_cancel">취소</option>
 								<option value="order_exchange">교환</option>
-								<option value="order_return">반품</option>
+								<option value="order_return_Ing">반품준비중</option>
+								<option value="order_return_complete">반품완료</option>
+								<option value="order_return_cancel">반품취소</option>
+								
 							</select>       
 						</div>
 						
@@ -233,7 +236,13 @@ a{
                    					배송완료
                    				</c:if>
                    				<c:if test="${o.ord_status == 'E' }">
-                   					반품
+                   					반품준비중
+                   				</c:if>
+                   				<c:if test="${o.ord_status == 'F' }">
+                   					반품완료
+                   				</c:if>
+                   				<c:if test="${o.ord_status == 'G' }">
+                   					반품취소
                    				</c:if>
                    				
                    				</p>

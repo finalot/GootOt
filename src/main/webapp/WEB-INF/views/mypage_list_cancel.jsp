@@ -61,7 +61,7 @@ a{
   						<br>
 						<strong class="data ">
 							<a href="${mWishlist }">
-									<span id="xans_myshop_interest_prd_cnt">0개</span>
+									<span id="xans_myshop_interest_prd_cnt">${WishList }개</span>
 							</a>
 						</strong>
 					</li>
@@ -101,23 +101,16 @@ a{
 			<div class="xans-element- xans-myshop xans-myshop-orderhistorytab ec-base-tab tab_style ">
 				<ul class="menu">
 					<li class="tab_class">
-						<a href="${mList }">주문내역조회 (<span id="xans_myshop_total_orders">${orderCount1 + orderCount2 + orderCount3 + orderCount4 + orderCount5 }</span>)</a>
+						<a href="${mList }">주문내역조회 (<span id="xans_myshop_total_orders">${orderCount1 + orderCount2 + orderCount3 + orderCount4 + orderCount5+orderCount6+orderCount7 }</span>)</a>
 					</li>
 			        <li class="tab_class_cs selected">
-			        	<a href="${mCancel }">취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">${listCount }</span>)</a>
+			        	<a href="${mCancel }">(반품)진행/취소/완료 내역 (<span id="xans_myshop_total_orders_cs">${orderCount5+orderCount6+orderCount7 }</span>)</a>
 					</li>
 			        <!-- <li class="tab_class_old displaynone">
 			        	<a href="/ot/mypage_list_prev.jsp">이전 주문내역 (<span id="xans_myshop_total_orders_old">0</span>)</a>
 		        	</li> -->
     			</ul>
 			</div>
-			
-			
-			
-			
-			
-			
-			
 			
 			<form action="mSearchCancelList.do" id="mSearchCancelList" name="mSearchCancelList">
 				<div class="xans-element- xans-myshop xans-myshop-orderhistoryhead ">
@@ -220,7 +213,13 @@ a{
                 			<td class="state">
                    				<p style="font-size:13px;">
                    				<c:if test="${o.ord_status == 'E' }">
-                   					반품
+                   					반품준비중
+                   				</c:if>
+                   				<c:if test="${o.ord_status == 'F' }">
+                   					반품완료
+                   				</c:if>
+                   				<c:if test="${o.ord_status == 'G' }">
+                   					반품취소
                    				</c:if>
                    				</p>
 								<p class="displaynone" style="font-size:13px;">
