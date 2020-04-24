@@ -50,7 +50,23 @@ a{
     				</strong>
  					님은 현재 
 					<strong>
-						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">MEMBER</span>
+						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">
+							<c:if test="${loginMember.memSumMoney < 30000}">
+								MEMBER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 30000 && loginMember.memSumMoney < 60000}" >
+								IRON
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 60000 && loginMember.memSumMoney < 90000}" >
+								BRONZE
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 90000 && loginMember.memSumMoney < 120000}" >
+								SILVER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 120000}" >
+								GOLD
+							</c:if>
+						</span>
 						<span class="myshop_benefit_ship_free_message"></span>
 					</strong>
   					입니다.
@@ -224,7 +240,7 @@ a{
                 			<td class="state">
                    				<p style="font-size:13px;">
                    				<c:if test="${o.ord_status == 'A' }">
-                   					입금확인
+                   					입금완료
                    				</c:if>
                    				<c:if test="${o.ord_status == 'B' }">
                    					배송준비중
@@ -272,7 +288,9 @@ a{
             				</c:forEach>
 					</tbody>
 				</table>
-				<p class="message displaynone">주문 내역이 없습니다.</p>
+				<c:if test="${ empty list }">
+					<p class="message">주문 내역이 없습니다.</p>
+				</c:if>
 			</div>
 
 			<!-- 페이징 처리 -->
@@ -481,9 +499,14 @@ $('.returnOrd').click(function(){
 		
 		var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) - 180));
 		
+		var end = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) + 2));
+		
 		var s_day = start.toISOString().substr(0, 10);
+		
+		var e_day = end.toISOString().substr(0, 10);
 
 		$('#history_start_date').val(s_day);
+		$('#history_end_date').val(e_day);
 
 		$('#d-day0').click(function() {
 					var day = 1;
