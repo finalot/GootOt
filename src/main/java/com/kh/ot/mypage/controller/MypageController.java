@@ -1224,43 +1224,43 @@ public class MypageController {
 		}
 	}
 	
-	@RequestMapping("AllBuyNow.do")
-	public String AllBuyNow(HttpSession session) {
-		
-		Member m = (Member)session.getAttribute("loginMember");
-		int memno = m.getMemNo();
-		
-		ArrayList<DIBS> dlist = mpService.selectAllBuyNow(memno);
-		
-		ArrayList<Cart> clist = new ArrayList<Cart>();
-		for(int i=0; i<dlist.size(); i++) {
-			Cart c = new Cart();
-			
-			c.setMemNo(dlist.get(i).getMemno());
-			c.setPrdt_no(dlist.get(i).getPrdt_no());
-			c.setPrdt_count(dlist.get(i).getDibs_count());
-			c.setPrdt_color(dlist.get(i).getDibs_color());
-			c.setPrdt_size(dlist.get(i).getDibs_size());
-			c.setPrdt_price(dlist.get(i).getPrdt_price());
-			c.setPrdt_sumprice((dlist.get(i).getDibs_count()*dlist.get(i).getPrdt_price()));
-			
-			clist.add(c);
-		}
-		
-		int result = mpService.insertCartList(clist);
-		
-		if(result > -2) {
-			int result2 = mpService.deleteAlllist(dlist);
-			
-			if(result2 > -2) {
-				return "redirect:cartbutton.do";
-			} else {
-				return "";
-			}
-		} else {
-			return "";
-		}
-	}
+//	@RequestMapping("AllBuyNow.do")
+//	public String AllBuyNow(int[] wishArr) {
+//		
+//		Member m = (Member)session.getAttribute("loginMember");
+//		int memno = m.getMemNo();
+//		
+//		ArrayList<DIBS> dlist = mpService.selectAllBuyNow(memno);
+//		
+//		ArrayList<Cart> clist = new ArrayList<Cart>();
+//		for(int i=0; i<dlist.size(); i++) {
+//			Cart c = new Cart();
+//			
+//			c.setMemNo(dlist.get(i).getMemno());
+//			c.setPrdt_no(dlist.get(i).getPrdt_no());
+//			c.setPrdt_count(dlist.get(i).getDibs_count());
+//			c.setPrdt_color(dlist.get(i).getDibs_color());
+//			c.setPrdt_size(dlist.get(i).getDibs_size());
+//			c.setPrdt_price(dlist.get(i).getPrdt_price());
+//			c.setPrdt_sumprice((dlist.get(i).getDibs_count()*dlist.get(i).getPrdt_price()));
+//			
+//			clist.add(c);
+//		}
+//		
+//		int result = mpService.insertCartList(clist);
+//		
+//		if(result > -2) {
+//			int result2 = mpService.deleteAlllist(dlist);
+//			
+//			if(result2 > -2) {
+//				return "redirect:cartbutton.do";
+//			} else {
+//				return "";
+//			}
+//		} else {
+//			return "";
+//		}
+//	}
 }
 	
 	

@@ -123,7 +123,7 @@ a {
         		$login_page = /member/login.html
        		    $count = 10
   			-->
-				<table border="1" summary>
+				<table id="wishtable" border="1" summary>
 					<caption style="display:none;">관심상품 목록</caption>
        				<colgroup>
 						<col style="width:40px;">
@@ -151,6 +151,7 @@ a {
 			                <th scope="col">ORDER</th>
             			</tr>
           			</thead>
+
           			<tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
 						<c:set var="i" value="0"/>
           				<c:forEach var="d" items="${list }">
@@ -165,10 +166,11 @@ a {
 								<input name="wishCheck" id="wish_idx_0" type="checkbox">
 							</td>
                				<td class="thumb">
-            					<a href="${product_detail }">
+            					<a onclick="prdtmove(this);"href="#">
                						<img src="${d.path}${d.image}" alt=""></a>
        						</td>
-							<td class="left"><a href="${product_detail }" style="font-size: 13px;">${d.prdt_name }</a>
+							<td class="left"><a onclick="prdtmove(this);" href="#" style="font-size: 13px;">${d.prdt_name }</a>
+							
 							<br>
 							<c:if test="${ d.dibs_color ne null or d.dibs_size ne null }">
 							<span class="aaaaa" id="idMsg7">[옵션 : ${d.dibs_color }/${d.dibs_size }/${d.dibs_count}개]</span>
@@ -526,6 +528,63 @@ a {
 
 		    });
 		    
+	    $('#AllBuyNow').click(function(){
+	    	var wishArr = new Array($('#wishtable tbody tr').length);
+			var colorArr = new Array();
+			var countArr = new Array();
+			var sizeArr = new Array();
+			var dibs_color = document.getElementsByName('dibs_color');		// 체크박스
+			var dibs_size = document.getElementsByName('dibs_size');		// 체크박스
+			var dibs_count = document.getElementsByName('dibs_count');		// 체크박스
+			var dibsno = document.getElementsByName('dibsno'); // 위시리스트 번호
+			
+			var count = 0;
+			var colorCount = 0;
+			var sizeCount = 0;
+			var quantityCount=0;
+			
+			for(var i=0; i<wishArr.length; i++){
+					wishArr[count] = dibsno[i].value
+					colorArr[count] =  dibs_color[i].value
+					countArr[count] =  dibs_size[i].value
+					sizeArr[count] =  dibs_count[i].value
+					count++;
+				}
+			
+			console.log(wishArr);
+
+		for(var i=0; i<wishArr.length;i++){
+			if(countArr[i] == ""){
+				quantityCount++;
+			}
+		}
+		for(var i=0; i<wishArr.length;i++){
+			if(colorArr[i] == ""){
+				colorCount++;
+			}
+		}		
+		for(var i=0; i<wishArr.length;i++){
+			if(sizeArr[i] == ""){
+				sizeCount++;
+			}
+		}
+			if(colorCount > 0){
+				alert('옵션을 확인해 주세요');
+			}else if(quantityCount > 0 ){
+				alert('옵션을 확인해 주세요');
+			}else if(sizeCount > 0){
+				alert('옵션을 확인해 주세요');
+			} else {
+				console.log("성공");
+				console.log(colorCount);
+				console.log(quantityCount);
+				console.log(sizeCount);
+				console.log(wishArr);
+				location.href="Insertbasket.do?wishArr="+wishArr;
+			}
+			
+		});    
+		    
 		$('#Insertbasket').click(function(){
 			var wishArr = new Array();
 			var colorArr = new Array();
@@ -535,8 +594,6 @@ a {
 			var dibs_color = document.getElementsByName('dibs_color');		// 체크박스
 			var dibs_size = document.getElementsByName('dibs_size');		// 체크박스
 			var dibs_count = document.getElementsByName('dibs_count');		// 체크박스
-			
-			
 			
 			console.log(wishCheck);
 			var dibsno = document.getElementsByName('dibsno'); // 위시리스트 번호
@@ -552,7 +609,7 @@ a {
 				}
 			if(count == 0) {
 				alert("상품을 선택해주세요.");	
-			}
+			} else {
 		
 		var colorCount = 0;
 		var sizeCount = 0;
@@ -567,32 +624,29 @@ a {
 			if(colorArr[i] == ""){
 				colorCount++;
 			}
-		}		for(var i=0; i<wishArr.length;i++){
+		}		
+		for(var i=0; i<wishArr.length;i++){
 			if(sizeArr[i] == ""){
 				sizeCount++;
 			}
 		}
 		
-			if(countCount > 0){
-				alert('수량을 확인해 주세요');
+			if(colorCount > 0){
+				alert('옵션을 확인해 주세요');
 			}else if(countCount > 0 ){
-				alert('색상을 선택해 주세요')
+				alert('옵션을 확인해 주세요')
 			}else if(sizeCount > 0){
-				alert('사이즈를 선택해 주세요')
-			}else{
+				alert('옵션을 확인해 주세요')
+			} else{
 			alert('장바구니에 추가되었습니다.');
-			/* location.href="Insertbasket.do?wishArr="+wishArr; */
+			console.log(wishArr);
+			location.href="Insertbasket.do?wishArr="+wishArr;
 			}
-			
-		});
+		}
+	});
 		    
 		
-		$('#AllBuyNow').click(function(){
-			
-			location.href="AllBuyNow.do";
-			
-			
-		});
+		
 		
 		$('.option_close').click(function() {
 			$('.optiondetail').css('display', 'none');
@@ -688,6 +742,12 @@ a {
 		}
 	});
 
+		function prdtmove(pm) {
+				prdt_no = $(pm).parents('tr').find('.prdt_no').val();
+				
+				location.href ="product_detail.do?product_detail="+ prdt_no;
+			}
+		
 								
 	/*[ +/- num product ]
 	   ===========================================================*/
