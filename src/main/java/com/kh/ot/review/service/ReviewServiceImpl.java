@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
@@ -122,6 +123,21 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public ArrayList<Product_opt> selectOptionBestList() {
 		return rDao.selectOptionBestList();
+	}
+
+	@Override
+	public ArrayList<MainupCategory> selectCategoryList() {
+		return rDao.selectCategoryList();
+	}
+
+	@Override
+	public ArrayList<Review> selectCategoryReview(int upNo) {
+		return rDao.selectCategoryReview(upNo);
+	}
+
+	@Override
+	public ArrayList<Review> selectAllSort() {
+		return rDao.selectAllSort();
 	}
 
 }
