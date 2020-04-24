@@ -330,6 +330,28 @@ public class MypageDao {
 		return sqlSession.delete("mypageMapper.deleteDlist",map);
 	}
 
+	public DIBS selectOneBuynow(int dibsno) {
+		return sqlSession.selectOne("mypageMapper.selectOneBuynow", dibsno);
+	}
+
+	public int InsertOneCart(Cart c) {
+		return sqlSession.insert("mypageMapper.InsertOneCart", c);
+	}
+
+	public int deleteOneList(DIBS d) {
+		return sqlSession.delete("mypageMapper.deleteOneList", d);
+	}
+
+	public ArrayList<DIBS> selectAllBuyNow(int memno) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectAllBuyNow", memno);
+	}
+
+	public int deleteAlllist(ArrayList<DIBS> dlist) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("dlist", dlist);
+		return sqlSession.delete("mypageMapper.deleteAlllist", map);
+	}
+
 
 
 

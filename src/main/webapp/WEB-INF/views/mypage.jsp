@@ -60,7 +60,33 @@
     				</strong>
  					님은 현재 
 					<strong>
-						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">MEMBER</span>
+						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">
+							<c:if test="${loginMember.memSumMoney < 300000}" >
+								MEMBER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 300000 && loginMember.memSumMoney < 500000}" >
+								BRONZE
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 500000 && loginMember.memSumMoney < 700000}" >
+								SILVER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 700000 && loginMember.memSumMoney < 1000000}" >
+								GOLD
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 1000000 && loginMember.memSumMoney < 1500000 }" >
+								PLATINUM
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 1500000 && loginMember.memSumMoney < 2000000 }" >
+								DIAMOND
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 2000000 && loginMember.memSumMoney < 3000000 }" >
+								MASTER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 3000000}" >
+								CHALLENGER
+							</c:if>
+						</span>
+						
 						<span class="myshop_benefit_ship_free_message"></span>
 					</strong>
   					입니다.

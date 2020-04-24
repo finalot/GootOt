@@ -8,7 +8,6 @@ import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product_opt;
-import com.kh.ot.main.vo.Wish;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Address;
 import com.kh.ot.mypage.vo.CouponMem;
@@ -310,6 +309,16 @@ public interface MypageService {
 	 * @return
 	 */
 	int deleteDlist(ArrayList<DIBS> wish);
+
+	DIBS selectOneBuynow(int dibsno);
+
+	int InsertOneCart(Cart c);
+
+	int deleteOneList(DIBS d);
+
+	ArrayList<DIBS> selectAllBuyNow(int memno);
+
+	int deleteAlllist(ArrayList<DIBS> dlist);
 
 
 }

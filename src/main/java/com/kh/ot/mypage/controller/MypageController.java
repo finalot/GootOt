@@ -1192,7 +1192,75 @@ public class MypageController {
 		return "에러다";
 	}
 	
+	@RequestMapping("wishBuynow.do")
+	public String wishBuynow(int dibsno) {
+		
+		DIBS d = mpService.selectOneBuynow(dibsno);
+		
+		System.out.println("d : " + d);
+		
+		Cart c = new Cart();
+		
+		c.setMemNo(d.getMemno());
+		c.setPrdt_no(d.getPrdt_no());
+		c.setPrdt_count(d.getDibs_count());
+		c.setPrdt_color(d.getDibs_color());
+		c.setPrdt_size(d.getDibs_size());
+		c.setPrdt_price(d.getPrdt_price());
+		c.setPrdt_sumprice((d.getDibs_count()*d.getPrdt_price()));
+		
+		int result = mpService.InsertOneCart(c);
+		
+		if(result > 0) {
+			int result2 = mpService.deleteOneList(d);
+			
+				if(result2 > 0) {
+					return "redirect:cartbutton.do";
+				} else {
+					return "";
+				}
+		} else {
+			return "";
+		}
+	}
 	
+	@RequestMapping("AllBuyNow.do")
+	public String AllBuyNow(HttpSession session) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		int memno = m.getMemNo();
+		
+		ArrayList<DIBS> dlist = mpService.selectAllBuyNow(memno);
+		
+		ArrayList<Cart> clist = new ArrayList<Cart>();
+		for(int i=0; i<dlist.size(); i++) {
+			Cart c = new Cart();
+			
+			c.setMemNo(dlist.get(i).getMemno());
+			c.setPrdt_no(dlist.get(i).getPrdt_no());
+			c.setPrdt_count(dlist.get(i).getDibs_count());
+			c.setPrdt_color(dlist.get(i).getDibs_color());
+			c.setPrdt_size(dlist.get(i).getDibs_size());
+			c.setPrdt_price(dlist.get(i).getPrdt_price());
+			c.setPrdt_sumprice((dlist.get(i).getDibs_count()*dlist.get(i).getPrdt_price()));
+			
+			clist.add(c);
+		}
+		
+		int result = mpService.insertCartList(clist);
+		
+		if(result > -2) {
+			int result2 = mpService.deleteAlllist(dlist);
+			
+			if(result2 > -2) {
+				return "redirect:cartbutton.do";
+			} else {
+				return "";
+			}
+		} else {
+			return "";
+		}
+	}
 }
 	
 	

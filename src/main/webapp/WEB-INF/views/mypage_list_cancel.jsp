@@ -244,10 +244,13 @@ a{
 					
 					
 				</table>
-				<p class="message displaynone">주문 내역이 없습니다.</p>
+				<c:if test="${ empty list }">
+				<p class="message">반품 내역이 없습니다.</p>
+				</c:if>
 			</div>
 
 			<!-- 페이징 처리 -->
+			<c:if test="${ !empty list }">
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
 			
 				<c:if test="${empty os }">
@@ -411,6 +414,7 @@ a{
 	               </c:if>
                </c:if>
 			</div>
+			</c:if>
 			
 			
 		</div>
@@ -435,17 +439,22 @@ a{
  
  <script>
   				  
-		document.getElementById('history_end_date').value = new Date().toISOString().substring(0, 10);
-		
-		var startday = document.getElementById('history_end_date').value;
-		
-		startday = startday.split("-"); // 2019, 04, 19
-		
-		var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) - 180));
-		
-		var s_day = start.toISOString().substr(0, 10);
+ document.getElementById('history_end_date').value = new Date().toISOString().substring(0, 10);
+	
+	var startday = document.getElementById('history_end_date').value;
+	
+	startday = startday.split("-"); // 2019, 04, 19
+	
+	var start = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) - 180));
+	
+	var end = new Date((startday[0]), (startday[1] - 1), (parseInt(startday[2]) + 2));
+	
+	var s_day = start.toISOString().substr(0, 10);
+	
+	var e_day = end.toISOString().substr(0, 10);
 
 		$('#history_start_date').val(s_day);
+		$('#history_end_date').val(e_day);
 
 		$('#d-day0').click(function() {
 					var day = 1;
