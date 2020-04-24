@@ -81,9 +81,9 @@
 		WHERE MEM_NO = #{memNo}
 </select>
 
-<insert id="couponInsert" parameterType="_int"  >
+<insert id="couponInsert" parameterType="Member"  >
 	INSERT INTO COUPON_MEM
-	VALUES(1,#{memNo},1,DEFAULT,NULL,SYSDATE)
+	VALUES(CPMEM_SEQ.NEXTVAL,#{memNo},1,DEFAULT,NULL,#{tdDate})
 
 </insert>
 
@@ -164,6 +164,15 @@ AND CP_NO =5
 	INSERT INTO COUPON_MEM
 	VALUES (CPMEM_SEQ.NEXTVAL,#{memno},#{cpno},'N',NULL,SYSDATE)
 </insert>
+
+<select id="dailyCheckCount" parameterType="Member"  resultType="_int"  >
+	SELECT COUNT(*) FROM
+	COUPON_MEM
+	WHERE MEM_NO=#{memNo}
+	AND CP_DATE = SYSDATE
+	AND CP_NO = 1
+
+</select>
 
 
 

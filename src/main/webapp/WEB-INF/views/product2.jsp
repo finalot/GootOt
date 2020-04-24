@@ -69,7 +69,7 @@
 						<ul class="p-b-54">
 					 <c:forEach var="dc" items="${ dclist }">
 							<li class="p-t-4">
-								<a href="http://localhost:8888/ot/product2.do?product2=${dc.upNo }${dc.downNo }" class="s-text13 active1">
+								<a href="http://moon1:8888/ot/product2.do?product2=${dc.upNo }${dc.downNo }" class="s-text13 active1">
 									<small>${dc.downName}</small>
 								</a>
 							</li>
@@ -311,7 +311,7 @@
                   <c:param name="product2" value="<%=downPage %>"/>
                   <c:param name="currentPage" value="${mainPi.currentPage -1 }"/>
                   </c:url>
-                  <a href="http://localhost:8888/ot/${before}">
+                  <a href="http://moon1:8888/ot/${before}">
                   <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
                   </a> &nbsp;
 					</c:if>
@@ -325,7 +325,7 @@
                         <c:url var="pagination" value="product2.do">
                            <c:param name="currentPage" value="${ p }"/>
                      </c:url>
-                     <a href="http://localhost:8888/ot/product2.do?product2=<%=downPage %>&currentPage=${p }" class="item-pagination flex-c-m trans-0-4">
+                     <a href="http://moon1:8888/ot/product2.do?product2=<%=downPage %>&currentPage=${p }" class="item-pagination flex-c-m trans-0-4">
                      ${ p }</a>
                   </c:if>
                </c:forEach>
@@ -335,7 +335,7 @@
                		 <c:param name="product2" value="<%=downPage %>"/>
                      <c:param name="currentPage" value="${mainPi.currentPage +1 }"/>
                   </c:url>
-                  <a href="http://localhost:8888/ot/${after}">
+                  <a href="http://moon1:8888/ot/${after}">
                <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
                </a>
                   </c:if>

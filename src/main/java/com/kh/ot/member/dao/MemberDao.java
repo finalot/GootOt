@@ -109,8 +109,8 @@ public class MemberDao {
 	 * @param memNos
 	 * @return
 	 */
-	public int couponInsert(int memNo) {
-		return sqlSession.insert("memberMapper.couponInsert",memNo);
+	public int couponInsert(Member m) {
+		return sqlSession.insert("memberMapper.couponInsert",m);
 	}
 	
 	
@@ -183,6 +183,13 @@ public class MemberDao {
 	 */
 	public int cpCount4(Member m) {
 		return sqlSession.selectOne("memberMapper.cpCount4",m);
+	}
+
+	public int dailyCheckCount(int memNo, String tdDate) {
+		Member m = new Member();
+		m.setMemNo(memNo);
+		m.setTdDate(tdDate);
+		return sqlSession.selectOne("memberMapper.dailyCheckCount",m);
 	}
 
 

@@ -206,7 +206,7 @@
             <span class="gRight">
                 <button id="update_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
                 
-                <a href="http://localhost:8888/ot/delivery_board_detail1.do?qna_no=${b.qna_no }" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
+                <a href="http://moon1:8888/ot/delivery_board_detail1.do?qna_no=${b.qna_no }" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
             </span>
         </div>
 	</div>
@@ -220,7 +220,7 @@
 <script>
 function goList(){
 	var prdtNo = $('#prdtNo').val()
-	location.href="http://localhost:8888/ot/product_detail.do?product_detail="+prdtNo+"#qna";
+	location.href="http://moon1:8888/ot/product_detail.do?product_detail="+prdtNo+"#qna";
 };
 $('#update_ok').click(function(){
 	$('#boardUpdateForm').submit();
