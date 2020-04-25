@@ -252,8 +252,94 @@ public class MainDao {
 	public ArrayList<Review> selectPoint(int product_detail) {
 		return (ArrayList)sqlSession.selectList("productMapper.selectPoint",product_detail);
 	}
-
 	
+	public ArrayList<Review> selectPoint2(int product_detail) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectPoint2",product_detail);
+	}
+	public ArrayList<Review> selectPoint3(int product_detail) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectPoint3",product_detail);
+	}
+
+	public String selectUserName(int memCode) {
+		return sqlSession.selectOne("productMapper.selectUserName",memCode);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 25.
+	 * @작성자  : 이대윤
+	 * @내용    : 키 정렬
+	 * @param optionHeight
+	 * @return
+	 */
+	public ArrayList<Review> selectHeightSort(Product_opt op) {
+		
+		if(op.getOptNo()==1) {
+			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort1",op);
+		} else if(op.getOptNo()==2) {
+			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort2",op);			
+		} else if(op.getOptNo()==3) {			
+			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort3",op);
+		} else if(op.getOptNo()==4) {
+			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort4",op);			
+		} else if(op.getOptNo()==5) {
+			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort5",op);			
+		} else if(op.getOptNo()==6){
+			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort6",op);			
+		}else {
+			return (ArrayList)sqlSession.selectList("productMapper.selectReviewList",op);
+		}
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 25.
+	 * @작성자  : 이대윤
+	 * @내용    : 몸무게 정렬
+	 * @param optionWeight
+	 * @return
+	 */
+	public ArrayList<Review> selectWeightSort(Product_opt op) {
+		if(op.getOptNo()==7) {
+			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort7",op);
+		} else if(op.getOptNo()==8) {
+			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort8",op);			
+		} else if(op.getOptNo()==9) {			
+			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort9",op);
+		} else if(op.getOptNo()==10) {
+			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort10",op);			
+		} else if(op.getOptNo()==11) {
+			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort11",op);			
+		} else if(op.getOptNo()==12){
+			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort12",op);			
+		}else {
+			return (ArrayList)sqlSession.selectList("productMapper.selectReviewList",op);
+		}
+	}
+	
+	
+	/**
+	 * @작성일  : 2020. 4. 25.
+	 * @작성자  : 이대윤
+	 * @내용    : 사이즈 정렬
+	 * @param optionSize
+	 * @return
+	 */
+	public ArrayList<Review> selectSizeSort(Product_opt op) {
+		if(op.getOptNo()==13) {
+			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort13",op);
+		} else if(op.getOptNo()==14) {
+			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort14",op);			
+		} else if(op.getOptNo()==15) {			
+			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort15",op);
+		} else if(op.getOptNo()==16) {
+			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort16",op);			
+		} else if(op.getOptNo()==17) {
+			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort17",op);			
+		} else if(op.getOptNo()==18){
+			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort18",op);			
+		}else {
+			return (ArrayList)sqlSession.selectList("productMapper.selectReviewList",op);
+		}
+	}
 
 
 

@@ -202,6 +202,31 @@ public class MainServiceImpl implements MainService {
 	public ArrayList<Review> selectPoint(int product_detail) {
 		return mainDao.selectPoint(product_detail);
 	}
+	
+	@Override
+	public ArrayList<Review> selectPoint2(int product_detail) {
+		return mainDao.selectPoint2(product_detail);
+	}
+	@Override
+	public ArrayList<Review> selectPoint3(int product_detail) {
+		return mainDao.selectPoint3(product_detail);
+	}
+	@Override
+	public String selectUserName(int memCode) {
+		return mainDao.selectUserName(memCode);
+	}
+	@Override
+	public ArrayList<Review> selectHeightSort(Product_opt op) {
+		return mainDao.selectHeightSort(op);
+	}
+	@Override
+	public ArrayList<Review> selectWeightSort(Product_opt op) {
+		return mainDao.selectWeightSort(op);	
+	}
+	@Override
+	public ArrayList<Review> selectSizeSort(Product_opt op) {
+		return mainDao.selectSizeSort(op);	
+	}
 
 	
 

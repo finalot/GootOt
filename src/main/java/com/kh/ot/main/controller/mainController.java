@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Cart;
@@ -737,9 +738,11 @@ MainSearchCondition msc= new MainSearchCondition();
 			   
 			   
 			   if(count==0) {
+				   fileName="/ot/resources/images/oT/detailReviewPhoto/"+timeStamp+f.getOriginalFilename();
 				   rvImage=fileName;
 				   count++;
 			   }else if(count==1) {
+				   fileName="/ot/resources/images/oT/detailReviewPhoto/"+timeStamp+f.getOriginalFilename();
 				   rvImage2=fileName;
 				   count++;
 			   }
@@ -781,6 +784,98 @@ MainSearchCondition msc= new MainSearchCondition();
 		  
 		  }
 		 
+		   
+		   return new Gson().toJson(resultMap);
+		   
+	   }
+	   
+	   @RequestMapping("reviewModal.do")
+	   @ResponseBody
+	   public String reviewModal(int product_detail,String sort,int opNo){
+		   Map<String,Object> resultMap = new HashMap<String,Object>();
+		   ReviewPoint rp = new ReviewPoint();
+			int star1 =0;
+			int star2 =0;
+			int star3 =0;
+			int star4 =0;
+			int star5 =0;
+			int sumPoint =0;
+			Product_opt po = new Product_opt();
+			ArrayList<Review> rvlist = new ArrayList<>();
+			
+			if(sort.equals("no")) {
+				 rvlist = mainService.selectPoint(product_detail);
+			}else if(sort.equals("like")) {
+				 rvlist = mainService.selectPoint2(product_detail);
+			}else if(sort.equals("point")) {
+				 rvlist = mainService.selectPoint3(product_detail);
+			}else if(sort.equals("height")) {
+				po.setOptNo(opNo);
+				po.setPrdtNo(product_detail);
+				
+				rvlist = mainService.selectHeightSort(po);
+			}else if(sort.equals("weight")) {
+				po.setOptNo(opNo);
+				po.setPrdtNo(product_detail);
+				
+				rvlist = mainService.selectWeightSort(po);
+			}else if(sort.equals("size")) {
+				po.setOptNo(opNo);
+				po.setPrdtNo(product_detail);
+				
+				rvlist = mainService.selectSizeSort(po);
+			}
+			
+			ArrayList<Product> pdlist = mainService.selectDetailList(product_detail);
+			int avg = 0;
+			int avg1 = 0;
+			double pointAvg =0;
+			ArrayList<String> namelist = new ArrayList<>();
+			String userName = "";
+			for (int i =0; i<rvlist.size();i++) {
+				
+				userName=mainService.selectUserName(rvlist.get(i).getMemCode());
+				namelist.add(userName);
+				sumPoint+=rvlist.get(i).getRvPoint();
+				avg1++;
+				if(rvlist.get(i).getRvPoint()==1) {
+					star1++;
+				}else if(rvlist.get(i).getRvPoint()==2) {
+					star2++;
+				}else if(rvlist.get(i).getRvPoint()==3) {
+					star3++;
+				}else if(rvlist.get(i).getRvPoint()==4) {
+					star4++;
+				}else if(rvlist.get(i).getRvPoint()==5) {
+					star5++;
+				}
+			}
+			if(avg1==0) {
+				avg=1;
+				pointAvg = (double)sumPoint/(double)avg;
+			}else {
+				pointAvg = (double)sumPoint/(double)avg1;
+			}
+			
+			rp.setPoint1(star1);
+			rp.setPoint2(star2);
+			rp.setPoint3(star3);
+			rp.setPoint4(star4);
+			rp.setPoint5(star5);
+			
+			rp.setPointAvg(Math.round(pointAvg*10)/10.0);
+			
+			int sumStar = star1+star2+star3+star4+star5;
+			
+			rp.setReviewCount(sumStar);
+			System.out.println(rp);
+			System.out.println(pdlist);
+			System.out.println(namelist);
+			System.out.println(rvlist);
+			resultMap.put("rp",rp);
+			resultMap.put("pdlist",pdlist);
+			resultMap.put("namelist",namelist);
+		   resultMap.put("rvlist",rvlist);
 		   
 		   return new Gson().toJson(resultMap);
 		   

@@ -1160,7 +1160,11 @@ function qna(){
 						function reviewOff() {
 							$('#reviewWrite').css("display","none");
 							scrollX.className ='';
+							
+							nono();
 						}
+						
+						
 						</script>			
 									
 									
@@ -1645,22 +1649,21 @@ function qna(){
 						<div id=sortButton>
 									
 								<!-- Button -->
-								<button id="scoreSort" class=" bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="review.jsp"
-						style=" width: 7%; height: 20px; font-size: 12px; background:white;color:gray;"><Strong>평점순</Strong> <small>(100)</small></button>
-									
-									&nbsp;|
-									
-								<!-- Button -->
-								<button id="recommandSort"class="bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="review.jsp"
-						style=" width: 4%; height: 20px; font-size: 12px; background:white;color:gray;"><Strong>좋아요순</Strong></button>
-									
-									&nbsp;|
-									
-								<!-- Button -->
-								<button id="newSort"class=" bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="review.jsp"
+								<button id="no"class=" bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="review(this.id)"
 						style=" width: 4%; height: 20px; font-size: 12px; background:white;color:gray;"><Strong>최신순</Strong></button>
 									
-						</div>
+						&nbsp;|
+								<!-- Button -->
+								<button id="point" class=" bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="review(this.id)"
+						style=" width: 7%; height: 20px; font-size: 12px; background:white;color:gray;"><Strong>평점순</Strong></button>
+									&nbsp;|
+									
+								<!-- Button -->
+								<button id="like"class="bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="review(this.id)"
+						style=" width: 4%; height: 20px; font-size: 12px; background:white;color:gray;"><Strong>좋아요순</Strong></button>
+									
+								</div>	
+									
 						<!-- 정렬 부분 버튼 -->
 						
 						
@@ -1681,7 +1684,7 @@ function qna(){
             
               <ul class="review_options_search__values"style="margin-left:10px;">
                 
-                  <li class="review_options_search__value">
+                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_3" id="option_149" value="1" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_0">
                     <label for="review_option_type_3_0">149 cm 이하</label>
                   </li>
@@ -1728,32 +1731,32 @@ function qna(){
               <ul class="review_options_search__values"style="margin-left:11px;">
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="-39" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_0">
+                    <input type="checkbox" name="option_4" value="7" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_0">
                     <label for="review_option_type_4_0">39 kg 이하</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="40-44" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_1">
+                    <input type="checkbox" name="option_4" value="8" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_1">
                     <label for="review_option_type_4_1">40 - 44 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="45-49" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_2">
+                    <input type="checkbox" name="option_4" value="9" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_2">
                     <label for="review_option_type_4_2">45 - 49 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="50-54" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_3">
+                    <input type="checkbox" name="option_4" value="10" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_3">
                     <label for="review_option_type_4_3">50 - 54 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="55-59" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_4">
+                    <input type="checkbox" name="option_4" value="11" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_4">
                     <label for="review_option_type_4_4">55 - 59 kg</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_4" value="60" class="checkbox-review-option-search" style="border:none;" id="review_option_type_4_5">
+                    <input type="checkbox" name="option_4" value="12" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_5">
                     <label for="review_option_type_4_5">60 kg 이상</label>
                   </li>
                 
@@ -1774,28 +1777,33 @@ function qna(){
               <ul class="review_options_search__values"style="margin-left:12px;">
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_5" value="XS" class="checkbox-review-option-search" style="border:none;" id="review_option_type_5_0">
+                    <input type="checkbox" name="option_5" value="13" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_0">
                     <label for="review_option_type_5_0">XS</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_5" value="S" class="checkbox-review-option-search" style="border:none;" id="review_option_type_5_1">
+                    <input type="checkbox" name="option_5" value="14" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_1">
                     <label for="review_option_type_5_1">S</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_5" value="M" class="checkbox-review-option-search" style="border:none;" id="review_option_type_5_2">
+                    <input type="checkbox" name="option_5" value="15" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_2">
                     <label for="review_option_type_5_2">M</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_5" value="L" class="checkbox-review-option-search" style="border:none;" id="review_option_type_5_3">
+                    <input type="checkbox" name="option_5" value="16" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_3">
                     <label for="review_option_type_5_3">L</label>
                   </li>
                 
                   <li class="review_options_search__value">
-                    <input type="checkbox" name="option_5" value="XL" class="checkbox-review-option-search" style="border:none;" id="review_option_type_5_4">
+                    <input type="checkbox" name="option_5" value="17" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_4">
                     <label for="review_option_type_5_4">XL</label>
+                  </li>
+                  
+                  <li class="review_options_search__value">
+                    <input type="checkbox" name="option_5" value="18" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_4">
+                    <label for="review_option_type_5_4">F</label>
                   </li>
                 
               </ul>
@@ -1937,7 +1945,7 @@ function qna(){
 									<br><br>
 								<div class="reviews_index__no_data_message">아직 작성한 리뷰가
 									없습니다.</div>
-								<ul class="reviews_index__reviews reviews">
+								<ul class="reviews_index__reviews reviews" id="reviewArea">
 								
 									<!-- 리뷰1줄 시작 -->
 									<!-- 리뷰1 -->
@@ -2090,7 +2098,126 @@ function qna(){
 		// When the user clicks on the button, open the modal 
 		btn.onclick = function() {
 			modal.style.display = "block";
-			review();
+			review("no");
+		}
+		function review(arguments){
+					var count = 0;
+			var sort = arguments;
+			var prNo = $('#prNo_val').val();
+			var opNo = 0;
+				$.ajax({
+					url:"reviewModal.do",
+					data:{product_detail:prNo,sort:sort,opNo:opNo},
+					dataType:"json",
+					/* async: false, */
+					success:function(data){
+						$("#reviewArea").text("");
+				for(var i=0; i< data.rvlist.length;i++){
+	console.log(data.rvlist.length);					
+					//리뷰 작성str
+					const str = 
+					   	 '<li class="reviews_index_gallery_review" id="review'+count+'o"'+
+										'style="-webkit-box-shadow: 0 4px 6px -6px #222;'+
+  '-moz-box-shadow: 0 4px 6px -6px #222;'+
+  'box-shadow: 0 4px 6px -6px #222;width: 15%; height: 370px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-left: 2%; margin-top: -1%;">'+
+										'<div class="photo_review_thumbnail js-link-fullscreen-popup"'+
+											'data-url="'+data.rvlist[count].rvImage+'">'+
+											'<div class="photo_review_thumbnail__thumbnail_container">'+
+												'<ul>'+
+													'<li class="photo_review_thumbnail__review_image_thumbnail">'+
+														'<img class="js-review-image"'+
+														'src="'+data.rvlist[count].rvImage+'"'+
+														'style="width: 100%; height: 237px; opacity: 1; border-bottom: 2px solid lightgray;">'+
+													'</li>'+
+												'</ul>'+
+												'<div class="photo_review_thumbnail__review_info">'+
+													'<div'+
+														'class="photo_review_thumbnail__media_count_indicator'+
+            'photo_review_thumbnail__media_count_indicator--total_count_1">'+
+														'<div'+
+															'class="photo_review_thumbnail__media_count_indicator_dot"></div>'+
+													'</div>'+
+												'</div>'+
+											'</div>'+
+											'<div style="border-radius: 2%; width: 90%; margin-left: 5%; height:93px;"'+
+												'class="photo_review_thumbnail__review_author_info">'+
+												'<div style="margin-top: 2%; border-radius: 2%; height:30px;"'+
+													'class="photo_review_thumbnail__review_title js-translate-review-message">'+
+													''+
+													data.rvlist[count].rvInfo+'</div>'+
+												'<br>'+
+												'<div style="margin-top: -2%; color: gray;"'+
+													'class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">'+
+													'<div class="photo_review_thumbnail__author_name"'+
+														'style="float: left;">'+
+														'<strong>'+data.namelist[count]+'</strong>'+
+													'</div>'+
+													'<div class="photo_review_thumbnail__created_at"'+
+														'style="position: relative; left: 5%;">'+data.rvlist[count].rvDate+'</div>'+
+													'<hr>'+
+												'</div>'+
+											'</div>'+
+										'</div>'+
+										'<div style="position: relative; top: -6%;"'+
+											'class="reviews_index_gallery_review__review_product js-link-iframe "'+
+											'data-url="'+data.pdlist[0].prdtImagePath+data.pdlist[0].prdtImage+'">'+
+											'<div'+
+												'class="reviews_index_gallery_review__review_product_thumbnail">'+
+												'<img class="" width="33"'+
+													'height="33"'+
+													'src="'+data.pdlist[0].prdtImagePath+data.pdlist[0].prdtImage+'"'+
+													'style="padding-right: 3%; opacity: 1; display:inline-block;">'+
+											'</div>'+
+											'<div class="reviews_index_gallery_review__review_product_info">'+
+												'<div'+
+													'class="reviews_index_gallery_review__product_info_title" style="display:inline-block; position:relative;bottom:48px;left:45px;">'+
+													data.pdlist[0].prdtName+'</div>'+
+												'<div'+
+													'class="reviews_index_gallery_review__product_info_feedbacks">'+
+													'<span class="reviews_index_gallery_review__reviews_count"'+
+														'style="color: #c3b798;display:inline-block;position:relative;bottom:48px;left:45px;">리뷰'+
+														'<strong style="color:black;display:inline-block;">'+data.rp.reviewCount+'</strong></span> <span '+
+														'class="reviews_index_gallery_review__display_score" '+
+														'style="color: #c3b798;display:inline-block;position:relative;bottom:48px;left:45px;">평점'+
+														'<strong style="color: black;display:inline-block;"id="starArea'+count+'o">'+data.rvlist[count].rvPoint+'</strong>&nbsp;</span>'+
+												'</div>'+
+											'</div>'+
+										'</div>'+
+									'</li>';
+				
+									
+					   	 
+					   	 
+					   	 //리뷰 추가
+		$("#reviewArea").append(str); 
+					   	 
+		var star1 = '<i class="fa fa-fw fa-star"></i>'
+		   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+		   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+		   	 var star4 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+		   	 var star5 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+		   	 if(data.rvlist[count].rvPoint==1){
+		   	 $('#starArea'+count+'o').after(star1);
+		   	 }else if(data.rvlist[count].rvPoint==2){
+		   		 $('#starArea'+count+'o').after(star2);
+		   	 }else if(data.rvlist[count].rvPoint==3){
+		   		 $('#starArea'+count+'o').after(star3);
+		   	 }else if(data.rvlist[count].rvPoint==4){
+		   		 $('#starArea'+count+'o').after(star4);
+		   	 }else if(data.rvlist[count].rvPoint==5){
+		   		 $('#starArea'+count+'o').after(star5);
+		   	 }
+					   	 
+					   	 
+				count++;
+				}
+				
+				
+				},error:function(){
+						alert("review불러오기 실패데스네");
+					}
+				})
+		
 		}
 		
 
@@ -2104,6 +2231,10 @@ function qna(){
 			if (event.target == modal) {
 				modal.style.display = "none";
 			}
+		}
+		
+		function nono() {
+			location.reload();
 		}
 	</script>
 	<!-- 디테일 사진 시작부분 -->
@@ -2958,6 +3089,412 @@ function qna(){
 		
 
 	</script>
+	
+	
+	<!-- 키 정렬  스크립트 -->
+	<script>
+	  $(".checkbox-review-option-search").click(function() {
+			var optionHeightArr=document.getElementsByName('option_3');
+			var prNo = $('#prNo_val').val();
+			var sort = "height";
+			var opNo = 0;
+			var count = 0;
+			for(var i=0; i<optionHeightArr.length;i++) {
+				if(optionHeightArr[i].checked==true){
+					opNo = optionHeightArr[i].value;
+				}
+			}
+			console.log(opNo);
+			
+		
+			
+			$.ajax({
+				url : "reviewModal.do",
+				data : {product_detail:prNo,sort:sort,opNo:opNo},
+				dataType:"json",
+				success : function(data) {$("#reviewArea").text("");
+				for(var i=0; i< data.rvlist.length;i++){
+									//리뷰 작성str
+									const str = 
+									   	 '<li class="reviews_index_gallery_review" id="review'+count+'o"'+
+														'style="-webkit-box-shadow: 0 4px 6px -6px #222;'+
+				  '-moz-box-shadow: 0 4px 6px -6px #222;'+
+				  'box-shadow: 0 4px 6px -6px #222;width: 15%; height: 370px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-left: 2%; margin-top: -1%;">'+
+														'<div class="photo_review_thumbnail js-link-fullscreen-popup"'+
+															'data-url="'+data.rvlist[count].rvImage+'">'+
+															'<div class="photo_review_thumbnail__thumbnail_container">'+
+																'<ul>'+
+																	'<li class="photo_review_thumbnail__review_image_thumbnail">'+
+																		'<img class="js-review-image"'+
+																		'src="'+data.rvlist[count].rvImage+'"'+
+																		'style="width: 100%; height: 237px; opacity: 1; border-bottom: 2px solid lightgray;">'+
+																	'</li>'+
+																'</ul>'+
+																'<div class="photo_review_thumbnail__review_info">'+
+																	'<div'+
+																		'class="photo_review_thumbnail__media_count_indicator'+
+				            'photo_review_thumbnail__media_count_indicator--total_count_1">'+
+																		'<div'+
+																			'class="photo_review_thumbnail__media_count_indicator_dot"></div>'+
+																	'</div>'+
+																'</div>'+
+															'</div>'+
+															'<div style="border-radius: 2%; width: 90%; margin-left: 5%; height:93px;"'+
+																'class="photo_review_thumbnail__review_author_info">'+
+																'<div style="margin-top: 2%; border-radius: 2%; height:30px;"'+
+																	'class="photo_review_thumbnail__review_title js-translate-review-message">'+
+																	''+
+																	data.rvlist[count].rvInfo+'</div>'+
+																'<br>'+
+																'<div style="margin-top: -2%; color: gray;"'+
+																	'class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">'+
+																	'<div class="photo_review_thumbnail__author_name"'+
+																		'style="float: left;">'+
+																		'<strong>'+data.namelist[count]+'</strong>'+
+																	'</div>'+
+																	'<div class="photo_review_thumbnail__created_at"'+
+																		'style="position: relative; left: 5%;">'+data.rvlist[count].rvDate+'</div>'+
+																	'<hr>'+
+																'</div>'+
+															'</div>'+
+														'</div>'+
+														'<div style="position: relative; top: -6%;"'+
+															'class="reviews_index_gallery_review__review_product js-link-iframe "'+
+															'data-url="'+data.pdlist[0].prdtImagePath+data.pdlist[0].prdtImage+'">'+
+															'<div'+
+																'class="reviews_index_gallery_review__review_product_thumbnail">'+
+																'<img class="" width="33"'+
+																	'height="33"'+
+																	'src="'+data.pdlist[0].prdtImagePath+data.pdlist[0].prdtImage+'"'+
+																	'style="padding-right: 3%; opacity: 1; display:inline-block;">'+
+															'</div>'+
+															'<div class="reviews_index_gallery_review__review_product_info">'+
+																'<div'+
+																	'class="reviews_index_gallery_review__product_info_title" style="display:inline-block; position:relative;bottom:48px;left:45px;">'+
+																	data.pdlist[0].prdtName+'</div>'+
+																'<div'+
+																	'class="reviews_index_gallery_review__product_info_feedbacks">'+
+																	'<span class="reviews_index_gallery_review__reviews_count"'+
+																		'style="color: #c3b798;display:inline-block;position:relative;bottom:48px;left:45px;">리뷰'+
+																		'<strong style="color:black;display:inline-block;">'+data.rp.reviewCount+'</strong></span> <span '+
+																		'class="reviews_index_gallery_review__display_score" '+
+																		'style="color: #c3b798;display:inline-block;position:relative;bottom:48px;left:45px;">평점'+
+																		'<strong style="color: black;display:inline-block;"id="starArea'+count+'o">'+data.rvlist[count].rvPoint+'</strong>&nbsp;</span>'+
+																'</div>'+
+															'</div>'+
+														'</div>'+
+													'</li>';
+								
+													
+									   	 
+									   	 
+									   	 //리뷰 추가
+						$("#reviewArea").append(str); 
+									   	 
+						var star1 = '<i class="fa fa-fw fa-star"></i>'
+						   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star4 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star5 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 if(data.rvlist[count].rvPoint==1){
+						   	 $('#starArea'+count+'o').after(star1);
+						   	 }else if(data.rvlist[count].rvPoint==2){
+						   		 $('#starArea'+count+'o').after(star2);
+						   	 }else if(data.rvlist[count].rvPoint==3){
+						   		 $('#starArea'+count+'o').after(star3);
+						   	 }else if(data.rvlist[count].rvPoint==4){
+						   		 $('#starArea'+count+'o').after(star4);
+						   	 }else if(data.rvlist[count].rvPoint==5){
+						   		 $('#starArea'+count+'o').after(star5);
+						   	 }
+									   	 
+									   	 
+								count++;
+								}
+								
+								
+								},error:function() {
+							alert("에러임에러임");
+					}
+		});
+			
+		
+			
+			
+	  
+	  
+	});
+	  </script>
+	  
+	  <script>
+	  <!--몸무게 정렬 스크립트-->
+	  $(".checkbox-review-option-search2").click(function() {
+		  var count = 0;
+			var optionWeightArr = document.getElementsByName('option_4');
+			var prNo = $('#prNo_val').val();
+			var sort = "weight";
+			var opNo = 0;
+			
+			for(var i=0; i<optionWeightArr.length;i++) {
+				if(optionWeightArr[i].checked==true){
+					opNo = optionWeightArr[i].value;
+				}
+			}
+			
+			console.log(opNo);
+			
+			$.ajax({
+				url : "reviewModal.do",
+				data : {product_detail:prNo,sort:sort,opNo:opNo},
+				dataType:"json",
+				success : function(data) {$("#reviewArea").text("");
+				for(var i=0; i< data.rvlist.length;i++){
+					console.log(data.rvlist.length);					
+									//리뷰 작성str
+									const str = 
+									   	 '<li class="reviews_index_gallery_review" id="review'+count+'o"'+
+														'style="-webkit-box-shadow: 0 4px 6px -6px #222;'+
+				  '-moz-box-shadow: 0 4px 6px -6px #222;'+
+				  'box-shadow: 0 4px 6px -6px #222;width: 15%; height: 370px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-left: 2%; margin-top: -1%;">'+
+														'<div class="photo_review_thumbnail js-link-fullscreen-popup"'+
+															'data-url="'+data.rvlist[count].rvImage+'">'+
+															'<div class="photo_review_thumbnail__thumbnail_container">'+
+																'<ul>'+
+																	'<li class="photo_review_thumbnail__review_image_thumbnail">'+
+																		'<img class="js-review-image"'+
+																		'src="'+data.rvlist[count].rvImage+'"'+
+																		'style="width: 100%; height: 237px; opacity: 1; border-bottom: 2px solid lightgray;">'+
+																	'</li>'+
+																'</ul>'+
+																'<div class="photo_review_thumbnail__review_info">'+
+																	'<div'+
+																		'class="photo_review_thumbnail__media_count_indicator'+
+				            'photo_review_thumbnail__media_count_indicator--total_count_1">'+
+																		'<div'+
+																			'class="photo_review_thumbnail__media_count_indicator_dot"></div>'+
+																	'</div>'+
+																'</div>'+
+															'</div>'+
+															'<div style="border-radius: 2%; width: 90%; margin-left: 5%; height:93px;"'+
+																'class="photo_review_thumbnail__review_author_info">'+
+																'<div style="margin-top: 2%; border-radius: 2%; height:30px;"'+
+																	'class="photo_review_thumbnail__review_title js-translate-review-message">'+
+																	''+
+																	data.rvlist[count].rvInfo+'</div>'+
+																'<br>'+
+																'<div style="margin-top: -2%; color: gray;"'+
+																	'class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">'+
+																	'<div class="photo_review_thumbnail__author_name"'+
+																		'style="float: left;">'+
+																		'<strong>'+data.namelist[count]+'</strong>'+
+																	'</div>'+
+																	'<div class="photo_review_thumbnail__created_at"'+
+																		'style="position: relative; left: 5%;">'+data.rvlist[count].rvDate+'</div>'+
+																	'<hr>'+
+																'</div>'+
+															'</div>'+
+														'</div>'+
+														'<div style="position: relative; top: -6%;"'+
+															'class="reviews_index_gallery_review__review_product js-link-iframe "'+
+															'data-url="'+data.pdlist[0].prdtImagePath+data.pdlist[0].prdtImage+'">'+
+															'<div'+
+																'class="reviews_index_gallery_review__review_product_thumbnail">'+
+																'<img class="" width="33"'+
+																	'height="33"'+
+																	'src="'+data.pdlist[0].prdtImagePath+data.pdlist[0].prdtImage+'"'+
+																	'style="padding-right: 3%; opacity: 1; display:inline-block;">'+
+															'</div>'+
+															'<div class="reviews_index_gallery_review__review_product_info">'+
+																'<div'+
+																	'class="reviews_index_gallery_review__product_info_title" style="display:inline-block; position:relative;bottom:48px;left:45px;">'+
+																	data.pdlist[0].prdtName+'</div>'+
+																'<div'+
+																	'class="reviews_index_gallery_review__product_info_feedbacks">'+
+																	'<span class="reviews_index_gallery_review__reviews_count"'+
+																		'style="color: #c3b798;display:inline-block;position:relative;bottom:48px;left:45px;">리뷰'+
+																		'<strong style="color:black;display:inline-block;">'+data.rp.reviewCount+'</strong></span> <span '+
+																		'class="reviews_index_gallery_review__display_score" '+
+																		'style="color: #c3b798;display:inline-block;position:relative;bottom:48px;left:45px;">평점'+
+																		'<strong style="color: black;display:inline-block;"id="starArea'+count+'o">'+data.rvlist[count].rvPoint+'</strong>&nbsp;</span>'+
+																'</div>'+
+															'</div>'+
+														'</div>'+
+													'</li>';
+								
+													
+									   	 
+									   	 
+									   	 //리뷰 추가
+						$("#reviewArea").append(str); 
+									   	 
+						var star1 = '<i class="fa fa-fw fa-star"></i>'
+						   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star4 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star5 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 if(data.rvlist[count].rvPoint==1){
+						   	 $('#starArea'+count+'o').after(star1);
+						   	 }else if(data.rvlist[count].rvPoint==2){
+						   		 $('#starArea'+count+'o').after(star2);
+						   	 }else if(data.rvlist[count].rvPoint==3){
+						   		 $('#starArea'+count+'o').after(star3);
+						   	 }else if(data.rvlist[count].rvPoint==4){
+						   		 $('#starArea'+count+'o').after(star4);
+						   	 }else if(data.rvlist[count].rvPoint==5){
+						   		 $('#starArea'+count+'o').after(star5);
+						   	 }
+									   	 
+									   	 
+								count++;
+								}
+								
+								
+								},error:function() {
+							alert("에러임에러임");
+					}
+		});
+			
+			
+	  });
+	  
+	  </script>
+
+
+	  <script>
+	  <!-- 사이즈 정렬 스크립트 -->
+	  
+	  $(".checkbox-review-option-search3").click(function() {
+		  var count = 0;
+			var optionSizeArr = document.getElementsByName('option_5');
+			var prNo = $('#prNo_val').val();
+			var sort = "size";
+			var opNo = 0;
+			
+			for(var i=0; i<optionSizeArr.length;i++) {
+				if(optionSizeArr[i].checked==true){
+					opNo = optionSizeArr[i].value;
+				}
+			}
+			
+			console.log(opNo);
+			
+
+			$.ajax({
+				url : "reviewModal.do",
+				data : {product_detail:prNo,sort:sort,opNo:opNo},
+				dataType:"json",
+				success : function(data) {$("#reviewArea").text("");
+				for(var i=0; i< data.rvlist.length;i++){
+					console.log(data.rvlist.length);					
+									//리뷰 작성str
+									const str = 
+									   	 '<li class="reviews_index_gallery_review" id="review'+count+'o"'+
+														'style="-webkit-box-shadow: 0 4px 6px -6px #222;'+
+				  '-moz-box-shadow: 0 4px 6px -6px #222;'+
+				  'box-shadow: 0 4px 6px -6px #222;width: 15%; height: 370px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-left: 2%; margin-top: -1%;">'+
+														'<div class="photo_review_thumbnail js-link-fullscreen-popup"'+
+															'data-url="'+data.rvlist[count].rvImage+'">'+
+															'<div class="photo_review_thumbnail__thumbnail_container">'+
+																'<ul>'+
+																	'<li class="photo_review_thumbnail__review_image_thumbnail">'+
+																		'<img class="js-review-image"'+
+																		'src="'+data.rvlist[count].rvImage+'"'+
+																		'style="width: 100%; height: 237px; opacity: 1; border-bottom: 2px solid lightgray;">'+
+																	'</li>'+
+																'</ul>'+
+																'<div class="photo_review_thumbnail__review_info">'+
+																	'<div'+
+																		'class="photo_review_thumbnail__media_count_indicator'+
+				            'photo_review_thumbnail__media_count_indicator--total_count_1">'+
+																		'<div'+
+																			'class="photo_review_thumbnail__media_count_indicator_dot"></div>'+
+																	'</div>'+
+																'</div>'+
+															'</div>'+
+															'<div style="border-radius: 2%; width: 90%; margin-left: 5%; height:93px;"'+
+																'class="photo_review_thumbnail__review_author_info">'+
+																'<div style="margin-top: 2%; border-radius: 2%; height:30px;"'+
+																	'class="photo_review_thumbnail__review_title js-translate-review-message">'+
+																	''+
+																	data.rvlist[count].rvInfo+'</div>'+
+																'<br>'+
+																'<div style="margin-top: -2%; color: gray;"'+
+																	'class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">'+
+																	'<div class="photo_review_thumbnail__author_name"'+
+																		'style="float: left;">'+
+																		'<strong>'+data.namelist[count]+'</strong>'+
+																	'</div>'+
+																	'<div class="photo_review_thumbnail__created_at"'+
+																		'style="position: relative; left: 5%;">'+data.rvlist[count].rvDate+'</div>'+
+																	'<hr>'+
+																'</div>'+
+															'</div>'+
+														'</div>'+
+														'<div style="position: relative; top: -6%;"'+
+															'class="reviews_index_gallery_review__review_product js-link-iframe "'+
+															'data-url="'+data.pdlist[0].prdtImagePath+data.pdlist[0].prdtImage+'">'+
+															'<div'+
+																'class="reviews_index_gallery_review__review_product_thumbnail">'+
+																'<img class="" width="33"'+
+																	'height="33"'+
+																	'src="'+data.pdlist[0].prdtImagePath+data.pdlist[0].prdtImage+'"'+
+																	'style="padding-right: 3%; opacity: 1; display:inline-block;">'+
+															'</div>'+
+															'<div class="reviews_index_gallery_review__review_product_info">'+
+																'<div'+
+																	'class="reviews_index_gallery_review__product_info_title" style="display:inline-block; position:relative;bottom:48px;left:45px;">'+
+																	data.pdlist[0].prdtName+'</div>'+
+																'<div'+
+																	'class="reviews_index_gallery_review__product_info_feedbacks">'+
+																	'<span class="reviews_index_gallery_review__reviews_count"'+
+																		'style="color: #c3b798;display:inline-block;position:relative;bottom:48px;left:45px;">리뷰'+
+																		'<strong style="color:black;display:inline-block;">'+data.rp.reviewCount+'</strong></span> <span '+
+																		'class="reviews_index_gallery_review__display_score" '+
+																		'style="color: #c3b798;display:inline-block;position:relative;bottom:48px;left:45px;">평점'+
+																		'<strong style="color: black;display:inline-block;"id="starArea'+count+'o">'+data.rvlist[count].rvPoint+'</strong>&nbsp;</span>'+
+																'</div>'+
+															'</div>'+
+														'</div>'+
+													'</li>';
+								
+													
+									   	 
+									   	 
+									   	 //리뷰 추가
+						$("#reviewArea").append(str); 
+									   	 
+						var star1 = '<i class="fa fa-fw fa-star"></i>'
+						   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star4 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star5 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 if(data.rvlist[count].rvPoint==1){
+						   	 $('#starArea'+count+'o').after(star1);
+						   	 }else if(data.rvlist[count].rvPoint==2){
+						   		 $('#starArea'+count+'o').after(star2);
+						   	 }else if(data.rvlist[count].rvPoint==3){
+						   		 $('#starArea'+count+'o').after(star3);
+						   	 }else if(data.rvlist[count].rvPoint==4){
+						   		 $('#starArea'+count+'o').after(star4);
+						   	 }else if(data.rvlist[count].rvPoint==5){
+						   		 $('#starArea'+count+'o').after(star5);
+						   	 }
+									   	 
+									   	 
+								count++;
+								}
+								
+								
+								},error:function() {
+							alert("에러임에러임");
+					}
+		});
+	  });
+	  
+	  </script>
+	
+	
+	
 	
 </body>
 		
