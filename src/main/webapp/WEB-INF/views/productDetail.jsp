@@ -3098,7 +3098,7 @@ function qna(){
 			var prNo = $('#prNo_val').val();
 			var sort = "height";
 			var opNo = 0;
-			var count = 0;
+			  var count = 0;
 			for(var i=0; i<optionHeightArr.length;i++) {
 				if(optionHeightArr[i].checked==true){
 					opNo = optionHeightArr[i].value;

@@ -252,12 +252,21 @@ public class MainDao {
 	public ArrayList<Review> selectPoint(int product_detail) {
 		return (ArrayList)sqlSession.selectList("productMapper.selectPoint",product_detail);
 	}
-	
-	public ArrayList<Review> selectPoint2(int product_detail) {
-		return (ArrayList)sqlSession.selectList("productMapper.selectPoint2",product_detail);
+	public ArrayList<Review> selectPoint1(MainPageInfo mainPi, int product_detail) {
+		int offset=(mainPi.getCurrentPage() - 1) * mainPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("productMapper.selectPoint1",product_detail,rowBounds);
 	}
-	public ArrayList<Review> selectPoint3(int product_detail) {
-		return (ArrayList)sqlSession.selectList("productMapper.selectPoint3",product_detail);
+	
+	public ArrayList<Review> selectPoint2(MainPageInfo mainPi, int product_detail) {
+		int offset=(mainPi.getCurrentPage() - 1) * mainPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("productMapper.selectPoint2",product_detail,rowBounds);
+	}
+	public ArrayList<Review> selectPoint3(MainPageInfo mainPi, int product_detail) {
+		int offset=(mainPi.getCurrentPage() - 1) * mainPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("productMapper.selectPoint3",product_detail,rowBounds);
 	}
 
 	public String selectUserName(int memCode) {
@@ -271,22 +280,24 @@ public class MainDao {
 	 * @param optionHeight
 	 * @return
 	 */
-	public ArrayList<Review> selectHeightSort(Product_opt op) {
+	public ArrayList<Review> selectHeightSort(MainPageInfo mainPi, Product_opt op) {
+		int offset=(mainPi.getCurrentPage() - 1) * mainPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
 		
 		if(op.getOptNo()==1) {
-			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort1",op);
+			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort1",op,rowBounds);
 		} else if(op.getOptNo()==2) {
-			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort2",op);			
+			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort2",op,rowBounds);			
 		} else if(op.getOptNo()==3) {			
-			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort3",op);
+			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort3",op,rowBounds);
 		} else if(op.getOptNo()==4) {
-			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort4",op);			
+			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort4",op,rowBounds);			
 		} else if(op.getOptNo()==5) {
-			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort5",op);			
+			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort5",op,rowBounds);			
 		} else if(op.getOptNo()==6){
-			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort6",op);			
+			return (ArrayList)sqlSession.selectList("productMapper.selectCheckSort6",op,rowBounds);			
 		}else {
-			return (ArrayList)sqlSession.selectList("productMapper.selectReviewList",op);
+			return (ArrayList)sqlSession.selectList("productMapper.selectReviewList",op,rowBounds);
 		}
 	}
 
@@ -297,21 +308,23 @@ public class MainDao {
 	 * @param optionWeight
 	 * @return
 	 */
-	public ArrayList<Review> selectWeightSort(Product_opt op) {
+	public ArrayList<Review> selectWeightSort(MainPageInfo mainPi, Product_opt op) {
+		int offset=(mainPi.getCurrentPage() - 1) * mainPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
 		if(op.getOptNo()==7) {
-			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort7",op);
+			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort7",op,rowBounds);
 		} else if(op.getOptNo()==8) {
-			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort8",op);			
+			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort8",op,rowBounds);			
 		} else if(op.getOptNo()==9) {			
-			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort9",op);
+			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort9",op,rowBounds);
 		} else if(op.getOptNo()==10) {
-			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort10",op);			
+			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort10",op,rowBounds);			
 		} else if(op.getOptNo()==11) {
-			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort11",op);			
+			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort11",op,rowBounds);			
 		} else if(op.getOptNo()==12){
-			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort12",op);			
+			return (ArrayList)sqlSession.selectList("productMapper.selectWeightSort12",op,rowBounds);			
 		}else {
-			return (ArrayList)sqlSession.selectList("productMapper.selectReviewList",op);
+			return (ArrayList)sqlSession.selectList("productMapper.selectReviewList",op,rowBounds);
 		}
 	}
 	
@@ -323,22 +336,28 @@ public class MainDao {
 	 * @param optionSize
 	 * @return
 	 */
-	public ArrayList<Review> selectSizeSort(Product_opt op) {
+	public ArrayList<Review> selectSizeSort(MainPageInfo mainPi, Product_opt op) {
+		int offset=(mainPi.getCurrentPage() - 1) * mainPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,mainPi.getBoardLimit());
 		if(op.getOptNo()==13) {
-			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort13",op);
+			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort13",op,rowBounds);
 		} else if(op.getOptNo()==14) {
-			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort14",op);			
+			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort14",op,rowBounds);			
 		} else if(op.getOptNo()==15) {			
-			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort15",op);
+			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort15",op,rowBounds);
 		} else if(op.getOptNo()==16) {
-			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort16",op);			
+			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort16",op,rowBounds);			
 		} else if(op.getOptNo()==17) {
-			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort17",op);			
+			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort17",op,rowBounds);			
 		} else if(op.getOptNo()==18){
-			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort18",op);			
+			return (ArrayList)sqlSession.selectList("productMapper.selectSizeSort18",op,rowBounds);			
 		}else {
-			return (ArrayList)sqlSession.selectList("productMapper.selectReviewList",op);
+			return (ArrayList)sqlSession.selectList("productMapper.selectReviewList",op,rowBounds);
 		}
+	}
+
+	public int getReviewListCount(int product_detail) {
+		return sqlSession.selectOne("productMapper.getReviewListCount",product_detail);
 	}
 
 

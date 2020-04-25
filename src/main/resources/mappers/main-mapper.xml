@@ -130,7 +130,18 @@
 	  	WHERE PRDT_CODE = #{product_detail}
 		</select>
 		
+		<select id="getReviewListCount" parameterType="_int" resultType="_int">
+	  	SELECT COUNT(*)
+	  	FROM REVIEW
+	  	WHERE PRDT_CODE = #{product_detail}
+		</select>
+		
 		<select id="selectPoint" parameterType="_int" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW
+		WHERE PRDT_CODE = #{product_detail}
+		</select>
+		<select id="selectPoint1" parameterType="_int" resultMap="ReviewResultSet">
 		SELECT *
 		FROM REVIEW
 		WHERE PRDT_CODE = #{product_detail}

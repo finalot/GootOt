@@ -141,8 +141,9 @@ public interface MainService {
 	int updateReviewCount(DetailReview dr);
 
 	ArrayList<Review> selectPoint(int product_detail);
-	ArrayList<Review> selectPoint2(int product_detail);
-	ArrayList<Review> selectPoint3(int product_detail);
+	ArrayList<Review> selectPoint1(MainPageInfo mainPi, int product_detail);
+	ArrayList<Review> selectPoint2(MainPageInfo mainPi, int product_detail);
+	ArrayList<Review> selectPoint3(MainPageInfo mainPi, int product_detail);
 
 	String selectUserName(int memCode);
 	
@@ -153,7 +154,7 @@ public interface MainService {
 	 * @param optionHeight
 	 * @return
 	 */
-	ArrayList<Review> selectHeightSort(Product_opt op);
+	ArrayList<Review> selectHeightSort(MainPageInfo mainPi, Product_opt op);
 
 	/**
 	 * @작성일  : 2020. 4. 25.
@@ -162,7 +163,7 @@ public interface MainService {
 	 * @param optionWeight
 	 * @return
 	 */
-	ArrayList<Review> selectWeightSort(Product_opt op);
+	ArrayList<Review> selectWeightSort(MainPageInfo mainPi, Product_opt op);
 
 	/**
 	 * @작성일  : 2020. 4. 25.
@@ -171,7 +172,9 @@ public interface MainService {
 	 * @param optionSize
 	 * @return
 	 */
-	ArrayList<Review> selectSizeSort(Product_opt op);
+	ArrayList<Review> selectSizeSort(MainPageInfo mainPi, Product_opt op);
+
+	int getReviewListCount(int product_detail);
 
 
 }

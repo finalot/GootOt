@@ -791,7 +791,8 @@ MainSearchCondition msc= new MainSearchCondition();
 	   
 	   @RequestMapping("reviewModal.do")
 	   @ResponseBody
-	   public String reviewModal(int product_detail,String sort,int opNo){
+	   public String reviewModal(int product_detail,String sort,int opNo,
+			   @RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage){
 		   Map<String,Object> resultMap = new HashMap<String,Object>();
 		   ReviewPoint rp = new ReviewPoint();
 			int star1 =0;
@@ -803,27 +804,31 @@ MainSearchCondition msc= new MainSearchCondition();
 			Product_opt po = new Product_opt();
 			ArrayList<Review> rvlist = new ArrayList<>();
 			
+			
+			int listCount = mainService.getReviewListCount(product_detail);
+			MainPageInfo mainPi = MainPagination.getPageInfo2(currentPage, listCount);
+
 			if(sort.equals("no")) {
-				 rvlist = mainService.selectPoint(product_detail);
+				 rvlist = mainService.selectPoint1(mainPi,product_detail);
 			}else if(sort.equals("like")) {
-				 rvlist = mainService.selectPoint2(product_detail);
+				 rvlist = mainService.selectPoint2(mainPi,product_detail);
 			}else if(sort.equals("point")) {
-				 rvlist = mainService.selectPoint3(product_detail);
+				 rvlist = mainService.selectPoint3(mainPi,product_detail);
 			}else if(sort.equals("height")) {
 				po.setOptNo(opNo);
 				po.setPrdtNo(product_detail);
 				
-				rvlist = mainService.selectHeightSort(po);
+				rvlist = mainService.selectHeightSort(mainPi,po);
 			}else if(sort.equals("weight")) {
 				po.setOptNo(opNo);
 				po.setPrdtNo(product_detail);
 				
-				rvlist = mainService.selectWeightSort(po);
+				rvlist = mainService.selectWeightSort(mainPi,po);
 			}else if(sort.equals("size")) {
 				po.setOptNo(opNo);
 				po.setPrdtNo(product_detail);
 				
-				rvlist = mainService.selectSizeSort(po);
+				rvlist = mainService.selectSizeSort(mainPi,po);
 			}
 			
 			ArrayList<Product> pdlist = mainService.selectDetailList(product_detail);
