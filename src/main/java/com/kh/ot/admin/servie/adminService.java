@@ -391,14 +391,7 @@ public interface adminService{
 		 */
 		public int updateOrdf(Return r);
 
-		/**
-		 * @param ord_date 
-		 * @작성일 : 2020. 4. 24.
-		 * @작성자 : 이서현
-		 * @내용 : 당일판매수량 
-		 */
-		public ArrayList<Ord> todaySellSelectList();
-		
+		/*
 		 * @작성일  : 2020. 4. 24.
 		 * @작성자  : 문태환
 		 * @내용 	: 업카테고리 카운트
@@ -415,6 +408,13 @@ public interface adminService{
 		 * @return
 		 */
 		public int DownCategoryCount(DownCategory dc);
+
+		/**
+		 * @작성일 : 2020. 4. 25.
+		 * @작성자 : 이서현
+		 * @내용 : 상품순위 TOP5
+		 */
+		public ArrayList<Product> topSelect();
 
 
 }

@@ -286,8 +286,4 @@
 	</foreach>
 	</update>
 	
-	<select id="todaySellSelectList" resultMap="ordResultSet">
-		SELECT COUNT(*)
-		FROM ORD
-	</select>
 </mapper>

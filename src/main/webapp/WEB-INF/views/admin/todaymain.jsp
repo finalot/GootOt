@@ -264,26 +264,18 @@
                             <div class="table-responsive">
                                 <table class="table table-top-campaign">
                                     <tbody>
+                                    	
+                                    	<tr>
+                                    		<td>상품명</td>
+                                    		<td>총 판매량</td>
+                                    	</tr>
+                                        <c:forEach var="p" items="${plist }" varStatus="status">
                                         <tr>
-                                            <td>1. 골지나시 </td>
-                                            <td>790</td>
+                                        	<td>${status.count} . ${p.prdtName }</td>
+                                            <td>${p.prdtScount }</td>
                                         </tr>
-                                        <tr>
-                                            <td>2. 베이직 크롭 나시</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3. 베이직 라운드티</td>
-                                            <td>120</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4. 기본 슬렉스</td>
-                                            <td>90</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5. 은링 귀걸이</td>
-                                            <td>45</td>
-                                        </tr>
+                                        </c:forEach>    
+                                        
                                     </tbody>
                                 </table>
                             </div>

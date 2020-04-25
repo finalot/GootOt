@@ -164,7 +164,7 @@ font-size: 9px !important;
 					</c:url>
 					<!-- 프로덕트 2 부분 경로설정 끝 --> --%>
 					
-					<c:url var="todaymain" value="todaymain.ad"/> 
+					<c:url var="todaymain" value="todayMain.ad"/> 
 					
 					<!-- 기타 버튼 경로설정 -->
 					<c:url var="review" value="review.do">

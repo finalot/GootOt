@@ -68,9 +68,20 @@ public class menuController {
 	 * @작성자 : 이서현
 	 * @내용 : ADMIN VIEW 연결
 	 */
+	/**
+	 * @작성일 : 2020. 4. 25.
+	 * @작성자 : 이서현
+	 * @내용 : TOP5인기순위
+	 */
 	@RequestMapping("todayMain.ad")
-	public String todayMain() {
-		return "admin/todaymain";
+	public ModelAndView todayMain(ModelAndView mv) {
+		
+		ArrayList<Product> plist = adService.topSelect();
+		
+		mv.addObject("plist",plist);
+		mv.setViewName("admin/todaymain");
+		
+		return mv;
 	}
 
 	@RequestMapping("todayChart.ad")
@@ -87,9 +98,6 @@ public class menuController {
 	public ModelAndView best(ModelAndView mv) {
 		ArrayList<Product> plist = adService.ProductSelectListBest();
 		
-		ArrayList<Ord> olist= adService.todaySellSelectList(); 
-		
-		mv.addObject("olist",olist); 
 		mv.addObject("plist",plist);
 		mv.setViewName("admin/best");
 		return mv;

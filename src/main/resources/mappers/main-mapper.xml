@@ -467,6 +467,13 @@
 			WHERE PRDT_NO=#{prdtNo}
 		</update>
 		
-		
+		<select id="topSelect" resultMap="productResultSet">
+			 <![CDATA[
+			 SELECT * 
+    		 FROM (SELECT *
+                   FROM PRDT 
+                   ORDER BY PRDT_SCOUNT DESC)
+   			WHERE ROWNUM<=5]]>
+		</select>
 
 </mapper>

@@ -214,7 +214,6 @@
                         <th>상품명</th>
                         <th>대표이미지</th>
                         <th>가격(할인가 포함)</th>
-                        <th>당일 판매수량</th>
                         <th>총 판매수량</th>
                     </tr>
                 </thead>
@@ -225,16 +224,6 @@
                    		<td>${p.prdtName }</td>
                    		<td align="center"><img style="width: 100px" src="${p.prdtImagePath }${p.prdtImage}" alt="상품이미지" title="상품이미지"></td>                   		
 	                   	<td><fmt:parseNumber value="${p. prdtPrice-p.prdtSale*1/100}" integerOnly="true"/></td>
-                   		  	<!-- 당일 판매수량  -->
-	                   	<%-- <c:forEach var="o" items="${olist }">
-	                   		<jsp:useBean id="now" class="java.util.Date" />
-							<fmt:formatDate value="${now}" pattern="yy/mm/dd" var="today" />
-							<c:out value="${today}"/>
-							<c:if test="${today==o.ord_date }">
-								<td>${o.ord_count }</td>
-							</c:if>
-						</c:forEach> --%>
-						<td>당일 판매 수량 </td>
                    		<td>${p.prdtScount}</td>
                    </tr>
                 </c:forEach>
@@ -245,9 +234,8 @@
     </div>
     </div>
     </div>
-    <div class="page-wrapper">
-</div>
-	
+    
+
 	
 	<!-- // td(class=next) 클릭시 페이지 이동 -->
 	<script>

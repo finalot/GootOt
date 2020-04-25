@@ -534,7 +534,12 @@ public class adminDao {
 	}
 
 
-	public ArrayList<Ord> todaySellSelectList() {
-		return (ArrayList)sqlSession.selectList("cartMapper.todaySellSelectList");
+	/**
+	 * @작성일 : 2020. 4. 25.
+	 * @작성자 : 이서현
+	 * @내용 : 상품 TOP5 
+	 */
+	public ArrayList<Product> topSelect() {
+		return (ArrayList)sqlSession.selectList("productMapper.topSelect");
 	}
 }

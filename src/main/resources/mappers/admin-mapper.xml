@@ -398,7 +398,4 @@ SELECT RE.RE_NO,RE.QNA_DATE,RE.RE_NAME,RE.RE_TITLE,RE.RE_CONTENT,RE.ORD_CODE,
 	WHERE UP_NO = #{up_no}
 	AND DOWN_NO=#{down_no}
 </select>	
-
-
-
 </mapper>

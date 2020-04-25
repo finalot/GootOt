@@ -295,13 +295,6 @@ public class adminServiceImpl implements adminService{
 		public int updateOrdf(Return r) {
 			return adDao.updateOrdf(r);
 		}
-
-
-		@Override
-		public ArrayList<Ord> todaySellSelectList() {
-			return adDao.todaySellSelectList();
-		}
-
 		
 		public int UpCategoryCount(int i) {
 			return adDao.UpCategoryCount(i);
@@ -311,6 +304,12 @@ public class adminServiceImpl implements adminService{
 		@Override
 		public int DownCategoryCount(DownCategory dc) {
 			return adDao.DownCategoryCount(dc);
+		}
+
+
+		@Override
+		public ArrayList<Product> topSelect() {
+			return adDao.topSelect();
 		}
 
 }
