@@ -168,7 +168,7 @@ a{
 								
 								<c:if test="${b.b_cate_no eq 1 }">
 								<td class="left">
-                            		<span id="prd_name">러트 세미 부츠컷 슬랙스</span>
+                            		<span id="prd_name">${b.prdt_name}</span>
                            		 	<br>
                             		<div class="ppro">
                             			<c:if test="${b.qna_secure=='T'}">
