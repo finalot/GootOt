@@ -12,13 +12,14 @@ public class MyBoard {
 	private String qna_title;		// 글제목
 	private String qna_secure;		// 비밀공개여부
 	private String qna_chk; 		// 답변여부
+	private String prdt_name;		// 상품이름
 	
 	
 	public MyBoard() {}
 
 
 	public MyBoard(int memno, int qna_no, int b_cate_no, String b_cate_name, Date qna_date, String qna_writer,
-			String qna_title, String qna_secure, String qna_chk) {
+			String qna_title, String qna_secure, String qna_chk, String prdt_name) {
 		super();
 		this.memno = memno;
 		this.qna_no = qna_no;
@@ -29,6 +30,7 @@ public class MyBoard {
 		this.qna_title = qna_title;
 		this.qna_secure = qna_secure;
 		this.qna_chk = qna_chk;
+		this.prdt_name = prdt_name;
 	}
 
 
@@ -122,12 +124,24 @@ public class MyBoard {
 	}
 
 
+	public String getPrdt_name() {
+		return prdt_name;
+	}
+
+
+	public void setPrdt_name(String prdt_name) {
+		this.prdt_name = prdt_name;
+	}
+
+
 	@Override
 	public String toString() {
 		return "MyBoard [memno=" + memno + ", qna_no=" + qna_no + ", b_cate_no=" + b_cate_no + ", b_cate_name="
 				+ b_cate_name + ", qna_date=" + qna_date + ", qna_writer=" + qna_writer + ", qna_title=" + qna_title
-				+ ", qna_secure=" + qna_secure + ", qna_chk=" + qna_chk + "]";
+				+ ", qna_secure=" + qna_secure + ", qna_chk=" + qna_chk + ", prdt_name=" + prdt_name + "]";
 	}
+
+	
 
 	
 
