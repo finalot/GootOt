@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,8 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.mypage.vo.ReviewSearch;
+import com.kh.ot.review.vo.Review;
 
 @Repository("mpDao")
 public class MypageDao {
@@ -350,6 +351,29 @@ public class MypageDao {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("dlist", dlist);
 		return sqlSession.delete("mypageMapper.deleteAlllist", map);
+	}
+
+	public int getReviewListCount(int memNo) {
+		return sqlSession.selectOne("mypageMapper.getReviewListCount", memNo);
+	}
+
+	public ArrayList<Review> selectReviewList(PageInfo pi, int memNo) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectReviewList", memNo, rowBounds);
+	}
+
+	public int getSearchReviewCount(ReviewSearch rs) {
+		System.out.println("dao : " + rs);
+		return sqlSession.selectOne("mypageMapper.getSearchReviewCount", rs);
+	}
+
+	public ArrayList<Review> selectSearchReviewList(PageInfo pi, ReviewSearch rs) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectSearchReviewList", rs, rowBounds);
 	}
 
 

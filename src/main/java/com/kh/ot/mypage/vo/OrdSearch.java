@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import com.kh.ot.common.Pagination;
 
-public class OrdSearch extends Pagination{
+public class OrdSearch extends Pagination {
 
 	private int memno;
 	private Date start_date;

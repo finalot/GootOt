@@ -743,7 +743,7 @@ a{
   					<ul class="top_menu__ul top_menu__ul--lpane">
     					<li class="top_menu__li top_menu__li--message" style = "padding: 10px 20px;">
       						<div class="top_menu__message_inner">
-        						0개의 리뷰를 작성하셨습니다.
+        						${ReviewCount }개의 리뷰를 작성하셨습니다.
      						</div>
     					</li>
 					</ul>
@@ -758,13 +758,15 @@ a{
     					</li>
     
     					<li class="top_menu__li top_menu__search_container">
-		 					<form class="js-menu-search" action="" accept-charset="UTF-8" data-remote="true" method="get">
+    					
+		 					<form class="js-menu-search" action="mSearchReview.do" method="get">
 						  		<button type="submit" style="margin: 15px 0px 15px 8px;">
 									<i class="fa fa-search"></i>
 								</button>
-	   							<input type="text" name="query" id="query" placeholder="검색어 입력" class="top_menu__query js-top-menu-query" 
+	   							<input type="text" name="reviewSearch" id="query" placeholder="검색어 입력" class="top_menu__query js-top-menu-query" 
 	   							style="float: right; margin: 5px 0; height: 40px; width: 80%; border: none;">
 		 					</form>
+		 					
 						</li>
   					</ul>
 				</div>
@@ -975,8 +977,8 @@ a{
 		
 		<!-- 페이징 처리 -->
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
-			<c:if test="${ !empty list }">
-				<c:if test="${empty sc }">
+			<c:if test="${ !empty ReviewSearchlist }">
+				<c:if test="${empty rs }">
 					<c:if test="${pi.currentPage eq 1 }">
 						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
 					</c:if>
@@ -990,12 +992,12 @@ a{
 					</c:if>
 				</c:if>
 				
-				<c:if test="${ !empty sc }">
+				<c:if test="${ !empty rs }">
 					<c:if test="${pi.currentPage eq 1 }">
 						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
 					</c:if>
 					<c:if test="${pi.currentPage ne 1 }">
-						<c:url var="start" value="mBoardsearch.do">
+						<c:url var="start" value="mSearchReview.do">
 							<c:param name="currentPage" value="1"/>
 							<c:param name="search_key" value="${sc.search_key }"/>
 	                 		<c:param name="search" value="${sc.search }"/>
@@ -1006,7 +1008,7 @@ a{
 					</c:if>
 				</c:if>
 				
-				<c:if test="${empty sc }">
+				<c:if test="${empty rs }">
 					<c:if test="${ pi.currentPage eq 1 }">
 						<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
 					</c:if>
@@ -1021,13 +1023,13 @@ a{
 	                </c:if>
 				</c:if>
 					
-				<c:if test="${ !empty sc }">
+				<c:if test="${ !empty rs }">
 					<c:if test="${ pi.currentPage eq 1 }">
 						<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
 					</c:if>
 					
 					<c:if test="${ pi.currentPage ne 1 }">
-						<c:url var="before" value="mBoardsearch.do">
+						<c:url var="before" value="mSearchReview.do">
 			                <c:param name="currentPage" value="${pi.currentPage - 1 }"/>
 			                <c:param name="search_key" value="${sc.search_key }"/>
 			                <c:param name="search" value="${sc.search }"/>
@@ -1045,7 +1047,7 @@ a{
 	                        <b>${ p }</b> &nbsp;&nbsp;</font>
 	                </c:if>
 						
-				 	<c:if test="${ empty sc }">	
+				 	<c:if test="${ empty rs }">	
 	                     <c:if test="${ p ne pi.currentPage }">
 	                        <c:url var="pagination" value="mBoard.do">
 	                           <c:param name="currentPage" value="${ p }"/>
@@ -1055,9 +1057,9 @@ a{
 	                  	 </c:if>
 	                </c:if>
 	                  
-	               	 <c:if test="${ !empty sc }">	
+	               	 <c:if test="${ !empty rs }">	
 	                     <c:if test="${ p ne pi.currentPage }">
-	                        <c:url var="pagination" value="mBoardsearch.do">
+	                        <c:url var="pagination" value="mSearchReview.do">
 		                        <c:param name="currentPage" value="${ p }"/>
 			                    <c:param name="search_key" value="${sc.search_key }"/>
 			                    <c:param name="search" value="${sc.search }"/>
@@ -1068,7 +1070,7 @@ a{
 	                </c:if>
 	          	</c:forEach>
 	               
-               	<c:if test="${ empty sc }">
+               	<c:if test="${ empty rs }">
                		<c:if test="${ pi.currentPage eq pi.maxPage }">
 						<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
 					</c:if>
@@ -1083,13 +1085,13 @@ a{
 	              	</c:if>
                </c:if>
                
-               <c:if test="${ !empty sc }">
+               <c:if test="${ !empty rs }">
                		<c:if test="${ pi.currentPage eq pi.maxPage }">
 						<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
 					</c:if>
 					
 					<c:if test="${ pi.currentPage ne pi.maxPage }">
-						<c:url var="after" value="mBoardsearch.do">
+						<c:url var="after" value="mSearchReview.do">
 	                     	<c:param name="currentPage" value="${pi.currentPage +1 }"/>
 	                     	<c:param name="search_key" value="${sc.search_key }"/>
 	           		     	<c:param name="search" value="${sc.search }"/>
@@ -1100,7 +1102,7 @@ a{
              		</c:if>
                </c:if>
                
-               <c:if test="${empty sc }">
+               <c:if test="${empty rs }">
                		<c:if test="${ pi.currentPage eq pi.maxPage }">
                			<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
                		</c:if>
@@ -1115,13 +1117,13 @@ a{
                		</c:if>
                </c:if>
                
-               <c:if test="${ !empty sc }">
+               <c:if test="${ !empty rs }">
 	               <c:if test="${ pi.currentPage eq pi.maxPage }">
 	               		<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
 	               </c:if>
 	               
 	               <c:if test="${ pi.currentPage ne pi.maxPage }">
-	               		<c:url var="end" value="mBoardsearch.do">
+	               		<c:url var="end" value="mSearchReview.do">
 	               			<c:param name="currentPage" value="${pi.maxPage }"/>
 	               			<c:param name="search_key" value="${sc.search_key }"/>
 	           		     	<c:param name="search" value="${sc.search }"/>	

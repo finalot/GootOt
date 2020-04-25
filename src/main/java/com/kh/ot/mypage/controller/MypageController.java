@@ -32,6 +32,8 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.mypage.vo.ReviewSearch;
+import com.kh.ot.review.vo.Review;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -116,7 +118,7 @@ public class MypageController {
 	 */
 	@RequestMapping("my_orderlist.do")
 	public ModelAndView MyOrderList(ModelAndView mv, HttpSession session,
-			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage,
+			@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage,
 			 String order_status, Date history_start_date, Date history_end_date) {
 		Member m = (Member)session.getAttribute("loginMember");
 		
@@ -609,21 +611,31 @@ public class MypageController {
 		
 		int listCount = mpService.getListCount(memNo);
 		
-		
-		System.out.println("listCount : " + listCount);
+		int ReviewCount = mpService.getReviewListCount(memNo);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<MyBoard> list = mpService.selectList(pi, memNo);
+		
+		ArrayList<Review> Reviewlist =  mpService.selectReviewList(pi, memNo);
+		
+		System.out.println("ReviewCount : " + ReviewCount);
+		
+		System.out.println("listCount : " + listCount);
+		
+		System.out.println("Reviewlist : " + Reviewlist);
 		
 		System.out.println("list : " + list);
 
 		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
+		mv.addObject("ReviewCount", ReviewCount);
+		mv.addObject("ReviewList", Reviewlist);
    		mv.addObject("list",list);
    		mv.addObject("pi", pi);
 		mv.setViewName("mypage_board");
+		
 		return mv;
 	}
 	
@@ -883,18 +895,22 @@ public class MypageController {
 		
 		int point = mpService.PointListCount(memNo);
 		
+		int ReviewCount = mpService.getReviewListCount(memNo);
+		
+		
 		SearchCondition sc = new SearchCondition();
 		sc.setSearch_key(search_key);
 		sc.setSearch(search);
 		sc.setMemno(memNo);
 		
-		System.out.println(sc);
 		
 		if(search_key.equals("writer")) {
 			sc.setWriter(search);
 		} else if(search_key.equals("title")) {
 			sc.setTitle(search);
 		}
+		
+		System.out.println("**********************: " + sc);
 		
 		int listCount = mpService.SearchListCount(sc);
 		
@@ -904,11 +920,18 @@ public class MypageController {
 		
 		ArrayList<MyBoard> list = mpService.selectSearchList(pi, sc);
 		
+		ArrayList<Review> ReviewSearchlist =  mpService.selectReviewList(pi, memNo);
+		
 		System.out.println("list : " + list);
-
+		
+		System.out.println("ReviewCount" + ReviewCount);
+		System.out.println("ReviewList" + ReviewSearchlist);
+		
 		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
+		mv.addObject("ReviewCount", ReviewCount);
+		mv.addObject("ReviewSearchlist", ReviewSearchlist);
    		mv.addObject("list",list);
    		mv.addObject("pi", pi);
    		mv.addObject("sc", sc);
@@ -1192,6 +1215,14 @@ public class MypageController {
 		return "에러다";
 	}
 	
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 신경섭
+	 * @내용 : 위시리스트 선택한 상품 바로 구매
+	 * @param @param dibsno
+	 * @param @return
+	 * @return String
+	 */
 	@RequestMapping("wishBuynow.do")
 	public String wishBuynow(int dibsno) {
 		
@@ -1223,6 +1254,58 @@ public class MypageController {
 			return "";
 		}
 	}
+	
+	@RequestMapping("mSearchReview.do")		// 검색창으로 받아야 하는게 검색어 밖에 없음 + 페이징
+	public ModelAndView mSearchReview(ModelAndView mv, HttpSession session, 
+									@RequestParam(value="currentPage", required=false,defaultValue="1") int currentPage, String reviewSearch) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		ReviewSearch rs = new ReviewSearch();
+		
+		rs.setSearch(reviewSearch);
+		rs.setMemno(memNo);
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int wishlist = mpService.getWishListCount(memNo);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		int listCount = mpService.getListCount(memNo);
+		
+		int ReviewCount = mpService.getSearchReviewCount(rs);
+		
+		System.out.println("dasdsadasd : " + rs);
+		
+		PageInfo pi = rs.getPageInfo(currentPage, ReviewCount);
+		
+		ArrayList<MyBoard> list = mpService.selectList(pi, memNo);
+		
+		ArrayList<Review> ReviewSearchlist =  mpService.selectSearchReviewList(pi, rs);
+		
+		System.out.println("ReviewCount : " + ReviewCount);
+		
+		System.out.println("listCount : " + listCount);
+		
+		System.out.println("ReviewSearchlist : " + ReviewSearchlist);
+		
+		System.out.println("list : " + list);
+
+		mv.addObject("WishList", wishlist);
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+		mv.addObject("ReviewCount", ReviewCount);
+		mv.addObject("ReviewSearchlist", ReviewSearchlist);
+   		mv.addObject("list",list);
+   		mv.addObject("pi", pi);
+		mv.setViewName("mypage_board");
+		
+		return mv;
+	}
+	
 	
 //	@RequestMapping("AllBuyNow.do")
 //	public String AllBuyNow(int[] wishArr) {

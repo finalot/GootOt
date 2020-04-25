@@ -104,6 +104,26 @@
 		<result property="prdt_name" column="PRDT_NAME"/>
 	</resultMap>
 	
+	<resultMap type="Review" id="ReviewResultSet">
+			<id property = "rvNo" column="RV_NO"/>
+			<result property="prdtCode" column="PRDT_CODE"/>
+			<result property="memCode" column="MEM_CODE"/>
+			<result property="rvHeight" column="RV_HEIGHT"/>
+			<result property="rvWeight" column="RV_WEIGHT"/>
+			<result property="ordDetailNo" column="ORD_DETAILNO"/>
+			<result property="rvInfo" column="RV_INFO"/>
+			<result property="rvImage" column="RV_IMAGE"/>
+			<result property="rvLike" column="RV_LIKE"/>
+			<result property="rvDate" column="RV_DATE"/>
+			<result property="rvColor" column="RV_COLOR"/>
+			<result property="rvSize" column="RV_SIZE"/>
+			<result property="memName" column="MEM_NAME"/>
+			<result property="prdtName" column="PRDT_NAME"/>
+			<result property="rvDate2" column="RV_DATE2"/>
+			<result property="prdtImg" column="PRDT_IMAGE"/>
+			<result property="prdtPath" column="PRDT_IMAGE_PATH"/>
+	</resultMap>
+	
 	<!-- 페이징을 위한 포인트 내역 갯수 출력 -->
 	<select id="PointListCount" resultType="_int">
 		SELECT COUNT(*)
@@ -132,6 +152,7 @@
 		ORDER BY POINT_NO DESC
 	</select>
 
+	<!-- 사용가능한 쿠폰 출력 -->
 	<select id="CouponListCount" resultType="_int" parameterType="Member">
 		SELECT COUNT(*)
 		FROM COUPON C
@@ -151,6 +172,7 @@
 		ORDER BY CPMEM_NO DESC
 	</select>
 
+	<!-- 사용완료한 쿠폰 출력 -->
 	<select id="CompleteCouponListCount" resultType="_int" parameterType="Member">
 		SELECT COUNT(*)
 		FROM COUPON C
@@ -176,6 +198,8 @@
 		WHERE MEM_NO=#{memNo}
 	</select>
 	 -->
+	 
+	 <!-- 포인트 적립 -->
 	<update id="updatePoint" parameterType="Member">
 		UPDATE MEMBER
 		SET MEM_POINT=(SELECT SUM(DECODE(POINT_PART,'적립',1*POINT_PRICE,'사용',-1*POINT_PRICE)) AS PointSum
@@ -184,6 +208,7 @@
 		WHERE MEM_NO=#{memNo}
 	</update>
 
+	<!-- 내가 쓴 게시글 갯수 출력 -->
 	<select id="selectBoardListCount" resultType="_int">
 		SELECT COUNT(*)
         FROM QNA Q
@@ -193,6 +218,7 @@
         ORDER BY QNA_NO DESC
 	</select>
 
+	<!-- 내가 쓴 게시글 리스트 출력 -->
 	<select id="selectBoardList" resultMap="MyBoardResultSet">
 		SELECT *
         FROM QNA Q
@@ -204,6 +230,7 @@
         ORDER BY QNA_NO DESC
 	</select>
 
+	<!-- 내가 쓴 게시글 검색한 내용의 갯수 출력 -->
 	<select id="SearchListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM QNA Q
@@ -219,6 +246,7 @@
 		ORDER BY QNA_NO DESC
 	</select>
 
+	<!-- 내가 쓴 게시글 검색한 리스트 출력 -->
 	<select id="selectSearchList" resultMap="MyBoardResultSet">
 		SELECT *
 		FROM QNA Q
@@ -236,6 +264,7 @@
 		ORDER BY QNA_NO DESC
 	</select>
 
+	<!-- 전체 주문 내역 갯수 출력 -->
 	<select id="getOrderListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM ORD
@@ -243,7 +272,7 @@
 		ORDER BY ORD_DATE DESC
 	</select>
 
-	<!-- 내가 쓴 게시글 검색기능 카운트  -->
+	<!-- 검색 주문내역  갯수 출력  -->
 	<select id ="SearchOrdListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM ORD O
@@ -269,7 +298,7 @@
 		</if>
 	</select>
 
-	<!-- 내가 쓴 게시글 검색기능 리스트 -->
+	<!-- 전체 주문 내역 검색 리스트 출력 -->
 	<select id="selectOrderList" resultMap="ordResultSet">
 		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
 		FROM ORD O
@@ -279,7 +308,7 @@
 		ORDER BY O.ORD_DATE DESC
 	</select>
 
-
+	<!-- 검색 주문 내역 리스트 출력  -->
 	<select id="selectSearchOrdList" resultMap="ordResultSet">
 		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
 		FROM ORD O
@@ -306,11 +335,13 @@
 		ORDER BY O.ORD_DATE DESC
 	</select>
 
+	<!-- 배송 주소지 등록 -->
 	<insert id="mAddressInsert" parameterType="Address">
 		INSERT INTO ADDRESS VALUES
 		(AD_SEQ.NEXTVAL, #{memNo}, #{adTitle},#{adReceiver},#{adAddress},#{adPhone})
 	</insert>
 
+	<!-- 주소지 갯수 출력 -->
 	<select id="getAddressCount" resultType="_int" parameterType="_int">
 		SELECT COUNT(*)
 		FROM ADDRESS
@@ -318,13 +349,15 @@
 
 	</select>
 
+	<!-- 배송 주소지 리스트 출력 -->
 	<select id="selectAddressList" parameterType="Member" resultMap="AddressResultMap">
 		SELECT *
 		FROM ADDRESS
 		WHERE MEM_NO=#{memNo}
 
 	</select>
-
+	
+	<!-- 배송 주소지 수정 -->
 	<select id="ModifyAddress" parameterType="_int" resultMap="AddressResultMap">
 		SELECT *
 		FROM ADDRESS
@@ -332,6 +365,7 @@
 
 	</select>
 
+	<!-- 배송 주소지 수정 -->
 	<update id="AddressUpdate" parameterType="Address">
 		UPDATE ADDRESS
 		SET AD_TITLE=#{adTitle}, AD_RECEIVER=#{adReceiver}, AD_ADDRESS=#{adAddress},
@@ -339,6 +373,7 @@
 		WHERE AD_NO=#{adNo}
 	</update>
 
+	<!-- 배송 주소지 삭제 -->
 	<delete id="AddressDelete" parameterType="java.util.Map">
 		<foreach  item="a" collection="nokArr"  index="index"
 		      separator=";" open="DECLARE BEGIN" close="; END;" >
@@ -348,16 +383,14 @@
 		</foreach>
 	</delete>
 
-
-
-
-
+	<!-- 주문현황 카운트 출력 -->
 	<select id="orderCount1" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
 		AND ORD_STATUS = 'A'
 	</select>
+	
 	<select id="orderCount2" resultType="_int" parameterType="_int" >
 		SELECT COUNT(*)
 		FROM ORD
@@ -395,6 +428,7 @@
 		AND ORD_STATUS = 'G'
 	</select>
 
+	<!-- 반품관련 주문 내역 갯수 출력 -->
 	<select id="getCancelListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM ORD
@@ -402,6 +436,7 @@
 		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
 	</select>
 
+	<!-- 반품관련 주문 내역 리스트 출력 -->
 	<select id="selectCancelList" resultMap="ordResultSet">
 		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
 		FROM ORD O
@@ -413,6 +448,7 @@
 
 	</select>
 
+	<!-- 반품 관련 검색 내역 갯수 출력 -->
 	<select id="getSearchCancelCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM ORD O
@@ -422,7 +458,8 @@
 		AND ORD_DATE BETWEEN #{start_date} AND #{end_date}
 		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
 	</select>
-
+	
+	<!-- 반품 관련 검색 내역 리스트 출력 -->
 	<select id="selectSearchCancelList" resultMap="ordResultSet">
 		SELECT O.*, P.*, (O.ORD_COUNT * P.PRDT_PRICE) AS PRDT_SUMPRICE
 		FROM ORD O
@@ -433,6 +470,7 @@
 		AND (ORD_STATUS='E' OR ORD_STATUS='F' OR ORD_STATUS='G')
 	</select>
 
+	<!-- 관심상품 갯수 출력 -->
 	<select id="getWishListCount" resultType="_int">
 	SELECT COUNT(*)
      FROM DIBS D
@@ -441,12 +479,14 @@
      WHERE MEM_NO=#{memno}
 	</select>
 
+	<!-- 반품신청  -->
 	<insert id="ReturnInsert" parameterType="Return">
 		INSERT INTO RETURN VALUES
 		(RE_SEQ.NEXTVAL,#{memCode},#{ordCode},SYSDATE,#{reName},#{reTitle},#{content},#{reReason},
 		NULL,NULL,SYSDATE,NULL,'N')
 	</insert>
 		
+	<!-- 관심상품 리스트 출력 -->
 	<select id="selectWishList" resultMap="DIBSResultMap">
 	 SELECT D.*, P.*, (D.DIBS_COUNT*P.PRDT_PRICE) AS DIBS_PRICE, ((D.DIBS_COUNT*P.PRDT_PRICE)+2500) AS DIBS_SUMPRICE
 	    FROM DIBS D
@@ -456,6 +496,7 @@
 	    ORDER BY DIBS_NO DESC
 	</select>
 	
+	<!-- 해당 상품번호에 맞는 옵션(색상) 출력 -->
 	<select id="selectOptionList1" resultMap="DIBSResultMap">
 	 SELECT PRDT_NO, OPT_COLOR
 	 FROM PRDT_OPT
@@ -463,6 +504,7 @@
 	 GROUP BY PRDT_NO, OPT_COLOR
 	</select>
 	
+	<!-- 해당 상품번호에 맞는 옵션(사이즈) 출력 -->
 	<select id="selectOptionList2" resultMap="DIBSResultMap">
 	 SELECT PRDT_NO, OPT_SIZE
 	 FROM PRDT_OPT
@@ -471,10 +513,10 @@
 	
 	</select>
 	
+	<!-- 관심상품 인설트 -->
 	<insert id="insertwishlist" parameterType="DIBS">
 	INSERT INTO DIBS
 	VALUES(DIBS_SEQ.NEXTVAL, #{memno}, #{prdt_no},#{dibs_count},#{dibs_color},#{dibs_size},default )
-	
 	</insert>
 	
 	<select id="selectonelist" resultMap="DIBSResultMap">
@@ -483,15 +525,16 @@
      JOIN PRDT P
      ON (D.PRDT_NO = P.PRDT_NO)
      where rownum=1
-	
 	</select>
 	
+	<!-- 관심상품 옵션 변경 -->
 	<update id="updatewishlist" parameterType="DIBS">
 		UPDATE DIBS
 		SET DIBS_COLOR=#{dibs_color}, DIBS_SIZE=#{dibs_size}, DIBS_COUNT=#{dibs_count}
 		WHERE DIBS_NO=#{dibsno}
 	</update>
 	
+	<!-- 관심상품 체크박스 선택삭제 -->
 	<delete id="deletewishlist" parameterType="java.util.Map">
 		<foreach item="d" collection="noArr" index="index"
 				 separator=";" open="DECLARE BEGIN" close="; END;">
@@ -501,18 +544,21 @@
 		 </foreach>
 	</delete>
 	
+	<!-- 관심상품 전체 삭제 -->
 	<delete id="deletewishAll" parameterType="DIBS">
 		DELETE
 		FROM DIBS
 		WHERE MEM_NO=#{memno}
 	</delete>
 	
+	<!-- 관심상품 체크박스 선택한 삭제버튼 눌렀을때 -->
 	<delete id="selectDelete" parameterType="DIBS">
 		DELETE
 		FROM DIBS
 		WHERE DIBS_NO=#{dibsno}
 	</delete>
 	
+	<!-- 관심상품 체크박스 선택한 상품 리스트 출력 -->
 	<select id="selectDlist"  parameterType="java.util.Map" resultMap="DIBSResultMap" >
 			SELECT * 
 			FROM DIBS D
@@ -524,6 +570,7 @@
          </foreach>
 	</select>
 	
+	<!-- 위에서 선택한 상품 카트에 인서트 -->
 	<insert id="insertCartList" parameterType="java.util.Map">
 		<foreach  item="c" collection="clist"  index="index"
       		separator=";" open="DECLARE BEGIN" close="; END;" >
@@ -533,6 +580,7 @@
 		</foreach>
 	</insert>
 	
+	<!-- 카트에 들어간 관심상품 삭제-->
 	<delete id="deleteDlist" parameterType="java.util.Map">
 	<foreach item="w" collection="wish" index="index"
 				 separator=";" open="DECLARE BEGIN" close="; END;">
@@ -542,6 +590,7 @@
 	</foreach>
 	</delete>
 	
+	<!-- 체크박스 선택한 상품 정보 출력 -->
 	<select id="selectOneBuynow" resultMap="DIBSResultMap">
 		SELECT * 
 		FROM DIBS D
@@ -549,6 +598,7 @@
 		WHERE D.DIBS_NO = #{dibsno}
 	</select>
 	
+	<!-- 전체 상품 구입 눌렀을 때 -->
 	<select id="selectAllBuyNow" resultMap="DIBSResultMap">
 		SELECT * 
 		FROM DIBS D
@@ -556,24 +606,66 @@
 		WHERE D.MEM_NO = #{memno}
 	</select>
 	
+	<!-- 관심상품 해당 행에 있는 구입버튼 눌렀을때 -->
 	<insert id="InsertOneCart" parameterType="Cart">
 		INSERT INTO CRT
 		 	VALUES(#{memNo}, #{prdt_no}, #{prdt_price}, #{prdt_count}, #{prdt_sumprice}, 
 				#{prdt_color}, #{prdt_size}, CA_SEQ.NEXTVAL)
 	</insert>
 	
+	<!-- 관심상품 해당 행에 있는 삭제버튼 눌렀을때 -->
 	<delete id="deleteOneList" parameterType="DIBS">
 		DELETE
 		FROM DIBS
 		WHERE DIBS_NO=#{dibsno}
 	</delete>
 	
+	<!-- 관심상품 전체 상품 삭제 -->
 	<delete id="deleteAlllist" parameterType="java.util.Map">
 		<foreach item="d" collection="dlist" index="index"
 				 separator=";" open="DECLARE BEGIN" close="; END;">
 		DELETE
 		FROM DIBS
 		WHERE MEM_NO=#{d.memno}
-	</foreach>
+		</foreach>
 	</delete>
+	
+	<!-- 내가 쓴 리뷰 전체 카운트 -->
+	<select id="getReviewListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		WHERE M.MEM_NO=#{memno}
+	</select>
+	
+	<!-- 내가 쓴 리뷰 전체 리스트 -->
+	<select id="selectReviewList" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		WHERE M.MEM_NO=#{memno}
+	</select>
+	
+	<select id="getSearchReviewCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		WHERE M.MEM_NO=#{memno}
+		AND R.RV_INFO LIKE '%' || #{search} || '%'
+	</select>
+
+	<select id="selectSearchReviewList" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		WHERE M.MEM_NO=#{memno}
+		AND R.RV_INFO LIKE '%' || #{search} || '%'
+		ORDER BY RV_DATE DESC, RV_NO DESC
+	</select>
+	
+	
 </mapper>
