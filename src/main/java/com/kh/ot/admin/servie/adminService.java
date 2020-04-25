@@ -109,7 +109,7 @@ public interface adminService{
 	 * @작성자 : 이서현
 	 * @내용 : 카테고리 추가 버튼
 	 */
-	public int UpCategoryInsert(String addOption);
+	public int UpCategoryInsert(UpCategory up);
 
 	public int DownCategoryInsert(DownCategory downCategory);
 
@@ -398,6 +398,23 @@ public interface adminService{
 		 * @내용 : 당일판매수량 
 		 */
 		public ArrayList<Ord> todaySellSelectList();
+		
+		 * @작성일  : 2020. 4. 24.
+		 * @작성자  : 문태환
+		 * @내용 	: 업카테고리 카운트
+		 * @param i
+		 * @return
+		 */
+		public int UpCategoryCount(int i);
+
+		/**
+		 * @작성일  : 2020. 4. 24.
+		 * @작성자  : 문태환
+		 * @내용 	: 다운카테고리 카운트
+		 * @param i
+		 * @return
+		 */
+		public int DownCategoryCount(DownCategory dc);
 
 
 }

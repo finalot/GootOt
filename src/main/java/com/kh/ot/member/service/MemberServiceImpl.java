@@ -56,8 +56,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int couponInsert(int memNo) {
-		return mDao.couponInsert(memNo);
+	public int couponInsert(Member m) {
+		return mDao.couponInsert(m);
 	}
 	@Override
 	public int idDuplicate(String userId) {
@@ -117,6 +117,11 @@ public class MemberServiceImpl implements MemberService{
 	public int cpCount4(Member m) {
 		return mDao.cpCount4(m);
 
+	}
+
+	@Override
+	public int dailyCheckCount(int memNo, String tdDate) {
+		return mDao.dailyCheckCount(memNo,tdDate);
 	}
 
 

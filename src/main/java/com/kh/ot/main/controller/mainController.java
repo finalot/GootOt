@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,10 +39,12 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.main.vo.ReviewCheck;
+import com.kh.ot.main.vo.ReviewPoint;
 import com.kh.ot.main.vo.Wish;
 import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.review.vo.Review;
 
 //@SessionAttributes("loginMember")
 @Controller
@@ -197,16 +198,75 @@ public class mainController {
 			}
 		}
 		
-		
+		ReviewPoint rp = new ReviewPoint();
+		int star1 =0;
+		int star2 =0;
+		int star3 =0;
+		int star4 =0;
+		int star5 =0;
+		int sumPoint =0;
 		
 		ArrayList<Product> pdlist = mainService.selectDetailList(product_detail);
+		ArrayList<Review> rvlist = mainService.selectPoint(product_detail);
+		int avg = 0;
+		int avg1 = 0;
+		double pointAvg =0;
+		for (int i =0; i<rvlist.size();i++) {
+			sumPoint+=rvlist.get(i).getRvPoint();
+			avg1++;
+			if(rvlist.get(i).getRvPoint()==1) {
+				star1++;
+			}else if(rvlist.get(i).getRvPoint()==2) {
+				star2++;
+			}else if(rvlist.get(i).getRvPoint()==3) {
+				star3++;
+			}else if(rvlist.get(i).getRvPoint()==4) {
+				star4++;
+			}else if(rvlist.get(i).getRvPoint()==5) {
+				star5++;
+			}
+			
+		}
+		if(avg1==0) {
+			avg=1;
+			pointAvg = (double)sumPoint/(double)avg;
+		}else {
+			pointAvg = (double)sumPoint/(double)avg1;
+		}
 		
+		rp.setPoint1(star1);
+		rp.setPoint2(star2);
+		rp.setPoint3(star3);
+		rp.setPoint4(star4);
+		rp.setPoint5(star5);
+		
+		
+		rp.setPointAvg(Math.round(pointAvg*10)/10.0);
+		
+		int per = star1;
+		
+		if (star1<star2) {
+			per = star2;
+		}else if(per<star3) {
+			per = star3;
+		}else if(per<star4) {
+			per = star4;
+		}else if(per<star5) {
+			per = star5;
+		}
+		
+		rp.setPer(per);
+		
+		int sumStar = star1+star2+star3+star4+star5;
+		
+		rp.setReviewCount(sumStar);
 		ArrayList<Product_opt> polist = mainService.selectOptionList(product_detail);
 		ArrayList<Product_opt> poolist2 = mainService.selectOptionList33(product_detail);
 		ArrayList<Board> blist = mainService.selectQnaList(mainPi2,product_detail);
 		ArrayList<Product_color> pclist = mainService.selectColorList2();
 		
 		
+		mv.addObject("rp", rp);
 		mv.addObject("lcount", lcount);
 		mv.addObject("plist", plist);
 		mv.addObject("mainPi2", mainPi2);
@@ -651,10 +711,13 @@ MainSearchCondition msc= new MainSearchCondition();
 			int count = 0;
 			String rvImage = "";
 			String rvImage2 = "";
+			ArrayList<Product> pdlist = mainService.selectDetailList(dr.getPrdtNo());
 			
 		   for(MultipartFile f : dr.getFile()) {
 			   String timeStamp = new SimpleDateFormat("yyyyMMddhhmmssSSS").format(new Date());
+			   
 			   String fileName = root+"\\images\\oT\\detailReviewPhoto\\"+timeStamp+f.getOriginalFilename();
+			   
 			   String savePath = root+"\\images\\oT\\detailReviewPhoto\\";
 			   File folder = new File(savePath);
 				
@@ -664,6 +727,15 @@ MainSearchCondition msc= new MainSearchCondition();
 			   File file = new File(fileName);
 			   f.transferTo(file);
 			   
+			   if(f.getOriginalFilename()==""&&count==0) {
+				   for(int i=0; i<pdlist.size(); i++) {
+					   
+					   rvImage=pdlist.get(i).getPrdtImagePath()+pdlist.get(i).getPrdtImage();
+				   }
+				   count++;
+			   }
+			   
+			   
 			   if(count==0) {
 				   rvImage=fileName;
 				   count++;
@@ -672,9 +744,9 @@ MainSearchCondition msc= new MainSearchCondition();
 				   count++;
 			   }
 			   
-			   
-			   
 		   }
+		   
+		  
 		   
 		   dr.setFileName(rvImage);
 		   dr.setFileName2(rvImage2);

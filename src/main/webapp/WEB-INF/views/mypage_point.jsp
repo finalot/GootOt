@@ -49,7 +49,23 @@
     				</strong>
  					님은 현재 
 					<strong>
-						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">MEMBER</span>
+						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">
+							<c:if test="${loginMember.memSumMoney < 30000}">
+								MEMBER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 30000 && loginMember.memSumMoney < 60000}" >
+								IRON
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 60000 && loginMember.memSumMoney < 90000}" >
+								BRONZE
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 90000 && loginMember.memSumMoney < 120000}" >
+								SILVER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 120000}" >
+								GOLD
+							</c:if>
+						</span>
 						<span class="myshop_benefit_ship_free_message"></span>
 					</strong>
   					입니다.
@@ -231,9 +247,8 @@
 				<h3>적립금 안내</h3>
 				<div class="inner">
 	        		<ol class="xans-element- xans-myshop xans-myshop-historyinfo" style="font-size: 13px;">
-	        			<li class="item1 ">주문으로 발생한 적립금은 배송완료 후 7일 부터 실제 사용 가능한 적립금으로 전환됩니다. 배송완료 시점으로부터 7일 동안은 미가용 적립금으로 분류됩니다.</li>
-						<li class="item2 ">미가용 적립금은 반품, 구매취소 등을 대비한 임시 적립금으로 사용가능 적립금으로 전환되기까지 상품구매에 사용하실 수 없습니다.</li>
-						<li class="item3 ">사용가능 적립금(총적립금 - 사용된적립금 - 미가용적립금)은 상품구매 시 바로 사용가능합니다.</li>
+	        			<li class="item1 ">적립금 사용은 최소 2,000원부터 사용이 가능합니다. 최대 사용금액은 제한이 없습니다.</li>
+						<li class="item2 ">적립금 사용 시 배송비는 적립금으로 사용 할 수 없습니다.</li>
 					</ol>
 				</div>
 			</div>

@@ -36,7 +36,23 @@ input {
     				</strong>
  					님은 현재 
 					<strong>
-						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">MEMBER</span>
+						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">
+							<c:if test="${loginMember.memSumMoney < 30000}">
+								MEMBER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 30000 && loginMember.memSumMoney < 60000}" >
+								IRON
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 60000 && loginMember.memSumMoney < 90000}" >
+								BRONZE
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 90000 && loginMember.memSumMoney < 120000}" >
+								SILVER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 120000}" >
+								GOLD
+							</c:if>
+						</span>
 						<span class="myshop_benefit_ship_free_message"></span>
 					</strong>
   					입니다.
@@ -187,13 +203,15 @@ input {
 				</div>
 			</form>
 			
-			<div class="ec-base-help" align="center">
+			<div class="ec-base-help">
     <h3>배송주소록 유의사항</h3>
-    <div class="inner">
-        <ol style="font-size:13px;"><li class="item1">배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</li>
-            <li class="item2">자동 업데이트를 원하지 않을 경우 주소록 고정 선택을 선택하시면 선택된 주소록은 업데이트 대상에서 제외됩니다.</li>
-            <li class="item3">기본 배송지는 1개만 저장됩니다. 다른 배송지를 기본 배송지로 설정하시면 기본 배송지가 변경됩니다.</li>
-        </ol></div>
+    			<div class="inner">
+        			<ol style="font-size:13px;">
+	        			<li class="item1">배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</li>
+			            <li class="item2">자동 업데이트를 원하지 않을 경우 주소록 고정 선택을 선택하시면 선택된 주소록은 업데이트 대상에서 제외됩니다.</li>
+			            <li class="item3">기본 배송지는 1개만 저장됩니다. 다른 배송지를 기본 배송지로 설정하시면 기본 배송지가 변경됩니다.</li>
+		       		</ol>
+	       		</div>
 </div>
 			
 

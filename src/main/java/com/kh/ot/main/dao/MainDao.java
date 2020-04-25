@@ -25,6 +25,7 @@ import com.kh.ot.main.vo.ReviewCheck;
 import com.kh.ot.main.vo.Wish;
 import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
+import com.kh.ot.review.vo.Review;
 
 @Repository("mainDao")
 public class MainDao {
@@ -246,6 +247,10 @@ public class MainDao {
 
 	public int updateReviewCount(DetailReview dr) {
 		return sqlSession.update("productMapper.updateReviewCount",dr);
+	}
+
+	public ArrayList<Review> selectPoint(int product_detail) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectPoint",product_detail);
 	}
 
 	

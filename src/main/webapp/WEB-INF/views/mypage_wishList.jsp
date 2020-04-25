@@ -55,7 +55,23 @@ a {
     				</strong>
  					님은 현재 
 					<strong>
-						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">MEMBER</span>
+						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">
+							<c:if test="${loginMember.memSumMoney < 30000}">
+								MEMBER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 30000 && loginMember.memSumMoney < 60000}" >
+								IRON
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 60000 && loginMember.memSumMoney < 90000}" >
+								BRONZE
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 90000 && loginMember.memSumMoney < 120000}" >
+								SILVER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 120000}" >
+								GOLD
+							</c:if>
+						</span>
 						<span class="myshop_benefit_ship_free_message"></span>
 					</strong>
   					입니다.
@@ -107,7 +123,7 @@ a {
         		$login_page = /member/login.html
        		    $count = 10
   			-->
-				<table border="1" summary>
+				<table id="wishtable" border="1" summary>
 					<caption style="display:none;">관심상품 목록</caption>
        				<colgroup>
 						<col style="width:40px;">
@@ -135,6 +151,7 @@ a {
 			                <th scope="col">ORDER</th>
             			</tr>
           			</thead>
+
           			<tbody class="xans-element- xans-myshop xans-myshop-wishlistitem center">
 						<c:set var="i" value="0"/>
           				<c:forEach var="d" items="${list }">
@@ -142,17 +159,21 @@ a {
           				<input id="memno" name ="memno" value="${loginMember.memNo }" type="hidden"/>
           				<input id="prdt_no" name="prdt_no" class="prdt_no" value="${d.prdt_no }" type="hidden"/>
           				<input type="hidden" name="dibsno" class="dibsno" value="${d.dibsno }"/>
+          				<input type="hidden" name="dibs_color" class="dibsno" value="${d.dibs_color }"/>
+          				<input type="hidden" name="dibs_size" class="dibsno" value="${d.dibs_size }"/>
+          				<input type="hidden" name="dibs_count" class="dibsno" value="${d.dibs_count }"/>
 							<td>
 								<input name="wishCheck" id="wish_idx_0" type="checkbox">
 							</td>
                				<td class="thumb">
-            					<a href="${product_detail }">
+            					<a onclick="prdtmove(this);"href="#">
                						<img src="${d.path}${d.image}" alt=""></a>
        						</td>
-							<td class="left"><a href="${product_detail }" style="font-size: 13px;">${d.prdt_name }</a>
+							<td class="left"><a onclick="prdtmove(this);" href="#" style="font-size: 13px;">${d.prdt_name }</a>
+							
 							<br>
 							<c:if test="${ d.dibs_color ne null or d.dibs_size ne null }">
-							<span id="idMsg7">[옵션 : ${d.dibs_color }/${d.dibs_size }/${d.dibs_count}개]</span>
+							<span class="aaaaa" id="idMsg7">[옵션 : ${d.dibs_color }/${d.dibs_size }/${d.dibs_count}개]</span>
 							</c:if>
 								<ul class="xans-element- xans-myshop xans-myshop-optionall option">
 									<li class="xans-record-">
@@ -219,7 +240,7 @@ a {
                				
                				<c:if test="${ d.dibs_color ne null or d.dibs_size ne null }">
 			                <td class="button">
-			                    <a href="#none" onclick="CAPP_SHOP_NEW_PRODUCT_OPTIONSELECT.selectOptionCommon(10550,  26, 'wishlist', '')" class=" yg_btn_100 yg_btn1 add-to-cart" alt="담기">ADD TO CART</a>
+			                    <a id="BuyNow"  class=" yg_btn_100 yg_btn1 add-to-cart BuyNow" alt="담기">BUY NOW</a>
 			                    <a id="selectDelete" class="btn_wishlist_del yg_btn_100 yg_btn4 selectDelete" alt="삭제">DELETE</a>
 			                </td>
 			                </c:if>
@@ -247,8 +268,8 @@ a {
         			<a id="Insertbasket" class="yg_btn_24 yg_btn3" alt="장바구니 담기">장바구니 담기</a>
     			</span>
 				<span class="gRight">
-       				<a href="${order }" onclick="NewWishlist.orderAll();" class="yg_btn_140" alt="전체상품주문">전체상품주문</a>
-       	 			<a href="${cart }" onclick="NewWishlist.deleteAll();" class="yg_btn_140 yg_btn4" alt="장바구니 가기" style="background:#f4f4f4">장바구니 가기</a>
+       				<a href="#" id="AllBuyNow" class="yg_btn_140 AllBuyNow" alt="전체상품주문">전체상품주문</a>
+       	 			<a href="${cart }" class="yg_btn_140 yg_btn4" alt="장바구니 가기" style="background:#f4f4f4">장바구니 가기</a>
        	 			<a id="deleteAll" class="yg_btn_140 yg_btn4" alt="관심상품 비우기" style="background:#f4f4f4">전체 비우기</a>
     			</span>
 			</div>
@@ -325,135 +346,7 @@ a {
 		<hr class="layout">
 	</div>
 	
-	<div class="xans-element- xans-product xans-product-optionselectlayer ec-base-layer add-cart">
-		<div class="header">
-			<h1>옵션 확인</h1>
-		</div>
-		<div class="content">
-			<div class="xans-element- xans-product xans-product-detail inner ">
-				<h2 class="name">
-					<span>ADD TO CART</span>
-				</h2>
-				<div class="productNormal ">
-					<div class="xans-element- xans-product xans-product-image imgArea ">
-						<img src="//black-up.kr/web/product/tiny/201907/28e70275e9da1a542c85a8e8d50160d4.webp" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" class="">
-					</div>
-					<table border="1" summary="">
-						<caption>상품 옵션</caption>
-						<colgroup>
-							<col width="80px">
-							<col width="auto">
-						</colgroup>
-						<tbody
-							class="xans-element- xans-product xans-product-option xans-record-">
-							<tr class="xans-element- xans-product xans-product-option xans-record-">
-					<span>(BLACK UP) 호딘 트레이닝 팬츠</span>
-
-</tr>
-							
-						</tbody>
-					</table>
-				</div>
-				<!-- //참고 -->
-				<!-- 참고 : 뉴상품관리 전용 변수가 포함되어 있습니다. 뉴상품관리 이외의 곳에서 사용하면 일부 변수가 정상동작하지 않을 수 있습니다. -->
-				<div id="totalProducts" class="">
-					<p class="ec-base-help txtWarn txt11 displaynone">수량을 선택해주세요.</p>
-					<p class="ec-base-help txtWarn txt11 ">상품 옵션을 확인해주세요.</p>
-					<table border="0" summary="">
-						<caption>상품 목록</caption>
-						<colgroup>
-							<col style="width: 284px;">
-							<col style="width: 80px;">
-							<col style="width: 110px;">
-						</colgroup>
-						<thead>
-							<tr>
-								<th scope="col">상품명</th>
-								<th scope="col">상품수</th>
-								<th scope="col">가격</th>
-							</tr>
-						</thead>
-						<tbody class="displaynone">
-							<tr>
-								<td>(BLACK UP) 호딘 트레이닝 팬츠</td>
-								<td>
-									<span class="quantity"> <input id="quantity" name="quantity_name" style="" value="0" type="text"> 
-										<a href="#none">
-											<img src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_up.gif"
-											alt="수량증가" class="QuantityUp up"></a> <a href="#none">
-											<img src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_down.gif"
-												alt="수량감소" class="QuantityDown down"></a>
-									</span>
-								</td>
-								<td class="right"><span class="quantity_price">9000</span>
-									<span class="mileage ">(<img
-										src="/ot/resources/images/point.png"> &nbsp;<span
-										class="mileage_price">0</span>)
-								</span></td>
-							</tr>
-						</tbody>
-						<!-- 참고 : 옵션선택 또는 세트상품 선택시 상품이 추가되는 영역입니다. 쇼핑몰 화면에는 아래와 같은 마크업구조로 표시됩니다. 삭제시 기능이 정상동작 하지 않습니다.-->
-						<tbody>
-							<tr class="option_product " data-option-index="1"
-								target-key="9017">
-								<td><input type="hidden" class="option_box_id"
-									id="option_box1_id" value="P0000NIU000Q" name="item_code[]"
-									data-item-add-option="" data-item-reserved="N"
-									data-option-id="'+sOptionId+'">
-								<p class="product" style="font-size:12px;">
-										(BLACK UP) 호딘 트레이닝 팬츠<br> - <span>블랙 / S / 1</span>
-									</p></td>
-<td><span class="quantity" style="width:65px;"><input type="text" id="option_box1_quantity" name="quantity_opt[]" class="quantity_opt eProductQuantityClass" value="1" product-no="9017"><a href="#none" class="up eProductQuantityUpClass" "="" data-target="option_box1_up">
-<img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_up.gif" id="option_box1_up" class="option_box_up" alt="수량증가"></a><a href="#none" class="down eProductQuantityDownClass" data-target="option_box1_down">
-<img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif" id="option_box1_down" class="option_box_down" alt="수량감소"></a></span><a href="#none" class="delete">
-<!-- <img src="//img.echosting.cafe24.com/design/skin/default/product/btn_price_delete.gif" alt="삭제" id="option_box1_del" class="option_box_del"> --></a></td>
-								<td class="right"><span id="option_box1_price"><input type="hidden" class="option_box_price" value="19000" product-no="10550" item_code="P0000PPU000F">
-								<span class="ec-front-product-item-price" code="P0000PPU000F" product-no="10550">19,000 won</span></span><span class="mileage">(<img src="/ot/resources/images/point.png" alt="적립금"> <span id="option_box1_mileage" class="mileage_price" code="P0000PPU000F">100원</span>)</span></td>
-							</tr>
-							<tr class="option_product " data-option-index="1"
-								target-key="9017">
-								<td><input type="hidden" class="option_box_id"
-									id="option_box1_id" value="P0000NIU000Q" name="item_code[]"
-									data-item-add-option="" data-item-reserved="N"
-									data-option-id="'+sOptionId+'">
-								<p class="product" style="font-size:12px;">
-										(BLACK UP) 호딘 트레이닝 팬츠<br> - <span>그레이 / M / 1</span>
-									</p></td>
-<td><span class="quantity" style="width:65px;"><input type="text" id="option_box1_quantity" name="quantity_opt[]" class="quantity_opt eProductQuantityClass" value="1" product-no="9017"><a href="#none" class="up eProductQuantityUpClass" "="" data-target="option_box1_up">
-<img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_up.gif" id="option_box1_up" class="option_box_up" alt="수량증가"></a><a href="#none" class="down eProductQuantityDownClass" data-target="option_box1_down">
-<img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif" id="option_box1_down" class="option_box_down" alt="수량감소"></a></span><a href="#none" class="delete">
-<!-- <img src="//img.echosting.cafe24.com/design/skin/default/product/btn_price_delete.gif" alt="삭제" id="option_box1_del" class="option_box_del"> --></a></td>
-								<td class="right"><span id="option_box1_price"><input type="hidden" class="option_box_price" value="19000" product-no="10550" item_code="P0000PPU000F">
-								<span class="ec-front-product-item-price" code="P0000PPU000F" product-no="10550">19,000 won</span></span><span class="mileage">(<img src="/ot/resources/images/point.png" alt="적립금"> <span id="option_box1_mileage" class="mileage_price" code="P0000PPU000F">100원</span>)</span></td>
-							</tr>
-						</tbody>
-						<!-- //참고 -->
-						<tfoot>
-							<tr>
-								<td colspan="3"><span>총 상품금액</span>(수량) : <span
-									class="total"><span><em>19,000 won</em></span> (0개)</span></td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-				<!-- //참고 -->
-			</div>
-		</div>
-		<div
-			class="xans-element- xans-product xans-product-action ec-base-button ">
-			<a href="${order }" class="first  yg_btn_30"
-				onclick="product_submit(1, '/exec/front/order/basket/', this)"
-				alt="바로구매하기">바로구매하기</a> <a href="#none" class=" yg_btn_30 yg_btn3"
-				onclick="product_submit(2, '/exec/front/order/basket/', this)"
-				alt="장바구니 담기">장바구니 담기</a>
-			<!-- 네이버 체크아웃 구매 버튼 -->
-			<div id="NaverChk_Button"></div>
-			<!-- //네이버 체크아웃 구매 버튼 -->
-		</div>
-		<a class="option_close" onclick="">
-		<img src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif"
-			alt="닫기"></a>
-	</div>
+	
 
 	<script>
 	
@@ -520,10 +413,12 @@ a {
 			console.log(prdt_no);
 			console.log(dibsno);
 			
+
+			
 			location.href="insertwishlist.do?prdt_no="+prdt_no+"&dibs_count="+quantity+"&dibs_size="+size+"&dibs_color="+color;
 			alert('관심상품에 추가되었습니다.');
 			 
-			
+			}
 			/* $.ajax({
 				url:"insertwishlist.do",
 				data:{prdt_no : prdt_no, dibs_count : quantity, dibs_size : size, dibs_color : color },
@@ -615,7 +510,6 @@ a {
 					/* $('.optiondetail').css('display', 'none'); 
 				}
 			}) */
-		}
 		
 		function update(A, i){
 			var quantity = document.getElementsByName("num-product2")[i].value;
@@ -623,6 +517,7 @@ a {
 			var size = document.getElementsByClassName("select2")[i].value;
 			location.href="updatewishlist.do?dibsno="+dibsno+"&prdt_no="+prdt_no+"&dibs_count="+quantity+"&dibs_size="+size+"&dibs_color="+color;
 			alert('관심 상품 옵션이 변경되었습니다.');
+			
 		}
 		
 		  var $pro_wish = $('#pro_wish');
@@ -633,25 +528,125 @@ a {
 
 		    });
 		    
-		$('#Insertbasket').click(function(){
-			var wishArr = new Array();
-			var wishCheck = document.getElementsByName('wishCheck');		// 체크박스
-			console.log(wishCheck);
-			var dibsno = document.getElementsByName('dibsno');				// 위시리스트 번호
+	    $('#AllBuyNow').click(function(){
+	    	var wishArr = new Array($('#wishtable tbody tr').length);
+			var colorArr = new Array();
+			var countArr = new Array();
+			var sizeArr = new Array();
+			var dibs_color = document.getElementsByName('dibs_color');		// 체크박스
+			var dibs_size = document.getElementsByName('dibs_size');		// 체크박스
+			var dibs_count = document.getElementsByName('dibs_count');		// 체크박스
+			var dibsno = document.getElementsByName('dibsno'); // 위시리스트 번호
 			
 			var count = 0;
+			var colorCount = 0;
+			var sizeCount = 0;
+			var quantityCount=0;
 			
+			for(var i=0; i<wishArr.length; i++){
+					wishArr[count] = dibsno[i].value
+					colorArr[count] =  dibs_color[i].value
+					countArr[count] =  dibs_size[i].value
+					sizeArr[count] =  dibs_count[i].value
+					count++;
+				}
+			
+			console.log(wishArr);
+
+		for(var i=0; i<wishArr.length;i++){
+			if(countArr[i] == ""){
+				quantityCount++;
+			}
+		}
+		for(var i=0; i<wishArr.length;i++){
+			if(colorArr[i] == ""){
+				colorCount++;
+			}
+		}		
+		for(var i=0; i<wishArr.length;i++){
+			if(sizeArr[i] == ""){
+				sizeCount++;
+			}
+		}
+			if(colorCount > 0){
+				alert('옵션을 확인해 주세요');
+			}else if(quantityCount > 0 ){
+				alert('옵션을 확인해 주세요');
+			}else if(sizeCount > 0){
+				alert('옵션을 확인해 주세요');
+			} else {
+				console.log("성공");
+				console.log(colorCount);
+				console.log(quantityCount);
+				console.log(sizeCount);
+				console.log(wishArr);
+				location.href="Insertbasket.do?wishArr="+wishArr;
+			}
+			
+		});    
+		    
+		$('#Insertbasket').click(function(){
+			var wishArr = new Array();
+			var colorArr = new Array();
+			var countArr = new Array();
+			var sizeArr = new Array();
+			var wishCheck = document.getElementsByName('wishCheck');		// 체크박스
+			var dibs_color = document.getElementsByName('dibs_color');		// 체크박스
+			var dibs_size = document.getElementsByName('dibs_size');		// 체크박스
+			var dibs_count = document.getElementsByName('dibs_count');		// 체크박스
+			
+			console.log(wishCheck);
+			var dibsno = document.getElementsByName('dibsno'); // 위시리스트 번호
+			var count = 0;
 			for(var i=0; i<wishCheck.length; i++){
 				if(wishCheck[i].checked == true) {
 					wishArr[count] = dibsno[i].value
+					colorArr[count] =  dibs_color[i].value
+					countArr[count] =  dibs_size[i].value
+					sizeArr[count] =  dibs_count[i].value
 					count++;
 					}
-					console.log(wishArr);
 				}
-			location.href="Insertbasket.do?wishArr="+wishArr;
+			if(count == 0) {
+				alert("상품을 선택해주세요.");	
+			} else {
+		
+		var colorCount = 0;
+		var sizeCount = 0;
+		var countCount=0;
+			
+		for(var i=0; i<wishArr.length;i++){
+			if(countArr[i] == ""){
+				countCount++;
+			}
+		}
+		for(var i=0; i<wishArr.length;i++){
+			if(colorArr[i] == ""){
+				colorCount++;
+			}
+		}		
+		for(var i=0; i<wishArr.length;i++){
+			if(sizeArr[i] == ""){
+				sizeCount++;
+			}
+		}
+		
+			if(colorCount > 0){
+				alert('옵션을 확인해 주세요');
+			}else if(countCount > 0 ){
+				alert('옵션을 확인해 주세요')
+			}else if(sizeCount > 0){
+				alert('옵션을 확인해 주세요')
+			} else{
 			alert('장바구니에 추가되었습니다.');
-		});
+			console.log(wishArr);
+			location.href="Insertbasket.do?wishArr="+wishArr;
+			}
+		}
+	});
 		    
+		
+		
 		
 		$('.option_close').click(function() {
 			$('.optiondetail').css('display', 'none');
@@ -682,6 +677,16 @@ a {
 				});
 			}
 		});
+		
+		$('.BuyNow').click(function(){
+			dibsno = $(this).parents('tr').find('.dibsno').val();
+			
+			console.log(dibsno);
+			
+			location.href="wishBuynow.do?dibsno="+dibsno;
+		});
+		
+		
 		
 		$('.selectDelete').click(function(){
 			dibsno = $(this).parents('tr').find('.dibsno').val();
@@ -731,57 +736,32 @@ a {
 					alert('삭제실패')
 				}
 			},error : function(){
-				alert('에러다');
+				alert('상품을 선택해주세요.');
 			}
 			});
 		}
 	});
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	</script>	
-	
-	<script>
-								
-/*[ +/- num product ]
-   ===========================================================*/
-   $('.num-product-down1').on('click', function(e){
-       e.preventDefault();
-       var numProduct = Number($(this).next().val());
-       if(numProduct > 1) $(this).next().val(numProduct - 1);
-   });
 
-   $('.num-product-up1').on('click', function(e){
-       e.preventDefault();
-       var numProduct = Number($(this).prev().val());
-       $(this).prev().val(numProduct + 1);
-   });
+		function prdtmove(pm) {
+				prdt_no = $(pm).parents('tr').find('.prdt_no').val();
+				
+				location.href ="product_detail.do?product_detail="+ prdt_no;
+			}
+		
+								
+	/*[ +/- num product ]
+	   ===========================================================*/
+	   $('.num-product-down1').on('click', function(e){
+	       e.preventDefault();
+	       var numProduct = Number($(this).next().val());
+	       if(numProduct > 1) $(this).next().val(numProduct - 1);
+	   });
+	
+	   $('.num-product-up1').on('click', function(e){
+	       e.preventDefault();
+	       var numProduct = Number($(this).prev().val());
+	       $(this).prev().val(numProduct + 1);
+	   });
 </script>
 
  <%@include file="footer.jsp" %>

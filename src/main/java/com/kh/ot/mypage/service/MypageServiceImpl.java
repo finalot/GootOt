@@ -20,7 +20,6 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
-import com.kh.ot.mypage.vo.WishArr;
 
 @Service("mpService")
 public class MypageServiceImpl implements MypageService{
@@ -270,6 +269,32 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public int deleteDlist(ArrayList<DIBS> wish) {
 		return mpDao.deleteDlist(wish);
+	}
+
+	@Override
+	public DIBS selectOneBuynow(int dibsno) {
+		return mpDao.selectOneBuynow(dibsno);
+	}
+
+	@Override
+	public int InsertOneCart(Cart c) {
+		return mpDao.InsertOneCart(c);
+	}
+
+	@Override
+	public int deleteOneList(DIBS d) {
+		// TODO Auto-generated method stub
+		return mpDao.deleteOneList(d);
+	}
+
+	@Override
+	public ArrayList<DIBS> selectAllBuyNow(int memno) {
+		return mpDao.selectAllBuyNow(memno);
+	}
+
+	@Override
+	public int deleteAlllist(ArrayList<DIBS> dlist) {
+		return mpDao.deleteAlllist(dlist);
 	}
 
 }

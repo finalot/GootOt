@@ -20,6 +20,7 @@ import com.kh.ot.main.vo.ReviewCheck;
 import com.kh.ot.main.vo.Wish;
 import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
+import com.kh.ot.review.vo.Review;
 
 public interface MainService {
 	
@@ -138,6 +139,8 @@ public interface MainService {
 	int detailReviewPhotoInsert2(DetailReview dr);
 
 	int updateReviewCount(DetailReview dr);
+
+	ArrayList<Review> selectPoint(int product_detail);
 
 
 }

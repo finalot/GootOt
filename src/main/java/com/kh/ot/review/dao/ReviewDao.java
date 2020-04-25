@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
@@ -266,5 +267,30 @@ public class ReviewDao {
 	}
 	public ArrayList<Product_opt> selectOptionBestList() {
 		return (ArrayList)sqlSession.selectList("reviewMapper.selectOptionBestList");
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 24.
+	 * @작성자  : 우예진
+	 * @내용    : 셀렉트 박스 카테고리 
+	 * @return
+	 */
+	public ArrayList<MainupCategory> selectCategoryList() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectCategoryList");
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 24.
+	 * @작성자  : 우예진
+	 * @내용    : 셀렉트박스 리뷰
+	 * @param upNo
+	 * @return
+	 */
+	public ArrayList<Review> selectCategoryReview(int upNo) {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectCategoryReview",upNo);
+	}
+
+	public ArrayList<Review> selectAllSort() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectAllSort");
 	}
 }

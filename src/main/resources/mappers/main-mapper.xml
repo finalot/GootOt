@@ -95,12 +95,39 @@
 			<result property="with7" column="CONNECT_NO7"/>
 			<result property="with8" column="CONNECT_NO8"/>
 		</resultMap>
+		
+		<resultMap type="Review" id="ReviewResultSet">
+			<id property = "rvNo" column="RV_NO"/>
+			<result property="prdtCode" column="PRDT_CODE"/>
+			<result property="memCode" column="MEM_CODE"/>
+			<result property="rvHeight" column="RV_HEIGHT"/>
+			<result property="rvWeight" column="RV_WEIGHT"/>
+			<result property="ordDetailNo" column="ORD_DETAILNO"/>
+			<result property="rvInfo" column="RV_INFO"/>
+			<result property="rvImage" column="RV_IMAGE"/>
+			<result property="rvLike" column="RV_LIKE"/>
+			<result property="rvDate" column="RV_DATE"/>
+			<result property="rvColor" column="RV_COLOR"/>
+			<result property="rvSize" column="RV_SIZE"/>
+			<result property="memName" column="MEM_NAME"/>
+			<result property="prdtName" column="PRDT_NAME"/>
+			<result property="rvDate2" column="RV_DATE2"/>
+			<result property="prdtImg" column="PRDT_IMAGE"/>
+			<result property="prdtPath" column="PRDT_IMAGE_PATH"/>
+			<result property="rvPoint" column="RV_POINT"/>
+	</resultMap>
  
 	
 		<select id="selectQnaListCount" parameterType="_int" resultType="_int">
 	  	SELECT COUNT(*)
 	  	FROM QNA
 	  	WHERE PRDT_CODE = #{product_detail}
+		</select>
+		
+		<select id="selectPoint" parameterType="_int" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW
+		WHERE PRDT_CODE = #{product_detail}
 		</select>
 		
 		<select id="selectDetailReviewWriteCheck" parameterType="ReviewCheck" resultType="_int">

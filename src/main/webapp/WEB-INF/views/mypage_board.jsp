@@ -48,7 +48,23 @@ a{
     				</strong>
  					님은 현재 
 					<strong>
-						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">MEMBER</span>
+						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">
+							<c:if test="${loginMember.memSumMoney < 30000}">
+								MEMBER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 30000 && loginMember.memSumMoney < 60000}" >
+								IRON
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 60000 && loginMember.memSumMoney < 90000}" >
+								BRONZE
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 90000 && loginMember.memSumMoney < 120000}" >
+								SILVER
+							</c:if>
+							<c:if test="${loginMember.memSumMoney >= 120000}" >
+								GOLD
+							</c:if>
+						</span>
 						<span class="myshop_benefit_ship_free_message"></span>
 					</strong>
   					입니다.
@@ -267,7 +283,7 @@ a{
 
 			<!-- 페이징 처리 -->
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
-			
+			<c:if test="${ !empty list }">
 				<c:if test="${empty sc }">
 					<c:if test="${pi.currentPage eq 1 }">
 						<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
@@ -422,6 +438,7 @@ a{
 							<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
 						</a>
 	               </c:if>
+               </c:if>
                </c:if>
 			</div>
 			

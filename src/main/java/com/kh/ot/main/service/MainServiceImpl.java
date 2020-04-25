@@ -24,6 +24,7 @@ import com.kh.ot.main.vo.ReviewCheck;
 import com.kh.ot.main.vo.Wish;
 import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
+import com.kh.ot.review.vo.Review;
 import com.kh.ot.main.vo.MaindownCategory;
 import com.kh.ot.main.vo.MainupCategory;
 
@@ -196,6 +197,10 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public int updateReviewCount(DetailReview dr) {
 		return mainDao.updateReviewCount(dr);
+	}
+	@Override
+	public ArrayList<Review> selectPoint(int product_detail) {
+		return mainDao.selectPoint(product_detail);
 	}
 
 	

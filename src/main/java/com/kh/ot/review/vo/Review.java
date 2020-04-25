@@ -20,11 +20,15 @@ public class Review {
 	private String rvDate2; // 리뷰등록날짜2
 	private String prdtImg; // 상품이미지
 	private String prdtPath; // 상품경로 
+	private int rvPoint; //리뷰평점
 	
 	public Review() {}
 
+	
+
 	public Review(int rvNo, int prdtCode, int memCode, int rvHeight, int rvWeight, int ordDetailNo, String rvInfo,
-			String rvImage, int rvLike, Date rvDate) {
+			String rvImage, int rvLike, Date rvDate, String rvColor, String rvSize, String memName, String prdtName,
+			String rvDate2, String prdtImg, String prdtPath, int rvPoint) {
 		super();
 		this.rvNo = rvNo;
 		this.prdtCode = prdtCode;
@@ -36,7 +40,29 @@ public class Review {
 		this.rvImage = rvImage;
 		this.rvLike = rvLike;
 		this.rvDate = rvDate;
+		this.rvColor = rvColor;
+		this.rvSize = rvSize;
+		this.memName = memName;
+		this.prdtName = prdtName;
+		this.rvDate2 = rvDate2;
+		this.prdtImg = prdtImg;
+		this.prdtPath = prdtPath;
+		this.rvPoint = rvPoint;
 	}
+
+
+
+	public int getRvPoint() {
+		return rvPoint;
+	}
+
+
+
+	public void setRvPoint(int rvPoint) {
+		this.rvPoint = rvPoint;
+	}
+
+
 
 	public int getRvNo() {
 		return rvNo;
