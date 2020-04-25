@@ -462,11 +462,11 @@ public class adminDao {
 		return sqlSession.selectOne("memberMapper.selectOneMember",memNo);
 	}
 	
-	 * @작성일  : 2020. 4. 23.
-	 * @작성자  : 문태환
-	 * @내용 	: 반품 업데이트
-	 * @param r
-	 * @return
+	 
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 문태환
+	 * @내용 : 반품 업데이트 
 	 */
 	public int ReturnUpdate(Return r) {
 		return sqlSession.update("adminMapper.ReturnUpdate",r);
@@ -483,15 +483,20 @@ public class adminDao {
 	}
 
 
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 이서현
+	 * @내용 : 상품인기순위 리스트 
+	 */
 	public ArrayList<Product> ProductSelectListBest() {
 		return (ArrayList)sqlSession.selectList("productMapper.ProductSelectListBest");
 	}
 	
-	 * @작성일  : 2020. 4. 23.
-	 * @작성자  : 문태환
-	 * @내용 	: 주분테이블 반품상태 업데이트
-	 * @param reNo
-	 * @return
+	
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 문태환
+	 * @내용 : 주분테이블 반품상태 업데이트 
 	 */
 	public int updateOrdf(Return r) {
 		
@@ -505,5 +510,10 @@ public class adminDao {
 		
 		
 		
+	}
+
+
+	public ArrayList<Ord> todaySellSelectList() {
+		return (ArrayList)sqlSession.selectList("cartMapper.todaySellSelectList");
 	}
 }

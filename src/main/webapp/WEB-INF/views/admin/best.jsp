@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -211,18 +212,29 @@
                     <tr>
                         <th>순위</th>
                         <th>상품명</th>
-                        <th>가격</th>
+                        <th>대표이미지</th>
+                        <th>가격(할인가 포함)</th>
                         <th>당일 판매수량</th>
                         <th>총 판매수량</th>
                     </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="p" items="${plist }" varStatus="status">
-                   <tr>
+                   <tr align="center">
                    		<td>${status.count}</td>
                    		<td>${p.prdtName }</td>
-                   		<td>${p. prdtPrice}-${p.prdtSale }</td>
-                   		<td>냠냠냠</td>
+                   		<td align="center"><img style="width: 100px" src="${p.prdtImagePath }${p.prdtImage}" alt="상품이미지" title="상품이미지"></td>                   		
+	                   	<td><fmt:parseNumber value="${p. prdtPrice-p.prdtSale*1/100}" integerOnly="true"/></td>
+                   		  	<!-- 당일 판매수량  -->
+	                   	<%-- <c:forEach var="o" items="${olist }">
+	                   		<jsp:useBean id="now" class="java.util.Date" />
+							<fmt:formatDate value="${now}" pattern="yy/mm/dd" var="today" />
+							<c:out value="${today}"/>
+							<c:if test="${today==o.ord_date }">
+								<td>${o.ord_count }</td>
+							</c:if>
+						</c:forEach> --%>
+						<td>당일 판매 수량 </td>
                    		<td>${p.prdtScount}</td>
                    </tr>
                 </c:forEach>
@@ -241,11 +253,6 @@
 	<script>
      $("td").click(function(){
     	 location.href='../productDetail.do';
-  	 <%-- var userId = $(this).parent().find('input').val();
-  	 
-  	 console.log("선택한 유저 ID : "+userId);
-  	 
-     location.href="<%= request.getContextPath() %>/sone.rp?userId=" + userId; --%>
     }); 
     </script>
 

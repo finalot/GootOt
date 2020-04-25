@@ -373,7 +373,7 @@ public interface adminService{
 		 * @내용 : 상품순위 리스트
 		 */
 		public ArrayList<Product> ProductSelectListBest();
-		
+		/**
 		 * @작성일  : 2020. 4. 23.
 		 * @작성자  : 문태환
 		 * @내용 	: 반품 업데이트
@@ -390,6 +390,14 @@ public interface adminService{
 		 * @return
 		 */
 		public int updateOrdf(Return r);
+
+		/**
+		 * @param ord_date 
+		 * @작성일 : 2020. 4. 24.
+		 * @작성자 : 이서현
+		 * @내용 : 당일판매수량 
+		 */
+		public ArrayList<Ord> todaySellSelectList();
 
 
 }

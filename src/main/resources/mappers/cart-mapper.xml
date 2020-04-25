@@ -285,4 +285,9 @@
 		WHERE PRDT_NO = #{o.prdt_no}								
 	</foreach>
 	</update>
+	
+	<select id="todaySellSelectList" resultMap="ordResultSet">
+		SELECT COUNT(*)
+		FROM ORD
+	</select>
 </mapper>

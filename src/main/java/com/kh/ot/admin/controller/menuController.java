@@ -87,6 +87,9 @@ public class menuController {
 	public ModelAndView best(ModelAndView mv) {
 		ArrayList<Product> plist = adService.ProductSelectListBest();
 		
+		ArrayList<Ord> olist= adService.todaySellSelectList(); 
+		
+		mv.addObject("olist",olist); 
 		mv.addObject("plist",plist);
 		mv.setViewName("admin/best");
 		return mv;
@@ -302,21 +305,19 @@ public class menuController {
 	 * @param ordNo
 	 * @throws IOException
 	 */
-//	@RequestMapping("orderUpdate4.ad")
-//	public void orderUpdate4(HttpServletResponse response , int ordNo) throws IOException {
-//		
-//		PrintWriter out  = response.getWriter();
-//		
-//		int result = adService.orderUpdate4(ordNo);
-//		
-//		if(result > 0) {
-//			out.print("ok");
-//		}else {
-//			out.print("fail");
-//		}
-//	}
-	
-	
+	@RequestMapping("orderUpdate4.ad")
+	public void orderUpdate4(HttpServletResponse response , int ordNo) throws IOException {
+		
+		PrintWriter out  = response.getWriter();
+		
+		int result = adService.orderUpdate4(ordNo);
+		
+		if(result > 0) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+	}
 	
 
 	@RequestMapping("category.ad")
@@ -1632,14 +1633,12 @@ public class menuController {
 		
 	}
 	
-
 	
 	/**
 	 * @작성일 : 2020. 4. 23.
 	 * @작성자 : 이서현
 	 * @내용 : 상품 업데이트 
 	 */
-	
 	/*
 	 * @RequestMapping(value="ProductUpdate.ad" ,method=RequestMethod.POST) public
 	 * String ProductUpdate(HttpServletRequest request, Product p, String[] size,
@@ -1649,26 +1648,46 @@ public class menuController {
 	 * 
 	 * @RequestParam(name="descrptionImg",required=false) MultipartFile file2 ) {
 	 * 
+	 * ArrayList<Product_opt> poArr = new ArrayList<Product_opt>(); for(int i=0;
+	 * i<stock.length-1; i++) { Product_opt pop = new Product_opt();
+	 * 
+	 * if (!file1.getOriginalFilename().equals("")) { String renameFileName =
+	 * saveFile(uploadFile[i], request);
+	 * 
+	 * if (renameFileName != null) { d.setDeNo(no[i]);
+	 * d.setMainComment(mainComment[i]); d.setMainLink(mainLink[i]);
+	 * d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
+	 * d.setReFile(renameFileName); dlist.add(d); } } }
+	 * 
+	 * int result = adService.ProductUpdate(p);
+	 * 
+	 * if (result > 0) {
+	 * 
+	 * return "redirect:QnA_Product.ad"; } else { return "에러다"; }
+	 * 
+	 * }
+	 * 
+	 * Product p = new Product();
 	 * 
 	 * p.setPrdtImage(renameFileName); p.setPrdtDetailImage(renameDetailName);
 	 * ArrayList<Product_opt> oplist = new ArrayList<Product_opt>();
 	 * 
-	 * for(int i=0; i<stock.length-1; i++) { Product p = new Product();
-	 * if(!file1.getOriginalFilename().equals("")) {
+	 * for(int i=0; i<stock.length-1; i++) {
 	 * 
-	 * String renameFileName = saveFile(file1, request);
+	 * if(!file1.getOriginalFilename().equals("")) { String renameFileName =
+	 * saveFile(file1, request); if (file1 != null) {
 	 * 
-	 * if (file1 != null) {
-	 * 
-	 * d.setDeNo(no[i]); d.setMainComment(mainComment[i]);
-	 * d.setMainLink(mainLink[i]);
-	 * d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
-	 * d.setReFile(renameFileName); dlist.add(d); } pot.setSize(size[i]);
-	 * pot.setStock(stock[i]); pot.setPrdtNo(pd.getPrdtNo());
+	 * // d.setDeNo(no[i]); d.setMainComment(mainComment[i]); //
+	 * d.setMainLink(mainLink[i]); //
+	 * d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장 //
+	 * d.setReFile(renameFileName); dlist.add(d); } pot.setSize(size[i]); //
+	 * pot.setStock(stock[i]); pot.setPrdtNo(pd.getPrdtNo()); //
 	 * pot.setOptColor(optColor[i]);
 	 * 
-	 * }}}
+	 * } } }
 	 */
+
+	 
 	 
 	 
 }

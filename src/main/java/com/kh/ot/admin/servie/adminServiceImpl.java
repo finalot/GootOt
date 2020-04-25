@@ -296,4 +296,12 @@ public class adminServiceImpl implements adminService{
 			return adDao.updateOrdf(r);
 		}
 
+
+		@Override
+		public ArrayList<Ord> todaySellSelectList() {
+			return adDao.todaySellSelectList();
+		}
+
+		
+
 }
