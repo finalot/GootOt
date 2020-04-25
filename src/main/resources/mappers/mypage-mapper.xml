@@ -37,6 +37,7 @@
 		<result property="qna_title" column="QNA_TITLE"/>
 		<result property="qna_secure" column="QNA_SECURE"/>
 		<result property="qna_chk" column="QNA_CHK"/>
+		<result property="prdt_name" column="PRDT_NAME"/>
 
 	</resultMap>
 
@@ -197,6 +198,8 @@
         FROM QNA Q
         JOIN BOARD_CATEGORY MB
         ON (Q.B_CATE_NO = MB.B_CATE_NO)
+        JOIN PRDT P
+        ON (Q.PRDT_CODE = P.PRDT_NO)
         WHERE MEM_NO=#{memno}
         ORDER BY QNA_NO DESC
 	</select>
@@ -221,6 +224,8 @@
 		FROM QNA Q
 		JOIN BOARD_CATEGORY MB
 		ON (Q.B_CATE_NO = MB.B_CATE_NO)
+		JOIN PRDT P
+        ON (Q.PRDT_CODE = P.PRDT_NO)
 		WHERE MEM_NO=#{memno}
 		<if test="writer != null">
 		AND Q.QNA_WRITER LIKE '%' || #{writer} || '%'
