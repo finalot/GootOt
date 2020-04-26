@@ -31,6 +31,8 @@ import com.kh.ot.review.service.ReviewService;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
 import com.kh.ot.review.vo.ReviewReply;
+import com.kh.ot.review.vo.Review_Photo;
+import com.kh.ot.review.vo.Review_count;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -55,6 +57,7 @@ public class ReviewController extends HttpServlet {
 			ArrayList<Product_color> pclist = rService.selectColorList1();
 			ArrayList<Product_opt> polist = rService.selectOptionBestList();
 			ArrayList<MainupCategory> ulist = rService.selectCategoryList();
+			ArrayList<Review_count> rc = rService.selectReviewCount();
 			
 			
 			if(Sort.equals("like")) {
@@ -69,6 +72,7 @@ public class ReviewController extends HttpServlet {
 			mv.addObject("polist",polist);
 			mv.addObject("pclist",pclist);
 			mv.addObject("ulist",ulist);
+			mv.addObject("rc",rc);
 
 
 			
@@ -110,12 +114,18 @@ public class ReviewController extends HttpServlet {
 			System.out.println("rvNo: " + rv_no);
 			Review r = rService.selectReviewDetail(rv_no);
 			
+			
+			ArrayList<Review_Photo> ph = new ArrayList();
+			ph = rService.selectReviewPhoto(rv_no);
+			
+			System.out.println("ph:"+ ph);
 			System.out.println("r:" +r);
 			
 			Map hmap = new HashMap();
 			hmap.put("lhl", lhl);
 			hmap.put("r",r);
-			
+			hmap.put("ph", ph);
+		
 		    
 		    
 		    new Gson().toJson(hmap,response.getWriter());
@@ -483,5 +493,7 @@ public class ReviewController extends HttpServlet {
 			
 			gson.toJson(hmap,response.getWriter());
 		}
+		
+	
 		
 }

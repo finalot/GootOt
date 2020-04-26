@@ -15,6 +15,8 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.mypage.vo.ReviewSearch;
+import com.kh.ot.review.vo.Review;
 
 public interface MypageService {
 
@@ -319,6 +321,14 @@ public interface MypageService {
 	ArrayList<DIBS> selectAllBuyNow(int memno);
 
 	int deleteAlllist(ArrayList<DIBS> dlist);
+
+	int getReviewListCount(int memNo);
+
+	ArrayList<Review> selectReviewList(PageInfo pi, int memNo);
+
+	int getSearchReviewCount(ReviewSearch rs);
+
+	ArrayList<Review> selectSearchReviewList(PageInfo pi, ReviewSearch rs);
 
 
 }

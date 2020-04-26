@@ -117,6 +117,12 @@
 			<result property="rvPoint" column="RV_POINT"/>
 	</resultMap>
  
+ 
+ <select id="selectUserName" parameterType="_int" resultType="String">
+ SELECT MEM_NAME
+ FROM MEMBER
+ WHERE MEM_NO = #{memCode}
+ </select>
 	
 		<select id="selectQnaListCount" parameterType="_int" resultType="_int">
 	  	SELECT COUNT(*)
@@ -124,10 +130,34 @@
 	  	WHERE PRDT_CODE = #{product_detail}
 		</select>
 		
+		<select id="getReviewListCount" parameterType="_int" resultType="_int">
+	  	SELECT COUNT(*)
+	  	FROM REVIEW
+	  	WHERE PRDT_CODE = #{product_detail}
+		</select>
+		
 		<select id="selectPoint" parameterType="_int" resultMap="ReviewResultSet">
 		SELECT *
 		FROM REVIEW
 		WHERE PRDT_CODE = #{product_detail}
+		</select>
+		<select id="selectPoint1" parameterType="_int" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW
+		WHERE PRDT_CODE = #{product_detail}
+		</select>
+		
+		<select id="selectPoint2" parameterType="_int" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW
+		WHERE PRDT_CODE = #{product_detail}
+		ORDER BY RV_LIKE DESC
+		</select>
+		<select id="selectPoint3" parameterType="_int" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW
+		WHERE PRDT_CODE = #{product_detail}
+		ORDER BY RV_POINT DESC
 		</select>
 		
 		<select id="selectDetailReviewWriteCheck" parameterType="ReviewCheck" resultType="_int">
@@ -474,6 +504,176 @@
                    FROM PRDT 
                    ORDER BY PRDT_SCOUNT DESC)
    			WHERE ROWNUM<=5]]>
+		</select>
+		
+ 	<select id="selectCheckSort1" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_HEIGHT <= 149
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort2" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_HEIGHT BETWEEN 150 AND 155
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort3" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_HEIGHT BETWEEN 155 AND 160
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort4" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_HEIGHT BETWEEN 160 AND 165
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort5" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_HEIGHT BETWEEN 165 AND 170
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectCheckSort6" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 	<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_HEIGHT >= 170
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	
+ 	<select id="selectWeightSort7" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_WEIGHT <=39
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 
+ <select id="selectWeightSort8" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_WEIGHT BETWEEN 40 AND 45
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectWeightSort9" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_WEIGHT BETWEEN 45 AND 50
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectWeightSort10" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_WEIGHT BETWEEN 50 AND 55
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectWeightSort11" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_WEIGHT BETWEEN 55 AND 60
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectWeightSort12" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_WEIGHT >= 60
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort13" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_SIZE = 'XS'
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort14" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_SIZE = 'S'
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	
+ 	<select id="selectSizeSort15" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_SIZE = 'M'
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort16" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_SIZE = 'L'
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort17" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_SIZE = 'XL'
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectSizeSort18" parameterType="Product_opt" resultMap="ReviewResultSet">
+ 		<![CDATA[
+ 		SELECT *
+      	  FROM REVIEW
+          WHERE RV_SIZE = 'F'
+          AND PRDT_CODE = #{prdtNo}
+        ]]>
+ 	</select>
+ 	
+ 	<select id="selectReviewList" parameterType="_int" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW
+		WHERE PRDT_CODE = #{prdtNo}
 		</select>
 
 </mapper>

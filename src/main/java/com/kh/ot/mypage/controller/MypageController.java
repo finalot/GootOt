@@ -23,6 +23,7 @@ import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.common.Pagination;
+import com.kh.ot.common.ReviewPagination;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.service.MypageService;
@@ -32,6 +33,8 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.mypage.vo.ReviewSearch;
+import com.kh.ot.review.vo.Review;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -116,7 +119,7 @@ public class MypageController {
 	 */
 	@RequestMapping("my_orderlist.do")
 	public ModelAndView MyOrderList(ModelAndView mv, HttpSession session,
-			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage,
+			@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage,
 			 String order_status, Date history_start_date, Date history_end_date) {
 		Member m = (Member)session.getAttribute("loginMember");
 		
@@ -609,12 +612,11 @@ public class MypageController {
 		
 		int listCount = mpService.getListCount(memNo);
 		
-		
-		System.out.println("listCount : " + listCount);
-		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<MyBoard> list = mpService.selectList(pi, memNo);
+		
+		System.out.println("listCount : " + listCount);
 		
 		System.out.println("list : " + list);
 
@@ -624,6 +626,170 @@ public class MypageController {
    		mv.addObject("list",list);
    		mv.addObject("pi", pi);
 		mv.setViewName("mypage_board");
+		
+		return mv;
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 17.
+	 * @작성자 : 신경섭
+	 * @내용 : 내가 쓴 게시글 검색
+	 * @param @param mv
+	 * @param @param session
+	 * @param @param currentPage
+	 * @param @param search_key
+	 * @param @param search
+	 * @param @return
+	 * @return ModelAndView
+	 */
+	@RequestMapping("mBoardsearch.do")
+	public ModelAndView mBoardsearch(ModelAndView mv, HttpSession session,
+									@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage, 
+									String search_key,String search) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		int wishlist = mpService.getWishListCount(memNo);
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		SearchCondition sc = new SearchCondition();
+		sc.setSearch_key(search_key);
+		sc.setSearch(search);
+		sc.setMemno(memNo);
+		
+		
+		if(search_key.equals("writer")) {
+			sc.setWriter(search);
+		} else if(search_key.equals("title")) {
+			sc.setTitle(search);
+		}
+		
+		System.out.println("**********************: " + sc);
+		
+		int listCount = mpService.SearchListCount(sc);
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = sc.getPageInfo(currentPage, listCount);
+		
+		ArrayList<MyBoard> list = mpService.selectSearchList(pi, sc);
+		
+		
+		System.out.println("list : " + list);
+		
+		mv.addObject("WishList", wishlist);
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+		mv.addObject("listCount", listCount);
+   		mv.addObject("list",list);
+   		mv.addObject("pi", pi);
+   		mv.addObject("sc", sc);
+		mv.setViewName("mypage_board");
+		
+		return mv;
+	}
+	
+	
+	/**
+	 * @작성일 : 2020. 4. 25.
+	 * @작성자 : 신경섭
+	 * @내용 : 내가 쓴 리뷰 리스트 출력
+	 * @param @param mv
+	 * @param @param session
+	 * @param @param currentPage
+	 * @param @return
+	 * @return ModelAndView
+	 */
+	@RequestMapping("mReview.do")
+	public ModelAndView mReview(ModelAndView mv, HttpSession session, 
+								@RequestParam(value="currentPage", 
+								required=false,defaultValue="1") int currentPage) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int wishlist = mpService.getWishListCount(memNo);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		int listCount = mpService.getReviewListCount(memNo);
+		
+		PageInfo pi = ReviewPagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Review> list =  mpService.selectReviewList(pi, memNo);
+		
+		System.out.println("listCount : " + listCount);
+		
+		System.out.println("list : " + list);
+
+		mv.addObject("WishList", wishlist);
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+		mv.addObject("listCount", listCount);
+   		mv.addObject("list",list);
+   		mv.addObject("pi", pi);
+		mv.setViewName("mypage_review");
+		
+		return mv;
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 25.
+	 * @작성자 : 신경섭
+	 * @내용 : 내가 쓴 리뷰 검색
+	 * @param @param mv
+	 * @param @param session
+	 * @param @param currentPage
+	 * @param @param reviewSearch
+	 * @param @return
+	 * @return ModelAndView
+	 */
+	@RequestMapping("mSearchReview.do")		
+	public ModelAndView mSearchReview(ModelAndView mv, HttpSession session, 
+									@RequestParam(value="currentPage", required=false,defaultValue="1") int currentPage, String reviewSearch) {
+		
+		Member m = (Member)session.getAttribute("loginMember");
+		
+		int memNo = m.getMemNo();
+		
+		ReviewSearch rs = new ReviewSearch();
+		
+		rs.setSearch(reviewSearch);
+		rs.setMemno(memNo);
+		
+		int coupon = mpService.CouponListCount(m);
+		
+		int wishlist = mpService.getWishListCount(memNo);
+		
+		int point = mpService.PointListCount(memNo);
+		
+		int listCount = mpService.getSearchReviewCount(rs);
+		
+		PageInfo pi = rs.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Review> list =  mpService.selectSearchReviewList(pi, rs);
+		
+		System.out.println("listCount : " + listCount);
+		
+		System.out.println("list : " + list);
+
+		mv.addObject("WishList", wishlist);
+		mv.addObject("CouponCount", coupon);
+		mv.addObject("PointCount", point);
+		mv.addObject("listCount", listCount);
+   		mv.addObject("list",list);
+   		mv.addObject("pi", pi);
+   		mv.addObject("rs", rs);
+		mv.setViewName("mypage_review");
+		
 		return mv;
 	}
 	
@@ -843,79 +1009,7 @@ public class MypageController {
 		
 	}
 	
-	/**
-	 * @작성일 : 2020. 4. 4.
-	 * @작성자 : 신경섭
-	 * @내용 : 내가 쓴 게시글 뷰
-	 * @param @return
-	 * @return String
-	 */
-	@RequestMapping("mBoard_view.do")
-	public String mBoard_view() {
-		return "mypage_board_view";
-	}
-
 	
-	/**
-	 * @작성일 : 2020. 4. 17.
-	 * @작성자 : 신경섭
-	 * @내용 : 내가 쓴 게시글 검색
-	 * @param @param mv
-	 * @param @param session
-	 * @param @param currentPage
-	 * @param @param search_key
-	 * @param @param search
-	 * @param @return
-	 * @return ModelAndView
-	 */
-	@RequestMapping("mBoardsearch.do")
-	public ModelAndView mBoardsearch(ModelAndView mv, HttpSession session,
-									@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage, 
-									String search_key,String search) {
-		
-		Member m = (Member)session.getAttribute("loginMember");
-		
-		int memNo = m.getMemNo();
-		
-		int wishlist = mpService.getWishListCount(memNo);
-		
-		int coupon = mpService.CouponListCount(m);
-		
-		int point = mpService.PointListCount(memNo);
-		
-		SearchCondition sc = new SearchCondition();
-		sc.setSearch_key(search_key);
-		sc.setSearch(search);
-		sc.setMemno(memNo);
-		
-		System.out.println(sc);
-		
-		if(search_key.equals("writer")) {
-			sc.setWriter(search);
-		} else if(search_key.equals("title")) {
-			sc.setTitle(search);
-		}
-		
-		int listCount = mpService.SearchListCount(sc);
-		
-		System.out.println("listCount : " + listCount);
-		
-		PageInfo pi = sc.getPageInfo(currentPage, listCount);
-		
-		ArrayList<MyBoard> list = mpService.selectSearchList(pi, sc);
-		
-		System.out.println("list : " + list);
-
-		mv.addObject("WishList", wishlist);
-		mv.addObject("CouponCount", coupon);
-		mv.addObject("PointCount", point);
-   		mv.addObject("list",list);
-   		mv.addObject("pi", pi);
-   		mv.addObject("sc", sc);
-		mv.setViewName("mypage_board");
-		
-		return mv;
-	}
 	
 	/**
 	 * @작성일  : 2020. 4. 18.
@@ -1192,6 +1286,14 @@ public class MypageController {
 		return "에러다";
 	}
 	
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 신경섭
+	 * @내용 : 위시리스트 선택한 상품 바로 구매
+	 * @param @param dibsno
+	 * @param @return
+	 * @return String
+	 */
 	@RequestMapping("wishBuynow.do")
 	public String wishBuynow(int dibsno) {
 		
@@ -1223,6 +1325,9 @@ public class MypageController {
 			return "";
 		}
 	}
+	
+	
+	
 	
 //	@RequestMapping("AllBuyNow.do")
 //	public String AllBuyNow(int[] wishArr) {

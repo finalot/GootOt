@@ -10,7 +10,15 @@ public class ReviewPoint {
 	private double pointAvg;
 	private int per;
 	private int reviewCount;
+	private String userName;
 	
+	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public int getReviewCount() {
 		return reviewCount;
 	}
@@ -29,7 +37,7 @@ public class ReviewPoint {
 	
 	
 	public ReviewPoint(int point1, int point2, int point3, int point4, int point5, double pointAvg, int per,
-			int reviewCount) {
+			int reviewCount, String userName) {
 		super();
 		this.point1 = point1;
 		this.point2 = point2;
@@ -39,6 +47,7 @@ public class ReviewPoint {
 		this.pointAvg = pointAvg;
 		this.per = per;
 		this.reviewCount = reviewCount;
+		this.userName = userName;
 	}
 	public int getPoint1() {
 		return point1;

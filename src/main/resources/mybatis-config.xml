@@ -21,6 +21,8 @@
 <typeAlias type="com.kh.ot.main.vo.DetailReview" alias="DetailReview"/>
 <typeAlias type="com.kh.ot.main.vo.ReviewCheck" alias="ReviewCheck"/>
 <typeAlias type="com.kh.ot.review.vo.Review" alias="Review"/>
+<typeAlias type="com.kh.ot.review.vo.Review_Photo" alias="Review_Photo"/>
+<typeAlias type="com.kh.ot.review.vo.Review_count" alias="Review_count"/>
 <typeAlias type="com.kh.ot.review.vo.Like_Heart" alias="Like_Heart"/>
 <typeAlias type="com.kh.ot.review.vo.ReviewReply" alias="ReviewReply"/>
 <typeAlias type="com.kh.ot.main.vo.productbenner" alias="productbenner"/>

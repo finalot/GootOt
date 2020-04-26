@@ -13,6 +13,8 @@ import com.kh.ot.review.dao.ReviewDao;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
 import com.kh.ot.review.vo.ReviewReply;
+import com.kh.ot.review.vo.Review_Photo;
+import com.kh.ot.review.vo.Review_count;
 
 @Service("rService")
 public class ReviewServiceImpl implements ReviewService{
@@ -138,6 +140,16 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public ArrayList<Review> selectAllSort() {
 		return rDao.selectAllSort();
+	}
+
+	@Override
+	public ArrayList<Review_Photo> selectReviewPhoto(int rv_no) {
+		return rDao.selectReviewPhoto(rv_no);
+	}
+
+	@Override
+	public ArrayList<Review_count> selectReviewCount() {
+		return rDao.selectReviewCount();
 	}
 
 }

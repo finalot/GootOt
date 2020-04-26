@@ -11,7 +11,6 @@ import com.kh.ot.board.vo.SearchCondition;
 import com.kh.ot.cart.vo.Cart;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.main.vo.Product_opt;
-import com.kh.ot.main.vo.Wish;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.dao.MypageDao;
 import com.kh.ot.mypage.vo.Address;
@@ -20,6 +19,8 @@ import com.kh.ot.mypage.vo.DIBS;
 import com.kh.ot.mypage.vo.MyBoard;
 import com.kh.ot.mypage.vo.OrdSearch;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.mypage.vo.ReviewSearch;
+import com.kh.ot.review.vo.Review;
 
 @Service("mpService")
 public class MypageServiceImpl implements MypageService{
@@ -295,6 +296,27 @@ public class MypageServiceImpl implements MypageService{
 	@Override
 	public int deleteAlllist(ArrayList<DIBS> dlist) {
 		return mpDao.deleteAlllist(dlist);
+	}
+
+	@Override
+	public int getReviewListCount(int memNo) {
+		return mpDao.getReviewListCount(memNo);
+	}
+
+	@Override
+	public ArrayList<Review> selectReviewList(PageInfo pi, int memNo) {
+		return mpDao.selectReviewList(pi, memNo);
+	
+	}
+
+	@Override
+	public int getSearchReviewCount(ReviewSearch rs) {
+		return mpDao.getSearchReviewCount(rs);
+	}
+
+	@Override
+	public ArrayList<Review> selectSearchReviewList(PageInfo pi, ReviewSearch rs) {
+		return mpDao.selectSearchReviewList(pi, rs);
 	}
 
 }

@@ -30,6 +30,7 @@ a{
     line-height: 0;
     display: table;
 }
+
 </style>
 	<jsp:include page="header.jsp"/>
 </head>
@@ -441,22 +442,13 @@ a{
                </c:if>
                </c:if>
 			</div>
-			
-
-			<div class="crema-reviews crema-applied" data-type="my-reviews">
-				<iframe id="crema-reviews-1" height="100%"
-					src="http://review6.cre.ma/black-up.kr/my/reviews?iframe_id=crema-reviews-1&amp;app=0&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fmyshop%2Fboard_list.html&amp;secure_username=V211ca6b9b1bade7af3d0dda70e4c78cd9&amp;secure_user_name=V268af191d6069a07dcf844e27ae20714b&amp;iframe=1"
-					width="100%" scrolling="no" allowtransparency="true"
-					frameborder="0" name="crema-reviews-1-1584533325924"
-					style="visibility: visible; height: 374px;"></iframe>
-			</div>
-
+			<hr class="layout">
 		</div>
-		<hr class="layout">
-
-	</div>
-
 	<jsp:include page="footer.jsp"/>
+	</div>
+	
+	
+	
 	<script>
 		 function pbSearch() {
 			 var search_key = $('#search_key').val();
@@ -465,8 +457,6 @@ a{
 			 location.href="mBoardsearch.do?search_key="+search_key+"&search="+search;
 		 }
 		 
-		 
-		 /* b_cate_no를 못 가지고옴..*/
  		 function boardmove(bm){
 			 
  			var b_cate_no=$(bm).parents('tr').find('.b_cate_no').val();
