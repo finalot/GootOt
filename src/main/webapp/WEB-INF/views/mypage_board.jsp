@@ -445,7 +445,7 @@ a{
 			<hr class="layout">
 		</div>
 	<jsp:include page="footer.jsp"/>
-	
+	</div>
 	
 	
 	
