@@ -13,6 +13,8 @@ import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
 import com.kh.ot.review.vo.ReviewReply;
+import com.kh.ot.review.vo.Review_Photo;
+import com.kh.ot.review.vo.Review_count;
 
 @Repository("rDao")
 public class ReviewDao {
@@ -290,7 +292,34 @@ public class ReviewDao {
 		return (ArrayList)sqlSession.selectList("reviewMapper.selectCategoryReview",upNo);
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 26.
+	 * @작성자  : 우예진
+	 * @내용    : 모든 정렬
+	 * @return
+	 */
 	public ArrayList<Review> selectAllSort() {
 		return (ArrayList)sqlSession.selectList("reviewMapper.selectAllSort");
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 26.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰포토
+	 * @param rv_no
+	 * @return
+	 */
+	public ArrayList<Review_Photo> selectReviewPhoto(int rv_no) {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewPhoto",rv_no);
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 26.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰갯수 카운트
+	 * @return
+	 */
+	public ArrayList<Review_count> selectReviewCount() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewCount");
 	}
 }

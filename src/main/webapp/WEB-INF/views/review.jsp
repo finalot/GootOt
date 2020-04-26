@@ -1218,12 +1218,12 @@ select {
                         
                         <div class="mySlides" style="display: block;">
                             <div class="numbertext" ><font style="font-size:14px;">1 / 2</font></div>
-                            <img class="contentimgs" src="/ot/resources/images/oT/review/review_sample1.jpg" alt="sample1" style="margin-top:-5%;">
+                            <img class="contentimgs" id="contentimgs1" src="" alt="sample1" style="margin-top:-5%;">
                         </div>
                         
                         <div class="mySlides">
                             <div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>
-                            <img class="contentimgs" src="/ot/resources/images/oT/review/review_sample2.jpg" alt="sample2" style="margin-top:-5%;" >
+                            <img class="contentimgs" id="contentimgs2" src="" alt="sample2" style="margin-top:-5%;" >
                         </div>
                         
                
@@ -1331,18 +1331,20 @@ select {
 									<!-- 리뷰1 -->
 									<!-- foreach문 시작점 -->
 									<c:forEach var="r" items="${rlist }">
+									
 									<li class="reviews_index_gallery_review review1"
 										style="
-  width: 15.5%; height: 385px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%; margin-left:3%">
+  width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%; margin-left:3%">
   <input type="hidden" class="rv_no" value="${r.rvNo }" >
 										<div class="photo_review_thumbnail js-link-fullscreen-popup"
 											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
 											<div class="photo_review_thumbnail__thumbnail_container">
 												<ul>
 													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<a onclick="review1(this)"><img class="js-review-image"
+														<a onclick="review1(this)">
+														<img class="js-review-image"
 														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"
+														src="${r.rvImage }"
 														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>
 													</li>
 												</ul>
@@ -1398,17 +1400,26 @@ select {
 													class="reviews_index_gallery_review__product_info_title">
 													<!-- 내가 구매한 상품명 -->
 													${r.prdtName }</div>
+											
+											
 												<div
 													class="reviews_index_gallery_review__product_info_feedbacks">
+													<c:forEach var="rc" items="${rc}">
+													<c:if test="${r.prdtCode eq rc.prdt_code}">
 													<span class="reviews_index_gallery_review__reviews_count"
 														style="color: #c3b798;">리뷰<strong
-														style="color: black;">1,841</strong></span> <br>
+														style="color: black;">${rc.count }</strong></span> 
+														</c:if>
+														</c:forEach>
+													<br>
 														<span
 														class="reviews_index_gallery_review__display_score"
 														style="color: #c3b798;">평점<strong
 														style="color: black;">4.9</strong></span>
 														<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
 												</div>
+												
+											
 											</div>
 										</div>
 									</li>
@@ -1857,13 +1868,13 @@ select {
 				 $('#review_list').children('div').remove();
 				 for(var i=0;i<data.rlist.length;i++) {
 					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
-					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style=" width: 15.5%; height: 385px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
+					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style=" width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 									  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 									  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
 									  '<div class="photo_review_thumbnail__thumbnail_container">'+
 									  '<ul>'+
 									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 									  '</li>'+
 									  '</ul>'+
 									  '<div class="photo_review_thumbnail__review_info">'+
@@ -1922,13 +1933,13 @@ select {
 				 $('#review_list').children('div').remove();
 				 for(var i=0;i<data.rlist.length;i++) {
 					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
-					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style=" width: 15.5%; height: 385px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
+					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style=" width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 									  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 									  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
 									  '<div class="photo_review_thumbnail__thumbnail_container">'+
 									  '<ul>'+
 									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 									  '</li>'+
 									  '</ul>'+
 									  '<div class="photo_review_thumbnail__review_info">'+
@@ -1988,13 +1999,13 @@ select {
 				 $('#review_list').children('div').remove();
 				 for(var i=0;i<data.rlist.length;i++) {
 					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
-					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 385px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%; margin-left:3%">'+
+					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%; margin-left:3%">'+
 									  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 									  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
 									  '<div class="photo_review_thumbnail__thumbnail_container">'+
 									  '<ul>'+
 									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 									  '</li>'+
 									  '</ul>'+
 									  '<div class="photo_review_thumbnail__review_info">'+
@@ -2113,6 +2124,8 @@ select {
 				 $('#pImage').attr("src",r.r.prdtPath+r.r.prdtImg);
 				 $('#likeCheck').val(r.lhl.likeCheck);
 				 $('#likeCount').text(r.r.rvLike);
+				 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
+				 $('#contentimgs2').attr("src",r.ph[1].rpPhoto);
 				 console.log(r.r.rvLike)
 				 if(r.lhl.likeCheck == "N"){
 					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-noncheck.png") ;
@@ -2321,16 +2334,21 @@ select {
 				dataType:"json",
 				success : function(data) {
 					 $('#review_list').children('li').remove();
-					 $('#review_list').children('div').remove();
+					 if(data.rlist.length == 0) {
+						 $('#review_list').children('div').remove();
+						 $('#review_list').append('<div align="center"><strong style="color: #888888;position: relative;top: -52px;font-size: 15px;">아직 작성한 리뷰가 없습니다.</strong></div>')
+					 } else {
+						 $('#review_list').children('div').remove();
 					 for(var i=0;i<data.rlist.length;i++) {
+						 
 						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
-						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 385px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
+						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+
@@ -2362,6 +2380,7 @@ select {
 										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 								          '</div></div></div></li>')
+					 }
 					 }
 						},error:function() {
 							alert("에러임에러임");
@@ -2399,16 +2418,20 @@ select {
 				dataType:"json",
 				success : function(data) {
 					 $('#review_list').children('li').remove();
-					 $('#review_list').children('div').remove();
+					 if(data.rlist.length == 0) {
+						 $('#review_list').children('div').remove();
+						 $('#review_list').append('<div align="center"><strong style="color: #888888;position: relative;top: -52px;font-size: 15px;">아직 작성한 리뷰가 없습니다.</strong></div>')
+					 } else {
+						 $('#review_list').children('div').remove();
 					 for(var i=0;i<data.rlist.length;i++) {
 						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
-						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 385px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
+						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+
@@ -2440,6 +2463,7 @@ select {
 										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 								          '</div></div></div></li>')
+					 }
 					 }
 						},error:function() {
 							alert("에러임에러임");
@@ -2476,16 +2500,21 @@ select {
 				dataType:"json",
 				success : function(data) {
 					 $('#review_list').children('li').remove();
-					 $('#review_list').children('div').remove();
+					 if(data.rlist.length == 0) {
+						 $('#review_list').children('div').remove();
+						 $('#review_list').append('<div align="center"><strong style="color: #888888;position: relative;top: -52px;font-size: 15px;">아직 작성한 리뷰가 없습니다.</strong></div>')
+					 } else {
+						 $('#review_list').children('div').remove();
+					 
 					 for(var i=0;i<data.rlist.length;i++) {
 						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
-						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 385px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
+						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+
@@ -2518,6 +2547,7 @@ select {
 										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 								          '</div></div></div></li>')
 					 }
+					}
 						},error:function() {
 							alert("에러임에러임");
 					}
@@ -2550,13 +2580,13 @@ select {
 						 $('#review_list').children('div').remove();
 					 for(var i=0;i<data.rlist.length;i++) {
 						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
-						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 385px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
+						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="//assets6.cre.ma/p/black-up-kr/reviews/00/00/18/07/83/image1/portrait_cb3ba3c75d217685.jpg"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+

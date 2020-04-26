@@ -9,6 +9,8 @@ import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
 import com.kh.ot.review.vo.ReviewReply;
+import com.kh.ot.review.vo.Review_Photo;
+import com.kh.ot.review.vo.Review_count;
 
 public interface ReviewService {
 
@@ -201,5 +203,22 @@ public interface ReviewService {
 	 * @return
 	 */
 	ArrayList<Review> selectAllSort();
+
+	/**
+	 * @작성일  : 2020. 4. 26.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰포토불러오기
+	 * @param rv_no
+	 * @return
+	 */
+	ArrayList<Review_Photo> selectReviewPhoto(int rv_no);
+
+	/**
+	 * @작성일  : 2020. 4. 26.
+	 * @작성자  : 우예진
+	 * @내용    : 리뷰카운트 갯수
+	 * @return
+	 */
+	ArrayList<Review_count> selectReviewCount();
 
 }
