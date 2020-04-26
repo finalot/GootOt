@@ -1868,6 +1868,8 @@ select {
 				 $('#review_list').children('div').remove();
 				 for(var i=0;i<data.rlist.length;i++) {
 					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+					 for(var j=0;j<data.rc.length;j++){
+							if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
 					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style=" width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 									  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 									  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -1902,10 +1904,12 @@ select {
 									  '<div class="reviews_index_gallery_review__product_info_title">'+
 									  ''+data.rlist[i].prdtName+'</div>'+
 									  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
-									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
 									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 									  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 							          '</div></div></div></li>')
+							}
+					 }
 				 }
 					},error:function() {
 						alert("에러임에러임");
@@ -1933,6 +1937,8 @@ select {
 				 $('#review_list').children('div').remove();
 				 for(var i=0;i<data.rlist.length;i++) {
 					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+					 for(var j=0;j<data.rc.length;j++){
+							if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
 					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style=" width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 									  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 									  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -1967,16 +1973,16 @@ select {
 									  '<div class="reviews_index_gallery_review__product_info_title">'+
 									  ''+data.rlist[i].prdtName+'</div>'+
 									  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
-									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
 									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 									  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 							          '</div></div></div></li>')
 				 }
-					},error:function() {
-						alert("에러임에러임");
 					}
-		
-		
+					}
+				 },error:function() {
+						alert("에러임에러임");
+				 }
 		})
 		
 	})
@@ -1999,6 +2005,8 @@ select {
 				 $('#review_list').children('div').remove();
 				 for(var i=0;i<data.rlist.length;i++) {
 					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+					 for(var j=0;j<data.rc.length;j++){
+							if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
 					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%; margin-left:3%">'+
 									  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 									  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -2033,10 +2041,12 @@ select {
 									  '<div class="reviews_index_gallery_review__product_info_title">'+
 									  ''+data.rlist[i].prdtName+'</div>'+
 									  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
-									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
 									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 									  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 							          '</div></div></div></li>')
+							}
+					 }
 				 }
 					},error:function() {
 						alert("에러임에러임");
@@ -2074,12 +2084,6 @@ select {
 				 }
 			 }
 		 }) 
-		 
-		
-		 
-	
-		 
-		
 	})
 	
 	
@@ -2101,12 +2105,9 @@ select {
 		 $("#rv_no2").val(rv_no);
 		 
 		var rvc_no = $('.rvc_no').val();
-		 var nonHeart = $('#nonHeart').attr("src");
 		 var like_img="";
 		 var count = 0;
 		 console.log(rv_no);
-		 
-		 
 		 
 		 
 		 $.ajax({
@@ -2124,12 +2125,12 @@ select {
 				 $('#pImage').attr("src",r.r.prdtPath+r.r.prdtImg);
 				 $('#likeCheck').val(r.lhl.likeCheck);
 				 $('#likeCount').text(r.r.rvLike);
-				 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
-				 $('#contentimgs2').attr("src",r.ph[1].rpPhoto);
-				 console.log(r.r.rvLike)
+			 	 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
+				 $('#contentimgs2').attr("src",r.ph[1].rpPhoto); 
+				 console.log("????"+r.lhl.likeCheck)
 				 if(r.lhl.likeCheck == "N"){
 					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-noncheck.png") ;
-				 }else{
+				 }else if(r.lhl.likeCheck == "Y"){
 					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-check.png");
 				 }
 				/*  $('#pImage').text(r.r.prdtImage); */
@@ -2172,24 +2173,14 @@ select {
 				}
 				 	
 			 })
-			 
-		
-	
-			 
-			 
-		 
-		
-		
 		
         var ulr = $(this).attr("src");
         $("#modalimg").attr("src", ulr);            
         $('#modal').show();
 
-        
 		 }
     }
 	
-	  
 
       function modalclose(){
           $('#modal').css("display","none");
@@ -2340,8 +2331,9 @@ select {
 					 } else {
 						 $('#review_list').children('div').remove();
 					 for(var i=0;i<data.rlist.length;i++) {
-						 
 						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+						 for(var j=0;j<data.rc.length;j++){
+								if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
 						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -2376,10 +2368,12 @@ select {
 										  '<div class="reviews_index_gallery_review__product_info_title">'+
 										  ''+data.rlist[i].prdtName+'</div>'+
 										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
-										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
 										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 								          '</div></div></div></li>')
+								}
+						 }
 					 }
 					 }
 						},error:function() {
@@ -2425,6 +2419,8 @@ select {
 						 $('#review_list').children('div').remove();
 					 for(var i=0;i<data.rlist.length;i++) {
 						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+						 for(var j=0;j<data.rc.length;j++){
+								if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
 						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -2459,11 +2455,13 @@ select {
 										  '<div class="reviews_index_gallery_review__product_info_title">'+
 										  ''+data.rlist[i].prdtName+'</div>'+
 										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
-										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
 										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 								          '</div></div></div></li>')
-					 }
+								}
+					    	 }
+				    	 }
 					 }
 						},error:function() {
 							alert("에러임에러임");
@@ -2505,9 +2503,10 @@ select {
 						 $('#review_list').append('<div align="center"><strong style="color: #888888;position: relative;top: -52px;font-size: 15px;">아직 작성한 리뷰가 없습니다.</strong></div>')
 					 } else {
 						 $('#review_list').children('div').remove();
-					 
 					 for(var i=0;i<data.rlist.length;i++) {
 						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+						 for(var j=0;j<data.rc.length;j++){
+								if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
 						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -2542,10 +2541,12 @@ select {
 										  '<div class="reviews_index_gallery_review__product_info_title">'+
 										  ''+data.rlist[i].prdtName+'</div>'+
 										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
-										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
 										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 								          '</div></div></div></li>')
+								}
+						 }
 					 }
 					}
 						},error:function() {
@@ -2580,6 +2581,8 @@ select {
 						 $('#review_list').children('div').remove();
 					 for(var i=0;i<data.rlist.length;i++) {
 						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+						 for(var j=0;j<data.rc.length;j++){
+								if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
 						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -2614,10 +2617,12 @@ select {
 										  '<div class="reviews_index_gallery_review__product_info_title">'+
 										  ''+data.rlist[i].prdtName+'</div>'+
 										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
-										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
 										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 								          '</div></div></div></li>')
+								}	
+						 }
 					 }
 					}
 						},error:function() {

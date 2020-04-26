@@ -428,7 +428,7 @@ public class ReviewController extends HttpServlet {
 			
 			Map hmap = new HashMap();
 			hmap.put("rlist", rlist);
-			hmap.put("rc",rc);			
+			hmap.put("rc", rc);
 			
 			gson.toJson(hmap,response.getWriter());
 		}
@@ -458,8 +458,7 @@ public class ReviewController extends HttpServlet {
 			
 			Map hmap = new HashMap();
 			hmap.put("rlist", rlist);
-			hmap.put("rc",rc);
-			
+			hmap.put("rc", rc);
 			
 			gson.toJson(hmap,response.getWriter());
 		}
@@ -477,6 +476,7 @@ public class ReviewController extends HttpServlet {
 		@RequestMapping("CategorySelect.do")
 		public void CategorySelect(int upNo, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
 			ArrayList<Review> rlist = new ArrayList<Review>();
+			ArrayList<Review_count> rc = rService.selectReviewCount();
 			
 			ArrayList<Review_count> rc = rService.selectReviewCount();
 			if(upNo == 0) {

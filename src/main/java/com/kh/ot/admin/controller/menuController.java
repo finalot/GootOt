@@ -47,6 +47,7 @@ import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.review.vo.Review;
 
 @SessionAttributes("loginMember")
 @Controller
@@ -611,8 +612,13 @@ public class menuController {
 	}
 
 	@RequestMapping("review_list.ad")
-	public String review_list() {
-		return "admin/review_list";
+	public ModelAndView review_list(ModelAndView mv) {
+		
+		ArrayList<Review> rlist = new ArrayList<>();
+		mv.addObject("rlist",rlist);
+		mv.setViewName( "admin/review_list");
+		return mv;
+		
 	}
 
 	@RequestMapping("review_report_list.ad")

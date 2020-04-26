@@ -54,6 +54,7 @@
 			<c:url var="mPoint" value="mPoint.do"/>
 			<c:url var="mCoupon" value="mCoupon.do"/>
 			<c:url var="mBoard" value="mBoard.do"/>
+			<c:url var="mReview" value="mReview.do"/>
 			<c:url var="mAddress" value="mAddress.do"/>
 			<c:url var="mEdit" value="mEdit.do"/>
 			
@@ -169,6 +170,9 @@
 				<div class="shopMain board">
 			        <a href="${mBoard }">내가 쓴 게시글</a>
 			    </div>
+			    <div class="shopMain Review">
+			    	<a href="${mReview }">내가 쓴 리뷰</a>
+			    </div>
 				<div class="shopMain address">
 			        <a href="${mAddress }">배송 주소록 관리</a>
 			    </div>
@@ -180,7 +184,7 @@
 		
 			<div class="xans-element- xans-myshop xans-myshop-orderstate ">
 				<div class="title">
-			        <h3>나의 주문처리 현황 <span class="desc">(최근 <em>3개월</em> 기준)</span></h3>
+			        <h3>나의 주문처리 현황 <span class="desc">(최근 <em>6개월</em> 기준)</span></h3>
 			    </div>
 			    
 				<div class="state">

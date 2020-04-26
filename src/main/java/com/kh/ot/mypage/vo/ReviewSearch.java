@@ -58,6 +58,7 @@ public class ReviewSearch extends Pagination{
 		return "ReviewSearch [memno=" + memno + ", memCode=" + memCode + ", rvInfo=" + rvInfo + ", search=" + search
 				+ "]";
 	}
+
 }
 
 	
