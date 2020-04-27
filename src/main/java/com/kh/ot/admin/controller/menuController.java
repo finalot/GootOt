@@ -88,9 +88,24 @@ public class menuController {
 		//오늘의 QNA
 		int qnaResult = adService.todayQnAselect();
 		int returnResult = adService.todayReturnSelect();
-		int scountResult = adService.todayScountSelect();
-		int spriceResult = adService.todaySpriceSelect();
+		int scountResult = 0;
+		int spriceResult = 0;
+		 scountResult = adService.todayScountSelect();
+		 spriceResult = adService.todaySpriceSelect();
 		
+		 ArrayList<Pay> week = cService.weekList();
+		 ArrayList<Pay> weekPay = cService.weekPayList();
+		 
+		 for(int i=0;i<week.size();i++) {
+			 for(int j=0;j<weekPay.size();j++) {
+				 if(week.get(i).getWeek().equals(weekPay.get(j).getWeek())) {
+					 week.get(i).setSumprice(weekPay.get(j).getSumprice());
+				 }
+			 }
+		 }
+ 		 
+		 System.out.println("week : " + week);
+		mv.addObject("week",week); 
 		mv.addObject("plist",plist);
 		mv.addObject("qnaResult",qnaResult);
 		mv.addObject("returnResult",returnResult);

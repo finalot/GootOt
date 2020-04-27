@@ -13,6 +13,7 @@ public class Pay {
 	private int pay_point; //사용적립금
 	private String pay_yn; // 결제완료여부
 	private int prdt_no; // 상품번호(문자열)
+	private String week;//최근 일주일
 	
 	public Pay() {
 	}
@@ -32,6 +33,14 @@ public class Pay {
 		this.prdt_no = prdt_no;
 	}
 
+
+	public String getWeek() {
+		return week;
+	}
+
+	public void setWeek(String week) {
+		this.week = week;
+	}
 
 	public int getOrd_no() {
 		return ord_no;
@@ -127,8 +136,9 @@ public class Pay {
 	public String toString() {
 		return "Pay [ord_no=" + ord_no + ", memNo=" + memNo + ", sumprice=" + sumprice + ", pay_category="
 				+ pay_category + ", pay_date=" + pay_date + ", pay_usedcp=" + pay_usedcp + ", pay_point=" + pay_point
-				+ ", pay_yn=" + pay_yn + ", prdt_no=" + prdt_no + "]";
+				+ ", pay_yn=" + pay_yn + ", prdt_no=" + prdt_no + ", week=" + week + "]";
 	}
+
 
 	
 }
