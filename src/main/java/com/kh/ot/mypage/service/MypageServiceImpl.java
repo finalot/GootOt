@@ -320,8 +320,18 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public int resultPoint(int memNo) {
-		return mpDao.resultPoint(memNo);
+	public ArrayList<Review> selectLastSort(int memNo) {
+		return mpDao.selectLastSort(memNo);
+	}
+
+	@Override
+	public ArrayList<Review> selectLikeSort(int memNo) {
+		return mpDao.selectLikeSort(memNo);
+	}
+
+	@Override
+	public ArrayList<Review> selectCommentLast(int memNo) {
+		return mpDao.selectCommentLast(memNo);
 	}
 
 }

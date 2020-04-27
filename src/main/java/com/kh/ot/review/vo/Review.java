@@ -21,6 +21,7 @@ public class Review {
 	private String prdtImg; // 상품이미지
 	private String prdtPath; // 상품경로 
 	private int rvPoint; //리뷰평점
+	private int memno;
 	
 	public Review() {}
 
@@ -28,7 +29,7 @@ public class Review {
 
 	public Review(int rvNo, int prdtCode, int memCode, int rvHeight, int rvWeight, int ordDetailNo, String rvInfo,
 			String rvImage, int rvLike, Date rvDate, String rvColor, String rvSize, String memName, String prdtName,
-			String rvDate2, String prdtImg, String prdtPath, int rvPoint) {
+			String rvDate2, String prdtImg, String prdtPath, int rvPoint, int memno) {
 		super();
 		this.rvNo = rvNo;
 		this.prdtCode = prdtCode;
@@ -48,6 +49,7 @@ public class Review {
 		this.prdtImg = prdtImg;
 		this.prdtPath = prdtPath;
 		this.rvPoint = rvPoint;
+		this.memno = memno;
 	}
 
 
@@ -211,12 +213,23 @@ public class Review {
 		this.prdtPath = prdtPath;
 	}
 
+	public int getMemno() {
+		return memno;
+	}
+
+	public void setMemno(int memno) {
+		this.memno = memno;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "Review [rvNo=" + rvNo + ", prdtCode=" + prdtCode + ", memCode=" + memCode + ", rvHeight=" + rvHeight
 				+ ", rvWeight=" + rvWeight + ", ordDetailNo=" + ordDetailNo + ", rvInfo=" + rvInfo + ", rvImage="
-				+ rvImage + ", rvLike=" + rvLike + ", rvDate=" + rvDate + "]";
+				+ rvImage + ", rvLike=" + rvLike + ", rvDate=" + rvDate + ", rvColor=" + rvColor + ", rvSize=" + rvSize
+				+ ", memName=" + memName + ", prdtName=" + prdtName + ", rvDate2=" + rvDate2 + ", prdtImg=" + prdtImg
+				+ ", prdtPath=" + prdtPath + ", rvPoint=" + rvPoint + ", memno=" + memno + "]";
 	}
 	
 }

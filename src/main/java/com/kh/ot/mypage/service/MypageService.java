@@ -330,14 +330,12 @@ public interface MypageService {
 
 	ArrayList<Review> selectSearchReviewList(PageInfo pi, ReviewSearch rs);
 
-	/**
-	 * @작성일  : 2020. 4. 27.
-	 * @작성자  : 문태환
-	 * @내용 	: 마이페이지 포인트
-	 * @param memNo
-	 * @return
-	 */
-	int resultPoint(int memNo);
+	ArrayList<Review> selectLastSort(int memNo);
+
+	ArrayList<Review> selectLikeSort(int memNo);
+
+	ArrayList<Review> selectCommentLast(int memNo);
+
 
 
 }
