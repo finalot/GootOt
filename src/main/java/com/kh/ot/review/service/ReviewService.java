@@ -2,6 +2,7 @@ package com.kh.ot.review.service;
 
 import java.util.ArrayList;
 
+import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
@@ -20,7 +21,7 @@ public interface ReviewService {
 	 * @내용    : 리뷰 리스트 뿌려주기
 	 * @return
 	 */
-	ArrayList<Review> selectReviewList();
+	ArrayList<Review> selectReviewList(PageInfo pi);
 
 	/**
 	 * @작성일  : 2020. 4. 21.
@@ -220,5 +221,13 @@ public interface ReviewService {
 	 * @return
 	 */
 	ArrayList<Review_count> selectReviewCount();
+
+	/**
+	 * @작성일  : 2020. 4. 27.
+	 * @작성자  : 우예진
+	 * @내용    : 리스트 카운트
+	 * @return
+	 */
+	int selectListCount();
 
 }

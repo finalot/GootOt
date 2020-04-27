@@ -2,10 +2,12 @@ package com.kh.ot.review.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
@@ -29,8 +31,11 @@ public class ReviewDao {
 	 * @내용    : review 리스트 뿌려주기
 	 * @return
 	 */
-	public ArrayList<Review> selectReviewList() {
-		return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList");
+	public ArrayList<Review> selectReviewList(PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList",rowBounds);
 	}
 
 	/**
@@ -321,5 +326,15 @@ public class ReviewDao {
 	 */
 	public ArrayList<Review_count> selectReviewCount() {
 		return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewCount");
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 27.
+	 * @작성자  : 우예진
+	 * @내용    : 리스트 카운트
+	 * @return
+	 */
+	public int selectListCount() {
+		return sqlSession.selectOne("reviewMapper.selectListCount");
 	}
 }
