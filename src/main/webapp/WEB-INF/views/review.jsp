@@ -1216,7 +1216,7 @@ select {
                         <a class="next" onclick="plusSlides(1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>&#10095;</strong></a>
                         </div>
 
-                       <div class="mySlides" style="display: block;">
+     <!--            <div class="mySlides" style="display: block;">
                             <div class="numbertext" ><font style="font-size:14px;">1 / 2</font></div>
                             <img class="contentimgs" id="contentimgs1" src="" alt="sample1" style="margin-top:-5%;">
                         </div>
@@ -1224,7 +1224,7 @@ select {
                         <div class="mySlides">
                             <div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>
                             <img class="contentimgs" id="contentimgs2" src="" alt="sample2" style="margin-top:-5%;" >
-                        </div>
+                        </div> -->
 
 
 
@@ -2126,19 +2126,27 @@ select {
 				 $('#pImage').attr("src",r.r.prdtPath+r.r.prdtImg);
 				 $('#likeCheck').val(r.lhl.likeCheck);
 				 $('#likeCount').text(r.r.rvLike);
-				 if(r.ph.length == 1){
+	/* 			 if(r.ph.length == 1){
 					 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
 				 }else{
 					 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
 					 $('#contentimgs2').attr("src",r.ph[1].rpPhoto);
-				 }
-
-			/*  for(var i =0; i<r.ph.length;i++){
-						$('#nextPh').append('  <div class="mySlides" style="display: block;">'+
-	                            '<div class="numbertext" ><font style="font-size:14px;">'+(i+1)+' / 2</font></div>'+
-	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[i].rpPhoto+'" alt="sample1" style="margin-top:-5%;">'+
-	                            '</div>')
 				 } */
+			  for(var i =0; i<r.ph.length;i++){
+				  if(i == 0){
+						$('#nextPh').after('  <div class="mySlides" style="display: block;">'+
+	                            '<div class="numbertext" ><font style="font-size:14px;">1/ 2</font></div>'+
+	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;">'+
+	                            '</div>')
+				  }else{
+						$('#contentimgs1').after(	' <div class="mySlides">'+
+			                      '<div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>'+
+			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;" >'+
+			                  '</div>')
+					  
+				  }
+				  
+				  } 
 
 
 				 if(r.lhl.likeCheck == "N"){
