@@ -710,4 +710,11 @@
 		WHERE M.MEM_NO=#{memno}
 		ORDER BY RC.RV_DATE DESC
 	</select>
+	
+	<select id="resultPoint" parameterType="_int"  resultType="_int">
+	SELECT MEM_POINT
+	FROM MEMBER
+	WHERE MEM_NO=#{memNo}	
+
+	</select>
 </mapper>

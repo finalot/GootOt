@@ -334,4 +334,9 @@ public class MypageServiceImpl implements MypageService{
 		return mpDao.selectCommentLast(memNo);
 	}
 
+	@Override
+	public int resultPoint(int memNo) {
+		return mpDao.resultPoint(memNo);
+	}
+
 }
