@@ -1412,11 +1412,13 @@ select {
 														</c:if>
 														</c:forEach>
 													<br>
-														<span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-														<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
+														<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점
+														<strong style="color: black;" id="starArea">${r.rvPoint }</strong></span>
+														<i class="fa fa-fw fa-star"></i>
+														<i class="fa fa-fw fa-star"></i>
+														<i class="fa fa-fw fa-star"></i>
+														<i class="fa fa-fw fa-star"></i>
+														<i class="fa fa-fw fa-star"></i>
 												</div>
 
 

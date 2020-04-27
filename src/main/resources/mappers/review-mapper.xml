@@ -22,6 +22,7 @@
 			<result property="rvDate2" column="RV_DATE2"/>
 			<result property="prdtImg" column="PRDT_IMAGE"/>
 			<result property="prdtPath" column="PRDT_IMAGE_PATH"/>
+			<result property="rvPoint" column="RV_POINT"/>
 	</resultMap>
 		
 	<resultMap type="Like_Heart" id="LikeResultSet">
@@ -99,7 +100,7 @@
 		
 	
  	<select id="selectReviewList" parameterType="_int" resultMap="ReviewResultSet">
-		  SELECT RV_NO,RV_INFO,MEM_NAME,RV_DATE,PRDT_NAME,PRDT_IMAGE,PRDT_IMAGE_PATH,RV_IMAGE,RE.PRDT_CODE
+		  SELECT RV_NO,RV_INFO,MEM_NAME,RV_DATE,PRDT_NAME,PRDT_IMAGE,PRDT_IMAGE_PATH,RV_IMAGE,RE.PRDT_CODE,RV_POINT
       	  FROM REVIEW RE
       	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
           JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
