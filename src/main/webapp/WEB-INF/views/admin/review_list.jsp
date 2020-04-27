@@ -236,7 +236,7 @@ text-overflow:ellipsis;
                <c:forEach var = "r" items="${rlist }">
                     <tr>
                         <td>${r.rvNo }</td>
-                        <td>${r. }</td>
+                        <td>${r.prdtName }</td>
                         <td><p class="conment-line">${r.rvInfo }
                        	</p>
                         <p class="conment-content">${r.rvInfo }</p>

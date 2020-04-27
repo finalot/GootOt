@@ -106,7 +106,7 @@
 	                    <br>
 	                    <strong class="data">
 	                    	<a href="${mPoint }">
-	                    	<fmt:formatNumber value="${loginMember.mem_point }" pattern="#,###"/>원</a>
+	                  <span>${resultPoint}</span>원</a>
 	                    </strong>
 	                </li>
                 
@@ -232,7 +232,6 @@
 		
 	<hr class="layout">
 	</div>
-
  <jsp:include page="footer.jsp"/>
 </body>
 </html>
