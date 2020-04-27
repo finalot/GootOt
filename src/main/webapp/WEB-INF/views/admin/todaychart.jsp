@@ -200,10 +200,10 @@
           
     <!-- 일별 매출량 -->
     <div class="col-lg-6">
-    	<div class="au-card m-b-30" style="margin-top:4%; margin-left:10%; 	width: 190%; height: auto;">
+    	<div class="au-card m-b-30" style="margin-top:3%; margin-left:10%; 	width: 190%; height: auto;">
            <div class="au-card-inner">
-               <h3 class="title-2 m-b-40">일별 판매량</h3>
-               <canvas id="singelBarChart"></canvas>
+               <h3 class="title-2 m-b-40">월별 판매량  &lt;2020년&gt;</h3>
+               <canvas id="monthlyChart"></canvas>
            </div>
        </div>
     </div>
@@ -212,22 +212,52 @@
     
     <!-- 월별 매출량 -->
 	<!-- MAIN CONTENT-->
-          <div class="section__content section__content--p30">
-              <div class="container-fluid">
-                  <div class="col-lg-6">
-                          <div class="au-card m-b-30" style="margin-top:10%; margin-left:2.5%; 	width: 207%; height: auto;">
-                              <div class="au-card-inner">
-                                  <h3 class="title-2 m-b-40"> 월별 판매량 &lt;2020년&gt; </h3>
-                                  <canvas id="barChart"></canvas>
-                              </div>
-                          </div>
-                      </div>       
-              </div>
-          </div>
-      </div>
+   <%--  <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="col-lg-6">
+               <div class="au-card m-b-30" style="margin-top:10%; width: 207%; height: auto;">
+                   <div class="au-card-inner">
+                       <h3 class="title-2 m-b-40"> 월별 판매량 &lt;2020년&gt; </h3>
+                       <canvas id="barChart"></canvas>
+                   </div>
+               </div>
+           </div>       
+        </div>
+    </div> --%>
+</div>
       <!-- END MAIN CONTENT-->
-  	</div>
-  	
+</div>
+<script>
+	var ctx = document.getElementById("monthlyChart").getContext('2d');
+	/*
+	- Chart를 생성하면서, 
+	- ctx를 첫번째 argument로 넘겨주고, 
+	- 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
+	*/
+	var monthlyChart = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	        labels: ["10", "11", "12", "1", "2", "3","4"],
+	        datasets: [{
+	            label: '월별 판매량',
+	            data: [12, 19, 3, 5, 2, 3],
+	            borderColor: "rgba(0, 123, 255, 0.9)",
+	            backgroundColor: "rgba(0, 123, 255, 0.5)",
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	        maintainAspectRatio: true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }]
+	        }
+	    }
+	});
+</script>
   	    <!-- Jquery JS-->
     <script src="/ot/resources/avendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->

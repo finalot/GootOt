@@ -587,7 +587,7 @@
           labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
           datasets: [
             {
-              label: "My First dataset",
+              label: "일별 판매량",
               data: [78, 81, 80, 64, 65, 80, 70, 75, 67, 85, 66, 68],
               borderColor: "transparent",
               borderWidth: "0",
@@ -873,65 +873,65 @@
     console.log(error);
   }
 
-  try {
-    //bar chart
-    var ctx = document.getElementById("barChart");
-    if (ctx) {
-      ctx.height = 200;
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        defaultFontFamily: 'Poppins',
-        data: {
-          labels: ["January", "February", "March", "April", "May", "June", "July"],
-          datasets: [
-            {
-              label: "My First dataset",
-              data: [65, 59, 80, 81, 56, 55, 40],
-              borderColor: "rgba(0, 123, 255, 0.9)",
-              borderWidth: "0",
-              backgroundColor: "rgba(0, 123, 255, 0.5)",
-              fontFamily: "Poppins"
-            },
-            {
-              label: "My Second dataset",
-              data: [28, 48, 40, 19, 86, 27, 90],
-              borderColor: "rgba(0,0,0,0.09)",
-              borderWidth: "0",
-              backgroundColor: "rgba(0,0,0,0.07)",
-              fontFamily: "Poppins"
-            }
-          ]
-        },
-        options: {
-          legend: {
-            position: 'top',
-            labels: {
-              fontFamily: 'Poppins'
-            }
+//  try {
+//    //bar chart
+//    var ctx = document.getElementById("barChart");
+//    if (ctx) {
+//      ctx.height = 200;
+//      var myChart = new Chart(ctx, {
+//        type: 'bar',
+//        defaultFontFamily: 'Poppins',
+//        data: {
+//          labels: ["January", "February", "March", "April", "May", "June", "July"],
+//          datasets: [
+//            {
+//              label: "My First dataset",
+//              data: [100, 100, 10, 100, 100, 100, 100],
+//              borderColor: "rgba(0, 123, 255, 0.9)",
+//              borderWidth: "0",
+//              backgroundColor: "rgba(0, 123, 255, 0.5)",
+//              fontFamily: "Poppins"
+//            },
+//            {
+//              label: "My Second dataset",
+//              data: [28, 48, 40, 19, 86, 27, 90],
+//              borderColor: "rgba(0,0,0,0.09)",
+//              borderWidth: "0",
+//              backgroundColor: "rgba(0,0,0,0.07)",
+//              fontFamily: "Poppins"
+//            }
+//          ]
+//        },
+//        options: {
+//          legend: {
+//            position: 'top',
+//            labels: {
+//              fontFamily: 'Poppins'
+//            }
+//
+//          },
+//          scales: {
+//            xAxes: [{
+//              ticks: {
+//                fontFamily: "Poppins"
+//
+//              }
+//            }],
+//            yAxes: [{
+//              ticks: {
+//                beginAtZero: true,
+//                fontFamily: "Poppins"
+//              }
+//            }]
+//          }
+//        }
+//      });
+//    }
 
-          },
-          scales: {
-            xAxes: [{
-              ticks: {
-                fontFamily: "Poppins"
 
-              }
-            }],
-            yAxes: [{
-              ticks: {
-                beginAtZero: true,
-                fontFamily: "Poppins"
-              }
-            }]
-          }
-        }
-      });
-    }
-
-
-  } catch (error) {
-    console.log(error);
-  }
+//  } catch (error) {
+//    console.log(error);
+//  }
 
   try {
 
@@ -1198,57 +1198,57 @@
     console.log(error);
   }
 
-  try {
-
-    // single bar chart
-    var ctx = document.getElementById("singelBarChart");
-    if (ctx) {
-      ctx.height = 150;
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ["Sun", "Mon", "Tu", "Wed", "Th", "Fri", "Sat"],
-          datasets: [
-            {
-              label: "My First dataset",
-              data: [40, 55, 75, 81, 56, 55, 40],
-              borderColor: "rgba(0, 123, 255, 0.9)",
-              borderWidth: "0",
-              backgroundColor: "rgba(0, 123, 255, 0.5)"
-            }
-          ]
-        },
-        options: {
-          legend: {
-            position: 'top',
-            labels: {
-              fontFamily: 'Poppins'
-            }
-
-          },
-          scales: {
-            xAxes: [{
-              ticks: {
-                fontFamily: "Poppins"
-
-              }
-            }],
-            yAxes: [{
-              ticks: {
-                beginAtZero: true,
-                fontFamily: "Poppins"
-              }
-            }]
-          }
-        }
-      });
-    }
-
-  } catch (error) {
-    console.log(error);
-  }
-
-})(jQuery);
+//  try {
+//
+//    // single bar chart
+//    var ctx = document.getElementById("singelBarChart");
+//    if (ctx) {
+//      ctx.height = 150;
+//      var myChart = new Chart(ctx, {
+//        type: 'bar',
+//        data: {
+//          labels: ["10", "11", "12", "1", "2", "3", "4"],
+//          datasets: [
+//            {
+//              label: "월별 판매량",
+//              data: [40, 55, 75, 81, 56, 55, 40],
+//              borderColor: "rgba(0, 123, 255, 0.9)",
+//              borderWidth: "0",
+//              backgroundColor: "rgba(0, 123, 255, 0.5)"
+//            }
+//          ]
+//        },
+//        options: {
+//          legend: {
+//            position: 'top',
+//            labels: {
+//              fontFamily: 'Poppins'
+//            }
+//
+//          },
+//          scales: {
+//            xAxes: [{
+//              ticks: {
+//                fontFamily: "Poppins"
+//
+//              }
+//            }],
+//            yAxes: [{
+//              ticks: {
+//                beginAtZero: true,
+//                fontFamily: "Poppins"
+//              }
+//            }]
+//          }
+//        }
+//      });
+//    }
+//
+//  } catch (error) {
+//    console.log(error);
+//  }
+//
+//})(jQuery);
 
 
 
