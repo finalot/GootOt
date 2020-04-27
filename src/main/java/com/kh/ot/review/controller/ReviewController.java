@@ -31,6 +31,7 @@ import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
+import com.kh.ot.main.vo.ReviewPoint;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.review.service.ReviewService;
 import com.kh.ot.review.vo.Like_Heart;
@@ -73,13 +74,19 @@ public class ReviewController extends HttpServlet {
 			ArrayList<Review_count> rc = rService.selectReviewCount();
 			
 			
+			
 			if(Sort.equals("like")) {
 				 rlist = rService.selectLikeSort();
 			} else {
 			    rlist = rService.selectReviewList(pi);
 			}
 			System.out.println("rlist : " + rlist);
-		
+			
+			ReviewPoint rp = new ReviewPoint();
+			
+			
+			
+			mv.addObject("rp", rp);
 			mv.addObject("Sort", Sort);
 			mv.addObject("rlist",rlist);
 			mv.addObject("plist",plist);

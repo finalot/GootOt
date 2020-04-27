@@ -238,6 +238,7 @@ public class mainController {
 			pointAvg = (double)sumPoint/(double)avg1;
 		}
 		
+		
 		rp.setPoint1(star1);
 		rp.setPoint2(star2);
 		rp.setPoint3(star3);

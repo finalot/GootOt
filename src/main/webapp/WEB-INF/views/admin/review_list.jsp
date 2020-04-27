@@ -223,9 +223,9 @@ text-overflow:ellipsis;
             <table id="example" class="table table-striped table-bordered second" style="width:100%">
                 <thead>
                     <tr>
-                        <th style="width: 5%">게시글번호</th>
-                        <th style="width: 10%;">제목</th>
-                        <th style="width: 30%;">내용</th>
+                        <th style="width: 5%">리뷰번호</th>
+                        <th style="width: 20%;">상품명</th>
+                        <th style="width: 25%;">내용</th>
                         <th style="width: 5%;">작성자</th>
                         <th style="width: 6%;">작성일</th>
                         <th style="width: 15%;">댓글달기</th>
@@ -235,7 +235,7 @@ text-overflow:ellipsis;
                 <tbody>
                <c:forEach var = "r" items="${rlist }">
                     <tr>
-                        <td>${r.rvNo }</td>
+                        <td class="reviewNo">${r.rvNo }</td>
                         <td>${r.prdtName }</td>
                         <td><p class="conment-line">${r.rvInfo }
                        	</p>
@@ -243,7 +243,7 @@ text-overflow:ellipsis;
                         </td>
                          <td>${r.memName }(${r.rvHeight },${r.rvWeight },${r.rvSize })</td>
                         <td>${r.rvDate }</td>
-                        <td><input type="text" class="admin-coment"name="admin-coment"></td>
+                        <td><input type="text" class="admin-coment" name="admin-coment"></td>
                         <td><button class="coment-Btn">등록</button></td>
                     </tr>
                    </c:forEach>
@@ -323,6 +323,20 @@ text-overflow:ellipsis;
         });
 	
 	})	
+	
+	$('.coment-Btn').click(function(){
+		var coment =  $(this).parents('tr').find('.admin-coment').val();
+		var rvNo = $(this).parents('tr').find('.reviewNo').text();
+		var memNo = 0;
+		
+		location.href="ComentInsert.ad?rvNo="+rvNo+"&coment="+coment+"&memNo="+memNo;
+		
+		
+		
+		
+	})
+	
+	
     </script>
 </body>
 </html>

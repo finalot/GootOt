@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -51,24 +51,19 @@ overflow:hidden;
 text-overflow:ellipsis;
  white-space:nowrap;
 	    width: 600px;
-
 }
+
 .coment-delete{
-	    margin-right: 3%;
-    width: 50px;
-    border: 1px solid;
-    color: #fff;
-    background-color: #d9534f;
-    border-color: #d43f3a;
+	    color: red;
+    font-weight: bold;
+    margin-right: 10px;
 }
 .coment-return{
+	   color: blue;
+    font-weight: bold;
 
-    width: 50px;
-    border: 1px solid;
-    color: #fff;
-    background-color: #5bc0de;
-    border-color: #46b8da;
 }
+
    </style>
 
     
@@ -222,7 +217,7 @@ text-overflow:ellipsis;
               <div class="row">
                   <div class="col-md-12">
                       <h1 class="title-4">
-                      	리뷰 댓글신고
+                      	리뷰
                       </h1>
                       <hr class="line-seprate">
                   </div>
@@ -238,7 +233,7 @@ text-overflow:ellipsis;
             <table id="example" class="table table-striped table-bordered second" style="width:100%">
                 <thead>
                     <tr>
-                        <th style="width: 5%">게시글번호</th>
+                        <th style="width: 5%">리뷰번호</th>
                         <th style="width: 10%;">작성자</th>
                         <th style="width: 30%;">신고댓글</th>
                         <th style="width: 5%;">작성일</th>
@@ -246,55 +241,17 @@ text-overflow:ellipsis;
                     </tr>
                 </thead>
                 <tbody>
+                <c:forEach var="r" items="${rlist }">
                 	<tr>
-                   		<td>1</td>
-                   		<td>moon77</td>
-                   		<td>머야 이돼지는 ㅋㅋㅋㅋㅋㅋ</td>
-                   		<td>2020-02-02</td>
-                   		<td style="text-align: center;"><button class="coment-delete">삭제</button><button class="coment-return">반려</button></td>
+                		<input type="hidden" class="rvcNo" value="${r.rvcNo }">
+                   		<td class="reviewNo">${r.rvNo}</td>
+      	            	<td>${r.memName }</td>
+                   		<td>${r.rvComment }</td>
+                   		<td>${r.rvDate }</td> 
+                   		<td style="text-align: center;"><button class="coment-delete">삭제</button>
+                   		<button class="coment-return">반려</button></td>
                    	</tr>
-                  <tr>
-                   		<td>1</td>
-                   		<td>moon77</td>
-                   		<td>머야 이돼지는 ㅋㅋㅋㅋㅋㅋ</td>
-                   		<td>2020-02-02</td>
-                   		<td style="text-align: center;"><button class="coment-delete">삭제</button><button class="coment-return">반려</button></td>
-                   	</tr>
-                   	<tr>
-                   		<td>1</td>
-                   		<td>moon77</td>
-                   		<td>머야 이돼지는 ㅋㅋㅋㅋㅋㅋ</td>
-                   		<td>2020-02-02</td>
-                   		<td style="text-align: center;"><button class="coment-delete">삭제</button><button class="coment-return">반려</button></td>
-                   	</tr>
-                   <tr>
-                   		<td>1</td>
-                   		<td>moon77</td>
-                   		<td>머야 이돼지는 ㅋㅋㅋㅋㅋㅋ</td>
-                   		<td>2020-02-02</td>
-                   		<td style="text-align: center;"><button class="coment-delete">삭제</button><button class="coment-return">반려</button></td>
-                   	</tr>
-                   	<tr>
-                   		<td>1</td>
-                   		<td>moon77</td>
-                   		<td>머야 이돼지는 ㅋㅋㅋㅋㅋㅋ</td>
-                   		<td>2020-02-02</td>
-                   		<td style="text-align: center;"><button class="coment-delete">삭제</button><button class="coment-return">반려</button></td>
-                   	</tr>
-                   	<tr>
-                   		<td>1</td>
-                   		<td>moon77</td>
-                   		<td>머야 이돼지는 ㅋㅋㅋㅋㅋㅋ</td>
-                   		<td>2020-02-02</td>
-                   		<td style="text-align: center;"><button class="coment-delete">삭제</button><button class="coment-return">반려</button></td>
-                   	</tr>
-                   <tr>
-                   		<td>1</td>
-                   		<td>moon77</td>
-                   		<td>머야 이돼지는 ㅋㅋㅋㅋㅋㅋ</td>
-                   		<td>2020-02-02</td>
-                   		<td style="text-align: center;"><button class="coment-delete">삭제</button><button class="coment-return">반려</button></td>
-                   	</tr>
+                   	</c:forEach> 
                 </tbody>
                 <tfoot>
                   <tr>
@@ -357,7 +314,11 @@ text-overflow:ellipsis;
      <script src="/ot/resources/avendor/perfect-scrollbar/perfect-scrollbar.js"></script>
      <script src="/ot/resources/avendor/chartjs/Chart.bundle.min.js"></script>
      <script src="/ot/resources/avendor/select2/select2.min.js">
-     
+     </script>
+ 
+     <!-- Main JS-->
+     <script src="/ot/resources/ajs/main.js"></script>
+     <script>
       $(".conment-content").slideUp();
       
 		$('.conment-line').click(function(){
@@ -365,6 +326,23 @@ text-overflow:ellipsis;
         });
 	
 	})	
+	
+		$('.coment-delete').click(function(){
+		var rvcNo = Number($(this).parents('tr').find('.rvcNo').val());
+		console.log(rvcNo);	
+		
+		location.href="comentDelete.ad?rvcNo="+rvcNo;
+		})
+		
+		$('.coment-return').click(function(){
+		var rvcNo = Number($(this).parents('tr').find('.rvcNo').val());
+		console.log(rvcNo);
+		
+		location.href="comentReturn.ad?rvcNo="+rvcNo;
+		});
+		
+	
+	
     </script>
 </body>
 </html>
