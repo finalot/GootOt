@@ -45,7 +45,10 @@ import com.kh.ot.main.vo.Wish;
 import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
 import com.kh.ot.member.vo.Member;
+import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
+import com.kh.ot.review.vo.Review_Photo;
 
 //@SessionAttributes("loginMember")
 @Controller
@@ -887,5 +890,205 @@ MainSearchCondition msc= new MainSearchCondition();
 		   return new Gson().toJson(resultMap);
 		   
 	   }
+	   
+	   
+	   
+	   @RequestMapping("reviewDetail1.do")
+		public void reviewDetail1(HttpSession session, HttpServletResponse response,int rvNo) throws IOException {
+			
+			Member m = (Member)session.getAttribute("loginMember");
+			
+			Like_Heart lh = new Like_Heart();
+			lh.setMemNo(m.getMemNo());
+			lh.setRvNo(rvNo);
+			lh.setLikeCheck("N");
+			
+			int result = mainService.selectLikeCount(lh);
+			Like_Heart lhl = null;
+			if(result > 0) {
+				lhl = mainService.selectLike(lh);
+			}else {
+				int result2 = mainService.insertLike(lh);
+				lhl = mainService.selectLike(lh);
+			}
+			
+			response.setContentType("application/json; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			
+			System.out.println("rvNo: " + rvNo);
+			Review r = mainService.selectReviewDetail(rvNo);
+			
+			
+			ArrayList<Review_Photo> ph = new ArrayList<>();
+			ph = mainService.selectReviewPhoto(rvNo);
+			
+			System.out.println("ph:"+ ph);
+			System.out.println("r:" +r);
+			
+			Map hmap = new HashMap();
+			hmap.put("lhl", lhl);
+			hmap.put("r",r);
+			hmap.put("ph", ph);
+		
+		    
+		    
+		    new Gson().toJson(hmap,response.getWriter());
+			
+			
+		}
 	
+	   @RequestMapping("reviewLike1.do") 
+		public void reviewLike1(HttpSession session, HttpServletResponse response,int rv_no, String likeCheck) throws IOException {
+			
+			System.out.println("rvvvvvv_no: " + rv_no);
+			System.out.println("likeccccc" + likeCheck);
+			
+			Member m = (Member)session.getAttribute("loginMember");
+			response.setContentType("application/json; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			
+			Like_Heart lh = new Like_Heart();
+			lh.setMemNo(m.getMemNo());
+			lh.setRvNo(rv_no);
+			
+			
+			if(likeCheck.equals("N")) {
+				int result = mainService.updateLikeCheck(lh);
+				int result2 = mainService.updateLikeCount(rv_no);
+				System.out.println("1"+result);
+				System.out.println("2"+result2);
+			}else if(likeCheck.equals("Y")){
+				int result3 = mainService.updateLikeCheck2(lh); 
+				int result4 = mainService.updateLikeCount2(rv_no);
+				System.out.println("3"+result3);
+				System.out.println("4"+result4);
+			}
+			
+			
+			Review r = mainService.selectReviewDetail(rv_no);
+			Like_Heart lhl = mainService.selectLike(lh);
+			
+			System.out.println("r222232:"+r);
+			System.out.println("lhlll2ll2l2: " + lhl);
+			
+			Map hmap = new HashMap();
+			hmap.put("lhl", lhl);
+			hmap.put("r",r);
+			
+		    
+		    
+		    new Gson().toJson(hmap,response.getWriter());
+			
+			
+		}
+	   
+	   
+	   
+	   
+	   @RequestMapping("addReply1.do")
+		@ResponseBody
+		public String addReply1(String rvComment, int rv_no,HttpSession session) {
+			
+			Member m = (Member)session.getAttribute("loginMember");
+			ReviewReply rp = new ReviewReply();
+			rp.setMemNo(m.getMemNo());
+			rp.setRvComment(rvComment);
+		
+			rp.setRvNo(rv_no);
+			
+			int result = mainService.insertReply(rp);
+			
+			
+			
+			if(result > 0) {
+				return "success";
+			}else {
+				return "fail";
+			}
+		}
+	   
+	   @RequestMapping("rList1.do") 
+		public void getReplyList1(HttpServletResponse response,int rv_no) throws IOException {
+			
+			ArrayList<ReviewReply> rplist = mainService.selectReplyList(rv_no);
+			
+			response.setContentType("appliction/json; charset=utf-8");
+			System.out.println("rplist:"+rplist);
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			Map hmap = new HashMap();
+			hmap.put("rplist", rplist);
+			
+			
+			gson.toJson(hmap,response.getWriter());
+			
+			
+		}
+	   
+	   @RequestMapping("DeleteReply1.do")
+		public void DeleteReply1(int rvcNo, int rv_no, HttpServletResponse response) throws JsonIOException, IOException {
+			
+			ReviewReply rp = new ReviewReply();
+		
+			rp.setRvcNo(rvcNo);
+			
+			int result = mainService.DeleteReply(rp);
+			if(result >0) {
+				
+			
+			
+			ArrayList<ReviewReply> rplist = mainService.selectReplyList(rv_no);
+			
+			response.setContentType("appliction/json; charset=utf-8");
+			System.out.println("rplist:"+rplist);
+			
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			
+			Map hmap = new HashMap();
+			hmap.put("rplist", rplist);
+			
+			
+			gson.toJson(hmap,response.getWriter());
+			
+			} else {
+				System.out.println("에러당~");
+			}
+			
+		}
+	   
+	   
+	   
+	   
+	   @RequestMapping("WarningReply1.do") 
+		public void WarningReply1(int rv_no, int rvcNo, HttpServletResponse response) throws JsonIOException, IOException {
+			ReviewReply rp = new ReviewReply();
+			
+			rp.setRvcNo(rvcNo);
+			
+			int result = mainService.WarningReply(rp);
+			
+			
+			if(result >0) {
+				
+				ArrayList<ReviewReply> rplist = mainService.selectReplyList(rv_no);
+				
+				response.setContentType("appliction/json; charset=utf-8");
+				System.out.println("rplist:"+rplist);
+				
+				Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+				
+				Map hmap = new HashMap();
+				hmap.put("rplist", rplist);
+				
+				
+				gson.toJson(hmap,response.getWriter());
+				
+				} else {
+					System.out.println("에러당~");
+				}
+		}
+	   
+	   
+	   
 }

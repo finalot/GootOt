@@ -1216,20 +1216,6 @@ select {
                         <a class="next" onclick="plusSlides(1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>&#10095;</strong></a>
                         </div>
 
-     <!--            <div class="mySlides" style="display: block;">
-                            <div class="numbertext" ><font style="font-size:14px;">1 / 2</font></div>
-                            <img class="contentimgs" id="contentimgs1" src="" alt="sample1" style="margin-top:-5%;">
-                        </div>
-
-                        <div class="mySlides">
-                            <div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>
-                            <img class="contentimgs" id="contentimgs2" src="" alt="sample2" style="margin-top:-5%;" >
-                        </div> -->
-
-
-
-
-
                         <div id="dotbox" style="text-align:center">
                             <span class="dot" onclick="currentSlide(1);"></span>
                             <span class="dot" onclick="currentSlide(2);"></span>
@@ -2126,12 +2112,12 @@ select {
 				  if(i == 0){
 						$('#nextPh').after('  <div class="mySlides" style="display: block;">'+
 	                            '<div class="numbertext" ><font style="font-size:14px;">1/ 2</font></div>'+
-	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;">'+
+	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;width:800px;">'+
 	                            '</div>')
 				  }else{
 						$('#contentimgs1').after(	' <div class="mySlides">'+
 			                      '<div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>'+
-			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;" >'+
+			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;width:800px;" >'+
 			                  '</div>')
 					  
 				  }
