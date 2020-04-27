@@ -416,5 +416,47 @@ public interface adminService{
 		 */
 		public ArrayList<Product> topSelect();
 
+		/**
+		 * @작성일 : 2020. 4. 27.
+		 * @작성자 : 이서현
+		 * @내용 : 오늘 Q&A
+		 */
+		public int todayQnAselect();
+
+		/**
+		 * @작성일 : 2020. 4. 27.
+		 * @작성자 : 이서현
+		 * @내용 : 오늘 반품
+		 */
+		public int todayReturnSelect();
+
+		/**
+		 * @작성일 : 2020. 4. 27.
+		 * @작성자 : 이서현
+		 * @내용 : 오늘 판매량
+		 */
+		public int todayScountSelect();
+
+		/**
+		 * @작성일 : 2020. 4. 27.
+		 * @작성자 : 이서현
+		 * @내용 : 오늘 총판매금액
+		 */
+		public int todaySpriceSelect();
+
+		/**
+		 * @작성일 : 2020. 4. 27.
+		 * @작성자 : 이서현
+		 * @내용 : 상품 업데이트 
+		 */
+//		public int ProductUpdate(Product p);
+//
+//		/**
+//		 * @작성일 : 2020. 4. 27.
+//		 * @작성자 : 이서현
+//		 * @내용 : 상품옵션 업데이트 
+//		 */
+//		public int UpdatePotList(ArrayList<Product_opt> poArr);
+
 
 }

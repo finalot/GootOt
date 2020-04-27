@@ -674,6 +674,25 @@
 		SELECT *
 		FROM REVIEW
 		WHERE PRDT_CODE = #{prdtNo}
-		</select>
+	</select>
+	
+	<!-- <update id="ProductUpdate" parameterType="Product">
+		UPDATE PRDT SET
+		PRDT_NAME=#{prdtName}, PRDT_COMMENT=#{prdtComment},
+		PRDT_IMAGE=#{prdtImage} ,PRDT_DETAIL_IMAGE=#{prdtDetailImage},
+		PRDT_SALE=#{prdtSale}
+	</update>
+	
+	<update id="UpdatePotList" parameterType="Product_opt">
+		UPDATE PRDT_OPT SET
+		<foreach collection="poArr" item="po"  separator="UNION ALL" >
+			SELECT #{po.PrdtNo} as PRDT_NO,
+				   #{po.optColor} as OPT_COLOR,
+				   #{po.size} as OPT_SIZE,
+				   #{po.stock} as OPT_STOCK
+			FROM DUAL
+			</foreach>) A
+	</update> -->
+	
 
 </mapper>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +40,8 @@
     <link href="/ot/resources/acss/theme.css" rel="stylesheet" media="all">
 </head>
 <body class="animsition">
+	<!-- 차트가능한 소스 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<div class="page-wrapper">
 		<jsp:include page="a_header.jsp"/>
  <!-- MENU SIDEBAR-->
@@ -194,7 +197,7 @@
                 <div class="row">
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--green">
-                            <h2 class="number">35</h2>
+                            <h2 class="number">${qnaResult}</h2>
                             <span class="desc">오늘 Q&A</span>
                             <div class="icon">
                                 <i class="zmdi zmdi-account-o"></i>
@@ -203,8 +206,8 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--orange">
-                            <h2 class="number">4</h2>
-                            <span class="desc">오늘 반품 수</span>
+                            <h2 class="number">${returnResult }</h2>
+                            <span class="desc">오늘 반품신청 수</span>
                             <div class="icon">
                                 <i class="zmdi zmdi-shopping-cart"></i>
                             </div>
@@ -212,7 +215,7 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--blue">
-                            <h2 class="number">249</h2>
+                            <h2 class="number">${scountResult }</h2>
                             <span class="desc">오늘 판매량</span>
                             <div class="icon">
                                 <i class="zmdi zmdi-calendar-note"></i>
@@ -221,7 +224,8 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--red">
-                            <h2 class="number">	&#8361;650,000</h2>
+                            <h2 class="number">	&#8361; 
+                            <fmt:formatNumber value="${spriceResult }" pattern="#,###" /></h2>
                             <span class="desc">오늘 판매금액</span>
                             <div class="icon">
                                 <i class="zmdi zmdi-money"></i>
@@ -248,7 +252,7 @@
                         	style="margin-left:-35%; width:140%; height:auto;" onclick="location.href='todayChart.ad'">
                             <h3 class="title-3 m-b-30">일별 판매량</h3>
                             <div class="chart-wrap">
-                                <canvas id="widgetChart5"></canvas>
+                                <canvas id="widgetChart5" width:"406" height:"446"></canvas>
                             </div>
                             <div class="statistic-chart-1-note">
                                 <span class="big">10,368</span>
@@ -289,7 +293,7 @@
         <!-- END STATISTIC CHART-->
 
 	</div>
-
+	
     <!-- Jquery JS-->
     <script src="/ot/resources/avendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->

@@ -397,5 +397,11 @@ SELECT RE.RE_NO,RE.QNA_DATE,RE.RE_NAME,RE.RE_TITLE,RE.RE_CONTENT,RE.ORD_CODE,
 	FROM DOWN_CATE
 	WHERE UP_NO = #{up_no}
 	AND DOWN_NO=#{down_no}
+</select>
+
+<select id="todayReturnSelect" resultType="_int">
+	SELECT COUNT(*)
+	FROM RETURN
+	WHERE RE_DATE=TO_CHAR(SYSDATE,'YY/MM/DD')
 </select>	
 </mapper>

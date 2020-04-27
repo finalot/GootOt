@@ -77,8 +77,17 @@ public class menuController {
 	public ModelAndView todayMain(ModelAndView mv) {
 		
 		ArrayList<Product> plist = adService.topSelect();
+		//오늘의 QNA
+		int qnaResult = adService.todayQnAselect();
+		int returnResult = adService.todayReturnSelect();
+		int scountResult = adService.todayScountSelect();
+		int spriceResult = adService.todaySpriceSelect();
 		
 		mv.addObject("plist",plist);
+		mv.addObject("qnaResult",qnaResult);
+		mv.addObject("returnResult",returnResult);
+		mv.addObject("scountResult",scountResult);
+		mv.addObject("spriceResult",spriceResult);
 		mv.setViewName("admin/todaymain");
 		
 		return mv;
@@ -1667,55 +1676,53 @@ public class menuController {
 	 * @작성자 : 이서현
 	 * @내용 : 상품 업데이트 
 	 */
-	/*
-	 * @RequestMapping(value="ProductUpdate.ad" ,method=RequestMethod.POST) public
-	 * String ProductUpdate(HttpServletRequest request, Product p, String[] size,
-	 * int[] stock,String[] optColor,
-	 * 
-	 * @RequestParam(name="thumbnailImg",required=false) MultipartFile file1,
-	 * 
-	 * @RequestParam(name="descrptionImg",required=false) MultipartFile file2 ) {
-	 * 
-	 * ArrayList<Product_opt> poArr = new ArrayList<Product_opt>(); for(int i=0;
-	 * i<stock.length-1; i++) { Product_opt pop = new Product_opt();
-	 * 
-	 * if (!file1.getOriginalFilename().equals("")) { String renameFileName =
-	 * saveFile(uploadFile[i], request);
-	 * 
-	 * if (renameFileName != null) { d.setDeNo(no[i]);
-	 * d.setMainComment(mainComment[i]); d.setMainLink(mainLink[i]);
-	 * d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
-	 * d.setReFile(renameFileName); dlist.add(d); } } }
-	 * 
-	 * int result = adService.ProductUpdate(p);
-	 * 
-	 * if (result > 0) {
-	 * 
-	 * return "redirect:QnA_Product.ad"; } else { return "에러다"; }
-	 * 
-	 * }
-	 * 
-	 * Product p = new Product();
-	 * 
-	 * p.setPrdtImage(renameFileName); p.setPrdtDetailImage(renameDetailName);
-	 * ArrayList<Product_opt> oplist = new ArrayList<Product_opt>();
-	 * 
-	 * for(int i=0; i<stock.length-1; i++) {
-	 * 
-	 * if(!file1.getOriginalFilename().equals("")) { String renameFileName =
-	 * saveFile(file1, request); if (file1 != null) {
-	 * 
-	 * // d.setDeNo(no[i]); d.setMainComment(mainComment[i]); //
-	 * d.setMainLink(mainLink[i]); //
-	 * d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장 //
-	 * d.setReFile(renameFileName); dlist.add(d); } pot.setSize(size[i]); //
-	 * pot.setStock(stock[i]); pot.setPrdtNo(pd.getPrdtNo()); //
-	 * pot.setOptColor(optColor[i]);
-	 * 
-	 * } } }
-	 */
-
-	 
+	
+//	  @RequestMapping(value="ProductUpdate.ad" ,method=RequestMethod.POST) public
+//	  String ProductUpdate(HttpServletRequest request, String[] size, Product p,
+//			  						int[] stock,String[] optColor, 
+//			  						@RequestParam(name="thumbnailImg",required=false) MultipartFile file1,
+//	  								@RequestParam(name="descrptionImg",required=false) MultipartFile file2 ) {
+//		  
+//		  ArrayList<Product_opt> poArr = new ArrayList<Product_opt>(); 
+//		  
+//		  if (!file1.getOriginalFilename().equals("") &&!file2.getOriginalFilename().equals("")) {
+//				
+//				String renameFileName = saveFile(file1, request);
+//				String renameDetailName = saveFile(file2, request);
+//				
+//					p.setPrdtImage(renameFileName);
+//					p.setPrdtDetailImage(renameDetailName);
+//
+//					int result = adService.ProductUpdate(p);
+//					
+//					if(result>0){
+//						Product pd = adService.selectPrdtNo();
+//						
+//						for(int i=0;i<stock.length;i++) {
+//							Product_opt pot = new Product_opt();
+//							
+//							pot.setSize(size[i]);
+//							pot.setStock(stock[i]);
+//							pot.setPrdtNo(pd.getPrdtNo());
+//							pot.setOptColor(optColor[i]);
+//						
+//							poArr.add(pot);
+//						}
+//					int result2 = adService.UpdatePotList(poArr);
+//						
+//					return "redirect:productList.ad";
+//					} else {
+//					
+//						System.out.println("에러");
+//					return "redirect:productListDetail.ad";
+//						
+//						
+//					}
+//		  
+//	  }
+//	  }
+	
+	
 	 
 	 
 }

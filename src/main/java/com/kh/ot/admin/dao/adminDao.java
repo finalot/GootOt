@@ -542,4 +542,36 @@ public class adminDao {
 	public ArrayList<Product> topSelect() {
 		return (ArrayList)sqlSession.selectList("productMapper.topSelect");
 	}
+
+
+	public int todayQnAselect() {
+		return sqlSession.selectOne("boardMapper.todayQnAselect");
+	}
+
+
+	public int todayReturnSelect() {
+		return sqlSession.selectOne("adminMapper.todayReturnSelect");
+	}
+
+
+	public int todayScountSelect() {
+		return sqlSession.selectOne("cartMapper.todayScountSelect");
+	}
+
+
+	public int todaySpriceSelect() {
+		return sqlSession.selectOne("cartMapper.todaySpriceSelect");
+	}
+	
+	
+
+
+//	public int ProductUpdate(Product p) {
+//		return sqlSession.update("productMapper.ProductUpdate",p);
+//	}
+//
+//
+//	public int UpdatePotList(ArrayList<Product_opt> poArr) {
+//		return sqlSession.update("productMapper.UpdatePotList",poArr);
+//	}
 }

@@ -286,4 +286,23 @@
 	</foreach>
 	</update>
 	
+	<select id="todayScountSelect" resultType="_int">
+		SELECT *
+		FROM (SELECT SUM(ORD_COUNT) OVER(PARTITION BY MEM_NO) AS 당일판매량
+             FROM ORD
+             WHERE ORD_DATE=TO_CHAR(SYSDATE,'YY/MM/DD')
+           	 ORDER BY ROWNUM DESC)
+		WHERE ROWNUM=1
+	</select>
+	
+	<select id="todaySpriceSelect" resultType="_int">
+		SELECT * 
+		FROM (SELECT SUM(PAY_MONEY) OVER(PARTITION BY MEM_NO)AS 당일총금액
+             FROM PAY
+             WHERE PAY_DATE=TO_CHAR(SYSDATE,'YY/MM/DD')
+             AND PAY_YN='Y'
+             ORDER BY ROWNUM DESC)
+		WHERE ROWNUM=1
+	</select>
+	
 </mapper>

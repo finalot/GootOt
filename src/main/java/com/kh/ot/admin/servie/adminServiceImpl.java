@@ -312,4 +312,41 @@ public class adminServiceImpl implements adminService{
 			return adDao.topSelect();
 		}
 
+
+		@Override
+		public int todayQnAselect() {
+			return adDao.todayQnAselect();
+		}
+
+
+		@Override
+		public int todayReturnSelect() {
+			return adDao.todayReturnSelect();
+		}
+
+
+		@Override
+		public int todayScountSelect() {
+			return adDao.todayScountSelect();
+		}
+
+
+		@Override
+		public int todaySpriceSelect() {
+			return adDao.todaySpriceSelect();
+		}
+		
+		
+
+//		@Override
+//		public int ProductUpdate(Product p) {
+//			return adDao.ProductUpdate(p);
+//		}
+//
+//
+//		@Override
+//		public int UpdatePotList(ArrayList<Product_opt> poArr) {
+//			return adDao.UpdatePotList(poArr);		
+//		}
+
 }
