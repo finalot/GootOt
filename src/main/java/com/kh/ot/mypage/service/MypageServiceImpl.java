@@ -319,4 +319,9 @@ public class MypageServiceImpl implements MypageService{
 		return mpDao.selectSearchReviewList(pi, rs);
 	}
 
+	@Override
+	public int resultPoint(int memNo) {
+		return mpDao.resultPoint(memNo);
+	}
+
 }

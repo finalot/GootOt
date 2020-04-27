@@ -667,5 +667,12 @@
 		ORDER BY RV_DATE DESC, RV_NO DESC
 	</select>
 	
+	<select id="resultPoint" parameterType="_int"  resultType="_int">
+		SELECT MEM_POINT
+		FROM MEMBER
+		WHERE MEM_NO=#{memNo}	
+	
+	</select>
+	
 	
 </mapper>
