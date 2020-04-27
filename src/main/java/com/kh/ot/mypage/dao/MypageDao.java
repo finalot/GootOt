@@ -386,7 +386,20 @@ public class MypageDao {
 	public int resultPoint(int memNo) {
 		return sqlSession.selectOne("mypageMapper.resultPoint",memNo);
 	}
+	
+	public ArrayList<Review> selectLastSort(int memNo) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectLastSort", memNo);
+	}
 
+	public ArrayList<Review> selectLikeSort(int memNo) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectLikeSort", memNo);
+	}
+
+	public ArrayList<Review> selectCommentLast(int memNo) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectCommentLastSort", memNo);
+	}
+
+	
 
 
 

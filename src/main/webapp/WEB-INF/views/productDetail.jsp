@@ -1825,32 +1825,32 @@ function qna(){
                 
                
                 
-                <div id="modalpost" >
+                 <div id="modalpost" >
                     <div id="modalimg" class="slideshow-container" style="position:relative;top:-20px;" >
-                        
+
                          <div style="width:10px;height:10px;position:relative;top:400px;left:5px;">
                          <a class="prev" onclick="plusSlides(-1);"style="font-size:25px;background:gray;opacity: 0.6;" ><strong>&#10094;</strong></a>
                          </div>
-                        <div style="width:10px;height:10px;position:relative;top:390px;left:780px;">
+                        <div id="nextPh" style="width:10px;height:10px;position:relative;top:390px;left:780px;">
                         <a class="next" onclick="plusSlides(1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>&#10095;</strong></a>
                         </div>
-                        
-                        <div class="mySlides" style="display: block;">
+
+     <!--            <div class="mySlides" style="display: block;">
                             <div class="numbertext" ><font style="font-size:14px;">1 / 2</font></div>
-                            <img class="contentimgs" src="/ot/resources/images/oT/review/review_sample1.jpg" alt="sample1" style="margin-top:-5%;">
+                            <img class="contentimgs" id="contentimgs1" src="" alt="sample1" style="margin-top:-5%;">
                         </div>
-                        
+
                         <div class="mySlides">
                             <div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>
-                            <img class="contentimgs" src="/ot/resources/images/oT/review/review_sample2.jpg" alt="sample2" style="margin-top:-5%;" >
-                        </div>
-                        
-               
-                       
-                       
-                        
+                            <img class="contentimgs" id="contentimgs2" src="" alt="sample2" style="margin-top:-5%;" >
+                        </div> -->
+
+
+
+
+
                         <div id="dotbox" style="text-align:center">
-                            <span class="dot" onclick="currentSlide(1);"></span> 
+                            <span class="dot" onclick="currentSlide(1);"></span>
                             <span class="dot" onclick="currentSlide(2);"></span> 
                            
                         </div>      
@@ -1860,83 +1860,82 @@ function qna(){
             
                </div>
 <button class="close1" onclick="modalclose();"style="position: relative;right: 365px;bottom: 37px;color:ivory;">&times;</button>
+                    <!-- 모달창 시작점 -->
                     <div id="coments"style="margin-top:-3px;overflow-y:scroll;" >
+
 								<br>
 								<div style="position: relative; top: -6%; font-size:14px;margin:0px 0px -20px 0px;"
 											class="reviews_index_gallery_review__review_product js-link-iframe "
 											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
 											<div
 												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="33"
-													height="33"
-													src="//assets6.cre.ma/p/black-up-kr/products/00/00/00/20/53/image/extra_small_9743a898d5f04dba.jpg"
+												<img class="" id="pImage" width="55"
+													height="55"
+													src="${r.prdtPath }${r.prdtImg}"
 													style="padding-right: 3%; opacity: 1; float: left;">
 
 											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info" >
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													(BLACK UP) 호딘 트레이닝 팬츠</div>
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks" >
+											<div class="reviews_index_gallery_review__review_product_info" >
+												<div class="reviews_index_gallery_review__product_info_title" id="prDetail"
+												style="padding-top:6px;">
+													<!-- MODAL 창에 뜨는 DETAIL 상품명 -->
+
+												</div>
+											<div class="reviews_index_gallery_review__product_info_feedbacks" style="margin-top: 3px;">
 	<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
 													<span class="reviews_index_gallery_review__reviews_count" style="color:gray;">
-													<small>이대*</small>
+													<small id="memName"></small>
 													</span>
 												</div>
 											</div>
 										</div>
 										<hr>
-                        <div style="color:gray; border:1px solid lightgray; font-size:16px;">
-                          	<small>이 리뷰를 <strong style="color:black;">2</strong>명이 좋아합니다.</small>
+                        <div style="color:gray; border:1px solid lightgray; font-size:15px;">
+                          	<small style="margin-left:-44px;">이 리뷰를 <strong style="color:black;">
+                          	<span id="likeCount"></span></strong >명이 좋아합니다.</small>
                         </div><hr>
-                         <div style="color:gray; border:2px dotted lightgray; font-size:16px;">
-                          	선택한 옵션 <br> <small>color : <strong style="color:black;">그레이</strong></small><br>
-                          				<small>size : <strong style="color:black;">M</strong></small>	
+                         <div style="color:gray; border:2px dotted lightgray; font-size:15px;">
+                          	선택한 옵션 <br> <small>color : <strong style="color:black;" id="rColor"></strong></small><br>
+                          				<small>size : <strong style="color:black;" id="rSize"></strong></small>
                         </div><hr>
                         <div id="innercoment">
-                            <div class="coments" style="font-size:12px;text-align:left;padding:10px;letter-spacing: 1px;">이런 기본템일수록 핏을 되게 중요하게 생각하는데 이거는 진짜 핏 장난 아닙니다 후후
-편하게 입는 꾸안꾸룩 좋아하는데 맨투맨이나 기본 티셔츠에 입어도 편해보이면서 예뻐요! 출근 복장이 자유로운 편이라 자주 입을 것 같습니다ㅎㅎ</div><br>
-                            
-                           
+                            <div class="coments" style="font-size:12px;text-align:left;padding:10px;letter-spacing: 1px;" id="rInfo">
+                            <!-- 리뷰내용 -->
+                            </div><br>
+
+
                         </div>
-                         <div style="color:lightgray;font-size:12px;float:right;">2020-03-30</div>
+                         <div style="color:lightgray;font-size:12px;float:right;" id="rDate2"></div>
                         <div><hr>
                             <div style="margin-top:-4px;">
-                            <font style="font-size:15px;color:gray;">이  리뷰가</font> &nbsp;
-                            <button onclick="#" style="font-size: 12px; border: none; border-radius: 10px; background-color: lightgray; color:white; width:60px;height:30px;">좋아요</button>         
+                            <font style="font-size:13px;color:gray;">이  리뷰가</font> &nbsp;
+
+                            <a id="heartClick" style="font-size: 12px; border: none; color:white; width:60px;height:30px;">
+                            <img src="/ot/resources/images/icons/like-noncheck.png" id="nonHeart"
+                            style="width: 33px;margin-left: -11px;margin-top: -3px;">
+                            <input type="hidden" id="likeCheck" value="">
+                            <input type="hidden" id="rv_no2" value="">
+                            </a>
                             </div>
                         </div><hr>
+
+                        <!-- 댓글 forEach 시작점 -->
                         <div id="comentarea">
-                        	<div>
-                            <input onkeyPress="reviewReply();" type="text" id="comentinput" placeholder="댓글을 작성해주세요 :)" maxlength="80" style="resize:none; border-radius: 5px 0px 0px 5px; 
-                            border: 0.5px solid lightgray; background-color: whitesmoke; padding: 2px; height:40px;width:85%;">
+                        	<div style="margin-bottom: 14px;">
+
+
+                            <input onkeyPress="reviewReply();" type="text" id="rvComment" placeholder="댓글을 작성해주세요 :)" maxlength="80" style="resize:none; /* border-radius: 5px 0px 0px 5px;  */
+                            border: 0.5px solid lightgray; background-color: whitesmoke; padding: 2px; height:40px;width:83%;">
                             <button onclick="" id="comentsend" style=" font-size: 15px;
-                             background: white; border: 1px solid lightgray; border-radius:0px 5px 5px 0px; width:50px;height: 40px;position:relative;bottom:2px;">등록</button>
-                             </div><br>
-                             
-                             <div style="color:gray; border:1px solid lightgray; border-radius:5px; font-size:16px;">
-                          	<small>우왕 이쁘게입으셧네요오~!</small>
-                          	<button style="float:right;">&times;</button><br>
-                          	<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>
-                          	 <div style="color:lightgray;font-size:11px;float:right;"><font>이대*</font>&nbsp;&nbsp;2020-03-31</div></div><br>
-                          	 
-                          	 <div style="color:gray; border:1px solid lightgray; border-radius:5px; font-size:16px;">
-                          	<small>우왕 야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액~!</small>
-                          	<button style="float:right;">&times;</button><br>
-                          	<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>
-                          	 <div style="color:lightgray;font-size:11px;float:right;"><font>박주*</font>&nbsp;&nbsp;2020-03-31</div></div><br>
-                          	 
-                          	 <div style="color:gray; border:1px solid lightgray; border-radius:5px; font-size:16px;">
-                          	<small style="margin:5px 5px 5px 5px;">우왕 아주 사고십구만요 이야아 으아앙 우오애애애 옿어뺘액애ㅐㄱ빼애애액</small>
-                          	<button style="float:right;">&times;</button><br>
-                          	<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>
-                          	 <div style="color:lightgray;font-size:11px;float:right;"><font>이대*</font>&nbsp;&nbsp;2020-03-31</div></div><br>
-                        
+                             background: white; border: 1px solid lightgray; /* border-radius:0px 5px 5px 0px; */
+                             width:50px;height: 40px;position:relative;bottom:1px;display:inline-block;">등록</button>
+                             </div>
+
+
                         </div>
+
                     </div>
-                            
+                       <!-- 모달창 끝나는 점 -->  
                 </div>
                 </div>
                 <!-- modal끝!!!!!!!!!!!!!!!!!!!!!!!! -->
@@ -2116,7 +2115,7 @@ function qna(){
 	console.log(data.rvlist.length);					
 					//리뷰 작성str
 					const str = 
-					   	 '<li class="reviews_index_gallery_review" onclick="reviewDetail(this.name)" name="'+data.rvlist[count].rvNo+'"'+
+					   	 '<li class="reviews_index_gallery_review" id="'+data.rvlist[count].rvNo+'"onclick="reviewDetail(this.id)" '+
 										'style="-webkit-box-shadow: 0 4px 6px -6px #222;'+
   '-moz-box-shadow: 0 4px 6px -6px #222;'+
   'box-shadow: 0 4px 6px -6px #222;width: 15%; height: 370px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-left: 2%; margin-top: -1%;">'+
@@ -2294,7 +2293,7 @@ console.log(rvPage2);
 console.log(data.rvlist.length);					
 			//리뷰 작성str
 			const str = 
-			   	 '<li class="reviews_index_gallery_review" onclick="reviewDetail(this.name)" name="'+data.rvlist[count].rvNo+'"'+
+			   	 '<li class="reviews_index_gallery_review" id="'+data.rvlist[count].rvNo+'" onclick="reviewDetail(this.id)" '+
 								'style="-webkit-box-shadow: 0 4px 6px -6px #222;'+
 '-moz-box-shadow: 0 4px 6px -6px #222;'+
 'box-shadow: 0 4px 6px -6px #222;width: 15%; height: 370px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-left: 2%; margin-top: -1%;">'+
@@ -2472,7 +2471,7 @@ console.log(rvPage2);
 console.log(data.rvlist.length);					
 			//리뷰 작성str
 			const str = 
-			   	 '<li class="reviews_index_gallery_review" onclick="reviewDetail(this.name)" name="'+data.rvlist[count].rvNo+'"'+
+			   	 '<li class="reviews_index_gallery_review" id="'+data.rvlist[count].rvNo+'" onclick="reviewDetail(this.id)" '+
 								'style="-webkit-box-shadow: 0 4px 6px -6px #222;'+
 '-moz-box-shadow: 0 4px 6px -6px #222;'+
 'box-shadow: 0 4px 6px -6px #222;width: 15%; height: 370px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-left: 2%; margin-top: -1%;">'+
@@ -3453,7 +3452,7 @@ console.log(rvPage2);
 				for(var i=0; i< data.rvlist.length;i++){
 									//리뷰 작성str
 									const str = 
-									   	 '<li class="reviews_index_gallery_review" onclick="reviewDetail(this.name)" name="'+data.rvlist[count].rvNo+'"'+
+									   	 '<li class="reviews_index_gallery_review" id="'+data.rvlist[count].rvNo+'" onclick="reviewDetail(this.id)" '+
 														'style="-webkit-box-shadow: 0 4px 6px -6px #222;'+
 				  '-moz-box-shadow: 0 4px 6px -6px #222;'+
 				  'box-shadow: 0 4px 6px -6px #222;width: 15%; height: 370px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-left: 2%; margin-top: -1%;">'+
@@ -3642,7 +3641,7 @@ console.log(rvPage2);
 					console.log(data.rvlist.length);					
 									//리뷰 작성str
 									const str = 
-									   	 '<li class="reviews_index_gallery_review" onclick="reviewDetail(this.name)" name="'+data.rvlist[count].rvNo+'"'+
+									   	 '<li class="reviews_index_gallery_review" id="'+data.rvlist[count].rvNo+'" onclick="reviewDetail(this.id)" '+
 														'style="-webkit-box-shadow: 0 4px 6px -6px #222;'+
 				  '-moz-box-shadow: 0 4px 6px -6px #222;'+
 				  'box-shadow: 0 4px 6px -6px #222;width: 15%; height: 370px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-left: 2%; margin-top: -1%;">'+
@@ -3830,7 +3829,7 @@ console.log(rvPage2);
 					console.log(data.rvlist.length);					
 									//리뷰 작성str
 									const str = 
-									   	 '<li class="reviews_index_gallery_review" onclick="reviewDetail(this.name)" name="'+data.rvlist[count].rvNo+'"'+
+									   	 '<li class="reviews_index_gallery_review" id="'+data.rvlist[count].rvNo+'" onclick="reviewDetail(this.id)" '+
 														'style="-webkit-box-shadow: 0 4px 6px -6px #222;'+
 				  '-moz-box-shadow: 0 4px 6px -6px #222;'+
 				  'box-shadow: 0 4px 6px -6px #222;width: 15%; height: 370px; font-size: 11px; border: 2px solid lightgray; border-radius: 2%; margin-left: 2%; margin-top: -1%;">'+
@@ -3987,16 +3986,248 @@ console.log(rvPage2);
   
 	  
 	  </script>
+	  
+	  <script>
+	$('#heartClick').click(function() {
+		 var rv_no = $('#rv_no2').val();
+		 var likeCheck = $('#likeCheck').val();
+
+		 console.log("rv___no: " + rv_no);
+		 var count = 0;
+
+		  $.ajax({
+			 url:"reviewLike1.do",
+			 dataType:"json",
+			 data : {rv_no : rv_no, likeCheck : likeCheck},
+			 success : function(r) {
+				 console.log(r)
+				 console.log(r.r.rvLike)
+				 $('#likeCheck').val(r.lhl.likeCheck);
+				 $('#likeCount').text(r.r.rvLike);
+				 if(r.lhl.likeCheck == "N"){
+					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-noncheck.png") ;
+				 }else{
+					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-check.png");
+				 }
+			 }
+		 })
+	})
+
+
+
+	</script>
+	
 	<script>
 	function reviewDetail(arguments){
+		
+		if("${loginMember.memId}"==""){
+			alert('로그인후 이용해주세요');
+			location.href="loginView.do";
+			
+		}else{
+	
 		var rvNo = arguments;
-        var ulr = $(this).attr("src");
-        $("#modalimg").attr("src", ulr);            
-        $('#modal').show();
+		
+		console.log(rvNo);
+		
+        
+        $("#rv_no2").val(rvNo);
 
         
+        $('#comentarea').children('.replyDiv').remove();
+		 $('#comentarea').children('br').remove();
+
+		 
+		 var ulr = $(this).attr("src");
+	        $("#modalimg").attr("src", ulr);            
+	        $('#modal').show();
+			}
+		var rvc_no = $('.rvc_no').val();
+		 var like_img="";
+		 var count = 0;
+
+
+		 $.ajax({
+			 url:"reviewDetail1.do",
+			 dataType:"json",
+			 data : {rvNo : rvNo},
+			 success : function(r){
+				 console.log(r)
+				 $('#prDetail').text(r.r.prdtName);
+				 $('#memName').text(r.r.memName);
+				 $('#rColor').text(r.r.rvColor);
+				 $('#rSize').text(r.r.rvSize);
+				 $('#rInfo').text(r.r.rvInfo);
+				 $('#rDate2').text(r.r.rvDate2);
+				 $('#pImage').attr("src",r.r.prdtPath+r.r.prdtImg);
+				 $('#likeCheck').val(r.lhl.likeCheck);
+				 $('#likeCount').text(r.r.rvLike);
+	/* 			 if(r.ph.length == 1){
+					 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
+				 }else{
+					 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
+					 $('#contentimgs2').attr("src",r.ph[1].rpPhoto);
+				 } */
+			  for(var i =0; i<r.ph.length;i++){
+				  if(i == 0){
+					  console.log(r.ph[0].rpPhoto);
+						$('#nextPh').after('  <div class="mySlides" style="display: block;">'+
+	                            '<div class="numbertext" ><font style="font-size:14px;">1/ 2</font></div>'+
+	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;width:800px;">'+
+	                            '</div>')
+				  }else{
+						$('#contentimgs1').after(	' <div class="mySlides">'+
+			                      '<div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>'+
+			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;width:800px;" >'+
+			                  '</div>')
+					  
+				  }
+				  
+				  } 
+
+
+				 if(r.lhl.likeCheck == "N"){
+					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-noncheck.png") ;
+				 }else if(r.lhl.likeCheck == "Y"){
+					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-check.png");
+				 }
+			 },error : function(){
+					alert('리뷰에러')
+			}
+		 });
+        
+        
+		
+        
+		
+		$.ajax({
+
+			url:"rList1.do",
+			dataType:"json",
+			data : {rv_no:rvNo},
+			success:function(data) {
+			 console.log(data.rplist[0]);
+				 for(var i=0;i<data.rplist.length;i++) {
+
+					 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+						 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+		                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+		                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+		                          	 )
+						 }else{
+
+		                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+		                          	'<button style=""></button><br>'+
+		                          	'<button style="float:right;font-size:10px;color:#e65540;"onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+		                          	 )
+						 }
+				 }
+			},error:function() {
+				alert("에러임에러임");
+			}
+
+		 })
+		 
+		
     }
 	  
+	
+	
+	
+	
+	
+	
+	$('#comentsend').on("click", function() {
+		var rvComment = $('#rvComment').val();
+		 var rv_no = $('#rv_no2').val();
+		 var rvc_no = $('.rvc_no').val();
+
+
+
+
+		if(rvComment == ""){
+				alert("댓글을 작성해주세요");
+		}else{
+			 $('#comentarea').children('.replyDiv').remove();
+			 $('#comentarea').children('br').remove();
+
+
+		$.ajax({
+			url:"addReply1.do",
+			data : {rvComment : rvComment, rv_no : rv_no},
+			success:function(data) {
+				if(data=="success") {
+					//getReplyList();
+					 $.ajax({
+
+						url:"rList1.do",
+						dataType:"json",
+						data : {rv_no:rv_no},
+						success:function(data) {
+						 console.log(data.rplist[0]);
+							 for(var i=0;i<data.rplist.length;i++) {
+
+								 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+								 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+								 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+				                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+				                          	'<button style="">&times;</button><br>'+
+				                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+				                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+				                          	 )
+								 }else{
+
+				                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+								 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+				                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+				                          	'<button style=""></button><br>'+
+				                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+				                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+				                          	 )
+								 }
+							 }
+						},error:function() {
+							alert("에러임에러임");
+						}
+		 })
+					$('#rvComment').val("");
+				}
+			},error:function() {
+				console.log("등록실패");
+			}
+		})
+
+
+
+
+			}
+		});
+	
+	function getReplyList() {
+
+		 var rv_no = $('#rv_no2').val();
+
+		//comentarea
+
+		$.ajax({
+			url:"rList1.do",
+			data:{rv_no:rv_no},
+			dataType:"json",
+			success:function(data) {
+
+			}
+
+		})
+	}
+	
+	
+	
 
       function modalclose(){
           $('#modal').css("display","none");
@@ -4062,7 +4293,95 @@ console.log(rvPage2);
 		
 
 	</script>
-	
+	<script>
+	function DeleteReply(dr) {
+		var rvcNo=$(dr).parents('.replyDiv').find('.rvc_no').val();
+		 var rv_no = $('#rv_no2').val();
+		 $('#comentarea').children('.replyDiv').remove();
+		 $('#comentarea').children('br').remove();
+
+		$.ajax({
+			url:"DeleteReply1.do",
+			dataType:"json",
+			data : {rvcNo : rvcNo, rv_no : rv_no},
+			success:function(data) {
+				 console.log(data.rplist[0]);
+				 for(var i=0;i<data.rplist.length;i++) {
+
+					 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+						 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+		                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+		                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+		                          	 )
+						 }else{
+
+		                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+		                          	'<button style=""></button><br>'+
+		                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+		                          	 )
+						 }
+				 }
+				},error:function() {
+					alert("에러임에러임");
+				}
+
+		})
+
+
+	}
+
+	</script>
+	<script>
+	function Warning(wa) {
+		
+		if(confirm('댓글을 신고 하겠습니까?') ==true){
+		var rvcNo=$(wa).parents('.replyDiv').find('.rvc_no').val();
+
+		 var rv_no = $('#rv_no2').val();
+		 $('#comentarea').children('.replyDiv').remove();
+		 $('#comentarea').children('br').remove();
+
+		 $.ajax({
+				url:"WarningReply1.do",
+				dataType:"json",
+				data : {rvcNo : rvcNo, rv_no : rv_no},
+				success:function(data) {
+					 for(var i=0;i<data.rplist.length;i++) {
+
+						 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )
+							 }else{
+
+			                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                          	'<button style=""></button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )
+							 }
+					 }
+					},error:function() {
+						alert("에러임에러임");
+					}
+
+			})
+		}
+
+	}
+	</script>
 	
 	
 </body>

@@ -20,7 +20,10 @@ import com.kh.ot.main.vo.ReviewCheck;
 import com.kh.ot.main.vo.Wish;
 import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
+import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
+import com.kh.ot.review.vo.Review_Photo;
 
 public interface MainService {
 	
@@ -175,6 +178,32 @@ public interface MainService {
 	ArrayList<Review> selectSizeSort(MainPageInfo mainPi, Product_opt op);
 
 	int getReviewListCount(int product_detail);
+
+	int selectLikeCount(Like_Heart lh);
+
+	Like_Heart selectLike(Like_Heart lh);
+
+	int insertLike(Like_Heart lh);
+
+	Review selectReviewDetail(int rvNo);
+
+	ArrayList<Review_Photo> selectReviewPhoto(int rvNo);
+
+	int updateLikeCheck(Like_Heart lh);
+
+	int updateLikeCount(int rv_no);
+
+	int updateLikeCheck2(Like_Heart lh);
+
+	int updateLikeCount2(int rv_no);
+
+	int insertReply(ReviewReply rp);
+
+	ArrayList<ReviewReply> selectReplyList(int rv_no);
+
+	int DeleteReply(ReviewReply rp);
+
+	int WarningReply(ReviewReply rp);
 
 
 }

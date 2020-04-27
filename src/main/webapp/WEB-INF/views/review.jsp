@@ -1431,7 +1431,7 @@ select {
 
 					</div><br><br><br>
 
-				
+
 					<!-- 페이징 처리 할 부분 -->
 				<c:if test="${!empty rlist }">
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
@@ -1446,9 +1446,9 @@ select {
 				<a href="${start }" class="first">
 					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
 				</a>
-				</c:if> 
-				
-				
+				</c:if>
+
+
 				<c:if test="${ pi.currentPage eq 1 }">
 					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
 				</c:if>
@@ -1461,7 +1461,7 @@ select {
                   <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
                   </a> &nbsp;
                  </c:if>
-                  
+
 				 <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
                      <c:if test="${ p eq pi.currentPage }">
                         <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
@@ -1477,8 +1477,8 @@ select {
                      ${ p }</a> &nbsp;
                   </c:if>
                </c:forEach>
-               
-               
+
+
                <c:if test="${ pi.currentPage eq pi.maxPage }">
 					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
 				</c:if>
@@ -1491,7 +1491,7 @@ select {
                <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
                </a>
                </c:if>
-               
+
                <c:if test="${ pi.currentPage eq pi.maxPage }">
                		<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
                </c:if>
@@ -2092,7 +2092,7 @@ select {
 		 $('#comentarea').children('.replyDiv').remove();
 		 $('#comentarea').children('br').remove();
 	     $('.mySlides').remove();
-		 
+
 		 var rv_no = $(en).parents('li').find('.rv_no').val();
 		 $("#rv_no2").val(rv_no);
 
@@ -2129,9 +2129,9 @@ select {
 				}else{
 					$('#movePage1').css("display","block");
 					$('#movePage2').css("display","block");
-				} 
-				 
-				 
+				}
+
+
 			  for(var i =0; i<r.ph.length;i++){
 				  if(i == 0){
 						$('#nextPh').after(' <div id="img1" class="mySlides" style="display: block;">'+
@@ -2144,7 +2144,7 @@ select {
 			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;" >'+
 			                  '</div>')
 				  }
-			 } 
+			 }
 
 
 				 if(r.lhl.likeCheck == "N"){
@@ -2282,7 +2282,7 @@ select {
 
 	<script>
 	function Warning(wa) {
-		
+
 		if(confirm('댓글을 신고 하겠습니까?') ==true){
 		var rvcNo=$(wa).parents('.replyDiv').find('.rvc_no').val();
 
