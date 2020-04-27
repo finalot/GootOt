@@ -2136,12 +2136,12 @@ select {
 				  if(i == 0){
 						$('#nextPh').after(' <div id="img1" class="mySlides" style="display: block;">'+
 	                            '<div class="numbertext" ><font style="font-size:14px;">1/ '+r.ph.length+'</font></div>'+
-	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;">'+
+	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;width:800px;">'+
 	                            '</div>')
 				  }else{
 						$('#img1').after(	'<div class="mySlides" style="display: none;">'+
 			                      '<div class="numbertext"><font style="font-size:14px;">2 / '+r.ph.length+'</font></div>'+
-			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;" >'+
+			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;width:800px;" >'+
 			                  '</div>')
 				  }
 			 }
@@ -2172,7 +2172,7 @@ select {
 							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
-			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
 			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 			                          	 )
@@ -2254,7 +2254,7 @@ select {
 						 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
-		                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+		                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
 		                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 		                          	 )
@@ -2302,7 +2302,7 @@ select {
 							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
-			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
 			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 			                          	 )

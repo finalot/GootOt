@@ -1827,13 +1827,9 @@ function qna(){
                 
                  <div id="modalpost" >
                     <div id="modalimg" class="slideshow-container" style="position:relative;top:-20px;" >
-
-                         <div style="width:10px;height:10px;position:relative;top:400px;left:5px;">
-                         <a class="prev" onclick="plusSlides(-1);"style="font-size:25px;background:gray;opacity: 0.6;" ><strong>&#10094;</strong></a>
-                         </div>
-                        <div id="nextPh" style="width:10px;height:10px;position:relative;top:390px;left:780px;">
-                        <a class="next" onclick="plusSlides(1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>&#10095;</strong></a>
-                        </div>
+<input type="hidden" id="imgbefore">
+<input type="hidden" id="nextPh">
+                         
 
      <!--            <div class="mySlides" style="display: block;">
                             <div class="numbertext" ><font style="font-size:14px;">1 / 2</font></div>
@@ -4041,7 +4037,7 @@ console.log(rvPage2);
 		 var ulr = $(this).attr("src");
 	        $("#modalimg").attr("src", ulr);            
 	        $('#modal').show();
-			}
+			
 		var rvc_no = $('.rvc_no').val();
 		 var like_img="";
 		 var count = 0;
@@ -4068,22 +4064,40 @@ console.log(rvPage2);
 					 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
 					 $('#contentimgs2').attr("src",r.ph[1].rpPhoto);
 				 } */
-			  for(var i =0; i<r.ph.length;i++){
-				  if(i == 0){
-					  console.log(r.ph[0].rpPhoto);
-						$('#nextPh').after('  <div class="mySlides" style="display: block;">'+
-	                            '<div class="numbertext" ><font style="font-size:14px;">1/ 2</font></div>'+
-	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;width:800px;">'+
-	                            '</div>')
-				  }else{
-						$('#contentimgs1').after(	' <div class="mySlides">'+
-			                      '<div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>'+
-			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;width:800px;" >'+
-			                  '</div>')
-					  
-				  }
-				  
-				  } 
+				 /* if(r.ph.length == 1){
+						$('#movePage1').css("display","none");
+						$('#movePage2').css("display","none");
+					}else{
+						$('#movePage1').css("display","block");
+						$('#movePage2').css("display","block");
+					} */
+
+
+				  for(var i =0; i<r.ph.length;i++){
+					  if(i == 0){
+							$('#nextPh').after(' <div id="img1" class="mySlides'+rvNo+'o" style="display: block;">'+
+		                            '<div class="numbertext" ><font style="font-size:14px;">1/ '+r.ph.length+'</font></div>'+
+		                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-2.5%;width:800px;">'+
+		                            '</div>')
+		                            
+		                             
+					  }else{
+				            
+							$('#img1').after(	'<div id="img2" class="mySlides'+rvNo+'o" style="display: none;">'+
+				                      '<div class="numbertext"><font style="font-size:14px;">2 / '+r.ph.length+'</font></div>'+
+				                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;width:800px;" >'+
+				                  '</div>')
+				                  
+				                  $('#img1').css("margin-top","-2.5%");
+				                  $('#imgbefore').after('<div id="kin1" style="width:10px;height:10px;position:relative;top:400px;left:5px;">'+
+					                         '<a id="'+rvNo+'" class="prev" onclick="plusSlides1(this.id);"style="font-size:25px;background:gray;opacity: 0.6;" ><strong>&#10094;</strong></a>'+
+					                         '</div>'+
+					                        '<div id="kin2" style="width:10px;height:10px;position:relative;top:390px;left:780px;">'+
+					                       '<a id="'+rvNo+'" class="next" onclick="plusSlides2(this.id);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>&#10095;</strong></a>'+
+					                        '</div>')
+					                        
+					  }
+				 }
 
 
 				 if(r.lhl.likeCheck == "N"){
@@ -4113,7 +4127,7 @@ console.log(rvPage2);
 						 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
-		                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+		                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
 		                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 		                          	 )
@@ -4227,10 +4241,14 @@ console.log(rvPage2);
 	}
 	
 	
-	
+	}
 
       function modalclose(){
           $('#modal').css("display","none");
+          $('#img1').remove();
+          $('#img2').remove();
+          $('#kin1').remove();
+          $('#kin2').remove();
       }
 	
       var slideIndex = 1;
@@ -4238,17 +4256,21 @@ console.log(rvPage2);
 
       showSlides(slideIndex);
 
-      function plusSlides(n) {
-          showSlides(slideIndex += n);
+      function plusSlides1(b) {
+
+    	  
+	      var n = -1;    	  
+          showSlides(slideIndex += n,b);
+      }
+      function plusSlides2(b) {
+    	  var n = 1;    	  
+          showSlides(slideIndex += n,b);
       }
 
-      function currentSlide(n) {
-          showSlides(slideIndex = n);
-      }
 
-      function showSlides(n) {
+      function showSlides(n,b) {
           var i;
-          var slides = document.getElementsByClassName("mySlides");
+          var slides = document.getElementsByClassName("mySlides"+b+"o");
           var dots = document.getElementsByClassName("dot");
           if (n > slides.length) {slideIndex = 1}    
           if (n < 1) {slideIndex = slides.length}
@@ -4312,7 +4334,7 @@ console.log(rvPage2);
 						 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
-		                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+		                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
 		                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 		                          	 )
@@ -4358,7 +4380,7 @@ console.log(rvPage2);
 							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
-			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
 			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 			                          	 )
