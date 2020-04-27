@@ -13,6 +13,8 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
 import com.kh.ot.board.vo.Board;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
@@ -312,10 +314,20 @@ public class adminServiceImpl implements adminService{
 			return adDao.topSelect();
 		}
 
+		
+		public int ComentInsert(ReviewReply rp) {
+			return adDao.ComentInsert(rp);
+		}
+
 
 		@Override
 		public int todayQnAselect() {
 			return adDao.todayQnAselect();
+		}
+
+		
+		public int comentDelete(ReviewReply rp) {
+			return adDao.comentDelete(rp);
 		}
 
 
@@ -348,5 +360,12 @@ public class adminServiceImpl implements adminService{
 //		public int UpdatePotList(ArrayList<Product_opt> poArr) {
 //			return adDao.UpdatePotList(poArr);		
 //		}
+
+
+		public int comentReturn(ReviewReply rp) {
+			return adDao.comentReturn(rp);
+		}
+
+
 
 }

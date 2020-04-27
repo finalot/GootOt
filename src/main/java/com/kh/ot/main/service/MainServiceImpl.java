@@ -24,7 +24,10 @@ import com.kh.ot.main.vo.ReviewCheck;
 import com.kh.ot.main.vo.Wish;
 import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
+import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
+import com.kh.ot.review.vo.Review_Photo;
 import com.kh.ot.main.vo.MaindownCategory;
 import com.kh.ot.main.vo.MainupCategory;
 
@@ -233,6 +236,62 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public int getReviewListCount(int product_detail) {
 		return mainDao.getReviewListCount(product_detail);
+	}
+	
+	
+	
+	
+	@Override
+	public int selectLikeCount(Like_Heart lh) {
+		return mainDao.selectLikeCount(lh);
+	}
+	@Override
+	public Like_Heart selectLike(Like_Heart lh) {
+		return mainDao.selectLike(lh);
+	}
+	@Override
+	public int insertLike(Like_Heart lh) {
+		return mainDao.insertLike(lh);
+	}
+	@Override
+	public Review selectReviewDetail(int rvNo) {
+		return mainDao.selectReviewDetail(rvNo);
+	}
+	@Override
+	public ArrayList<Review_Photo> selectReviewPhoto(int rvNo) {
+		return mainDao.selectReviewPhoto(rvNo);
+	}
+	@Override
+	public int updateLikeCheck(Like_Heart lh) {
+		return mainDao.updateLikeCheck(lh);
+	}
+	@Override
+	public int updateLikeCount(int rvNo) {
+		return mainDao.updateLikeCount(rvNo);
+	}
+	@Override
+	public int updateLikeCheck2(Like_Heart lh) {
+		return mainDao.updateLikeCheck2(lh);
+	}
+	@Override
+	public int updateLikeCount2(int rvNo) {
+		return mainDao.updateLikeCount2(rvNo);
+	}
+	@Override
+	public int insertReply(ReviewReply rp) {
+		return mainDao.insertReply(rp);
+	}
+	@Override
+	public ArrayList<ReviewReply> selectReplyList(int rv_no) {
+		return mainDao.selectReplyList(rv_no);
+	}
+	@Override
+	public int DeleteReply(ReviewReply rp) {
+		return mainDao.DeleteReply(rp);
+	}
+	@Override
+	public int WarningReply(ReviewReply rp) {
+		return mainDao.WarningReply(rp);
 	}
 
 	

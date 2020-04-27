@@ -14,6 +14,8 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
 
 public interface adminService{
 
@@ -457,6 +459,26 @@ public interface adminService{
 //		 * @내용 : 상품옵션 업데이트 
 //		 */
 //		public int UpdatePotList(ArrayList<Product_opt> poArr);
+		public int ComentInsert(ReviewReply rp);
+
+		/**
+		 * @작성일  : 2020. 4. 27.
+		 * @작성자  : 문태환
+		 * @내용 	: 신고댓글 삭제
+		 * @param rvNo
+		 * @return
+		 */
+		public int comentDelete(ReviewReply rp);
+
+		/**
+		 * @작성일  : 2020. 4. 27.
+		 * @작성자  : 문태환
+		 * @내용 	: 신고댓글 반려
+		 * @param rp
+		 * @return
+		 */
+		public int comentReturn(ReviewReply rp);
+
 
 
 }

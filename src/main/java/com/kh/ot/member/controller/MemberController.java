@@ -115,7 +115,11 @@ public class MemberController extends HttpServlet {
 		int orderCount5 = mpService.orderCount5(memNo);
 		int orderCount6 = mpService.orderCount6(memNo);
 		int orderCount7 = mpService.orderCount7(memNo);
-
+		int resultPoint = mpService.resultPoint(memNo);
+		
+		
+		
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("orderCount1", orderCount1);
 		mv.addObject("orderCount2", orderCount2);
 		mv.addObject("orderCount3", orderCount3);

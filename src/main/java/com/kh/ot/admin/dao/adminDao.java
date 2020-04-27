@@ -23,6 +23,8 @@ import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
 
 @Repository("adDao")
 public class adminDao {
@@ -574,4 +576,40 @@ public class adminDao {
 //	public int UpdatePotList(ArrayList<Product_opt> poArr) {
 //		return sqlSession.update("productMapper.UpdatePotList",poArr);
 //	}
+
+	 * @작성일  : 2020. 4. 27.
+	 * @작성자  : 문태환
+	 * @내용 	: 관리자 리뷰 댓글
+	 * @param rp
+	 * @return
+	 */
+	public int ComentInsert(ReviewReply rp) {
+		return sqlSession.insert("adminMapper.ComentInsert",rp);
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 27.
+	 * @작성자  : 문태환
+	 * @내용 	: 신고 댓글 삭제
+	 * @param rvNo
+	 * @return
+	 */
+	public int comentDelete(ReviewReply rp) {
+		return sqlSession.delete("adminMapper.comentDelete",rp);
+	}
+
+
+	/**
+	 * @작성일  : 2020. 4. 27.
+	 * @작성자  : 문태환 
+	 * @내용 	: 신고 댓글 반려
+	 * @param rp
+	 * @return
+	 */
+	public int comentReturn(ReviewReply rp) {
+		return sqlSession.update("adminMapper.comentReturn",rp);
+	}
+
+
 }

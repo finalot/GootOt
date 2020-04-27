@@ -40,7 +40,7 @@
                 position: absolute;
                 background: none;
             }
-            
+
             #profilebackgound{
                 width: 850px;
                 height: 280px;
@@ -48,14 +48,14 @@
                 border-radius: 9px;
                 display: inline-block;
                 position:absolute;
-				margin-left: -425px; 
+				margin-left: -425px;
 				z-index: -1;
-                
+
                 -webkit-box-shadow: 0 5px 10px -6px #222;
                 -moz-box-shadow: 0 5px 10px -6px #222;
                 box-shadow: 0 5px 10px -6px #222;
             }
-            
+
 
             #profileimgbox{
                 width: 170px;
@@ -63,7 +63,7 @@
                 border-radius: 100%;
                 float: left;
                 margin-top: 110px;
-                margin-left: 60px;  
+                margin-left: 60px;
                 text-align: center;
                 background-color: white;
                 box-shadow: 1px 3px 6px 0px #222;
@@ -78,7 +78,7 @@
                 text-align: center;
                 display: inline-block;
             }
-            
+
 
             .profile{
                 font-size: 25px;
@@ -88,7 +88,7 @@
             }
 
 			#hr1{
-			 margin: 0px 0px 5px 0px; 
+			 margin: 0px 0px 5px 0px;
 			 width: 850px;
 			 display: inline-block;
 			 }
@@ -129,7 +129,7 @@
                 font-size: 18px;
                 color: white;
                 padding: 10px;
-               
+
             }
 
             #profileSetbtn{
@@ -159,13 +159,13 @@
                 border: none;
                 width: 300px;
                 height: 50px;
-                
+
 
             }
             #modal{
                 display: none;
                 position: fixed;
-                z-index: 10; 
+                z-index: 10;
                 left: 0;
                 top: 0;
                 width: 100%;
@@ -188,9 +188,9 @@
 				width: auto;
                 height: 800px;
                 float: left;
-			 
+
 			}
-			
+
 			#dotbox{
 				position: absolute;
                 background-color: rgba(0,0,0,0.4);
@@ -237,7 +237,7 @@
                 height: 25px;
                 float: left;
             }
-            
+
              #rvComment{
                 width: 245px;
                 height: 25px;
@@ -250,13 +250,13 @@
                 border: 0px;
                 font-size:18px;
             }
-            
-            
+
+
 
             #setting{
                 display: none;
                 position: fixed;
-                z-index: 10; 
+                z-index: 10;
                 left: 0;
                 top: 0;
                 width: 100%;
@@ -282,7 +282,7 @@
             #profileModal{
                 display: none;
                 position: fixed;
-                z-index: 10; 
+                z-index: 10;
                 left: 0;
                 top: 0;
                 width: 100%;
@@ -321,7 +321,7 @@
             #Public_Scope_Modal{
                 display: none;
                 position: fixed;
-                z-index: 10; 
+                z-index: 10;
                 left: 0;
                 top: 0;
                 width: 100%;
@@ -348,14 +348,14 @@
             #comentSetModal{
                 display: none;
                 position: fixed;
-                z-index: 10; 
+                z-index: 10;
                 left: 0;
                 top: 0;
                 width: 100%;
                 height: 100%;
                 overflow: auto;
                 background-color: rgb(0,0,0);
-                background-color: rgba(0,0,0,0.4); 
+                background-color: rgba(0,0,0,0.4);
                 text-align: center;
             }
 
@@ -380,14 +380,14 @@
             #nameSetModal{
                 display: none;
                 position: fixed;
-                z-index: 10; 
+                z-index: 10;
                 left: 0;
                 top: 0;
                 width: 100%;
                 height: 100%;
                 overflow: auto;
                 background-color: rgb(0,0,0);
-                background-color: rgba(0,0,0,0.4); 
+                background-color: rgba(0,0,0,0.4);
                 text-align: center;
                 /* display: inline-block; */
             }
@@ -400,9 +400,9 @@
             .checkBox{
                border-radius: 100%;
                width: 15px;
-               height: 15px; 
+               height: 15px;
             }
-            
+
             #proImgSet{
              	height: 250px;
                 width: 250px;
@@ -415,27 +415,27 @@
                 text-align: center;
                 display: inline-block;
             }
-            
+
             #proImgModal{
              display: none;
                 position: fixed;
-                z-index: 10; 
+                z-index: 10;
                 left: 0;
                 top: 0;
                 width: 100%;
                 height: 100%;
                 overflow: auto;
                 background-color: rgb(0,0,0);
-                background-color: rgba(0,0,0,0.4); 
+                background-color: rgba(0,0,0,0.4);
                 text-align: center;
                 /* display: inline-block; */
             }
-            
+
               #proimgarea{
                 height: 25px;
                 width: 230px;
             }
-            
+
              #proBackSet{
              	height: 250px;
                 width: 250px;
@@ -448,27 +448,27 @@
                 text-align: center;
                 display: inline-block;
             }
-            
+
             #proBackModal{
              display: none;
                 position: fixed;
-                z-index: 10; 
+                z-index: 10;
                 left: 0;
                 top: 0;
                 width: 100%;
                 height: 100%;
                 overflow: auto;
                 background-color: rgb(0,0,0);
-                background-color: rgba(0,0,0,0.4); 
+                background-color: rgba(0,0,0,0.4);
                 text-align: center;
                 /* display: inline-block; */
             }
-            
+
               #probackarea{
                 height: 25px;
                 width: 230px;
             }
-            
+
             .ec-base-paginate1 a {
     		display: inline-block;
 		    float: none;
@@ -486,7 +486,7 @@
 		a{
 			cursor:pointer;
 		}
-	
+
 </style>
 <title>review</title>
 <meta charset="UTF-8">
@@ -540,7 +540,7 @@
 	<div class="container bgwhite " style="max-width:95%;">
 		<div class="flex-w flex-sb" style="width:80%;margin-left:13%;">
 
-				
+
 				<style class="modalcss">
 .page {
 	transition: opacity 0.3s ease-out;
@@ -617,24 +617,24 @@
 
 
 
-					
+
 						<div class="wrap-dropdown-content p-t-15 bo7 p-b-14 modalcss"
 							style="width: 98%; height: 100%; margin-top: 60px;margin-left:3.2%;">
-							
+
 
 							<div class="page">
 
 								<img class="." alt="best_review"
 									src="/ot/resources/images/oT/common/review.jpg" width="90%"
 									height="auto" style="margin-left:1%;">
-									
+
 									<br><br>
 									<div class="products_reviews_form__title" style="float:left;font-size:12px;">
       <strong>REVIEW</strong><span class="divider">|</span><span class="weak">문의글 혹은 악의적인 비방글은 무통보 삭제된다는 점 유의해주세요^^</span>
-      
+
     </div>
     					<br><br>
-									
+
 <style>
 .products_reviews_form {
     padding-bottom: 44px;
@@ -970,18 +970,18 @@ select {
 
 </style>
 									<br>
-									
+
 				<div class ="top_menu">
 					<ul class="top_menu__ul top_menu__ul--lpane">
     <li class="top_menu__li top_menu__li--categories_container">
       <span class="top_menu__categories_container_title" style="position: relative;top: 18px;">카테고리별 보기</span>
-      <div class="select2-container select2" id="s2id_category"><a href="javascript:void(0)" onclick="return false;" class="select2-choice" tabindex="-1">   
+      <div class="select2-container select2" id="s2id_category"><a href="javascript:void(0)" onclick="return false;" class="select2-choice" tabindex="-1">
 
-      <abbr class="select2-search-choice-close"></abbr>  
+      <abbr class="select2-search-choice-close"></abbr>
        <span class="select2-arrow"><b></b></span>
        <span class="sprites-icon-drop-down select2__dropdown_icon"></span></a>
       </div>
-      
+
       <select name="category" id="category" class="select2 select2-offscreen" data-url="/black-up.kr/reviews?aloading=.page&amp;app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fwww.black-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;widget_env=100&amp;widget_id=29" tabindex="-1">
         <option value="0">카테고리를 선택해주세요</option>
   		<c:forEach var="u" items="${ulist}">
@@ -992,19 +992,19 @@ select {
 						class="more yg_btn_24 yg_btn3" style="top:-12px; cursor: pointer;left:108px;height:36px;">검색</button>
       <input type="hidden" name="up_no" value="${u.upNo }">
 	  <input type="hidden" name="up_name" value="${u.upName }">
-	  
+
     </li>
   </ul>
 				</div>
-		
-									
+
+
 						<div id=sortButton>
 									<!-- 카테고리 셀렉트 -->
 									<%-- <select style="margin-bottom:3.2%;background:none;outline: 0;width:80px;"
 									id="review_category">
-									
+
 									<option>카테고리</option>
-									<c:forEach var="u" items="${ulist}">			
+									<c:forEach var="u" items="${ulist}">
 									<option value="${u.upNo }">${u.upName }</option>
 							        </c:forEach>
 									</select>
@@ -1012,7 +1012,7 @@ select {
 									<input type="hidden" name="up_no" value="${u.upNo }">
 									<input type="hidden" name="up_name" value="${u.upName }">
 									<!-- 검색 -->
-									
+
 									<form class="submitSearch" action="#" style="margin-top:-5%;position:relative;left:7%;">
 										<input type="text"  name="search"
 										 style="border: 1px solid lightgray !important; background: none;"
@@ -1020,33 +1020,33 @@ select {
 										<button id="searchBtn" >
 											<i class="fa fa-search"></i>
 										</button>
-									</form><br> --%> 
+									</form><br> --%>
 									<!-- 검색 -->
 						<!-- 정렬 부분 버튼 -->
 								<!-- Button -->
 								<button id="allSort" class=" bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="#none"
 						style=" height: 20px; font-size: 12px; background:white;color:gray;"><Strong>전체순</Strong> <small></small></button>
-									
+
 									&nbsp;|
-									
+
 								<!-- Button -->
 								<button id="recommandSort"class="bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="#none"
 						style=" width: 4%; height: 20px; font-size: 12px; background:white;color:gray;"><Strong>좋아요순</Strong></button>
-									
+
 									&nbsp;|
-									
+
 								<!-- Button -->
 								<button id="newSort"class=" bg4 bo-rad-23 hov1 s-text1 trans-0-4" href="#none"
 						style=" width: 4%; height: 20px; font-size: 12px; background:white;color:gray;"><Strong>최신순</Strong></button>
-									
+
 						<!-- 정렬 부분 버튼 -->
 						</div>
-						
-						
+
+
 						<div class="products_reviews_header__lower"  >
-      
+
   <div class="review_options_search js-review-options-search" >
-    	
+
     <ul class="review_options_search__option_types"style="border:2px solid lightgray;margin-top:17px;margin-left:-40px;color:#c3b798;width:10%; font-size:14px;">
       <br>
         <li class="review_options_search__option_type">
@@ -1057,42 +1057,42 @@ select {
             </div>
           </a>
           <div class="review_options_search__dropdown_menu js-dialog-iframe-height">
-            
+
               <ul class="review_options_search__values"style="margin-left:30px;">
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_3" id="option_149" value="1" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_0">
                     <label for="review_option_type_3_0">149 cm 이하</label>
                   </li>
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_3" value="2" id="option_150" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_1">
                     <label for="review_option_type_3_1">150 - 154 cm</label>
                   </li>
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_3" value="3" id="option_155" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_2">
                     <label for="review_option_type_3_2">155 - 159 cm</label>
                   </li>
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_3" value="4" id="option_160" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_3">
                     <label for="review_option_type_3_3">160 - 164 cm</label>
                   </li>
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_3" value="5" id="option_165" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_4">
                     <label for="review_option_type_3_4">165 - 169 cm</label>
                   </li>
-                  
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_3" value="6" id="option_170" class="checkbox-review-option-search" style="border:none;" id="review_option_type_3_4">
                     <label for="review_option_type_3_5">170 cm 이상</label>
                   </li>
-                
-                
+
+
               </ul>
-            
+
           </div>
         </li>
       <br><br>
@@ -1104,43 +1104,43 @@ select {
             </div>
           </a>
           <div class="review_options_search__dropdown_menu js-dialog-iframe-height">
-            
+
               <ul class="review_options_search__values"style="margin-left:32px;">
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_4" value="7" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_0">
                     <label for="review_option_type_4_0">39 kg 이하</label>
                   </li>
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_4" value="8" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_1">
                     <label for="review_option_type_4_1">40 - 44 kg</label>
                   </li>
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_4" value="9" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_2">
                     <label for="review_option_type_4_2">45 - 49 kg</label>
                   </li>
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_4" value="10" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_3">
                     <label for="review_option_type_4_3">50 - 54 kg</label>
                   </li>
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_4" value="11" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_4">
                     <label for="review_option_type_4_4">55 - 59 kg</label>
                   </li>
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_4" value="12" class="checkbox-review-option-search2" style="border:none;" id="review_option_type_4_5">
                     <label for="review_option_type_4_5">60 kg 이상</label>
                   </li>
-                
-               
-                
+
+
+
               </ul>
-            
+
           </div>
         </li>
       <br><br>
@@ -1152,41 +1152,41 @@ select {
             </div>
           </a>
           <div class="review_options_search__dropdown_menu js-dialog-iframe-height">
-            
+
               <ul class="review_options_search__values"style="margin-left:46px;">
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_5" value="13" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_0">
                     <label for="review_option_type_5_0">XS</label>
                   </li>
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_5" value="14" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_1">
                     <label for="review_option_type_5_1">S</label>
                   </li>
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_5" value="15" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_2">
                     <label for="review_option_type_5_2">M</label>
                   </li>
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_5" value="16" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_3">
                     <label for="review_option_type_5_3">L</label>
                   </li>
-                
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_5" value="17" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_4">
                     <label for="review_option_type_5_4">XL</label>
                   </li>
-                  
+
                   <li class="review_options_search__value">
                     <input type="checkbox" name="option_5" value="18" class="checkbox-review-option-search3" style="border:none;" id="review_option_type_5_4">
                     <label for="review_option_type_5_4">F</label>
                   </li>
-                
+
               </ul>
-            
+
           </div>
         </li>
       <br>
@@ -1195,55 +1195,52 @@ select {
 
 
     </div>
-						
-						
-						
+
+
+
 									<hr style="border:1px solid lightgray;margin-top:2px;">
 									<br><br>
 									<!-- modal시작!!!!!!!!!!!!!!!!!!!!!!!! -->
 									<div id="modal" style="overflow-y:hidden;">
 								<div id="modalcontent" style="width:100%;height:100%;margin-left:18.5%;margin-top:80px !important;">
-                
-               
-                
+
+
+
                 <div id="modalpost" >
                     <div id="modalimg" class="slideshow-container" style="position:relative;top:-20px;" >
-                        
-                         <div style="width:10px;height:10px;position:relative;top:400px;left:5px;">
-                         <a class="prev" onclick="plusSlides(-1);"style="font-size:25px;background:gray;opacity: 0.6;" ><strong>&#10094;</strong></a>
+
+                         <div  style="width:10px;height:10px;position:relative;top:400px;left:5px;">
+                         <a id="movePage1"  class="prev" onclick="plusSlides(-1);"style="font-size:25px;background:gray;opacity: 0.6;" ><strong > &#10094;</strong></a>
                          </div>
-                        <div style="width:10px;height:10px;position:relative;top:390px;left:780px;">
-                        <a class="next" onclick="plusSlides(1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>&#10095;</strong></a>
+                        <div  id="nextPh" style="width:10px;height:10px;position:relative;top:390px;left:780px;">
+                        <a id="movePage2" class="next" onclick="plusSlides(1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong > &#10095; </strong></a>
                         </div>
-                        
-                        <div class="mySlides" style="display: block;">
+
+        <!--       <div class="mySlides" style="display: block;">
                             <div class="numbertext" ><font style="font-size:14px;">1 / 2</font></div>
                             <img class="contentimgs" id="contentimgs1" src="" alt="sample1" style="margin-top:-5%;">
                         </div>
-                        
+
                         <div class="mySlides">
                             <div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>
                             <img class="contentimgs" id="contentimgs2" src="" alt="sample2" style="margin-top:-5%;" >
-                        </div>
-                        
-               
-                       
-                       
-                        
+                        </div>  -->
+
+
                         <div id="dotbox" style="text-align:center">
-                            <span class="dot" onclick="currentSlide(1);"></span> 
-                            <span class="dot" onclick="currentSlide(2);"></span> 
-                           
-                        </div>      
-                        
-                                    
+                           <span class="dot" onclick="currentSlide(1);"></span>
+                            <span class="dot" onclick="currentSlide(2);"></span>
+
+                        </div>
+
+
                    </div>
-            
+
                </div>
  <button class="close1" onclick="modalclose();"style="position: relative;right: 365px;bottom: 37px;color:ivory;">&times;</button>
  					<!-- 모달창 시작점 -->
                     <div id="coments"style="margin-top:-3px;overflow-y:scroll;" >
-                    
+
 								<br>
 								<div style="position: relative; top: -6%; font-size:14px;margin:0px 0px -20px 0px;"
 											class="reviews_index_gallery_review__review_product js-link-iframe "
@@ -1260,7 +1257,7 @@ select {
 												<div class="reviews_index_gallery_review__product_info_title" id="prDetail"
 												style="padding-top:6px;">
 													<!-- MODAL 창에 뜨는 DETAIL 상품명 -->
-													
+
 												</div>
 											<div class="reviews_index_gallery_review__product_info_feedbacks" style="margin-top: 3px;">
 	<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
@@ -1277,61 +1274,61 @@ select {
                         </div><hr>
                          <div style="color:gray; border:2px dotted lightgray; font-size:15px;">
                           	선택한 옵션 <br> <small>color : <strong style="color:black;" id="rColor"></strong></small><br>
-                          				<small>size : <strong style="color:black;" id="rSize"></strong></small>	
+                          				<small>size : <strong style="color:black;" id="rSize"></strong></small>
                         </div><hr>
                         <div id="innercoment">
                             <div class="coments" style="font-size:12px;text-align:left;padding:10px;letter-spacing: 1px;" id="rInfo">
                             <!-- 리뷰내용 -->
                             </div><br>
-              
-                           
+
+
                         </div>
                          <div style="color:lightgray;font-size:12px;float:right;" id="rDate2"></div>
                         <div><hr>
                             <div style="margin-top:-4px;">
                             <font style="font-size:13px;color:gray;">이  리뷰가</font> &nbsp;
-                            
+
                             <a id="heartClick" style="font-size: 12px; border: none; color:white; width:60px;height:30px;">
                             <img src="/ot/resources/images/icons/like-noncheck.png" id="nonHeart"
-                            style="width: 33px;margin-left: -11px;margin-top: -3px;">   
+                            style="width: 33px;margin-left: -11px;margin-top: -3px;">
                             <input type="hidden" id="likeCheck" value="">
-                            <input type="hidden" id="rv_no2" value="">                   
-                            </a>         
+                            <input type="hidden" id="rv_no2" value="">
+                            </a>
                             </div>
                         </div><hr>
-                        
+
                         <!-- 댓글 forEach 시작점 -->
                         <div id="comentarea">
                         	<div style="margin-bottom: 14px;">
-                     		  
-                       
+
+
                             <input onkeyPress="reviewReply();" type="text" id="rvComment" placeholder="댓글을 작성해주세요 :)" maxlength="80" style="resize:none; /* border-radius: 5px 0px 0px 5px;  */
                             border: 0.5px solid lightgray; background-color: whitesmoke; padding: 2px; height:40px;width:85%;">
                             <button onclick="" id="comentsend" style=" font-size: 15px;
-                             background: white; border: 1px solid lightgray; /* border-radius:0px 5px 5px 0px; */ 
+                             background: white; border: 1px solid lightgray; /* border-radius:0px 5px 5px 0px; */
                              width:50px;height: 40px;position:relative;bottom:2px;">등록</button>
                              </div>
-                             
-                           
+
+
                         </div>
-                       
+
                     </div>
-                       <!-- 모달창 끝나는 점 -->     
+                       <!-- 모달창 끝나는 점 -->
                 </div>
                 </div>
                 <!-- modal끝!!!!!!!!!!!!!!!!!!!!!!!! -->
-									
+
 								<div class="reviews_index__no_data_message">아직 작성한 리뷰가
 									없습니다.</div>
 								<ul id="review_list" class="reviews_index__reviews reviews" style="margin-top:10px;margin-left:-3%;">
-								
-								
+
+
 									<!-- 리뷰1줄 시작 -->
-									
+
 									<!-- 리뷰1 -->
 									<!-- foreach문 시작점 -->
 									<c:forEach var="r" items="${rlist }">
-									
+
 									<li class="reviews_index_gallery_review review1"
 										style="
   width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%; margin-left:3%">
@@ -1400,125 +1397,117 @@ select {
 													class="reviews_index_gallery_review__product_info_title">
 													<!-- 내가 구매한 상품명 -->
 													${r.prdtName }</div>
-											
-											
+
+
 												<div
 													class="reviews_index_gallery_review__product_info_feedbacks">
 													<c:forEach var="rc" items="${rc}">
 													<c:if test="${r.prdtCode eq rc.prdt_code}">
 													<span class="reviews_index_gallery_review__reviews_count"
 														style="color: #c3b798;">리뷰<strong
-														style="color: black;">${rc.count }</strong></span> 
+														style="color: black;">${rc.count }</strong></span>
 														</c:if>
 														</c:forEach>
 													<br>
-														<span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-														<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
+														<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점
+														<strong style="color: black;" id="starArea">${r.rvPoint }</strong></span>
+														<i class="fa fa-fw fa-star"></i>
+														<i class="fa fa-fw fa-star"></i>
+														<i class="fa fa-fw fa-star"></i>
+														<i class="fa fa-fw fa-star"></i>
+														<i class="fa fa-fw fa-star"></i>
 												</div>
-												
-											
+
+
 											</div>
 										</div>
 									</li>
-									</c:forEach>
+							</c:forEach>
 									<!-- foreach문 마감줄 -->
 									<!-- 리뷰1 끝 -->
 									<!-- 리뷰1 -->
 									</ul>
 							</div>
-	 
+
 					</div><br><br><br>
-					
+
+
 					<!-- 페이징 처리 할 부분 -->
-					<div style="position:relative;left:-46.8%;padding-top:2%;">
-					 <div class="xans-element- xans-myshop xans-myshop-orderhistorypaging ec-base-paginate1">
-            <!-- <a href="?page=1&amp;history_start_date=2019-12-15&amp;history_end_date=2020-03-14&amp;past_year=2019" class="first"> -->
+				<c:if test="${!empty rlist }">
+			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
+				<c:if test="${pi.currentPage eq 1 }">
+					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+				</c:if>
+				<c:if test="${pi.currentPage ne 1 }">
+					<c:url var="start" value="review.do">
+						<c:param name="currentPage" value="1"/>
+						<c:param name="Sort" value="${Sort}"/>
+					</c:url>
+				<a href="${start }" class="first">
+					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
+				</a>
+				</c:if>
 
-               <img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
 
-
-					<c:if test="${empty sc }">
-                  <c:url var="before" value="review.do">
-                  <c:param name="currentPage" value="${pi.currentPage -1 }"/>
+				<c:if test="${ pi.currentPage eq 1 }">
+					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
+				</c:if>
+				<c:if test="${ pi.currentPage ne 1 }">
+				<c:url var="before" value="review.do">
+                  <c:param name="currentPage" value="${pi.currentPage - 1 }"/>
+                  <c:param name="Sort" value="${Sort}"/>
                   </c:url>
-                      </c:if>
-					<c:if test="${!empty sc }">
-                  <c:url var="before" value="pb_search.do">
-                  <c:param name="currentPage" value="${pi.currentPage -1 }"/>
-                  <c:param name="search_date" value="${sc.search_date }"/>
-                  <c:param name="search_key" value="${sc.search_key }"/>
-                  <c:param name="search" value="${sc.search }"/>
-                  </c:url>
-                      </c:if>
-                                            
                   <a href="${before}">
                   <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
                   </a> &nbsp;
-             
+                 </c:if>
 
-               <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-                 
-		   <c:if test="${ p eq pi.currentPage }">
+				 <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                     <c:if test="${ p eq pi.currentPage }">
                         <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
                         <b>${ p }</b> &nbsp;&nbsp;</font>
                      </c:if>
-					
-					 <c:if test="${empty sc }">	
+
                      <c:if test="${ p ne pi.currentPage }">
                         <c:url var="pagination" value="review.do">
                            <c:param name="currentPage" value="${ p }"/>
+                           	<c:param name="Sort" value="${Sort}"/>
                      </c:url>
                      <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
                      ${ p }</a> &nbsp;
                   </c:if>
-                  </c:if>
-                  
-                  	 <c:if test="${!empty sc }">	
-                     <c:if test="${ p ne pi.currentPage }">
-                        <c:url var="pagination" value="pb_search.do">
-                           <c:param name="currentPage" value="${ p }"/>
-                           <c:param name="search_date" value="${sc.search_date }"/>
-		                  <c:param name="search_key" value="${sc.search_key }"/>
-		                  <c:param name="search" value="${sc.search }"/>
-                     </c:url>
-                     <a href="${ pagination }" style="font-family: 'arial',serif;line-height: 35px;font-size: 13px;">
-                     ${ p }</a> &nbsp;
-                  </c:if>
-                  </c:if>
-                  
-                  
                </c:forEach>
 
-				     <c:if test="${empty sc }">	
-                    <c:url var="after" value="review.do">
+
+               <c:if test="${ pi.currentPage eq pi.maxPage }">
+					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
+				</c:if>
+				<c:if test="${ pi.currentPage ne pi.maxPage }">
+				<c:url var="after" value="review.do">
                      <c:param name="currentPage" value="${pi.currentPage +1 }"/>
-                    </c:url>
-                     </c:if>
-                     
-                  <c:if test="${!empty sc }">
-                  <c:url var="after" value="pb_search.do">
-                  <c:param name="currentPage" value="${pi.currentPage +1 }"/>
-                  <c:param name="search_date" value="${sc.search_date }"/>
-                  <c:param name="search_key" value="${sc.search_key }"/>
-                  <c:param name="search" value="${sc.search }"/>
+                     	<c:param name="Sort" value="${Sort}"/>
                   </c:url>
-                      </c:if>
-                  
                   <a href="${after}">
                <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
                </a>
+               </c:if>
 
-
-               <img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
-
-         </div>
-					</div>
+               <c:if test="${ pi.currentPage eq pi.maxPage }">
+               		<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
+               </c:if>
+               <c:if test="${ pi.currentPage ne pi.maxPage }">
+               		<c:url var="end" value="review.do">
+               			<c:param name="currentPage" value="${pi.maxPage }"/>
+               				<c:param name="Sort" value="${Sort}"/>
+               		</c:url>
+					<a href="${end }" class="last">
+					<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지"></a>
+               </c:if>
+			</div>
+		</c:if>
 
 				</div>
-				
+
 		</div>
 	<hr>
 		<br><br>
@@ -1583,7 +1572,7 @@ select {
 					<c:url var="bi8" value="productDetail.do">
 						<c:param name="bi" value="bi8"/>
 					</c:url> -->
-									
+
 	<!-- Relate Product -->
 	<section class="relateproduct bgwhite p-t-45 p-b-138">
 		<div class="container">
@@ -1601,11 +1590,11 @@ select {
 						<div class="block2">
 								<c:if test="${61999 gt p.prdtNo and p.prdtNo gt 60000}">
 								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								
+
 									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
 									<div class="block2-overlay trans-0-4">
-									
+
 
 										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
@@ -1618,11 +1607,11 @@ select {
 								</div></c:if>
 									<c:if test="${p.prdtNo gt 62000}">
 									<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-									
+
 									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
 									<div class="block2-overlay trans-0-4">
-										
+
 
 										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
@@ -1634,15 +1623,15 @@ select {
 									</div>
 								</div>
 									</c:if>
-								
-								
+
+
 								<c:if test="${p.prdtNo lt 60000}">
 								<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								
+
 									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
 									<div class="block2-overlay trans-0-4">
-										
+
 
 										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
@@ -1654,7 +1643,7 @@ select {
 									</div>
 								</div>
 								</c:if>
-								
+
 
 								<div class="block2-txt p-t-20">
 									<span class="block2-price m-text6 p-r-5" >
@@ -1676,7 +1665,7 @@ select {
 									</span>
 
 									<br>
-									
+
 <c:url var="product_detail" value="product_detail.do">
 	<c:param name="product_detail" value="${p.prdtNo }" />
 </c:url>
@@ -1684,7 +1673,7 @@ select {
 										${p.prdtName }
 
 									</a>
-									
+
 
 									<span class="block2-price m-text6 p-r-5">
 									<c:if test="${p.prdtSale ne 0 }">
@@ -1693,7 +1682,7 @@ select {
 										<c:if test="${p.prdtSale eq 0 }">
 										<small><font class="format-money">${ p.prdtPrice}</font> won</small>&nbsp;&nbsp;
 										</c:if>
-										
+
 										<font style="font-size:9px;color:gray">리뷰 : ${p.prdtReview}</font>
 									</span>
 								</div>
@@ -1705,14 +1694,14 @@ select {
 			</div>
 </div>
 </section>
-	
+
 
 
 <!-- Footer -->
 <jsp:include page="footer.jsp"/>
 
 
-	
+
 
 	<!--===============================================================================================-->
 	<script type="text/javascript" src="/ot/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -1725,7 +1714,7 @@ select {
 		src="vendor/bootstrap/js/bootstrap.min.js"></script>
 	<!--===============================================================================================-->
 	<script type="text/javascript" src="/ot/resources/vendor/select2/select2.min.js"></script>
-	
+
 	<!--===============================================================================================-->
 	<script type="text/javascript" src="/ot/resources/vendor/slick/slick.min.js"></script>
 	<script type="text/javascript" src="/ot/resources/js/slick-custom.js"></script>
@@ -1761,25 +1750,25 @@ select {
 
 	<!--===============================================================================================-->
 	<script src="/ot/resources/js/main.js"></script>
-	
-	
+
+
 	<script>
-		
+
 		$('#comentsend').on("click", function() {
 			var rvComment = $('#rvComment').val();
 			 var rv_no = $('#rv_no2').val();
 			 var rvc_no = $('.rvc_no').val();
 
-			 
-			
-		
+
+
+
 			if(rvComment == ""){
 					alert("댓글을 작성해주세요");
 			}else{
 				 $('#comentarea').children('.replyDiv').remove();
 				 $('#comentarea').children('br').remove();
-				
-		
+
+
 			$.ajax({
 				url:"addReply.do",
 				data : {rvComment : rvComment, rv_no : rv_no},
@@ -1787,14 +1776,14 @@ select {
 					if(data=="success") {
 						//getReplyList();
 						 $.ajax({
-				 
+
 							url:"rList.do",
 							dataType:"json",
 							data : {rv_no:rv_no},
 							success:function(data) {
 							 console.log(data.rplist[0]);
 								 for(var i=0;i<data.rplist.length;i++) {
-									
+
 									 if(data.rplist[i].memNo =="${loginMember.memNo}"){
 									 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 									 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
@@ -1804,15 +1793,15 @@ select {
 					                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 					                          	 )
 									 }else{
-										 
+
 					                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 									 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 					                          	'<small>'+data.rplist[i].rvComment+'</small>'+
 					                          	'<button style=""></button><br>'+
-					                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+					                          	'<button style="float:right;font-size:10px;color:#e65540;"onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 					                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
-					                          	 )         	 
-									 }					                          	 
+					                          	 )
+									 }
 								 }
 							},error:function() {
 								alert("에러임에러임");
@@ -1824,41 +1813,41 @@ select {
 					console.log("등록실패");
 				}
 			})
-			
-	
-			 
-			
+
+
+
+
 				}
 			});
-		
+
 		function getReplyList() {
-			
+
 			 var rv_no = $('#rv_no2').val();
-			 
+
 			//comentarea
-			
+
 			$.ajax({
 				url:"rList.do",
 				data:{rv_no:rv_no},
 				dataType:"json",
 				success:function(data) {
-					
+
 				}
-				
+
 			})
 		}
-		
-	
+
+
 	</script>
-	
-	
+
+
 	<script>
 	<!-- 전체순으로 정렬 -->
-	
+
 	$('#allSort').click(function() {
 		var all="all";
-		
-		
+
+
 		$.ajax({
 			url:"LikeSort.do",
 			data:{Sort : all},
@@ -1866,8 +1855,11 @@ select {
 			success:function(data) {
 				 $('#review_list').children('li').remove();
 				 $('#review_list').children('div').remove();
+				 console.log(data);
 				 for(var i=0;i<data.rlist.length;i++) {
 					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+					  for(var j=0;j<data.rc.length;j++){
+							if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
 					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style=" width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 									  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 									  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -1889,41 +1881,43 @@ select {
 									  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
 									  '<strong>'+data.rlist[i].memName+'</strong>'+
 									  '</div>'+
-								      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+								      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+
 									  '<hr>'+
 									  '</div>'+
 									  '</div>'+
 									  '</div>'+
 								      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
 									  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
-									  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+									  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+
 									  '</div>'+
 									  '<div class="reviews_index_gallery_review__review_product_info">'+
 									  '<div class="reviews_index_gallery_review__product_info_title">'+
 									  ''+data.rlist[i].prdtName+'</div>'+
 									  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
-									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
 									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 									  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 							          '</div></div></div></li>')
+						}
+					 }
 				 }
 					},error:function() {
 						alert("에러임에러임");
 					}
-		
-		
+
+
 		})
-		
+
 	})
-	
+
 	</script>
-	
+
 	<script>
 	<!-- 좋아요 순으로 정렬 -->
 	$('#recommandSort').click(function() {
 		var like="like";
-		
-		
+
+
 		$.ajax({
 			url:"LikeSort.do",
 			data:{Sort : like},
@@ -1933,6 +1927,8 @@ select {
 				 $('#review_list').children('div').remove();
 				 for(var i=0;i<data.rlist.length;i++) {
 					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+					 for(var j=0;j<data.rc.length;j++){
+							if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
 					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style=" width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 									  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 									  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -1954,42 +1950,42 @@ select {
 									  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
 									  '<strong>'+data.rlist[i].memName+'</strong>'+
 									  '</div>'+
-								      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+								      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+
 									  '<hr>'+
 									  '</div>'+
 									  '</div>'+
 									  '</div>'+
 								      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
 									  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
-									  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+									  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+
 									  '</div>'+
 									  '<div class="reviews_index_gallery_review__review_product_info">'+
 									  '<div class="reviews_index_gallery_review__product_info_title">'+
 									  ''+data.rlist[i].prdtName+'</div>'+
 									  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
-									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
 									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 									  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 							          '</div></div></div></li>')
 				 }
-					},error:function() {
-						alert("에러임에러임");
 					}
-		
-		
+					}
+				 },error:function() {
+						alert("에러임에러임");
+				 }
 		})
-		
+
 	})
-	
-	
+
+
 	</script>
-	
-	
+
+
 	<script>
 	$('#newSort').click(function() {
 		var date="date";
-		
-		
+
+
 		$.ajax({
 			url:"LikeSort.do",
 			data:{Sort : date},
@@ -1999,6 +1995,8 @@ select {
 				 $('#review_list').children('div').remove();
 				 for(var i=0;i<data.rlist.length;i++) {
 					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+					 for(var j=0;j<data.rc.length;j++){
+							if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
 					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%; margin-left:3%">'+
 									  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 									  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -2020,44 +2018,46 @@ select {
 									  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
 									  '<strong>'+data.rlist[i].memName+'</strong>'+
 									  '</div>'+
-								      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+								      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+
 									  '<hr>'+
 									  '</div>'+
 									  '</div>'+
 									  '</div>'+
 								      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
 									  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
-									  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+									  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+
 									  '</div>'+
 									  '<div class="reviews_index_gallery_review__review_product_info">'+
 									  '<div class="reviews_index_gallery_review__product_info_title">'+
 									  ''+data.rlist[i].prdtName+'</div>'+
 									  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
-									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
 									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 									  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 							          '</div></div></div></li>')
+							}
+					 }
 				 }
 					},error:function() {
 						alert("에러임에러임");
 					}
-		
-		
+
+
 		})
-		
+
 	})
-	
-	
+
+
 	</script>
-	
+
 	<script>
 	$('#heartClick').click(function() {
 		 var rv_no = $('#rv_no2').val();
 		 var likeCheck = $('#likeCheck').val();
-		
+
 		 console.log("rv___no: " + rv_no);
 		 var count = 0;
-		 
+
 		  $.ajax({
 			 url:"reviewLike.do",
 			 dataType:"json",
@@ -2073,42 +2073,35 @@ select {
 					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-check.png");
 				 }
 			 }
-		 }) 
-		 
-		
-		 
-	
-		 
-		
+		 })
 	})
-	
-	
-	
+
+
+
 	</script>
-	
+
 	<!--============================================리뷰모달===================================================-->
 	<script>
-	
+
 	<!--리뷰 모달 디테일 스크립트-->
 	function review1(en){
 		 if("${loginMember.memId}"==""){
 			 alert("로그인 후 이용해주세요!");
 		 }else{
-		
+
 		 $('#comentarea').children('.replyDiv').remove();
 		 $('#comentarea').children('br').remove();
+	     $('.mySlides').remove();
+
 		 var rv_no = $(en).parents('li').find('.rv_no').val();
 		 $("#rv_no2").val(rv_no);
-		 
+
 		var rvc_no = $('.rvc_no').val();
-		 var nonHeart = $('#nonHeart').attr("src");
 		 var like_img="";
 		 var count = 0;
 		 console.log(rv_no);
-		 
-		 
-		 
-		 
+
+
 		 $.ajax({
 			 url:"reviewDetail.do",
 			 dataType:"json",
@@ -2124,12 +2117,39 @@ select {
 				 $('#pImage').attr("src",r.r.prdtPath+r.r.prdtImg);
 				 $('#likeCheck').val(r.lhl.likeCheck);
 				 $('#likeCount').text(r.r.rvLike);
-				 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
-				 $('#contentimgs2').attr("src",r.ph[1].rpPhoto);
-				 console.log(r.r.rvLike)
+				/* if(r.ph.length == 1){
+					 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
+				 }else{
+					 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
+					 $('#contentimgs2').attr("src",r.ph[1].rpPhoto);
+				 } */
+				if(r.ph.length == 1){
+					$('#movePage1').css("display","none");
+					$('#movePage2').css("display","none");
+				}else{
+					$('#movePage1').css("display","block");
+					$('#movePage2').css("display","block");
+				}
+
+
+			  for(var i =0; i<r.ph.length;i++){
+				  if(i == 0){
+						$('#nextPh').after(' <div id="img1" class="mySlides" style="display: block;">'+
+	                            '<div class="numbertext" ><font style="font-size:14px;">1/ '+r.ph.length+'</font></div>'+
+	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;">'+
+	                            '</div>')
+				  }else{
+						$('#img1').after(	'<div class="mySlides" style="display: none;">'+
+			                      '<div class="numbertext"><font style="font-size:14px;">2 / '+r.ph.length+'</font></div>'+
+			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;" >'+
+			                  '</div>')
+				  }
+			 }
+
+
 				 if(r.lhl.likeCheck == "N"){
 					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-noncheck.png") ;
-				 }else{
+				 }else if(r.lhl.likeCheck == "Y"){
 					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-check.png");
 				 }
 				/*  $('#pImage').text(r.r.prdtImage); */
@@ -2138,16 +2158,16 @@ select {
 					alert('리뷰에러')
 			}
 		 });
-		 
+
 		  $.ajax({
-				 
+
 				url:"rList.do",
 				dataType:"json",
 				data : {rv_no:rv_no},
 				success:function(data) {
 				 console.log(data.rplist[0]);
 					 for(var i=0;i<data.rplist.length;i++) {
-						
+
 						 if(data.rplist[i].memNo =="${loginMember.memNo}"){
 							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
@@ -2157,44 +2177,34 @@ select {
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 			                          	 )
 							 }else{
-								 
+
 			                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
 			                          	'<button style=""></button><br>'+
-			                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;"onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
-			                          	 )         	 
-							 }			
+			                          	 )
+							 }
 					 }
 				},error:function() {
 					alert("에러임에러임");
 				}
-				 	
+
 			 })
-			 
-		
-	
-			 
-			 
-		 
-		
-		
-		
+
         var ulr = $(this).attr("src");
-        $("#modalimg").attr("src", ulr);            
+        $("#modalimg").attr("src", ulr);
         $('#modal').show();
 
-        
 		 }
     }
-	
-	  
+
 
       function modalclose(){
           $('#modal').css("display","none");
       }
-	
+
       var slideIndex = 1;
 
 
@@ -2212,19 +2222,19 @@ select {
           var i;
           var slides = document.getElementsByClassName("mySlides");
           var dots = document.getElementsByClassName("dot");
-          if (n > slides.length) {slideIndex = 1}    
+          if (n > slides.length) {slideIndex = 1}
           if (n < 1) {slideIndex = slides.length}
           for (i = 0; i < slides.length; i++) {
-              slides[i].style.display = "none";  
+              slides[i].style.display = "none";
           }
           for (i = 0; i < dots.length; i++) {
               dots[i].className = dots[i].className.replace(" active", "");
           }
-          slides[slideIndex-1].style.display = "block";  
+          slides[slideIndex-1].style.display = "block";
           dots[slideIndex-1].className += " active";
       }
 	</script>
-	
+
 	<script>
 	function DeleteReply(dr) {
 		var rvcNo=$(dr).parents('.replyDiv').find('.rvc_no').val();
@@ -2239,7 +2249,7 @@ select {
 			success:function(data) {
 				 console.log(data.rplist[0]);
 				 for(var i=0;i<data.rplist.length;i++) {
-						
+
 					 if(data.rplist[i].memNo =="${loginMember.memNo}"){
 						 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
@@ -2249,35 +2259,37 @@ select {
 		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 		                          	 )
 						 }else{
-							 
+
 		                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
 		                          	'<button style=""></button><br>'+
-		                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+		                          	'<button style="float:right;font-size:10px;color:#e65540;"onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
-		                          	 )         	 
-						 }			
+		                          	 )
+						 }
 				 }
 				},error:function() {
 					alert("에러임에러임");
 				}
-			
+
 		})
-		
-		
+
+
 	}
-	
+
 	</script>
-	
+
 	<script>
 	function Warning(wa) {
+
+		if(confirm('댓글을 신고 하겠습니까?') ==true){
 		var rvcNo=$(wa).parents('.replyDiv').find('.rvc_no').val();
-		
+
 		 var rv_no = $('#rv_no2').val();
 		 $('#comentarea').children('.replyDiv').remove();
 		 $('#comentarea').children('br').remove();
-		 
+
 		 $.ajax({
 				url:"WarningReply.do",
 				dataType:"json",
@@ -2285,7 +2297,7 @@ select {
 				success:function(data) {
 					 console.log(data.rplist[0]);
 					 for(var i=0;i<data.rplist.length;i++) {
-							
+
 						 if(data.rplist[i].memNo =="${loginMember.memNo}"){
 							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
@@ -2295,22 +2307,23 @@ select {
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 			                          	 )
 							 }else{
-								 
+
 			                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
 			                          	'<button style=""></button><br>'+
-			                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
-			                          	 )         	 
-							 }			
+			                          	 )
+							 }
 					 }
 					},error:function() {
 						alert("에러임에러임");
 					}
-				
+
 			})
-		 
+		}
+
 	}
 	</script>
 <!-- 키 정렬  스크립트 -->
@@ -2318,16 +2331,16 @@ select {
 	  $(".checkbox-review-option-search").click(function() {
 			var optionHeightArr=document.getElementsByName('option_3');
 			var optionHeight = 0;
-			
+
 			for(var i=0; i<optionHeightArr.length;i++) {
 				if(optionHeightArr[i].checked==true){
 					optionHeight = optionHeightArr[i].value;
 				}
 			}
 			console.log(optionHeight);
-			
-		
-			
+
+
+
 			$.ajax({
 				url : "checkSort.do",
 				data : { optionHeight : optionHeight},
@@ -2340,8 +2353,9 @@ select {
 					 } else {
 						 $('#review_list').children('div').remove();
 					 for(var i=0;i<data.rlist.length;i++) {
-						 
 						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+						 for(var j=0;j<data.rc.length;j++){
+								if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
 						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -2363,55 +2377,57 @@ select {
 										  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
 										  '<strong>'+data.rlist[i].memName+'</strong>'+
 										  '</div>'+
-									      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+									      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+
 										  '<hr>'+
 										  '</div>'+
 										  '</div>'+
 										  '</div>'+
 									      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
 										  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
-										  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+										  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+
 										  '</div>'+
 										  '<div class="reviews_index_gallery_review__review_product_info">'+
 										  '<div class="reviews_index_gallery_review__product_info_title">'+
 										  ''+data.rlist[i].prdtName+'</div>'+
 										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
-										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
 										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 								          '</div></div></div></li>')
+								}
+						 }
 					 }
 					 }
 						},error:function() {
 							alert("에러임에러임");
 					}
 		});
-			
-		
-			
-			
-	  
-	  
+
+
+
+
+
+
 	});
 	  </script>
-	  
+
 	  <script>
 	  <!--몸무게 정렬 스크립트-->
 	  $(".checkbox-review-option-search2").click(function() {
 
 			var optionWeightArr = document.getElementsByName('option_4');
 			var optionWeight = 0;
-		
-	
-			
+
+
+
 			for(var i=0; i<optionWeightArr.length;i++) {
 				if(optionWeightArr[i].checked==true){
 					optionWeight = optionWeightArr[i].value;
 				}
 			}
-			
+
 			console.log(optionWeight);
-			
+
 			$.ajax({
 				url : "WeightSort.do",
 				data : { optionWeight : optionWeight},
@@ -2425,6 +2441,8 @@ select {
 						 $('#review_list').children('div').remove();
 					 for(var i=0;i<data.rlist.length;i++) {
 						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+						 for(var j=0;j<data.rc.length;j++){
+								if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
 						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -2446,53 +2464,55 @@ select {
 										  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
 										  '<strong>'+data.rlist[i].memName+'</strong>'+
 										  '</div>'+
-									      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+									      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+
 										  '<hr>'+
 										  '</div>'+
 										  '</div>'+
 										  '</div>'+
 									      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
 										  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
-										  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+										  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+
 										  '</div>'+
 										  '<div class="reviews_index_gallery_review__review_product_info">'+
 										  '<div class="reviews_index_gallery_review__product_info_title">'+
 										  ''+data.rlist[i].prdtName+'</div>'+
 										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
-										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
 										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 								          '</div></div></div></li>')
-					 }
+								}
+					    	 }
+				    	 }
 					 }
 						},error:function() {
 							alert("에러임에러임");
 					}
 		});
-			
-			
+
+
 	  });
-	  
+
 	  </script>
 
 
 	  <script>
 	  <!-- 사이즈 정렬 스크립트 -->
-	  
+
 	  $(".checkbox-review-option-search3").click(function() {
-			
+
 			var optionSizeArr = document.getElementsByName('option_5');
 			var optionSize = 0;
-			
-			
+
+
 			for(var i=0; i<optionSizeArr.length;i++) {
 				if(optionSizeArr[i].checked==true){
 					optionSize = optionSizeArr[i].value;
 				}
 			}
-			
+
 			console.log(optionSize);
-			
+
 
 			$.ajax({
 				url : "SizeSort.do",
@@ -2505,9 +2525,10 @@ select {
 						 $('#review_list').append('<div align="center"><strong style="color: #888888;position: relative;top: -52px;font-size: 15px;">아직 작성한 리뷰가 없습니다.</strong></div>')
 					 } else {
 						 $('#review_list').children('div').remove();
-					 
 					 for(var i=0;i<data.rlist.length;i++) {
 						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+						 for(var j=0;j<data.rc.length;j++){
+								if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
 						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -2529,23 +2550,25 @@ select {
 										  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
 										  '<strong>'+data.rlist[i].memName+'</strong>'+
 										  '</div>'+
-									      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+									      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+
 										  '<hr>'+
 										  '</div>'+
 										  '</div>'+
 										  '</div>'+
 									      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
 										  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
-										  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+										  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+
 										  '</div>'+
 										  '<div class="reviews_index_gallery_review__review_product_info">'+
 										  '<div class="reviews_index_gallery_review__product_info_title">'+
 										  ''+data.rlist[i].prdtName+'</div>'+
 										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
-										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
 										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 								          '</div></div></div></li>')
+								}
+						 }
 					 }
 					}
 						},error:function() {
@@ -2553,18 +2576,18 @@ select {
 					}
 		});
 	  });
-	  
+
 	  </script>
-	  
+
 	  <script>
 	  <!-- 카테고리 선택 스크립트 -->
-	 
+
 	  $('#category_ok').click(function() {
-		  
-		  
-		  
-		  
-		  
+
+
+
+
+
 		  var upNo = $('#category').val();
 			console.log(upNo);
 			$.ajax({
@@ -2580,6 +2603,8 @@ select {
 						 $('#review_list').children('div').remove();
 					 for(var i=0;i<data.rlist.length;i++) {
 						 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
+						 for(var j=0;j<data.rc.length;j++){
+								if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
 						 $('#review_list').append('<li class="reviews_index_gallery_review review1" style="width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 										  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 										  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -2601,38 +2626,40 @@ select {
 										  '<div class="photo_review_thumbnail__author_name"style="float: left;">'+
 										  '<strong>'+data.rlist[i].memName+'</strong>'+
 										  '</div>'+
-									      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+		
+									      '<div class="photo_review_thumbnail__created_at" style="position: relative; left: 5%;">'+data.rlist[i].rvDate+'</div>'+
 										  '<hr>'+
 										  '</div>'+
 										  '</div>'+
 										  '</div>'+
 									      '<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe " data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">'+
 										  '<div class="reviews_index_gallery_review__review_product_thumbnail">'+
-										  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+	
+										  '<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'"style="padding-right: 3%; opacity: 1; float: left;">'+
 										  '</div>'+
 										  '<div class="reviews_index_gallery_review__review_product_info">'+
 										  '<div class="reviews_index_gallery_review__product_info_title">'+
 										  ''+data.rlist[i].prdtName+'</div>'+
 										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
-										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">1,841</strong></span><br>'+
+										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
 										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 								          '</div></div></div></li>')
+								}
+						 }
 					 }
 					}
 						},error:function() {
 							alert("에러임에러임");
 					}
 		});
-		  
-		  
-	  })
-	  
-	  </script>
-	  
 
-	
+
+	  })
+
+	  </script>
+
+
+
 </body>
-		
+
 
 </html>

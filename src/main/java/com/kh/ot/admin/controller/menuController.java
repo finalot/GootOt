@@ -40,18 +40,26 @@ import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.cart.service.CartService;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
+import com.kh.ot.common.MainPagination2;
 import com.kh.ot.common.Pagination;
 import com.kh.ot.main.service.MainService;
+import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.review.service.ReviewService;
+import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
 
 @SessionAttributes("loginMember")
 @Controller
 public class menuController {
 
+	  @Autowired
+	  private ReviewService rService;
+	  
 	@Autowired
 	private adminService adService;
 
@@ -605,7 +613,6 @@ public class menuController {
 
 		return mv;
 	}
-
 	/**
 	 * @작성일 : 2020. 4. 14.
 	 * @작성자 : 문태환
@@ -669,13 +676,29 @@ public class menuController {
 	}
 
 	@RequestMapping("review_list.ad")
-	public String review_list() {
-		return "admin/review_list";
+	public ModelAndView review_list(@RequestParam(value="currentPage", 
+		    required=false,defaultValue="1") int currentPage,ModelAndView mv) {
+		
+		
+		int listCount = rService.selectListCount();
+		MainPageInfo2 pi = MainPagination2.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Review> rlist =   rService.selectReviewList(pi);
+		
+		mv.addObject("rlist",rlist);
+		mv.setViewName( "admin/review_list");
+		return mv;
+		
 	}
 
 	@RequestMapping("review_report_list.ad")
-	public String review_report_list() {
-		return "admin/review_report_list";
+	public ModelAndView review_report_list(ModelAndView mv) {
+		
+		ArrayList<Review> rlist =   rService.selectReviewReportList();
+		
+		mv.addObject("rlist",rlist);
+		mv.setViewName( "admin/review_report_list");
+		return mv;
 	}
 
 //	기능 시작
@@ -1669,7 +1692,61 @@ public class menuController {
 		}
 		
 	}
+	/**
+	 * @작성일  : 2020. 4. 27.
+	 * @작성자  : 문태환 
+	 * @내용 	: 관리자 리뷰 댓글
+	 * @param coment
+	 * @param rvNo
+	 * @param memNo
+	 * @return
+	 */
+	@RequestMapping("ComentInsert.ad")
+	public String ComentInsert(String coment , int rvNo , int memNo) {
+		
+			ReviewReply rp = new ReviewReply();
+			
+			rp.setMemNo(memNo);
+			rp.setRvComment(coment);
+			rp.setRvNo(rvNo);
+			
+			int result = adService.ComentInsert(rp);
+		
+		return "redirect:review_list.ad";
+	}
 	
+	/**
+	 * @작성일  : 2020. 4. 27.
+	 * @작성자  : 문태환
+	 * @내용 	: 신고댓글 삭제
+	 * @param rvcNo
+	 * @return
+	 */
+	@RequestMapping("comentDelete.ad")
+	public String comentDelete(int rvcNo) {
+		
+		ReviewReply rp = new ReviewReply();
+		rp.setRvcNo(rvcNo);	
+		
+		int result = adService.comentDelete(rp);
+		
+		
+		return "redirect:review_report_list.ad";
+		
+	}
+	
+	@RequestMapping("comentReturn.ad")
+	public String comentReturn(int rvcNo) {
+		
+		ReviewReply rp = new ReviewReply();
+		rp.setRvcNo(rvcNo);	
+		
+		int result = adService.comentReturn(rp);
+		
+		
+		return "redirect:review_report_list.ad";
+		
+	}
 	
 	/**
 	 * @작성일 : 2020. 4. 23.

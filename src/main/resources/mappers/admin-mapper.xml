@@ -399,6 +399,24 @@ SELECT RE.RE_NO,RE.QNA_DATE,RE.RE_NAME,RE.RE_TITLE,RE.RE_CONTENT,RE.ORD_CODE,
 	AND DOWN_NO=#{down_no}
 </select>
 
+
+<insert id="ComentInsert" parameterType="ReviewReply">
+ 		INSERT INTO REVIEW_COMMENT
+ 		VALUES (#{rvNo},#{memNo},#{rvComment},SYSDATE,DEFAULT,RVC_SEQ.NEXTVAL)
+</insert>
+
+<delete id="comentDelete" parameterType="ReviewReply">
+	 DELETE FROM REVIEW_COMMENT
+	 WHERE RVC_NO=#{rvcNo}
+</delete>
+
+<update id="comentReturn"  parameterType="ReviewReply">
+	UPDATE REVIEW_COMMENT
+	SET RV_REPORT='N'
+	WHERE RVC_NO=#{rvcNo}
+</update>
+
+
 <select id="todayReturnSelect" resultType="_int">
 	SELECT COUNT(*)
 	FROM RETURN

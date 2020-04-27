@@ -122,6 +122,7 @@
 			<result property="rvDate2" column="RV_DATE2"/>
 			<result property="prdtImg" column="PRDT_IMAGE"/>
 			<result property="prdtPath" column="PRDT_IMAGE_PATH"/>
+			<result property="memno" column="MEM_NO"/>
 	</resultMap>
 	
 	<!-- 페이징을 위한 포인트 내역 갯수 출력 -->
@@ -636,6 +637,8 @@
 		FROM REVIEW R
 		JOIN MEMBER M
 		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
 		WHERE M.MEM_NO=#{memno}
 	</select>
 	
@@ -645,6 +648,8 @@
 		FROM REVIEW R
 		JOIN MEMBER M
 		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
 		WHERE M.MEM_NO=#{memno}
 	</select>
 	
@@ -653,6 +658,8 @@
 		FROM REVIEW R
 		JOIN MEMBER M
 		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
 		WHERE M.MEM_NO=#{memno}
 		AND R.RV_INFO LIKE '%' || #{search} || '%'
 	</select>
@@ -662,10 +669,52 @@
 		FROM REVIEW R
 		JOIN MEMBER M
 		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
 		WHERE M.MEM_NO=#{memno}
 		AND R.RV_INFO LIKE '%' || #{search} || '%'
 		ORDER BY RV_DATE DESC, RV_NO DESC
 	</select>
 	
+	<select id="selectLastSort" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
+		WHERE M.MEM_NO=#{memno}
+		ORDER BY R.RV_DATE DESC
+	</select>
+		
+	<select id="selectLikeSort" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
+		WHERE M.MEM_NO=#{memno}
+		ORDER BY R.RV_LIKE DESC
+	</select>
 	
+	<select id="selectCommentLastSort" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
+		JOIN REVIEW_COMMENT RC
+		ON (R.RV_NO = RC.RV_NO)
+		WHERE M.MEM_NO=#{memno}
+		ORDER BY RC.RV_DATE DESC
+	</select>
+	
+	<select id="resultPoint" parameterType="_int"  resultType="_int">
+	SELECT MEM_POINT
+	FROM MEMBER
+	WHERE MEM_NO=#{memNo}	
+
+	</select>
 </mapper>
