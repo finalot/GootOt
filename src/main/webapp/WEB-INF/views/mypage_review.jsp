@@ -665,13 +665,13 @@ a{
                     		<div id="modalimg" class="slideshow-container" style="position:relative;top:-20px;">
                         
                          		<div style="width:10px;height:10px;position:relative;top:400px;left:5px;">
-                         			<a class="prev" onclick="plusSlides(-1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>❮</strong></a>
+                         			<a id="movePage1" class="prev" onclick="plusSlides(-1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>❮</strong></a>
                          		</div>
-                       			<div style="width:10px;height:10px;position:relative;top:390px;left:780px;">
-                        			<a class="next" onclick="plusSlides(1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>❯</strong></a>
+                       			<div id="nextPh" style="width:10px;height:10px;position:relative;top:390px;left:780px;">
+                        			<a id="movePage2" class="next" onclick="plusSlides(1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>❯</strong></a>
                        			</div>
                         
-                        		<div class="mySlides" style="display: block;">
+                        		<!-- <div class="mySlides" style="display: block;">
                             		<div class="numbertext"><font style="font-size:14px;">1 / 2</font></div>
                             		<img class="contentimgs" src="/ot/resources/images/oT/review/review_sample1.jpg" alt="sample1" style="margin-top:-5%;">
                         		</div>
@@ -679,14 +679,15 @@ a{
                         		<div class="mySlides" style="display: none;">
                             		<div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>
                            			<img class="contentimgs" src="/ot/resources/images/oT/review/review_sample2.jpg" alt="sample2" style="margin-top:-5%;">
-                       			</div>
+                       			</div> -->
+                       			
                         		<div id="dotbox" style="text-align:center">
 		                            <span class="dot active" onclick="currentSlide(1);"></span> 
 		                            <span class="dot" onclick="currentSlide(2);"></span> 
                         		</div>      
                    			</div>
                			</div>
-			   			<button class="close1" onclick="modalclose();" style="position: relative;right: 365px;bottom: 37px;color:ivory;">×</button>
+			   			<button class="close1" onclick="modalclose();" style="position: relative;right: 365px;bottom: 37px;color:ivory;">&times;</button>
                
 	 					<!-- 모달창 시작점 -->
 	                    <div id="coments"style="margin-top:-3px;overflow-y:scroll;" >
@@ -1038,7 +1039,7 @@ a{
 												'<li class="photo_review_thumbnail__review_image_thumbnail">'+
 													'<a onclick="review1(this)">'+
 														'<img class="js-review-image" alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.list[i].rvImage+'"'+
-														'style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">'+
+														'style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray; height:280px;">'+
 													'</a>'+
 												'</li>'+
 											'</ul>'+
@@ -1187,7 +1188,6 @@ a{
 	})
 	</script>
 	
-	
 	<script>
 	<!--리뷰 모달 디테일 스크립트-->
 	function review1(en){
@@ -1197,6 +1197,8 @@ a{
 
 		 $('#comentarea').children('.replyDiv').remove();
 		 $('#comentarea').children('br').remove();
+	     $('.mySlides').remove();
+
 		 var rv_no = $(en).parents('li').find('.rv_no').val();
 		 $("#rv_no2").val(rv_no);
 
@@ -1221,34 +1223,34 @@ a{
 				 $('#pImage').attr("src",r.r.prdtPath+r.r.prdtImg);
 				 $('#likeCheck').val(r.lhl.likeCheck);
 				 $('#likeCount').text(r.r.rvLike);
-	/* 			 if(r.ph.length == 1){
+				/* if(r.ph.length == 1){
 					 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
 				 }else{
 					 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
 					 $('#contentimgs2').attr("src",r.ph[1].rpPhoto);
 				 } */
-				 if(r.ph.length == 1){
-						$('#movePage1').css("display","none");
-						$('#movePage2').css("display","none");
-					}else{
-						$('#movePage1').css("display","block");
-						$('#movePage2').css("display","block");
-					}
-				 
+				if(r.ph.length == 1){
+					$('#movePage1').css("display","none");
+					$('#movePage2').css("display","none");
+				}else{
+					$('#movePage1').css("display","block");
+					$('#movePage2').css("display","block");
+				}
+
+
 			  for(var i =0; i<r.ph.length;i++){
 				  if(i == 0){
-						$('#nextPh').after('  <div class="mySlides" style="display: block;">'+
-	                            '<div class="numbertext" ><font style="font-size:14px;">1/ 2</font></div>'+
+						$('#nextPh').after(' <div id="img1" class="mySlides" style="display: block;">'+
+	                            '<div class="numbertext" ><font style="font-size:14px;">1/ '+r.ph.length+'</font></div>'+
 	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;width:800px;">'+
 	                            '</div>')
-				  } else{
-						$('#contentimgs1').after(	' <div class="mySlides">'+
-			                      '<div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>'+
+				  }else{
+						$('#img1').after(	'<div class="mySlides" style="display: none;">'+
+			                      '<div class="numbertext"><font style="font-size:14px;">2 / '+r.ph.length+'</font></div>'+
 			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;width:800px;" >'+
 			                  '</div>')
-					  
-				  		}
-				  } 
+				  }
+			 }
 
 
 				 if(r.lhl.likeCheck == "N"){
