@@ -317,6 +317,57 @@
     <!-- Main JS-->
     <script src="/ot/resources/ajs/main.js"></script>
     </div>
+    <script>
+    $(function(){
+    	
+    	var weekArr = new Array();
+    	var payArr = new Array();
+    	var  i =0;
+      	  "<c:forEach var='we' items='${week}'>"
+      	   weekArr[i] = "${we.week}";    
+      	   payArr[i] = "${we.sumprice}"
+	       i++;
+			"</c:forEach>"
+    	
+    	
+    	 var ctx = document.getElementById("widgetChart5");
+    	    if (ctx) {
+    	      ctx.height = 220;
+    	      var myChart = new Chart(ctx, {
+    	        type: 'bar',
+    	        data: {
+    	          labels: [	weekArr[0], weekArr[1], weekArr[2], weekArr[3], weekArr[4], weekArr[5], weekArr[6]   ],
+    	          datasets: [
+    	            {
+    	              label: "일별 판매량",
+    	              data: [ payArr[0],payArr[1],payArr[2],payArr[3],payArr[4],payArr[5],payArr[6] ],
+    	              borderColor: "transparent",
+    	              borderWidth: "0",
+    	              backgroundColor: "#ccc",
+    	            }
+    	          ]
+    	        },
+    	        options: {
+    	          maintainAspectRatio: true,
+    	          legend: {
+    	            display: false
+    	          },
+    	          scales: {
+    	            xAxes: [{
+    	              display: false,
+    	              categoryPercentage: 1,
+    	              barPercentage: 0.65
+    	            }],
+    	            yAxes: [{
+    	              display: false
+    	            }]
+    	          }
+    	        }
+    	      });
+    	    }
+    });
+    
+    </script>
 
 </body>
 </html>

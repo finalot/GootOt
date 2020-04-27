@@ -576,7 +576,7 @@ public class adminDao {
 //	public int UpdatePotList(ArrayList<Product_opt> poArr) {
 //		return sqlSession.update("productMapper.UpdatePotList",poArr);
 //	}
-	/*
+     /*
 	 * @작성일  : 2020. 4. 27.
 	 * @작성자  : 문태환
 	 * @내용 	: 관리자 리뷰 댓글

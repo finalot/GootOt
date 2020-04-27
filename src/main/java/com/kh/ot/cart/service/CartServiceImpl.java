@@ -120,4 +120,14 @@ public class CartServiceImpl implements CartService{
 	public int updateProductStock(ArrayList<Ord> olist) {
 		return cDao.updateProductStock(olist);
 	}
+
+	@Override
+	public ArrayList<Pay> weekList() {
+		return cDao.weekList();
+	}
+
+	@Override
+	public ArrayList<Pay> weekPayList() {
+		return cDao.weekPayList();
+	}
 }

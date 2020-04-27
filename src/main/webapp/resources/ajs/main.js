@@ -578,7 +578,7 @@
 
   try {
     //WidgetChart 5
-    var ctx = document.getElementById("widgetChart5");
+   /* var ctx = document.getElementById("widgetChart5");
     if (ctx) {
       ctx.height = 220;
       var myChart = new Chart(ctx, {
@@ -612,7 +612,7 @@
           }
         }
       });
-    }
+    }*/
 
   } catch (error) {
     console.log(error);

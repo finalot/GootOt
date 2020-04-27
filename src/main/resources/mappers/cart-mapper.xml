@@ -59,6 +59,8 @@
 		<result property="pay_usedcp" column="PAY_USEDCP"/>
 		<result property="pay_point" column="PAY_POINT"/>
 		<result property="pay_yn" column="PAY_YN"/>
+		<result property="week" column="WEEK"/>
+
 	</resultMap>
 
 
@@ -304,5 +306,25 @@
              ORDER BY ROWNUM DESC)
 		WHERE ROWNUM=1
 	</select>
+		
+		<select id="weekList"  resultMap="payResultSet">
+				<![CDATA[
+				SELECT TO_CHAR(SYSDATE - (LEVEL - 1), 'YY/MM/DD') AS WEEK
+				FROM DUAL 
+				CONNECT BY LEVEL <= 7
+		        ]]>
+		</select>
+		
+		<select id="weekPayList" resultMap="payResultSet">
+				
+				SELECT SUM(PAY_MONEY) AS PAY_MONEY,TO_CHAR(PAY_DATE,'YY/MM/DD') AS WEEK
+				FROM PAY
+				WHERE PAY_DATE>=TO_CHAR(SYSDATE-7,'YY/MM/DD')
+				AND PAY_YN='Y'
+				GROUP BY TO_CHAR(PAY_DATE,'YY/MM/DD')
+		
+		</select>
+		
+	
 	
 </mapper>
