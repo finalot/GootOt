@@ -377,6 +377,28 @@
       
       
         $('#btnRemoveRight').click(function(){
+
+		// 	var up_no  = $('#hid').val();
+	    // 	console.log($('#hid').val());
+	    	 
+	    // 	var down_no = $('#sel2 option:selected').val();
+	    // 	console.log($('#sel2 option:selected').val());
+	    	
+	    // 	   $.ajax({
+	    // 		   url:"DownCategoryDelete.ad",
+	    // 		   data : {up_no:up_no, down_no:down_no},
+	    // 		   success : function(data){
+	    // 			   if(data == "ok"){
+	    // 				   alert('중분류 삭제되었습니다.');
+	    // 			   }else{
+	    // 				   alert('중분류 삭제되었습니다.')
+	    // 			   }
+	    // 		   },error:function(){
+	    // 			   alert("에러발생");
+	    // 		   }
+	    // 	   });
+	    //    });
+
          var up_no  = $('#hid').val();
           console.log($('#hid').val());
            

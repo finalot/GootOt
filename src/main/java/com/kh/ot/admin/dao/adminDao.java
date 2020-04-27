@@ -391,6 +391,35 @@ public class adminDao {
 
 
 	/**
+	 * @작성일 : 2020. 4. 23.
+	 * @작성자 : 이서현
+	 * @내용 : 옵션 리스트 뿌리기 
+	 */
+	public ArrayList<Product_opt> ProductOptSelectList() {
+		return (ArrayList)sqlSession.selectList("productMapper.ProductOptSelectList");
+	}
+
+
+	/**
+	 * @작성일 : 2020. 4. 23.
+	 * @작성자 : 이서현
+	 * @내용 : 상품리스트디테일 상품
+	 */
+	public Product listProductSelectList(int prdtNo) {
+		return sqlSession.selectOne("productMapper.listProductSelectList",prdtNo);
+	}
+
+
+	/**
+	 * @작성일 : 2020. 4. 23.
+	 * @작성자 : 이서현
+	 * @내용 : 상품리스트 디테일 상품옵션 
+	 */
+	public ArrayList<Product_opt> listProductOptSelectList(int prdtNo) {
+		return (ArrayList)sqlSession.selectList("productMapper.listProductOptSelectList",prdtNo);
+	}
+	
+	/**
 	 * @작성일  : 2020. 4. 22.
 	 * @작성자  : 문태환
 	 * @내용 	: 반품 결제취소
@@ -427,11 +456,19 @@ public class adminDao {
 
 
 	/**
-	 * @작성일  : 2020. 4. 23.
-	 * @작성자  : 문태환
-	 * @내용 	: 반품 업데이트
-	 * @param r
-	 * @return
+	 * @작성일 : 2020. 4. 23.
+	 * @작성자 : 이서현
+	 * @내용 : 고객 디테일 화면 리스트 
+	 */
+	public Member selectOneMember(int memNo) {
+		return sqlSession.selectOne("memberMapper.selectOneMember",memNo);
+	}
+	
+	 
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 문태환
+	 * @내용 : 반품 업데이트 
 	 */
 	public int ReturnUpdate(Return r) {
 		return sqlSession.update("adminMapper.ReturnUpdate",r);
@@ -439,11 +476,29 @@ public class adminDao {
 
 
 	/**
-	 * @작성일  : 2020. 4. 23.
-	 * @작성자  : 문태환
-	 * @내용 	: 주분테이블 반품상태 업데이트
-	 * @param reNo
-	 * @return
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 이서현
+	 * @내용 : 주문 목록 리스트
+	 */
+	public ArrayList<Ord> selectOrder(int memNo) {
+		return (ArrayList)sqlSession.selectList("cartMapper.selectOrder",memNo);
+	}
+
+
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 이서현
+	 * @내용 : 상품인기순위 리스트 
+	 */
+	public ArrayList<Product> ProductSelectListBest() {
+		return (ArrayList)sqlSession.selectList("productMapper.ProductSelectListBest");
+	}
+	
+	
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 문태환
+	 * @내용 : 주분테이블 반품상태 업데이트 
 	 */
 	public int updateOrdf(Return r) {
 		
@@ -482,6 +537,46 @@ public class adminDao {
 
 
 	/**
+	 * @작성일 : 2020. 4. 25.
+	 * @작성자 : 이서현
+	 * @내용 : 상품 TOP5 
+	 */
+	public ArrayList<Product> topSelect() {
+		return (ArrayList)sqlSession.selectList("productMapper.topSelect");
+	}
+
+
+	public int todayQnAselect() {
+		return sqlSession.selectOne("boardMapper.todayQnAselect");
+	}
+
+
+	public int todayReturnSelect() {
+		return sqlSession.selectOne("adminMapper.todayReturnSelect");
+	}
+
+
+	public int todayScountSelect() {
+		return sqlSession.selectOne("cartMapper.todayScountSelect");
+	}
+
+
+	public int todaySpriceSelect() {
+		return sqlSession.selectOne("cartMapper.todaySpriceSelect");
+	}
+	
+	
+
+
+//	public int ProductUpdate(Product p) {
+//		return sqlSession.update("productMapper.ProductUpdate",p);
+//	}
+//
+//
+//	public int UpdatePotList(ArrayList<Product_opt> poArr) {
+//		return sqlSession.update("productMapper.UpdatePotList",poArr);
+//	}
+     /*
 	 * @작성일  : 2020. 4. 27.
 	 * @작성자  : 문태환
 	 * @내용 	: 관리자 리뷰 댓글

@@ -59,6 +59,8 @@
 		<result property="pay_usedcp" column="PAY_USEDCP"/>
 		<result property="pay_point" column="PAY_POINT"/>
 		<result property="pay_yn" column="PAY_YN"/>
+		<result property="week" column="WEEK"/>
+
 	</resultMap>
 
 
@@ -258,7 +260,7 @@
 		(#{memno},#{ordno},POINT_SEQ.NEXTVAL,SYSDATE,#{pt_price},#{pt_content},NULL,NULL)
 	</insert>
 	
-	<select id="selectCartList" parameterType="java.util.Map" resultMap="cartResultSet" >
+	<!-- <select id="selectCartList" parameterType="java.util.Map" resultMap="cartResultSet" >
 			SELECT *
 			FROM CRT C
 			JOIN PRDT P ON (C.PRDT_NO = P.PRDT_NO)
@@ -268,6 +270,12 @@
              			   #{ca.ca_no}
         </foreach>
 	
+	</select> -->
+	
+	<select id="selectOrder" resultMap="ordResultSet">
+		SELECT *
+		FROM ORD
+		WHERE MEM_NO=#{memNo}
 	</select>
 	
 	<update id="updateProductStock"  parameterType="java.util.Map">
@@ -279,4 +287,44 @@
 		WHERE PRDT_NO = #{o.prdt_no}								
 	</foreach>
 	</update>
+	
+	<select id="todayScountSelect" resultType="_int">
+		SELECT *
+		FROM (SELECT SUM(ORD_COUNT) OVER(PARTITION BY MEM_NO) AS 당일판매량
+             FROM ORD
+             WHERE ORD_DATE=TO_CHAR(SYSDATE,'YY/MM/DD')
+           	 ORDER BY ROWNUM DESC)
+		WHERE ROWNUM=1
+	</select>
+	
+	<select id="todaySpriceSelect" resultType="_int">
+		SELECT * 
+		FROM (SELECT SUM(PAY_MONEY) OVER(PARTITION BY MEM_NO)AS 당일총금액
+             FROM PAY
+             WHERE PAY_DATE=TO_CHAR(SYSDATE,'YY/MM/DD')
+             AND PAY_YN='Y'
+             ORDER BY ROWNUM DESC)
+		WHERE ROWNUM=1
+	</select>
+		
+		<select id="weekList"  resultMap="payResultSet">
+				<![CDATA[
+				SELECT TO_CHAR(SYSDATE - (LEVEL - 1), 'YY/MM/DD') AS WEEK
+				FROM DUAL 
+				CONNECT BY LEVEL <= 7
+		        ]]>
+		</select>
+		
+		<select id="weekPayList" resultMap="payResultSet">
+				
+				SELECT SUM(PAY_MONEY) AS PAY_MONEY,TO_CHAR(PAY_DATE,'YY/MM/DD') AS WEEK
+				FROM PAY
+				WHERE PAY_DATE>=TO_CHAR(SYSDATE-7,'YY/MM/DD')
+				AND PAY_YN='Y'
+				GROUP BY TO_CHAR(PAY_DATE,'YY/MM/DD')
+		
+		</select>
+		
+	
+	
 </mapper>

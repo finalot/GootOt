@@ -142,6 +142,12 @@
 		
 		</select>
 		
+		<select id="todayQnAselect" resultType="_int" >
+			SELECT COUNT(*)
+			FROM QNA
+			WHERE QNA_DATE=TO_CHAR(SYSDATE,'YY/MM/DD')
+		</select>
+		
 </mapper>
 
 

@@ -307,13 +307,32 @@ public interface adminService{
 		 * @내용 : 옵션 추가
 		 */
 		public int insertPotList(ArrayList<Product_opt> poArr);
+		
+		/**
+		 * @작성일 : 2020. 4. 21.
+		 * @작성자 : 이서현
+		 * @내용 : 상품옵션 리스트
+		 */
+		public ArrayList<Product_opt> ProductOptSelectList();
 
 		/**
-		 * @작성일  : 2020. 4. 22.
-		 * @작성자  : 문태환
-		 * @내용 	: 반품결제 취소
-		 * @param cpmemNo
-		 * @return
+		 * @작성일 : 2020. 4. 22.
+		 * @작성자 : 이서현
+		 * @내용 : 상품관리리스트디테일 (상품)
+		 */
+		public Product listProductSelectList(int prdtNo);
+
+		/**
+		 * @작성일 : 2020. 4. 22.
+		 * @작성자 : 이서현
+		 * @내용 : 상품관리리스트디테일 (상품옵션)
+		 */
+		public ArrayList<Product_opt> listProductOptSelectList(int prdtNo);
+		
+		/**
+		 * @작성일 : 2020. 4. 23.
+		 * @작성자 : 문태환
+		 * @내용 : 반품결제 취소
 		 */
 		public int calcellCoupon(int cpmemNo);
 
@@ -336,6 +355,27 @@ public interface adminService{
 		public int cancellPoint(Member m);
 
 		/**
+		 * @작성일 : 2020. 4. 23.
+		 * @작성자 : 이서현
+		 * @내용 : 디테일 회원 리스트 
+		 */
+		public Member selectOneMember(int memNo);
+
+		/**
+		 * @param memNo 
+		 * @작성일 : 2020. 4. 23.
+		 * @작성자 : 이서현
+		 * @내용 : 주문목록 뿌리기 
+		 */
+		public ArrayList<Ord> selectOrder(int memNo);
+
+		/**
+		 * @작성일 : 2020. 4. 24.
+		 * @작성자 : 이서현
+		 * @내용 : 상품순위 리스트
+		 */
+		public ArrayList<Product> ProductSelectListBest();
+		/**
 		 * @작성일  : 2020. 4. 23.
 		 * @작성자  : 문태환
 		 * @내용 	: 반품 업데이트
@@ -353,7 +393,7 @@ public interface adminService{
 		 */
 		public int updateOrdf(Return r);
 
-		/**
+		/*
 		 * @작성일  : 2020. 4. 24.
 		 * @작성자  : 문태환
 		 * @내용 	: 업카테고리 카운트
@@ -371,6 +411,54 @@ public interface adminService{
 		 */
 		public int DownCategoryCount(DownCategory dc);
 
+		/**
+		 * @작성일 : 2020. 4. 25.
+		 * @작성자 : 이서현
+		 * @내용 : 상품순위 TOP5
+		 */
+		public ArrayList<Product> topSelect();
+
+		/**
+		 * @작성일 : 2020. 4. 27.
+		 * @작성자 : 이서현
+		 * @내용 : 오늘 Q&A
+		 */
+		public int todayQnAselect();
+
+		/**
+		 * @작성일 : 2020. 4. 27.
+		 * @작성자 : 이서현
+		 * @내용 : 오늘 반품
+		 */
+		public int todayReturnSelect();
+
+		/**
+		 * @작성일 : 2020. 4. 27.
+		 * @작성자 : 이서현
+		 * @내용 : 오늘 판매량
+		 */
+		public int todayScountSelect();
+
+		/**
+		 * @작성일 : 2020. 4. 27.
+		 * @작성자 : 이서현
+		 * @내용 : 오늘 총판매금액
+		 */
+		public int todaySpriceSelect();
+
+		/**
+		 * @작성일 : 2020. 4. 27.
+		 * @작성자 : 이서현
+		 * @내용 : 상품 업데이트 
+		 */
+//		public int ProductUpdate(Product p);
+//
+//		/**
+//		 * @작성일 : 2020. 4. 27.
+//		 * @작성자 : 이서현
+//		 * @내용 : 상품옵션 업데이트 
+//		 */
+//		public int UpdatePotList(ArrayList<Product_opt> poArr);
 		public int ComentInsert(ReviewReply rp);
 
 		/**
@@ -390,6 +478,7 @@ public interface adminService{
 		 * @return
 		 */
 		public int comentReturn(ReviewReply rp);
+
 
 
 

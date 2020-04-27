@@ -484,6 +484,28 @@
 			</foreach>) A
 		</insert>
 		
+		<select id="ProductOptSelectList" resultMap="product_optResultSet">
+			SELECT *
+			FROM PRDT_OPT
+		</select>
+		
+		<select id="listProductSelectList" resultMap="productResultSet">
+			SELECT *
+			FROM PRDT
+			WHERE PRDT_NO=#{prdtNo}
+		</select>
+		
+		<select id="listProductOptSelectList" resultMap="product_optResultSet">
+			SELECT *
+			FROM PRDT_OPT
+			WHERE PRDT_NO=#{prdtNo}
+		</select>
+		
+		<select id="ProductSelectListBest" resultMap="productResultSet">
+			SELECT *
+			FROM PRDT
+			ORDER BY PRDT_SCOUNT DESC
+		</select>
 		<insert id="detailReviewInsert" parameterType="DetailReview">
 			INSERT INTO REVIEW
 			VALUES(RV_SEQ.NEXTVAL,#{prdtNo},#{memNo},#{rvHeight},#{rvWeight},#{ordNo},#{rvInfo},#{fileName},DEFAULT,SYSDATE,#{rvColor},#{rvSize},#{rvPoint})
@@ -503,6 +525,14 @@
 			WHERE PRDT_NO=#{prdtNo}
 		</update>
 		
+		<select id="topSelect" resultMap="productResultSet">
+			 <![CDATA[
+			 SELECT * 
+    		 FROM (SELECT *
+                   FROM PRDT 
+                   ORDER BY PRDT_SCOUNT DESC)
+   			WHERE ROWNUM<=5]]>
+		</select>
 		
  	<select id="selectCheckSort1" parameterType="Product_opt" resultMap="ReviewResultSet">
  	<![CDATA[
@@ -672,7 +702,26 @@
 		SELECT *
 		FROM REVIEW
 		WHERE PRDT_CODE = #{prdtNo}
-		</select>
+	</select>
+	
+	<!-- <update id="ProductUpdate" parameterType="Product">
+		UPDATE PRDT SET
+		PRDT_NAME=#{prdtName}, PRDT_COMMENT=#{prdtComment},
+		PRDT_IMAGE=#{prdtImage} ,PRDT_DETAIL_IMAGE=#{prdtDetailImage},
+		PRDT_SALE=#{prdtSale}
+	</update>
+	
+	<update id="UpdatePotList" parameterType="Product_opt">
+		UPDATE PRDT_OPT SET
+		<foreach collection="poArr" item="po"  separator="UNION ALL" >
+			SELECT #{po.PrdtNo} as PRDT_NO,
+				   #{po.optColor} as OPT_COLOR,
+				   #{po.size} as OPT_SIZE,
+				   #{po.stock} as OPT_STOCK
+			FROM DUAL
+			</foreach>) A
+	</update> -->
+	
 
 <select id="selectLikeCount" resultType="_int" parameterType="Like_Heart">
  		SELECT COUNT(*)

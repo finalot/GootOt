@@ -257,7 +257,9 @@
                        		<a href="${ProductDelete }" class="btn btn-danger" id="prdtDeleteBtn" style="margin-left:13%;" onclick="test1()">판매중지</a>
                        		
                        	</td>
+                     	<input type="hidden" class="prdtNo" value="${p.prdtNo }">
                    	</tr>
+                   	<!-- 상품번호 저장  -->
                    </c:forEach>
                    
                 </tbody>
@@ -271,22 +273,19 @@
     <div class="page-wrapper">
 </div>
 	
-	
-	<!-- // td(class=next) 클릭시 페이지 이동 -->
-	<!-- 나중에 하기  -->
 	<script>
 	function test1(){
 		alert("판매중지 완료되었습니다. ");
 	}
     
-     $("td").click(function(){
-    	 location.href='productListDetail.ad';
-  <%-- 	 var userId = $(this).parent().find('input').val();
-  	 
-  	 console.log("선택한 유저 ID : "+userId);
-  	 
-     location.href="<%= request.getContextPath() %>/sone.rp?userId=" + userId;
-   --%>  }); 
+	/* td클릭시 넘기기   */
+     $("#example td").click(function(){
+    	 var prdtNo=$(this).parents('tr').find('.prdtNo').val();
+    	 console.log(prdtNo);
+    	 
+    	 location.href='productListDetail.ad?prdtNo='+prdtNo;
+  	 	/* location.href='productListDetail.ad'; */
+   }); 
   
      
     </script>

@@ -240,6 +240,7 @@
                 		<td>${m.memEmail }</td>
                 		<td>${m.memAddress }</td>
                 		<td>${m.memSumMoney}</td>
+                	<input type="hidden" class="memNo" value="${m.memNo }">
                 	</tr>
                 	</c:forEach>
                    
@@ -256,13 +257,11 @@
 	
 	<!-- // td(class=next) 클릭시 페이지 이동 -->
 	<script>
-     $("td").click(function(){
-    	 location.href='customerDetail.ad';
-  	 <%-- var userId = $(this).parent().find('input').val();
-  	 
-  	 console.log("선택한 유저 ID : "+userId);
-  	 
-     location.href="<%= request.getContextPath() %>/sone.rp?userId=" + userId; --%>
+     $("#example td").click(function(){
+		var memNo=$(this).parents('tr').find('.memNo').val();
+		console.log(memNo);
+		
+		location.href='customerDetail.ad?memNo='+memNo;
     }); 
     </script>
 

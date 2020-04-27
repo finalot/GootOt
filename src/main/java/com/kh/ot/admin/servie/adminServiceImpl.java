@@ -239,6 +239,22 @@ public class adminServiceImpl implements adminService{
 	}
 
 
+	@Override
+	public ArrayList<Product_opt> ProductOptSelectList() {
+		return adDao.ProductOptSelectList();
+	}
+
+
+	@Override
+	public Product listProductSelectList(int prdtNo) {
+		return adDao.listProductSelectList(prdtNo);
+	}
+
+
+	@Override
+	public ArrayList<Product_opt> listProductOptSelectList(int prdtNo) {
+		return adDao.listProductOptSelectList(prdtNo);
+	}
 		@Override
 		public int calcellCoupon(int cpmemNo) {
 			return adDao.calcellCoupon(cpmemNo);
@@ -258,18 +274,30 @@ public class adminServiceImpl implements adminService{
 
 
 		@Override
+		public Member selectOneMember(int memNo) {
+			return adDao.selectOneMember(memNo);
+		}
+
 		public int ReturnUpdate(Return r) {
 			return adDao.ReturnUpdate(r);
 		}
 
 
 		@Override
-		public int updateOrdf(Return r) {
-			return adDao.updateOrdf(r);
+		public ArrayList<Ord> selectOrder(int memNo) {
+			return adDao.selectOrder(memNo);
 		}
 
 
 		@Override
+		public ArrayList<Product> ProductSelectListBest() {
+			return adDao.ProductSelectListBest();
+		}
+
+		public int updateOrdf(Return r) {
+			return adDao.updateOrdf(r);
+		}
+		
 		public int UpCategoryCount(int i) {
 			return adDao.UpCategoryCount(i);
 		}
@@ -282,21 +310,62 @@ public class adminServiceImpl implements adminService{
 
 
 		@Override
+		public ArrayList<Product> topSelect() {
+			return adDao.topSelect();
+		}
+
+		
 		public int ComentInsert(ReviewReply rp) {
 			return adDao.ComentInsert(rp);
 		}
 
 
 		@Override
+		public int todayQnAselect() {
+			return adDao.todayQnAselect();
+		}
+
+		
 		public int comentDelete(ReviewReply rp) {
 			return adDao.comentDelete(rp);
 		}
 
 
 		@Override
+		public int todayReturnSelect() {
+			return adDao.todayReturnSelect();
+		}
+
+
+		@Override
+		public int todayScountSelect() {
+			return adDao.todayScountSelect();
+		}
+
+
+		@Override
+		public int todaySpriceSelect() {
+			return adDao.todaySpriceSelect();
+		}
+		
+		
+
+//		@Override
+//		public int ProductUpdate(Product p) {
+//			return adDao.ProductUpdate(p);
+//		}
+//
+//
+//		@Override
+//		public int UpdatePotList(ArrayList<Product_opt> poArr) {
+//			return adDao.UpdatePotList(poArr);		
+//		}
+
+
 		public int comentReturn(ReviewReply rp) {
 			return adDao.comentReturn(rp);
 		}
+
 
 
 

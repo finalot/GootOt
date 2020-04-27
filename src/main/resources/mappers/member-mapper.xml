@@ -123,7 +123,6 @@
 <select id="selectMember" resultMap="memberResultSet">
 	SELECT *
 	FROM MEMBER
-	WHERE MEM_STATUS='N'
 </select>
 
 <!-- <select id="selectCmlist" parameterType="Member" resultMap="CouponMemResultMap">
@@ -164,6 +163,12 @@ AND CP_NO =5
 	INSERT INTO COUPON_MEM
 	VALUES (CPMEM_SEQ.NEXTVAL,#{memno},#{cpno},'N',NULL,SYSDATE)
 </insert>
+
+<select id="selectOneMember" resultMap="memberResultSet">
+	SELECT *
+	FROM MEMBER
+	WHERE MEM_NO=#{memNo}
+</select>
 
 <select id="dailyCheckCount" parameterType="Member"  resultType="_int"  >
 	SELECT COUNT(*) FROM
