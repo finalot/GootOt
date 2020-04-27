@@ -1302,21 +1302,28 @@ public class MypageController {
 	}
 
 	@RequestMapping("mReviewSort.do")
-	public void mReviewSort(String Sort, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
+	public void mReviewSort(String Sort, HttpServletResponse response, HttpSession session,
+							@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) throws JsonIOException, IOException {
 		Member m = (Member)session.getAttribute("loginMember");
 		int memNo = m.getMemNo();
 		
 		ArrayList<Review> list = new ArrayList();
 		ArrayList<Review_count> rc = rService.selectReviewCount();
 
+		int listCount = mpService.getReviewListCount(memNo);
+		
+		System.out.println("listCount : " + listCount);
+		
+		PageInfo pi = ReviewPagination.getPageInfo(currentPage,listCount);
+		
 		if (Sort.equals("last")) {
-			list = mpService.selectLastSort(memNo);
+			list = mpService.selectLastSort(pi, memNo);
 			System.out.println(list);
 		} else if (Sort.equals("like")) {
-			list = mpService.selectLikeSort(memNo);
+			list = mpService.selectLikeSort(pi, memNo);
 			System.out.println(list);
 		} else if (Sort.equals("commentlast")) {
-			list = mpService.selectCommentLast(memNo);
+			list = mpService.selectCommentLast(pi, memNo);
 			System.out.println(list);
 		}
 
@@ -1326,6 +1333,7 @@ public class MypageController {
 
 		Map hmap = new HashMap();
 		hmap.put("list", list);
+		hmap.put("pi", pi);
 		hmap.put("rc", rc);
 
 		gson.toJson(hmap, response.getWriter());

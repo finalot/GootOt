@@ -387,16 +387,25 @@ public class MypageDao {
 		return sqlSession.selectOne("mypageMapper.resultPoint",memNo);
 	}
 	
-	public ArrayList<Review> selectLastSort(int memNo) {
-		return (ArrayList)sqlSession.selectList("mypageMapper.selectLastSort", memNo);
+	public ArrayList<Review> selectLastSort(PageInfo pi,int memNo) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectLastSort", memNo, rowBounds);
 	}
 
-	public ArrayList<Review> selectLikeSort(int memNo) {
-		return (ArrayList)sqlSession.selectList("mypageMapper.selectLikeSort", memNo);
+	public ArrayList<Review> selectLikeSort(PageInfo pi, int memNo) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectLikeSort", memNo, rowBounds);
 	}
 
-	public ArrayList<Review> selectCommentLast(int memNo) {
-		return (ArrayList)sqlSession.selectList("mypageMapper.selectCommentLastSort", memNo);
+	public ArrayList<Review> selectCommentLast(PageInfo pi,int memNo) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectCommentLastSort", memNo, rowBounds);
 	}
 
 	
