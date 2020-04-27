@@ -1212,11 +1212,11 @@ select {
                          <div style="width:10px;height:10px;position:relative;top:400px;left:5px;">
                          <a class="prev" onclick="plusSlides(-1);"style="font-size:25px;background:gray;opacity: 0.6;" ><strong>&#10094;</strong></a>
                          </div>
-                        <div style="width:10px;height:10px;position:relative;top:390px;left:780px;">
+                        <div id="nextPh" style="width:10px;height:10px;position:relative;top:390px;left:780px;">
                         <a class="next" onclick="plusSlides(1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>&#10095;</strong></a>
                         </div>
                         
-                        <div class="mySlides" style="display: block;">
+                       <!--  <div class="mySlides" style="display: block;">
                             <div class="numbertext" ><font style="font-size:14px;">1 / 2</font></div>
                             <img class="contentimgs" id="contentimgs1" src="" alt="sample1" style="margin-top:-5%;">
                         </div>
@@ -1225,7 +1225,7 @@ select {
                             <div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>
                             <img class="contentimgs" id="contentimgs2" src="" alt="sample2" style="margin-top:-5%;" >
                         </div>
-                        
+                         -->
                
                        
                        
@@ -1866,10 +1866,11 @@ select {
 			success:function(data) {
 				 $('#review_list').children('li').remove();
 				 $('#review_list').children('div').remove();
+				 console.log(data);
 				 for(var i=0;i<data.rlist.length;i++) {
 					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
-					 for(var j=0;j<data.rc.length;j++){
-							if(data.rlist[i].prdtCode == data.rc[j].prdt_code){
+					  for(var j=0;j<data.rc.length;j++){
+							if(data.rlist[i].prdtCode == data.rc[j].prdt_code){ 
 					 $('#review_list').append('<li class="reviews_index_gallery_review review1" style=" width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%;margin-left:3%">'+
 									  '<input type="hidden" class="rv_no"  value="'+data.rlist[i].rvNo+'">'+
 									  '<div class="photo_review_thumbnail js-link-fullscreen-popup"data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">'+
@@ -1908,8 +1909,8 @@ select {
 									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
 									  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
 							          '</div></div></div></li>')
-							}
-					 }
+						}
+					 } 
 				 }
 					},error:function() {
 						alert("에러임에러임");
@@ -2125,8 +2126,16 @@ select {
 				 $('#pImage').attr("src",r.r.prdtPath+r.r.prdtImg);
 				 $('#likeCheck').val(r.lhl.likeCheck);
 				 $('#likeCount').text(r.r.rvLike);
-			 	 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
-				 $('#contentimgs2').attr("src",r.ph[1].rpPhoto); 
+				 for(var i =0; i<r.ph.length;i++){
+	                  $('#nextPh').after('  <div class="mySlides" style="display: block;">'+
+	                               '<div class="numbertext" ><font style="font-size:14px;">'+(i+1)+' / 2</font></div>'+
+	                               '<img class="contentimgs" src="'+r.ph[i].rpPhoto+'" alt="sample1" style="margin-top:-5%;">'+
+	                               '</div>')
+	             }
+				 
+				 
+			 	/*  $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
+				 $('#contentimgs2').attr("src",r.ph[1].rpPhoto);  */
 				 console.log("????"+r.lhl.likeCheck)
 				 if(r.lhl.likeCheck == "N"){
 					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-noncheck.png") ;

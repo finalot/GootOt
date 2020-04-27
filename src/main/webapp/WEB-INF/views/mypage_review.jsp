@@ -322,6 +322,11 @@ a{
   					</ul>
 				</div>
 			</div>
+			
+			<div>
+			<h1>테스트입니다.</h1>
+			
+			</div>
 
        		<div class="reviews_index__body">
 						<ul class="reviews_index__reviews reviews">
@@ -420,7 +425,7 @@ a{
 									</li>
 									</c:forEach>
 					</ul>  
-				</div>
+				</div> 
 		
 		<!-- 페이징 처리 -->
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">

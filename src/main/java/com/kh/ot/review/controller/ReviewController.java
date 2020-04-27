@@ -477,8 +477,7 @@ public class ReviewController extends HttpServlet {
 		public void CategorySelect(int upNo, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
 			ArrayList<Review> rlist = new ArrayList<Review>();
 			ArrayList<Review_count> rc = rService.selectReviewCount();
-			
-			ArrayList<Review_count> rc = rService.selectReviewCount();
+	
 			if(upNo == 0) {
 				 rlist = rService.selectReviewList();
 			} else {
