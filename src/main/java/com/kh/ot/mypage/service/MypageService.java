@@ -344,7 +344,7 @@ public interface MypageService {
 
 	ArrayList<Review> selectLikeSort(PageInfo pi,int memNo);
 
-	ArrayList<Review> selectCommentLast(PageInfo pi, int memNo);
+	ArrayList<Review> selectStarSort(PageInfo pi, int memNo);
 
 
 

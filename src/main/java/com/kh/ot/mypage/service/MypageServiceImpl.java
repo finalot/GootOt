@@ -330,8 +330,8 @@ public class MypageServiceImpl implements MypageService{
 	}
 
 	@Override
-	public ArrayList<Review> selectCommentLast(PageInfo pi,int memNo) {
-		return mpDao.selectCommentLast(pi, memNo);
+	public ArrayList<Review> selectStarSort(PageInfo pi,int memNo) {
+		return mpDao.selectStarSort(pi, memNo);
 	}
 
 	@Override

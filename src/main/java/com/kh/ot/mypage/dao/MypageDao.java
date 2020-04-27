@@ -401,11 +401,11 @@ public class MypageDao {
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectLikeSort", memNo, rowBounds);
 	}
 
-	public ArrayList<Review> selectCommentLast(PageInfo pi,int memNo) {
+	public ArrayList<Review> selectStarSort(PageInfo pi,int memNo) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("mypageMapper.selectCommentLastSort", memNo, rowBounds);
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectStarSort", memNo, rowBounds);
 	}
 
 	

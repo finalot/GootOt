@@ -1322,11 +1322,12 @@ public class MypageController {
 		} else if (Sort.equals("like")) {
 			list = mpService.selectLikeSort(pi, memNo);
 			System.out.println(list);
-		} else if (Sort.equals("commentlast")) {
-			list = mpService.selectCommentLast(pi, memNo);
+		} else if (Sort.equals("star")) {
+			list = mpService.selectStarSort(pi, memNo);
 			System.out.println(list);
 		}
 
+		System.out.println("list : " + list);
 		response.setContentType("appliction/json; charset=utf-8");
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();

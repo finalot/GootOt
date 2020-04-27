@@ -123,6 +123,7 @@
 			<result property="prdtImg" column="PRDT_IMAGE"/>
 			<result property="prdtPath" column="PRDT_IMAGE_PATH"/>
 			<result property="memno" column="MEM_NO"/>
+			<result property="rvPoint" column="RV_POINT"/>
 	</resultMap>
 	
 	<!-- 페이징을 위한 포인트 내역 갯수 출력 -->
@@ -651,6 +652,7 @@
 		JOIN PRDT P
 		ON (R.PRDT_CODE = P.PRDT_NO)
 		WHERE M.MEM_NO=#{memno}
+		ORDER BY R.RV_NO DESC
 	</select>
 	
 	<select id="getSearchReviewCount" resultType="_int">
@@ -696,6 +698,16 @@
 		ON (R.PRDT_CODE = P.PRDT_NO)
 		WHERE M.MEM_NO=#{memno}
 		ORDER BY R.RV_LIKE DESC
+	</select>
+	<select id="selectStarSort" resultMap="ReviewResultSet">
+		SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M
+		ON (R.MEM_CODE = M.MEM_NO)
+		JOIN PRDT P
+		ON (R.PRDT_CODE = P.PRDT_NO)
+		WHERE M.MEM_NO=#{memno}
+		ORDER BY R.RV_POINT DESC
 	</select>
 
 	<select id="resultPoint" parameterType="_int"  resultType="_int">

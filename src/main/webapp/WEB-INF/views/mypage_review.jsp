@@ -60,9 +60,9 @@ a{
     padding: 0;
     box-shadow: 0 3px 3px #fafafa;
     position: relative;
-    height: 360px;
+    height: 430px;
     font-size: 11px;
-    margin: 15px 29px 90px;
+    margin: 15px 29px 40px;
 }
 
 .reviews_index--gallery  {
@@ -195,6 +195,352 @@ a{
 .reviews_index_gallery_review__product_info_feedbacks {
     color: #c3b799;
 }
+
+
+
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+	background-color: #fefefe;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 100%; /* Could be more or less, depending on screen size */
+}
+/* The Close Button */
+.close1 {
+	color: #aaa;
+	align: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+#modalcontent{
+    width: 900px;
+    height: 500px;
+    font-size: 25px;
+    margin-top: 4%;
+    display: inline-block;
+}
+
+.contentimgs{
+	width: auto;
+    height: 800px;
+    float: left;
+}
+			
+#dotbox {
+	position: absolute;
+    background-color: rgba(0,0,0,0.4);
+	bottom: 0px;
+	left: 200px;
+}
+
+#modalimg{
+	width:auto;
+    height:100%;
+    float: left;
+}
+
+#coments{
+    background-color: white;
+    width: 400px;
+    height: 800px;
+    float: left;
+    padding: 20px;
+    overflow: hidden;
+}
+.coments{
+    float: left;
+}
+
+#innercoment{
+    height: 150px;
+}
+
+#closebtn{
+    margin-left: 1050px;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    font-size: 45px;
+}
+
+#comentarea{
+}
+
+#comentinput{
+    width: 245px;
+    height: 25px;
+    float: left;
+}
+
+ #rvComment{
+    width: 245px;
+    height: 25px;
+    float: left;
+}
+
+#comentsend{
+    height: 25px;
+    background-color: lightslategray;
+    border: 0px;
+    font-size:18px;
+}
+
+
+
+#setting{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+#settinglist{
+    height: 490px;
+    width: 250px;
+    border:none;
+    background-color: white;
+    border-radius: 15px;
+    font-size: 20.5px;
+    margin: 120px auto;
+    padding-top: 2px;
+    display: inline-block;
+}
+
+#profileModal{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+}
+#profileSet{
+    height: 530px;
+    width: 260px;
+    border:none;
+    background-color: white;
+    border-radius: 15px;
+    font-size: 18px;
+    margin: 85px auto;
+    padding-top: 2px;
+    text-align: center;
+    display: inline-block;
+}
+
+#Public_scope{
+    height: 320px;
+    width: 250px;
+    border: none;
+    background-color: white;
+    border-radius: 15px;
+    font-size: 23px;
+    margin: 150px auto;
+    padding-top: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+#Public_Scope_Modal{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+#comentSet{
+    height: 320px;
+    width: 250px;
+    border: none;
+    background-color: white;
+    border-radius: 15px;
+    font-size: 23px;
+    margin: 150px auto;
+    padding-top: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+#comentSetModal{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+#comenttextarea{
+    height: 100px;
+    width: 230px;
+}
+
+#nameSet{
+    height: 250px;
+    width: 250px;
+    border: none;
+    background-color: white;
+    border-radius: 15px;
+    font-size: 23px;
+    margin: 150px auto;
+    padding-top: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+#nameSetModal{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+    /* display: inline-block; */
+}
+
+#nametextarea{
+    height: 25px;
+    width: 230px;
+}
+
+.checkBox{
+   border-radius: 100%;
+   width: 15px;
+   height: 15px;
+}
+
+#proImgSet{
+ 	height: 250px;
+    width: 250px;
+    border: none;
+    background-color: white;
+    border-radius: 15px;
+    font-size: 23px;
+    margin: 150px auto;
+    padding-top: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+#proImgModal{
+ display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+    /* display: inline-block; */
+}
+
+  #proimgarea{
+    height: 25px;
+    width: 230px;
+}
+
+ #proBackSet{
+ 	height: 250px;
+    width: 250px;
+    border: none;
+    background-color: white;
+    border-radius: 15px;
+    font-size: 23px;
+    margin: 150px auto;
+    padding-top: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+#proBackModal{
+ display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+    /* display: inline-block; */
+}
+
+  #probackarea{
+    height: 25px;
+    width: 230px;
+}
+
 </style>
 	<jsp:include page="header.jsp"/>
 </head>
@@ -294,6 +640,7 @@ a{
       						<select name="sort" onchange="sort();" id="sort" style="height: 51px; border-style: none; width: 100%; font-size:13px;">
 							     <option value="last">최신순</option>
 								 <option value="like">추천순</option>
+								 <option value="star">평점순</option>
 	  						</select>
     					</li>
     
@@ -313,7 +660,6 @@ a{
 
 			<div id="modal" style="overflow-y: hidden; display: none;">
 					<div id="modalcontent" style="width:100%;height:100%;margin-left:18.5%;margin-top:80px !important;">
-                
       				<!-- 모달창 사진 넘어가는 부분 -->
                 		<div id="modalpost">
                     		<div id="modalimg" class="slideshow-container" style="position:relative;top:-20px;">
@@ -429,31 +775,6 @@ a{
                 	</div>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
        		<div class="reviews_index__body" style="display:inline-block;">
 				<ul class="reviews_index__reviews reviews menuul" style="display:inline-block;">
 					<c:forEach var="r" items="${list }">
@@ -465,7 +786,7 @@ a{
 										<li class="photo_review_thumbnail__review_image_thumbnail">
 											<a onclick="review1(this)">
 												<img class="js-review-image" alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="${r.rvImage }" 
-												style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;">
+												style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray; height:280px;">
 											</a>
 										</li>
 									</ul>
@@ -485,7 +806,7 @@ a{
 											<!-- 작성자 -->
 											<strong>${r.memName }</strong>
 										</div>
-
+	
 										<div class="photo_review_thumbnail__created_at">
 											${r.rvDate }
 										</div>
@@ -515,13 +836,13 @@ a{
 										</c:forEach>
 										<br>
 										<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점
-											<strong style="color: black;">4.9</strong>
+											<strong style="color: black;" id="starArea">${r.rvPoint }</strong>
+											<i class="fa fa-fw fa-star"></i>
+											<i class="fa fa-fw fa-star"></i>
+											<i class="fa fa-fw fa-star"></i>
+											<i class="fa fa-fw fa-star"></i>
+											<i class="fa fa-fw fa-star"></i>
 										</span>
-										<i class="fa fa-fw fa-star"></i>
-										<i class="fa fa-fw fa-star"></i>
-										<i class="fa fa-fw fa-star"></i>
-										<i class="fa fa-fw fa-star"></i>
-										<i class="fa fa-fw fa-star"></i>
 									</div>
 								</div>
 							</div>
@@ -763,23 +1084,37 @@ a{
 														'</span>'+
 												'<br>'+
 												'<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점'+
-													'<strong style="color: black;">4.9</strong>'+
+													'<strong style="color: black;" id="starArea">'+data.list[i].rvPoint+'</strong>'+
 												'</span>'+
-												'<i class="fa fa-fw fa-star"></i>'+
-												'<i class="fa fa-fw fa-star"></i>'+
-												'<i class="fa fa-fw fa-star"></i>'+
-												'<i class="fa fa-fw fa-star"></i>'+
-												'<i class="fa fa-fw fa-star"></i>'+
 											'</div>'+
 										'</div>'+
 									'</div>'+
-								'</li>')
-									}
-								}
+								'</li>');
+								
+								
+								var star1 = '<i class="fa fa-fw fa-star"></i>'
+						   	 	var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 	var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 	var star4 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 	var star5 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 	
+						   	 	if(data.list[i].rvPoint==1) {
+						   	 		$('#starArea').after(star1);
+						      	 } else if(data.list[i].rvPoint==2) {
+						      		$('#starArea').after(star2);
+						      	 } else if(data.list[i].rvPoint==3) {
+						      		$('#starArea').after(star3);
+						      	 } else if(data.list[i].rvPoint==4) {
+						      		$('#starArea').after(star4);
+						      	 } else if(data.list[i].rvPoint==5) {
+						      		$('#starArea').after(star5);
+						      	 }
 							}
 						}
-					})
+					}
 				}
+			})
+		}
 	
 		 function pbSearch() {
 			 var search_key = $('#search_key').val();
@@ -826,6 +1161,34 @@ a{
 	</script>
 	
 	<script>
+	$('#heartClick').click(function() {
+		 var rv_no = $('#rv_no2').val();
+		 var likeCheck = $('#likeCheck').val();
+
+		 console.log("rv___no: " + rv_no);
+		 var count = 0;
+
+		  $.ajax({
+			 url:"reviewLike.do",
+			 dataType:"json",
+			 data : {rv_no : rv_no, likeCheck : likeCheck},
+			 success : function(r) {
+				 console.log(r)
+				 console.log(r.r.rvLike)
+				 $('#likeCheck').val(r.lhl.likeCheck);
+				 $('#likeCount').text(r.r.rvLike);
+				 if(r.lhl.likeCheck == "N"){
+					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-noncheck.png") ;
+				 }else{
+					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-check.png");
+				 }
+			 }
+		 })
+	})
+	</script>
+	
+	
+	<script>
 	<!--리뷰 모달 디테일 스크립트-->
 	function review1(en){
 		 if("${loginMember.memId}"==""){
@@ -864,20 +1227,27 @@ a{
 					 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
 					 $('#contentimgs2').attr("src",r.ph[1].rpPhoto);
 				 } */
+				 if(r.ph.length == 1){
+						$('#movePage1').css("display","none");
+						$('#movePage2').css("display","none");
+					}else{
+						$('#movePage1').css("display","block");
+						$('#movePage2').css("display","block");
+					}
+				 
 			  for(var i =0; i<r.ph.length;i++){
 				  if(i == 0){
 						$('#nextPh').after('  <div class="mySlides" style="display: block;">'+
 	                            '<div class="numbertext" ><font style="font-size:14px;">1/ 2</font></div>'+
 	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;width:800px;">'+
 	                            '</div>')
-				  }else{
+				  } else{
 						$('#contentimgs1').after(	' <div class="mySlides">'+
 			                      '<div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>'+
 			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;width:800px;" >'+
 			                  '</div>')
 					  
-				  }
-				  
+				  		}
 				  } 
 
 
@@ -1012,8 +1382,129 @@ a{
 
 	}
 	
+	function Warning(wa) {
+
+		if(confirm('댓글을 신고 하겠습니까?') ==true){
+		var rvcNo=$(wa).parents('.replyDiv').find('.rvc_no').val();
+
+		 var rv_no = $('#rv_no2').val();
+		 $('#comentarea').children('.replyDiv').remove();
+		 $('#comentarea').children('br').remove();
+
+		 $.ajax({
+				url:"WarningReply.do",
+				dataType:"json",
+				data : {rvcNo : rvcNo, rv_no : rv_no},
+				success:function(data) {
+					 console.log(data.rplist[0]);
+					 for(var i=0;i<data.rplist.length;i++) {
+
+						 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )
+							 }else{
+
+			                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                          	'<button style=""></button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )
+							 }
+					 }
+					},error:function() {
+						alert("에러임에러임");
+					}
+
+			})
+		}
+
+	}
 	
-	
+	$('#comentsend').on("click", function() {
+		var rvComment = $('#rvComment').val();
+		 var rv_no = $('#rv_no2').val();
+		 var rvc_no = $('.rvc_no').val();
+
+
+
+
+		if(rvComment == ""){
+				alert("댓글을 작성해주세요");
+		}else{
+			 $('#comentarea').children('.replyDiv').remove();
+			 $('#comentarea').children('br').remove();
+
+
+		$.ajax({
+			url:"addReply.do",
+			data : {rvComment : rvComment, rv_no : rv_no},
+			success:function(data) {
+				if(data=="success") {
+					//getReplyList();
+					 $.ajax({
+
+						url:"rList.do",
+						dataType:"json",
+						data : {rv_no:rv_no},
+						success:function(data) {
+						 console.log(data.rplist[0]);
+							 for(var i=0;i<data.rplist.length;i++) {
+
+								 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+								 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+								 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+				                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+				                          	'<button style="">&times;</button><br>'+
+				                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+				                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+				                          	 )
+								 }else{
+
+				                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+								 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+				                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+				                          	'<button style=""></button><br>'+
+				                          	'<button style="float:right;font-size:10px;color:#e65540;"onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+				                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+				                          	 )
+								 }
+							 }
+						},error:function() {
+							alert("에러임에러임");
+						}
+		 })
+					$('#rvComment').val("");
+				}
+			},error:function() {
+				console.log("등록실패");
+			}
+		})
+			}
+		});
+
+	function getReplyList() {
+
+		 var rv_no = $('#rv_no2').val();
+
+		//comentarea
+
+		$.ajax({
+			url:"rList.do",
+			data:{rv_no:rv_no},
+			dataType:"json",
+			success:function(data) {
+
+			}
+
+		})
+	}
 	
 	</script>
 </body>
