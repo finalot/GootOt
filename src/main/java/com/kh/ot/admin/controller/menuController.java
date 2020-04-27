@@ -40,8 +40,10 @@ import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.cart.service.CartService;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
+import com.kh.ot.common.MainPagination2;
 import com.kh.ot.common.Pagination;
 import com.kh.ot.main.service.MainService;
+import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
@@ -616,9 +618,14 @@ public class menuController {
 	}
 
 	@RequestMapping("review_list.ad")
-	public ModelAndView review_list(ModelAndView mv) {
+	public ModelAndView review_list(@RequestParam(value="currentPage", 
+		    required=false,defaultValue="1") int currentPage,ModelAndView mv) {
 		
-		ArrayList<Review> rlist =   rService.selectReviewList();
+		
+		int listCount = rService.selectListCount();
+		MainPageInfo2 pi = MainPagination2.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Review> rlist =   rService.selectReviewList(pi);
 		
 		mv.addObject("rlist",rlist);
 		mv.setViewName( "admin/review_list");
