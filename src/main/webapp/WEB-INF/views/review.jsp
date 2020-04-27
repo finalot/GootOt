@@ -1423,7 +1423,7 @@ select {
 											</div>
 										</div>
 									</li>
-									</c:forEach>
+							</c:forEach>
 									<!-- foreach문 마감줄 -->
 									<!-- 리뷰1 끝 -->
 									<!-- 리뷰1 -->
@@ -1432,6 +1432,7 @@ select {
 
 					</div><br><br><br>
 
+				
 					<!-- 페이징 처리 할 부분 -->
 				<c:if test="${!empty rlist }">
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
@@ -1798,7 +1799,7 @@ select {
 									 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 					                          	'<small>'+data.rplist[i].rvComment+'</small>'+
 					                          	'<button style=""></button><br>'+
-					                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+					                          	'<button style="float:right;font-size:10px;color:#e65540;"onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 					                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 					                          	 )
 									 }
@@ -2173,7 +2174,7 @@ select {
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
 			                          	'<button style=""></button><br>'+
-			                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;"onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 			                          	 )
 							 }
@@ -2255,7 +2256,7 @@ select {
 						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
 		                          	'<button style=""></button><br>'+
-		                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+		                          	'<button style="float:right;font-size:10px;color:#e65540;"onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 		                          	 )
 						 }
@@ -2273,6 +2274,8 @@ select {
 
 	<script>
 	function Warning(wa) {
+		
+		if(confirm('댓글을 신고 하겠습니까?') ==true){
 		var rvcNo=$(wa).parents('.replyDiv').find('.rvc_no').val();
 
 		 var rv_no = $('#rv_no2').val();
@@ -2301,7 +2304,7 @@ select {
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
 			                          	'<button style=""></button><br>'+
-			                          	'<button style="float:right;font-size:10px;color:#e65540;">&nbsp;&nbsp;신고하기</button>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 			                          	 )
 							 }
@@ -2311,6 +2314,7 @@ select {
 					}
 
 			})
+		}
 
 	}
 	</script>

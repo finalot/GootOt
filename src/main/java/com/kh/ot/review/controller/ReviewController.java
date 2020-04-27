@@ -22,9 +22,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.common.MainPagination2;
 import com.kh.ot.common.Pagination;
 import com.kh.ot.main.dao.MainDao;
 import com.kh.ot.main.service.MainService;
+import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
@@ -59,9 +61,9 @@ public class ReviewController extends HttpServlet {
 			
 
 	   		int listCount = rService.selectListCount();
+	   		System.out.println("listCount:" + listCount);
 
-
-	   		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+	   		MainPageInfo2 pi = MainPagination2.getPageInfo(currentPage, listCount);
 			
 			ArrayList<Review> rlist = new ArrayList<>();
 			ArrayList<Product> plist = rService.getBestList();
@@ -85,6 +87,7 @@ public class ReviewController extends HttpServlet {
 			mv.addObject("pclist",pclist);
 			mv.addObject("ulist",ulist);
 			mv.addObject("rc",rc);
+			mv.addObject("pi",pi);
 
 
 			
@@ -495,7 +498,7 @@ public class ReviewController extends HttpServlet {
 	   		int listCount = rService.selectListCount();
 
 
-	   		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+	   		MainPageInfo2 pi = MainPagination2.getPageInfo(currentPage, listCount);
 	
 			if(upNo == 0) {
 				 rlist = rService.selectReviewList(pi);
@@ -512,6 +515,7 @@ public class ReviewController extends HttpServlet {
 			Map hmap = new HashMap();
 			hmap.put("rlist", rlist);
 			hmap.put("rc", rc);
+			
 			
 			
 			gson.toJson(hmap,response.getWriter());

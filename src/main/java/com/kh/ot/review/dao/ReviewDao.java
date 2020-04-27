@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.ot.board.vo.PageInfo;
+import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.MainupCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
@@ -31,11 +32,11 @@ public class ReviewDao {
 	 * @내용    : review 리스트 뿌려주기
 	 * @return
 	 */
-	public ArrayList<Review> selectReviewList(PageInfo pi) {
+	public ArrayList<Review> selectReviewList(MainPageInfo2 pi) {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList",rowBounds);
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList",null,rowBounds);
 	}
 
 	/**
