@@ -322,4 +322,14 @@ public class ReviewDao {
 	public ArrayList<Review_count> selectReviewCount() {
 		return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewCount");
 	}
+
+	/**
+	 * @작성일  : 2020. 4. 27.
+	 * @작성자  :  문태환
+	 * @내용 	: 리뷰 신고 게시글 가져오기
+	 * @return
+	 */
+	public ArrayList<Review> selectReviewReportList() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewReportList");
+	}
 }

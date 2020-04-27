@@ -99,7 +99,8 @@
 		
 	
  	<select id="selectReviewList" parameterType="_int" resultMap="ReviewResultSet">
-		  SELECT RV_NO,RV_INFO,MEM_NAME,RV_DATE,PRDT_NAME,PRDT_IMAGE,PRDT_IMAGE_PATH,RV_IMAGE,RE.PRDT_CODE
+		  SELECT RV_NO,RV_INFO,MEM_NAME,RV_DATE,PRDT_NAME,PRDT_IMAGE,PRDT_IMAGE_PATH,RV_IMAGE,RE.PRDT_CODE,
+		  RV_HEIGHT,RV_WEIGHT,RV_SIZE
       	  FROM REVIEW RE
       	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
           JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
@@ -450,6 +451,13 @@
   				from review
     			group by prdt_code
  		
+ 		</select>
+ 		
+ 		<select id="selectReviewReportList" resultMap="ReviewReplyResultSet">
+ 		 SELECT RVC.RV_COMMENT_INFO,M.MEM_NAME,RVC.RV_DATE,RVC.RV_REPORT,RVC.RVC_NO,M.MEM_NO,RVC.RV_DATE
+   		 FROM REVIEW_COMMENT RVC
+         JOIN MEMBER M ON (M.MEM_NO = RVC.MEM_NO)
+         WHERE RVC.RV_REPORT = 'Y'
  		</select>
 
  

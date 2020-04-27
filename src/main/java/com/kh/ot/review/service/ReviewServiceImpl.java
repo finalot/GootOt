@@ -152,4 +152,9 @@ public class ReviewServiceImpl implements ReviewService{
 		return rDao.selectReviewCount();
 	}
 
+	@Override
+	public ArrayList<Review> selectReviewReportList() {
+		return rDao.selectReviewReportList();
+	}
+
 }

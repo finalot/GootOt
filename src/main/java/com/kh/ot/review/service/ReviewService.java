@@ -221,4 +221,12 @@ public interface ReviewService {
 	 */
 	ArrayList<Review_count> selectReviewCount();
 
+	/**
+	 * @작성일  : 2020. 4. 27.
+	 * @작성자  : 문태환
+	 * @내용 	: 리뷰 신고 리스트 
+	 * @return
+	 */
+	ArrayList<Review> selectReviewReportList();
+
 }
