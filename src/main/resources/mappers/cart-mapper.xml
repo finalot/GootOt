@@ -260,7 +260,7 @@
 		(#{memno},#{ordno},POINT_SEQ.NEXTVAL,SYSDATE,#{pt_price},#{pt_content},NULL,NULL)
 	</insert>
 	
-	<!-- <select id="selectCartList" parameterType="java.util.Map" resultMap="cartResultSet" >
+	<select id="selectCartList" parameterType="java.util.Map" resultMap="cartResultSet" >
 			SELECT *
 			FROM CRT C
 			JOIN PRDT P ON (C.PRDT_NO = P.PRDT_NO)
@@ -270,7 +270,7 @@
              			   #{ca.ca_no}
         </foreach>
 	
-	</select> -->
+	</select> 
 	
 	<select id="selectOrder" resultMap="ordResultSet">
 		SELECT *
