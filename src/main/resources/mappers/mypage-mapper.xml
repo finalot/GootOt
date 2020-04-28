@@ -711,9 +711,28 @@
 	</select>
 
 	<select id="resultPoint" parameterType="_int"  resultType="_int">
-	SELECT MEM_POINT
-	FROM MEMBER
-	WHERE MEM_NO=#{memNo}	
-
+		SELECT MEM_POINT
+		FROM MEMBER
+		WHERE MEM_NO=#{memNo}	
 	</select>
+	<delete id="reviewDelete1" parameterType="_int">
+		DELETE 
+		FROM LIKE_HEART
+		WHERE RV_NO=#{rv_no}
+	</delete>
+	<delete id="reviewDelete2" parameterType="_int">
+		DELETE 
+		FROM REVIEW_COMMENT
+		WHERE RV_NO=#{rv_no}
+	</delete>
+	<delete id="reviewDelete3" parameterType="_int">
+		DELETE 
+		FROM REVIEW_PHOTO
+		WHERE RP_RV_NO=#{rv_no}
+	</delete>
+	<delete id="reviewDelete4" parameterType="_int">
+		DELETE 
+		FROM REVIEW
+		WHERE RV_NO=#{rv_no}
+	</delete>
 </mapper>

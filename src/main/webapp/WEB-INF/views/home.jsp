@@ -128,13 +128,9 @@
 					<c:forEach var="top" items="${ topplist }">
 						<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
 								<c:if test="${61999 gt top.prdtNo and top.prdtNo gt 60000}">
-								<div class="block1 hov-img-zoom pos-relative m-b-30">
-								
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
 									<img src="${top.prdtImagePath }${top.prdtImage }" alt="IMG-PRODUCT">
-
 									<div class="block2-overlay trans-0-4">
-									
-
 										<div id="${top.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
@@ -145,15 +141,11 @@
 									</div>
 								</div>
 							</c:if>
-									<c:if test="${top.prdtNo gt 62000}">
-									<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-									
+							<c:if test="${top.prdtNo gt 62000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
 									<img src="${top.prdtImagePath }${top.prdtImage }" alt="IMG-PRODUCT">
-
 									<div class="block2-overlay trans-0-4">
-										
-
-										<div id="${top.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+									<div id="${top.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
 											style="width:60%;margin-left:20%" onclick="wish('${top.prdtNo }');">
@@ -162,18 +154,12 @@
 										</div>
 									</div>
 								</div>
-									</c:if>
-								
-								
-								<c:if test="${top.prdtNo lt 60000}">
+							</c:if>
+							<c:if test="${top.prdtNo lt 60000}">
 								<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								
 									<img src="${top.prdtImagePath }${top.prdtImage }" alt="IMG-PRODUCT">
-
 									<div class="block2-overlay trans-0-4">
-										
-
-										<div id="${top.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+									<div id="${top.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
 											style="width:60%;margin-left:20%" onclick="wish('${top.prdtNo }');">
@@ -182,7 +168,8 @@
 										</div>
 									</div>
 								</div>
-								</c:if>
+							</c:if>
+							
 								<div class="block2-txt p-t-20">
 									<span class="block2-price m-text6 p-r-5" >
 								<c:forEach var="po" items="${ polist }">
@@ -195,7 +182,7 @@
 									</c:if>
 								</c:forEach>
 									</span>
-
+							
 									<br>
 									
 					<c:url var="product_detail" value="product_detail.do">

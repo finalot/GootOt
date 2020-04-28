@@ -60,8 +60,8 @@ public class HomeController {
 		ArrayList<Design> mainList = adService.selectMainList();
 //		Design video = adService.selectVideo();
 		ArrayList<Design> instaList = adService.selectInstaList();
-
 		
+		System.out.println(mainList);
 		  ArrayList<Product> plist = mainService.selectListMain();
 		  ArrayList<Product_opt> polist = mainService.selectOptionListMain();
 		  ArrayList<Product_color> pclist = mainService.selectColorListMain();

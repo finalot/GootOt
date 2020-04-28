@@ -774,21 +774,34 @@ MainSearchCondition msc= new MainSearchCondition();
 		   }
 		   
 			   
+		   int result3 = 0;
 		   
+		   int countRvNo = 0;
 		  
 			   
 			   dr.setFileName2(rvImage2);
-		  
-		   
+			   
+			   ArrayList<Integer> rvNo1 = mainService.getRvNo(rc);
+			   for(int i=0; i<rvNo1.size();i++) {
+				   countRvNo++;
+				  }
+			   
+			   
+			   if(countRvNo == 0) {
+				   
 		   int result= mainService.detailReviewInsert(dr);
 		   
-		   int result3 = 0;
+		   ArrayList<Integer> rvNo2 = mainService.getRvNo(rc);
+		   
+		  
 		   
 		   
-		  if(result>0) {
-			  ArrayList<Integer> rvNo = mainService.getRvNo(rc);
-			  for(int i=0; i<rvNo.size();i++) {
-				  dr.setRvNo(rvNo.get(0));
+		   
+		   
+	  if(result>0) {
+			  
+			  for(int i=0; i<rvNo2.size();i++) {
+				  dr.setRvNo(rvNo2.get(0));
 			  }
 			  
 			  if(count ==1) {
@@ -811,10 +824,10 @@ MainSearchCondition msc= new MainSearchCondition();
 			  		
 			  }
 		  
-		  else {
+	   }else {
 			  
 		  resultMap.put("status","fail");
-		  resultMap.put("message","리뷰작성 실패,관리자에 문의하세요."); 
+		  resultMap.put("message","리뷰작성 실패,리뷰는 한 게시물당 한개만 가능합니다. 삭제 후 다시 작성해주세요!"); 
 		  
 		  }
 		 

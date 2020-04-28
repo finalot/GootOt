@@ -339,4 +339,24 @@ public class MypageServiceImpl implements MypageService{
 		return mpDao.resultPoint(memNo);
 	}
 
+	@Override
+	public int reviewDelete1(int rv_no) {
+		return mpDao.reviewDelete1(rv_no);
+	}
+
+	@Override
+	public int reviewDelete2(int rv_no) {
+		return mpDao.reviewDelete2(rv_no);
+	}
+
+	@Override
+	public int reviewDelete3(int rv_no) {
+		return mpDao.reviewDelete3(rv_no);
+	}
+
+	@Override
+	public int reviewDelete4(int rv_no) {
+		return mpDao.reviewDelete4(rv_no);
+	}
+
 }

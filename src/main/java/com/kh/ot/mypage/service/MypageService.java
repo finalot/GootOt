@@ -346,6 +346,11 @@ public interface MypageService {
 
 	ArrayList<Review> selectStarSort(PageInfo pi, int memNo);
 
+	int reviewDelete1(int rv_no);
+	int reviewDelete2(int rv_no);
+	int reviewDelete3(int rv_no);
+	int reviewDelete4(int rv_no);
+
 
 
 }
