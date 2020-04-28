@@ -237,8 +237,8 @@ public class MainDao {
 		return sqlSession.selectOne("productMapper.getOrdNo",rc);
 	}
 
-	public int getRvNo(ReviewCheck rc) {
-		return sqlSession.selectOne("productMapper.getRvNo",rc);
+	public ArrayList<Integer> getRvNo(ReviewCheck rc) {
+		return (ArrayList)sqlSession.selectList("productMapper.getRvNo",rc);
 	}
 
 	public int detailReviewPhotoInsert(DetailReview dr) {

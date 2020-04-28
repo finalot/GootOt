@@ -196,7 +196,7 @@
 		</select>
 		
 		<select id="getOrdNo" parameterType="ReviewCheck" resultType="_int">
-	  	SELECT ORD_DETAILNO
+	  	SELECT COUNT(ORD_DETAILNO)
 		FROM ORD
 		WHERE MEM_NO = #{memNo}
 		AND PRDT_NO = #{prdtNo}
