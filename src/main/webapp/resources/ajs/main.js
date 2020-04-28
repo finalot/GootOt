@@ -873,7 +873,7 @@
     console.log(error);
   }
 
-//  try {
+ try {
 //    //bar chart
 //    var ctx = document.getElementById("barChart");
 //    if (ctx) {
@@ -886,7 +886,7 @@
 //          datasets: [
 //            {
 //              label: "My First dataset",
-//              data: [100, 100, 10, 100, 100, 100, 100],
+//              ata: [100, 100, 10, 100, 100, 100, 100],
 //              borderColor: "rgba(0, 123, 255, 0.9)",
 //              borderWidth: "0",
 //              backgroundColor: "rgba(0, 123, 255, 0.5)",
@@ -926,12 +926,12 @@
 //          }
 //        }
 //      });
-//    }
+    }
 
 
-//  } catch (error) {
-//    console.log(error);
-//  }
+ catch (error) {
+    console.log(error);
+  }
 
   try {
 
@@ -1197,7 +1197,6 @@
   } catch (error) {
     console.log(error);
   }
-
 //  try {
 //
 //    // single bar chart
@@ -1664,5 +1663,4 @@
   } catch (error) {
     console.log(error);
   }
-
 })(jQuery);
