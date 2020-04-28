@@ -47,19 +47,19 @@
  					님은 현재 
 					<strong>
 						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">
-							<c:if test="${loginMember.memSumMoney < 30000}">
+							<c:if test="${loginMember.memSumMoney < 100000}" >
 								MEMBER
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 30000 && loginMember.memSumMoney < 60000}" >
+							<c:if test="${loginMember.memSumMoney >= 100000 && loginMember.memSumMoney < 300000}" >
 								IRON
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 60000 && loginMember.memSumMoney < 90000}" >
+							<c:if test="${loginMember.memSumMoney >= 300000 && loginMember.memSumMoney < 500000}" >
 								BRONZE
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 90000 && loginMember.memSumMoney < 120000}" >
+							<c:if test="${loginMember.memSumMoney >= 500000 && loginMember.memSumMoney < 700000}" >
 								SILVER
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 120000}" >
+							<c:if test="${loginMember.memSumMoney >= 700000}" >
 								GOLD
 							</c:if>
 						</span>
@@ -84,7 +84,7 @@
 	                    <br>
 	                    <strong class="data">
 	                    	<a href="${mPoint }">
-	                    	<fmt:formatNumber value="${loginMember.mem_point }" pattern="#,###"/>원</a>
+	                  <span>${resultPoint}</span>원</a>
 	                    </strong>
 	                </li>
                 
@@ -92,7 +92,7 @@
 	                    <strong class="title">COUPON</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mCoupon }">${CouponCount }<span>개</span></a>
+	                    	<a href="${mCoupon }">${CouponCount}<span>개</span></a>
 	                    </strong>
 	                </li>
 	            </ul>

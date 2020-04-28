@@ -85,6 +85,7 @@ public class MypageController {
 		int orderCount5 = mpService.orderCount5(memNo);
 		int orderCount6 = mpService.orderCount6(memNo);
 		int orderCount7 = mpService.orderCount7(memNo);
+		int resultPoint = mpService.resultPoint(memNo);
 
 		int listCount = mpService.getOrderListCount(memNo);
 
@@ -96,6 +97,7 @@ public class MypageController {
 
 		System.out.println("list : " + list);
 
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("orderCount1", orderCount1);
 		mv.addObject("orderCount2", orderCount2);
 		mv.addObject("orderCount3", orderCount3);
@@ -146,6 +148,10 @@ public class MypageController {
 		int orderCount5 = mpService.orderCount5(memNo);
 		int orderCount6 = mpService.orderCount6(memNo);
 		int orderCount7 = mpService.orderCount7(memNo);
+		int resultPoint = mpService.resultPoint(memNo);
+
+
+
 
 		OrdSearch os = new OrdSearch();
 
@@ -184,6 +190,7 @@ public class MypageController {
 
 		System.out.println("list : " + list);
 
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
@@ -233,6 +240,10 @@ public class MypageController {
 		int orderCount5 = mpService.orderCount5(memNo);
 		int orderCount6 = mpService.orderCount6(memNo);
 		int orderCount7 = mpService.orderCount7(memNo);
+		int resultPoint = mpService.resultPoint(memNo);
+
+
+
 
 		int listCount = mpService.getCancelListCount(memNo);
 
@@ -244,6 +255,7 @@ public class MypageController {
 
 		System.out.println("list : " + list);
 
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("orderCount1", orderCount1);
 		mv.addObject("orderCount2", orderCount2);
 		mv.addObject("orderCount3", orderCount3);
@@ -297,6 +309,10 @@ public class MypageController {
 		int orderCount5 = mpService.orderCount5(memNo);
 		int orderCount6 = mpService.orderCount6(memNo);
 		int orderCount7 = mpService.orderCount7(memNo);
+		int resultPoint = mpService.resultPoint(memNo);
+
+
+
 
 		os.setMemno(memNo);
 		os.setOrd_status("E");
@@ -316,6 +332,7 @@ public class MypageController {
 
 		System.out.println("list : " + list);
 
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("orderCount1", orderCount1);
 		mv.addObject("orderCount2", orderCount2);
 		mv.addObject("orderCount3", orderCount3);
@@ -362,6 +379,8 @@ public class MypageController {
 
 		int listCount = mpService.getWishListCount(memNo);
 
+		int resultPoint = mpService.resultPoint(memNo);
+
 		System.out.println("listCount : " + listCount);
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
@@ -370,6 +389,7 @@ public class MypageController {
 
 		System.out.println("list : " + list);
 
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("listCount", listCount);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
@@ -450,8 +470,6 @@ public class MypageController {
 
 		int wishlist = mpService.getWishListCount(memNo);
 
-		//int result = mpService.PointPrice(m); //
-
 		int coupon = mpService.CouponListCount(m); // 사용 가능한 쿠폰 카운팅
 
 		int listCount = mpService.PointListCount(memNo); // 사용 가능한 쿠폰
@@ -462,6 +480,9 @@ public class MypageController {
 
 		ArrayList<Point> list = mpService.PointSelectList(memNo, pi);
 
+		int resultPoint = mpService.resultPoint(memNo);
+
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", listCount);
@@ -474,7 +495,7 @@ public class MypageController {
 
 	/**
 	 * ***** 사용안함 *****
-	 * 
+	 *
 	 * @작성일 : 2020. 4. 15.
 	 * @작성자 : 신경섭
 	 * @내용 : 적립금 - 미사용적립금
@@ -541,6 +562,9 @@ public class MypageController {
 
 		ArrayList<CouponMem> list = mpService.CouponSelectList(memNo, pi);
 
+		int resultPoint = mpService.resultPoint(memNo);
+
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", listCount);
 		mv.addObject("PointCount", point);
@@ -582,6 +606,9 @@ public class MypageController {
 
 		ArrayList<CouponMem> list = mpService.CompleteCouponSelectList(memNo, pi);
 
+		int resultPoint = mpService.resultPoint(memNo);
+
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
@@ -623,6 +650,9 @@ public class MypageController {
 
 		System.out.println("list : " + list);
 
+		int resultPoint = mpService.resultPoint(memNo);
+
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
@@ -683,6 +713,9 @@ public class MypageController {
 
 		System.out.println("list : " + list);
 
+		int resultPoint = mpService.resultPoint(memNo);
+
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
@@ -730,6 +763,9 @@ public class MypageController {
 
 		System.out.println("list : " + list);
 
+		int resultPoint = mpService.resultPoint(memNo);
+
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
@@ -784,6 +820,9 @@ public class MypageController {
 
 		System.out.println("list : " + list);
 
+		int resultPoint = mpService.resultPoint(memNo);
+
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
@@ -826,6 +865,9 @@ public class MypageController {
 
 		ArrayList<Address> adlist = mpService.selectAddressList(pi, m);
 
+		int resultPoint = mpService.resultPoint(memNo);
+
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
@@ -856,6 +898,9 @@ public class MypageController {
 
 		int point = mpService.PointListCount(memNo);
 
+		int resultPoint = mpService.resultPoint(memNo);
+
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
@@ -895,6 +940,9 @@ public class MypageController {
 
 		int point = mpService.PointListCount(memNo);
 
+		int resultPoint = mpService.resultPoint(memNo);
+
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
@@ -927,6 +975,9 @@ public class MypageController {
 
 		Address ad = mpService.ModifyAddress(mAddress);
 
+		int resultPoint = mpService.resultPoint(memNo);
+
+		mv.addObject("resultPoint",resultPoint);
 		mv.addObject("WishList", wishlist);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
@@ -1307,16 +1358,16 @@ public class MypageController {
 							@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) throws JsonIOException, IOException {
 		Member m = (Member)session.getAttribute("loginMember");
 		int memNo = m.getMemNo();
-		
+
 		ArrayList<Review> list = new ArrayList();
 		ArrayList<Review_count> rc = rService.selectReviewCount();
 
 		int listCount = mpService.getReviewListCount(memNo);
-		
+
 		System.out.println("listCount : " + listCount);
-		
+
 		PageInfo pi = ReviewPagination.getPageInfo(currentPage,listCount);
-		
+
 		if (Sort.equals("last")) {
 			list = mpService.selectLastSort(pi, memNo);
 			System.out.println(list);
@@ -1349,19 +1400,19 @@ public class MypageController {
 		int result2=0;
 		int result3=0;
 		int result4=0;
-		
+
 			result1 = mpService.reviewDelete1(rv_no);
 			result2 = mpService.reviewDelete2(rv_no);
 			result3 = mpService.reviewDelete3(rv_no);
 			result4 = mpService.reviewDelete4(rv_no);
-		
-		
+
+
 		if(result4>0) {
 			return "ok";
 		}else{
 			return "fail";
 		}
-		
+
 	}
 
 }

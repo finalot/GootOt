@@ -560,19 +560,19 @@ a{
  					님은 현재 
 					<strong>
 						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">
-							<c:if test="${loginMember.memSumMoney < 30000}">
+							<c:if test="${loginMember.memSumMoney < 100000}" >
 								MEMBER
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 30000 && loginMember.memSumMoney < 60000}" >
+							<c:if test="${loginMember.memSumMoney >= 100000 && loginMember.memSumMoney < 300000}" >
 								IRON
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 60000 && loginMember.memSumMoney < 90000}" >
+							<c:if test="${loginMember.memSumMoney >= 300000 && loginMember.memSumMoney < 500000}" >
 								BRONZE
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 90000 && loginMember.memSumMoney < 120000}" >
+							<c:if test="${loginMember.memSumMoney >= 500000 && loginMember.memSumMoney < 700000}" >
 								SILVER
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 120000}" >
+							<c:if test="${loginMember.memSumMoney >= 700000}" >
 								GOLD
 							</c:if>
 						</span>
@@ -597,7 +597,7 @@ a{
 	                    <br>
 	                    <strong class="data">
 	                    	<a href="${mPoint }">
-	                    	<fmt:formatNumber value="${loginMember.mem_point }" pattern="#,###"/>원</a>
+	                  <span>${resultPoint}</span>원</a>
 	                    </strong>
 	                </li>
                 
@@ -702,13 +702,8 @@ a{
 									<div class="reviews_index_gallery_review__product_info_title" id="prDetail" style="padding-top:6px;">
 										<!-- MODAL 창에 뜨는 DETAIL 상품명 -->
 									</div>
-												
-									<div class="reviews_index_gallery_review__product_info_feedbacks" style="margin-top: 3px;">
-										<i class="fa fa-fw fa-star"></i>	
-										<i class="fa fa-fw fa-star"></i>
-										<i class="fa fa-fw fa-star"></i>
-										<i class="fa fa-fw fa-star"></i>
-										<i class="fa fa-fw fa-star"></i>
+									<div id="starstarArea" class="reviews_index_gallery_review__product_info_feedbacks" style="margin-top: 3px;">
+										<i class="fa fa-fw fa-star" id="starstar"></i>
 										<span class="reviews_index_gallery_review__reviews_count" style="color:gray;">
 											<small id="memName"></small>
 										</span>
@@ -798,7 +793,7 @@ a{
 									</div>
 								</div>
 								<div style="border-radius: 2%; width: 90%; margin-left: 5%;" class="photo_review_thumbnail__review_author_info">
-									<div style="margin-top: 2%; border-radius: 2%;" class="photo_review_thumbnail__review_title js-translate-review-message">
+									<div style="margin-top: 2%; border-radius: 2%; height:17px;" class="photo_review_thumbnail__review_title js-translate-review-message">
 										${r.rvInfo }
 									</div>
 									<br>
@@ -1036,19 +1031,22 @@ a{
 			var rv_no = $(this).parents('li').find('.rv_no').val();
 			console.log("rv_no : " + rv_no);
 			
-			$.ajax({
-				url : "reviewDelete.do",
-				data : {rv_no : rv_no},
-				success : function(data){
-					console.log(data);
-					if(data = "ok"){
-						location.reload();
-					}else{
-						alert("삭제실패염")
+			if(confirm("해당 리뷰를 삭제하시겠습니까?") == true){
+				$.ajax({
+					url : "reviewDelete.do",
+					data : {rv_no : rv_no},
+					success : function(data){
+						console.log(data);
+						
+						if(data = "ok"){
+							location.reload();
+						}else{
+							alert("삭제실패염")
+						}
 					}
-				}
-			})
-			
+				})
+			} else
+				return false;
 		});
 	
 	
@@ -1090,7 +1088,7 @@ a{
 											'</div>'+
 										'</div>'+
 										'<div style="border-radius: 2%; width: 90%; margin-left: 5%;" class="photo_review_thumbnail__review_author_info">'+
-											'<div style="margin-top: 2%; border-radius: 2%;" class="photo_review_thumbnail__review_title js-translate-review-message">'+
+											'<div style="margin-top: 2%; border-radius: 2%; height:17px;" class="photo_review_thumbnail__review_title js-translate-review-message">'+
 												''+data.list[i].rvInfo+''+
 											'</div>'+
 											'<br>'+
@@ -1121,14 +1119,14 @@ a{
 													
 											'<div class="reviews_index_gallery_review__product_info_feedbacks" style="margin-left : 5px;">'+
 														'<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰'+
-															'<strong style="color: black;">'+data.rc[j].count+'</strong>'+
+															'<strong style="color: black;">&nbsp'+data.rc[j].count +'&nbsp</strong>'+
 														'</span>'+
 												'<br>'+
 												'<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점'+
-													'<strong style="color: black;" id="starArea'+count+'o">'+data.list[i].rvPoint+'</strong>'+
+													'<strong style="color: black;" id="starArea'+count+'o">&nbsp' + data.list[i].rvPoint +'&nbsp</strong>'+
 												'</span>'+
 											'</div>'+
-											'<div class="reviewDelete" style="float: right; margin: -2px;">'+
+											'<div class="reviewDelete" style="float: right; margin-right: -5px;">'+
 												'<span>'+
 													'<strong class="reviewX">X</strong>'+
 												'</span>'+
@@ -1282,6 +1280,10 @@ a{
 					$('#movePage2').css("display","block");
 				}
 
+				$('#starstarArea').children('#starstar1').remove();
+				for(var i=1; i<r.r.rvPoint;i++){
+					$('#starstar').after('<i class="fa fa-fw fa-star" id="starstar1"></i>')
+				}
 
 			  for(var i =0; i<r.ph.length;i++){
 				  if(i == 0){

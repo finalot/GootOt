@@ -64,7 +64,7 @@
                        비밀번호<img src="/ot/resources/images/red.png" style="position:relative;left:8px;">
                    </th>
                 <td>
-                    <input type="password" name="memPwd" id="memPwd" size="20px">
+                    <input type="password" name="memPwd" id="memPwd" size="20px" onchange="pwdCheck();">
                      <span id="idMsg">(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8자~16자)</span>
                 </td>
             </tr>
@@ -74,6 +74,7 @@
                 </th>
                 <td>
                     <input type="password" name="memPwd1" id="memPwd1" size="20px">
+                    <span id="pwConfirm" style="font-size :13px;"></span>
                 </td>
             </tr>
 
@@ -466,7 +467,31 @@
      <jsp:include page="footer.jsp"/>
 
     <script>
-
+    $('#memPwd1').change(function(){
+        if($('#memPwd').val() == $(this).val()){
+            $('#pwConfirm').html("비밀번호가 일치합니다.").css('color','green');
+        }else{
+            $('#pwConfirm').html("비밀번호 값이 일치하지 않습니다.").css('color','red');
+            $('#memPwd1').val('');
+            $(this).select();
+        }
+    });      
+    
+    function pwdCheck(){ //패스워드 유효성 검사
+        
+ 	   var passRule = /^[a-zA-Z](?=.*[a-zA-Z])(?=.*[0-9]).{7,15}$/;//숫자와 문자 포함 형태의 8~16자리 이내의 암호 정규식
+ 	   
+ 	   var pwd = document.getElementById("memPwd");
+ 	   
+ 	   if(!passRule.test(pwd.value)) {
+ 	       //경고
+ 	       alert("비밀번호를 다시 입력하세요.");
+ 	       pwd.value="";
+ 	       pwd.focus();    	       
+ 	     }
+ 	   }
+    
+    
     var $sAgreeAllChecked = $('#sAgreeAllChecked');
     $sAgreeAllChecked.change(function () {
         var $this = $(this);
@@ -579,7 +604,9 @@
 	function memberJoinAction(){
 
 		var memId = document.getElementById('userId');
-		 var memEmail = document.getElementById('memEmail');
+		var memEmail = document.getElementById('memEmail');
+		var memPwd = document.getElementById('memPwd');
+		var memPwd1 = document.getElementById('memPwd1');
 
 
 	  if(document.getElementById('userId').value =="") {
@@ -598,7 +625,7 @@
 		  alert("이메일을 입력해 주세요");
 		  return false;
 	  }
-	  if(document.getElementById('memPwd').value != document.getElementById('memPwd1').value){
+	  if(memPwd.value != memPwd1.value || memPwd.value == null || memPwd.value == "" || memPwd1.value == null || memPwd1.value == ""){
 			alert('비밀번호가 일치하지 않습니다.');
 			return false;
 	  }

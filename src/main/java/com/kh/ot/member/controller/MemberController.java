@@ -209,16 +209,16 @@ public class MemberController extends HttpServlet {
 	  CouponMem com = new CouponMem();
 	  com.setMemno(m.getMemNo());
 	  
-				 if(m.getMemSumMoney() >= 30000  && cpCount1 == 0) {
+				 if(m.getMemSumMoney() >= 100000  && cpCount1 == 0) {
 					 com.setCpno(2); 
 						int result = mService.insertRateCp(com);  
-				 }else if(m.getMemSumMoney() >= 60000 && cpCount2 ==0) {
+				 }else if(m.getMemSumMoney() >= 300000 && cpCount2 ==0) {
 					 com.setCpno(3); 
 						int result = mService.insertRateCp(com);  
-				 }else if(m.getMemSumMoney() >= 90000 && cpCount3==0) {
+				 }else if(m.getMemSumMoney() >= 500000 && cpCount3==0) {
 					 com.setCpno(4); 
 						int result = mService.insertRateCp(com);  
-				 }else if(m.getMemSumMoney() >= 120000 && cpCount4==0) {
+				 }else if(m.getMemSumMoney() >= 700000 && cpCount4==0) {
 					 com.setCpno(5); 
 						int result = mService.insertRateCp(com);  
 				 }
@@ -242,10 +242,10 @@ public class MemberController extends HttpServlet {
 	 * @return
 	 */
 	@RequestMapping("logout.do")
-	public String logout(SessionStatus status) {
+	public String logout(SessionStatus status,HttpSession session) {
 
 		  status.setComplete();
-
+		  session.invalidate();
 			return "home";
 		}
 	/**
@@ -581,7 +581,7 @@ public class MemberController extends HttpServlet {
 	 */
 	@RequestMapping(value="mUpdate.do", method=RequestMethod.POST)
 	public String memberUpdate(Member m, Model model,
-							   @RequestParam("memPwd1") String pwd,
+			 				   @RequestParam("pwd2") String pwd, 
 							   @RequestParam("postcode1") String post,
 							   @RequestParam("address1") String addr1,
 							   @RequestParam("address2") String addr2,
@@ -593,8 +593,8 @@ public class MemberController extends HttpServlet {
 		m = (Member)session.getAttribute("loginMember");
 		
 		m.setMemPwd(pwd);
-//		System.out.println(pwd);
-//		System.out.println("dsadsad :" +  m.getMemPwd());
+		System.out.println(pwd);
+		System.out.println("dsadsad :" +  m.getMemPwd());
 		
 	// 주소데이터들 ','를 구분자로 저장
 		if(!post.contentEquals("")) {
@@ -667,7 +667,7 @@ public class MemberController extends HttpServlet {
 				return "close2";
 			}
 		} else {
-		out.println("<script>alert('비번틀림'); location.href='mAccount.do'</script>");
+		out.println("<script>alert('비밀번호를 확인해주세요.'); location.href='mAccount.do'</script>");
 		out.flush();
 		return "mypage_member_account"; 
 		}
