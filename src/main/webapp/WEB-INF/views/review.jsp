@@ -1485,7 +1485,7 @@ select {
 									<div class="photo_review_thumbnail__thumbnail_container">
 										<ul>
 											<li class="photo_review_thumbnail__review_image_thumbnail">
-												<a onclick="review1(this)">
+												<a onclick="review10(this)">
 											   <img
 													class="js-review-image"
 													alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="${r.rvImage }"
@@ -2040,7 +2040,7 @@ select {
 									  '<div class="photo_review_thumbnail__thumbnail_container">'+
 									  '<ul>'+
 									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '<a onclick="review10(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 									  '</li>'+
 									  '</ul>'+
 									  '<div class="photo_review_thumbnail__review_info">'+
@@ -2127,7 +2127,7 @@ select {
 									  '<div class="photo_review_thumbnail__thumbnail_container">'+
 									  '<ul>'+
 									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '<a onclick="review10(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 									  '</li>'+
 									  '</ul>'+
 									  '<div class="photo_review_thumbnail__review_info">'+
@@ -2212,7 +2212,7 @@ select {
 									  '<div class="photo_review_thumbnail__thumbnail_container">'+
 									  '<ul>'+
 									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '<a onclick="review10(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 									  '</li>'+
 									  '</ul>'+
 									  '<div class="photo_review_thumbnail__review_info">'+
@@ -2310,7 +2310,7 @@ select {
 	<script>
 
 	<!--리뷰 모달 디테일 스크립트-->
-	function review1(en){
+	function review10(en){
 		 if("${loginMember.memId}"==""){
 			 alert("로그인 후 이용해주세요!");S
 		 }else{
@@ -2603,7 +2603,7 @@ select {
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review10(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+
@@ -2707,7 +2707,7 @@ select {
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review10(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+
@@ -2810,7 +2810,7 @@ select {
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review10(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+
@@ -2903,7 +2903,7 @@ select {
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review10(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+
