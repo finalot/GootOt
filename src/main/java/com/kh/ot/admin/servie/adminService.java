@@ -451,14 +451,15 @@ public interface adminService{
 		 * @작성자 : 이서현
 		 * @내용 : 상품 업데이트 
 		 */
-//		public int ProductUpdate(Product p);
-//
-//		/**
-//		 * @작성일 : 2020. 4. 27.
-//		 * @작성자 : 이서현
-//		 * @내용 : 상품옵션 업데이트 
-//		 */
-//		public int UpdatePotList(ArrayList<Product_opt> poArr);
+		public int ProductUpdate(Product p);
+
+		/**
+		 * @작성일 : 2020. 4. 27.
+		 * @작성자 : 이서현
+		 * @내용 : 상품옵션 업데이트 
+		 */
+		public int UpdatePotList(ArrayList<Product_opt> poArr);
+		
 		public int ComentInsert(ReviewReply rp);
 
 		/**

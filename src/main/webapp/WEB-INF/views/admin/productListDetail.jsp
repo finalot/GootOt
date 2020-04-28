@@ -324,6 +324,7 @@ function loadImg(value, num){
      
     <div style="padding-left:300px">
      
+    <form  method="post" id="ProductInsert" action="ProductUpdate.ad" class="ProductInsert" enctype="multipart/form-data">
     <!-- 이벤트 내용 -->
    <table id="addlist" style="border: 1px dotted; background: white; font-size:13pt;">
    
@@ -358,20 +359,20 @@ function loadImg(value, num){
         <tr>
         	<th><span style="color:red">*</span> 상품명</th>
         	<td>
-        		<input type="text" id="product_name" value="${p.prdtName }">
+        		<input type="text" id="product_name" name="prdtName" value="${p.prdtName }">
         	</td>
         </tr>
         <tr>
         	<th><span style="color:red">*</span> 가격</th>
         	<td>
-        		<input type="text" style="width:20%;" value="${p.prdtPrice }">
+        		<input type="text" style="width:20%;" name="prdtPrice" value="${p.prdtPrice }">
         	</td>
         </tr>
        
         <tr>
         	<th><span style="color:red">*</span> 할인가</th>
         	<td>
-        		<input type="text" style="width:10%;" value="${p.prdtSale }"> &nbsp; &nbsp; %
+        		<input type="text" style="width:10%;" name="prdtSale" value="${p.prdtSale }"> &nbsp; &nbsp; %
         	</td>
         </tr>
         <tr>
@@ -386,7 +387,7 @@ function loadImg(value, num){
         	</div>
        		<div class="fileArea" id="fileArea" >
      				<input type="file" id="thumbnailImg1" 
-     				name="thumbnailImg" onchange="loadImg(this, 1);"/>
+     			 value="${p.prdtImage}"	name="thumbnailImg" onchange="loadImg(this, 1);"/>
 	     	</div>
 		     	
         	
@@ -401,14 +402,14 @@ function loadImg(value, num){
 				</div>
 				<div class="fileArea" id="fileArea2" >
      				<input type="file" id="thumbnailImg2" 
-     				name="thumbnailImg2" onchange="loadImg(this, 2);"/>
+     				value="${p.prdtDetailImage}" name="thumbnailImg2" onchange="loadImg(this, 2);"/>
 	     		</div>
         	</td>
         </tr>
         <tr>
         	<th>상세설명 문구</th>
         	<td>
-       		<textarea cols="100" rows="3" style="overflow-y:scroll" value="${p. prdtComment}">${p.prdtComment }</textarea>
+       		<textarea cols="100" name="prdtComment" rows="3" style="overflow-y:scroll" value="${p. prdtComment}">${p.prdtComment }</textarea>
         	</td>
         </tr>
     </table>
@@ -476,14 +477,14 @@ function loadImg(value, num){
     <div style="height: 130px;">
         <div align="center">
         
-        	<button style="background: black;
+        	<input type="submit" value="수정" style="background: black;
             color: white;
             font-size: 20px;
             padding: 10px;
             height: 65px;
             width: 135px;
-            border-radius: 10px;" onclick="location.href='productList.jsp'">
-            <b>수정</b></button>
+            border-radius: 10px;" >
+           
             
             <button style="background: black;
             color: white;
@@ -496,7 +497,7 @@ function loadImg(value, num){
        </div>
     </div>
     
-    
+    </form>
 	</div>
 <div class="page-wrapper">
 </div>
