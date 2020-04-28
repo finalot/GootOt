@@ -1248,7 +1248,7 @@
 //    console.log(error);
 //  }
 //
-//})(jQuery);
+})(jQuery);
 
 
 
