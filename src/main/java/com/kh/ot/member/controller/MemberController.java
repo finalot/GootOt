@@ -581,7 +581,7 @@ public class MemberController extends HttpServlet {
 	 */
 	@RequestMapping(value="mUpdate.do", method=RequestMethod.POST)
 	public String memberUpdate(Member m, Model model,
-							   @RequestParam("memPwd1") String pwd,
+			 				   @RequestParam("pwd2") String pwd, 
 							   @RequestParam("postcode1") String post,
 							   @RequestParam("address1") String addr1,
 							   @RequestParam("address2") String addr2,
@@ -593,8 +593,8 @@ public class MemberController extends HttpServlet {
 		m = (Member)session.getAttribute("loginMember");
 		
 		m.setMemPwd(pwd);
-//		System.out.println(pwd);
-//		System.out.println("dsadsad :" +  m.getMemPwd());
+		System.out.println(pwd);
+		System.out.println("dsadsad :" +  m.getMemPwd());
 		
 	// 주소데이터들 ','를 구분자로 저장
 		if(!post.contentEquals("")) {
@@ -667,7 +667,7 @@ public class MemberController extends HttpServlet {
 				return "close2";
 			}
 		} else {
-		out.println("<script>alert('비번틀림'); location.href='mAccount.do'</script>");
+		out.println("<script>alert('비밀번호를 확인해주세요.'); location.href='mAccount.do'</script>");
 		out.flush();
 		return "mypage_member_account"; 
 		}

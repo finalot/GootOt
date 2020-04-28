@@ -470,8 +470,6 @@ public class MypageController {
 
 		int wishlist = mpService.getWishListCount(memNo);
 
-		int result = mpService.PointPrice(m); //
-
 		int coupon = mpService.CouponListCount(m); // 사용 가능한 쿠폰 카운팅
 
 		int listCount = mpService.PointListCount(memNo); // 사용 가능한 쿠폰

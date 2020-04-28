@@ -148,8 +148,7 @@
 										<img src="/ot/resources/images/req_check.png" class="" alt="필수">
 									</th>
 									<td>
-									<input id="memPwd" name="memPwd" value="" type="password"> (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8자~16자)
-									<span id="pwConfirmMsg1"></span>
+									<input id="pwd1" name="pwd1" type="password" onchange="pwdCheck();"> (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8자~16자)
 									</td>
 								</tr>
 								<tr class="">
@@ -157,8 +156,8 @@
 										<img src="/ot/resources/images/req_check.png" alt="필수">
 									</th>
 									<td>
-										<input id="memPwd1" name="memPwd1" value="" type="password"> 
-										<span id="pwConfirmMsg2"></span>
+										<input id="pwd2" name="pwd2" type="password"> 
+										<span id="pwConfirm"></span>
 									</td>
 								</tr>
 								
@@ -300,15 +299,15 @@
 					</div>
 					
 					<div class="ec-base-button justify">
-						<a href="#none" class="yg_btn_140 yg_btn1 yg_btn_border_444" onclick="document.getElementById('editForm').submit();" alt="회원정보수정">회원정보수정</a> 
+						<a href="#none" class="yg_btn_140 yg_btn1 yg_btn_border_444" onclick="update();" alt="회원정보수정">회원정보수정</a> 
 						<a href="#" onclick="location.href='index.jsp'" class="yg_btn_140 yg_btn4" alt="취소">취소</a> 
 							<span class="gRight"> 
 								<a href="#none" class="yg_btn_140 yg_btn3" id="memberdel" onclick="memberDelAction(2000, 0, -1)" alt="회원탈퇴">회원탈퇴</a>
 							</span>
 					</div>
-					
 					</form>
-						<form action="mDelete.do" method="post" name="memdelete" id="memdelete">
+					
+					<form action="mDelete.do" method="post" name="memdelete" id="memdelete">
 					<div class="layerLeave ec-base-layer" id="eLeaveLayer">
 						<div class="header" style="height:35px; padding: 7px 35px 7px 19px;">
 							<h3 style="margin : 0;">회원탈퇴</h3>
@@ -380,8 +379,7 @@
 							<img src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif" alt="닫기">
 						</a>
 					</div>
-				</div>
-			</form>
+				</form>
 			</c:if>
 		</div>
 	<hr class="layout">
@@ -389,66 +387,44 @@
 	<%@include file="footer.jsp"%>
 	
 	<script>
-		/* 수정해야함
-		4. 비밀번호 비교했을 때 두개가 같고 정규식까지 ok이면 ==> 비밀번호 일치    - 모든 조건문을 통과하면 OK span 출력!
-		3. 비밀번호 비교했을 때 두개가 같고 정규식가 no이면 ==> 숫자와 문자 포함 형태의 8~16자리의 비밀번호를 입력해주세요. 2번이 참일때 정규식 검사.
-		2. 비밀번호 비교 했을 때 두개가 다르면 정규식와 관계없이==> 비밀번호가 불일치   - 두개의 input의 .text() 가 eq일때!
-		1. 비밀번호 확인창이 비어있으면 아무것도 안뜨게 - 렝스가 0이면 안뜨게!
-		*/
-			
-		$('#memPwd').on("keyup",function(){
-			var pwd1 = $('#memPwd').val(); //첫번째 input
-			var passRule1 = /^[a-zA-Z](?=.*[a-zA-Z])(?=.*[0-9]).{6,29}$/; // 패스워드 정규화
-			console.log("1번째 input칸 벨류 : "+pwd1);
-			
-			if(!passRule1.test(pwd1)){	//1번째 input 내용 정규식 체크!
-				$('#pwConfirmMsg1').html('');
-				$('#pwConfirmMsg1')	.html('숫자와 문자 포함 형태의 8~16자리의 비밀번호를 입력해주세요.').css('color','red');
-				//추후 false시 가입버튼 비활성화 추가
-			}else{
-				$('#pwConfirmMsg2').html('');
-				$('#pwConfirmMsg2').html('사용가능한 비밀번호 입니다.').css('color', 'green');
-				//추후 true시 가입버튼 활성화 추가
-			}
-		});
-		
-		
-		$('#memPwd1').on("keyup",function(){
-			var pwd1 = $('#memPwd').val(); //첫번째 input
-			var pwd2 = $('#memPwd1').val(); //두번째 input
-			
-			if(pwd1 == pwd2 ){	//위아래 input 매칭 검사
-				$('#pwConfirmMsg2').html('');
-				$('#pwConfirmMsg2').html('비밀번호가 일치 되었습니다.').css('color', 'green');
-			}else{
-				$('#pwConfirmMsg2').html('');
-				$('#pwConfirmMsg2').html('비밀번호가 일치하지 않습니다.').css('color','red');
-			}
-			
-		});
-		
-			
-			
-			/* $('#memPwd1').on("keyup",function(){
-				
 
-				var passRule = /^[A-Za-z0-9]{8,16}$/; // 패스워드 정규화
-				
-				if($('#memPwd').val() == $(this).val()) {
-					if(!passRule.test($(this).val())) {
-						$('#pwConfirmMsg').html('숫자와 문자 포함 형태의 8~16자리의 비밀번호를 입력해주세요.').css('color','red');
-					} else { 
-						$('#pwConfirmMsg').html('비밀번호가 일치합니다.').css('color', 'green');
-					}
-				} else if($(this).val() == ""){
-					$('#pwConfirmMsg').html('');
-				} else {
-					$('#pwConfirmMsg').html('비밀번호가 일치하지 않습니다.').css('color','red');
-				}
-				
-			});
-		});  */
-				
+	function update(){
+		var pwd = document.getElementById('pwd2');
+		
+		if(pwd.value != ""){
+			alert("회원 정보가 변경되었습니다.");
+			document.getElementById('editForm').submit();
+		}
+		else if(pwd.value == "" || pwd.value == null){
+			alert("비밀번호를 확인해주세요.")
+			return false;
+		}
+	}
+	
+     $('#pwd2').change(function(){
+         if($('#pwd1').val() == $(this).val()){
+             $('#pwConfirm').html("비밀번호가 일치합니다.").css('color','green');
+         }else{
+             $('#pwConfirm').html("비밀번호 값이 일치하지 않습니다.").css('color','red');
+             $('#pwd2').val('');
+             $(this).select();
+         }
+     });      
+	
+		function pwdCheck(){ //패스워드 유효성 검사
+	         
+	    	   var passRule = /^[a-zA-Z](?=.*[a-zA-Z])(?=.*[0-9]).{7,15}$/;//숫자와 문자 포함 형태의 8~16자리 이내의 암호 정규식
+	    	   
+	    	   var pwd = document.getElementById("pwd1");
+	    	   
+	    	   if(!passRule.test(pwd.value)) {
+	    	       //경고
+	    	       alert("비밀번호를 다시 입력하세요.");
+	    	       pwd.value="";
+	    	       pwd.focus();    	       
+	    	     }
+	    	   }
+			
 	</script>
 
 
