@@ -350,16 +350,16 @@ public class adminServiceImpl implements adminService{
 		
 		
 
-//		@Override
-//		public int ProductUpdate(Product p) {
-//			return adDao.ProductUpdate(p);
-//		}
-//
-//
-//		@Override
-//		public int UpdatePotList(ArrayList<Product_opt> poArr) {
-//			return adDao.UpdatePotList(poArr);		
-//		}
+		@Override
+		public int ProductUpdate(Product p) {
+			return adDao.ProductUpdate(p);
+		}
+
+
+		@Override
+		public int UpdatePotList(ArrayList<Product_opt> poArr) {
+			return adDao.UpdatePotList(poArr);		
+		}
 
 
 		public int comentReturn(ReviewReply rp) {

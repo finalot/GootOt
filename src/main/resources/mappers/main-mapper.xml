@@ -704,11 +704,12 @@
 		WHERE PRDT_CODE = #{prdtNo}
 	</select>
 	
-	<!-- <update id="ProductUpdate" parameterType="Product">
+	<update id="ProductUpdate" parameterType="Product">
 		UPDATE PRDT SET
 		PRDT_NAME=#{prdtName}, PRDT_COMMENT=#{prdtComment},
 		PRDT_IMAGE=#{prdtImage} ,PRDT_DETAIL_IMAGE=#{prdtDetailImage},
-		PRDT_SALE=#{prdtSale}
+		PRDT_SALE=#{prdtSale},PRDT_PRICE = #{prdtPrice}
+		FROM PRDT
 	</update>
 	
 	<update id="UpdatePotList" parameterType="Product_opt">
@@ -720,7 +721,7 @@
 				   #{po.stock} as OPT_STOCK
 			FROM DUAL
 			</foreach>) A
-	</update> -->
+	</update>
 	
 
 <select id="selectLikeCount" resultType="_int" parameterType="Like_Heart">
