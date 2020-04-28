@@ -76,7 +76,7 @@ public class ReviewController extends HttpServlet {
 			
 			
 			if(Sort.equals("like")) {
-				 rlist = rService.selectLikeSort();
+				 rlist = rService.selectLikeSort(pi);
 			} else {
 			    rlist = rService.selectReviewList(pi);
 			}
@@ -367,18 +367,24 @@ public class ReviewController extends HttpServlet {
 		 * @throws IOException
 		 */
 		@RequestMapping("LikeSort.do")
-		public void LikeSort(String Sort,HttpServletResponse response) throws JsonIOException, IOException {
+		public void LikeSort(@RequestParam(value="currentPage", 
+			    required=false,defaultValue="1")int currentPage,String Sort,HttpServletResponse response) throws JsonIOException, IOException {
 			
 			ArrayList<Review> rlist = new ArrayList();
 			ArrayList<Review_count> rc = rService.selectReviewCount();
 			
+
+	   		int listCount = rService.selectListCount();
+	   		System.out.println("listCount:" + listCount);
+
+	   		MainPageInfo2 pi = MainPagination2.getPageInfo(currentPage, listCount);
+			
 			if(Sort.equals("like")) {
-				
-				rlist = rService.selectLikeSort();
+				rlist = rService.selectLikeSort(pi);
 			} else if(Sort.equals("date")) {
-				rlist = rService.selectDateSort();
+				rlist = rService.selectDateSort(pi);
 			} else if(Sort.equals("all")) {
-				rlist = rService.selectAllSort();
+				rlist = rService.selectAllSort(pi);
 			}
 			response.setContentType("appliction/json; charset=utf-8");
 			
@@ -388,6 +394,7 @@ public class ReviewController extends HttpServlet {
 			Map hmap = new HashMap();
 			hmap.put("rlist", rlist);
 			hmap.put("rc", rc);
+			hmap.put("pi", pi);
 			
 			gson.toJson(hmap,response.getWriter());
 			
@@ -403,12 +410,18 @@ public class ReviewController extends HttpServlet {
 		 * @throws JsonIOException 
 		 */
 		@RequestMapping("checkSort.do") 
-		public void checkSort(int optionHeight, HttpServletResponse response,HttpSession session) throws JsonIOException, IOException {
+		public void checkSort(@RequestParam(value="currentPage", 
+			    required=false,defaultValue="1")int currentPage,int optionHeight, HttpServletResponse response,HttpSession session) throws JsonIOException, IOException {
 			
 			ArrayList<Review> rlist = new ArrayList<Review>();
 			ArrayList<Review_count> rc = rService.selectReviewCount();
 			
-			rlist = rService.selectCheckSort(optionHeight);
+			int listCount = rService.selectListCount();
+	   		System.out.println("listCount:" + listCount);
+
+	   		MainPageInfo2 pi = MainPagination2.getPageInfo(currentPage, listCount);
+			
+			rlist = rService.selectCheckSort(pi,optionHeight);
 			
 		
 			response.setContentType("appliction/json; charset=utf-8");
@@ -419,6 +432,7 @@ public class ReviewController extends HttpServlet {
 			Map hmap = new HashMap();
 			hmap.put("rlist", rlist);
 			hmap.put("rc", rc);
+			hmap.put("pi", pi);
 			
 			
 			gson.toJson(hmap,response.getWriter());
@@ -436,11 +450,17 @@ public class ReviewController extends HttpServlet {
 		 * @throws JsonIOException 
 		 */
 		@RequestMapping("WeightSort.do")
-		public void WeightSort(int optionWeight, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
+		public void WeightSort(@RequestParam(value="currentPage", 
+			    required=false,defaultValue="1")int currentPage,int optionWeight, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
 			ArrayList<Review> rlist = new ArrayList<Review>();
 			ArrayList<Review_count> rc = rService.selectReviewCount();
 			
-			rlist = rService.selectWeightSort(optionWeight);
+			int listCount = rService.selectListCount();
+	   		System.out.println("listCount:" + listCount);
+
+	   		MainPageInfo2 pi = MainPagination2.getPageInfo(currentPage, listCount);
+			
+			rlist = rService.selectWeightSort(pi,optionWeight);
 			
 		
 			response.setContentType("appliction/json; charset=utf-8");
@@ -451,6 +471,7 @@ public class ReviewController extends HttpServlet {
 			Map hmap = new HashMap();
 			hmap.put("rlist", rlist);
 			hmap.put("rc", rc);
+			hmap.put("pi",pi);
 			
 			gson.toJson(hmap,response.getWriter());
 		}
@@ -466,11 +487,19 @@ public class ReviewController extends HttpServlet {
 		 * @throws IOException
 		 */
 		@RequestMapping("SizeSort.do")
-		public void SizeSort(int optionSize, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
+		public void SizeSort(@RequestParam(value="currentPage", 
+			    required=false,defaultValue="1")int currentPage,int optionSize, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
+			
 			ArrayList<Review> rlist = new ArrayList<Review>();
 			ArrayList<Review_count> rc = rService.selectReviewCount();
 			
-			rlist = rService.selectSizeSort(optionSize);
+			int listCount = rService.selectListCount();
+	   		System.out.println("listCount:" + listCount);
+
+	   		MainPageInfo2 pi = MainPagination2.getPageInfo(currentPage, listCount);
+			
+			
+			rlist = rService.selectSizeSort(pi,optionSize);
 			
 		
 			response.setContentType("appliction/json; charset=utf-8");
@@ -481,6 +510,7 @@ public class ReviewController extends HttpServlet {
 			Map hmap = new HashMap();
 			hmap.put("rlist", rlist);
 			hmap.put("rc", rc);
+			hmap.put("pi", pi);
 			
 			gson.toJson(hmap,response.getWriter());
 		}
@@ -511,7 +541,7 @@ public class ReviewController extends HttpServlet {
 				 rlist = rService.selectReviewList(pi);
 			} else {
 
-				rlist = rService.selectCategoryReview(upNo);
+				rlist = rService.selectCategoryReview(pi,upNo);
 			}
 			
 			response.setContentType("appliction/json; charset=utf-8");
@@ -522,6 +552,7 @@ public class ReviewController extends HttpServlet {
 			Map hmap = new HashMap();
 			hmap.put("rlist", rlist);
 			hmap.put("rc", rc);
+			hmap.put("pi", pi);
 			
 			
 			
