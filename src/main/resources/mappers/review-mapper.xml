@@ -441,6 +441,7 @@
       	  FROM REVIEW RE
       	  JOIN MEMBER M ON (M.MEM_NO = RE.MEM_CODE)
           JOIN PRDT PR ON (RE.PRDT_CODE = PR.PRDT_NO)
+          ORDER BY RV_POINT DESC
 
  		</select>
 

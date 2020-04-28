@@ -383,7 +383,7 @@ public class ReviewController extends HttpServlet {
 				rlist = rService.selectLikeSort(pi);
 			} else if(Sort.equals("date")) {
 				rlist = rService.selectDateSort(pi);
-			} else if(Sort.equals("all")) {
+			} else if(Sort.equals("point")) {
 				rlist = rService.selectAllSort(pi);
 			}
 			response.setContentType("appliction/json; charset=utf-8");

@@ -1148,6 +1148,7 @@ function qna(){
 							ajaxFileUpload('detailReviewInsert.do','post','json',form,function(data){
 								if(data.status =="success"){
 									reviewOff();
+									review();
 								}else if(data.status =="fail"){
 									swal(data.message);
 								}
@@ -1160,7 +1161,6 @@ function qna(){
 							$('#reviewWrite').css("display","none");
 							scrollX.className ='';
 							
-							nono();
 						}
 						
 						
@@ -1876,8 +1876,8 @@ function qna(){
 													<!-- MODAL 창에 뜨는 DETAIL 상품명 -->
 
 												</div>
-											<div class="reviews_index_gallery_review__product_info_feedbacks" style="margin-top: 3px;">
-	<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
+											<div id="starstarArea" class="reviews_index_gallery_review__product_info_feedbacks" style="margin-top: 3px;">
+	<i class="fa fa-fw fa-star" id="starstar"></i>
 													<span class="reviews_index_gallery_review__reviews_count" style="color:gray;">
 													<small id="memName"></small>
 													</span>
@@ -2637,9 +2637,6 @@ console.log(rvPage2);
 			}
 		}
 		
-		function nono() {
-			location.reload();
-		}
 	</script>
 	<!-- 디테일 사진 시작부분 -->
 	<style>
@@ -4070,7 +4067,12 @@ console.log(rvPage2);
 						$('#movePage1').css("display","block");
 						$('#movePage2').css("display","block");
 					} */
-
+					$('#starstarArea').children('#starstar1').remove();
+					for(var i=1; i<r.r.rvPoint;i++){
+						$('#starstar').after('<i class="fa fa-fw fa-star" id="starstar1"></i>')
+					}
+					
+				
 
 				  for(var i =0; i<r.ph.length;i++){
 					  if(i == 0){
@@ -4403,7 +4405,6 @@ console.log(rvPage2);
 
 	}
 	</script>
-	
 	
 </body>
 		
