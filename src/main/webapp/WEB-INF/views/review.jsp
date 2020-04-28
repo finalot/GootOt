@@ -2312,7 +2312,8 @@ select {
 	<!--리뷰 모달 디테일 스크립트-->
 	function review10(en){
 		 if("${loginMember.memId}"==""){
-			 alert("로그인 후 이용해주세요!");S
+			 alert("로그인 후 이용해주세요!");
+			 location.href="loginView.do";
 		 }else{
 
 		 $('#comentarea').children('.replyDiv').remove();
@@ -2326,7 +2327,7 @@ select {
 		 var like_img="";
 		 var count = 0;
 		 console.log(rv_no);
-
+		 $('.prdetail').remove();
 
 		 $.ajax({
 			 url:"reviewDetail.do",
@@ -2334,7 +2335,7 @@ select {
 			 data : {rv_no : rv_no},
 			 success : function(r){
 				 console.log(r)
-				 $('#prDetail').append('<a style="font-size:12px;" id="'+r.r.prdtCode+'" onclick="prdtGo(this.id)">'+r.r.prdtName+'"</a>");
+				 $('#prDetail').append('<a class="prdetail" style="font-size:12px;" id="'+r.r.prdtCode+'" onclick="prdtGo(this.id)">'+r.r.prdtName+'</a>');
 				 $('#memName').text(r.r.memName);
 				 $('#rColor').text(r.r.rvColor);
 				 $('#rSize').text(r.r.rvSize);

@@ -242,10 +242,10 @@ public class MemberController extends HttpServlet {
 	 * @return
 	 */
 	@RequestMapping("logout.do")
-	public String logout(SessionStatus status) {
+	public String logout(SessionStatus status,HttpSession session) {
 
 		  status.setComplete();
-
+		  session.invalidate();
 			return "home";
 		}
 	/**
