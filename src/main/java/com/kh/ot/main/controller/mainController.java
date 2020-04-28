@@ -321,16 +321,12 @@ public class mainController {
 	  gson.toJson(dclist,response.getWriter());
 	  
 	  }
-	 
-
 	
-
 
 	@RequestMapping("todaymain.ad")
 	public String todaymain() {
 		return "admin/todaymain";
 	}
-
 	
 	
 	/**

@@ -79,7 +79,7 @@ public class menuController {
 	/**
 	 * @작성일 : 2020. 4. 25.
 	 * @작성자 : 이서현
-	 * @내용 : TOP5인기순위
+	 * @내용 : TOP5인기순위, 오늘 현황 
 	 */
 	@RequestMapping("todayMain.ad")
 	public ModelAndView todayMain(ModelAndView mv) {
@@ -116,9 +116,30 @@ public class menuController {
 		return mv;
 	}
 
+	/**
+	 * @작성일 : 2020. 4. 27.
+	 * @작성자 : 이서현
+	 * @내용 : 월별 판매량 
+	 */
 	@RequestMapping("todayChart.ad")
-	public String todayChart() {
-		return "admin/todaychart";
+	public ModelAndView todayChart(ModelAndView mv) {
+		
+		ArrayList<Pay> month = adService.monthScountList();
+		ArrayList<Pay> monthPay = adService.monthPayList();
+		
+		for(int i=0;i<month.size();i++) {
+			 for(int j=0;j<monthPay.size();j++) {
+				 if(month.get(i).getWeek().equals(monthPay.get(j).getWeek())) {
+					 month.get(i).setSumprice(monthPay.get(j).getSumprice());
+				 }
+			 }
+		 }
+		
+		mv.addObject("month",month);
+		mv.addObject("monthPay",monthPay);
+		mv.setViewName("admin/todaychart");
+
+		return mv;
 	}
 
 	/**

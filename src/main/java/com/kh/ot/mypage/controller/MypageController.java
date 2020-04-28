@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -1341,5 +1342,26 @@ public class MypageController {
 
 	}
 
+	@RequestMapping("reviewDelete.do")
+	@ResponseBody
+	public String reviewDelete(int rv_no, HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
+		int result1=0;
+		int result2=0;
+		int result3=0;
+		int result4=0;
+		
+			result1 = mpService.reviewDelete1(rv_no);
+			result2 = mpService.reviewDelete2(rv_no);
+			result3 = mpService.reviewDelete3(rv_no);
+			result4 = mpService.reviewDelete4(rv_no);
+		
+		
+		if(result4>0) {
+			return "ok";
+		}else{
+			return "fail";
+		}
+		
+	}
 
 }

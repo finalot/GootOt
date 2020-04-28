@@ -123,50 +123,104 @@
 	<div class="banner bgwhite p-t-40 p-b-40">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
-					<!-- block1 -->
-					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="<c:url value="/resources/images/banner-05.jpg"/>" alt="IMG-BENNER">
+				
+				
+					<c:forEach var="top" items="${ topplist }">
+						<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
+								<c:if test="${61999 gt top.prdtNo and top.prdtNo gt 60000}">
+								<div class="block1 hov-img-zoom pos-relative m-b-30">
+								
+									<img src="${top.prdtImagePath }${top.prdtImage }" alt="IMG-PRODUCT">
 
-						<div class="block1-wrapbtn w-size2">
-							<!-- Button -->
-							
-						</div><a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" style="width:20%;height:40%;
-						margin-left:40%; margin-top:6%;border:3px solid darkgray;  border-radius:5%;">
-								<small><strong>Buy</strong></small>
-							</a>
-					</div>
-				</div>
+									<div class="block2-overlay trans-0-4">
+									
 
-				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
-					<!-- block1 -->
-					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="<c:url value="/resources/images/banner-03.jpg"/>" alt="IMG-BENNER">
+										<div id="${top.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${top.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
+									</div>
+								</div>
+							</c:if>
+									<c:if test="${top.prdtNo gt 62000}">
+									<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
+									
+									<img src="${top.prdtImagePath }${top.prdtImage }" alt="IMG-PRODUCT">
 
-						<div class="block1-wrapbtn w-size2">
-							<!-- Button -->
-							
-						</div><a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" style="width:20%;height:40%;
-						margin-left:40%; margin-top:6%;border:3px solid darkgray;  border-radius:5%;">
-								<small><strong>Buy</strong></small>
-							</a>
-					</div>
-				</div>
+									<div class="block2-overlay trans-0-4">
+										
 
-				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
-					<!-- block1 -->
-					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="<c:url value="/resources/images/banner-10.jpg"/>" alt="IMG-BENNER">
+										<div id="${top.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${top.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
+									</div>
+								</div>
+									</c:if>
+								
+								
+								<c:if test="${top.prdtNo lt 60000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative">
+								
+									<img src="${top.prdtImagePath }${top.prdtImage }" alt="IMG-PRODUCT">
 
-						<div class="block1-wrapbtn w-size2">
-							
-							<!-- Button -->
-						</div><a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" style="width:20%;height:40%;
-						margin-left:40%; margin-top:6%;border:3px solid darkgray;  border-radius:5%;">
-								<small><strong>Buy</strong></small>
-							</a>
-					</div>
-				</div>
+									<div class="block2-overlay trans-0-4">
+										
+
+										<div id="${top.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${top.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
+									</div>
+								</div>
+								</c:if>
+								<div class="block2-txt p-t-20">
+									<span class="block2-price m-text6 p-r-5" >
+								<c:forEach var="po" items="${ polist }">
+									<c:if test="${ top.prdtNo eq po.prdtNo }">
+										<c:forEach var="pc" items="${ pclist }">
+										<c:if test="${ po.optColor eq pc.pcName }">
+										<div style="width:14px;height:14px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
+										</c:if>
+										</c:forEach>
+									</c:if>
+								</c:forEach>
+									</span>
+
+									<br>
+									
+					<c:url var="product_detail" value="product_detail.do">
+						<c:param name="product_detail" value="${top.prdtNo }" />
+					</c:url>
+														<a href="${product_detail }" id="${top.prdtNo }"class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
+															${top.prdtName }
+					
+														</a>
+														
+
+									<span class="block2-price m-text6 p-r-5">
+									<c:if test="${top.prdtSale ne 0 }">
+	<small><font class="format-money" style="text-decoration:line-through">${ top.prdtPrice}</font>-><font class="format-money">${ top.prdtPrice-((p.prdtPrice/100)*p.prdtSale)}</font> won</small>&nbsp;&nbsp;
+										</c:if>
+										<c:if test="${top.prdtSale eq 0 }">
+										<small><font class="format-money">${ top.prdtPrice}</font> won</small>&nbsp;&nbsp;
+										</c:if>
+										
+										<font style="font-size:9px;color:gray">리뷰 : ${top.prdtReview}</font>
+									</span>
+								</div>
+							</div>
+							</c:forEach>
+	
 			</div>
 		</div>
 	</div>
@@ -185,64 +239,219 @@
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="nav-item">
-						<a class="nav-link active" data-toggle="tab" href="#best-seller" role="tab">Best</a>
+						<a id="bestPr" class="nav-link active" data-toggle="tab" href="#best-seller" role="tab">Best</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="tab" href="#sale" role="tab">Sale</a>
+						<a id="salePr" class="nav-link" data-toggle="tab" href="#sale" role="tab">Sale</a>
 					</li>
 				</ul>
 
 				<!-- Tab panes -->
 				<div class="tab-content p-t-35">
 					<!-- - -->
-					<div class="tab-pane fade show active" id="best-seller" role="tabpanel">
+					<div class="tab-pane fade show active" role="tabpanel">
 						<div class="row">
 								<!-- 블럭샘플 -->
-							<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
+						<c:forEach var="p" items="${ plist }">
+							<div class="col-sm-6 col-md-4 col-lg-3 p-b-50 best">
 								<div class="block2">
-									<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-										<img src="<c:url value="/resources/images/oT/clothing/t_nasi/standard_round_t/standard_round_t.webp"/>" alt="IMG-PRODUCT">
+								<c:if test="${61999 gt p.prdtNo and p.prdtNo gt 60000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+								
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
-										<div class="block2-overlay trans-0-4">
-											<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-												<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-												<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-											</a>
+									<div class="block2-overlay trans-0-4">
+									
 
-											<div class="block2-btn-addcart w-size1 trans-0-4">
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width:60%;margin-left:20%">
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
 												<small>관심상품 담기</small>
 											</button>
-												
-												<div class="block2-txt p-t-20">
-								
-									
 										</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="block2-txt p-t-20">
-									 <span class="block2-price m-text6 p-r-5" >
-										<div style="width:17px;height:17px;background:black;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:white;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:gray;margin-left:3px;float:left;border:1px solid black;"></div>
-										<div style="width:17px;height:17px;background:navy;margin-left:3px;float:left;border:1px solid black;"></div>
-									</span>
-										<br>
-									<a href="productDetail.jsp" class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
-										[B-BASIC] 베이직 라운드 반팔티
-
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										<small>12,000 won</small>&nbsp;&nbsp;<font style="font-size:9px;color:gray">리뷰 : 100</font>
-									</span>
 									</div>
 								</div>
+							</c:if>
+									<c:if test="${p.prdtNo gt 62000}">
+									<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
+									
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
+
+									<div class="block2-overlay trans-0-4">
+										
+
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
+									</div>
+								</div>
+									</c:if>
+								
+								
+								<c:if test="${p.prdtNo lt 60000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative">
+								
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
+
+									<div class="block2-overlay trans-0-4">
+										
+
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
+									</div>
+								</div>
+								</c:if>
+								
+
+								<div class="block2-txt p-t-20">
+									<span class="block2-price m-text6 p-r-5" >
+								<c:forEach var="po" items="${ polist }">
+
+									<c:if test="${ p.prdtNo eq po.prdtNo }">
+
+										<c:forEach var="pc" items="${ pclist }">
+
+										<c:if test="${ po.optColor eq pc.pcName }">
+										<div style="width:14px;height:14px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
+										</c:if>
+
+										</c:forEach>
+
+									</c:if>
+
+								</c:forEach>
+									</span>
+
+									<br>
+									
+					<c:url var="product_detail" value="product_detail.do">
+						<c:param name="product_detail" value="${p.prdtNo }" />
+					</c:url>
+														<a href="${product_detail }" id="${p.prdtNo }"class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
+															${p.prdtName }
+					
+														</a>
+														
+
+									<span class="block2-price m-text6 p-r-5">
+									<c:if test="${p.prdtSale ne 0 }">
+	<small><font class="format-money" style="text-decoration:line-through">${ p.prdtPrice}</font>-><font class="format-money">${ p.prdtPrice-((p.prdtPrice/100)*p.prdtSale)}</font> won</small>&nbsp;&nbsp;
+										</c:if>
+										<c:if test="${p.prdtSale eq 0 }">
+										<small><font class="format-money">${ p.prdtPrice}</font> won</small>&nbsp;&nbsp;
+										</c:if>
+										
+										<font style="font-size:9px;color:gray">리뷰 : ${p.prdtReview}</font>
+									</span>
+								</div>
 							</div>
+							</div>
+							</c:forEach>
+							
+							
+						<c:forEach var="p" items="${ pslist }">
+							<div class="col-sm-6 col-md-4 col-lg-3 p-b-50 sale" style="display: none">
+								<div class="block2">
+								<c:if test="${61999 gt p.prdtNo and p.prdtNo gt 60000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+								
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
+
+									<div class="block2-overlay trans-0-4">
+									
+
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
+									</div>
+								</div>
+							</c:if>
+									<c:if test="${p.prdtNo gt 62000}">
+									<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
+									
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
+
+									<div class="block2-overlay trans-0-4">
+										
+
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
+									</div>
+								</div>
+									</c:if>
+								<c:if test="${p.prdtNo lt 60000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative">
+									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
+									<div class="block2-overlay trans-0-4">
+										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
+											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+												<small>관심상품 담기</small>
+											</button>
+										</div>
+									</div>
+								</div>
+								</c:if>
+								<div class="block2-txt p-t-20">
+									<span class="block2-price m-text6 p-r-5" >
+								<c:forEach var="po" items="${ polist }">
+
+									<c:if test="${ p.prdtNo eq po.prdtNo }">
+
+										<c:forEach var="pc" items="${ pclist }">
+
+										<c:if test="${ po.optColor eq pc.pcName }">
+										<div style="width:14px;height:14px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
+										</c:if>
+										</c:forEach>
+									</c:if>
+							</c:forEach>
+									</span>
+
+									<br>
+									
+					<c:url var="product_detail" value="product_detail.do">
+						<c:param name="product_detail" value="${p.prdtNo }" />
+					</c:url>
+														<a href="${product_detail }" id="${p.prdtNo }"class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
+															${p.prdtName }
+					
+														</a>
+									<span class="block2-price m-text6 p-r-5">
+									<c:if test="${p.prdtSale ne 0 }">
+	<small><font class="format-money" style="text-decoration:line-through">${ p.prdtPrice}</font>-><font class="format-money">${ p.prdtPrice-((p.prdtPrice/100)*p.prdtSale)}</font> won</small>&nbsp;&nbsp;
+										</c:if>
+										<c:if test="${p.prdtSale eq 0 }">
+										<small><font class="format-money">${ p.prdtPrice}</font> won</small>&nbsp;&nbsp;
+										</c:if>
+										
+										<font style="font-size:9px;color:gray">리뷰 : ${p.prdtReview}</font>
+									</span>
+								</div>
+							</div>
+							</div>
+							</c:forEach>
+							
 <!-- 블럭샘플 -->
 						<%-- 	<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
 								<!-- Block2 -->
@@ -896,6 +1105,19 @@
 			</div>
 		</div>
 	</section>
+	<script>
+	$('#salePr').click(function(){
+		$('.sale').css("display","block");
+		$('.best').css("display","none");
+		
+	})
+	$('#bestPr').click(function(){
+		$('.sale').css("display","none");
+		$('.best').css("display","block");
+		
+	})
+	
+	</script>
 	 <script src="/socket.io/socket.io.js"></script>
     <script src="<c:url value="/resources/js/index.js"/>"></script>
 <!-- footer -->

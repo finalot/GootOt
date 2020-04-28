@@ -76,8 +76,6 @@
 							</li>
 	</c:forEach>
 						</ul>
-					
-
 
 						 <div class="search-product pos-relative bo4 of-hidden">
 							<!--<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products..."> -->
@@ -135,7 +133,8 @@
 											</button>
 										</div>
 									</div>
-								</div></c:if>
+								</div>
+							</c:if>
 									<c:if test="${p.prdtNo gt 62000}">
 									<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
 									
@@ -197,14 +196,14 @@
 
 									<br>
 									
-<c:url var="product_detail" value="product_detail.do">
-	<c:param name="product_detail" value="${p.prdtNo }" />
-</c:url>
-									<a href="${product_detail }" id="${p.prdtNo }"class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
-										${p.prdtName }
-
-									</a>
-									
+					<c:url var="product_detail" value="product_detail.do">
+						<c:param name="product_detail" value="${p.prdtNo }" />
+					</c:url>
+														<a href="${product_detail }" id="${p.prdtNo }"class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
+															${p.prdtName }
+					
+														</a>
+														
 
 									<span class="block2-price m-text6 p-r-5">
 									<c:if test="${p.prdtSale ne 0 }">

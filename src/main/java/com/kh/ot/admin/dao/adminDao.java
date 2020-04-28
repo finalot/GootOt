@@ -612,4 +612,24 @@ public class adminDao {
 	}
 
 
+	/**
+	 * @작성일 : 2020. 4. 28.
+	 * @작성자 : 이서현
+	 * @내용 : 월별판매량(월카운트)
+	 */
+	public ArrayList<Pay> monthScountList() {
+		return (ArrayList)sqlSession.selectList("cartMapper.monthScountList");
+	}
+
+
+	/**
+	 * @작성일 : 2020. 4. 28.
+	 * @작성자 : 이서현
+	 * @내용 : 월별판매량(월총 판매금액)
+	 */
+	public ArrayList<Pay> monthPayList() {
+		return (ArrayList)sqlSession.selectList("cartMapper.monthPayList");
+	}
+
+
 }
