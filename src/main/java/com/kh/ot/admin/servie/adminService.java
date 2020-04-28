@@ -479,6 +479,20 @@ public interface adminService{
 		 */
 		public int comentReturn(ReviewReply rp);
 
+		/**
+		 * @작성일 : 2020. 4. 27.
+		 * @작성자 : 이서현
+		 * @내용 : 월별 카운트
+		 */
+		public ArrayList<Pay> monthScountList();
+
+		/**
+		 * @작성일 : 2020. 4. 28.
+		 * @작성자 : 이서현
+		 * @내용 : 월별 총합
+		 */
+		public ArrayList<Pay> monthPayList();
+
 
 
 

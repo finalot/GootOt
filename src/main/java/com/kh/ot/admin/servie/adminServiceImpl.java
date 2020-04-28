@@ -367,6 +367,18 @@ public class adminServiceImpl implements adminService{
 		}
 
 
+		@Override
+		public ArrayList<Pay> monthScountList() {
+			return adDao.monthScountList();
+		}
+
+
+		@Override
+		public ArrayList<Pay> monthPayList() {
+			return adDao.monthPayList();
+		}
+
+
 
 
 }

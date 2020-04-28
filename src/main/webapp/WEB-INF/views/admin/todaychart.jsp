@@ -228,35 +228,59 @@
       <!-- END MAIN CONTENT-->
 </div>
 <script>
-	var ctx = document.getElementById("monthlyChart").getContext('2d');
-	/*
-	- Chart를 생성하면서, 
-	- ctx를 첫번째 argument로 넘겨주고, 
-	- 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
-	*/
-	var monthlyChart = new Chart(ctx, {
-	    type: 'bar',
-	    data: {
-	        labels: ["10", "11", "12", "1", "2", "3","4"],
-	        datasets: [{
-	            label: '월별 판매량',
-	            data: [12, 19, 3, 5, 2, 3],
-	            borderColor: "rgba(0, 123, 255, 0.9)",
-	            backgroundColor: "rgba(0, 123, 255, 0.5)",
-	            borderWidth: 1
-	        }]
-	    },
-	    options: {
-	        maintainAspectRatio: true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
-	        scales: {
+$(function(){
+	
+	var monthArr = new Array();
+	var monpayArr = new Array();
+	var  i =0;
+  	  "<c:forEach var='mon' items='${month}'>"
+  	   monArr[i] = "${mon.month}";    
+  	   payArr[i] = "${mon.sumprice}"
+       i++;
+		"</c:forEach>"
+	
+	
+	 var ctx = document.getElementById("monthlyChart");
+	    if (ctx) {
+	      ctx.height = 446;
+	      var myChart = new Chart(ctx, {
+	        type: 'bar',
+	        data: {
+	          labels: [	monArr[0], monArr[1], monArr[2], monArr[3], monArr[4], monArr[5], monArr[6],
+	        	 		monArr[7], monArr[8], monArr[9], monArr[10], monArr[11]
+	          		  ],
+	          datasets: [
+	            {
+	              label: "월별 판매량",
+	              data: [ payArr[0],payArr[1],payArr[2],payArr[3],payArr[4],payArr[5],payArr[6],
+	            	      payArr[7],payArr[8],payArr[9],payArr[10],payArr[11]
+	            	  
+	            	  ],
+	              borderColor: "transparent",
+	              borderWidth: "0",
+	              backgroundColor: "#ccc",
+	            }
+	          ]
+	        },
+	        options: {
+	          maintainAspectRatio: true,
+	          legend: {
+	            display: false
+	          },
+	          scales: {
+	            xAxes: [{
+	              display: false,
+	              categoryPercentage: 1,
+	              barPercentage: 0.65
+	            }],
 	            yAxes: [{
-	                ticks: {
-	                    beginAtZero:true
-	                }
+	              display: false
 	            }]
+	          }
 	        }
+	      });
 	    }
-	});
+});
 </script>
   	    <!-- Jquery JS-->
     <script src="/ot/resources/avendor/jquery-3.2.1.min.js"></script>
