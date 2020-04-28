@@ -39,6 +39,8 @@
     <link href="/ot/resources/acss/theme.css" rel="stylesheet" media="all">
 </head>
 <body class="animsition">
+   <!-- 차트가능한 소스 -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<div class="page-wrapper">
 		<jsp:include page="a_header.jsp"/>
  <!-- MENU SIDEBAR-->
@@ -227,14 +229,38 @@
 </div>
       <!-- END MAIN CONTENT-->
 </div>
-<script>
+
+  	    <!-- Jquery JS-->
+    <script src="/ot/resources/avendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="/ot/resources/avendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="/ot/resources/avendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="/ot/resources/avendor/slick/slick.min.js">
+    </script>
+    <script src="/ot/resources/avendor/wow/wow.min.js"></script>
+    <script src="/ot/resources/avendor/animsition/animsition.min.js"></script>
+    <script src="/ot/resources/avendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="/ot/resources/avendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="/ot/resources/avendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="/ot/resources/avendor/circle-progress/circle-progress.min.js"></script>
+    <script src="/ot/resources/avendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="/ot/resources/avendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="/ot/resources/avendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="/ot/resources/ajs/main.js"></script>
+    <script>
 $(function(){
 	
 	var monArr = new Array();
 	var payArr = new Array();
 	var  i =0;
   	  "<c:forEach var='mon' items='${month}'>"
-  	   monArr[i] = "${mon.month}";    
+  	   monArr[i] = "${mon.week}";    
   	   payArr[i] = "${mon.sumprice}"
        i++;
 		"</c:forEach>"
@@ -277,28 +303,5 @@ $(function(){
 	    }
 });	
 </script>
-  	    <!-- Jquery JS-->
-    <script src="/ot/resources/avendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="/ot/resources/avendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="/ot/resources/avendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="/ot/resources/avendor/slick/slick.min.js">
-    </script>
-    <script src="/ot/resources/avendor/wow/wow.min.js"></script>
-    <script src="/ot/resources/avendor/animsition/animsition.min.js"></script>
-    <script src="/ot/resources/avendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="/ot/resources/avendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="/ot/resources/avendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="/ot/resources/avendor/circle-progress/circle-progress.min.js"></script>
-    <script src="/ot/resources/avendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="/ot/resources/avendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="/ot/resources/avendor/select2/select2.min.js">
-    </script>
-
-    <!-- Main JS-->
-    <script src="/ot/resources/ajs/main.js"></script>
 </body>
 </html>
