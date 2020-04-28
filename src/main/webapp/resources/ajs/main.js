@@ -1247,7 +1247,6 @@
 //  } catch (error) {
 //    console.log(error);
 //  }
-//
 })(jQuery);
 
 
@@ -1662,7 +1661,6 @@
       });
     });
     
-
   } catch (error) {
     console.log(error);
   }
