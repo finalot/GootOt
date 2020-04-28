@@ -13,7 +13,7 @@
     <meta name="keywords" content="au theme template">
 
  <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="/ot/resources/aimages/icon/favicon.png"/>
+   <link rel="icon" type="image/png" href="/ot/resources/aimages/icon/favicon.png"/>
 
     <!-- Title Page-->
     <title>oT. ADMIN</title>
@@ -40,12 +40,12 @@
     <link href="/ot/resources/acss/theme.css" rel="stylesheet" media="all">
 </head>
 <body class="animsition">
-	<!-- 차트가능한 소스 -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-	<div class="page-wrapper">
-		<jsp:include page="a_header.jsp"/>
+   <!-- 차트가능한 소스 -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+   <div class="page-wrapper">
+      <jsp:include page="a_header.jsp"/>
  <!-- MENU SIDEBAR-->
- 	
+    
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="index.jsp">
@@ -90,13 +90,13 @@
                                     <a href="order.ad">주문확인 관리</a>
                                 </li>
                                 <li>
-                                	<a href="order_2.ad">배송대기 관리</a>
+                                   <a href="order_2.ad">배송대기 관리</a>
                                 </li>
                                  <li>
-                                	<a href="order_3.ad">배송중 관리</a>
+                                   <a href="order_3.ad">배송중 관리</a>
                                 </li>
                                  <li>
-                                	<a href="order_4.ad">배송완료 관리</a>
+                                   <a href="order_4.ad">배송완료 관리</a>
                                 </li>
                                 
                             </ul>
@@ -106,7 +106,7 @@
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-shopping-cart"></i>상품관리</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            	<li>
+                               <li>
                                     <a href="category.ad">카테고리관리</a>
                                 </li>
                                 <li>
@@ -126,7 +126,7 @@
                             <a class="js-arrow" href="productReturn_list.ad">
                         <i class="fa fa-credit-card"></i>교환 &nbsp;/&nbsp;반품</a>
                         </li>
-                 		<li>
+                       <li>
                            <a href="DesignEdit.ad">
                                <i class="fa fa-desktop"></i>디자인</a>
                        </li>
@@ -134,7 +134,7 @@
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-question"></i>Q & A</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            	<li>
+                               <li>
                                     <a href="QnA_Product.ad">상품문의</a>
                                 </li>
                                  <li>
@@ -153,12 +153,12 @@
                                     <a href="QnA_bad_product.ad">상품불량 및 오배송 문의</a>
                                 </li>
                             </ul>
-	                       </li>
-	                    <li class="has-sub">
+                          </li>
+                       <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fa fa-pencil-square-o"></i>리뷰</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            	<li>
+                               <li>
                                     <a href="review_list.ad">리뷰관리</a>
                                 </li>
                                 <li>
@@ -166,7 +166,7 @@
                                 </li>
                                 
                             </ul>
-	                  	</li>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -224,7 +224,7 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--red">
-                            <h2 class="number">	&#8361; 
+                            <h2 class="number">   &#8361; 
                             <fmt:formatNumber value="${spriceResult }" pattern="#,###" /></h2>
                             <span class="desc">오늘 판매금액</span>
                             <div class="icon">
@@ -249,7 +249,7 @@
                     <div class="col-md-6 col-lg-4" style="margin-left: 15%">
                         <!-- CHART-->
                         <div class="statistic-chart-1" 
-                        	style="margin-left:-35%; width:140%; height:506px;" onclick="location.href='todayChart.ad'">
+                           style="margin-left:-35%; width:140%; height:auto;" onclick="location.href='todayChart.ad'">
                             <h3 class="title-3 m-b-30">일별 판매량</h3>
                             <div class="chart-wrap">
                                 <canvas id="widgetChart5" width:"406" height:"446"></canvas>
@@ -268,14 +268,14 @@
                             <div class="table-responsive">
                                 <table class="table table-top-campaign">
                                     <tbody>
-                                    	
-                                    	<tr>
-                                    		<td>상품명</td>
-                                    		<td>총 판매량</td>
-                                    	</tr>
+                                       
+                                       <tr>
+                                          <td>상품명</td>
+                                          <td>총 판매량</td>
+                                       </tr>
                                         <c:forEach var="p" items="${plist }" varStatus="status">
                                         <tr>
-                                        	<td>${status.count} . ${p.prdtName }</td>
+                                           <td>${status.count} . ${p.prdtName }</td>
                                             <td>${p.prdtScount }</td>
                                         </tr>
                                         </c:forEach>    
@@ -292,8 +292,8 @@
         </section>
         <!-- END STATISTIC CHART-->
 
-	</div>
-	
+   </div>
+   
     <!-- Jquery JS-->
     <script src="/ot/resources/avendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
@@ -319,52 +319,52 @@
     </div>
     <script>
     $(function(){
-    	
-    	var weekArr = new Array();
-    	var payArr = new Array();
-    	var  i =0;
-      	  "<c:forEach var='we' items='${week}'>"
-      	   weekArr[i] = "${we.week}";    
-      	   payArr[i] = "${we.sumprice}"
-	       i++;
-			"</c:forEach>"
-    	
-    	
-    	 var ctx = document.getElementById("widgetChart5");
-    	    if (ctx) {
-    	      ctx.height = 446;
-    	      var myChart = new Chart(ctx, {
-    	        type: 'bar',
-    	        data: {
-    	          labels: [	weekArr[0], weekArr[1], weekArr[2], weekArr[3], weekArr[4], weekArr[5], weekArr[6]   ],
-    	          datasets: [
-    	            {
-    	              label: "일별 판매량",
-    	              data: [ payArr[0],payArr[1],payArr[2],payArr[3],payArr[4],payArr[5],payArr[6] ],
-    	              borderColor: "transparent",
-    	              borderWidth: "0",
-    	              backgroundColor: "#ccc",
-    	            }
-    	          ]
-    	        },
-    	        options: {
-    	          maintainAspectRatio: true,
-    	          legend: {
-    	            display: false
-    	          },
-    	          scales: {
-    	            xAxes: [{
-    	              display: false,
-    	              categoryPercentage: 1,
-    	              barPercentage: 0.65
-    	            }],
-    	            yAxes: [{
-    	              display: false
-    	            }]
-    	          }
-    	        }
-    	      });
-    	    }
+       
+       var weekArr = new Array();
+       var payArr = new Array();
+       var  i =0;
+           "<c:forEach var='we' items='${week}'>"
+            weekArr[i] = "${we.week}";    
+            payArr[i] = "${we.sumprice}"
+          i++;
+         "</c:forEach>"
+       
+       
+        var ctx = document.getElementById("widgetChart5");
+           if (ctx) {
+             ctx.height = 247;
+             var myChart = new Chart(ctx, {
+               type: 'bar',
+               data: {
+                 labels: [   weekArr[0], weekArr[1], weekArr[2], weekArr[3], weekArr[4], weekArr[5], weekArr[6]   ],
+                 datasets: [
+                   {
+                     label: "일별 판매량",
+                     data: [ payArr[0],payArr[1],payArr[2],payArr[3],payArr[4],payArr[5],payArr[6] ],
+                     borderColor: "transparent",
+                     borderWidth: "0",
+                     backgroundColor: "#ccc",
+                   }
+                 ]
+               },
+               options: {
+                 maintainAspectRatio: true,
+                 legend: {
+                   display: false
+                 },
+                 scales: {
+                   xAxes: [{
+                     display: false,
+                     categoryPercentage: 1,
+                     barPercentage: 0.65
+                   }],
+                   yAxes: [{
+                     display: false
+                   }]
+                 }
+               }
+             });
+           }
     });
     
     </script>

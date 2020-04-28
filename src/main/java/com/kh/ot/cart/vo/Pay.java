@@ -14,7 +14,7 @@ public class Pay {
 	private String pay_yn; // 결제완료여부
 	private int prdt_no; // 상품번호(문자열)
 	private String week;//최근 일주일
-	
+	private String month;//최근 달
 	public Pay() {
 	}
 
@@ -31,6 +31,16 @@ public class Pay {
 		this.pay_point = pay_point;
 		this.pay_yn = pay_yn;
 		this.prdt_no = prdt_no;
+	}
+	
+	
+	public String getMonth() {
+		return month;
+	}
+
+
+	public void setMonth(String month) {
+		this.month = month;
 	}
 
 

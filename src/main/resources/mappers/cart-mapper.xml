@@ -321,7 +321,7 @@
 		
 		<select id="monthScountList" resultMap="payResultSet">
 			<![CDATA[
-			SELECT TO_CHAR(ADD_MONTHS(SYSDATE,-(LEVEL-1)),'YYYYMM') AS MONTH
+			SELECT TO_CHAR(ADD_MONTHS(SYSDATE,-(LEVEL-1)),'YYYYMM') AS WEEK
             FROM DUAL
             CONNECT BY LEVEL<=12
 			]]>
@@ -329,10 +329,11 @@
 		
 		<select id="monthPayList" resultMap="payResultSet">
 			<![CDATA[
-			SELECT SUM(PAY_MONEY) as count
+			SELECT SUM(PAY_MONEY) as PAY_MONEY, to_char(pay_date, 'YYYYMM') as WEEK
 			FROM PAY
 			WHERE PAY_DATE>=SYSDATE-365 AND PAY_DATE<SYSDATE
-			GROUP BY to_char(PAY_DATE, 'YYYY/MM')
+			GROUP BY to_char(PAY_DATE, 'YYYYMM')
+			order by WEEK desc
 			]]>
 		</select>
 	

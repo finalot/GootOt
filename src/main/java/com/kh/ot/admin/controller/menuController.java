@@ -134,7 +134,7 @@ public class menuController {
 				 }
 			 }
 		 }
-		
+		System.out.println("month : " + month);
 		mv.addObject("month",month);
 		mv.addObject("monthPay",monthPay);
 		mv.setViewName("admin/todaychart");
