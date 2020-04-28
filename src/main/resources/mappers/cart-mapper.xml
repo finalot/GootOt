@@ -319,6 +319,22 @@
 		
 		</select>
 		
+		<select id="monthScountList" resultMap="payResultSet">
+			<![CDATA[
+			SELECT TO_CHAR(ADD_MONTHS(SYSDATE,-(LEVEL-1)),'YYYYMM') AS MONTH
+            FROM DUAL
+            CONNECT BY LEVEL<=12
+			]]>
+		</select>
+		
+		<select id="monthPayList" resultMap="payResultSet">
+			<![CDATA[
+			SELECT SUM(PAY_MONEY) as count
+			FROM PAY
+			WHERE PAY_DATE>=SYSDATE-365 AND PAY_DATE<SYSDATE
+			GROUP BY to_char(PAY_DATE, 'YYYY/MM')
+			]]>
+		</select>
 	
 	
 </mapper>
