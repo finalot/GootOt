@@ -25,7 +25,10 @@ import com.kh.ot.main.vo.ReviewCheck;
 import com.kh.ot.main.vo.Wish;
 import com.kh.ot.main.vo.productWith;
 import com.kh.ot.main.vo.productbenner;
+import com.kh.ot.review.vo.Like_Heart;
 import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
+import com.kh.ot.review.vo.Review_Photo;
 
 @Repository("mainDao")
 public class MainDao {
@@ -358,6 +361,58 @@ public class MainDao {
 
 	public int getReviewListCount(int product_detail) {
 		return sqlSession.selectOne("productMapper.getReviewListCount",product_detail);
+	}
+
+	public int selectLikeCount(Like_Heart lh) {
+		return sqlSession.selectOne("productMapper.selectLikeCount",lh);
+	}
+
+	public Like_Heart selectLike(Like_Heart lh) {
+		return sqlSession.selectOne("productMapper.selectLike",lh);
+	}
+
+	public int insertLike(Like_Heart lh) {
+		return sqlSession.insert("productMapper.insertLike",lh);
+	}
+
+	public Review selectReviewDetail(int rvNo) {
+		return sqlSession.selectOne("productMapper.selectReviewDetail",rvNo);
+	}
+
+	public ArrayList<Review_Photo> selectReviewPhoto(int rvNo) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectReviewPhoto",rvNo);
+	}
+
+	public int updateLikeCheck(Like_Heart lh) {
+		return sqlSession.update("productMapper.updateLikeCheck",lh);
+	}
+
+	public int updateLikeCount(int rvNo) {
+		return sqlSession.update("productMapper.updateLikeCount",rvNo);
+	}
+
+	public int updateLikeCheck2(Like_Heart lh) {
+		return sqlSession.update("productMapper.updateLikeCheck2",lh);
+	}
+
+	public int updateLikeCount2(int rvNo) {
+		return  sqlSession.update("productMapper.updateLikeCount2",rvNo);
+	}
+
+	public int insertReply(ReviewReply rp) {
+		return sqlSession.insert("productMapper.insertReply",rp);
+	}
+
+	public ArrayList<ReviewReply> selectReplyList(int rv_no) {
+		return (ArrayList)sqlSession.selectList("productMapper.selectReplyList",rv_no);
+	}
+
+	public int DeleteReply(ReviewReply rp) {
+		return sqlSession.delete("productMapper.DeleteReply",rp);
+	}
+
+	public int WarningReply(ReviewReply rp) {
+		return sqlSession.delete("productMapper.WarningReply",rp);
 	}
 
 

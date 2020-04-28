@@ -62,7 +62,7 @@ public interface ReviewService {
 
 	/**
 	 * @작성일  : 2020. 4. 21.
-	 * @작성자  : 우예진 
+	 * @작성자  : 우예진
 	 * @내용    : 좋아요 update
 	 * @param lh
 	 * @return
@@ -225,6 +225,12 @@ public interface ReviewService {
 
 	/**
 	 * @작성일  : 2020. 4. 27.
+	 * @작성자  : 문태환
+	 * @내용 	: 리뷰 신고 리스트
+	 * @return
+	 */
+   	ArrayList<Review> selectReviewReportList();
+	/*
 	 * @작성자  : 우예진
 	 * @내용    : 리스트 카운트
 	 * @return

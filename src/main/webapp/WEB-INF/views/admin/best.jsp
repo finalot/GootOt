@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -211,108 +212,35 @@
                     <tr>
                         <th>순위</th>
                         <th>상품명</th>
-                        <th>가격</th>
-                        <th>당일 판매수량</th>
+                        <th>대표이미지</th>
+                        <th>가격(할인가 포함)</th>
                         <th>총 판매수량</th>
                     </tr>
                 </thead>
                 <tbody>
-                   <tr>
-                   		<td>1</td>
-                   		<td>골지 나시</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
+                <c:forEach var="p" items="${plist }" varStatus="status">
+                   <tr align="center">
+                   		<td>${status.count}</td>
+                   		<td>${p.prdtName }</td>
+                   		<td align="center"><img style="width: 100px" src="${p.prdtImagePath }${p.prdtImage}" alt="상품이미지" title="상품이미지"></td>                   		
+	                   	<td><fmt:parseNumber value="${p. prdtPrice-p.prdtSale*1/100}" integerOnly="true"/></td>
+                   		<td>${p.prdtScount}</td>
                    </tr>
-                   <tr>
-                   		<td>2</td>
-                   		<td>샘플 나시</td>
-                   		<td>12,000</td>
-                   		<td>4</td>
-                   		<td>120</td>
-                   </tr>
-                   <tr>
-                   		<td>3</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>4</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>5</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>6</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>7</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>8</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>9</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>10</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
-                   <tr>
-                   		<td>11</td>
-                   		<td>샘플</td>
-                   		<td>8,000</td>
-                   		<td>14</td>
-                   		<td>700</td>
-                   </tr>
+                </c:forEach>
+                </tbody>
             </table>
         </div>
         </div>
     </div>
     </div>
     </div>
-    <div class="page-wrapper">
-</div>
-	
+    
+
 	
 	<!-- // td(class=next) 클릭시 페이지 이동 -->
 	<script>
      $("td").click(function(){
-    	 location.href='../productDetail.ad';
-  	 <%-- var userId = $(this).parent().find('input').val();
-  	 
-  	 console.log("선택한 유저 ID : "+userId);
-  	 
-     location.href="<%= request.getContextPath() %>/sone.rp?userId=" + userId; --%>
+    	 location.href='../productDetail.do';
     }); 
     </script>
 

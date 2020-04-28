@@ -38,8 +38,18 @@
                                     width: 50%;" type="text" class="form-control" id="memName" name="name" value="">
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                   <span style="padding-right: 20px;">생년월일 :</span><input style="display: inline-block;
-                                   width: 50%;" type="text" class="form-control" id="memSsn" name="birthday" value="" maxlength="6">
+                                     <input id="birth_year"  name="birth_year" class="inputTypeText" placeholder="" maxlength="4" value="" type="text"
+                   style="position: relative;width: 60px;">
+                      <span id="idMsg">년</span>
+                      <input id="birth_month" name="birth_month"  class="inputTypeText" placeholder="" maxlength="2" value="" type="text"
+                      style="position: relative;width: 30px;">
+                      <span id="idMsg">월</span>
+                      <input id="birth_day" name="birth_day" class="inputTypeText" placeholder="" maxlength="2" value="" type="text"
+                      style="position: relative;width: 30px;">
+                      <span id="idMsg">일</span>
+                                
+                                 <!--   <span style="padding-right: 20px;">생년월일 :</span><input style="display: inline-block;
+                                   width: 50%;" type="text" class="form-control" id="memSsn" name="birthday" value="" maxlength="6"> -->
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <div class="creat_account d-flex align-items-center">

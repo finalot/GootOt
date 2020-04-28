@@ -1209,14 +1209,14 @@ select {
                 <div id="modalpost" >
                     <div id="modalimg" class="slideshow-container" style="position:relative;top:-20px;" >
 
-                         <div style="width:10px;height:10px;position:relative;top:400px;left:5px;">
-                         <a class="prev" onclick="plusSlides(-1);"style="font-size:25px;background:gray;opacity: 0.6;" ><strong>&#10094;</strong></a>
+                         <div  style="width:10px;height:10px;position:relative;top:400px;left:5px;">
+                         <a id="movePage1"  class="prev" onclick="plusSlides(-1);"style="font-size:25px;background:gray;opacity: 0.6;" ><strong > &#10094;</strong></a>
                          </div>
-                        <div id="nextPh" style="width:10px;height:10px;position:relative;top:390px;left:780px;">
-                        <a class="next" onclick="plusSlides(1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>&#10095;</strong></a>
+                        <div  id="nextPh" style="width:10px;height:10px;position:relative;top:390px;left:780px;">
+                        <a id="movePage2" class="next" onclick="plusSlides(1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong > &#10095; </strong></a>
                         </div>
 
-     <!--            <div class="mySlides" style="display: block;">
+        <!--       <div class="mySlides" style="display: block;">
                             <div class="numbertext" ><font style="font-size:14px;">1 / 2</font></div>
                             <img class="contentimgs" id="contentimgs1" src="" alt="sample1" style="margin-top:-5%;">
                         </div>
@@ -1224,14 +1224,11 @@ select {
                         <div class="mySlides">
                             <div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>
                             <img class="contentimgs" id="contentimgs2" src="" alt="sample2" style="margin-top:-5%;" >
-                        </div> -->
-
-
-
+                        </div>  -->
 
 
                         <div id="dotbox" style="text-align:center">
-                            <span class="dot" onclick="currentSlide(1);"></span>
+                           <span class="dot" onclick="currentSlide(1);"></span>
                             <span class="dot" onclick="currentSlide(2);"></span>
 
                         </div>
@@ -1435,7 +1432,7 @@ select {
 
 					</div><br><br><br>
 
-				
+
 					<!-- 페이징 처리 할 부분 -->
 				<c:if test="${!empty rlist }">
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1" >
@@ -1450,9 +1447,9 @@ select {
 				<a href="${start }" class="first">
 					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
 				</a>
-				</c:if> 
-				
-				
+				</c:if>
+
+
 				<c:if test="${ pi.currentPage eq 1 }">
 					<img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지"> &nbsp;
 				</c:if>
@@ -1465,7 +1462,7 @@ select {
                   <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
                   </a> &nbsp;
                  </c:if>
-                  
+
 				 <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
                      <c:if test="${ p eq pi.currentPage }">
                         <font color="red" style="font-size: 13px;font-weight: 900;font-family: 'arial',serif;line-height: 35px;">
@@ -1481,8 +1478,8 @@ select {
                      ${ p }</a> &nbsp;
                   </c:if>
                </c:forEach>
-               
-               
+
+
                <c:if test="${ pi.currentPage eq pi.maxPage }">
 					<img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
 				</c:if>
@@ -1495,7 +1492,7 @@ select {
                <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
                </a>
                </c:if>
-               
+
                <c:if test="${ pi.currentPage eq pi.maxPage }">
                		<img src="/ot/resources/images/btn_page_last.gif" alt="마지막 페이지">
                </c:if>
@@ -2097,6 +2094,8 @@ select {
 
 		 $('#comentarea').children('.replyDiv').remove();
 		 $('#comentarea').children('br').remove();
+	     $('.mySlides').remove();
+
 		 var rv_no = $(en).parents('li').find('.rv_no').val();
 		 $("#rv_no2").val(rv_no);
 
@@ -2121,33 +2120,34 @@ select {
 				 $('#pImage').attr("src",r.r.prdtPath+r.r.prdtImg);
 				 $('#likeCheck').val(r.lhl.likeCheck);
 				 $('#likeCount').text(r.r.rvLike);
-				 $("#reviewArea").text("");
-	/* 			 if(r.ph.length == 1){
+				/* if(r.ph.length == 1){
 					 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
 				 }else{
 					 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
 					 $('#contentimgs2').attr("src",r.ph[1].rpPhoto);
 				 } */
+				if(r.ph.length == 1){
+					$('#movePage1').css("display","none");
+					$('#movePage2').css("display","none");
+				}else{
+					$('#movePage1').css("display","block");
+					$('#movePage2').css("display","block");
+				}
+
+
 			  for(var i =0; i<r.ph.length;i++){
 				  if(i == 0){
-						$('#nextPh').after('  <div class="mySlides" style="display: block;">'+
-	                            '<div class="numbertext" ><font style="font-size:14px;">1/ 2</font></div>'+
-	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;">'+
+						$('#nextPh').after(' <div id="img1" class="mySlides" style="display: block;">'+
+	                            '<div class="numbertext" ><font style="font-size:14px;">1/ '+r.ph.length+'</font></div>'+
+	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;width:800px;">'+
 	                            '</div>')
 				  }else{
-						$('#contentimgs1').after(	' <div class="mySlides">'+
-			                      '<div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>'+
-			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;" >'+
+						$('#img1').after(	'<div class="mySlides" style="display: none;">'+
+			                      '<div class="numbertext"><font style="font-size:14px;">2 / '+r.ph.length+'</font></div>'+
+			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;width:800px;" >'+
 			                  '</div>')
-					  
 				  }
-				  
-				  
-				  
-				  
-				  
-				  
-				  } 
+			 }
 
 
 				 if(r.lhl.likeCheck == "N"){
@@ -2175,7 +2175,7 @@ select {
 							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
-			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
 			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 			                          	 )
@@ -2257,7 +2257,7 @@ select {
 						 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
-		                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+		                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
 		                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 		                          	 )
@@ -2285,7 +2285,7 @@ select {
 
 	<script>
 	function Warning(wa) {
-		
+
 		if(confirm('댓글을 신고 하겠습니까?') ==true){
 		var rvcNo=$(wa).parents('.replyDiv').find('.rvc_no').val();
 
@@ -2305,7 +2305,7 @@ select {
 							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
-			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
 			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 			                          	 )

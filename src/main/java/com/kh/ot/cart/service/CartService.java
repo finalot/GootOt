@@ -192,4 +192,20 @@ public interface CartService {
 	 */
 	int updateProductStock(ArrayList<Ord> olist);
 
+	/**
+	 * @작성일  : 2020. 4. 27.
+	 * @작성자  : 문태환
+	 * @내용 	: 최근 일주일 날짜 구하기
+	 * @return
+	 */
+	ArrayList<Pay> weekList();
+
+	/**
+	 * @작성일  : 2020. 4. 27.
+	 * @작성자  : 문태환
+	 * @내용 	: 최근 일주일 판매액 구하기
+	 * @return
+	 */
+	ArrayList<Pay> weekPayList();
+
 }

@@ -164,7 +164,7 @@ font-size: 9px !important;
 					</c:url>
 					<!-- 프로덕트 2 부분 경로설정 끝 --> --%>
 					
-					<c:url var="todaymain" value="todaymain.ad"/> 
+					<c:url var="todaymain" value="todayMain.ad"/> 
 					
 					<!-- 기타 버튼 경로설정 -->
 					<c:url var="review" value="review.do">
@@ -311,7 +311,7 @@ font-size: 9px !important;
 
 
 				<div class="topbar-child2">
-					<span class="topbar-email"> . </span>
+					<!-- <span class="topbar-email"> . </span> -->
 
 					
 					<c:url var="loginView" value="loginView.do"/>				
@@ -325,7 +325,7 @@ font-size: 9px !important;
 					
 					<!-- id가 admin이면 들어갈 수 있도록 c:if 문 추가 -->
 					<a href="${todaymain }" class="topbar-email">ADMIN</a>		
-							
+					&nbsp;&nbsp; <span class="topbar-email"> . </span> &nbsp;&nbsp;							
 					  <c:if test="${ empty sessionScope.loginMember }">													
 					&nbsp;&nbsp; <a href='${loginView}'  class="topbar-email"> Login </a>
 					</c:if>

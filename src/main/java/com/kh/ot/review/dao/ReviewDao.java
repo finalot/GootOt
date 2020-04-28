@@ -22,7 +22,7 @@ import com.kh.ot.review.vo.Review_count;
 @Repository("rDao")
 public class ReviewDao {
 
-	
+
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
@@ -35,7 +35,7 @@ public class ReviewDao {
 	public ArrayList<Review> selectReviewList(MainPageInfo2 pi) {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
-		
+
 		return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList",null,rowBounds);
 	}
 
@@ -286,8 +286,8 @@ public class ReviewDao {
 			return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList",null,rowBounds);
 		}
 	}
-	
-	
+
+
 	public ArrayList<Product> getBestList() {
 		return (ArrayList)sqlSession.selectList("reviewMapper.selectBestList");
 	}
@@ -301,7 +301,7 @@ public class ReviewDao {
 	/**
 	 * @작성일  : 2020. 4. 24.
 	 * @작성자  : 우예진
-	 * @내용    : 셀렉트 박스 카테고리 
+	 * @내용    : 셀렉트 박스 카테고리
 	 * @return
 	 */
 	public ArrayList<MainupCategory> selectCategoryList() {
@@ -364,10 +364,19 @@ public class ReviewDao {
 
 	/**
 	 * @작성일  : 2020. 4. 27.
+	 * @작성자  :  문태환
+	 * @내용 	: 리뷰 신고 게시글 가져오기
+	 * @return
+	 */
+	public ArrayList<Review> selectReviewReportList() {
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewReportList");
+  }
+	/*
 	 * @작성자  : 우예진
 	 * @내용    : 리스트 카운트
 	 * @return
 	 */
+
 	public int selectListCount() {
 		return sqlSession.selectOne("reviewMapper.selectListCount");
 	}

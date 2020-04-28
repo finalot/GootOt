@@ -40,19 +40,26 @@ import com.kh.ot.board.vo.PageInfo;
 import com.kh.ot.cart.service.CartService;
 import com.kh.ot.cart.vo.Ord;
 import com.kh.ot.cart.vo.Pay;
+import com.kh.ot.common.MainPagination2;
 import com.kh.ot.common.Pagination;
 import com.kh.ot.main.service.MainService;
+import com.kh.ot.main.vo.MainPageInfo2;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_color;
 import com.kh.ot.main.vo.Product_opt;
 import com.kh.ot.member.vo.Member;
 import com.kh.ot.mypage.vo.Return;
+import com.kh.ot.review.service.ReviewService;
 import com.kh.ot.review.vo.Review;
+import com.kh.ot.review.vo.ReviewReply;
 
 @SessionAttributes("loginMember")
 @Controller
 public class menuController {
 
+	  @Autowired
+	  private ReviewService rService;
+	  
 	@Autowired
 	private adminService adService;
 
@@ -69,9 +76,44 @@ public class menuController {
 	 * @작성자 : 이서현
 	 * @내용 : ADMIN VIEW 연결
 	 */
+	/**
+	 * @작성일 : 2020. 4. 25.
+	 * @작성자 : 이서현
+	 * @내용 : TOP5인기순위
+	 */
 	@RequestMapping("todayMain.ad")
-	public String todayMain() {
-		return "admin/todaymain";
+	public ModelAndView todayMain(ModelAndView mv) {
+		
+		ArrayList<Product> plist = adService.topSelect();
+		//오늘의 QNA
+		int qnaResult = adService.todayQnAselect();
+		int returnResult = adService.todayReturnSelect();
+		int scountResult = 0;
+		int spriceResult = 0;
+		 scountResult = adService.todayScountSelect();
+		 spriceResult = adService.todaySpriceSelect();
+		
+		 ArrayList<Pay> week = cService.weekList();
+		 ArrayList<Pay> weekPay = cService.weekPayList();
+		 
+		 for(int i=0;i<week.size();i++) {
+			 for(int j=0;j<weekPay.size();j++) {
+				 if(week.get(i).getWeek().equals(weekPay.get(j).getWeek())) {
+					 week.get(i).setSumprice(weekPay.get(j).getSumprice());
+				 }
+			 }
+		 }
+ 		 
+		 System.out.println("week : " + week);
+		mv.addObject("week",week); 
+		mv.addObject("plist",plist);
+		mv.addObject("qnaResult",qnaResult);
+		mv.addObject("returnResult",returnResult);
+		mv.addObject("scountResult",scountResult);
+		mv.addObject("spriceResult",spriceResult);
+		mv.setViewName("admin/todaymain");
+		
+		return mv;
 	}
 
 	@RequestMapping("todayChart.ad")
@@ -79,9 +121,18 @@ public class menuController {
 		return "admin/todaychart";
 	}
 
+	/**
+	 * @작성일 : 2020. 4. 24.
+	 * @작성자 : 이서현
+	 * @내용 : 상품순위 리스트
+	 */
 	@RequestMapping("best.ad")
-	public String best() {
-		return "admin/best";
+	public ModelAndView best(ModelAndView mv) {
+		ArrayList<Product> plist = adService.ProductSelectListBest();
+		
+		mv.addObject("plist",plist);
+		mv.setViewName("admin/best");
+		return mv;
 	}
 
 	/**
@@ -96,6 +147,30 @@ public class menuController {
 		
 		mv.addObject("mlist", mlist);
 		mv.setViewName("admin/customer");
+		return mv;
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 23.
+	 * @작성자 : 이서현
+	 * @내용 : 회원관리 리스트 디테일
+	 */
+	@RequestMapping("customerDetail.ad")
+	public ModelAndView customerDetail(ModelAndView mv, int memNo) {
+		
+		Member m = adService.selectOneMember(memNo);
+		ArrayList<Ord> olist = adService.selectOrder(memNo);
+		ArrayList<Product> plist = adService.ProductSelectList();
+		
+		if(m!=null) {
+			mv.addObject("plist",plist);
+			mv.addObject("m",m).setViewName("admin/customerDetail");
+			mv.addObject("olist",olist).setViewName("admin/customerDetail");
+			
+		}else {
+			mv.addObject("msg","상품관리 상세조회 실패").setViewName("common/errorPage");
+		}
+		
 		return mv;
 	}
 
@@ -270,21 +345,19 @@ public class menuController {
 	 * @param ordNo
 	 * @throws IOException
 	 */
-//	@RequestMapping("orderUpdate4.ad")
-//	public void orderUpdate4(HttpServletResponse response , int ordNo) throws IOException {
-//		
-//		PrintWriter out  = response.getWriter();
-//		
-//		int result = adService.orderUpdate4(ordNo);
-//		
-//		if(result > 0) {
-//			out.print("ok");
-//		}else {
-//			out.print("fail");
-//		}
-//	}
-	
-	
+	@RequestMapping("orderUpdate4.ad")
+	public void orderUpdate4(HttpServletResponse response , int ordNo) throws IOException {
+		
+		PrintWriter out  = response.getWriter();
+		
+		int result = adService.orderUpdate4(ordNo);
+		
+		if(result > 0) {
+			out.print("ok");
+		}else {
+			out.print("fail");
+		}
+	}
 	
 
 	@RequestMapping("category.ad")
@@ -335,15 +408,28 @@ public class menuController {
 	 * @내용 : 상품리스트디테일 리스트 
 	 */
 	@RequestMapping("productListDetail.ad")
-	public ModelAndView productListDetail(ModelAndView mv) {
+	public ModelAndView productListDetail(ModelAndView mv, int prdtNo) {
 		
-		ArrayList<Product> plist = adService.ProductSelectList();
+//		그냥 뿌려주기 
 		ArrayList<UpCategory> ulist = adService.UpCategorySelect();
 		ArrayList<DownCategory> dlist = adService.DownCategorySelect();
-		//여기야 여기 ! 
-		mv.addObject("plist",plist);
-		mv.setViewName("admin/productListDetail");
+		ArrayList<Product_color> clist = mainService.selectColorList2();
 		
+		
+		Product p = adService.listProductSelectList(prdtNo);
+		ArrayList<Product_opt> oplist = adService.listProductOptSelectList(prdtNo);
+		
+		if(p!=null) {
+			mv.addObject("ulist", ulist);
+			mv.addObject("dlist", dlist);
+			mv.addObject("clist",clist);
+			
+			mv.addObject("p", p).setViewName("admin/productListDetail");
+			 mv.addObject("oplist",oplist).setViewName("admin/productListDetail"); 
+		}else {
+			mv.addObject("msg","상품관리 상세조회 실패").setViewName("common/errorPage");
+		}
+	
 		return mv;
 	}
 
@@ -542,7 +628,6 @@ public class menuController {
 
 		return mv;
 	}
-
 	/**
 	 * @작성일 : 2020. 4. 14.
 	 * @작성자 : 문태환
@@ -570,12 +655,6 @@ public class menuController {
 	public String status() {
 		return "admin/status";
 	}
-
-	@RequestMapping("customerDetail.ad")
-	public String customerDetail() {
-		return "admin/customerDetail";
-	}
-
 
 	@RequestMapping("QnA_bank_detail.ad")
 	public String QnA_bank_detail() {
@@ -612,9 +691,15 @@ public class menuController {
 	}
 
 	@RequestMapping("review_list.ad")
-	public ModelAndView review_list(ModelAndView mv) {
+	public ModelAndView review_list(@RequestParam(value="currentPage", 
+		    required=false,defaultValue="1") int currentPage,ModelAndView mv) {
 		
-		ArrayList<Review> rlist = new ArrayList<>();
+		
+		int listCount = rService.selectListCount();
+		MainPageInfo2 pi = MainPagination2.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Review> rlist =   rService.selectReviewList(pi);
+		
 		mv.addObject("rlist",rlist);
 		mv.setViewName( "admin/review_list");
 		return mv;
@@ -622,8 +707,13 @@ public class menuController {
 	}
 
 	@RequestMapping("review_report_list.ad")
-	public String review_report_list() {
-		return "admin/review_report_list";
+	public ModelAndView review_report_list(ModelAndView mv) {
+		
+		ArrayList<Review> rlist =   rService.selectReviewReportList();
+		
+		mv.addObject("rlist",rlist);
+		mv.setViewName( "admin/review_report_list");
+		return mv;
 	}
 
 //	기능 시작
@@ -819,9 +909,6 @@ public class menuController {
 		return "home";
 
 	}
-	
-	
-	
 	
 	
 
@@ -1620,8 +1707,114 @@ public class menuController {
 		}
 		
 	}
+	/**
+	 * @작성일  : 2020. 4. 27.
+	 * @작성자  : 문태환 
+	 * @내용 	: 관리자 리뷰 댓글
+	 * @param coment
+	 * @param rvNo
+	 * @param memNo
+	 * @return
+	 */
+	@RequestMapping("ComentInsert.ad")
+	public String ComentInsert(String coment , int rvNo , int memNo) {
+		
+			ReviewReply rp = new ReviewReply();
+			
+			rp.setMemNo(memNo);
+			rp.setRvComment(coment);
+			rp.setRvNo(rvNo);
+			
+			int result = adService.ComentInsert(rp);
+		
+		return "redirect:review_list.ad";
+	}
 	
-
+	/**
+	 * @작성일  : 2020. 4. 27.
+	 * @작성자  : 문태환
+	 * @내용 	: 신고댓글 삭제
+	 * @param rvcNo
+	 * @return
+	 */
+	@RequestMapping("comentDelete.ad")
+	public String comentDelete(int rvcNo) {
+		
+		ReviewReply rp = new ReviewReply();
+		rp.setRvcNo(rvcNo);	
+		
+		int result = adService.comentDelete(rp);
+		
+		
+		return "redirect:review_report_list.ad";
+		
+	}
 	
-
+	@RequestMapping("comentReturn.ad")
+	public String comentReturn(int rvcNo) {
+		
+		ReviewReply rp = new ReviewReply();
+		rp.setRvcNo(rvcNo);	
+		
+		int result = adService.comentReturn(rp);
+		
+		
+		return "redirect:review_report_list.ad";
+		
+	}
+	
+	/**
+	 * @작성일 : 2020. 4. 23.
+	 * @작성자 : 이서현
+	 * @내용 : 상품 업데이트 
+	 */
+	
+//	  @RequestMapping(value="ProductUpdate.ad" ,method=RequestMethod.POST) public
+//	  String ProductUpdate(HttpServletRequest request, String[] size, Product p,
+//			  						int[] stock,String[] optColor, 
+//			  						@RequestParam(name="thumbnailImg",required=false) MultipartFile file1,
+//	  								@RequestParam(name="descrptionImg",required=false) MultipartFile file2 ) {
+//		  
+//		  ArrayList<Product_opt> poArr = new ArrayList<Product_opt>(); 
+//		  
+//		  if (!file1.getOriginalFilename().equals("") &&!file2.getOriginalFilename().equals("")) {
+//				
+//				String renameFileName = saveFile(file1, request);
+//				String renameDetailName = saveFile(file2, request);
+//				
+//					p.setPrdtImage(renameFileName);
+//					p.setPrdtDetailImage(renameDetailName);
+//
+//					int result = adService.ProductUpdate(p);
+//					
+//					if(result>0){
+//						Product pd = adService.selectPrdtNo();
+//						
+//						for(int i=0;i<stock.length;i++) {
+//							Product_opt pot = new Product_opt();
+//							
+//							pot.setSize(size[i]);
+//							pot.setStock(stock[i]);
+//							pot.setPrdtNo(pd.getPrdtNo());
+//							pot.setOptColor(optColor[i]);
+//						
+//							poArr.add(pot);
+//						}
+//					int result2 = adService.UpdatePotList(poArr);
+//						
+//					return "redirect:productList.ad";
+//					} else {
+//					
+//						System.out.println("에러");
+//					return "redirect:productListDetail.ad";
+//						
+//						
+//					}
+//		  
+//	  }
+//	  }
+	
+	
+	 
+	 
 }

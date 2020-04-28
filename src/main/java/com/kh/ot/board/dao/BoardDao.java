@@ -42,7 +42,7 @@ public class BoardDao {
 
 
 	public Board selectBoard(int qna_no) {
-		return sqlSession.selectOne("boardMapper.selectBoard",qna_no);
+		return (Board)sqlSession.selectOne("boardMapper.selectBoard",qna_no);
 	}
 
 

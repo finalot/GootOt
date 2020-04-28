@@ -20,7 +20,7 @@ import com.kh.ot.review.vo.Review_count;
 
 @Service("rService")
 public class ReviewServiceImpl implements ReviewService{
-	
+
 	@Autowired
 	private ReviewDao rDao;
 
@@ -154,6 +154,10 @@ public class ReviewServiceImpl implements ReviewService{
 		return rDao.selectReviewCount();
 	}
 
+	@Override
+	public ArrayList<Review> selectReviewReportList() {
+		return rDao.selectReviewReportList();
+	}
 	@Override
 	public int selectListCount() {
 		return rDao.selectListCount();

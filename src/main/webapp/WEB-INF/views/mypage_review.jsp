@@ -55,23 +55,14 @@ a{
     cursor: pointer;
     float: left;
     font-family: "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", "Dotum", "굴림", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    width: 215px;
+    width: 207px;
     border: 1px solid #e5e5e5;
     padding: 0;
-    margin: 0 10px 50px 10px;
     box-shadow: 0 3px 3px #fafafa;
     position: relative;
-}
-.reviews_index_gallery_review {
-    cursor: pointer;
-    float: left;
-    font-family: "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", "Dotum", "굴림", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    width: 215px;
-    border: 1px solid #e5e5e5;
-    padding: 0;
-    margin: 0 10px 50px 10px;
-    box-shadow: 0 3px 3px #fafafa;
-    position: relative;
+    height: 430px;
+    font-size: 11px;
+    margin: 15px 29px 40px;
 }
 
 .reviews_index--gallery  {
@@ -86,8 +77,6 @@ a{
 
 .photo_review_thumbnail__thumbnail_container {
     position: relative;
-    height: 237px;
-    border-bottom: 1px solid #f3f3f3;
     overflow: hidden;
 }
 
@@ -119,10 +108,8 @@ a{
 }
 
 .photo_review_thumbnail__review_author_info {
-    height: 32px;
-    padding: 12px 2px 15px 2px;
+    padding: 12px 2px 10px 2px;
     margin: 0 10px;
-    border-bottom: 1px solid #f3f3f3;
 }
 
 .photo_review_thumbnail__review_title {
@@ -185,8 +172,8 @@ a{
 }
 
 .reviews_index_gallery_review__review_product img {
-    width: 33px;
-    height: 33px;
+    width: 40px;
+    height: 50px;
 }
 
 .reviews_index_gallery_review__review_product_info {
@@ -201,11 +188,359 @@ a{
     text-overflow: ellipsis;
     color: black;
     padding-bottom: 4px;
+    margin-top : -3px;
+    margin-left : 5px;
 }
 
 .reviews_index_gallery_review__product_info_feedbacks {
     color: #c3b799;
 }
+
+
+
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+	background-color: #fefefe;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 100%; /* Could be more or less, depending on screen size */
+}
+/* The Close Button */
+.close1 {
+	color: #aaa;
+	align: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+#modalcontent{
+    width: 900px;
+    height: 500px;
+    font-size: 25px;
+    margin-top: 4%;
+    display: inline-block;
+}
+
+.contentimgs{
+	width: auto;
+    height: 800px;
+    float: left;
+}
+			
+#dotbox {
+	position: absolute;
+    background-color: rgba(0,0,0,0.4);
+	bottom: 0px;
+	left: 200px;
+}
+
+#modalimg{
+	width:auto;
+    height:100%;
+    float: left;
+}
+
+#coments{
+    background-color: white;
+    width: 400px;
+    height: 800px;
+    float: left;
+    padding: 20px;
+    overflow: hidden;
+}
+.coments{
+    float: left;
+}
+
+#innercoment{
+    height: 150px;
+}
+
+#closebtn{
+    margin-left: 1050px;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    font-size: 45px;
+}
+
+#comentarea{
+}
+
+#comentinput{
+    width: 245px;
+    height: 25px;
+    float: left;
+}
+
+ #rvComment{
+    width: 245px;
+    height: 25px;
+    float: left;
+}
+
+#comentsend{
+    height: 25px;
+    background-color: lightslategray;
+    border: 0px;
+    font-size:18px;
+}
+
+
+
+#setting{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+#settinglist{
+    height: 490px;
+    width: 250px;
+    border:none;
+    background-color: white;
+    border-radius: 15px;
+    font-size: 20.5px;
+    margin: 120px auto;
+    padding-top: 2px;
+    display: inline-block;
+}
+
+#profileModal{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+}
+#profileSet{
+    height: 530px;
+    width: 260px;
+    border:none;
+    background-color: white;
+    border-radius: 15px;
+    font-size: 18px;
+    margin: 85px auto;
+    padding-top: 2px;
+    text-align: center;
+    display: inline-block;
+}
+
+#Public_scope{
+    height: 320px;
+    width: 250px;
+    border: none;
+    background-color: white;
+    border-radius: 15px;
+    font-size: 23px;
+    margin: 150px auto;
+    padding-top: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+#Public_Scope_Modal{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+#comentSet{
+    height: 320px;
+    width: 250px;
+    border: none;
+    background-color: white;
+    border-radius: 15px;
+    font-size: 23px;
+    margin: 150px auto;
+    padding-top: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+#comentSetModal{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+#comenttextarea{
+    height: 100px;
+    width: 230px;
+}
+
+#nameSet{
+    height: 250px;
+    width: 250px;
+    border: none;
+    background-color: white;
+    border-radius: 15px;
+    font-size: 23px;
+    margin: 150px auto;
+    padding-top: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+#nameSetModal{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+    /* display: inline-block; */
+}
+
+#nametextarea{
+    height: 25px;
+    width: 230px;
+}
+
+.checkBox{
+   border-radius: 100%;
+   width: 15px;
+   height: 15px;
+}
+
+#proImgSet{
+ 	height: 250px;
+    width: 250px;
+    border: none;
+    background-color: white;
+    border-radius: 15px;
+    font-size: 23px;
+    margin: 150px auto;
+    padding-top: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+#proImgModal{
+ display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+    /* display: inline-block; */
+}
+
+  #proimgarea{
+    height: 25px;
+    width: 230px;
+}
+
+ #proBackSet{
+ 	height: 250px;
+    width: 250px;
+    border: none;
+    background-color: white;
+    border-radius: 15px;
+    font-size: 23px;
+    margin: 150px auto;
+    padding-top: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+#proBackModal{
+ display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+    /* display: inline-block; */
+}
+
+  #probackarea{
+    height: 25px;
+    width: 230px;
+}
+
 </style>
 	<jsp:include page="header.jsp"/>
 </head>
@@ -302,10 +637,10 @@ a{
   
   					<ul class="top_menu__ul top_menu__ul--rpane">
     					<li class="top_menu__li top_menu__li--sort_container">
-      						<select name="sort" id="sort" style="height: 51px; border-style: none; width: 100%; font-size:13px;">
-							     <option value="20">최신순</option>
-								 <option value="10">추천순</option>
-								 <option value="60">댓글 최신순</option>
+      						<select name="sort" onchange="sort();" id="sort" style="height: 51px; border-style: none; width: 100%; font-size:13px;">
+							     <option value="last">최신순</option>
+								 <option value="like">추천순</option>
+								 <option value="star">평점순</option>
 	  						</select>
     					</li>
     
@@ -323,104 +658,199 @@ a{
 				</div>
 			</div>
 
-       		<div class="reviews_index__body">
-						<ul class="reviews_index__reviews reviews">
-						<c:forEach var="r" items="${list }">
-									
-									<li class="reviews_index_gallery_review review1"
-										style="
-  width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%; margin-left:3%">
-  <input type="hidden" class="rv_no" value="${r.rvNo }" >
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<a onclick="review1(this)">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="${r.rvImage }"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													${r.rvInfo }</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<!-- 작성자 -->
-														<strong>${r.memName }</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">${r.rvDate }</div>
-														<!-- 내가 리뷰 작성한 내용 -->
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage"
-													height="55"
-													src="${r.prdtPath }${r.prdtImg}"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													<!-- 내가 구매한 상품명 -->
-													${r.prdtName }</div>
-											
-											
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<c:forEach var="rc" items="${rc}">
-													<c:if test="${r.prdtCode eq rc.prdt_code}">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">${rc.count }</strong></span> 
-														</c:if>
-														</c:forEach>
-													<br>
-														<span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-														<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
-												</div>
+			<div id="modal" style="overflow-y: hidden; display: none;">
+					<div id="modalcontent" style="width:100%;height:100%;margin-left:18.5%;margin-top:80px !important;">
+      				<!-- 모달창 사진 넘어가는 부분 -->
+                		<div id="modalpost">
+                    		<div id="modalimg" class="slideshow-container" style="position:relative;top:-20px;">
+                        
+                         		<div style="width:10px;height:10px;position:relative;top:400px;left:5px;">
+                         			<a id="movePage1" class="prev" onclick="plusSlides(-1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>❮</strong></a>
+                         		</div>
+                       			<div id="nextPh" style="width:10px;height:10px;position:relative;top:390px;left:780px;">
+                        			<a id="movePage2" class="next" onclick="plusSlides(1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>❯</strong></a>
+                       			</div>
+                        
+                        		<!-- <div class="mySlides" style="display: block;">
+                            		<div class="numbertext"><font style="font-size:14px;">1 / 2</font></div>
+                            		<img class="contentimgs" src="/ot/resources/images/oT/review/review_sample1.jpg" alt="sample1" style="margin-top:-5%;">
+                        		</div>
+                        
+                        		<div class="mySlides" style="display: none;">
+                            		<div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>
+                           			<img class="contentimgs" src="/ot/resources/images/oT/review/review_sample2.jpg" alt="sample2" style="margin-top:-5%;">
+                       			</div> -->
+                       			
+                        		<div id="dotbox" style="text-align:center">
+		                            <span class="dot active" onclick="currentSlide(1);"></span> 
+		                            <span class="dot" onclick="currentSlide(2);"></span> 
+                        		</div>      
+                   			</div>
+               			</div>
+			   			<button class="close1" onclick="modalclose();" style="position: relative;right: 365px;bottom: 37px;color:ivory;">&times;</button>
+               
+	 					<!-- 모달창 시작점 -->
+	                    <div id="coments"style="margin-top:-3px;overflow-y:scroll;" >
+						<br>
+							<div style="position: relative; top: -6%; font-size:14px;margin:0px 0px -20px 0px;" class="reviews_index_gallery_review__review_product js-link-iframe"
+								data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
+								<div class="reviews_index_gallery_review__review_product_thumbnail">
+									<img class="" id="pImage" width="55" height="55" src="${r.prdtPath }${r.prdtImg}" style="padding-right: 3%; opacity: 1; float: left;">
+	
+								</div>
+								<div class="reviews_index_gallery_review__review_product_info" >
+									<div class="reviews_index_gallery_review__product_info_title" id="prDetail" style="padding-top:6px;">
+										<!-- MODAL 창에 뜨는 DETAIL 상품명 -->
+									</div>
 												
-											
-											</div>
+									<div class="reviews_index_gallery_review__product_info_feedbacks" style="margin-top: 3px;">
+										<i class="fa fa-fw fa-star"></i>	
+										<i class="fa fa-fw fa-star"></i>
+										<i class="fa fa-fw fa-star"></i>
+										<i class="fa fa-fw fa-star"></i>
+										<i class="fa fa-fw fa-star"></i>
+										<span class="reviews_index_gallery_review__reviews_count" style="color:gray;">
+											<small id="memName"></small>
+										</span>
+									</div>
+								</div>
+							</div>
+							<hr>
+							
+	                        <div style="color:gray; border:1px solid lightgray; font-size:15px;">
+	                          	<small style="margin-left:-44px;">이 리뷰를 
+	                          		<strong style="color:black;">
+	                          			<span id="likeCount"></span>
+	                       			</strong >명이 좋아합니다.
+	                  			</small>
+	                        </div>
+	                        <hr>
+	                        
+	                        <div style="color:gray; border:2px dotted lightgray; font-size:15px;"> 
+	                                          선택한 옵션 
+	                        <br> 
+		                        <small>color : 
+		                        	<strong style="color:black;" id="rColor"></strong>
+		                       	</small>
+		                       	<br>
+		                        <small>size : 
+		                        	<strong style="color:black;" id="rSize"></strong>
+		                       	</small>	
+	                        </div>
+	                        <hr>
+	                        <div id="innercoment">
+	                            <div class="coments" style="font-size:12px;text-align:left;padding:10px;letter-spacing: 1px;" id="rInfo">
+	                            <!-- 리뷰내용 -->
+	                            </div>
+	                            <br>
+	                        </div>
+	                        
+	                        <div style="color:lightgray;font-size:12px;float:right;" id="rDate2"></div>
+	                        <div>
+	                        <hr>
+	                            <div style="margin-top:-4px;">
+	                            	<font style="font-size:13px;color:gray;">이  리뷰가</font> &nbsp;
+	                            
+	                           		<a id="heartClick" style="font-size: 12px; border: none; color:white; width:60px;height:30px;">
+	                           			<img src="/ot/resources/images/icons/like-noncheck.png" id="nonHeart"
+	                           			style="width: 33px;margin-left: -11px;margin-top: -3px;">   
+	                           			<input type="hidden" id="likeCheck" value="">
+	                            		<input type="hidden" id="rv_no2" value="">                   
+	                           		</a>         
+	                            </div>
+                        	</div>
+                        	<hr>
+                        
+                        <!-- 댓글 forEach 시작점 -->
+	                        <div id="comentarea">
+	                        	<div style="margin-bottom: 14px;">
+	                            	<input onkeyPress="reviewReply();" type="text" id="rvComment" placeholder="댓글을 작성해주세요 :)" maxlength="80" style="resize:none; /* border-radius: 5px 0px 0px 5px;  */
+	                            border: 0.5px solid lightgray; background-color: whitesmoke; padding: 2px; height:40px;width:85%;">
+	                            	<button onclick="" id="comentsend" style=" font-size: 15px; 
+	                            	background: white; border: 1px solid lightgray; /* border-radius:0px 5px 5px 0px; */ 
+	                             	width:50px;height: 40px;position:relative;bottom:2px;">등록</button>
+	                            </div>
+	                        </div>
+                   	 	</div>
+                       <!-- 모달창 끝나는 점 -->     
+                	</div>
+                </div>
+
+       		<div class="reviews_index__body" style="display:inline-block;">
+				<ul class="reviews_index__reviews reviews menuul" style="display:inline-block;">
+					<c:forEach var="r" items="${list }">
+						<li class="reviews_index_gallery_review review">
+ 					 		<input type="hidden" class="rv_no" value="${r.rvNo }" >
+							<div class="photo_review_thumbnail js-link-fullscreen-popup">
+								<div class="photo_review_thumbnail__thumbnail_container">
+									<ul>
+										<li class="photo_review_thumbnail__review_image_thumbnail">
+											<a onclick="review1(this)">
+												<img class="js-review-image" alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="${r.rvImage }" 
+												style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray; height:280px;">
+											</a>
+										</li>
+									</ul>
+									<div class="photo_review_thumbnail__review_info">
+										<div class=" photo_review_thumbnail__media_count_indicator photo_review_thumbnail__media_count_indicator--total_count_1">
+											<div class="photo_review_thumbnail__media_count_indicator_dot"></div>
 										</div>
-									</li>
-									</c:forEach>
-					</ul>  
-				</div>  
+									</div>
+								</div>
+								<div style="border-radius: 2%; width: 90%; margin-left: 5%;" class="photo_review_thumbnail__review_author_info">
+									<div style="margin-top: 2%; border-radius: 2%;" class="photo_review_thumbnail__review_title js-translate-review-message">
+										${r.rvInfo }
+									</div>
+									<br>
+									<div style="color: gray;" class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
+										<div class="photo_review_thumbnail__author_name" style="float: left;">
+											<!-- 작성자 -->
+											<strong>${r.memName }</strong>
+										</div>
+	
+										<div class="photo_review_thumbnail__created_at">
+											${r.rvDate }
+										</div>
+										<!-- 내가 리뷰 작성한 내용 -->
+										<hr>
+									</div>
+								</div>
+							</div>
+
+							<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe ">
+								<div class="reviews_index_gallery_review__review_product_thumbnail">
+									<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="${r.prdtPath }${r.prdtImg}" style="padding-right: 3%; opacity: 1; float: left;">
+								</div>
+								<div class="reviews_index_gallery_review__review_product_info">
+									<div class="reviews_index_gallery_review__product_info_title">
+										<!-- 내가 구매한 상품명 -->
+										${r.prdtName }
+									</div>
+											
+									<div class="reviews_index_gallery_review__product_info_feedbacks" style="margin-left : 5px;">
+										<c:forEach var="rc" items="${rc}">
+											<c:if test="${r.prdtCode eq rc.prdt_code}">
+												<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰
+													<strong style="color: black;">${rc.count }</strong>
+												</span> 
+											</c:if>
+										</c:forEach>
+										<br>
+										<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점
+											<strong style="color: black;" id="starArea">${r.rvPoint }</strong>
+											<i class="fa fa-fw fa-star"></i>
+											<i class="fa fa-fw fa-star"></i>
+											<i class="fa fa-fw fa-star"></i>
+											<i class="fa fa-fw fa-star"></i>
+											<i class="fa fa-fw fa-star"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</c:forEach>
+				</ul>  
+			</div>
 		
 		<!-- 페이징 처리 -->
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
@@ -579,15 +1009,114 @@ a{
 			</div>
 			<hr class="layout">
 		</div>
-		
+		<jsp:include page="footer.jsp"/>
 		</div>
 	
-	
-	<jsp:include page="footer.jsp"/>
 	
 	
 	
 	<script>
+	function sort(){
+		var sort = $('#sort option:selected').val();
+		
+		$.ajax({
+			url : "mReviewSort.do",
+			data : {Sort : sort},
+			dataType:"json",
+			success : function(data) {
+				 $('.menuul').children('li').remove();
+				 $('.menuul').children('div').remove();
+				console.log(data);
+				for(var i=0; i<data.list.length;i++){
+					var src = data.list[i].prdtPath+data.list[i].prdtImg;
+					for(var j=0; j<data.rc.length;j++){
+						if(data.list[i].prdtCode == data.rc[j].prdt_code){
+							$('.menuul').append('<li class="reviews_index_gallery_review review">'+
+		 					 		'<input type="hidden" class="rv_no" value="'+data.list[i].rvNo+'" >'+
+									'<div class="photo_review_thumbnail js-link-fullscreen-popup">'+
+										'<div class="photo_review_thumbnail__thumbnail_container">'+
+										'<ul>'+
+												'<li class="photo_review_thumbnail__review_image_thumbnail">'+
+													'<a onclick="review1(this)">'+
+														'<img class="js-review-image" alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.list[i].rvImage+'"'+
+														'style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray; height:280px;">'+
+													'</a>'+
+												'</li>'+
+											'</ul>'+
+											'<div class="photo_review_thumbnail__review_info">'+
+												'<div class=" photo_review_thumbnail__media_count_indicator photo_review_thumbnail__media_count_indicator--total_count_1">'+
+													'<div class="photo_review_thumbnail__media_count_indicator_dot"></div>'+
+												'</div>'+
+											'</div>'+
+										'</div>'+
+										'<div style="border-radius: 2%; width: 90%; margin-left: 5%;" class="photo_review_thumbnail__review_author_info">'+
+											'<div style="margin-top: 2%; border-radius: 2%;" class="photo_review_thumbnail__review_title js-translate-review-message">'+
+												''+data.list[i].rvInfo+''+
+											'</div>'+
+											'<br>'+
+											'<div style="color: gray;" class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">'+
+												'<div class="photo_review_thumbnail__author_name" style="float: left;">'+
+													'<!-- 작성자 -->'+
+													'<strong>'+data.list[i].memName+'</strong>'+
+												'</div>'+
+
+												'<div class="photo_review_thumbnail__created_at">'+
+													''+data.list[i].rvDate+''+
+												'</div>'+
+												'<!-- 내가 리뷰 작성한 내용 -->'+
+												'<hr>'+
+											'</div>'+
+										'</div>'+
+									'</div>'+
+
+									'<div style="position: relative; top: -6%;" class="reviews_index_gallery_review__review_product js-link-iframe ">'+
+										'<div class="reviews_index_gallery_review__review_product_thumbnail">'+
+											'<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage" height="55" src="'+src+'" style="padding-right: 3%; opacity: 1; float: left;">'+
+										'</div>'+
+										'<div class="reviews_index_gallery_review__review_product_info">'+
+											'<div class="reviews_index_gallery_review__product_info_title">'+
+												'<!-- 내가 구매한 상품명 -->'+
+												''+data.list[i].prdtName+''+
+											'</div>'+
+													
+											'<div class="reviews_index_gallery_review__product_info_feedbacks" style="margin-left : 5px;">'+
+														'<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰'+
+															'<strong style="color: black;">'+data.rc[j].count+'</strong>'+
+														'</span>'+
+												'<br>'+
+												'<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점'+
+													'<strong style="color: black;" id="starArea">'+data.list[i].rvPoint+'</strong>'+
+												'</span>'+
+											'</div>'+
+										'</div>'+
+									'</div>'+
+								'</li>');
+								
+								
+								var star1 = '<i class="fa fa-fw fa-star"></i>'
+						   	 	var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 	var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 	var star4 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 	var star5 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 	
+						   	 	if(data.list[i].rvPoint==1) {
+						   	 		$('#starArea').after(star1);
+						      	 } else if(data.list[i].rvPoint==2) {
+						      		$('#starArea').after(star2);
+						      	 } else if(data.list[i].rvPoint==3) {
+						      		$('#starArea').after(star3);
+						      	 } else if(data.list[i].rvPoint==4) {
+						      		$('#starArea').after(star4);
+						      	 } else if(data.list[i].rvPoint==5) {
+						      		$('#starArea').after(star5);
+						      	 }
+							}
+						}
+					}
+				}
+			})
+		}
+	
 		 function pbSearch() {
 			 var search_key = $('#search_key').val();
 			 var search = $('#search').val();
@@ -631,312 +1160,355 @@ a{
 			 location.href="product_board_detail.do?qna_no="+q_no;
 		 }
 	</script>
+	
+	<script>
+	$('#heartClick').click(function() {
+		 var rv_no = $('#rv_no2').val();
+		 var likeCheck = $('#likeCheck').val();
+
+		 console.log("rv___no: " + rv_no);
+		 var count = 0;
+
+		  $.ajax({
+			 url:"reviewLike.do",
+			 dataType:"json",
+			 data : {rv_no : rv_no, likeCheck : likeCheck},
+			 success : function(r) {
+				 console.log(r)
+				 console.log(r.r.rvLike)
+				 $('#likeCheck').val(r.lhl.likeCheck);
+				 $('#likeCount').text(r.r.rvLike);
+				 if(r.lhl.likeCheck == "N"){
+					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-noncheck.png") ;
+				 }else{
+					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-check.png");
+				 }
+			 }
+		 })
+	})
+	</script>
+	
+	<script>
+	<!--리뷰 모달 디테일 스크립트-->
+	function review1(en){
+		 if("${loginMember.memId}"==""){
+			 alert("로그인 후 이용해주세요!");
+		 }else{
+
+		 $('#comentarea').children('.replyDiv').remove();
+		 $('#comentarea').children('br').remove();
+	     $('.mySlides').remove();
+
+		 var rv_no = $(en).parents('li').find('.rv_no').val();
+		 $("#rv_no2").val(rv_no);
+
+		var rvc_no = $('.rvc_no').val();
+		 var like_img="";
+		 var count = 0;
+		 console.log(rv_no);
+
+
+		 $.ajax({
+			 url:"reviewDetail.do",
+			 dataType:"json",
+			 data : {rv_no : rv_no},
+			 success : function(r){
+				 console.log(r)
+				 $('#prDetail').text(r.r.prdtName);
+				 $('#memName').text(r.r.memName);
+				 $('#rColor').text(r.r.rvColor);
+				 $('#rSize').text(r.r.rvSize);
+				 $('#rInfo').text(r.r.rvInfo);
+				 $('#rDate2').text(r.r.rvDate2);
+				 $('#pImage').attr("src",r.r.prdtPath+r.r.prdtImg);
+				 $('#likeCheck').val(r.lhl.likeCheck);
+				 $('#likeCount').text(r.r.rvLike);
+				/* if(r.ph.length == 1){
+					 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
+				 }else{
+					 $('#contentimgs1').attr("src",r.ph[0].rpPhoto);
+					 $('#contentimgs2').attr("src",r.ph[1].rpPhoto);
+				 } */
+				if(r.ph.length == 1){
+					$('#movePage1').css("display","none");
+					$('#movePage2').css("display","none");
+				}else{
+					$('#movePage1').css("display","block");
+					$('#movePage2').css("display","block");
+				}
+
+
+			  for(var i =0; i<r.ph.length;i++){
+				  if(i == 0){
+						$('#nextPh').after(' <div id="img1" class="mySlides" style="display: block;">'+
+	                            '<div class="numbertext" ><font style="font-size:14px;">1/ '+r.ph.length+'</font></div>'+
+	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;width:800px;">'+
+	                            '</div>')
+				  }else{
+						$('#img1').after(	'<div class="mySlides" style="display: none;">'+
+			                      '<div class="numbertext"><font style="font-size:14px;">2 / '+r.ph.length+'</font></div>'+
+			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;width:800px;" >'+
+			                  '</div>')
+				  }
+			 }
+
+
+				 if(r.lhl.likeCheck == "N"){
+					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-noncheck.png") ;
+				 }else if(r.lhl.likeCheck == "Y"){
+					 $('#nonHeart').attr("src","/ot/resources/images/icons/like-check.png");
+				 }
+				/*  $('#pImage').text(r.r.prdtImage); */
+				 console.log(r.r.prdtName);
+			 },error : function(){
+					alert('리뷰에러')
+			}
+		 });
+
+		  $.ajax({
+
+				url:"rList.do",
+				dataType:"json",
+				data : {rv_no:rv_no},
+				success:function(data) {
+				 console.log(data.rplist[0]);
+					 for(var i=0;i<data.rplist.length;i++) {
+
+						 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )
+							 }else{
+
+			                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                          	'<button style=""></button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;"onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )
+							 }
+					 }
+				},error:function() {
+					alert("에러임에러임");
+				}
+
+			 })
+
+        var ulr = $(this).attr("src");
+        $("#modalimg").attr("src", ulr);
+        $('#modal').show();
+
+		 }
+    }
+
+
+      function modalclose(){
+          $('#modal').css("display","none");
+      }
+
+      var slideIndex = 1;
+
+
+      showSlides(slideIndex);
+
+      function plusSlides(n) {
+          showSlides(slideIndex += n);
+      }
+
+      function currentSlide(n) {
+          showSlides(slideIndex = n);
+      }
+
+      function showSlides(n) {
+          var i;
+          var slides = document.getElementsByClassName("mySlides");
+          var dots = document.getElementsByClassName("dot");
+          if (n > slides.length) {slideIndex = 1}
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";
+          }
+          for (i = 0; i < dots.length; i++) {
+              dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";
+          dots[slideIndex-1].className += " active";
+      }
+	</script>
+
+	<script>
+	function DeleteReply(dr) {
+		var rvcNo=$(dr).parents('.replyDiv').find('.rvc_no').val();
+		 var rv_no = $('#rv_no2').val();
+		 $('#comentarea').children('.replyDiv').remove();
+		 $('#comentarea').children('br').remove();
+
+		$.ajax({
+			url:"DeleteReply.do",
+			dataType:"json",
+			data : {rvcNo : rvcNo, rv_no : rv_no},
+			success:function(data) {
+				 console.log(data.rplist[0]);
+				 for(var i=0;i<data.rplist.length;i++) {
+
+					 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+						 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+		                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+		                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+		                          	 )
+						 }else{
+
+		                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+		                          	'<button style=""></button><br>'+
+		                          	'<button style="float:right;font-size:10px;color:#e65540;"onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+		                          	 )
+						 }
+				 }
+				},error:function() {
+					alert("에러임에러임");
+				}
+
+		})
+
+
+	}
+	
+	function Warning(wa) {
+
+		if(confirm('댓글을 신고 하겠습니까?') ==true){
+		var rvcNo=$(wa).parents('.replyDiv').find('.rvc_no').val();
+
+		 var rv_no = $('#rv_no2').val();
+		 $('#comentarea').children('.replyDiv').remove();
+		 $('#comentarea').children('br').remove();
+
+		 $.ajax({
+				url:"WarningReply.do",
+				dataType:"json",
+				data : {rvcNo : rvcNo, rv_no : rv_no},
+				success:function(data) {
+					 console.log(data.rplist[0]);
+					 for(var i=0;i<data.rplist.length;i++) {
+
+						 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )
+							 }else{
+
+			                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+			                          	'<button style=""></button><br>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+			                          	 )
+							 }
+					 }
+					},error:function() {
+						alert("에러임에러임");
+					}
+
+			})
+		}
+
+	}
+	
+	$('#comentsend').on("click", function() {
+		var rvComment = $('#rvComment').val();
+		 var rv_no = $('#rv_no2').val();
+		 var rvc_no = $('.rvc_no').val();
+
+
+
+
+		if(rvComment == ""){
+				alert("댓글을 작성해주세요");
+		}else{
+			 $('#comentarea').children('.replyDiv').remove();
+			 $('#comentarea').children('br').remove();
+
+
+		$.ajax({
+			url:"addReply.do",
+			data : {rvComment : rvComment, rv_no : rv_no},
+			success:function(data) {
+				if(data=="success") {
+					//getReplyList();
+					 $.ajax({
+
+						url:"rList.do",
+						dataType:"json",
+						data : {rv_no:rv_no},
+						success:function(data) {
+						 console.log(data.rplist[0]);
+							 for(var i=0;i<data.rplist.length;i++) {
+
+								 if(data.rplist[i].memNo =="${loginMember.memNo}"){
+								 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+								 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+				                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+				                          	'<button style="">&times;</button><br>'+
+				                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+				                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+				                          	 )
+								 }else{
+
+				                  $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
+								 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
+				                          	'<small>'+data.rplist[i].rvComment+'</small>'+
+				                          	'<button style=""></button><br>'+
+				                          	'<button style="float:right;font-size:10px;color:#e65540;"onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+				                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
+				                          	 )
+								 }
+							 }
+						},error:function() {
+							alert("에러임에러임");
+						}
+		 })
+					$('#rvComment').val("");
+				}
+			},error:function() {
+				console.log("등록실패");
+			}
+		})
+			}
+		});
+
+	function getReplyList() {
+
+		 var rv_no = $('#rv_no2').val();
+
+		//comentarea
+
+		$.ajax({
+			url:"rList.do",
+			data:{rv_no:rv_no},
+			dataType:"json",
+			success:function(data) {
+
+			}
+
+		})
+	}
+	
+	</script>
 </body>
 </html>
 
-
-
-
-
-
-
-
-
-<%-- 				<div id="modal" style="overflow-y: hidden; display: none;">
-					<div id="modalcontent" style="width:100%;height:100%;margin-left:18.5%;margin-top:80px !important;">
-                
-      				<!-- 모달창 사진 넘어가는 부분 -->
-                		<div id="modalpost">
-                    		<div id="modalimg" class="slideshow-container" style="position:relative;top:-20px;">
-                        
-                         		<div style="width:10px;height:10px;position:relative;top:400px;left:5px;">
-                         			<a class="prev" onclick="plusSlides(-1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>❮</strong></a>
-                         		</div>
-                       			<div style="width:10px;height:10px;position:relative;top:390px;left:780px;">
-                        			<a class="next" onclick="plusSlides(1);" style="font-size:25px;background:gray;opacity: 0.6;"><strong>❯</strong></a>
-                       			</div>
-                        
-                        		<div class="mySlides" style="display: block;">
-                            		<div class="numbertext"><font style="font-size:14px;">1 / 2</font></div>
-                            		<img class="contentimgs" src="/ot/resources/images/oT/review/review_sample1.jpg" alt="sample1" style="margin-top:-5%;">
-                        		</div>
-                        
-                        		<div class="mySlides" style="display: none;">
-                            		<div class="numbertext"><font style="font-size:14px;">2 / 2</font></div>
-                           			<img class="contentimgs" src="/ot/resources/images/oT/review/review_sample2.jpg" alt="sample2" style="margin-top:-5%;">
-                       			</div>
-                        		<div id="dotbox" style="text-align:center">
-		                            <span class="dot active" onclick="currentSlide(1);"></span> 
-		                            <span class="dot" onclick="currentSlide(2);"></span> 
-                        		</div>      
-                   			</div>
-               			</div>
-			   			<button class="close1" onclick="modalclose();" style="position: relative;right: 365px;bottom: 37px;color:ivory;">×</button>
-               
-	 					<!-- 모달창 시작점 -->
-	                    <div id="coments"style="margin-top:-3px;overflow-y:scroll;" >
-						<br>
-							<div style="position: relative; top: -6%; font-size:14px;margin:0px 0px -20px 0px;" class="reviews_index_gallery_review__review_product js-link-iframe"
-								data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-								<div class="reviews_index_gallery_review__review_product_thumbnail">
-									<img class="" id="pImage" width="55" height="55" src="${r.prdtPath }${r.prdtImg}" style="padding-right: 3%; opacity: 1; float: left;">
-	
-								</div>
-								<div class="reviews_index_gallery_review__review_product_info" >
-									<div class="reviews_index_gallery_review__product_info_title" id="prDetail" style="padding-top:6px;">
-										<!-- MODAL 창에 뜨는 DETAIL 상품명 -->
-									</div>
-												
-									<div class="reviews_index_gallery_review__product_info_feedbacks" style="margin-top: 3px;">
-										<i class="fa fa-fw fa-star"></i>	
-										<i class="fa fa-fw fa-star"></i>
-										<i class="fa fa-fw fa-star"></i>
-										<i class="fa fa-fw fa-star"></i>
-										<i class="fa fa-fw fa-star"></i>
-										<span class="reviews_index_gallery_review__reviews_count" style="color:gray;">
-											<small id="memName"></small>
-										</span>
-									</div>
-								</div>
-							</div>
-							<hr>
-							
-	                        <div style="color:gray; border:1px solid lightgray; font-size:15px;">
-	                          	<small style="margin-left:-44px;">이 리뷰를 
-	                          		<strong style="color:black;">
-	                          			<span id="likeCount"></span>
-	                       			</strong >명이 좋아합니다.
-	                  			</small>
-	                        </div>
-	                        <hr>
-	                        
-	                        <div style="color:gray; border:2px dotted lightgray; font-size:15px;"> 
-	                                          선택한 옵션 
-	                        <br> 
-		                        <small>color : 
-		                        	<strong style="color:black;" id="rColor"></strong>
-		                       	</small>
-		                       	<br>
-		                        <small>size : 
-		                        	<strong style="color:black;" id="rSize"></strong>
-		                       	</small>	
-	                        </div>
-	                        <hr>
-	                        <div id="innercoment">
-	                            <div class="coments" style="font-size:12px;text-align:left;padding:10px;letter-spacing: 1px;" id="rInfo">
-	                            <!-- 리뷰내용 -->
-	                            </div>
-	                            <br>
-	                        </div>
-	                        
-	                        <div style="color:lightgray;font-size:12px;float:right;" id="rDate2"></div>
-	                        <div>
-	                        <hr>
-	                            <div style="margin-top:-4px;">
-	                            	<font style="font-size:13px;color:gray;">이  리뷰가</font> &nbsp;
-	                            
-	                           		<a id="heartClick" style="font-size: 12px; border: none; color:white; width:60px;height:30px;">
-	                           			<img src="/ot/resources/images/icons/like-noncheck.png" id="nonHeart"
-	                           			style="width: 33px;margin-left: -11px;margin-top: -3px;">   
-	                           			<input type="hidden" id="likeCheck" value="">
-	                            		<input type="hidden" id="rv_no2" value="">                   
-	                           		</a>         
-	                            </div>
-                        	</div>
-                        	<hr>
-                        
-                        <!-- 댓글 forEach 시작점 -->
-	                        <div id="comentarea">
-	                        	<div style="margin-bottom: 14px;">
-	                            	<input onkeyPress="reviewReply();" type="text" id="rvComment" placeholder="댓글을 작성해주세요 :)" maxlength="80" style="resize:none; /* border-radius: 5px 0px 0px 5px;  */
-	                            border: 0.5px solid lightgray; background-color: whitesmoke; padding: 2px; height:40px;width:85%;">
-	                            	<button onclick="" id="comentsend" style=" font-size: 15px; 
-	                            	background: white; border: 1px solid lightgray; /* border-radius:0px 5px 5px 0px; */ 
-	                             	width:50px;height: 40px;position:relative;bottom:2px;">등록</button>
-	                            </div>
-	                        </div>
-                   	 	</div>
-                       <!-- 모달창 끝나는 점 -->     
-                	</div>
-                </div> --%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<%-- <div class="flex-w flex-sb" style="width:110%;">
-				<ul id="review_list" class="reviews_index__reviews reviews" style="margin-top:10px;margin-left:-3%;">
-								
-								
-									<!-- 리뷰1줄 시작 -->
-									
-									<!-- 리뷰1 -->
-									<!-- foreach문 시작점 -->
-									<c:forEach var="r" items="${list }">
-									
-									<li class="reviews_index_gallery_review review1"
-										style="
-  width: 15.5%; height: 367px; font-size: 11px; border: 1px solid lightgray; border-radius: 2%; margin-right: -1.2%; margin-left:3%">
-  <input type="hidden" class="rv_no" value="${r.rvNo }" >
-										<div class="photo_review_thumbnail js-link-fullscreen-popup"
-											data-url="/black-up.kr/reviews/180783/photo_review_popup?app=0&amp;iframe=1&amp;iframe_id=crema-reviews-2&amp;parent_url=http%3A%2F%2Fblack-up.kr%2Fboard%2Fproduct%2Flist.html%3Fboard_no%3D4&amp;parent_widget_id=29&amp;widget_env=100">
-											<div class="photo_review_thumbnail__thumbnail_container">
-												<ul>
-													<li class="photo_review_thumbnail__review_image_thumbnail">
-														<a onclick="review1(this)">
-														<img class="js-review-image"
-														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
-														src="${r.rvImage }"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>
-													</li>
-												</ul>
-												<div class="photo_review_thumbnail__review_info">
-													<div
-														class="
-            photo_review_thumbnail__media_count_indicator
-            photo_review_thumbnail__media_count_indicator--total_count_1
-          ">
-														<div
-															class="photo_review_thumbnail__media_count_indicator_dot"></div>
-													</div>
-												</div>
-											</div>
-											<div style="border-radius: 2%; width: 90%; margin-left: 5%;"
-												class="photo_review_thumbnail__review_author_info">
-
-												<div style="margin-top: 2%; border-radius: 2%;"
-													class="photo_review_thumbnail__review_title js-translate-review-message">
-
-													${r.rvInfo }</div>
-												<br>
-												<div style="margin-top: -2%; color: gray;"
-													class="photo_review_thumbnail__date_name_container photo_review_thumbnail__date_name_container--show_created_at">
-													<div class="photo_review_thumbnail__author_name"
-														style="float: left;">
-														<!-- 작성자 -->
-														<strong>${r.memName }</strong>
-													</div>
-
-													<div class="photo_review_thumbnail__created_at"
-														style="position: relative; left: 5%;">${r.rvDate }</div>
-														<!-- 내가 리뷰 작성한 내용 -->
-													<hr>
-												</div>
-											</div>
-										</div>
-
-										<div style="position: relative; top: -6%;"
-											class="reviews_index_gallery_review__review_product js-link-iframe "
-											data-url="http://www.black-up.kr/product/detail.html?cate_no=1&amp;product_no=10550">
-											<div
-												class="reviews_index_gallery_review__review_product_thumbnail">
-												<img class="" alt="(BLACK UP) 호딘 트레이닝 팬츠" width="55" id="pImage"
-													height="55"
-													src="${r.prdtPath }${r.prdtImg}"
-													style="padding-right: 3%; opacity: 1; float: left;">
-
-											</div>
-											<div
-												class="reviews_index_gallery_review__review_product_info">
-												<div
-													class="reviews_index_gallery_review__product_info_title">
-													<!-- 내가 구매한 상품명 -->
-													${r.prdtName }</div>
-											
-											
-												<div
-													class="reviews_index_gallery_review__product_info_feedbacks">
-													<c:forEach var="rc" items="${rc}">
-													<c:if test="${r.prdtCode eq rc.prdt_code}">
-													<span class="reviews_index_gallery_review__reviews_count"
-														style="color: #c3b798;">리뷰<strong
-														style="color: black;">${rc.count }</strong></span> 
-														</c:if>
-														</c:forEach>
-													<br>
-														<span
-														class="reviews_index_gallery_review__display_score"
-														style="color: #c3b798;">평점<strong
-														style="color: black;">4.9</strong></span>
-														<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
-												</div>
-												
-											
-											</div>
-										</div>
-									</li>
-									</c:forEach>
-									<!-- foreach문 마감줄 -->
-									<!-- 리뷰1 끝 -->
-									<!-- 리뷰1 -->
-									</ul>
-			</div> --%>

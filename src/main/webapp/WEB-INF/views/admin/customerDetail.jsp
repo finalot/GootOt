@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -299,25 +302,36 @@ padding-left: 4% !important;
         </tr>
         <tr>
         	<th>아이디 </th>
-        	<td><input type="text" value="it_seohyun"></td>
+        	<td><input type="text" value="${m.memId }" readonly></td>
         	<th>성명 </th>
-        	<td><input type="text" value="잇서현"></td>
+        	<td><input type="text" value="${m.memName }" readonly></td>
         </tr>
         <tr>
-        	<th>성별 </th>
-        	<td><input type="text" value="여"></td>
         	<th>나이 </th>
-        	<td><input type="text" value="25"></td>
+        	
+        	<c:set var="now" value="<%=new java.util.Date()%>" />
+			<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy" /></c:set>
+			<c:set var="memSsn" value="${m.memSsn }"></c:set>
+			<c:set var="birthResult" value="${fn:substring(memSsn,0,4)}"/>
+			<c:set var = "age" value="${sysYear-birthResult+1}" />
+        	
+        	<td><input type="text" value="${age }" readonly></td>
+        	<th>사용금액</th>
+        	<td><input type="text" value="${m.memSumMoney }"></td>
         </tr>
         <tr>
         	<th>전화번호 </th>
-        	<td><input type="text" value="010-1234-5678"></td>
+        	<td><input type="text" value="${m.memPhone }" readonly></td>
         	<th>이메일 </th>
-        	<td><input type="text" value=1234@naver.com"></td>
+        	<td><input type="text" value="${m.memEmail }" readonly></td>
         </tr>
         <tr>
         	<th>주소 </th>
-        	<td colspan="3"><input type="text" value="경기도 울라불라동 울라불라 불루 211-304" style="width:50%;"></td>
+        	<td colspan="3"><input type="text" value="${m.memAddress }" readonly style="width:80%;"></td>
+        </tr>
+        <tr>
+			<th>환불 계좌</th>
+			<td colspan="3"><input type="text" value="${m.bank }&nbsp; ${m.returnBank}" readonly style="width:50%;"></td>
         </tr>
        
     </table>
@@ -331,31 +345,30 @@ padding-left: 4% !important;
     <table style="width: 90%;" >
     	<thead>
     		<tr>
-	    		<th>상품코드</th>
 	    		<th>상품명</th>
 	    		<th>사이즈</th>
 	    		<th>색상</th>
 	    		<th>수량</th>
-	    		<th>삭제</th>
     		</tr>
     	</thead>
    		</table>
 
-<div  style="height: 400px; overflow: scroll ; width: 90%;">
+<div  style="height: 300px; overflow-y: scroll ; width: 90%;">
     <table  style="width:100%;">	
     	<tbody id="product-add-count" style="text-align: center;font-size: 15px">
+    	<c:forEach var="od" items="${olist }">
     		<tr>
-    			<td>SEO1231111R</td>
-    			<td>깜떄까르썽 가디건</td>
-    			<td class="size">S</td>
+    			<c:forEach var="p" items="${plist}">
+    			<c:if test="${p.prdtNo== od.prdt_no}">
+    			<td><input type="text" value="${p.prdtName }" readonly></td>
+    			</c:if>
+    			</c:forEach>
+    			<td class="size"><input type="text" value="${od.ord_size }" readonly></td>
     			<td><div style="display:inline-flex"><div style="width: -webkit-fill-available;">레드</div><div style="width:20px;height:15px;margin-left: 10%;background:red;"></div></div></td>
-    			<td>
-    			<input type="number" min="0" style="border:1px solid #333330;width: 50%">
-  		    	</td>
-  		    	<td>
-    		    <button onclick="closeBtn(this)" style="margin-left: 1%;">X</button>
-    		   </td>
+    			<td><input type="text" value="${od.ord_count }" readonly></td>
+    			<!-- <input type="number" min="0" style="border:1px solid #333330;width: 50%"> -->
     		</tr>
+    		</c:forEach>
    		</tbody>
     </table>
     </div>
@@ -367,15 +380,6 @@ padding-left: 4% !important;
     <div style="height: 130px;">
         <div align="center">
         
-        	<button style="background: black;
-            color: white;
-            font-size: 20px;
-            padding: 10px;
-            height: 65px;
-            width: 135px;
-            border-radius: 10px;" onclick="location.href='productList.ad'">
-            <b>수정</b></button>
-            
             <button style="background: black;
             color: white;
             font-size: 20px;
@@ -392,39 +396,7 @@ padding-left: 4% !important;
 <div class="page-wrapper">
 </div>
 	
-    
-    <!-- 색상 받아오기 스크립트 -->
-  
-      <!-- This Page JS -->
-      <script src="/ot/resources/assets/vendor/bootstrap-colorpicker/jquery-asColor/dist/jquery-asColor.min.js"></script>
-      <script src="/ot/resources/assets/vendor/bootstrap-colorpicker/jquery-asGradient/dist/jquery-asGradient.js"></script>
-      <script src="/ot/resources/assets/vendor/bootstrap-colorpicker/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
-      <script src="/ot/resources/assets/vendor/bootstrap-colorpicker/%40claviska/jquery-minicolors/jquery.minicolors.min.js"></script> 
-
-      <script>
-        $('.demo').each(function() {
-           
-            $(this).minicolors({
-                control: $(this).attr('data-control') || 'hue',
-                defaultValue: $(this).attr('data-defaultValue') || '',
-                format: $(this).attr('data-format') || 'hex',
-                keywords: $(this).attr('data-keywords') || '',
-                inline: $(this).attr('data-inline') === 'true',
-                letterCase: $(this).attr('data-letterCase') || 'lowercase',
-                opacity: $(this).attr('data-opacity'),
-                position: $(this).attr('data-position') || 'bottom left',
-                swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
-                change: function(value, opacity) {
-                    if (!value) return;
-                    if (opacity) value += ', ' + opacity;
-                    if (typeof console === 'object') {
-                        console.log(value);
-                    }
-                },
-                theme: 'bootstrap'
-            });
-        });
-        </script>
+   
 	<script>
 	$(function(){
 		
@@ -539,38 +511,6 @@ padding-left: 4% !important;
         });
    	 });
   		
-        </script>
-
-
-        <script>
-        function categoryChange(e) {
-            var mdivide_a = ["선택","긴팔", "니트", "슬리브리스/반팔", "크롭","오프숄더"];
-            var mdivide_b = ["선택","자켓", "코트/점퍼", "가디건", "베스트"];
-            var mdivide_c = ["선택","슬렉스", "데님", "부츠컷", "와이드", "면바지/기타","트레이닝","조거팬츠","숏/반바지"];
-            var mdivide_d = ["선택","스커트","원피스"];
-            var mdivide_e = ["선택","귀걸이/귀찌","목걸이","반지","초커/팔찌","시계"];
-            var mdivide_f = ["선택","가방","신발"];
-            var mdivide_g = ["선택","벨트","안경/선글라스","모자/헤어","양말/스타킹","머플러/장갑","기타"];
-            var target = document.getElementById("mdivide");
-         
-
-            if(e.value == "a") var d = mdivide_a;
-            else if(e.value == "b") var d = mdivide_b;
-            else if(e.value == "c") var d = mdivide_c;
-            else if(e.value == "d") var d = mdivide_d;
-            else if(e.value == "e") var d = mdivide_e;
-            else if(e.value == "f") var d = mdivide_f;
-            else if(e.value == "g") var d = mdivide_g;
-
-            target.options.length = 0;
-
-            for (x in d) {
-                var opt = document.createElement("option");
-                opt.value = d[x];
-                opt.innerHTML = d[x];
-                target.appendChild(opt);
-            }   
-        }
         </script>
 
      <!-- Bootstrap JS-->

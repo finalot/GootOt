@@ -246,4 +246,18 @@ public class CartDao {
 		return  sqlSession.update("cartMapper.updateProductStock",map);
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 27.
+	 * @작성자  : 문태환 
+	 * @내용 	: 최근 일주일 구하기
+	 * @return
+	 */
+	public ArrayList<Pay> weekList() {
+		return  (ArrayList)sqlSession.selectList("cartMapper.weekList");
+	}
+
+	public ArrayList<Pay> weekPayList() {
+		return (ArrayList)sqlSession.selectList("cartMapper.weekPayList");
+	}
+
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,13 +40,15 @@
     <link href="/ot/resources/acss/theme.css" rel="stylesheet" media="all">
 </head>
 <body class="animsition">
+	<!-- 차트가능한 소스 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<div class="page-wrapper">
 		<jsp:include page="a_header.jsp"/>
  <!-- MENU SIDEBAR-->
  	
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="todayMain.ad">
+                <a href="index.jsp">
                     <img src="/ot/resources/aimages/icon/ot.png" alt="OT" style="max-height: 35px;"/>
                 </a>
             </div>
@@ -194,7 +197,7 @@
                 <div class="row">
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--green">
-                            <h2 class="number">35</h2>
+                            <h2 class="number">${qnaResult}</h2>
                             <span class="desc">오늘 Q&A</span>
                             <div class="icon">
                                 <i class="zmdi zmdi-account-o"></i>
@@ -203,8 +206,8 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--orange">
-                            <h2 class="number">4</h2>
-                            <span class="desc">오늘 반품 수</span>
+                            <h2 class="number">${returnResult }</h2>
+                            <span class="desc">오늘 반품신청 수</span>
                             <div class="icon">
                                 <i class="zmdi zmdi-shopping-cart"></i>
                             </div>
@@ -212,7 +215,7 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--blue">
-                            <h2 class="number">249</h2>
+                            <h2 class="number">${scountResult }</h2>
                             <span class="desc">오늘 판매량</span>
                             <div class="icon">
                                 <i class="zmdi zmdi-calendar-note"></i>
@@ -221,7 +224,8 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="statistic__item statistic__item--red">
-                            <h2 class="number">	&#8361;650,000</h2>
+                            <h2 class="number">	&#8361; 
+                            <fmt:formatNumber value="${spriceResult }" pattern="#,###" /></h2>
                             <span class="desc">오늘 판매금액</span>
                             <div class="icon">
                                 <i class="zmdi zmdi-money"></i>
@@ -248,7 +252,7 @@
                         	style="margin-left:-35%; width:140%; height:auto;" onclick="location.href='todayChart.ad'">
                             <h3 class="title-3 m-b-30">일별 판매량</h3>
                             <div class="chart-wrap">
-                                <canvas id="widgetChart5"></canvas>
+                                <canvas id="widgetChart5" width:"406" height:"446"></canvas>
                             </div>
                             <div class="statistic-chart-1-note">
                                 <span class="big">10,368</span>
@@ -264,26 +268,18 @@
                             <div class="table-responsive">
                                 <table class="table table-top-campaign">
                                     <tbody>
+                                    	
+                                    	<tr>
+                                    		<td>상품명</td>
+                                    		<td>총 판매량</td>
+                                    	</tr>
+                                        <c:forEach var="p" items="${plist }" varStatus="status">
                                         <tr>
-                                            <td>1. 골지나시 </td>
-                                            <td>790</td>
+                                        	<td>${status.count} . ${p.prdtName }</td>
+                                            <td>${p.prdtScount }</td>
                                         </tr>
-                                        <tr>
-                                            <td>2. 베이직 크롭 나시</td>
-                                            <td>500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3. 베이직 라운드티</td>
-                                            <td>120</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4. 기본 슬렉스</td>
-                                            <td>90</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5. 은링 귀걸이</td>
-                                            <td>45</td>
-                                        </tr>
+                                        </c:forEach>    
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -297,7 +293,7 @@
         <!-- END STATISTIC CHART-->
 
 	</div>
-
+	
     <!-- Jquery JS-->
     <script src="/ot/resources/avendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
@@ -321,6 +317,57 @@
     <!-- Main JS-->
     <script src="/ot/resources/ajs/main.js"></script>
     </div>
+    <script>
+    $(function(){
+    	
+    	var weekArr = new Array();
+    	var payArr = new Array();
+    	var  i =0;
+      	  "<c:forEach var='we' items='${week}'>"
+      	   weekArr[i] = "${we.week}";    
+      	   payArr[i] = "${we.sumprice}"
+	       i++;
+			"</c:forEach>"
+    	
+    	
+    	 var ctx = document.getElementById("widgetChart5");
+    	    if (ctx) {
+    	      ctx.height = 220;
+    	      var myChart = new Chart(ctx, {
+    	        type: 'bar',
+    	        data: {
+    	          labels: [	weekArr[0], weekArr[1], weekArr[2], weekArr[3], weekArr[4], weekArr[5], weekArr[6]   ],
+    	          datasets: [
+    	            {
+    	              label: "일별 판매량",
+    	              data: [ payArr[0],payArr[1],payArr[2],payArr[3],payArr[4],payArr[5],payArr[6] ],
+    	              borderColor: "transparent",
+    	              borderWidth: "0",
+    	              backgroundColor: "#ccc",
+    	            }
+    	          ]
+    	        },
+    	        options: {
+    	          maintainAspectRatio: true,
+    	          legend: {
+    	            display: false
+    	          },
+    	          scales: {
+    	            xAxes: [{
+    	              display: false,
+    	              categoryPercentage: 1,
+    	              barPercentage: 0.65
+    	            }],
+    	            yAxes: [{
+    	              display: false
+    	            }]
+    	          }
+    	        }
+    	      });
+    	    }
+    });
+    
+    </script>
 
 </body>
 </html>
