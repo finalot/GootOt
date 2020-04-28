@@ -389,13 +389,15 @@
 	<script>
 
 	function update(){
-		var pwd = document.getElementById('pwd2');
 		
-		if(pwd.value != ""){
+		var pwd1 = document.getElementById('pwd1');
+		var pwd2 = document.getElementById('pwd2');
+		
+		if(pwd1.value == pwd2.value){
 			alert("회원 정보가 변경되었습니다.");
 			document.getElementById('editForm').submit();
 		}
-		else if(pwd.value == "" || pwd.value == null){
+		else if(pwd1.value != pwd2.value || pwd1.value == null || pwd1.value == "" || pwd2.value == null || pwd2.value == ""){
 			alert("비밀번호를 확인해주세요.")
 			return false;
 		}
