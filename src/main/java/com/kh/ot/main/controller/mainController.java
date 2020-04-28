@@ -723,10 +723,12 @@ MainSearchCondition msc= new MainSearchCondition();
 			 ReviewCheck rc = new ReviewCheck();
 			   rc.setPrdtNo(dr.getPrdtNo());
 			   rc.setMemNo(dr.getMemNo());
-			   
-			   int ordNo = mainService.getOrdNo(rc);
-			   dr.setOrdNo(ordNo);
-			   System.out.println(dr.toString());
+			   int ordNo= 0;
+			   ordNo = mainService.getOrdNo(rc);
+			   if(ordNo >0) {
+				   dr.setOrdNo(ordNo);
+				   System.out.println(dr.toString());
+			   }
 			   
 			
 		   for(MultipartFile f : dr.getFile()) {
@@ -788,8 +790,10 @@ MainSearchCondition msc= new MainSearchCondition();
 		   
 		   
 		  if(result>0) {
-			  int rvNo = mainService.getRvNo(rc);
-			  dr.setRvNo(rvNo);
+			  ArrayList<Integer> rvNo = mainService.getRvNo(rc);
+			  for(int i=0; i<rvNo.size();i++) {
+				  dr.setRvNo(rvNo.get(0));
+			  }
 			  
 			  if(count ==1) {
 				   dr.setFileName(rvImage);

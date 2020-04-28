@@ -608,6 +608,7 @@ a{
 										</c:if>
 										<c:if test="${pdd.prdtSale eq 0 }">
 										<font class="format-money">${ pdd.prdtPrice}</font> 
+										
 										</c:if>
 
 
@@ -3257,7 +3258,7 @@ console.log(rvPage2);
 	
 	
 	var prdtNo = $('#prNo_val').val();
-	var prdtPrice = $('#num-price').val();
+	var prdtPrice = Math.floor($('#num-price').val());
 	var nameProduct = $('.product-detail-name').html();
 			
 	if("${loginMember.memId}"==""){
@@ -3309,7 +3310,7 @@ console.log(rvPage2);
 			
 			
 			var prdtNo = $('#prNo_val').val();
-			var prdtPrice = $('#num-price').val();
+			var prdtPrice = Math.floor($('#num-price').val());
 			var nameProduct = $('.product-detail-name').html();
 					
 			if("${loginMember.memId}"==""){

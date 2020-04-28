@@ -186,7 +186,7 @@ public class MainServiceImpl implements MainService {
 		return mainDao.detailReviewInsert(dr);
 	}
 	@Override
-	public int getRvNo(ReviewCheck rc) {
+	public ArrayList<Integer> getRvNo(ReviewCheck rc) {
 		return mainDao.getRvNo(rc);
 	}
 	@Override
