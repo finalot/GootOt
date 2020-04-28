@@ -70,6 +70,8 @@ public class HomeController {
 		  ArrayList<Product> pslist = mainService.selectListMain2();
 		  ArrayList<Product> topplist = mainService.selectListMain3();
 
+		  
+		  System.out.println("instaList"+instaList);
 		
 		  mv.addObject("topplist", topplist); 
 		  mv.addObject("pslist", pslist); 
