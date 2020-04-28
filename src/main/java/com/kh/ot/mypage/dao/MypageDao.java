@@ -408,6 +408,19 @@ public class MypageDao {
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectStarSort", memNo, rowBounds);
 	}
 
+	public int reviewDelete1(int rv_no) {
+		return sqlSession.delete("mypageMapper.reviewDelete1",rv_no);
+	}
+	public int reviewDelete2(int rv_no) {
+		return sqlSession.delete("mypageMapper.reviewDelete2",rv_no);
+	}
+	public int reviewDelete3(int rv_no) {
+		return sqlSession.delete("mypageMapper.reviewDelete3",rv_no);
+	}
+	public int reviewDelete4(int rv_no) {
+		return sqlSession.delete("mypageMapper.reviewDelete4",rv_no);
+	}
+
 	
 
 

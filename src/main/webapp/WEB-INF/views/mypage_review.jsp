@@ -639,7 +639,7 @@ a{
     					<li class="top_menu__li top_menu__li--sort_container">
       						<select name="sort" onchange="sort();" id="sort" style="height: 51px; border-style: none; width: 100%; font-size:13px;">
 							     <option value="last">최신순</option>
-								 <option value="like">추천순</option>
+								 <option value="like">좋아요순</option>
 								 <option value="star">평점순</option>
 	  						</select>
     					</li>
@@ -838,11 +838,27 @@ a{
 										<br>
 										<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점
 											<strong style="color: black;" id="starArea">${r.rvPoint }</strong>
+											<c:if test="${r.rvPoint ==1 }">
 											<i class="fa fa-fw fa-star"></i>
-											<i class="fa fa-fw fa-star"></i>
-											<i class="fa fa-fw fa-star"></i>
-											<i class="fa fa-fw fa-star"></i>
-											<i class="fa fa-fw fa-star"></i>
+											</c:if>
+											<c:if test="${r.rvPoint ==2 }">
+											<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
+											</c:if>
+											<c:if test="${r.rvPoint ==3 }">
+											<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
+											</c:if>
+											<c:if test="${r.rvPoint ==4 }">
+											<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
+											</c:if>
+											<c:if test="${r.rvPoint ==5 }">
+											<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>
+											</c:if>
+											
+										</span>
+									</div>
+									<div class="reviewDelete" style="float: right; margin-right: -5px;">
+										<span>
+											<strong class="reviewX">X</strong>
 										</span>
 									</div>
 								</div>
@@ -1016,9 +1032,33 @@ a{
 	
 	
 	<script>
+		$(".reviewX").click(function(){
+			var rv_no = $(this).parents('li').find('.rv_no').val();
+			console.log("rv_no : " + rv_no);
+			
+			$.ajax({
+				url : "reviewDelete.do",
+				data : {rv_no : rv_no},
+				success : function(data){
+					console.log(data);
+					if(data = "ok"){
+						location.reload();
+					}else{
+						alert("삭제실패염")
+					}
+				}
+			})
+			
+		});
+	
+	
+	
+	
+	
+	
 	function sort(){
 		var sort = $('#sort option:selected').val();
-		
+		var count = 0;
 		$.ajax({
 			url : "mReviewSort.do",
 			data : {Sort : sort},
@@ -1085,7 +1125,12 @@ a{
 														'</span>'+
 												'<br>'+
 												'<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점'+
-													'<strong style="color: black;" id="starArea">'+data.list[i].rvPoint+'</strong>'+
+													'<strong style="color: black;" id="starArea'+count+'o">'+data.list[i].rvPoint+'</strong>'+
+												'</span>'+
+											'</div>'+
+											'<div class="reviewDelete" style="float: right; margin: -2px;">'+
+												'<span>'+
+													'<strong class="reviewX">X</strong>'+
 												'</span>'+
 											'</div>'+
 										'</div>'+
@@ -1100,18 +1145,18 @@ a{
 						   	 	var star5 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
 						   	 	
 						   	 	if(data.list[i].rvPoint==1) {
-						   	 		$('#starArea').after(star1);
+						   	 		$('#starArea'+count+'o').after(star1);
 						      	 } else if(data.list[i].rvPoint==2) {
-						      		$('#starArea').after(star2);
+						      		$('#starArea'+count+'o').after(star2);
 						      	 } else if(data.list[i].rvPoint==3) {
-						      		$('#starArea').after(star3);
+						      		$('#starArea'+count+'o').after(star3);
 						      	 } else if(data.list[i].rvPoint==4) {
-						      		$('#starArea').after(star4);
+						      		$('#starArea'+count+'o').after(star4);
 						      	 } else if(data.list[i].rvPoint==5) {
-						      		$('#starArea').after(star5);
+						      		$('#starArea'+count+'o').after(star5);
 						      	 }
 							}
-						}
+						} count++;
 					}
 				}
 			})
@@ -1193,7 +1238,7 @@ a{
 	function review1(en){
 		 if("${loginMember.memId}"==""){
 			 alert("로그인 후 이용해주세요!");
-		 }else{
+		 } else{
 
 		 $('#comentarea').children('.replyDiv').remove();
 		 $('#comentarea').children('br').remove();

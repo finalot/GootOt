@@ -125,112 +125,89 @@
 			<div class="row">
 				
 				
-					<c:forEach var="p" items="${ topplist }">
-							<div class="col-sm-6 col-md-4 col-lg-3 p-b-50 best">
-								<div class="block2">
-								<c:if test="${61999 gt p.prdtNo and p.prdtNo gt 60000}">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								
-									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
-
+					<c:forEach var="top" items="${ topplist }">
+						<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
+								<c:if test="${61999 gt top.prdtNo and top.prdtNo gt 60000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
+									<img src="${top.prdtImagePath }${top.prdtImage }" alt="IMG-PRODUCT">
 									<div class="block2-overlay trans-0-4">
-									
-
-										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+										<div id="${top.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+											style="width:60%;margin-left:20%" onclick="wish('${top.prdtNo }');">
 												<small>관심상품 담기</small>
 											</button>
 										</div>
 									</div>
 								</div>
 							</c:if>
-									<c:if test="${p.prdtNo gt 62000}">
-									<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-									
-									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
-
+							<c:if test="${top.prdtNo gt 62000}">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
+									<img src="${top.prdtImagePath }${top.prdtImage }" alt="IMG-PRODUCT">
 									<div class="block2-overlay trans-0-4">
-										
-
-										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+									<div id="${top.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+											style="width:60%;margin-left:20%" onclick="wish('${top.prdtNo }');">
 												<small>관심상품 담기</small>
 											</button>
 										</div>
 									</div>
 								</div>
-									</c:if>
-								
-								
-								<c:if test="${p.prdtNo lt 60000}">
+							</c:if>
+							<c:if test="${top.prdtNo lt 60000}">
 								<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								
-									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
-
+									<img src="${top.prdtImagePath }${top.prdtImage }" alt="IMG-PRODUCT">
 									<div class="block2-overlay trans-0-4">
-										
-
-										<div id="${p.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
+									<div id="${top.prdtNo }a" class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4"
-											style="width:60%;margin-left:20%" onclick="wish('${p.prdtNo }');">
+											style="width:60%;margin-left:20%" onclick="wish('${top.prdtNo }');">
 												<small>관심상품 담기</small>
 											</button>
 										</div>
 									</div>
 								</div>
-								</c:if>
-								
-
+							</c:if>
+							
 								<div class="block2-txt p-t-20">
 									<span class="block2-price m-text6 p-r-5" >
 								<c:forEach var="po" items="${ polist }">
-
-									<c:if test="${ p.prdtNo eq po.prdtNo }">
-
+									<c:if test="${ top.prdtNo eq po.prdtNo }">
 										<c:forEach var="pc" items="${ pclist }">
-
 										<c:if test="${ po.optColor eq pc.pcName }">
 										<div style="width:14px;height:14px;background:${pc.pcRgb};display:inline-block;border:1px solid gray;margin-left:0.5px;"></div>
 										</c:if>
-
 										</c:forEach>
-
 									</c:if>
-
 								</c:forEach>
 									</span>
-
+							
 									<br>
 									
 					<c:url var="product_detail" value="product_detail.do">
-						<c:param name="product_detail" value="${p.prdtNo }" />
+						<c:param name="product_detail" value="${top.prdtNo }" />
 					</c:url>
-														<a href="${product_detail }" id="${p.prdtNo }"class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
-															${p.prdtName }
+														<a href="${product_detail }" id="${top.prdtNo }"class="block2-name dis-block s-text3 p-b-5"style="font-size:12px">
+															${top.prdtName }
 					
 														</a>
 														
 
 									<span class="block2-price m-text6 p-r-5">
-									<c:if test="${p.prdtSale ne 0 }">
-	<small><font class="format-money" style="text-decoration:line-through">${ p.prdtPrice}</font>-><font class="format-money">${ p.prdtPrice-((p.prdtPrice/100)*p.prdtSale)}</font> won</small>&nbsp;&nbsp;
+									<c:if test="${top.prdtSale ne 0 }">
+	<small><font class="format-money" style="text-decoration:line-through">${ top.prdtPrice}</font>-><font class="format-money">${ top.prdtPrice-((p.prdtPrice/100)*p.prdtSale)}</font> won</small>&nbsp;&nbsp;
 										</c:if>
-										<c:if test="${p.prdtSale eq 0 }">
-										<small><font class="format-money">${ p.prdtPrice}</font> won</small>&nbsp;&nbsp;
+										<c:if test="${top.prdtSale eq 0 }">
+										<small><font class="format-money">${ top.prdtPrice}</font> won</small>&nbsp;&nbsp;
 										</c:if>
 										
-										<font style="font-size:9px;color:gray">리뷰 : ${p.prdtReview}</font>
+										<font style="font-size:9px;color:gray">리뷰 : ${top.prdtReview}</font>
 									</span>
 								</div>
 							</div>
-							</div>
 							</c:forEach>
-			
+	
 			</div>
 		</div>
 	</div>
@@ -882,21 +859,17 @@
 					<!-- Block3 -->
 					<div class="block3">
 						<a href="blog-detail.html" class="block3-img dis-block hov-img-zoom">
-							<img src="<c:url value="/resources/images/blog-01.jpg"/>" alt="IMG-BLOG">
+							<img src="<c:url value="/resources/buploadFiles/KakaoTalk_20200428_161151495_01.jpg"/>" alt="IMG-BLOG">
 						</a>
 
 						<div class="block3-txt p-t-14">
 							<h4 class="p-b-7">
 								<a href="blog-detail.html" class="m-text11">
-									Black Friday Guide: Best Sales & Discount Codes
+								
 								</a>
 							</h4>
 
-							<span class="s-text6">By</span> <span class="s-text7">Nancy Ward</span>
-							<span class="s-text6">on</span> <span class="s-text7">July 22, 2017</span>
-
 							<p class="s-text8 p-t-16">
-								Duis ut velit gravida nibh bibendum commodo. Sus-pendisse pellentesque mattis augue id euismod. Inter-dum et malesuada fames
 							</p>
 						</div>
 					</div>
@@ -906,21 +879,16 @@
 					<!-- Block3 -->
 					<div class="block3">
 						<a href="blog-detail.html" class="block3-img dis-block hov-img-zoom">
-							<img src="<c:url value="/resources/images/blog-02.jpg"/>" alt="IMG-BLOG">
+							<img src="<c:url value="/resources/buploadFiles/KakaoTalk_20200428_161151495_02.jpg"/>" alt="IMG-BLOG">
 						</a>
 
 						<div class="block3-txt p-t-14">
 							<h4 class="p-b-7">
 								<a href="blog-detail.html" class="m-text11">
-									The White Sneakers Nearly Every Fashion Girls Own
 								</a>
 							</h4>
 
-							<span class="s-text6">By</span> <span class="s-text7">Nancy Ward</span>
-							<span class="s-text6">on</span> <span class="s-text7">July 18, 2017</span>
-
 							<p class="s-text8 p-t-16">
-								Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit ame
 							</p>
 						</div>
 					</div>
@@ -930,21 +898,17 @@
 					<!-- Block3 -->
 					<div class="block3">
 						<a href="blog-detail.html" class="block3-img dis-block hov-img-zoom">
-							<img src="<c:url value="/resources/images/blog-01.jpg"/>" alt="IMG-BLOG">
+							<img src="<c:url value="/resources/buploadFiles/KakaoTalk_20200428_161151495_03.jpg"/>" alt="IMG-BLOG">
 						</a>
 
 						<div class="block3-txt p-t-14">
 							<h4 class="p-b-7">
 								<a href="blog-detail.html" class="m-text11">
-									New York SS 2018 Street Style: Annina Mislin
 								</a>
 							</h4>
 
-							<span class="s-text6">By</span> <span class="s-text7">Nancy Ward</span>
-							<span class="s-text6">on</span> <span class="s-text7">July 2, 2017</span>
 
 							<p class="s-text8 p-t-16">
-								Proin nec vehicula lorem, a efficitur ex. Nam vehicula nulla vel erat tincidunt, sed hendrerit ligula porttitor. Fusce sit amet maximus nunc
 							</p>
 						</div>
 					</div>
@@ -968,18 +932,16 @@
 				<img src="<c:url value="/resources/buploadFiles/${in.oriFile }"/>" alt="IMG-INSTAGRAM">
 
 				<a href="${in.mainLink} " class="block4-overlay sizefull ab-t-l trans-0-4">
-					<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
+				<!-- 	<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
 						<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>
 						<span class="p-t-2">39</span>
-					</span>
+					</span> -->
 
 					<div class="block4-overlay-txt trans-0-4 p-l-40 p-r-25 p-b-30">
 						<p class="s-text10 m-b-15 h-size1 of-hidden">
 				 		${in.mainComment}   	 <!-- Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit amet enim orci. Nam eget metus elit. --> 
 						</p>
-
 						<span class="s-text9">
-							Photo by @nancyward
 						</span>
 					</div>
 				</a>

@@ -1803,6 +1803,12 @@ select {
 					                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 					                          	 )
 									 }
+									 
+									 
+									 
+									 
+									 
+									 
 								 }
 							},error:function() {
 								alert("에러임에러임");
@@ -1857,6 +1863,7 @@ select {
 				 $('#review_list').children('li').remove();
 				 $('#review_list').children('div').remove();
 				 console.log(data);
+				 var count = 0;
 				 for(var i=0;i<data.rlist.length;i++) {
 					 var src = data.rlist[i].prdtPath+data.rlist[i].prdtImg;
 					  for(var j=0;j<data.rc.length;j++){
@@ -1896,14 +1903,30 @@ select {
 									  ''+data.rlist[i].prdtName+'</div>'+
 									  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
 									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
-									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
-									  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점 '+
+									  '<strong style="color: black;display:inline-block;"id="starArea'+i+'o">'+data.rlist[i].rvPoint+'</strong>&nbsp;</span>'+
 							          '</div></div></div></li>')
-						}
+							          
+					 var star1 = '<i class="fa fa-fw fa-star"></i>'
+					   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+					   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+					   	 var star4 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+					   	 var star5 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+					   	 if(data.rlist[i].rvPoint==1){
+					   	 $('#starArea'+i+'o').after(star1);
+					   	 }else if(data.rlist[i].rvPoint==2){
+					   		 $('#starArea'+i+'o').after(star2);
+					   	 }else if(data.rlist[i].rvPoint==3){
+					   		 $('#starArea'+i+'o').after(star3);
+					   	 }else if(data.rlist[i].rvPoint==4){
+					   		 $('#starArea'+i+'o').after(star4);
+					   	 }else if(data.rlist[i].rvPoint==5){
+					   		 $('#starArea'+i+'o').after(star5);
 					 }
-				 }
-				 
-				 
+							      
+						}
+							   	 }
+					 }
 					},error:function() {
 						alert("에러임에러임");
 					}
@@ -1967,9 +1990,26 @@ select {
 									  ''+data.rlist[i].prdtName+'</div>'+
 									  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
 									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
-									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
-									  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점 '+
+									  '<strong style="color: black;display:inline-block;"id="starArea'+i+'o">'+data.rlist[i].rvPoint+'</strong>&nbsp;</span>'+
 							          '</div></div></div></li>')
+							          
+					 var star1 = '<i class="fa fa-fw fa-star"></i>'
+					   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+					   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+					   	 var star4 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+					   	 var star5 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+					   	 if(data.rlist[i].rvPoint==1){
+					   	 $('#starArea'+i+'o').after(star1);
+					   	 }else if(data.rlist[i].rvPoint==2){
+					   		 $('#starArea'+i+'o').after(star2);
+					   	 }else if(data.rlist[i].rvPoint==3){
+					   		 $('#starArea'+i+'o').after(star3);
+					   	 }else if(data.rlist[i].rvPoint==4){
+					   		 $('#starArea'+i+'o').after(star4);
+					   	 }else if(data.rlist[i].rvPoint==5){
+					   		 $('#starArea'+i+'o').after(star5);
+					 }
 				 }
 					}
 					}
@@ -2035,9 +2075,26 @@ select {
 									  ''+data.rlist[i].prdtName+'</div>'+
 									  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
 									  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
-									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
-									  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점 '+
+									  '<strong style="color: black;display:inline-block;"id="starArea'+i+'o">'+data.rlist[i].rvPoint+'</strong>&nbsp;</span>'+
 							          '</div></div></div></li>')
+							          
+					 var star1 = '<i class="fa fa-fw fa-star"></i>'
+					   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+					   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+					   	 var star4 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+					   	 var star5 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+					   	 if(data.rlist[i].rvPoint==1){
+					   	 $('#starArea'+i+'o').after(star1);
+					   	 }else if(data.rlist[i].rvPoint==2){
+					   		 $('#starArea'+i+'o').after(star2);
+					   	 }else if(data.rlist[i].rvPoint==3){
+					   		 $('#starArea'+i+'o').after(star3);
+					   	 }else if(data.rlist[i].rvPoint==4){
+					   		 $('#starArea'+i+'o').after(star4);
+					   	 }else if(data.rlist[i].rvPoint==5){
+					   		 $('#starArea'+i+'o').after(star5);
+					 }
 							}
 					 }
 				 }
@@ -2394,9 +2451,26 @@ select {
 										  ''+data.rlist[i].prdtName+'</div>'+
 										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
 										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
-										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
-										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점 '+
+										  '<strong style="color: black;display:inline-block;"id="starArea'+i+'o">'+data.rlist[i].rvPoint+'</strong>&nbsp;</span>'+
 								          '</div></div></div></li>')
+								          
+						 var star1 = '<i class="fa fa-fw fa-star"></i>'
+						   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star4 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star5 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 if(data.rlist[i].rvPoint==1){
+						   	 $('#starArea'+i+'o').after(star1);
+						   	 }else if(data.rlist[i].rvPoint==2){
+						   		 $('#starArea'+i+'o').after(star2);
+						   	 }else if(data.rlist[i].rvPoint==3){
+						   		 $('#starArea'+i+'o').after(star3);
+						   	 }else if(data.rlist[i].rvPoint==4){
+						   		 $('#starArea'+i+'o').after(star4);
+						   	 }else if(data.rlist[i].rvPoint==5){
+						   		 $('#starArea'+i+'o').after(star5);
+						 }
 								}
 						 }
 					 }
@@ -2481,9 +2555,26 @@ select {
 										  ''+data.rlist[i].prdtName+'</div>'+
 										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
 										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
-										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
-										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점 '+
+										  '<strong style="color: black;display:inline-block;"id="starArea'+i+'o">'+data.rlist[i].rvPoint+'</strong>&nbsp;</span>'+
 								          '</div></div></div></li>')
+								          
+						 var star1 = '<i class="fa fa-fw fa-star"></i>'
+						   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star4 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star5 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 if(data.rlist[i].rvPoint==1){
+						   	 $('#starArea'+i+'o').after(star1);
+						   	 }else if(data.rlist[i].rvPoint==2){
+						   		 $('#starArea'+i+'o').after(star2);
+						   	 }else if(data.rlist[i].rvPoint==3){
+						   		 $('#starArea'+i+'o').after(star3);
+						   	 }else if(data.rlist[i].rvPoint==4){
+						   		 $('#starArea'+i+'o').after(star4);
+						   	 }else if(data.rlist[i].rvPoint==5){
+						   		 $('#starArea'+i+'o').after(star5);
+						 }
 								}
 					    	 }
 				    	 }
@@ -2567,9 +2658,26 @@ select {
 										  ''+data.rlist[i].prdtName+'</div>'+
 										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
 										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
-										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
-										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점 '+
+										  '<strong style="color: black;display:inline-block;"id="starArea'+i+'o">'+data.rlist[i].rvPoint+'</strong>&nbsp;</span>'+
 								          '</div></div></div></li>')
+								          
+						 var star1 = '<i class="fa fa-fw fa-star"></i>'
+						   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star4 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star5 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 if(data.rlist[i].rvPoint==1){
+						   	 $('#starArea'+i+'o').after(star1);
+						   	 }else if(data.rlist[i].rvPoint==2){
+						   		 $('#starArea'+i+'o').after(star2);
+						   	 }else if(data.rlist[i].rvPoint==3){
+						   		 $('#starArea'+i+'o').after(star3);
+						   	 }else if(data.rlist[i].rvPoint==4){
+						   		 $('#starArea'+i+'o').after(star4);
+						   	 }else if(data.rlist[i].rvPoint==5){
+						   		 $('#starArea'+i+'o').after(star5);
+						 }
 								}
 						 }
 					 }
@@ -2643,9 +2751,26 @@ select {
 										  ''+data.rlist[i].prdtName+'</div>'+
 										  '<div class="reviews_index_gallery_review__product_info_feedbacks">'+
 										  '<span class="reviews_index_gallery_review__reviews_count" style="color: #c3b798;">리뷰<strong style="color: black;">'+data.rc[j].count+'</strong></span><br>'+
-										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점<strong style="color: black;">4.9</strong></span>'+
-										  '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'+
+										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점 '+
+										  '<strong style="color: black;display:inline-block;"id="starArea'+i+'o">'+data.rlist[i].rvPoint+'</strong>&nbsp;</span>'+
 								          '</div></div></div></li>')
+								          
+						 var star1 = '<i class="fa fa-fw fa-star"></i>'
+						   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star4 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 var star5 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
+						   	 if(data.rlist[i].rvPoint==1){
+						   	 $('#starArea'+i+'o').after(star1);
+						   	 }else if(data.rlist[i].rvPoint==2){
+						   		 $('#starArea'+i+'o').after(star2);
+						   	 }else if(data.rlist[i].rvPoint==3){
+						   		 $('#starArea'+i+'o').after(star3);
+						   	 }else if(data.rlist[i].rvPoint==4){
+						   		 $('#starArea'+i+'o').after(star4);
+						   	 }else if(data.rlist[i].rvPoint==5){
+						   		 $('#starArea'+i+'o').after(star5);
+						 }
 								}
 						 }
 					 }
