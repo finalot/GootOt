@@ -1320,7 +1320,8 @@ select {
 
 								<div class="reviews_index__no_data_message">아직 작성한 리뷰가
 									없습니다.</div>
-								<ul id="review_list" class="reviews_index__reviews reviews" style="margin-top:10px;margin-left:-3%;">
+								<ul id="review_list" class="reviews_index__reviews reviews" id="reviewArea"
+								style="margin-top:10px;margin-left:-3%;">
 
 
 									<!-- 리뷰1줄 시작 -->
@@ -1342,7 +1343,7 @@ select {
 														<img class="js-review-image"
 														alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했"
 														src="${r.rvImage }"
-														style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>
+														style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>
 													</li>
 												</ul>
 												<div class="photo_review_thumbnail__review_info">
@@ -1434,7 +1435,7 @@ select {
 
 					<!-- 페이징 처리 할 부분 -->
 				<c:if test="${!empty rlist }">
-			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
+			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1" >
 				<c:if test="${pi.currentPage eq 1 }">
 					<img src="/ot/resources/images/btn_page_first.gif" alt="첫 페이지">
 				</c:if>
@@ -1866,7 +1867,7 @@ select {
 									  '<div class="photo_review_thumbnail__thumbnail_container">'+
 									  '<ul>'+
 									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 									  '</li>'+
 									  '</ul>'+
 									  '<div class="photo_review_thumbnail__review_info">'+
@@ -1901,6 +1902,8 @@ select {
 						}
 					 }
 				 }
+				 
+				 
 					},error:function() {
 						alert("에러임에러임");
 					}
@@ -1935,7 +1938,7 @@ select {
 									  '<div class="photo_review_thumbnail__thumbnail_container">'+
 									  '<ul>'+
 									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 									  '</li>'+
 									  '</ul>'+
 									  '<div class="photo_review_thumbnail__review_info">'+
@@ -2003,7 +2006,7 @@ select {
 									  '<div class="photo_review_thumbnail__thumbnail_container">'+
 									  '<ul>'+
 									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 									  '</li>'+
 									  '</ul>'+
 									  '<div class="photo_review_thumbnail__review_info">'+
@@ -2136,12 +2139,12 @@ select {
 				  if(i == 0){
 						$('#nextPh').after(' <div id="img1" class="mySlides" style="display: block;">'+
 	                            '<div class="numbertext" ><font style="font-size:14px;">1/ '+r.ph.length+'</font></div>'+
-	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;">'+
+	                            '<img class="contentimgs" id="contentimgs1" src="'+r.ph[0].rpPhoto+'" alt="sample1" style="margin-top:-5%;width:800px;">'+
 	                            '</div>')
 				  }else{
 						$('#img1').after(	'<div class="mySlides" style="display: none;">'+
 			                      '<div class="numbertext"><font style="font-size:14px;">2 / '+r.ph.length+'</font></div>'+
-			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;" >'+
+			                      '<img class="contentimgs" id="contentimgs2" src="'+r.ph[1].rpPhoto+'" alt="sample2" style="margin-top:-5%;width:800px;" >'+
 			                  '</div>')
 				  }
 			 }
@@ -2172,7 +2175,7 @@ select {
 							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
-			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
 			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 			                          	 )
@@ -2254,7 +2257,7 @@ select {
 						 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
-		                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+		                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
 		                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 		                          	 )
@@ -2302,7 +2305,7 @@ select {
 							 $('#comentarea').append('<div class="replyDiv" style="color:gray; border:1px solid lightgray;font-size:16px;">'+
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
-			                        	'<button style="" onclick="DeleteReply(this);">&times;</button><br>'+
+			                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
 			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 			                          	 )
@@ -2362,7 +2365,7 @@ select {
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+
@@ -2449,7 +2452,7 @@ select {
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+
@@ -2535,7 +2538,7 @@ select {
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+
@@ -2611,7 +2614,7 @@ select {
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+

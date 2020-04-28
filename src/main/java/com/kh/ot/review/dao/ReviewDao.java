@@ -176,8 +176,12 @@ public class ReviewDao {
 	 * @내용    : 리뷰 좋아요순 정렬
 	 * @return
 	 */
-	public ArrayList<Review> LikeSort() {
-		return (ArrayList)sqlSession.selectList("reviewMapper.LikeSort");
+	public ArrayList<Review> LikeSort(MainPageInfo2 pi) {
+		
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("reviewMapper.LikeSort",null,rowBounds);
 	}
 
 	/**
@@ -186,8 +190,12 @@ public class ReviewDao {
 	 * @내용    : 리뷰 최신순 정렬
 	 * @return
 	 */
-	public ArrayList<Review> DateSort() {
-		return (ArrayList)sqlSession.selectList("reviewMapper.DateSort");
+	public ArrayList<Review> DateSort(MainPageInfo2 pi) {
+
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("reviewMapper.DateSort",null,rowBounds);
 	}
 
 	/**
@@ -197,22 +205,25 @@ public class ReviewDao {
 	 * @param optionHeight
 	 * @return
 	 */
-	public ArrayList<Review> selectCheckSort(int optionHeight) {
-
+	public ArrayList<Review> selectCheckSort(MainPageInfo2 pi,int optionHeight) {
+		
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
 		if(optionHeight==1) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort1");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort1",null,rowBounds);
 		} else if(optionHeight==2) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort2");
-		} else if(optionHeight==3) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort3");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort2",null,rowBounds);			
+		} else if(optionHeight==3) {			
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort3",null,rowBounds);
 		} else if(optionHeight==4) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort4");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort4",null,rowBounds);			
 		} else if(optionHeight==5) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort5");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort5",null,rowBounds);			
 		} else if(optionHeight==6){
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort6");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectCheckSort6",null,rowBounds);			
 		}else {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList",null,rowBounds);
 		}
 	}
 
@@ -223,21 +234,26 @@ public class ReviewDao {
 	 * @param optionWeight
 	 * @return
 	 */
-	public ArrayList<Review> selectWeightSort(int optionWeight) {
+	public ArrayList<Review> selectWeightSort(MainPageInfo2 pi,int optionWeight) {
+		
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		
 		if(optionWeight==7) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort7");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort7",null,rowBounds);
 		} else if(optionWeight==8) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort8");
-		} else if(optionWeight==9) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort9");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort8",null,rowBounds);			
+		} else if(optionWeight==9) {			
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort9",null,rowBounds);
 		} else if(optionWeight==10) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort10");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort10",null,rowBounds);			
 		} else if(optionWeight==11) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort11");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort11",null,rowBounds);			
 		} else if(optionWeight==12){
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort12");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectWeightSort12",null,rowBounds);			
 		}else {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList",null,rowBounds);
 		}
 	}
 
@@ -248,21 +264,26 @@ public class ReviewDao {
 	 * @param optionSize
 	 * @return
 	 */
-	public ArrayList<Review> selectSizeSort(int optionSize) {
+	public ArrayList<Review> selectSizeSort(MainPageInfo2 pi,int optionSize) {
+		
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		
 		if(optionSize==13) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort13");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort13",null,rowBounds);
 		} else if(optionSize==14) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort14");
-		} else if(optionSize==15) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort15");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort14",null,rowBounds);			
+		} else if(optionSize==15) {			
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort15",null,rowBounds);
 		} else if(optionSize==16) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort16");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort16",null,rowBounds);			
 		} else if(optionSize==17) {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort17");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort17",null,rowBounds);			
 		} else if(optionSize==18){
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort18");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectSizeSort18",null,rowBounds);			
 		}else {
-			return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList");
+			return (ArrayList)sqlSession.selectList("reviewMapper.selectReviewList",null,rowBounds);
 		}
 	}
 
@@ -294,8 +315,14 @@ public class ReviewDao {
 	 * @param upNo
 	 * @return
 	 */
-	public ArrayList<Review> selectCategoryReview(int upNo) {
-		return (ArrayList)sqlSession.selectList("reviewMapper.selectCategoryReview",upNo);
+	public ArrayList<Review> selectCategoryReview(MainPageInfo2 pi,int upNo) {
+		
+
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectCategoryReview",upNo,rowBounds);
 	}
 
 	/**
@@ -304,8 +331,14 @@ public class ReviewDao {
 	 * @내용    : 모든 정렬
 	 * @return
 	 */
-	public ArrayList<Review> selectAllSort() {
-		return (ArrayList)sqlSession.selectList("reviewMapper.selectAllSort");
+	public ArrayList<Review> selectAllSort(MainPageInfo2 pi) {
+		
+
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		
+		return (ArrayList)sqlSession.selectList("reviewMapper.selectAllSort",null,rowBounds);
 	}
 
 	/**

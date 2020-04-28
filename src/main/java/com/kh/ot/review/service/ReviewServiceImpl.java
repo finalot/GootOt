@@ -90,28 +90,28 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public ArrayList<Review> selectLikeSort() {
-		return rDao.LikeSort();
+	public ArrayList<Review> selectLikeSort(MainPageInfo2 pi) {
+		return rDao.LikeSort(pi);
 	}
 
 	@Override
-	public ArrayList<Review> selectDateSort() {
-		return rDao.DateSort();
+	public ArrayList<Review> selectDateSort(MainPageInfo2 pi) {
+		return rDao.DateSort(pi);
 	}
 
 	@Override
-	public ArrayList<Review> selectCheckSort(int optionHeight) {
-		return rDao.selectCheckSort(optionHeight);
+	public ArrayList<Review> selectCheckSort(MainPageInfo2 pi,int optionHeight) {
+		return rDao.selectCheckSort(pi,optionHeight);
 	}
 
 	@Override
-	public ArrayList<Review> selectWeightSort(int optionWeight) {
-		return rDao.selectWeightSort(optionWeight);
+	public ArrayList<Review> selectWeightSort(MainPageInfo2 pi,int optionWeight) {
+		return rDao.selectWeightSort(pi,optionWeight);
 	}
 
 	@Override
-	public ArrayList<Review> selectSizeSort(int optionSize) {
-		return rDao.selectSizeSort(optionSize);
+	public ArrayList<Review> selectSizeSort(MainPageInfo2 pi,int optionSize) {
+		return rDao.selectSizeSort(pi,optionSize);
 	}
 
 	@Override
@@ -135,13 +135,13 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public ArrayList<Review> selectCategoryReview(int upNo) {
-		return rDao.selectCategoryReview(upNo);
+	public ArrayList<Review> selectCategoryReview(MainPageInfo2 pi,int upNo) {
+		return rDao.selectCategoryReview(pi,upNo);
 	}
 
 	@Override
-	public ArrayList<Review> selectAllSort() {
-		return rDao.selectAllSort();
+	public ArrayList<Review> selectAllSort(MainPageInfo2 pi) {
+		return rDao.selectAllSort(pi);
 	}
 
 	@Override

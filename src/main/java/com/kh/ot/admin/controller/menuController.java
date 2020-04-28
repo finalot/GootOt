@@ -805,7 +805,7 @@ public class menuController {
 	 */
 	@RequestMapping(value = "DesignEd.do", method = RequestMethod.POST)
 	public String DesignEd(int[] no, String[] mainComment, String[] mainLink, HttpServletRequest request,
-			HttpSession session, @RequestParam(name = "mainImg", required = false) MultipartFile[] uploadFile) {
+			HttpSession session, @RequestParam(name = "mainbaner", required = false) MultipartFile[] uploadFile) {
 
 		ArrayList<Design> dlist = new ArrayList<Design>();
 		for (int i = 0; i < no.length - 1; i++) {
@@ -821,7 +821,7 @@ public class menuController {
 					d.setDeNo(no[i]);
 					d.setMainComment(mainComment[i]);
 					d.setMainLink(mainLink[i]);
-					d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
+					d.setOriFile(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
 					d.setReFile(renameFileName);
 					dlist.add(d);
 				}
@@ -829,11 +829,7 @@ public class menuController {
 		}
 		int result = adService.DesignEd(dlist);
 
-		if (result > -1) {
-			return "home";
-		} else {
-			return "에러야";
-		}
+		return "redirect:home.do";
 	}
 
 	@RequestMapping(value = "DesignEdVideo.do", method = RequestMethod.POST)
@@ -852,7 +848,7 @@ public class menuController {
 		int result = adService.DesignEdVideo(d);
 
 		if (result > -1) {
-			return "home";
+			return "redirect:home.do";
 		} else {
 			return "에러야";
 		}
@@ -874,7 +870,7 @@ public class menuController {
 			HttpSession session, @RequestParam(name = "instaimg", required = false) MultipartFile[] uploadFile) {
 
 		ArrayList<Design> dlist = new ArrayList<Design>();
-		for (int i = 0; i < inno.length - 1; i++) {
+		for (int i = 0; i < inno.length ; i++) {
 			Design d = new Design();
 
 			if (!uploadFile[i].getOriginalFilename().equals("")) {
@@ -887,7 +883,7 @@ public class menuController {
 					d.setDeNo(inno[i]);
 					d.setMainLink(instalink[i]);
 					d.setMainComment(instacomment[i]);
-					d.setOriFIle(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
+					d.setOriFile(uploadFile[i].getOriginalFilename());// DB에는 파일명 저장
 					d.setReFile(renameFileName);
 					dlist.add(d);
 				}
@@ -895,7 +891,7 @@ public class menuController {
 		}
 		int result = adService.DesignInsta(dlist);
 
-		return "home";
+		return "redirect:home.do";
 
 	}
 	/**
@@ -921,13 +917,13 @@ public class menuController {
 				String renameFileName = saveFile(uploadFile, request);
 
 				if (renameFileName != null) {
-					d.setOriFIle(uploadFile.getOriginalFilename());// DB에는 파일명 저장
+					d.setOriFile(uploadFile.getOriginalFilename());// DB에는 파일명 저장
 					d.setReFile(renameFileName);
 				}
 			}
 			d.setMainComment(prdtcomment);
 		int result = adService.DesignPrdt(d);
-		return "home";
+		return "redirect:home.do";
 
 	}
 	
@@ -960,7 +956,7 @@ public class menuController {
 		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
 				+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
 
-		String renamePath = folder + "\\" + renameFileName;
+		String renamePath = folder + "\\" + originFileName;
 
 		try {
 			file.transferTo(new File(renamePath));

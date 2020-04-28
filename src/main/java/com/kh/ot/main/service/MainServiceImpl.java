@@ -186,7 +186,7 @@ public class MainServiceImpl implements MainService {
 		return mainDao.detailReviewInsert(dr);
 	}
 	@Override
-	public int getRvNo(ReviewCheck rc) {
+	public ArrayList<Integer> getRvNo(ReviewCheck rc) {
 		return mainDao.getRvNo(rc);
 	}
 	@Override
@@ -292,6 +292,26 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public int WarningReply(ReviewReply rp) {
 		return mainDao.WarningReply(rp);
+	}
+	@Override
+	public ArrayList<Product> selectListMain() {
+		return mainDao.selectListMain();
+	}
+	@Override
+	public ArrayList<Product_opt> selectOptionListMain() {
+		return mainDao.selectOptionListMain();
+	}
+	@Override
+	public ArrayList<Product_color> selectColorListMain() {
+		return mainDao.selectColorListMain();
+	}
+	@Override
+	public ArrayList<Product> selectListMain2() {
+		return mainDao.selectListMain2();
+	}
+	@Override
+	public ArrayList<Product> selectListMain3() {
+		return mainDao.selectListMain3();
 	}
 
 	

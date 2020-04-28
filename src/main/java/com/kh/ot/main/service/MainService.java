@@ -136,7 +136,7 @@ public interface MainService {
 
 	int getOrdNo(ReviewCheck rc);
 
-	int getRvNo(ReviewCheck rc);
+	ArrayList<Integer> getRvNo(ReviewCheck rc);
 
 	int detailReviewPhotoInsert(DetailReview dr);
 	int detailReviewPhotoInsert2(DetailReview dr);
@@ -204,6 +204,46 @@ public interface MainService {
 	int DeleteReply(ReviewReply rp);
 
 	int WarningReply(ReviewReply rp);
+
+	/**
+	 * @작성일  : 2020. 4. 28.
+	 * @작성자  : 문태환
+	 * @내용 	: 메인 상품 리스트 불러오기
+	 * @return
+	 */
+	ArrayList<Product> selectListMain();
+
+	/**
+	 * @작성일  : 2020. 4. 28.
+	 * @작성자  : 문태환
+	 * @내용 	: 메인 상품 리스트 불러오기
+	 * @return
+	 */
+	ArrayList<Product_opt> selectOptionListMain();
+
+	/**
+	 * @작성일  : 2020. 4. 28.
+	 * @작성자  : 문태환
+	 * @내용 	: 메인 상품 리스트 불러오기
+	 * @return
+	 */
+	ArrayList<Product_color> selectColorListMain();
+
+	/**
+	 * @작성일  : 2020. 4. 28.
+	 * @작성자  : 문태환
+	 * @내용 	: 메인 상품 리스트 불러오기 2
+	 * @return
+	 */
+	ArrayList<Product> selectListMain2();
+
+	/**
+	 * @작성일  : 2020. 4. 28.
+	 * @작성자  : 문태환
+	 * @내용 	: 메인 상품 리스트 불러오기 탑3
+	 * @return
+	 */
+	ArrayList<Product> selectListMain3();
 
 
 }

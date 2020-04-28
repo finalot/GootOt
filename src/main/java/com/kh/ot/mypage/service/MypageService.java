@@ -340,11 +340,11 @@ public interface MypageService {
 	int resultPoint(int memNo);
 
 
-	ArrayList<Review> selectLastSort(int memNo);
+	ArrayList<Review> selectLastSort(PageInfo pi,int memNo);
 
-	ArrayList<Review> selectLikeSort(int memNo);
+	ArrayList<Review> selectLikeSort(PageInfo pi,int memNo);
 
-	ArrayList<Review> selectCommentLast(int memNo);
+	ArrayList<Review> selectStarSort(PageInfo pi, int memNo);
 
 
 

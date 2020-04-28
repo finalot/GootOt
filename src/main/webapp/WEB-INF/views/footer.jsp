@@ -262,7 +262,7 @@
 					</div>
 					
 		</button>
-	
+		<c:url var="orderList" value="mList.do"/>
 		<c:url var="loginView" value="loginView.do"/>		
 		<c:url var="wishlist" value="mWishlist.do">
 			<c:param name="memNo" value="${loginMember.memNo }"/>
@@ -270,13 +270,24 @@
 		<c:url var="MyPage" value="MyPage.do">
 						<c:param name="memNo" value="${loginMember.memNo}"/>
 					</c:url>
-		
+					
+		<c:if test="${ !empty sessionScope.loginMember }">
 		<button style="width:88%;height:12%;background:snow;margin-top:-430%;margin-left:-88%;border-radius:10%;"href="/web/index.jsp">
-		<a class="symbol-btn-back-to-top" href="index.jsp" >
+		<a class="symbol-btn-back-to-top" href="${orderList }" >
 			<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-03.png"/>" class="header-icon1" alt="ICON"
 				onmouseover="this.src='/ot/resources/images/icons/icon-header-03-3.png'"
 				onmouseout="this.src='/ot/resources/images/icons/icon-header-03.png'">
 		</a></button>
+		</c:if>
+		
+		<c:if test="${ empty sessionScope.loginMember }">
+		<button style="width:88%;height:12%;background:snow;margin-top:-430%;margin-left:-88%;border-radius:10%;"href="/web/index.jsp">
+		<a class="symbol-btn-back-to-top" href="${loginView }" >
+			<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-03.png"/>" class="header-icon1" alt="ICON"
+				onmouseover="this.src='/ot/resources/images/icons/icon-header-03-3.png'"
+				onmouseout="this.src='/ot/resources/images/icons/icon-header-03.png'">
+		</a></button>
+		</c:if>
 		
 		<c:if test="${ !empty sessionScope.loginMember }">
 			<button style="width:88%;height:12%;background:snow;margin-top:-210%;margin-left:-88%;border-radius:10%;" href="/web/index.jsp">
@@ -404,7 +415,7 @@
 	<input type="hidden" id="chat-test" value="문태환">
 	
 <!--===============================================================================================-->
-	<script src="http://moon1:82/socket.io/socket.io.js"></script>
+	<script src="http://192.168.20.6:82/socket.io/socket.io.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 	<!-- 리모콘 장바구니 -->
 	
@@ -412,7 +423,7 @@
 	<script>
 	$(document).ready(function(){
 		
-		var socket = io("http://moon1:82");
+		var socket = io("http://192.168.20.6:82");
 	
 		if("${ !empty sessionScope.loginMember}" && "${loginMember.memId}" !='') {
 			socket.emit("login_member", {id:"${loginMember.memId}"})
@@ -494,7 +505,7 @@
 		
 			   $('#chat_container').css('display','block');
 			   
-				var socket = io("http://moon1:82");
+				var socket = io("http://192.168.20.6:82");
 			   
 			       userId = "${loginMember.memId}";
 				//클릭한 아이디 서버로 보내기

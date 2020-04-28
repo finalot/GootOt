@@ -321,16 +321,12 @@ public class mainController {
 	  gson.toJson(dclist,response.getWriter());
 	  
 	  }
-	 
-
 	
-
 
 	@RequestMapping("todaymain.ad")
 	public String todaymain() {
 		return "admin/todaymain";
 	}
-
 	
 	
 	/**
@@ -712,13 +708,30 @@ MainSearchCondition msc= new MainSearchCondition();
 		   Member m = (Member)session.getAttribute("loginMember");
 		   System.out.println(m.getMemNo());
 			dr.setMemNo(m.getMemNo());
-		   
+			int result2 = 0;
+			int count3 = 0;
+			int count2 = 0;
 			int count = 0;
 			String rvImage = "";
 			String rvImage2 = "";
 			ArrayList<Product> pdlist = mainService.selectDetailList(dr.getPrdtNo());
 			
+			 ReviewCheck rc = new ReviewCheck();
+			   rc.setPrdtNo(dr.getPrdtNo());
+			   rc.setMemNo(dr.getMemNo());
+			   int ordNo= 0;
+			   ordNo = mainService.getOrdNo(rc);
+			   if(ordNo >0) {
+				   dr.setOrdNo(ordNo);
+				   System.out.println(dr.toString());
+			   }
+			   
+			
 		   for(MultipartFile f : dr.getFile()) {
+			   
+			   if(!f.getOriginalFilename().equals("")) {
+			   count2++;
+			   System.out.println(dr.getFile());
 			   String timeStamp = new SimpleDateFormat("yyyyMMddhhmmssSSS").format(new Date());
 			   
 			   String fileName = root+"\\images\\oT\\detailReviewPhoto\\"+timeStamp+f.getOriginalFilename();
@@ -732,53 +745,70 @@ MainSearchCondition msc= new MainSearchCondition();
 			   File file = new File(fileName);
 			   f.transferTo(file);
 			   
-			   if(f.getOriginalFilename()==""&&count==0) {
-				   for(int i=0; i<pdlist.size(); i++) {
-					   
-					   rvImage=pdlist.get(i).getPrdtImagePath()+pdlist.get(i).getPrdtImage();
-				   }
-				   count++;
-			   }
-			   
-			   
-			   if(count==0) {
+			   if(count2==1) {
 				   fileName="/ot/resources/images/oT/detailReviewPhoto/"+timeStamp+f.getOriginalFilename();
 				   rvImage=fileName;
-				   count++;
-			   }else if(count==1) {
+				   dr.setFileName(rvImage);
+			   }else if(count2==2) {
 				   fileName="/ot/resources/images/oT/detailReviewPhoto/"+timeStamp+f.getOriginalFilename();
 				   rvImage2=fileName;
-				   count++;
+			   } 
+			   
+			   if(count2==1) {
+				   count=1;
 			   }
+			   
+			   
+		   }
 			   
 		   }
 		   
+		   if(count2 == 0) {
+			   for(int i=0; i<pdlist.size(); i++) {
+				   
+				   rvImage=pdlist.get(i).getPrdtImagePath()+pdlist.get(i).getPrdtImage();
+				   dr.setFileName(rvImage);
+					  
+			   	}
+			   count3 = 1;
+		   }
+		   
+			   
+		   
 		  
-		   
-		   dr.setFileName(rvImage);
-		   dr.setFileName2(rvImage2);
-		   ReviewCheck rc = new ReviewCheck();
-		   rc.setPrdtNo(dr.getPrdtNo());
-		   rc.setMemNo(dr.getMemNo());
-		   
-		   int ordNo = mainService.getOrdNo(rc);
-		   dr.setOrdNo(ordNo);
-		   System.out.println(dr.toString());
+			   
+			   dr.setFileName2(rvImage2);
+		  
 		   
 		   int result= mainService.detailReviewInsert(dr);
 		   
+		   int result3 = 0;
+		   
+		   
 		  if(result>0) {
+			  ArrayList<Integer> rvNo = mainService.getRvNo(rc);
+			  for(int i=0; i<rvNo.size();i++) {
+				  dr.setRvNo(rvNo.get(0));
+			  }
 			  
-			  int rvNo = mainService.getRvNo(rc);
-			  dr.setRvNo(rvNo);
-			  int result2= mainService.detailReviewPhotoInsert(dr);
+			  if(count ==1) {
+				   dr.setFileName(rvImage);
+					  result2= mainService.detailReviewPhotoInsert(dr);
+			  }
 			  
+			  if(count3 ==1) {
+				  result2= mainService.detailReviewPhotoInsert(dr);
+			  }
+			  
+			 
 			  if(result2>0) {
-				  int result3= mainService.detailReviewPhotoInsert2(dr);
+				  if(count2 ==2) {
+				  result3= mainService.detailReviewPhotoInsert2(dr);
+				  }
 				  int result4= mainService.updateReviewCount(dr);
-				  if(result3>0) {
+				  
 				  resultMap.put("status","success"); }
-			  		}
+			  		
 			  }
 		  
 		  else {
