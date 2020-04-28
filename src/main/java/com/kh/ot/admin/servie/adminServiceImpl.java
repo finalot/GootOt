@@ -379,6 +379,18 @@ public class adminServiceImpl implements adminService{
 		}
 
 
+		@Override
+		public int ProductUpdate2(Product p) {
+			return adDao.ProductUpdate2(p);
+		}
+
+
+		@Override
+		public Product selectProduct(Product p) {
+			return adDao.selectProduct(p);
+		}
+
+
 
 
 }

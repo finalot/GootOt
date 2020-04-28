@@ -248,6 +248,8 @@
 		WHERE QNA_NO = #{qna_no}
 </update>
 
+
+
 	<select id="selectOderList1" resultMap="OrdreusltMap1">
 		
 SELECT O.ORD_NO,O.PRDT_NO,P.PRDT_NAME,PA.PAY_MONEY,O.ORD_RECEIVER,O.ORD_ADDRESS,O.ORD_PHONE,O.ORD_MESSAGE,O.ORD_DATE,O.ORD_STATUS FROM 

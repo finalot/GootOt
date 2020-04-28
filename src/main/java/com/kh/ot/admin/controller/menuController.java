@@ -1792,22 +1792,189 @@ public class menuController {
 			  						@RequestParam(name="thumbnailImg",required=false) MultipartFile file1,
 	  								@RequestParam(name="descrptionImg",required=false) MultipartFile file2 ) {
 		  
-		  ArrayList<Product_opt> poArr = new ArrayList<Product_opt>(); 
+		  //ArrayList<Product_opt> poArr = new ArrayList<Product_opt>(); 
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			String savePath = "";
+			String saveDetailPath = "";
+			String frontPath = "/ot/resources/images/oT";
 		  
-		  // 사진을 변경 하지 않았을떄 업데이트 
-			int result = adService.ProductUpdate(p);
+			String renameFileName = "";
+			String renameDetailName = "";
+			
+			Product pa = adService.selectProduct(p);
+			 p.setPrdtImage(pa.getPrdtImage());
+			 p.setPrdtDetailImage(pa.getPrdtDetailImage());
+		
+			 
+				if (pa.getUpNo() == 1 && pa.getDownNo() == 1) {
+					savePath = root + "\\images/oT/clothing/t_nasi";
+					pa.setPrdtImagePath(frontPath +savePath);
+					saveDetailPath = root + "\\images/oT/clothing/t_nasi/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/clothing/t_nasi/detail/");
 
-		  
-//		  if (!file1.getOriginalFilename().equals("") &&!file2.getOriginalFilename().equals("")) {
-//				
-//				String renameFileName = saveFile(file1, request);
-//				String renameDetailName = saveFile(file2, request);
-//				
-//					p.setPrdtImage(renameFileName);
-//					p.setPrdtDetailImage(renameDetailName);
-//
-//
-//					
+				} else if (pa.getUpNo() == 1 && pa.getDownNo() == 2) {
+					savePath = root + "\\images/oT/clothing/mantoman";
+					pa.setPrdtImagePath(frontPath + "/clothing/mantoman/");
+					saveDetailPath = root + "\\images/oT/clothing/mantoman/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/clothing/mantoman/detail/");
+				} else if (pa.getUpNo() == 1 && pa.getDownNo() == 3) {
+					savePath = root + "\\images/oT/clothing/hoody";
+					pa.setPrdtImagePath(frontPath + "/clothing/hoody/");
+					saveDetailPath = root + "\\images/oT/clothing/hoody/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/clothing/hoody/detail/");
+				} else if (pa.getUpNo() == 1 && pa.getDownNo() == 4) {
+					savePath = root + "\\images/oT/clothing/pants";
+					pa.setPrdtImagePath(frontPath + "/clothing/pants/");
+					saveDetailPath = root + "\\images/oT/clothing/pants/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/clothing/pants/detail/");
+				} else if (pa.getUpNo() == 1 && pa.getDownNo() == 5) {
+					savePath = root + "\\images/oT/clothing/knit";
+					pa.setPrdtImagePath(frontPath + "/clothing/knit/");
+					saveDetailPath = root + "\\images/oT/clothing/knit/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/clothing/knit/detail/");
+				} else if (pa.getUpNo() == 1 && pa.getDownNo() == 6) {
+					savePath = root + "\\images/oT/clothing/onepiece_skirt";
+					pa.setPrdtImagePath(frontPath + "/clothing/onepiece_skirt/");
+					saveDetailPath = root + "\\images/oT/clothing/onepiece_skirt/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/clothing/onepiece_skirt/detail/");
+				} else if (pa.getUpNo() == 1 && pa.getDownNo() == 7) {
+					savePath = root + "\\images/oT/clothing/shirt_blouse";
+					pa.setPrdtImagePath(frontPath + "/clothing/shirt_blouse/");
+					saveDetailPath = root + "\\images/oT/clothing/shirt_blouse/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/clothing/shirt_blouse/detail/");
+				}
+
+				else if (pa.getUpNo() == 2 && pa.getDownNo() == 1) {
+					savePath = root + "\\images/oT/outer/jacket";
+					pa.setPrdtImagePath(frontPath + "/outer/jacket/");
+					saveDetailPath = root + "\\images/oT/outer/jacket/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/outer/jacket/detail/");
+				} else if (pa.getUpNo() == 2 && pa.getDownNo() == 2) {
+					savePath = root + "\\images/oT/outer/coat_jumper";
+					pa.setPrdtImagePath(frontPath + "/outer/coat_jumper/");
+					saveDetailPath = root + "\\images/oT/outer/coat_jumper/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/outer/coat_jumper/detail/");
+				} else if (pa.getUpNo() == 2 && pa.getDownNo() == 3) {
+					savePath = root + "\\images/oT/outer/cardigan";
+					pa.setPrdtImagePath(frontPath + "/outer/cardigan/");
+					saveDetailPath = root + "\\images/oT/outer/cardigan/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/outer/cardigan/detail/");
+				}
+
+				else if (pa.getUpNo() == 3 && pa.getDownNo() == 1) {
+					savePath = root + "\\images/oT/shoes/shoes";
+					pa.setPrdtImagePath(frontPath + "/shoes/shoes/");
+					saveDetailPath = root + "\\images/oT/shoes/shoes/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/shoes/shoes/detail/");
+				}
+
+				else if (pa.getUpNo() == 4 && pa.getDownNo() == 1) {
+					savePath = root + "\\images/oT/acc/belt";
+					pa.setPrdtImagePath(frontPath + "/acc/belt/");
+					saveDetailPath = root + "\\images/oT/acc/belt/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/acc/belt/detail/");
+				} else if (pa.getUpNo() == 4 && pa.getDownNo() == 2) {
+					savePath = root + "\\images/oT/acc/glasses";
+					pa.setPrdtImagePath(frontPath + "/acc/glasses/");
+					saveDetailPath = root + "\\images/oT/acc/glasses/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/acc/glasses/detail/");
+				} else if (pa.getUpNo() == 4 && pa.getDownNo() == 3) {
+					savePath = root + "\\images/oT/acc/hat";
+					pa.setPrdtImagePath(frontPath + "/acc/hat/");
+					saveDetailPath = root + "\\images/oT/acc/hat/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/acc/hat/detail/");
+				} else if (pa.getUpNo() == 4 && pa.getDownNo() == 4) {
+					savePath = root + "\\images/oT/acc/socks";
+					pa.setPrdtImagePath(frontPath + "/acc/socks/");
+					saveDetailPath = root + "\\images/oT/acc/socks/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/acc/socks/detail/");
+				} else if (pa.getUpNo() == 4 && pa.getDownNo() == 5) {
+					savePath = root + "\\images/oT/acc/accessories";
+					pa.setPrdtImagePath(frontPath + "/acc/accessories/");
+					saveDetailPath = root + "\\images/oT/acc/accessories/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/acc/accessories/detail/");
+				} else if (pa.getUpNo() == 4 && pa.getDownNo() == 6) {
+					savePath = root + "\\images/oT/acc/etc";
+					pa.setPrdtImagePath(frontPath + "/acc/etc/");
+					saveDetailPath = root + "\\images/oT/acc/etc/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/acc/etc/detail/");
+				}
+
+				else if (pa.getUpNo() == 5 && pa.getDownNo() == 1) { // 임의로 Event Best20 저장
+					savePath = root + "\\images/oT/event/new5";
+					pa.setPrdtImagePath(frontPath + "/event/new5/");
+					saveDetailPath = root + "\\images/oT/event/new5/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/event/new5/detail/");
+				} else if (pa.getUpNo() == 5 && pa.getDownNo() == 2) { // 임의로 Event Best20 저장
+					savePath = root + "\\images/oT/event/sale";
+					pa.setPrdtImagePath(frontPath + "/event/sale/");
+					saveDetailPath = root + "\\images/oT/event/sale/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/event/sale/detail/");
+				}
+
+				else if (pa.getUpNo() == 6 && pa.getDownNo() == 1) {
+					savePath = root + "\\images/oT/best/best20";
+					pa.setPrdtImagePath(frontPath + "/best/best20/");
+					saveDetailPath = root + "\\images/oT/best/best20/detail";
+					pa.setPrdtDetailImagePath(frontPath + "/best/best20/detail/");
+				}
+
+				File folder = new File(savePath);
+				File folder2 = new File( saveDetailPath);
+
+				if (!folder.exists()) {
+					folder.mkdir(); // 폴더가 없다면 생성해주세요
+				}
+				if (!folder2.exists()) {
+					folder2.mkdir(); // 폴더가 없다면 생성해주세요
+				} 
+				
+			
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+			
+			 
+		  //사진을 변경 했을시 업데이트
+		  if (!file1.getOriginalFilename().equals("")) {
+			  String originFileName = file1.getOriginalFilename();
+			  		renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+				   + originFileName.substring(originFileName.lastIndexOf(".") + 1);
+					
+					p.setPrdtImage(renameFileName);
+					
+					String renamePath = folder + "\\" + renameFileName;
+					
+					try {
+						file1.transferTo(new File(renamePath));
+					} catch (IllegalStateException | IOException e) {
+						e.printStackTrace();
+					}
+		     }
+					 
+			if(!file2.getOriginalFilename().equals("")) {
+				
+				String originDetailFileName = file2.getOriginalFilename();
+						renameDetailName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+						+ originDetailFileName.substring(originDetailFileName.lastIndexOf(".") + 1);
+				       
+						p.setPrdtDetailImage(renameDetailName);
+						
+						String renameDetailPath = folder2 + "\\" + renameDetailName;
+						
+						try {
+							file2.transferTo(new File(renameDetailPath));
+						} catch (IllegalStateException | IOException e) {
+							e.printStackTrace();
+						}
+			}
+					int result2 = adService.ProductUpdate2(p);		
+					
+					if(result2 > 0) {
+						  return "redirect:productList.ad";
+					}else {
+						  return "에러다";
+					}
+	  }
 //					if(result>0){
 //						Product pd = adService.selectPrdtNo();
 //						
@@ -1829,12 +1996,18 @@ public class menuController {
 //						System.out.println("에러");
 //					return "redirect:productListDetail.ad";
 //					}
-//		  	}
+		 
+		
 		  
-		  	return "redirect:productList.ad";
-	  }
+		  // 사진을 변경 하지 않았을떄 업데이트 
+//  int result = adService.ProductUpdate(p);
+//		  if(result > 0) {
+//			  return "redirect:productList.ad";
+//		  }else {
+//			  return "에러다";
+//		  }
+//				
+//	  }
 	
-	
-	 
 	 
 }

@@ -359,6 +359,7 @@ function loadImg(value, num){
         <tr>
         	<th><span style="color:red">*</span> 상품명</th>
         	<td>
+        		<input type="hidden" name="prdtNo" value="${p.prdtNo }">
         		<input type="text" id="product_name" name="prdtName" value="${p.prdtName }">
         	</td>
         </tr>
@@ -402,7 +403,7 @@ function loadImg(value, num){
 				</div>
 				<div class="fileArea" id="fileArea2" >
      				<input type="file" id="thumbnailImg2" 
-     				value="${p.prdtDetailImage}" name="thumbnailImg2" onchange="loadImg(this, 2);"/>
+     				value="${p.prdtDetailImage}" name="descrptionImg" onchange="loadImg(this, 2);"/>
 	     		</div>
         	</td>
         </tr>
