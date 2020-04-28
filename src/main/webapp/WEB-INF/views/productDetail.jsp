@@ -664,8 +664,6 @@ $(function(){
 							<input class="num-price" type="hidden" value="${ pdd.prdtPrice}">
 							<input id="num-price" type="hidden" value="${ pdd.prdtPrice}">
 							</c:if>
-							
-							
 </c:forEach>
 							<div
 								class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10"

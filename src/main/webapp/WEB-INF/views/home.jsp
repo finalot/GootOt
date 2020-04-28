@@ -55,14 +55,13 @@
 		<div class="wrap-slick1">
 			<div class="slick1">
 			
-			<%-- <c:forEach var="d" items="${mainList }">
-			<c:if test="${! empty d.mainComment }"> --%>
-				<div class="item-slick1 item1-slick1" style="background-image: url(<c:url value="/resources/images/main_top.jpg"/>);size:100%;height:700px;">
+		 <c:forEach var="d" items="${mainList }">
+			<c:if test="${! empty d.mainComment }"> 
+				<div class="item-slick1 item1-slick1" style="background-image: url(<c:url value="/resources/buploadFiles/${ d.oriFile }"/>);size:100%;height:700px;">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<h2 class="caption1-slide1 xl-text2 t-center bo14 p-b-6 animated visible-false m-b-22" data-appear="fadeInUp">
-						ot Pupple <%--  ${d.mainComment}  --%>
+					  ${d.mainComment}  
 						</h2>
-
 						<span class="caption2-slide1 m-text1 t-center animated visible-false m-b-33" data-appear="fadeInDown">
 							New Collection 2020
 						</span>
@@ -70,16 +69,15 @@
 						<div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="zoomIn">
 							<!-- Button -->
 							<a href="product.jsp" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
-							<%-- ${d.mainLink}--%>
-								바로가기
+					   바로가기 <%-- ${d.mainLink} --%>
 							</a>
 						</div>
 					</div>
-				</div>
-			<%-- 	</c:if>
-				</c:forEach> --%>
+				 </div>
+			 </c:if>
+		</c:forEach> 
 
-				<div class="item-slick1 item2-slick1" style="background-image: url(<c:url value="/resources/images/main_top1.jpg"/>);height:700px;">
+				<%-- <div class="item-slick1 item2-slick1" style="background-image: url(<c:url value="/resources/images/main_top1.jpg"/>);height:700px;">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<h2 class="caption1-slide1 xl-text2 t-center bo14 p-b-6 animated visible-false m-b-22" data-appear="rollIn" style="margin-bottom:5%;">
 							ot.yellow
@@ -115,7 +113,7 @@
 							</a>
 						</div>
 					</div>
-				</div> 
+				</div>  --%>
 
 			</div>
 		</div>
@@ -246,7 +244,7 @@
 								</div>
 							</div>
 <!-- 블럭샘플 -->
-							<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
+						<%-- 	<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
 								<!-- Block2 -->
 								<div class="block2">
 									<div class="block2-img wrap-pic-w of-hidden pos-relative">
@@ -276,11 +274,11 @@
 											$92.50
 										</span>]
 										
-									</div>
+									</div> 
 								</div>
-							</div>
+							</div> --%>
 
-							<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
+							<%-- <div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
 								<!-- Block2 -->
 								<div class="block2">
 									<div class="block2-img wrap-pic-w of-hidden pos-relative">
@@ -627,7 +625,7 @@
 					<!--  -->
 					
 				</div>
-			</div>
+			</div> --%>
 		</div>
 	</section>
 
@@ -746,12 +744,11 @@
 
 		<div class="flex-w">
 			<!-- Block4 -->
-<%-- 	<c:forEach var="in" items="${instaList }">  --%>
+ 	<c:forEach var="in" items="${instaList }">  
 		<div class="block4 wrap-pic-w">
-				<img src="<c:url value="/resources/images/gallery-03.jpg"/>" alt="IMG-INSTAGRAM">
-														<%--${in.reFile} --%>
-				<a href="" class="block4-overlay sizefull ab-t-l trans-0-4">
-				<%--${in.mainLink} --%>
+				<img src="<c:url value="/resources/buploadFiles/${in.oriFile }"/>" alt="IMG-INSTAGRAM">
+
+				<a href="${in.mainLink} " class="block4-overlay sizefull ab-t-l trans-0-4">
 					<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
 						<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>
 						<span class="p-t-2">39</span>
@@ -759,7 +756,7 @@
 
 					<div class="block4-overlay-txt trans-0-4 p-l-40 p-r-25 p-b-30">
 						<p class="s-text10 m-b-15 h-size1 of-hidden">
-				<%-- 		${in.mainComment}  --%> 	 Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit amet enim orci. Nam eget metus elit. 
+				 		${in.mainComment}   	 <!-- Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit amet enim orci. Nam eget metus elit. --> 
 						</p>
 
 						<span class="s-text9">
@@ -768,12 +765,12 @@
 					</div>
 				</a>
 			</div>
-			<%-- </c:forEach>  --%>
+			</c:forEach>  
 
 
 
 		 	<!-- Block4 -->
-			<div class="block4 wrap-pic-w">
+<%-- 			<div class="block4 wrap-pic-w">
 				<img src="<c:url value="/resources/images/gallery-03.jpg"/>" alt="IMG-INSTAGRAM">
 
 				<a href="#" class="block4-overlay sizefull ab-t-l trans-0-4">
@@ -858,7 +855,7 @@
 						</span>
 					</div>
 				</a>
-			</div>
+			</div> --%>
 			
 			
 			

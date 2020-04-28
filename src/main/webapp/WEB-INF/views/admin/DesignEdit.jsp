@@ -265,27 +265,27 @@ th{
 				
         		<div style="display: flex;margin-top: 3%"><span>FILE ${d.deNo}</span>
         		
-        		<c:if test="${empty  d.reFile   }">
-        		<input name="mainImg" name="mainbaner" class="mainbaner" type="file">
-        		<a  class="fildown" name="fildown" style="display:none ;color: blue"  href="/ot/resources/buploadFiles/${ d.reFile }" download="${ d.reFile }" >${d.reFile}</a>
+        		<c:if test="${empty  d.oriFile   }">
+        		<input  name="mainbaner" class="mainbaner" type="file">
+        		<a  class="fildown" name="fildown" style="display:none ;color: blue"  href="/ot/resources/buploadFiles/${ d.oriFile }" download="${ d.oriFile }" >${d.oriFile}</a>
         		<span>메인배너 문구</span>
         		<input  name="mainComment" value="${d.mainComment }" style="margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
         		<span style="margin-left: 1%;">바로가기 링크</span><input  name="mainLink" value="${d.mainLink }" style="margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</c:if>
         		
-        		<c:if test="${!empty  d.reFile   }">
-        		<input name="mainImg" name="mainbaner"  style="display:none;"class="mainbaner" type="file">
-        		<a  class="fildown" name="fildown" style="width : 20%;margin-left: 3%;display:block ;color: blue"  href="/ot/resources/buploadFiles/${ d.reFile }" download="${ d.reFile }" >${d.reFile}</a>
+        		<c:if test="${!empty  d.oriFile   }">
+        		<input name="mainbaner"  style="display:none;"class="mainbaner" type="file">
+        		<a  class="fildown" name="fildown" style="width : 20%;margin-left: 3%;display:block ;color: blue"  href="/ot/resources/buploadFiles/${ d.oriFile }" download="${ d.oriFile }" >${d.oriFile}</a>
         		<span>메인배너 문구</span>
         		<input  readonly name="mainComment" value="${d.mainComment }" style=" background: #f3f3f3;margin-left:2%;border: 1px solid #333330" class="main-text" type="text">
         		<span style="    margin-left: 1%;">바로가기 링크</span>
         		<input  readonly name="mainLink" value="${d.mainLink }" style="background: #f3f3f3 ;margin-left:2%;border: 1px solid #333330" class="main-link" type="text">
         		</c:if>
-        		<c:if test="${!empty  d.reFile   }">
+        		<c:if test="${!empty  d.oriFile   }">
         		<input type="button"  value="수정"  class="editBtn" style="margin-left: 3%;height: 30px;width: 90px; background: black; color: white; border-radius: 10px;">
         		</c:if>
         		</div>
-        		<c:if test="${!empty  d.reFile   }">
+        		<c:if test="${!empty  d.oriFile   }">
 				<div style="    margin-left: 7%;"></div>
 				</c:if>
 				</div>
@@ -303,18 +303,18 @@ th{
      	<tr>
         		<th><span style="color: red">*</span>인스타 영상</th>
         		<td>
-        			<c:if test="${!empty  video.reFile   }">
+        			<c:if test="${!empty  video.oriFile   }">
         			<div style="display: flex"> FILE 
         			<input style="margin-left:2%; display: none" type="file" name="mainvideo"  class="main-video"  >
-        			<a style="margin-left:3%" class="mainvideoLink" href="/ot/resources/bupladFiles/${video.reFile}">${video.reFile}</a>
+        			<a style="margin-left:3%" class="mainvideoLink" href="/ot/resources/bupladFiles/${video.oriFile}">${video.oriFile}</a>
         			<input type="button"  value="수정"  class="editBtn" style="margin-left: 3%;height: 30px;width: 90px; background: black; color: white; border-radius: 10px;">
         			</div>
 				    </c:if>
 				    
-					 <c:if test="${empty  video.reFile   }">
+					 <c:if test="${empty  video.oriFile   }">
         			<div style="display: flex"> FILE 
         			<input style="margin-left:2%;" type="file" name="mainvideo" class="main-video" >
-        			<a class="mainvideoLink" style="display: none"href="/ot/resources/bupladFiles/${video.reFile}">${video.reFile}</a>
+        			<a class="mainvideoLink" style="display: none"href="/ot/resources/bupladFiles/${video.oriFile}">${video.oriFile}</a>
         			</div>
 				    </c:if>
 
@@ -337,18 +337,18 @@ th{
         	<td class="main-design">
         			<div style="display: flex;margin-top: 3%">
         			
-        			<c:if test="${empty in.reFile  }">
+        			<c:if test="${empty in.oriFile  }">
         		    <input type="hidden" value="${in.deNo }" name="inno">							
         			FILE ${in.deNo }<input style="margin-left:2%;margin-right: 3%" type="file" name="instaimg" class="insta-img">
-        										<a  style=";margin-left: 3%" class="instaFile" href='nfdown.ad?path="${in.reFile}"'>${in.reFile}</a>
+        										<a  style=";margin-left: 3%" class="instaFile" href='nfdown.ad?path="${in.oriFile}"'>${in.oriFile}</a>
         			인스타 문구 <input style="margin-left:2%; margin-right: 3%; border: 1px solid #333330;" value="${in.mainComment }" name="instacomment" type="text" class="insta-link">	   	
         			링크 <input style="margin-left:2%; border: 1px solid #333330;" value="${in.mainLink }" name="instalink" type="text" class="insta-link">	   	
         			</c:if>
         			
-        				<c:if test="${!empty in.reFile  }">
+        				<c:if test="${!empty in.oriFile  }">
         		    <input type="hidden" value="${in.deNo }" name="inno">							
         			FILE ${in.deNo }<input style="margin-left:2%;margin-right: 3%;display:none" type="file" name="instaimg" class="insta-img">
-        						<a style="margin-right: 12%;margin-left: 3%" class="instaFile" href='nfdown.ad?path="${in.reFile}"'>${in.reFile}</a>
+        						<a style="margin-right: 12%;margin-left: 3%" class="instaFile" href='nfdown.ad?path="${in.oriFile}"'>${in.oriFile}</a>
         			인스타 문구 <input readonly style="margin-left:2%; margin-right: 3%; border: 1px solid #333330;background: #f3f3f3 " value="${in.mainComment }" name="instacomment" type="text" class="insta-text">	   	
         			링크 <input readonly style="background: #f3f3f3;margin-left:2%; border: 1px solid #333330;" value="${in.mainLink }" name="instalink" type="text" class="insta-link">	   	
         			 <input  type="button"  value="수정"  class="editBtn" style="margin-left: 3%;height: 30px;width: 90px; background: black; color: white; border-radius: 10px;">
@@ -378,15 +378,15 @@ th{
         	<td class="main-design">
         			<div style="display: flex;margin-top: 3%">
         			
-        			<c:if test="${empty prdtimg.reFile  }">
+        			<c:if test="${empty prdtimg.oriFile  }">
         			FILE <input style="margin-left:2%;margin-right: 3%" type="file" name="prdtimg" class="prdtimg">
-        										<a  style=";margin-left: 3%" class="prdtFile" href='nfdown.ad?path="${prdtimg.reFile}"'>${prdtimg.reFile}</a>
+        										<a  style=";margin-left: 3%" class="prdtFile" href='nfdown.ad?path="${prdtimg.oriFile}"'>${prdtimg.oriFile}</a>
         			상품 문구 <input style="margin-left:2%; margin-right: 3%; border: 1px solid #333330;" value="${prdtimg.mainComment }" name="prdtcomment" type="text" class="prdtcomment">	   	
         			</c:if>
         			
-        				<c:if test="${!empty prdtimg.reFile  }">
+        				<c:if test="${!empty prdtimg.oriFile  }">
         			FILE <input style="margin-left:2%;margin-right: 3%;display:none" type="file" name="prdtimg" class="prdtimg">
-        						<a style="margin-right: 12%;margin-left: 3%" class="prdtFile" href='nfdown.ad?path="${prdtimg.reFile}"'>${prdtimg.reFile}</a>
+        						<a style="margin-right: 12%;margin-left: 3%" class="prdtFile" href='nfdown.ad?path="${prdtimg.oriFile}"'>${prdtimg.oriFile}</a>
         			상품 문구 <input readonly style="margin-left:2%; margin-right: 3%; border: 1px solid #333330;background: #f3f3f3 " value="${prdtimg.mainComment }" name="prdtcomment" type="text" class="prdtcomment">	   	
         			 <input  type="button"  value="수정"  class="editBtn" style="margin-left: 3%;height: 30px;width: 90px; background: black; color: white; border-radius: 10px;">
         			</c:if>
@@ -441,7 +441,7 @@ $('.editBtn').click(function(){
 
     "<c:forEach var='b'  items='${mainList}'>"
     
-    	if("${!empty  b.reFile }"){
+    	if("${!empty  b.oriFile }"){
     		mainbaner[i].style.display=none;
     		fildown[i].style.display=block;
     	}else{

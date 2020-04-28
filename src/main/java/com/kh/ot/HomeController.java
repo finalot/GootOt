@@ -45,13 +45,13 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-//		ArrayList<Design> mainList = adService.selectMainList();
+		ArrayList<Design> mainList = adService.selectMainList();
 //		Design video = adService.selectVideo();
-//		ArrayList<Design> instaList = adService.selectInstaList();
+		ArrayList<Design> instaList = adService.selectInstaList();
 //		
-//		mv.addObject("mainList",mainList);
+		mv.addObject("mainList",mainList);
 //		mv.addObject("video",video);
-//		mv.addObject("instaList",instaList);
+		mv.addObject("instaList",instaList);
 		mv.setViewName("home");
 		
 		return mv;
