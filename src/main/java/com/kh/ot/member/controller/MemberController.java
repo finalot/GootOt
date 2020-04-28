@@ -209,16 +209,16 @@ public class MemberController extends HttpServlet {
 	  CouponMem com = new CouponMem();
 	  com.setMemno(m.getMemNo());
 	  
-				 if(m.getMemSumMoney() >= 30000  && cpCount1 == 0) {
+				 if(m.getMemSumMoney() >= 100000  && cpCount1 == 0) {
 					 com.setCpno(2); 
 						int result = mService.insertRateCp(com);  
-				 }else if(m.getMemSumMoney() >= 60000 && cpCount2 ==0) {
+				 }else if(m.getMemSumMoney() >= 300000 && cpCount2 ==0) {
 					 com.setCpno(3); 
 						int result = mService.insertRateCp(com);  
-				 }else if(m.getMemSumMoney() >= 90000 && cpCount3==0) {
+				 }else if(m.getMemSumMoney() >= 500000 && cpCount3==0) {
 					 com.setCpno(4); 
 						int result = mService.insertRateCp(com);  
-				 }else if(m.getMemSumMoney() >= 120000 && cpCount4==0) {
+				 }else if(m.getMemSumMoney() >= 700000 && cpCount4==0) {
 					 com.setCpno(5); 
 						int result = mService.insertRateCp(com);  
 				 }
