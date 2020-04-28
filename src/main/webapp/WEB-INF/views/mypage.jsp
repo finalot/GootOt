@@ -43,12 +43,6 @@
 			<c:url var="delivery_return_cancel" value="my_orderlist.do">
 				<c:param name="order_status" value="order_return_cancel"/>
 			</c:url>
-
-<!-- ====================================실험 하고 지울 곳=========================================== -->
-			<c:url var="orderdetail" value="orderDetail.do"/>
-
-			<span style="font-size:50px;"><a href="${ orderdetail}">실험1</a></span>
-<!-- ====================================================================================================== -->
 			
 			<c:url var="mWishlist" value="mWishlist.do"/>
 			<c:url var="mPoint" value="mPoint.do"/>

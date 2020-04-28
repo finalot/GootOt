@@ -138,7 +138,7 @@ public interface ReviewService {
 	 * @내용    : 리뷰 좋아요순 정렬
 	 * @return
 	 */
-	ArrayList<Review> selectLikeSort();
+	ArrayList<Review> selectLikeSort(MainPageInfo2 pi);
 
 	/**
 	 * @작성일  : 2020. 4. 23.
@@ -146,7 +146,7 @@ public interface ReviewService {
 	 * @내용    :
 	 * @return
 	 */
-	ArrayList<Review> selectDateSort();
+	ArrayList<Review> selectDateSort(MainPageInfo2 pi);
 
 	/**
 	 * @작성일  : 2020. 4. 23.
@@ -155,7 +155,7 @@ public interface ReviewService {
 	 * @param optionHeight
 	 * @return
 	 */
-	ArrayList<Review> selectCheckSort(int optionHeight);
+	ArrayList<Review> selectCheckSort(MainPageInfo2 pi,int optionHeight);
 
 	/**
 	 * @작성일  : 2020. 4. 23.
@@ -164,7 +164,7 @@ public interface ReviewService {
 	 * @param optionWeight
 	 * @return
 	 */
-	ArrayList<Review> selectWeightSort(int optionWeight);
+	ArrayList<Review> selectWeightSort(MainPageInfo2 pi,int optionWeight);
 
 	/**
 	 * @작성일  : 2020. 4. 23.
@@ -173,7 +173,7 @@ public interface ReviewService {
 	 * @param optionSize
 	 * @return
 	 */
-	ArrayList<Review> selectSizeSort(int optionSize);
+	ArrayList<Review> selectSizeSort(MainPageInfo2 pi,int optionSize);
 
 	ArrayList<Product> getBestList();
 
@@ -196,7 +196,7 @@ public interface ReviewService {
 	 * @param upNo
 	 * @return
 	 */
-	ArrayList<Review> selectCategoryReview(int upNo);
+	ArrayList<Review> selectCategoryReview(MainPageInfo2 pi,int upNo);
 
 	/**
 	 * @작성일  : 2020. 4. 24.
@@ -204,7 +204,7 @@ public interface ReviewService {
 	 * @내용    : 전체순 정렬
 	 * @return
 	 */
-	ArrayList<Review> selectAllSort();
+	ArrayList<Review> selectAllSort(MainPageInfo2 pi);
 
 	/**
 	 * @작성일  : 2020. 4. 26.

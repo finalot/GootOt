@@ -123,6 +123,7 @@
 			<result property="prdtImg" column="PRDT_IMAGE"/>
 			<result property="prdtPath" column="PRDT_IMAGE_PATH"/>
 			<result property="memno" column="MEM_NO"/>
+			<result property="rvPoint" column="RV_POINT"/>
 	</resultMap>
 	
 	<!-- 페이징을 위한 포인트 내역 갯수 출력 -->
@@ -651,6 +652,7 @@
 		JOIN PRDT P
 		ON (R.PRDT_CODE = P.PRDT_NO)
 		WHERE M.MEM_NO=#{memno}
+		ORDER BY R.RV_NO DESC
 	</select>
 	
 	<select id="getSearchReviewCount" resultType="_int">
@@ -684,7 +686,7 @@
 		JOIN PRDT P
 		ON (R.PRDT_CODE = P.PRDT_NO)
 		WHERE M.MEM_NO=#{memno}
-		ORDER BY R.RV_DATE DESC
+		ORDER BY R.RV_NO DESC
 	</select>
 		
 	<select id="selectLikeSort" resultMap="ReviewResultSet">
@@ -697,20 +699,17 @@
 		WHERE M.MEM_NO=#{memno}
 		ORDER BY R.RV_LIKE DESC
 	</select>
-	
-	<select id="selectCommentLastSort" resultMap="ReviewResultSet">
+	<select id="selectStarSort" resultMap="ReviewResultSet">
 		SELECT *
 		FROM REVIEW R
 		JOIN MEMBER M
 		ON (R.MEM_CODE = M.MEM_NO)
 		JOIN PRDT P
 		ON (R.PRDT_CODE = P.PRDT_NO)
-		JOIN REVIEW_COMMENT RC
-		ON (R.RV_NO = RC.RV_NO)
 		WHERE M.MEM_NO=#{memno}
-		ORDER BY RC.RV_DATE DESC
+		ORDER BY R.RV_POINT DESC
 	</select>
-	
+
 	<select id="resultPoint" parameterType="_int"  resultType="_int">
 	SELECT MEM_POINT
 	FROM MEMBER
