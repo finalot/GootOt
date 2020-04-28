@@ -126,10 +126,9 @@
 				
 				
 					<c:forEach var="p" items="${ topplist }">
-							<div class="col-sm-6 col-md-4 col-lg-3 p-b-50 best">
-								<div class="block2">
+						<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
 								<c:if test="${61999 gt p.prdtNo and p.prdtNo gt 60000}">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+								<div class="block1 hov-img-zoom pos-relative m-b-30">
 								
 									<img src="${p.prdtImagePath }${p.prdtImage }" alt="IMG-PRODUCT">
 
@@ -228,9 +227,37 @@
 									</span>
 								</div>
 							</div>
-							</div>
 							</c:forEach>
 			
+				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
+					<!-- block1 -->
+					<div class="block1 hov-img-zoom pos-relative m-b-30">
+						<img src="<c:url value="/resources/images/banner-03.jpg"/>" alt="IMG-BENNER">
+
+						<div class="block1-wrapbtn w-size2">
+							<!-- Button -->
+							
+						</div><a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" style="width:20%;height:40%;
+						margin-left:40%; margin-top:6%;border:3px solid darkgray;  border-radius:5%;">
+								<small><strong>Buy</strong></small>
+							</a>
+					</div>
+				</div>
+
+				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
+					<!-- block1 -->
+					<div class="block1 hov-img-zoom pos-relative m-b-30">
+						<img src="<c:url value="/resources/images/banner-10.jpg"/>" alt="IMG-BENNER">
+
+						<div class="block1-wrapbtn w-size2">
+							
+							<!-- Button -->
+						</div><a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" style="width:20%;height:40%;
+						margin-left:40%; margin-top:6%;border:3px solid darkgray;  border-radius:5%;">
+								<small><strong>Buy</strong></small>
+							</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
