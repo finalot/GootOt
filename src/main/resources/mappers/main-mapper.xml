@@ -707,9 +707,7 @@
 	<update id="ProductUpdate" parameterType="Product">
 		UPDATE PRDT SET
 		PRDT_NAME=#{prdtName}, PRDT_COMMENT=#{prdtComment},
-		PRDT_IMAGE=#{prdtImage} ,PRDT_DETAIL_IMAGE=#{prdtDetailImage},
 		PRDT_SALE=#{prdtSale},PRDT_PRICE = #{prdtPrice}
-		FROM PRDT
 	</update>
 	
 	<update id="UpdatePotList" parameterType="Product_opt">

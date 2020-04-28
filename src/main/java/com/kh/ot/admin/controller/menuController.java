@@ -1793,43 +1793,45 @@ public class menuController {
 	  								@RequestParam(name="descrptionImg",required=false) MultipartFile file2 ) {
 		  
 		  ArrayList<Product_opt> poArr = new ArrayList<Product_opt>(); 
+		  
+		  // 사진을 변경 하지 않았을떄 업데이트 
+			int result = adService.ProductUpdate(p);
 
 		  
-		  if (!file1.getOriginalFilename().equals("") &&!file2.getOriginalFilename().equals("")) {
-				
-				String renameFileName = saveFile(file1, request);
-				String renameDetailName = saveFile(file2, request);
-				
-					p.setPrdtImage(renameFileName);
-					p.setPrdtDetailImage(renameDetailName);
-
-					int result = adService.ProductUpdate(p);
-
-					
-					if(result>0){
-						Product pd = adService.selectPrdtNo();
-						
-						for(int i=0;i<stock.length;i++) {
-							Product_opt pot = new Product_opt();
-							
-							pot.setSize(size[i]);
-							pot.setStock(stock[i]);
-							pot.setPrdtNo(pd.getPrdtNo());
-							pot.setOptColor(optColor[i]);
-						
-							poArr.add(pot);
-						}
-					int result2 = adService.UpdatePotList(poArr);
-						
-					return "redirect:productList.ad";
-					} else {
-					
-						System.out.println("에러");
-					return "redirect:productListDetail.ad";
-					}
-		  	}
+//		  if (!file1.getOriginalFilename().equals("") &&!file2.getOriginalFilename().equals("")) {
+//				
+//				String renameFileName = saveFile(file1, request);
+//				String renameDetailName = saveFile(file2, request);
+//				
+//					p.setPrdtImage(renameFileName);
+//					p.setPrdtDetailImage(renameDetailName);
+//
+//
+//					
+//					if(result>0){
+//						Product pd = adService.selectPrdtNo();
+//						
+//						for(int i=0;i<stock.length;i++) {
+//							Product_opt pot = new Product_opt();
+//							
+//							pot.setSize(size[i]);
+//							pot.setStock(stock[i]);
+//							pot.setPrdtNo(pd.getPrdtNo());
+//							pot.setOptColor(optColor[i]);
+//						
+//							poArr.add(pot);
+//						}
+//					int result2 = adService.UpdatePotList(poArr);
+//						
+//					return "redirect:productList.ad";
+//					} else {
+//					
+//						System.out.println("에러");
+//					return "redirect:productListDetail.ad";
+//					}
+//		  	}
 		  
-		  	return null;
+		  	return "redirect:productList.ad";
 	  }
 	
 	

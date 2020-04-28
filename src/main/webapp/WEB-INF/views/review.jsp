@@ -2312,7 +2312,7 @@ select {
 	<!--리뷰 모달 디테일 스크립트-->
 	function review10(en){
 		 if("${loginMember.memId}"==""){
-			 alert("로그인 후 이용해주세요!");S
+			 alert("로그인 후 이용해주세요!");
 		 }else{
 
 		 $('#comentarea').children('.replyDiv').remove();
@@ -2334,7 +2334,7 @@ select {
 			 data : {rv_no : rv_no},
 			 success : function(r){
 				 console.log(r)
-				 $('#prDetail').append('<a style="font-size:12px;" id="'+r.r.prdtCode+'" onclick="prdtGo(this.id)">'+r.r.prdtName+'"</a>");
+				 $('#prDetail').append('<a style="font-size:12px;" id="'+r.r.prdtCode+'" onclick="prdtGo(this.id)">'+r.r.prdtName+'"</a>"');
 				 $('#memName').text(r.r.memName);
 				 $('#rColor').text(r.r.rvColor);
 				 $('#rSize').text(r.r.rvSize);
@@ -2960,10 +2960,7 @@ select {
 							alert("에러임에러임");
 					}
 		});
-
-
 	  })
-
 	  </script>
 
 
