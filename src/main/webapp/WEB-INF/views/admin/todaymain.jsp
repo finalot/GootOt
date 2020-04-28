@@ -249,15 +249,15 @@
                     <div class="col-md-6 col-lg-4" style="margin-left: 15%">
                         <!-- CHART-->
                         <div class="statistic-chart-1" 
-                        	style="margin-left:-35%; width:140%; height:auto;" onclick="location.href='todayChart.ad'">
+                        	style="margin-left:-35%; width:140%; height:506px;" onclick="location.href='todayChart.ad'">
                             <h3 class="title-3 m-b-30">일별 판매량</h3>
                             <div class="chart-wrap">
                                 <canvas id="widgetChart5" width:"406" height:"446"></canvas>
                             </div>
-                            <div class="statistic-chart-1-note">
+<!--                             <div class="statistic-chart-1-note">
                                 <span class="big">10,368</span>
                                 <span>/ 16220 items sold</span>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- END CHART-->
                     </div>
@@ -332,7 +332,7 @@
     	
     	 var ctx = document.getElementById("widgetChart5");
     	    if (ctx) {
-    	      ctx.height = 220;
+    	      ctx.height = 446;
     	      var myChart = new Chart(ctx, {
     	        type: 'bar',
     	        data: {

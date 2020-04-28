@@ -608,6 +608,7 @@ a{
 										</c:if>
 										<c:if test="${pdd.prdtSale eq 0 }">
 										<font class="format-money">${ pdd.prdtPrice}</font> 
+										
 										</c:if>
 
 
@@ -664,8 +665,6 @@ $(function(){
 							<input class="num-price" type="hidden" value="${ pdd.prdtPrice}">
 							<input id="num-price" type="hidden" value="${ pdd.prdtPrice}">
 							</c:if>
-							
-							
 </c:forEach>
 							<div
 								class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10"
@@ -3259,7 +3258,7 @@ console.log(rvPage2);
 	
 	
 	var prdtNo = $('#prNo_val').val();
-	var prdtPrice = $('#num-price').val();
+	var prdtPrice = Math.floor($('#num-price').val());
 	var nameProduct = $('.product-detail-name').html();
 			
 	if("${loginMember.memId}"==""){
@@ -3311,7 +3310,7 @@ console.log(rvPage2);
 			
 			
 			var prdtNo = $('#prNo_val').val();
-			var prdtPrice = $('#num-price').val();
+			var prdtPrice = Math.floor($('#num-price').val());
 			var nameProduct = $('.product-detail-name').html();
 					
 			if("${loginMember.memId}"==""){

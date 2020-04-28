@@ -200,10 +200,10 @@
           
     <!-- 일별 매출량 -->
     <div class="col-lg-6">
-    	<div class="au-card m-b-30" style="margin-top:4%; margin-left:10%; 	width: 190%; height: auto;">
+    	<div class="au-card m-b-30" style="margin-top:3%; margin-left:10%; 	width: 190%; height: auto;">
            <div class="au-card-inner">
-               <h3 class="title-2 m-b-40">일별 판매량</h3>
-               <canvas id="singelBarChart"></canvas>
+               <h3 class="title-2 m-b-40">월별 판매량  &lt;2020년&gt;</h3>
+               <canvas id="monthlyChart"></canvas>
            </div>
        </div>
     </div>
@@ -212,22 +212,76 @@
     
     <!-- 월별 매출량 -->
 	<!-- MAIN CONTENT-->
-          <div class="section__content section__content--p30">
-              <div class="container-fluid">
-                  <div class="col-lg-6">
-                          <div class="au-card m-b-30" style="margin-top:10%; margin-left:2.5%; 	width: 207%; height: auto;">
-                              <div class="au-card-inner">
-                                  <h3 class="title-2 m-b-40"> 월별 판매량 &lt;2020년&gt; </h3>
-                                  <canvas id="barChart"></canvas>
-                              </div>
-                          </div>
-                      </div>       
-              </div>
-          </div>
-      </div>
+   <%--  <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="col-lg-6">
+               <div class="au-card m-b-30" style="margin-top:10%; width: 207%; height: auto;">
+                   <div class="au-card-inner">
+                       <h3 class="title-2 m-b-40"> 월별 판매량 &lt;2020년&gt; </h3>
+                       <canvas id="barChart"></canvas>
+                   </div>
+               </div>
+           </div>       
+        </div>
+    </div> --%>
+</div>
       <!-- END MAIN CONTENT-->
-  	</div>
-  	
+</div>
+<script>
+$(function(){
+	
+	var monthArr = new Array();
+	var monpayArr = new Array();
+	var  i =0;
+  	  "<c:forEach var='mon' items='${month}'>"
+  	   monArr[i] = "${mon.month}";    
+  	   payArr[i] = "${mon.sumprice}"
+       i++;
+		"</c:forEach>"
+	
+	
+	 var ctx = document.getElementById("monthlyChart");
+	    if (ctx) {
+	      ctx.height = 446;
+	      var myChart = new Chart(ctx, {
+	        type: 'bar',
+	        data: {
+	          labels: [	monArr[0], monArr[1], monArr[2], monArr[3], monArr[4], monArr[5], monArr[6],
+	        	 		monArr[7], monArr[8], monArr[9], monArr[10], monArr[11]
+	          		  ],
+	          datasets: [
+	            {
+	              label: "월별 판매량",
+	              data: [ payArr[0],payArr[1],payArr[2],payArr[3],payArr[4],payArr[5],payArr[6],
+	            	      payArr[7],payArr[8],payArr[9],payArr[10],payArr[11]
+	            	  
+	            	  ],
+	              borderColor: "transparent",
+	              borderWidth: "0",
+	              backgroundColor: "#ccc",
+	            }
+	          ]
+	        },
+	        options: {
+	          maintainAspectRatio: true,
+	          legend: {
+	            display: false
+	          },
+	          scales: {
+	            xAxes: [{
+	              display: false,
+	              categoryPercentage: 1,
+	              barPercentage: 0.65
+	            }],
+	            yAxes: [{
+	              display: false
+	            }]
+	          }
+	        }
+	      });
+	    }
+});
+</script>
   	    <!-- Jquery JS-->
     <script src="/ot/resources/avendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->

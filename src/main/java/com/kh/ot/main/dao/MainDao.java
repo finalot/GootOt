@@ -237,8 +237,8 @@ public class MainDao {
 		return sqlSession.selectOne("productMapper.getOrdNo",rc);
 	}
 
-	public int getRvNo(ReviewCheck rc) {
-		return sqlSession.selectOne("productMapper.getRvNo",rc);
+	public ArrayList<Integer> getRvNo(ReviewCheck rc) {
+		return (ArrayList)sqlSession.selectList("productMapper.getRvNo",rc);
 	}
 
 	public int detailReviewPhotoInsert(DetailReview dr) {
@@ -415,6 +415,55 @@ public class MainDao {
 		return sqlSession.delete("productMapper.WarningReply",rp);
 	}
 
+	/**
+	 * @작성일  : 2020. 4. 28.
+	 * @작성자  : 문태환
+	 * @내용 	: 메인 상품 리스트 불러오기
+	 * @return
+	 */
+	public ArrayList<Product> selectListMain() {
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductMain");
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 28.
+	 * @작성자  : 문태환
+	 * @내용 	: 메인 상품 옵션 리스트 불러오기
+	 * @return
+	 */
+	public ArrayList<Product_opt> selectOptionListMain() {
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductOptionMain");
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 28.
+	 * @작성자  : 문태환
+	 * @내용 	: 메인 상품 컬러 리스트 불러오기
+	 * @return
+	 */
+	public ArrayList<Product_color> selectColorListMain() {
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductColor1");
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 28.
+	 * @작성자  : 문태환 
+	 * @내용  	: 메인 상품 리스트 불러오기 2
+	 * @return
+	 */
+	public ArrayList<Product> selectListMain2() {
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductMain2");
+	}
+
+	/**
+	 * @작성일  : 2020. 4. 28.
+	 * @작성자  : 문태환
+	 * @내용 	: 메인 상품 리스트 불러오기 탑3
+	 * @return
+	 */
+	public ArrayList<Product> selectListMain3() {
+		return (ArrayList)sqlSession.selectList("productMapper.selectProductMain3");
+	}
 
 
 	
