@@ -812,7 +812,42 @@
  		UPDATE REVIEW_COMMENT
  		SET RV_REPORT ='Y'
  		WHERE RVC_NO = #{rvcNo}
- 		
  	</update>
+ 	
+ 		<select id="selectProductMain" parameterType="_int" resultMap="productResultSet">
+				SELECT *
+				FROM(SELECT * FROM PRDT
+            	WHERE UP_NO = 5
+             	AND PRDT_STATUS = 'Y'
+            	ORDER BY PRDT_NO DESC)
+             	WHERE ROWNUM BETWEEN 1 AND 8
+		</select>
+ 	
+ 	 	<select id="selectProductOptionMain" parameterType="_int" resultMap="product_optResultSet">
+		SELECT PRDT_NO, OPT_COLOR
+		FROM PRDT_OPT
+		WHERE PRDT_NO LIKE 5||'%'
+		GROUP BY PRDT_NO, OPT_COLOR
+		</select>
+		
+			<select id="selectProductMain2" parameterType="_int" resultMap="productResultSet">
+				SELECT *
+				FROM(SELECT * FROM PRDT
+            	WHERE UP_NO = 6
+            	AND DOWN_CATE = 2
+             	AND PRDT_STATUS = 'Y'
+            	ORDER BY PRDT_NO DESC)
+             	WHERE ROWNUM BETWEEN 1 AND 8
+		</select>
+		
+		<select id="selectProductMain3" parameterType="_int" resultMap="productResultSet">
+				SELECT *
+				FROM(SELECT * FROM PRDT
+             	WHERE PRDT_STATUS = 'Y'
+            	ORDER BY PRDT_SCOUNT DESC)
+             	WHERE ROWNUM BETWEEN 1 AND 3
+		</select>
+		
+ 	
 
 </mapper>

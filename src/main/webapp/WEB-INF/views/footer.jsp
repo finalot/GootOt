@@ -415,7 +415,7 @@
 	<input type="hidden" id="chat-test" value="문태환">
 	
 <!--===============================================================================================-->
-	<script src="http://moon1:82/socket.io/socket.io.js"></script>
+	<script src="http://192.168.20.6:82/socket.io/socket.io.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 	<!-- 리모콘 장바구니 -->
 	
@@ -423,7 +423,7 @@
 	<script>
 	$(document).ready(function(){
 		
-		var socket = io("http://moon1:82");
+		var socket = io("http://192.168.20.6:82");
 	
 		if("${ !empty sessionScope.loginMember}" && "${loginMember.memId}" !='') {
 			socket.emit("login_member", {id:"${loginMember.memId}"})
@@ -505,7 +505,7 @@
 		
 			   $('#chat_container').css('display','block');
 			   
-				var socket = io("http://moon1:82");
+				var socket = io("http://192.168.20.6:82");
 			   
 			       userId = "${loginMember.memId}";
 				//클릭한 아이디 서버로 보내기
