@@ -246,7 +246,7 @@ public class MemberController extends HttpServlet {
 
 		  status.setComplete();
 		  session.invalidate();
-			return "home";
+			return "redirect:home.do";
 		}
 	/**
 	 * @작성일  : 2020. 4. 5.
