@@ -45,6 +45,10 @@
 			<div class="xans-myshop-bankbook " style="width: 80%;">
     			<p class="xans-element- xans-myshop xans-myshop-asyncbenefit mypage_top ">
     				<strong>
+    					<span><span class="xans-member- var-name">${loginMember.memName }</span></span>
+    				</strong>
+ 					님은 현재 
+					<strong>
 						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">
 							<c:if test="${loginMember.memSumMoney < 100000}" >
 								MEMBER
@@ -145,17 +149,6 @@
                     	</thead>
                     
 						<tbody class=" center">
-							<tr class="xans-record-">
-										<td>회원가입날짜</td>
-										<td>회원가입</td>
-				                        <td>
-				                        	<fmt:formatNumber value="2000" pattern="#,###"/>
-			                        	</td>
-				                        <td>
-				                        <a href="/myshop/order/detail.html?order_id="></a>
-				                        </td>
-				                        <td>회원가입을 축하합니다</td>
-				                    </tr>
 						<c:if test="${ !empty list }">
 							<c:forEach var="pt" items="${list }">
 									<tr class="xans-record-">

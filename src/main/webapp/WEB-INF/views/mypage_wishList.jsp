@@ -40,6 +40,8 @@ a {
 	<c:url var="mWishlist" value="mWishlist.do"/>
 	<c:url var="product_detail" value="product_detail.do">
 		<c:param name="product_detail" value="p1"/>
+	<c:url var="mPoint" value="mPoint.do"/>
+	<c:url var="mCoupon" value="mCoupon.do"/>
 	</c:url>
 	<c:url var="order" value="buynow.do">
 		<c:param name="order" value="p1"/>

@@ -230,7 +230,7 @@ a{
 		                	</td>
 			                <td class="product left top">
                     			<a onclick="productmove(this)">${o.prdt_name }</a>
-                    			<div class="option ">[옵션: ${o.ord_color}]</div>
+                    			<div class="option ">[옵션: ${o.ord_color} / ${o.ord_size }]</div>
                    				<p class="gBlank5 displaynone">무이자할부 상품</p>
                 			</td>
                 			<td>${o.ord_count}</td>
