@@ -393,7 +393,7 @@ public class MypageController {
 		mv.addObject("listCount", listCount);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
-		mv.addObject("list", list);
+		mv.addObject("WishList", list);
 		mv.addObject("pi", pi);
 		mv.setViewName("mypage_wishList");
 

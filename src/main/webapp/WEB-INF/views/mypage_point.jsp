@@ -145,17 +145,6 @@
                     	</thead>
                     
 						<tbody class=" center">
-							<tr class="xans-record-">
-										<td>회원가입날짜</td>
-										<td>회원가입</td>
-				                        <td>
-				                        	<fmt:formatNumber value="2000" pattern="#,###"/>
-			                        	</td>
-				                        <td>
-				                        <a href="/myshop/order/detail.html?order_id="></a>
-				                        </td>
-				                        <td>회원가입을 축하합니다</td>
-				                    </tr>
 						<c:if test="${ !empty list }">
 							<c:forEach var="pt" items="${list }">
 									<tr class="xans-record-">
