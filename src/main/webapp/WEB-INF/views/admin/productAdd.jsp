@@ -466,6 +466,7 @@ th{
         		</c:forEach>
         		 <div id="color-area" style="display: block;" >
                     <div id="	" class="col-sm-12 col-md-6">
+                    <br><br>
                         <div class="form-group">
                             <div class="input-group" style="    width: 105px" >
                                 <input type="text" style=" padding-right: 0%;;padding-left: 36%;"  id="text-color" class="form-control demo" value="ffffff"/> <!-- name="optColor" -->
@@ -500,7 +501,7 @@ th{
 
   <div style="height: 130px;">
     <div align="center" style="margin-bottom:3%">
-    <div id="product-info-add" style="width: 100px; cursor:pointer; height: 40px;border-radius: 10px;;background: black; color: white; font-size:22px;">상품추가</div>
+    <div id="product-info-add" style="width: 130px; cursor:pointer; height: 38px;border-radius: 10px; background: black; color: white; font-size:22px;">상품추가</div>
     </div>
     </div>
     <div style="border: 1px solid #dfe3e6;margin-left: 5%;margin-right: 5%;padding-left: 1%;">

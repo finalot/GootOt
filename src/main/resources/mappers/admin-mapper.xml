@@ -119,6 +119,18 @@
 			<result property="cpmemNo" column="CPMEM_NO"/>
 	</resultMap>
 	
+	<resultMap type="PrdtConnect" id="PrdtConnectResultSet">
+		<id property = "selectNo" column="PRDT_NO"/>
+		<result property="connect_no1" column="CONNECT_NO1"/>
+		<result property="connect_no2" column="CONNECT_NO2"/>
+		<result property="connect_no3" column="CONNECT_NO3"/>
+		<result property="connect_no4" column="CONNECT_NO4"/>
+		<result property="connect_no5" column="CONNECT_NO5"/>
+		<result property="connect_no6" column="CONNECT_NO6"/>
+		<result property="connect_no7" column="CONNECT_NO7"/>
+		<result property="connect_no8" column="CONNECT_NO8"/>
+	</resultMap>
+	
 <insert id="couponInput" parameterType="java.util.Map">
    INSERT INTO COUPON (CP_NO,CP_NAME,CP_DISCOUNT,CP_DATE)
    SELECT COU_SEQ.NEXTVAL, A.*FROM(
@@ -425,5 +437,18 @@ SELECT RE.RE_NO,RE.QNA_DATE,RE.RE_NAME,RE.RE_TITLE,RE.RE_CONTENT,RE.ORD_CODE,
 	SELECT COUNT(*)
 	FROM RETURN
 	WHERE RE_DATE=TO_CHAR(SYSDATE,'YY/MM/DD')
-</select>	
+</select>
+
+<insert id="ConnectSubmit" parameterType="PrdtConnect">
+	INSERT INTO PRDT_CONNECT
+	VALUES (#{selectNo}, 	
+	#{connect_no1},  
+	#{connect_no2}, 
+	#{connect_no3}, 
+	#{connect_no4},
+	#{connect_no5}, 
+	#{connect_no6}, 
+	#{connect_no7}, 
+	#{connect_no8})
+</insert>	
 </mapper>

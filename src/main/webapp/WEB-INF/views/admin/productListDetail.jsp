@@ -177,6 +177,8 @@ function loadImg(value, num){
 		reader.readAsDataURL(value.files[0]);
 	}
 }
+
+
 </script>
     
     
@@ -412,10 +414,11 @@ function loadImg(value, num){
        		<textarea cols="100" name="prdtComment" rows="3" style="overflow-y:scroll" value="${p. prdtComment}">${p.prdtComment }</textarea>
         	</td>
         </tr>
+        
     </table>
     
     
-   <div style="height: 130px;">
+   <div style="height: 50px;">
           <div align="center" style="margin-bottom:3%">
     <!-- <button id="product-info-add" style="width: 100px; height: 40px;border-radius: 10px;;background: black; color: white">상품추가</button> -->
     </div>
@@ -474,11 +477,23 @@ function loadImg(value, num){
     </div>
  
 	<br><br>
-    <div style="height: 130px;">
+    <input type="hidden" class="prdtNo" id="ic" value="${p.prdtNo }">
         <div align="center">
-        
-        	<input type="submit" value="수정" style="background: black;
+        	
+        	 <a id="connectBtn" style="background: black;
             color: white;
+            cursor:pointer;
+            font-size: 20px;
+            padding: 10px;
+            height: 65px;
+            width: 145px;
+            border-radius: 10px;" onclick="aa();">
+            연관상품등록</a>
+        	
+        	
+        	<input type="submit" value="수정" style="background: black; 
+            color: white;
+            cursor:pointer;
             font-size: 20px;
             padding: 10px;
             height: 65px;
@@ -486,24 +501,24 @@ function loadImg(value, num){
             border-radius: 10px;" >
            
             
-            <button style="background: black;
+            <a style="background: black;
             color: white;
+            cursor:pointer;
             font-size: 20px;
             padding: 10px;
             height: 65px;
             width: 135px;
             border-radius: 10px;" onclick="location.href='productList.ad'">
-            <b>목록으로</b></button>
+            	목록으로</a>
        </div>
-    </div>
+       
+       <br><br>
     
     </form>
 	</div>
 <div class="page-wrapper">
 </div>
-	<script>
-		
-	</script>
+
     
     <!-- 색상 받아오기 스크립트 -->
   
@@ -514,6 +529,19 @@ function loadImg(value, num){
       <script src="/ot/resources/assets/vendor/bootstrap-colorpicker/%40claviska/jquery-minicolors/jquery.minicolors.min.js"></script> 
 
       <script>
+      
+      function aa(){
+    	   var prdtNo = document.getElementById('ic').value;
+			console.log(prdtNo);
+			
+		   	 location.href='productConnect.ad?prdtNo='+prdtNo;
+  	/* var prdtNo=$(this).parents('tr').find('.prdtNo').val();
+   	 console.log(prdtNo);
+   	 
+   	 location.href='productListDetail.ad?prdtNo='+prdtNo; */
+  		}
+      
+      
         $('.demo').each(function() {
            
             $(this).minicolors({

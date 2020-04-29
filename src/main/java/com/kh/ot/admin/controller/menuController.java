@@ -33,6 +33,7 @@ import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.Design;
 import com.kh.ot.admin.vo.DownCategory;
 import com.kh.ot.admin.vo.Point;
+import com.kh.ot.admin.vo.PrdtConnect;
 import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.board.service.BoardService;
 import com.kh.ot.board.vo.Board;
@@ -1831,8 +1832,63 @@ public class menuController {
 		  
 		  	return null;
 	  }
+	  
+	  
+	  /**
+	 * @작성일 : 2020. 4. 28.
+	 * @작성자 : 이서현
+	 * @내용 : 연관상품 등록View 
+	 */
+	@RequestMapping("productConnect.ad")
+	public ModelAndView productConnect(ModelAndView mv, int prdtNo) {
+		
+		ArrayList<Product> plist = adService.ProductSelectList();
+		ArrayList<UpCategory> ulist = adService.UpCategorySelect();
+		ArrayList<DownCategory> dlist = adService.DownCategorySelect();
+		Product p = adService.listProductSelectList(prdtNo);
+		
+		mv.addObject("plist", plist);
+		mv.addObject("ulist",ulist);
+		mv.addObject("dlist",dlist);
+		mv.addObject("p", p).setViewName("admin/productConnect");
+		mv.setViewName("admin/productConnect");
+		return mv;
+	}
 	
 	
-	 
+	/**
+	 * @작성일 : 2020. 4. 29.
+	 * @작성자 : 이서현
+	 * @내용 : 연관상품 등록
+	 */
+	@RequestMapping("ConnectSubmit.ad")
+	public String ConnectSubmit(HttpServletResponse response, int[] prdtNoArr,int prdtNo) throws IOException {
+
+		PrdtConnect pco = new PrdtConnect();
+		
+			pco.setSelectNo(prdtNo);
+			pco.setConnect_no1(prdtNoArr[0]);
+			pco.setConnect_no2(prdtNoArr[1]);
+			pco.setConnect_no3(prdtNoArr[2]);
+			pco.setConnect_no4(prdtNoArr[3]);
+			pco.setConnect_no5(prdtNoArr[4]);
+			pco.setConnect_no6(prdtNoArr[5]);
+			pco.setConnect_no7(prdtNoArr[6]);
+			pco.setConnect_no8(prdtNoArr[7]);
+
+		
+		System.out.println("pco" + pco);
+		int result = adService.ConnectSubmit(pco);
+		
+		if(result>0) {
+			return "redirect:productList.ad";
+		} else {
+			System.out.println("에러");
+			return "redirect:productAdd.ad";
+		}
+		
+	}
+	
+
 	 
 }

@@ -39,6 +39,7 @@
 <typeAlias type="com.kh.ot.admin.vo.DownCategory" alias="DownCategory"/>
 <typeAlias type="com.kh.ot.admin.vo.Design" alias="Design"/>
 <typeAlias type="com.kh.ot.admin.vo.Point" alias="Point"/>
+<typeAlias type="com.kh.ot.admin.vo.PrdtConnect" alias="PrdtConnect"/>
 <typeAlias type="com.kh.ot.mypage.vo.CouponMem" alias="CouponMem"/>
 <typeAlias type="com.kh.ot.mypage.vo.MyBoard" alias="MyBoard"/>
 <typeAlias type="com.kh.ot.mypage.vo.Return" alias="Return"/>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.DownCategory;
+import com.kh.ot.admin.vo.PrdtConnect;
 import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.vo.Board;
@@ -493,6 +494,18 @@ public interface adminService{
 		 * @내용 : 월별 총합
 		 */
 		public ArrayList<Pay> monthPayList();
+
+		
+		
+		
+		public int ConnectSubmit(PrdtConnect pco);
+
+		/**
+		 * @작성일 : 2020. 4. 29.
+		 * @작성자 : 이서현
+		 * @내용 : 연관상품 등록
+		 */
+			
 
 
 
