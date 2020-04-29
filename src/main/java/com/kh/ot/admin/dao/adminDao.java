@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.DownCategory;
+import com.kh.ot.admin.vo.PrdtConnect;
 import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.admin.vo.Design;
 import com.kh.ot.board.vo.Board;
@@ -632,6 +633,16 @@ public class adminDao {
 	}
 
 
+	/**
+	 * @작성일 : 2020. 4. 29.
+	 * @작성자 : 이서현
+	 * @내용 : 관심상품등록 
+	 */
+	public int ConnectSubmit(PrdtConnect pco) {
+		return sqlSession.insert("adminMapper.ConnectSubmit",pco);
+	}
+
+	
 	/**
 	 * @작성일  : 2020. 4. 28.
 	 * @작성자  : 문태환 

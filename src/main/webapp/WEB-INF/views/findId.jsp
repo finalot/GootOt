@@ -7,7 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>winter</title>
+    <title>Ot.</title>
     <link rel="icon" href="/ot/resources/img/favicon.png">
     <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="/ot/resources/css/Login_bootstrap.min.css">
@@ -38,8 +38,9 @@
                                     width: 50%;" type="text" class="form-control" id="memName" name="name" value="">
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                     <input id="birth_year"  name="birth_year" class="inputTypeText" placeholder="" maxlength="4" value="" type="text"
-                   style="position: relative;width: 60px;">
+                                  <span style="padding-right: 27px;">생년월일 :</span>
+                     <input id="birth_year"  name="birth_year" class="inputTypeText" placeholder="" maxlength="4" value="" type="text"
+                   style="position: relative;width: 86px;">
                       <span id="idMsg">년</span>
                       <input id="birth_month" name="birth_month"  class="inputTypeText" placeholder="" maxlength="2" value="" type="text"
                       style="position: relative;width: 30px;">
@@ -95,10 +96,15 @@
     	   var $href = $(this).attr('href');
 	        layer_popup($href);
     	  
+	        var birth_year = $('#birth_year').val();
+	        var birth_month = $('#birth_month').val();
+	        var birth_day = $('#birth_day').val();
+	        var memSsn = birth_year+","+birth_month+","+birth_day;
+	        
 	        $.ajax({
     		  url : "findId.do",
 			  dataType:"json",
-    		  data : {memName : $('#memName').val(), memSsn : $('#memSsn').val()},
+    		  data : {memName : $('#memName').val(), memSsn : memSsn},
     		  success : function(data){
     			  console.log(data)
     			  if(data.msg != "error"){

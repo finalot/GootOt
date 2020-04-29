@@ -1956,7 +1956,7 @@ select {
 									 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 					                          	'<small>'+data.rplist[i].rvComment+'</small>'+
 					                          	'<button style="">&times;</button><br>'+
-					                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+					                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)"></button>'+
 					                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 					                          	 )
 									 }else{
@@ -2404,7 +2404,7 @@ select {
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
 			                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
-			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)"></button>'+
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 			                          	 )
 							 }else{
@@ -2486,7 +2486,7 @@ select {
 						 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 		                          	'<small>'+data.rplist[i].rvComment+'</small>'+
 		                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
-		                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+		                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)"></button>'+
 		                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 		                          	 )
 						 }else{
@@ -2534,7 +2534,7 @@ select {
 							 			'<input type="hidden" class="rvc_no" value='+data.rplist[i].rvcNo+'>'+
 			                          	'<small>'+data.rplist[i].rvComment+'</small>'+
 			                        	'<button style="" onclick="DeleteReply(this);">&nbsp;&times;</button><br>'+
-			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)">&nbsp;&nbsp;신고하기</button>'+
+			                          	'<button style="float:right;font-size:10px;color:#e65540;" onclick="Warning(this)"></button>'+
 			                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 			                          	 )
 							 }else{

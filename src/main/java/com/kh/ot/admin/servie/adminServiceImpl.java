@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.ot.admin.dao.adminDao;
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.admin.vo.DownCategory;
+import com.kh.ot.admin.vo.PrdtConnect;
 import com.kh.ot.admin.vo.UpCategory;
 import com.kh.ot.main.vo.Product;
 import com.kh.ot.main.vo.Product_opt;
@@ -380,6 +381,9 @@ public class adminServiceImpl implements adminService{
 
 
 		@Override
+		public int ConnectSubmit(PrdtConnect pco) {
+			return adDao.ConnectSubmit(pco);
+		}
 		public int ProductUpdate2(Product p) {
 			return adDao.ProductUpdate2(p);
 		}

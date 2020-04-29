@@ -324,7 +324,9 @@ font-size: 9px !important;
 					
 					
 					<!-- id가 admin이면 들어갈 수 있도록 c:if 문 추가 -->
+					<c:if test="${ loginMember.memId eq  'admin'}">
 					<a href="${todaymain }" class="topbar-email">ADMIN</a>		
+					</c:if>
 					&nbsp;&nbsp; <span class="topbar-email"> . </span> &nbsp;&nbsp;							
 					  <c:if test="${ empty sessionScope.loginMember }">													
 					&nbsp;&nbsp; <a href='${loginView}'  class="topbar-email"> Login </a>

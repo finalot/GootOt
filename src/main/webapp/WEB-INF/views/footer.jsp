@@ -272,7 +272,7 @@
 													'<img id="contentimgs1" src="'+data[i].path+data[i].image+'" alt="cart" style="height:70px;width:55px;">'+
 													'</div>'+
 													'<div class="header-cart-item-txt">'+
-													'<a href="http://moon1:8888/ot/product_detail.do?product_detail='+data[i].prdt_no+'" class="header-cart-item-name">'+data[i].prdt_name+'</a>'+
+													'<a href="http://192.168.20.3:8888/ot/product_detail.do?product_detail='+data[i].prdt_no+'" class="header-cart-item-name">'+data[i].prdt_name+'</a>'+
 													'<span class="header-cart-item-info">'+
 													'<font id="total" class="format-money">'+data[i].prdt_price+'</font>&nbsp;<small>WON</small></span>'+
 													'</div>'+
@@ -454,7 +454,7 @@
 	<input type="hidden" id="chat-test" value="문태환">
 	
 <!--===============================================================================================-->
-	<script src="http://moon1:82/socket.io/socket.io.js"></script>
+	<script src="http://192.168.20.3:82/socket.io/socket.io.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 	<!-- 리모콘 장바구니 -->
 	
@@ -462,7 +462,7 @@
 	<script>
 	$(document).ready(function(){
 		
-		var socket = io("http://moon1:82");
+		var socket = io("http://192.168.20.3:82");
 	
 		if("${ !empty sessionScope.loginMember}" && "${loginMember.memId}" !='') {
 			socket.emit("login_member", {id:"${loginMember.memId}"})
@@ -544,7 +544,7 @@
 		
 			   $('#chat_container').css('display','block');
 			   
-				var socket = io("http://moon1:82");
+				var socket = io("http://192.168.20.3:82");
 			   
 			       userId = "${loginMember.memId}";
 				//클릭한 아이디 서버로 보내기
