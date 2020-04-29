@@ -50,9 +50,9 @@
                                     color: black;" type="submit"  class="btn_3">
                                         join us
                                     </a>
-                                    <div style="display: felx">
-                                    <a style="margin-top: 10px;margin-right: 4%;" class="lost_pass" href="findIdView.do">forget ID?</a>
-                                    <a style="margin-top: 10px;margin-right: 15%;padding-right: 13%;" class="lost_pass" href="findpasswordView.do">forget Password?</a>
+                                    <div style="display: flex">
+                                    <a style="margin : 10px 15% 0 8%" class="lost_pass" href="findIdView.do">forget ID?</a>
+                                    <a style="margin-top: 10px;" class="lost_pass" href="findpasswordView.do">forget Password?</a>
                                     </div>
                                 </div>
                         </div>
