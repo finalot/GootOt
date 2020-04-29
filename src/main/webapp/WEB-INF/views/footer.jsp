@@ -321,13 +321,13 @@
 		
 		<c:if test="${ empty sessionScope.loginMember }">
 		<button style="width:88%;height:12%;background:snow;margin-top:-430%;margin-left:-88%;border-radius:10%;"href="/web/index.jsp">
-		<a class="symbol-btn-back-to-top" href="${loginView }" >
+		<a id="orderlist" class="symbol-btn-back-to-top" href="${loginView }" >
 			<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-03.png"/>" class="header-icon1" alt="ICON"
 				onmouseover="this.src='/ot/resources/images/icons/icon-header-03-3.png'"
 				onmouseout="this.src='/ot/resources/images/icons/icon-header-03.png'">
 		</a></button>
 		</c:if>
-		
+
 		<c:if test="${ !empty sessionScope.loginMember }">
 			<button style="width:88%;height:12%;background:snow;margin-top:-210%;margin-left:-88%;border-radius:10%;" href="/web/index.jsp">
 			<a class="symbol-btn-back-to-top" href="${wishlist }" >
@@ -340,7 +340,7 @@
 		
 		<c:if test="${ empty sessionScope.loginMember }">
 		<button style="width:88%;height:12%;background:snow;margin-top:-210%;margin-left:-88%;border-radius:10%;" href="/web/index.jsp">
-			<a class="symbol-btn-back-to-top" href="${loginView }" >
+			<a id="wishlist" class="symbol-btn-back-to-top" href="${loginView }" >
 				<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-04.png"/>" class="header-icon1" alt="ICON"
 					onmouseover="this.src='/ot/resources/images/icons/icon-header-04-4.png'"
 					onmouseout="this.src='/ot/resources/images/icons/icon-header-04.png'">
@@ -358,7 +358,7 @@
 		</c:if>
 		<c:if test="${ empty sessionScope.loginMember }">	
 		<button style="width:88%;height:12%;background:snow;margin-top:10%;margin-left:-88%;border-radius:10%;"href="/web/index.jsp">
-			<a class="header-wrapicon1 dis-block"href="${loginView }" >
+			<a id="mypage" class="header-wrapicon1 dis-block"href="${loginView }" >
 				<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-01.png"/>" class="header-icon1" alt="ICON"
 				onmouseover="this.src='/ot/resources/images/icons/icon-header-01-1.png'"
 				onmouseout="this.src='/ot/resources/images/icons/icon-header-01.png'">
@@ -701,7 +701,17 @@ jQuery('.format-money').text(function() {
 </script>
 
 <script>
+$('#orderlist').click(function(){
+	alert("로그인 후 이용해주세요.");
+})
 
+$('#wishlist').click(function(){
+	alert("로그인 후 이용해주세요.");
+})
+
+$('#mypage').click(function(){
+	alert("로그인 후 이용해주세요.");
+})
 
 
 </script>

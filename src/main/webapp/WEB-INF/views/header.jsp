@@ -791,27 +791,50 @@ font-size: 9px !important;
 				</div>
 
 				<div class="allMBright">
+					<c:if test="${ !empty sessionScope.loginMember }">
 					<div>
 						<h3 class="helve">
-							<a href="/myshop/index.html">My page</a>
+							<a href="MyPage.do">My page</a>
 						</h3>
 						<ul>
-							<li><a href="/myshop/order/list.html">주문내역</a></li>
+							<li><a href="mList.do">주문내역</a></li>
 							<li></li>
 							<li><a href="${cartbutton }"
 								class="xans-element- xans-layout xans-layout-statelogoff ">장바구니
 									<span class="">(<span class="EC-Layout-Basket-count"></span>)
 								</span>
 							</a></li>
-							<li><a href="/myshop/wish_list.html">관심상품</a></li>
-							<li><a href="/myshop/mileage/historyList.html">적립금</a></li>
-							<li><a href="/myshop/coupon/coupon.html">쿠폰</a></li>
-							<li><a href="/product/recent_view_product.html">최근 본 상품</a></li>
-							<li><a href="/myshop/deposits/historyList.html">예치금</a></li>
-							<li><a href="/myshop/board_list.html">내가 쓴 게시글</a></li>
-							<li><a href="/member/modify.html">회원 정보 수정</a></li>
+							<li><a href="mWishlist.do">관심상품</a></li>
+							<li><a href="mPoint.do">적립금</a></li>
+							<li><a href="mCoupon.do">쿠폰</a></li>
+							<li><a href="mBoard.do">내가 쓴 게시글</a></li>
+							<li><a href="mReview.do">내가 쓴 리뷰</a></li>
+							<li><a href="mEdit.do">회원 정보 수정</a></li>
 						</ul>
 					</div>
+					</c:if>
+					
+					<c:if test="${ empty sessionScope.loginMember }">
+					<div>
+						<h3 class="helve">
+							<a class="mypageButton" href="loginView.do">My page</a>
+						</h3>
+						<ul>
+							<li><a class="mypageButton" href="loginView.do">주문내역</a></li>
+							<li></li>
+							<li><a href="loginView.do"
+								class="xans-element- xans-layout xans-layout-statelogoff ">장바구니
+							</a></li>
+							<li><a class="mypageButton" href="loginView.do">관심상품</a></li>
+							<li><a class="mypageButton" href="loginView.do">적립금</a></li>
+							<li><a class="mypageButton" href="loginView.do">쿠폰</a></li>
+							<li><a class="mypageButton" href="loginView.do">내가 쓴 게시글</a></li>
+							<li><a class="mypageButton" href="loginView.do">내가 쓴 리뷰</a></li>
+							<li><a class="mypageButton" href="loginView.do">회원 정보 수정</a></li>
+						</ul>
+					</div>
+					</c:if>
+					
 					<div>
 						<h3 class="helve">CS center</h3>
 						<ul>
@@ -860,6 +883,9 @@ font-size: 9px !important;
 		$('.animsition').css('overflow','visible');
 	});
 	
+	$('.mypageButton').click(function(){
+		alert("로그인 후 이용해주세요.");
+	})
 	</script>
 
 
