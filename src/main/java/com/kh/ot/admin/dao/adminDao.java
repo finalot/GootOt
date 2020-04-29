@@ -642,5 +642,22 @@ public class adminDao {
 		return sqlSession.insert("adminMapper.ConnectSubmit",pco);
 	}
 
+	
+	/**
+	 * @작성일  : 2020. 4. 28.
+	 * @작성자  : 문태환 
+	 * @내용 	: 상품수정 사진 있을시 
+	 * @param p
+	 * @return
+	 */
+	public int ProductUpdate2(Product p) {
+		return sqlSession.update("productMapper.ProductUpdate2",p);
+	}
+
+
+	public Product selectProduct(Product p) {
+		return sqlSession.selectOne("productMapper.selectProduct",p);
+	}
+
 
 }

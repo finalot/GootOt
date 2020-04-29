@@ -51,19 +51,19 @@ a{
  					님은 현재 
 					<strong>
 						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">
-							<c:if test="${loginMember.memSumMoney < 30000}">
+							<c:if test="${loginMember.memSumMoney < 100000}" >
 								MEMBER
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 30000 && loginMember.memSumMoney < 60000}" >
+							<c:if test="${loginMember.memSumMoney >= 100000 && loginMember.memSumMoney < 300000}" >
 								IRON
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 60000 && loginMember.memSumMoney < 90000}" >
+							<c:if test="${loginMember.memSumMoney >= 300000 && loginMember.memSumMoney < 500000}" >
 								BRONZE
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 90000 && loginMember.memSumMoney < 120000}" >
+							<c:if test="${loginMember.memSumMoney >= 500000 && loginMember.memSumMoney < 700000}" >
 								SILVER
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 120000}" >
+							<c:if test="${loginMember.memSumMoney >= 700000}" >
 								GOLD
 							</c:if>
 						</span>
@@ -88,7 +88,7 @@ a{
 	                    <br>
 	                    <strong class="data">
 	                    	<a href="${mPoint }">
-	                    	<fmt:formatNumber value="${loginMember.mem_point }" pattern="#,###"/>원</a>
+	                  <span>${resultPoint}</span>원</a>
 	                    </strong>
 	                </li>
                 
@@ -96,7 +96,7 @@ a{
 	                    <strong class="title">COUPON</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mCoupon }">${CouponCount }<span>개</span></a>
+	                    	<a href="${mCoupon }">${CouponCount}<span>개</span></a>
 	                    </strong>
 	                </li>
 	            </ul>
@@ -230,7 +230,7 @@ a{
 		                	</td>
 			                <td class="product left top">
                     			<a onclick="productmove(this)">${o.prdt_name }</a>
-                    			<div class="option ">[옵션: ${o.ord_color}]</div>
+                    			<div class="option ">[옵션: ${o.ord_color} / ${o.ord_size }]</div>
                    				<p class="gBlank5 displaynone">무이자할부 상품</p>
                 			</td>
                 			<td>${o.ord_count}</td>

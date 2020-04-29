@@ -497,15 +497,32 @@ public interface adminService{
 
 		
 		
-		
-		public int ConnectSubmit(PrdtConnect pco);
-
 		/**
 		 * @작성일 : 2020. 4. 29.
 		 * @작성자 : 이서현
 		 * @내용 : 연관상품 등록
 		 */
+		public int ConnectSubmit(PrdtConnect pco);
+
+		
 			
+		/**
+		 * @작성일  : 2020. 4. 28.
+		 * @작성자  : 문태환
+		 * @내용 	: 상품수정 사진 있을시
+		 * @param p
+		 * @return
+		 */
+		public int ProductUpdate2(Product p);
+
+		/**
+		 * @작성일  : 2020. 4. 28.
+		 * @작성자  : 문태환 
+		 * @내용 	:  상품수정용 객체
+		 * @param p
+		 * @return
+		 */
+		public Product selectProduct(Product p);
 
 
 

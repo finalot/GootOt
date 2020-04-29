@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -1793,44 +1794,100 @@ public class menuController {
 			  						@RequestParam(name="thumbnailImg",required=false) MultipartFile file1,
 	  								@RequestParam(name="descrptionImg",required=false) MultipartFile file2 ) {
 		  
-		  ArrayList<Product_opt> poArr = new ArrayList<Product_opt>(); 
-
+		    //ArrayList<Product_opt> poArr = new ArrayList<Product_opt>();
 		  
-		  if (!file1.getOriginalFilename().equals("") &&!file2.getOriginalFilename().equals("")) {
-				
-				String renameFileName = saveFile(file1, request);
-				String renameDetailName = saveFile(file2, request);
-				
-					p.setPrdtImage(renameFileName);
-					p.setPrdtDetailImage(renameDetailName);
+		    String root = request.getSession().getServletContext().getRealPath("resources");
+		
+			String renameFileName = "";
+			String renameDetailName = "";
+			String strr="";
+			String strr2="";
+			Product pa = adService.selectProduct(p);
 
-					int result = adService.ProductUpdate(p);
-
-					
-					if(result>0){
-						Product pd = adService.selectPrdtNo();
-						
-						for(int i=0;i<stock.length;i++) {
-							Product_opt pot = new Product_opt();
-							
-							pot.setSize(size[i]);
-							pot.setStock(stock[i]);
-							pot.setPrdtNo(pd.getPrdtNo());
-							pot.setOptColor(optColor[i]);
-						
-							poArr.add(pot);
-						}
-					int result2 = adService.UpdatePotList(poArr);
-						
-					return "redirect:productList.ad";
-					} else {
-					
-						System.out.println("에러");
-					return "redirect:productListDetail.ad";
+			String str = pa.getPrdtImagePath();
+			String str2 = pa.getPrdtDetailImagePath();
+			
+			StringTokenizer st = new StringTokenizer(str,"/",true);
+			StringTokenizer st2 = new StringTokenizer(str,"/",true);
+			
+			ArrayList<String> strArr = new ArrayList<String>();
+			ArrayList<String> strArr2 = new ArrayList<String>();
+			
+			while(st.hasMoreTokens()) {
+					strArr.add("/"+st.nextToken());
+			}
+				for(int i =0;i<strArr.size();i++) {
+					if(i > 3 ){
+						strr +=strArr.get(i);
 					}
-		  	}
-		  
-		  	return null;
+				}
+				while(st2.hasMoreTokens()) {
+					strArr2.add("/"+st2.nextToken());
+			}
+				for(int i =0;i<strArr2.size();i++) {
+					if(i > 3 ){
+						strr2 +=strArr2.get(i);
+					}
+				}		
+		
+			 p.setPrdtImage(pa.getPrdtImage());
+			 p.setPrdtDetailImage(pa.getPrdtDetailImage());
+			String savePath = root+"\\"+strr+"/";
+			String saveDetailPath = root+"\\"+strr2+"/";
+		
+
+				File folder = new File(savePath);
+				File folder2 = new File( saveDetailPath);
+
+				if (!folder.exists()) {
+					folder.mkdir(); // 폴더가 없다면 생성해주세요
+				}
+				if (!folder2.exists()) {
+					folder2.mkdir(); // 폴더가 없다면 생성해주세요
+				} 
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+			 
+		  //사진을 변경 했을시 업데이트
+		  if (!file1.getOriginalFilename().equals("")) {
+			  String originFileName = file1.getOriginalFilename();
+			  		renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+				   + originFileName.substring(originFileName.lastIndexOf(".") + 1);
+					
+					p.setPrdtImage(renameFileName);
+					
+					String renamePath = folder + "\\" + renameFileName;
+					
+					try {
+						file1.transferTo(new File(renamePath));
+					} catch (IllegalStateException | IOException e) {
+						e.printStackTrace();
+					}
+		     }
+					 
+			if(!file2.getOriginalFilename().equals("")) {
+				
+				String originDetailFileName = file2.getOriginalFilename();
+						renameDetailName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+						+ originDetailFileName.substring(originDetailFileName.lastIndexOf(".") + 1);
+				       
+						p.setPrdtDetailImage(renameDetailName);
+						
+						String renameDetailPath = folder2 + "\\" + renameDetailName;
+						
+						try {
+							file2.transferTo(new File(renameDetailPath));
+						} catch (IllegalStateException | IOException e) {
+							e.printStackTrace();
+						}
+			}
+					int result2 = adService.ProductUpdate2(p);		
+					
+					if(result2 > 0) {
+						  return "redirect:productList.ad";
+					}else {
+						  return "에러다";
+					}
 	  }
 	  
 	  
@@ -1890,5 +1947,28 @@ public class menuController {
 	}
 	
 
+//					if(result>0){
+//						Product pd = adService.selectPrdtNo();
+//						
+//						for(int i=0;i<stock.length;i++) {
+//							Product_opt pot = new Product_opt();
+//							
+//							pot.setSize(size[i]);
+//							pot.setStock(stock[i]);
+//							pot.setPrdtNo(pd.getPrdtNo());
+//							pot.setOptColor(optColor[i]);
+//						
+//							poArr.add(pot);
+//						}
+//					int result2 = adService.UpdatePotList(poArr);
+//						
+//					return "redirect:productList.ad";
+//					} else {
+//					
+//						System.out.println("에러");
+//					return "redirect:productListDetail.ad";
+//					}
+//	  }
+	
 	 
 }

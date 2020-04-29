@@ -310,6 +310,8 @@
 		JOIN P_COLOR PC ON (PO.OPT_COLOR = PC.PC_NAME)
 		WHERE P.PRDT_NO = #{product_detail}
 		GROUP BY PC.PC_RGB
+		
+		
 		</select>
 		
 		<select id="selectProductOption2" parameterType="_int" resultMap="product_optResultSet">
@@ -452,11 +454,11 @@
 		
 		<insert id="ProductInsert" parameterType="Product">
 		INSERT INTO PRDT
-		VALUES (PRODUCT_SEQ.NEXTVAL, #{upNo}, #{prdtName}, #{prdtComment}
+		VALUES (#{upNo}||#{downNo}||PRODUCT_SEQ.NEXTVAL, #{upNo}, #{prdtName}, #{prdtComment}
 				,#{prdtPrice}, NULL, NULL, #{prdtImage}
 				,SYSDATE, NULL, DEFAULT, #{downNo}, PRODUCT_SEQ.NEXTVAL
 				,#{prdtImagePath}, #{prdtDetailImage},#{prdtDetailImagePath}
-				,#{prdtSale}, DEFAULT, DEFAULT,DEFAULT)	 
+				,#{prdtSale}, DEFAULT,DEFAULT, DEFAULT)	 
 		</insert>
 		
 		<insert id="insertCart" parameterType="Cart">
@@ -707,9 +709,16 @@
 	<update id="ProductUpdate" parameterType="Product">
 		UPDATE PRDT SET
 		PRDT_NAME=#{prdtName}, PRDT_COMMENT=#{prdtComment},
-		PRDT_IMAGE=#{prdtImage} ,PRDT_DETAIL_IMAGE=#{prdtDetailImage},
 		PRDT_SALE=#{prdtSale},PRDT_PRICE = #{prdtPrice}
-		FROM PRDT
+		WHERE PRDT_NO = #{prdtNo}
+	</update>
+	
+	<update id="ProductUpdate2" parameterType="Product">
+		UPDATE PRDT SET
+		PRDT_NAME=#{prdtName},PRDT_COMMENT=#{prdtComment},
+		PRDT_DETAIL_IMAGE=#{prdtDetailImage} , PRDT_IMAGE=#{prdtImage},
+		PRDT_SALE=#{prdtSale},PRDT_PRICE = #{prdtPrice}
+		WHERE PRDT_NO = #{prdtNo}
 	</update>
 	
 	<update id="UpdatePotList" parameterType="Product_opt">
@@ -849,6 +858,11 @@
              	WHERE ROWNUM BETWEEN 1 AND 3
 		</select>
 		
+		<select id="selectProduct" parameterType="Product" resultMap="productResultSet">
+			SELECT * FROM
+			PRDT
+			WHERE PRDT_NO = #{prdtNo}
+		</select>
  	
 
 </mapper>

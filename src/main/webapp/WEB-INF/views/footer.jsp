@@ -202,10 +202,10 @@
 		
 
 		
-		<button class="header-icon1 js-show-header-dropdown" style="width:88%;height:12%;background:snow;margin-top:-650%;border-radius:10%;" >
+		<button class="header-icon1 js-show-header-dropdown" onclick="cartList11()" style="width:88%;height:12%;background:snow;margin-top:-650%;border-radius:10%;" >
 					
 				<div class="header-wrapicon2 m-r-13" style="width:75%;height:75%;">
-						<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-02.png"/>" onmouseover="this.src='/ot/resources/images/icons/icon-header-02-2.png'"
+						<img onclick="cartList11()" style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-02.png"/>" onmouseover="this.src='/ot/resources/images/icons/icon-header-02-2.png'"
 						onmouseout="this.src='/ot/resources/images/icons/icon-header-02.png'" class="header-icon1 js-show-header-dropdown" alt="ICON" >
 						
 						<!-- <img src="기본 이미지 주소" onmouseover="this.src='마우스 오버 상태의 이미지 주소'" 
@@ -215,48 +215,87 @@
 						<span class="header-icons-noti" id="p_count"></span> 
 						<c:url var="cartbutton" value="cartbutton.do"/>
 						<!-- Header cart noti -->
-						<%-- <c:forEach var="c" items="${list }"> --%>
 						<div class="header-cart header-dropdown" style="border-radius:10px;">
-							<ul class="header-cart-wrapitem">
-								<%-- <c:forEach var="c" items="${list }"> --%>
-								<li name="p_count" class="header-cart-item">
-									<div class="header-cart-item-img">
-										<a href ="${cartbutton }">
-										<%-- <img src="${c.path }${c.image}"/> --%></a>
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											<%-- ${c.prdt_name } --%>
-										</a>
-
-										<span class="header-cart-item-info">
-											<%-- ${c.prdt_count} x ${c.prdt_price } won --%>
-										</span>
-									</div>
-								</li>
-								<%-- </c:forEach> --%>
+							<ul id="cartList12" class="header-cart-wrapitem">
+								
 							</ul>
 
 							<div id="prdtPrice" class="header-cart-total">
-								Total: $75.00
+								
 							</div>
 
 							<div class="header-cart-buttons">
-								<div class="header-cart-wrapbtn">
+								<div class="header-cart-wrapbtn" >
 									<!-- Button -->
 									<a href="${cartbutton }" class="hov1 s-text1 trans-0-4 yg_btn_148">
 										<span id="idMsg3">장바구니</span>
 									</a>
 								</div>
 
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="#" class="hov1 s-text1 trans-0-4 yg_btn_142">
-										<span id="idMsg3">창 닫기</span>
-									</a>
-								</div>
+								
 							</div>
+							
+							<script>
+							$(function(){
+									if("${loginMember.memId}"!=""){
+								$.ajax({
+									url:"cartbutton2.do",
+									dataType:"json",
+									success:function(data) {
+									 			var count=data.length;
+									 
+											 $('#p_count').append(count);
+									},error:function() {
+									}
+
+								 })
+									}
+							})
+							
+							
+							function cartList11() {
+								
+								if("${loginMember.memId}"==""){
+									 alert("로그인이 필요합니다.");
+									 location.href="loginView.do";
+								
+							}else{
+								$.ajax({
+
+									url:"cartbutton1.do",
+									dataType:"json",
+									success:function(data) {
+									 var total=0;
+											 for(var i in data){
+							$('#cartList12').append('<li name="p_count" class="header-cart-item">'+
+													'<div class="header-cart-item-img">'+
+													'<img id="contentimgs1" src="'+data[i].path+data[i].image+'" alt="cart" style="height:70px;width:55px;">'+
+													'</div>'+
+													'<div class="header-cart-item-txt">'+
+													'<a href="http://moon1:8888/ot/product_detail.do?product_detail='+data[i].prdt_no+'" class="header-cart-item-name">'+data[i].prdt_name+'</a>'+
+													'<span class="header-cart-item-info">'+
+													'<font id="total" class="format-money">'+data[i].prdt_price+'</font>&nbsp;<small>WON</small></span>'+
+													'</div>'+
+													'</li>'
+													);
+											 total+=data[i].prdt_price;
+											 	}
+											 
+											 $('#prdtPrice').append('Total:<font id="total" class="format-money">'+total+'</font>&nbsp;<small>WON</small>');
+									 
+									},error:function() {
+										alert("카트리스트에러임");
+									}
+
+								 })
+							}
+							}
+							</script>
+							
+							
+							
+							
+							
 						</div>
 						
 					</div>
@@ -282,13 +321,13 @@
 		
 		<c:if test="${ empty sessionScope.loginMember }">
 		<button style="width:88%;height:12%;background:snow;margin-top:-430%;margin-left:-88%;border-radius:10%;"href="/web/index.jsp">
-		<a class="symbol-btn-back-to-top" href="${loginView }" >
+		<a id="orderlist" class="symbol-btn-back-to-top" href="${loginView }" >
 			<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-03.png"/>" class="header-icon1" alt="ICON"
 				onmouseover="this.src='/ot/resources/images/icons/icon-header-03-3.png'"
 				onmouseout="this.src='/ot/resources/images/icons/icon-header-03.png'">
 		</a></button>
 		</c:if>
-		
+
 		<c:if test="${ !empty sessionScope.loginMember }">
 			<button style="width:88%;height:12%;background:snow;margin-top:-210%;margin-left:-88%;border-radius:10%;" href="/web/index.jsp">
 			<a class="symbol-btn-back-to-top" href="${wishlist }" >
@@ -301,7 +340,7 @@
 		
 		<c:if test="${ empty sessionScope.loginMember }">
 		<button style="width:88%;height:12%;background:snow;margin-top:-210%;margin-left:-88%;border-radius:10%;" href="/web/index.jsp">
-			<a class="symbol-btn-back-to-top" href="${loginView }" >
+			<a id="wishlist" class="symbol-btn-back-to-top" href="${loginView }" >
 				<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-04.png"/>" class="header-icon1" alt="ICON"
 					onmouseover="this.src='/ot/resources/images/icons/icon-header-04-4.png'"
 					onmouseout="this.src='/ot/resources/images/icons/icon-header-04.png'">
@@ -319,7 +358,7 @@
 		</c:if>
 		<c:if test="${ empty sessionScope.loginMember }">	
 		<button style="width:88%;height:12%;background:snow;margin-top:10%;margin-left:-88%;border-radius:10%;"href="/web/index.jsp">
-			<a class="header-wrapicon1 dis-block"href="${loginView }" >
+			<a id="mypage" class="header-wrapicon1 dis-block"href="${loginView }" >
 				<img style="border-radius:10%;" src="<c:url value="/resources/images/icons/icon-header-01.png"/>" class="header-icon1" alt="ICON"
 				onmouseover="this.src='/ot/resources/images/icons/icon-header-01-1.png'"
 				onmouseout="this.src='/ot/resources/images/icons/icon-header-01.png'">
@@ -662,7 +701,17 @@ jQuery('.format-money').text(function() {
 </script>
 
 <script>
+$('#orderlist').click(function(){
+	alert("로그인 후 이용해주세요.");
+})
 
+$('#wishlist').click(function(){
+	alert("로그인 후 이용해주세요.");
+})
+
+$('#mypage').click(function(){
+	alert("로그인 후 이용해주세요.");
+})
 
 
 </script>

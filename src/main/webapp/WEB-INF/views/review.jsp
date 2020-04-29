@@ -223,7 +223,7 @@ body {
 }
 
 #comentarea {
-	
+
 }
 
 #comentinput {
@@ -920,7 +920,7 @@ a {
 }
 
 .widget_reviews__body {
-	
+
 }
 
 .products_reviews_summary__lcontent {
@@ -1485,7 +1485,7 @@ select {
 									<div class="photo_review_thumbnail__thumbnail_container">
 										<ul>
 											<li class="photo_review_thumbnail__review_image_thumbnail">
-												<a onclick="review1(this)">
+												<a onclick="review10(this)">
 											   <img
 													class="js-review-image"
 													alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="${r.rvImage }"
@@ -1969,12 +1969,12 @@ select {
 					                          	 '<div style="color:lightgray;font-size:11px;float:right;"><font>'+data.rplist[i].memName+'</font>+&nbsp;&nbsp;'+data.rplist[i].rvDate+'</div></div><br>'
 					                          	 )
 									 }
-									 
-									 
-									 
-									 
-									 
-									 
+
+
+
+
+
+
 								 }
 							},error:function() {
 								alert("에러임에러임");
@@ -2040,7 +2040,7 @@ select {
 									  '<div class="photo_review_thumbnail__thumbnail_container">'+
 									  '<ul>'+
 									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '<a onclick="review10(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 									  '</li>'+
 									  '</ul>'+
 									  '<div class="photo_review_thumbnail__review_info">'+
@@ -2072,7 +2072,7 @@ select {
 									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점 '+
 									  '<strong style="color: black;display:inline-block;"id="starArea'+i+'o">'+data.rlist[i].rvPoint+'</strong>&nbsp;</span>'+
 							          '</div></div></div></li>')
-							          
+
 					 var star1 = '<i class="fa fa-fw fa-star"></i>'
 					   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
 					   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
@@ -2089,7 +2089,7 @@ select {
 					   	 }else if(data.rlist[i].rvPoint==5){
 					   		 $('#starArea'+i+'o').after(star5);
 					 }
-							      
+
 						}
 							   	 }
 					 }
@@ -2127,7 +2127,7 @@ select {
 									  '<div class="photo_review_thumbnail__thumbnail_container">'+
 									  '<ul>'+
 									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '<a onclick="review10(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 									  '</li>'+
 									  '</ul>'+
 									  '<div class="photo_review_thumbnail__review_info">'+
@@ -2159,7 +2159,7 @@ select {
 									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점 '+
 									  '<strong style="color: black;display:inline-block;"id="starArea'+i+'o">'+data.rlist[i].rvPoint+'</strong>&nbsp;</span>'+
 							          '</div></div></div></li>')
-							          
+
 					 var star1 = '<i class="fa fa-fw fa-star"></i>'
 					   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
 					   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
@@ -2212,7 +2212,7 @@ select {
 									  '<div class="photo_review_thumbnail__thumbnail_container">'+
 									  '<ul>'+
 									  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-									  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+									  '<a onclick="review10(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 									  '</li>'+
 									  '</ul>'+
 									  '<div class="photo_review_thumbnail__review_info">'+
@@ -2244,7 +2244,7 @@ select {
 									  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점 '+
 									  '<strong style="color: black;display:inline-block;"id="starArea'+i+'o">'+data.rlist[i].rvPoint+'</strong>&nbsp;</span>'+
 							          '</div></div></div></li>')
-							          
+
 					 var star1 = '<i class="fa fa-fw fa-star"></i>'
 					   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
 					   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
@@ -2310,9 +2310,10 @@ select {
 	<script>
 
 	<!--리뷰 모달 디테일 스크립트-->
-	function review1(en){
+	function review10(en){
 		 if("${loginMember.memId}"==""){
-			 alert("로그인 후 이용해주세요!");S
+			 alert("로그인 후 이용해주세요!");
+			 location.href="loginView.do";
 		 }else{
 
 		 $('#comentarea').children('.replyDiv').remove();
@@ -2326,7 +2327,7 @@ select {
 		 var like_img="";
 		 var count = 0;
 		 console.log(rv_no);
-
+		 $('.prdetail').remove();
 
 		 $.ajax({
 			 url:"reviewDetail.do",
@@ -2334,7 +2335,7 @@ select {
 			 data : {rv_no : rv_no},
 			 success : function(r){
 				 console.log(r)
-				 $('#prDetail').append('<a style="font-size:12px;" id="'+r.r.prdtCode+'" onclick="prdtGo(this.id)">'+r.r.prdtName+'"</a>");
+				 $('#prDetail').append('<a class="prdetail" style="font-size:12px;" id="'+r.r.prdtCode+'" onclick="prdtGo(this.id)">'+r.r.prdtName+'</a>');
 				 $('#memName').text(r.r.memName);
 				 $('#rColor').text(r.r.rvColor);
 				 $('#rSize').text(r.r.rvSize);
@@ -2361,7 +2362,7 @@ select {
 				for(var i=1; i<r.r.rvPoint;i++){
 					$('#starstar').after('<i class="fa fa-fw fa-star" id="starstar1"></i>')
 				}
-				
+
 			  for(var i =0; i<r.ph.length;i++){
 				  if(i == 0){
 						$('#nextPh').after(' <div id="img1" class="mySlides" style="display: block;">'+
@@ -2555,17 +2556,17 @@ select {
 		}
 
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	function prdtGo(arguments){
 		prdtNo=arguments;
 		location.href="http://moon1:8888/ot/product_detail.do?product_detail="+prdtNo
 	}
-	
-	
+
+
 	</script>
 	<!-- 키 정렬  스크립트 -->
 	<script>
@@ -2603,7 +2604,7 @@ select {
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review10(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+
@@ -2635,7 +2636,7 @@ select {
 										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점 '+
 										  '<strong style="color: black;display:inline-block;"id="starArea'+i+'o">'+data.rlist[i].rvPoint+'</strong>&nbsp;</span>'+
 								          '</div></div></div></li>')
-								          
+
 						 var star1 = '<i class="fa fa-fw fa-star"></i>'
 						   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
 						   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
@@ -2707,7 +2708,7 @@ select {
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review10(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+
@@ -2739,7 +2740,7 @@ select {
 										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점 '+
 										  '<strong style="color: black;display:inline-block;"id="starArea'+i+'o">'+data.rlist[i].rvPoint+'</strong>&nbsp;</span>'+
 								          '</div></div></div></li>')
-								          
+
 						 var star1 = '<i class="fa fa-fw fa-star"></i>'
 						   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
 						   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
@@ -2810,7 +2811,7 @@ select {
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review10(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%;height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+
@@ -2842,7 +2843,7 @@ select {
 										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점 '+
 										  '<strong style="color: black;display:inline-block;"id="starArea'+i+'o">'+data.rlist[i].rvPoint+'</strong>&nbsp;</span>'+
 								          '</div></div></div></li>')
-								          
+
 						 var star1 = '<i class="fa fa-fw fa-star"></i>'
 						   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
 						   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
@@ -2903,7 +2904,7 @@ select {
 										  '<div class="photo_review_thumbnail__thumbnail_container">'+
 										  '<ul>'+
 										  '<li class="photo_review_thumbnail__review_image_thumbnail">'+
-										  '<a onclick="review1(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
+										  '<a onclick="review10(this)"><img class="js-review-image"alt="그레이 사고 너무 잘 입어서 블랙 롱 버전으로 재구매했" src="'+data.rlist[i].rvImage+'"style="width: 100%; height: 224px; opacity: 1; border-bottom: 2px solid lightgray;"></a>'+
 										  '</li>'+
 										  '</ul>'+
 										  '<div class="photo_review_thumbnail__review_info">'+
@@ -2935,7 +2936,7 @@ select {
 										  '<span class="reviews_index_gallery_review__display_score" style="color: #c3b798;">평점 '+
 										  '<strong style="color: black;display:inline-block;"id="starArea'+i+'o">'+data.rlist[i].rvPoint+'</strong>&nbsp;</span>'+
 								          '</div></div></div></li>')
-								          
+
 						 var star1 = '<i class="fa fa-fw fa-star"></i>'
 						   	 var star2 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
 						   	 var star3 = '<i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i><i class="fa fa-fw fa-star"></i>'
@@ -2960,10 +2961,7 @@ select {
 							alert("에러임에러임");
 					}
 		});
-
-
 	  })
-
 	  </script>
 
 

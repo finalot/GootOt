@@ -40,6 +40,8 @@ a {
 	<c:url var="mWishlist" value="mWishlist.do"/>
 	<c:url var="product_detail" value="product_detail.do">
 		<c:param name="product_detail" value="p1"/>
+	<c:url var="mPoint" value="mPoint.do"/>
+	<c:url var="mCoupon" value="mCoupon.do"/>
 	</c:url>
 	<c:url var="order" value="buynow.do">
 		<c:param name="order" value="p1"/>
@@ -56,19 +58,19 @@ a {
  					님은 현재 
 					<strong>
 						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">
-							<c:if test="${loginMember.memSumMoney < 30000}">
+							<c:if test="${loginMember.memSumMoney < 100000}" >
 								MEMBER
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 30000 && loginMember.memSumMoney < 60000}" >
+							<c:if test="${loginMember.memSumMoney >= 100000 && loginMember.memSumMoney < 300000}" >
 								IRON
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 60000 && loginMember.memSumMoney < 90000}" >
+							<c:if test="${loginMember.memSumMoney >= 300000 && loginMember.memSumMoney < 500000}" >
 								BRONZE
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 90000 && loginMember.memSumMoney < 120000}" >
+							<c:if test="${loginMember.memSumMoney >= 500000 && loginMember.memSumMoney < 700000}" >
 								SILVER
 							</c:if>
-							<c:if test="${loginMember.memSumMoney >= 120000}" >
+							<c:if test="${loginMember.memSumMoney >= 700000}" >
 								GOLD
 							</c:if>
 						</span>
@@ -78,17 +80,12 @@ a {
 				</p>
 		
 				<ul style="float: right;width: 350px; height: 60px;margin-right: 100px;margin-top: -34px;">
-					
-					<c:url var="mWishlist" value="mWishlist.do"/>
-					<c:url var="mPoint" value="mPoint.do"/>
-					<c:url var="mCoupon" value="mCoupon.do"/>
-					
 					<li class="xans-layout-shoppinginfo ">
 						<strong class="title">WISH</strong>
   						<br>
 						<strong class="data ">
-							<a href="${mWishlist}">
-									<span id="xans_myshop_interest_prd_cnt">${listCount }개</span>
+							<a href="${mWishlist }">
+									<span id="xans_myshop_interest_prd_cnt">${WishList }개</span>
 							</a>
 						</strong>
 					</li>
@@ -98,7 +95,7 @@ a {
 	                    <br>
 	                    <strong class="data">
 	                    	<a href="${mPoint }">
-	                    	<fmt:formatNumber value="${loginMember.mem_point }" pattern="#,###"/>원</a>
+	                  <span>${resultPoint}</span>원</a>
 	                    </strong>
 	                </li>
                 
@@ -106,7 +103,7 @@ a {
 	                    <strong class="title">COUPON</strong>
 	                    <br>
 	                    <strong class="data">
-	                    	<a href="${mCoupon }">${CouponCount }<span>개</span></a>
+	                    	<a href="${mCoupon }">${CouponCount}<span>개</span></a>
 	                    </strong>
 	                </li>
 	            </ul>

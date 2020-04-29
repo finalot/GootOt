@@ -1058,7 +1058,7 @@ function qna(){
 		<input type="hidden" value="<%=prdtNo%>" name="prdtNo">
 		<br>
 		<br> <label>리뷰 내용 <small>(200자 이내)</small><br>
-		<textarea maxlength="200" name="rvInfo" placeholder="*리뷰는 한 게시물당 한 리뷰만 작성가능합니다. \n 다시작성하려면 삭제 후 작성해주세요."
+		<textarea maxlength="200" name="rvInfo" placeholder="*리뷰는 한 게시물당 한 리뷰만 작성가능합니다.다시작성하려면 삭제 후 작성해주세요."
 				style="border: 2px solid lightgray; border-image: initial; width: 700%; height: 270px; resize: none; font-size: 15px;"></textarea></label>
 	</form>
 

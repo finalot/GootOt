@@ -12,10 +12,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.kh.ot.admin.vo.Coupon;
 import com.kh.ot.cart.service.CartService;
 import com.kh.ot.cart.vo.Cart;
@@ -74,6 +76,34 @@ public class CartController extends HttpServlet {
    		mv.setViewName("cart");
 
    		return mv;
+	}
+	
+	@RequestMapping("cartbutton1.do")
+	@ResponseBody
+	public void cartbutton1(HttpServletResponse response,HttpSession session,HttpServletRequest request) throws JsonIOException, IOException {
+
+		Member m = (Member)session.getAttribute("loginMember");
+		int mem_no = m.getMemNo();
+
+		ArrayList<Cart> cclist = cService.selectList(mem_no);
+		response.setContentType("application/json; charset=utf-8");
+		Gson gson = new Gson();
+
+		gson.toJson(cclist, response.getWriter());
+	}
+	
+	@RequestMapping("cartbutton2.do")
+	@ResponseBody
+	public void cartbutton2(HttpServletResponse response,HttpSession session,HttpServletRequest request) throws JsonIOException, IOException {
+
+		Member m = (Member)session.getAttribute("loginMember");
+		int mem_no = m.getMemNo();
+
+		ArrayList<Cart> ccclist = cService.selectList(mem_no);
+		response.setContentType("application/json; charset=utf-8");
+		Gson gson = new Gson();
+
+		gson.toJson(ccclist, response.getWriter());
 	}
 
 	/**

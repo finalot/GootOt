@@ -384,6 +384,15 @@ public class adminServiceImpl implements adminService{
 		public int ConnectSubmit(PrdtConnect pco) {
 			return adDao.ConnectSubmit(pco);
 		}
+		public int ProductUpdate2(Product p) {
+			return adDao.ProductUpdate2(p);
+		}
+
+
+		@Override
+		public Product selectProduct(Product p) {
+			return adDao.selectProduct(p);
+		}
 
 
 
