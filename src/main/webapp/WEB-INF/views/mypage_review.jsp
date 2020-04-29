@@ -770,9 +770,10 @@ a{
                        <!-- 모달창 끝나는 점 -->     
                 	</div>
                 </div>
-
+			
        		<div class="reviews_index__body" style="display:inline-block;">
 				<ul class="reviews_index__reviews reviews menuul" style="display:inline-block;">
+				<c:if test="${ !empty list }">
 					<c:forEach var="r" items="${list }">
 						<li class="reviews_index_gallery_review review">
  					 		<input type="hidden" class="rv_no" value="${r.rvNo }" >
@@ -860,8 +861,12 @@ a{
 							</div>
 						</li>
 					</c:forEach>
+					</c:if>
 				</ul>  
 			</div>
+			<c:if test="${ empty list }">
+					<div class="reviews_index__no_data_message" style="color : #999; text-align : center; padding : 50px 0;">작성된 리뷰가 없습니다.</div>
+			</c:if>
 		
 		<!-- 페이징 처리 -->
 			<div class="xans-element- xans-myshop xans-myshop-couponlistpaging ec-base-paginate1">
