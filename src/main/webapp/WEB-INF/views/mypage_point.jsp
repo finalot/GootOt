@@ -45,6 +45,10 @@
 			<div class="xans-myshop-bankbook " style="width: 80%;">
     			<p class="xans-element- xans-myshop xans-myshop-asyncbenefit mypage_top ">
     				<strong>
+    					<span><span class="xans-member- var-name">${loginMember.memName }</span></span>
+    				</strong>
+ 					님은 현재 
+					<strong>
 						<span class="xans-member- var-group_name" style="color:rgba(230,106,87,1);">
 							<c:if test="${loginMember.memSumMoney < 100000}" >
 								MEMBER

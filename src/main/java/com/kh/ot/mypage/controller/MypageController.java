@@ -390,10 +390,10 @@ public class MypageController {
 		System.out.println("list : " + list);
 
 		mv.addObject("resultPoint",resultPoint);
-		mv.addObject("listCount", listCount);
+		mv.addObject("WishList", listCount);
 		mv.addObject("CouponCount", coupon);
 		mv.addObject("PointCount", point);
-		mv.addObject("WishList", list);
+		mv.addObject("list", list);
 		mv.addObject("pi", pi);
 		mv.setViewName("mypage_wishList");
 
