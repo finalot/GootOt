@@ -4268,7 +4268,7 @@ font-family: Montserrat-Bold;
 .yg_btn_148 {
 
     height: 38px;
-    width: 140px;
+    width: 295px;
     line-height: 38px;
     display: inline-block;
     font-size: 11px;
@@ -4281,7 +4281,7 @@ font-family: Montserrat-Bold;
     border-radius: 0px;
     font-family: Nanum Gothic;
 }
-}
+
 
 #idMsg3 {
 	    color: #fff;
@@ -4483,6 +4483,12 @@ input[type=text] {
     background: #fff;
     color: #444!important;
     border-color: #ddd!important;
+}
+.yg_btn4 {
+    background: #fff;
+    color: #444!important;
+    border-color: #ddd!important;
+    left: -64px;
 }
 
 .ec-base-button {

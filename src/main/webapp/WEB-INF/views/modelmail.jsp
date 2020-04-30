@@ -81,12 +81,12 @@ font-size: 11px;
 </div>
 
 <div id="sendBtn" style=" margin-top: 5%;margin-bottom: 5%; padding-right: 7%;" align="right" >
-	<button id="SendBtn" class="btn_3">
+	<button id="SendBtn" class="more yg_btn_24 yg_btn4">
 								보내기
 							</button>
-	<button id="" class="btn_3">
+<!-- 	<button id="" class="btn_3">
 								목록
-							</button>
+							</button> -->
 	
 </div>
 
