@@ -289,16 +289,17 @@
 	</update>
 	
 	<select id="todayScountSelect" resultType="_int">
-		SELECT NVL(SUM(ORD_COUNT),0) AS 당일판매량
+
+	SELECT NVL(SUM(ORD_COUNT),0) AS 당일판매량
 		FROM ORD
-		WHERE ORD_DATE=TO_CHAR(SYSDATE,'YY/MM/DD')
+		WHERE TO_CHAR(ORD_DATE,'YY/MM/DD')=TO_CHAR(SYSDATE,'YY/MM/DD')
 
 	</select>
 	
 	<select id="todaySpriceSelect" resultType="_int">
 		SELECT NVL(SUM(PAY_MONEY),0) AS 당일총금액
 		FROM PAY
-		WHERE PAY_DATE=TO_CHAR(SYSDATE,'YY/MM/DD')
+		WHERE TO_CHAR(PAY_DATE,'YY/MM/DD') = TO_CHAR(SYSDATE,'YY/MM/DD')
 	</select>
 		
 		<select id="weekList"  resultMap="payResultSet">

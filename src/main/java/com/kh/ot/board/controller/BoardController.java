@@ -773,9 +773,10 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
  	*/
    @RequestMapping(value="delivery_board_insert.do",method=RequestMethod.POST)
    	public String delivery_board_insert(Board b,HttpServletRequest request,HttpSession session,
-         @RequestParam(name="uploadFile",required=false) MultipartFile uploadFile,int prdtNo) {
+         @RequestParam(name="uploadFile",required=false) MultipartFile uploadFile) {
 	   int result = 0;
 	   int result2 = 0;
+	   int prdtNo=0;
       int pNo =0;
       System.out.println("boardInsert:"+prdtNo);
       Member m = (Member)session.getAttribute("loginMember");      
