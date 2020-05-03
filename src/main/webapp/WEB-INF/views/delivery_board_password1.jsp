@@ -154,7 +154,7 @@ input[type=password] {
  <script>
  function goList(){
 		var prdtNo = $('#prdtNo').val()
-		location.href="http://moon1:8888/ot/product_detail.do?product_detail="+prdtNo+"#qna";
+		location.href="http://localhost:8888/ot/product_detail.do?product_detail="+prdtNo+"#qna";
 	};
  
  

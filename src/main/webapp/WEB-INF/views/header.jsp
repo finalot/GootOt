@@ -514,7 +514,7 @@ font-size: 9px !important;
 								for(var i in data){
 									
 									if(data[i].upNo == 6){
-										var str = "<li class='sale-noti'><a href='http://moon1:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
+										var str = "<li class='sale-noti'><a href='http://localhost:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
 										"<ul class='sub_menu' id='a"+data[i].upNo+"a'"+
 											"style='border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 160%;'>"+
 										"</ul></li>"+
@@ -522,7 +522,7 @@ font-size: 9px !important;
 									
 									}else if (data[i].upNo ==4){
 									
-									var str = "<li><a href='http://moon1:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
+									var str = "<li><a href='http://localhost:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
 									"<ul class='sub_menu' id='a"+data[i].upNo+"a'"+
 										"style='border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 168%;'>"+
 									"</ul></li>"+
@@ -530,7 +530,7 @@ font-size: 9px !important;
 								
 									}else{
 										
-									var str = "<li><a href='http://moon1:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
+									var str = "<li><a href='http://localhost:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
 									"<ul class='sub_menu' id='a"+data[i].upNo+"a'"+
 										"style='border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 140%;'>"+
 									"</ul></li>"+
@@ -545,7 +545,7 @@ font-size: 9px !important;
 									for(var i in data){
 										
 										if(data[i].upNo == 6){
-											var str2 = "<li class='sale-noti'><a href='http://moon1:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
+											var str2 = "<li class='sale-noti'><a href='http://localhost:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
 											"<ul class='sub_menu' id='b"+data[i].upNo+"b'"+
 												"style='border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 160%;'>"+
 											"</ul></li>"+
@@ -553,7 +553,7 @@ font-size: 9px !important;
 										
 										}else if (data[i].upNo ==4){
 										
-										var str2 = "<li><a href='http://moon1:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
+										var str2 = "<li><a href='http://localhost:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
 										"<ul class='sub_menu' id='b"+data[i].upNo+"b'"+
 											"style='border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 168%;'>"+
 										"</ul></li>"+
@@ -561,7 +561,7 @@ font-size: 9px !important;
 									
 										}else{
 											
-										var str2 = "<li><a href='http://moon1:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
+										var str2 = "<li><a href='http://localhost:8888/ot/product1.do?product1="+data[i].upNo+"'>"+data[i].upName+"</a>"+
 										"<ul class='sub_menu' id='b"+data[i].upNo+"b'"+
 											"style='border-radius: 10px; background: #000; filter: alpha(opacity = 7); opacity: 0.6; -moz-opacity: 0.1; width: 140%;'>"+
 										"</ul></li>"+
@@ -594,7 +594,7 @@ font-size: 9px !important;
 									
 								
 								
-									var str = "<li><a href='http://moon1:8888/ot/product2.do?product2="+data[i].upNo+data[i].downNo+"'>"+data[i].downName+"</a></li>"
+									var str = "<li><a href='http://localhost:8888/ot/product2.do?product2="+data[i].upNo+data[i].downNo+"'>"+data[i].downName+"</a></li>"
 								
 								$('#a'+data[i].upNo+'a').append(str);
 								$('#b'+data[i].upNo+'b').append(str);

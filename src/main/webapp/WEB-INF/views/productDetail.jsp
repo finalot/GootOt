@@ -3000,7 +3000,7 @@ console.log(rvPage2);
                   <c:param name="currentPage" value="${mainPi2.currentPage -1 }"/>
                   </c:url>
                                             
-                  <a href="http://moon1:8888/ot/${before}#qna">
+                  <a href="http://localhost:8888/ot/${before}#qna">
                   <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
                   </a> &nbsp;
              </c:if>
@@ -3012,7 +3012,7 @@ console.log(rvPage2);
                      </c:if>
 					
                      <c:if test="${ p ne mainPi2.currentPage }">
-                     <a href="http://moon1:8888/ot/product_detail.do?product_detail=<%=prdtNo %>&currentPage=${p }#qna" 
+                     <a href="http://localhost:8888/ot/product_detail.do?product_detail=<%=prdtNo %>&currentPage=${p }#qna" 
                      style="display:inline-block; width:20px;height:27px;margin:3px;border:1px solid gray;border-radius:3px;" class="flex-c-m trans-0-4">
                      ${ p }</a>
                   </c:if>
@@ -3025,7 +3025,7 @@ console.log(rvPage2);
                     	<c:param name="product_detail" value="<%=prdtNo %>"/>
                      <c:param name="currentPage" value="${mainPi2.currentPage +1 }"/>
                     </c:url>
-                    <a href="http://moon1:8888/ot/${after}#qna">
+                    <a href="http://localhost:8888/ot/${after}#qna">
                <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
                </a>
                    </c:if>  
@@ -4402,7 +4402,6 @@ console.log(rvPage2);
 
 			})
 		}
-
 	}
 	</script>
 	

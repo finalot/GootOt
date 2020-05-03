@@ -70,7 +70,7 @@
 						<ul class="p-b-54">
 					 <c:forEach var="dc" items="${ dclist }">
 							<li class="p-t-4">
-								<a href="http://moon1:8888/ot/product2.do?product2=${dc.upNo }${dc.downNo }" class="s-text13 active1">
+								<a href="http://localhost:8888/ot/product2.do?product2=${dc.upNo }${dc.downNo }" class="s-text13 active1">
 									<small>${dc.downName}</small>
 								</a>
 							</li>
@@ -310,7 +310,7 @@
                   <c:param name="sort" value="4"/>
                   <c:param name="currentPage" value="${mainPi.currentPage -1 }"/>
                   </c:url>
-                  <a href="http://moon1:8888/ot/${before}">
+                  <a href="http://localhost:8888/ot/${before}">
                   <img src="/ot/resources/images/btn_page_prev.gif" alt="이전 페이지">
                   </a> &nbsp;
 					</c:if>
@@ -324,7 +324,7 @@
                         <c:url var="pagination" value="sort1.do">
                            <c:param name="currentPage" value="${ p }"/>
                      </c:url>
-                     <a href="http://moon1:8888/ot/sort1.do?product1=<%=upPage %>&sort=4&currentPage=${p }" class="item-pagination flex-c-m trans-0-4">
+                     <a href="http://localhost:8888/ot/sort1.do?product1=<%=upPage %>&sort=4&currentPage=${p }" class="item-pagination flex-c-m trans-0-4">
                      ${ p }</a>
                   </c:if>
                </c:forEach>
@@ -335,7 +335,7 @@
                		 <c:param name="sort" value="4"/>
                      <c:param name="currentPage" value="${mainPi.currentPage +1 }"/>
                   </c:url>
-                  <a href="http://moon1:8888/ot/${after}">
+                  <a href="http://localhost:8888/ot/${after}">
                <img src="/ot/resources/images/btn_page_next.gif" alt="다음 페이지">
                </a>
                   </c:if>

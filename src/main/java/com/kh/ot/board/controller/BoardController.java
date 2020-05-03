@@ -697,7 +697,7 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
 	   int result = bService.UpdatePrBoard(b);
 	   
 	   if(result > 0) {
-		   return "redirect:http://moon1:8888/ot/delivery_board_detail1.do?qna_no="+b.getQna_no();
+		   return "redirect:http://localhost:8888/ot/delivery_board_detail1.do?qna_no="+b.getQna_no();
 	   }else {
 		   return "에러다";
 	   }
@@ -727,7 +727,7 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
 		int result = bService.deletePrBoard(qna_no);
 		
 		if(result >0) {
-			return "redirect:http://moon1:8888/ot/product_detail.do?product_detail="+prdtNo+"#qna";
+			return "redirect:http://localhost:8888/ot/product_detail.do?product_detail="+prdtNo+"#qna";
 		} else {
 			return "에러다";
 		}
@@ -815,7 +815,7 @@ public String bad_product_updateView(Board b,HttpServletRequest request) {
       if(result >0) {
          return "redirect:delivery_board.do";
       } else if(result2 >0){
-         return "redirect:http://moon1:8888/ot/product_detail.do?product_detail="+prdtNo+"#qna";
+         return "redirect:http://localhost:8888/ot/product_detail.do?product_detail="+prdtNo+"#qna";
       }else {
     	  return "오류다";
     	  

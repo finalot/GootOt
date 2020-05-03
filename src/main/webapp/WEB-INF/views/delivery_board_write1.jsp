@@ -178,11 +178,11 @@
 		<div class="ec-base-button ">
             <span class="gLeft">
                 <span class="displaynone"><a href="#none" onclick="" class="yg_btn_30 yg_btn4" alt="관리자답변보기">관리자답변보기</a></span>
-                <a href="http://moon1:8888/ot/product_detail.do?product_detail=<%= prdtNo %>#qna" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
+                <a href="http://localhost:8888/ot/product_detail.do?product_detail=<%= prdtNo %>#qna" class="yg_btn_30 yg_btn4" alt="목록">LIST</a>
             </span>
             <span class="gRight">
                 <button  id="de_insert_ok" class="yg_btn_30 yg_btn4" alt="등록">OK</button>
-                <a href="http://moon1:8888/ot/product_detail.do?product_detail=<%= prdtNo %>#qna" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
+                <a href="http://localhost:8888/ot/product_detail.do?product_detail=<%= prdtNo %>#qna" class="yg_btn_30 yg_btn4" alt="취소">CANCEL</a>
             </span>
         </div>
 	</div>
